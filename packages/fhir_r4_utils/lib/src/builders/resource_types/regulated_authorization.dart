@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [RegulatedAuthorization]
+/// [RegulatedAuthorizationBuilder]
 /// Regulatory approval, clearance or licencing related to a regulated
 /// product, treatment, facility or activity that is cited in a guidance,
 /// regulation, rule or legislative act. An example is Market Authorization
 /// relating to a Medicinal Product.
-class RegulatedAuthorization extends DomainResource {
+class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [RegulatedAuthorization]
+  /// [RegulatedAuthorizationBuilder]
 
-  const RegulatedAuthorization({
+  RegulatedAuthorizationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -40,49 +42,49 @@ class RegulatedAuthorization extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RegulatedAuthorization.empty() => const RegulatedAuthorization();
+  /// For Builder classes, no fields are required
+  factory RegulatedAuthorizationBuilder.empty() =>
+      RegulatedAuthorizationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RegulatedAuthorization.fromJson(
+  factory RegulatedAuthorizationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RegulatedAuthorization';
-    return RegulatedAuthorization(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RegulatedAuthorizationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -91,8 +93,8 @@ class RegulatedAuthorization extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -101,8 +103,8 @@ class RegulatedAuthorization extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -111,8 +113,8 @@ class RegulatedAuthorization extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -121,8 +123,8 @@ class RegulatedAuthorization extends DomainResource {
           )
           .toList(),
       subject: (json['subject'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.subject',
@@ -130,21 +132,21 @@ class RegulatedAuthorization extends DomainResource {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       region: (json['region'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.region',
@@ -152,39 +154,39 @@ class RegulatedAuthorization extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
       ),
-      statusDate: JsonParser.parsePrimitive<FhirDateTime>(
+      statusDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'statusDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.statusDate',
       ),
-      validityPeriod: JsonParser.parseObject<Period>(
+      validityPeriod: JsonParser.parseObject<PeriodBuilder>(
         json,
         'validityPeriod',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.validityPeriod',
       ),
-      indication: JsonParser.parseObject<CodeableReference>(
+      indication: JsonParser.parseObject<CodeableReferenceBuilder>(
         json,
         'indication',
-        CodeableReference.fromJson,
+        CodeableReferenceBuilder.fromJson,
         '$objectPath.indication',
       ),
-      intendedUse: JsonParser.parseObject<CodeableConcept>(
+      intendedUse: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'intendedUse',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.intendedUse',
       ),
       basis: (json['basis'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basis',
@@ -192,43 +194,43 @@ class RegulatedAuthorization extends DomainResource {
             ),
           )
           .toList(),
-      holder: JsonParser.parseObject<Reference>(
+      holder: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'holder',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.holder',
       ),
-      regulator: JsonParser.parseObject<Reference>(
+      regulator: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'regulator',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.regulator',
       ),
-      case_: JsonParser.parseObject<RegulatedAuthorizationCase>(
+      case_: JsonParser.parseObject<RegulatedAuthorizationCaseBuilder>(
         json,
         'case',
-        RegulatedAuthorizationCase.fromJson,
+        RegulatedAuthorizationCaseBuilder.fromJson,
         '$objectPath.case',
       ),
     );
   }
 
-  /// Deserialize [RegulatedAuthorization]
+  /// Deserialize [RegulatedAuthorizationBuilder]
   /// from a [String] or [YamlMap] object
-  factory RegulatedAuthorization.fromYaml(
+  factory RegulatedAuthorizationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RegulatedAuthorization.fromJson(
+      return RegulatedAuthorizationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RegulatedAuthorization.fromJson(
+      return RegulatedAuthorizationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RegulatedAuthorization '
+        'RegulatedAuthorizationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -236,16 +238,16 @@ class RegulatedAuthorization extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [RegulatedAuthorization]
+  /// [RegulatedAuthorizationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RegulatedAuthorization.fromJsonString(
+  factory RegulatedAuthorizationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RegulatedAuthorization.fromJson(json);
+      return RegulatedAuthorizationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -258,65 +260,65 @@ class RegulatedAuthorization extends DomainResource {
   /// [identifier]
   /// Business identifier for the authorization, typically assigned by the
   /// authorizing body.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [subject]
   /// The product type, treatment, facility or activity that is being
   /// authorized.
-  final List<Reference>? subject;
+  List<ReferenceBuilder>? subject;
 
   /// [type]
   /// Overall type of this authorization, for example drug marketing
   /// approval, orphan drug designation.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [description]
   /// General textual supporting information.
-  final FhirMarkdown? description;
+  FhirMarkdownBuilder? description;
 
   /// [region]
   /// The territory (e.g., country, jurisdiction etc.) in which the
   /// authorization has been granted.
-  final List<CodeableConcept>? region;
+  List<CodeableConceptBuilder>? region;
 
   /// [status]
   /// The status that is authorised e.g. approved. Intermediate states and
   /// actions can be tracked with cases and applications.
-  final CodeableConcept? status;
+  CodeableConceptBuilder? status;
 
   /// [statusDate]
   /// The date at which the current status was assigned.
-  final FhirDateTime? statusDate;
+  FhirDateTimeBuilder? statusDate;
 
   /// [validityPeriod]
   /// The time period in which the regulatory approval, clearance or
   /// licencing is in effect. As an example, a Marketing Authorization
   /// includes the date of authorization and/or an expiration date.
-  final Period? validityPeriod;
+  PeriodBuilder? validityPeriod;
 
   /// [indication]
   /// Condition for which the use of the regulated product applies.
-  final CodeableReference? indication;
+  CodeableReferenceBuilder? indication;
 
   /// [intendedUse]
   /// The intended use of the product, e.g. prevention, treatment, diagnosis.
-  final CodeableConcept? intendedUse;
+  CodeableConceptBuilder? intendedUse;
 
   /// [basis]
   /// The legal or regulatory framework against which this authorization is
   /// granted, or other reasons for it.
-  final List<CodeableConcept>? basis;
+  List<CodeableConceptBuilder>? basis;
 
   /// [holder]
   /// The organization that has been granted this authorization, by some
   /// authoritative body (the 'regulator').
-  final Reference? holder;
+  ReferenceBuilder? holder;
 
   /// [regulator]
   /// The regulatory authority or authorizing body granting the
   /// authorization. For example, European Medicines Agency (EMA), Food and
   /// Drug Administration (FDA), Health Canada (HC), etc.
-  final Reference? regulator;
+  ReferenceBuilder? regulator;
 
   /// [case_]
   /// The case or regulatory procedure for granting or amending a regulated
@@ -326,23 +328,23 @@ class RegulatedAuthorization extends DomainResource {
   /// to this and assesses them. Note: This area is subject to ongoing review
   /// and the workgroup is seeking implementer feedback on its use (see link
   /// at bottom of page).
-  final RegulatedAuthorizationCase? case_;
+  RegulatedAuthorizationCaseBuilder? case_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -351,100 +353,34 @@ class RegulatedAuthorization extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'region',
-      region,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusDate',
-      statusDate,
-    );
-    addField(
-      'validityPeriod',
-      validityPeriod,
-    );
-    addField(
-      'indication',
-      indication,
-    );
-    addField(
-      'intendedUse',
-      intendedUse,
-    );
-    addField(
-      'basis',
-      basis,
-    );
-    addField(
-      'holder',
-      holder,
-    );
-    addField(
-      'regulator',
-      regulator,
-    );
-    addField(
-      'case',
-      case_,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('subject', subject);
+    addField('type', type);
+    addField('description', description);
+    addField('region', region);
+    addField('status', status);
+    addField('statusDate', statusDate);
+    addField('validityPeriod', validityPeriod);
+    addField('indication', indication);
+    addField('intendedUse', intendedUse);
+    addField('basis', basis);
+    addField('holder', holder);
+    addField('regulator', regulator);
+    addField('case', case_);
     return json;
   }
 
@@ -480,11 +416,11 @@ class RegulatedAuthorization extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -584,7 +520,7 @@ class RegulatedAuthorization extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -593,231 +529,245 @@ class RegulatedAuthorization extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?subject, ...child];
-            return copyWith(subject: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            subject = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?subject, child];
-            return copyWith(subject: newList);
+            subject = [...(subject ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'region':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?region, ...child];
-            return copyWith(region: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            region = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?region, child];
-            return copyWith(region: newList);
+            region = [...(region ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(statusDate: child);
+          if (child is FhirDateTimeBuilder) {
+            statusDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validityPeriod':
         {
-          if (child is Period) {
-            return copyWith(validityPeriod: child);
+          if (child is PeriodBuilder) {
+            validityPeriod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'indication':
         {
-          if (child is CodeableReference) {
-            return copyWith(indication: child);
+          if (child is CodeableReferenceBuilder) {
+            indication = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'intendedUse':
         {
-          if (child is CodeableConcept) {
-            return copyWith(intendedUse: child);
+          if (child is CodeableConceptBuilder) {
+            intendedUse = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basis':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?basis, ...child];
-            return copyWith(basis: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            basis = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basis, child];
-            return copyWith(basis: newList);
+            basis = [...(basis ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'holder':
         {
-          if (child is Reference) {
-            return copyWith(holder: child);
+          if (child is ReferenceBuilder) {
+            holder = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'regulator':
         {
-          if (child is Reference) {
-            return copyWith(regulator: child);
+          if (child is ReferenceBuilder) {
+            regulator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'case':
         {
-          if (child is RegulatedAuthorizationCase) {
-            return copyWith(case_: child);
+          if (child is RegulatedAuthorizationCaseBuilder) {
+            case_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -833,194 +783,168 @@ class RegulatedAuthorization extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'region':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'statusDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'validityPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'indication':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'intendedUse':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'basis':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'holder':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'regulator':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'case':
-        return ['RegulatedAuthorizationCase'];
+        return ['RegulatedAuthorizationCaseBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RegulatedAuthorization]
+  /// Creates a new [RegulatedAuthorizationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RegulatedAuthorization createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: <Reference>[],
-          );
+          subject = <ReferenceBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'region':
         {
-          return copyWith(
-            region: <CodeableConcept>[],
-          );
+          region = <CodeableConceptBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'statusDate':
         {
-          return copyWith(
-            statusDate: FhirDateTime.empty(),
-          );
+          statusDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'validityPeriod':
         {
-          return copyWith(
-            validityPeriod: Period.empty(),
-          );
+          validityPeriod = PeriodBuilder.empty();
+          return;
         }
       case 'indication':
         {
-          return copyWith(
-            indication: CodeableReference.empty(),
-          );
+          indication = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'intendedUse':
         {
-          return copyWith(
-            intendedUse: CodeableConcept.empty(),
-          );
+          intendedUse = CodeableConceptBuilder.empty();
+          return;
         }
       case 'basis':
         {
-          return copyWith(
-            basis: <CodeableConcept>[],
-          );
+          basis = <CodeableConceptBuilder>[];
+          return;
         }
       case 'holder':
         {
-          return copyWith(
-            holder: Reference.empty(),
-          );
+          holder = ReferenceBuilder.empty();
+          return;
         }
       case 'regulator':
         {
-          return copyWith(
-            regulator: Reference.empty(),
-          );
+          regulator = ReferenceBuilder.empty();
+          return;
         }
       case 'case':
         {
-          return copyWith(
-            case_: RegulatedAuthorizationCase.empty(),
-          );
+          case_ = RegulatedAuthorizationCaseBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1029,7 +953,7 @@ class RegulatedAuthorization extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  RegulatedAuthorization clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1053,181 +977,109 @@ class RegulatedAuthorization extends DomainResource {
     bool regulator = false,
     bool case_ = false,
   }) {
-    return RegulatedAuthorization(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      subject: subject ? null : this.subject,
-      type: type ? null : this.type,
-      description: description ? null : this.description,
-      region: region ? null : this.region,
-      status: status ? null : this.status,
-      statusDate: statusDate ? null : this.statusDate,
-      validityPeriod: validityPeriod ? null : this.validityPeriod,
-      indication: indication ? null : this.indication,
-      intendedUse: intendedUse ? null : this.intendedUse,
-      basis: basis ? null : this.basis,
-      holder: holder ? null : this.holder,
-      regulator: regulator ? null : this.regulator,
-      case_: case_ ? null : this.case_,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (subject) this.subject = null;
+    if (type) this.type = null;
+    if (description) this.description = null;
+    if (region) this.region = null;
+    if (status) this.status = null;
+    if (statusDate) this.statusDate = null;
+    if (validityPeriod) this.validityPeriod = null;
+    if (indication) this.indication = null;
+    if (intendedUse) this.intendedUse = null;
+    if (basis) this.basis = null;
+    if (holder) this.holder = null;
+    if (regulator) this.regulator = null;
+    if (case_) this.case_ = null;
   }
 
   @override
-  RegulatedAuthorization clone() => throw UnimplementedError();
+  RegulatedAuthorizationBuilder clone() => throw UnimplementedError();
   @override
-  RegulatedAuthorization copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? subject,
-    CodeableConcept? type,
-    FhirMarkdown? description,
-    List<CodeableConcept>? region,
-    CodeableConcept? status,
-    FhirDateTime? statusDate,
-    Period? validityPeriod,
-    CodeableReference? indication,
-    CodeableConcept? intendedUse,
-    List<CodeableConcept>? basis,
-    Reference? holder,
-    Reference? regulator,
-    RegulatedAuthorizationCase? case_,
+  RegulatedAuthorizationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<ReferenceBuilder>? subject,
+    CodeableConceptBuilder? type,
+    FhirMarkdownBuilder? description,
+    List<CodeableConceptBuilder>? region,
+    CodeableConceptBuilder? status,
+    FhirDateTimeBuilder? statusDate,
+    PeriodBuilder? validityPeriod,
+    CodeableReferenceBuilder? indication,
+    CodeableConceptBuilder? intendedUse,
+    List<CodeableConceptBuilder>? basis,
+    ReferenceBuilder? holder,
+    ReferenceBuilder? regulator,
+    RegulatedAuthorizationCaseBuilder? case_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return RegulatedAuthorization(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = RegulatedAuthorizationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      subject: subject
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subject',
-                ),
-              )
-              .toList() ??
-          this.subject,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      region: region
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.region',
-                ),
-              )
-              .toList() ??
-          this.region,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusDate: statusDate?.copyWith(
-            objectPath: '$newObjectPath.statusDate',
-          ) ??
-          this.statusDate,
-      validityPeriod: validityPeriod?.copyWith(
-            objectPath: '$newObjectPath.validityPeriod',
-          ) ??
-          this.validityPeriod,
-      indication: indication?.copyWith(
-            objectPath: '$newObjectPath.indication',
-          ) ??
-          this.indication,
-      intendedUse: intendedUse?.copyWith(
-            objectPath: '$newObjectPath.intendedUse',
-          ) ??
-          this.intendedUse,
-      basis: basis
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basis',
-                ),
-              )
-              .toList() ??
-          this.basis,
-      holder: holder?.copyWith(
-            objectPath: '$newObjectPath.holder',
-          ) ??
-          this.holder,
-      regulator: regulator?.copyWith(
-            objectPath: '$newObjectPath.regulator',
-          ) ??
-          this.regulator,
-      case_: case_?.copyWith(
-            objectPath: '$newObjectPath.case',
-          ) ??
-          this.case_,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      subject: subject ?? this.subject,
+      type: type ?? this.type,
+      description: description ?? this.description,
+      region: region ?? this.region,
+      status: status ?? this.status,
+      statusDate: statusDate ?? this.statusDate,
+      validityPeriod: validityPeriod ?? this.validityPeriod,
+      indication: indication ?? this.indication,
+      intendedUse: intendedUse ?? this.intendedUse,
+      basis: basis ?? this.basis,
+      holder: holder ?? this.holder,
+      regulator: regulator ?? this.regulator,
+      case_: case_ ?? this.case_,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RegulatedAuthorization) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RegulatedAuthorizationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1262,31 +1114,31 @@ class RegulatedAuthorization extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       subject,
       o.subject,
     )) {
@@ -1304,7 +1156,7 @@ class RegulatedAuthorization extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       region,
       o.region,
     )) {
@@ -1340,7 +1192,7 @@ class RegulatedAuthorization extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       basis,
       o.basis,
     )) {
@@ -1368,7 +1220,7 @@ class RegulatedAuthorization extends DomainResource {
   }
 }
 
-/// [RegulatedAuthorizationCase]
+/// [RegulatedAuthorizationCaseBuilder]
 /// The case or regulatory procedure for granting or amending a regulated
 /// authorization. An authorization is granted in response to
 /// submissions/applications by those seeking authorization. A case is the
@@ -1376,11 +1228,11 @@ class RegulatedAuthorization extends DomainResource {
 /// to this and assesses them. Note: This area is subject to ongoing review
 /// and the workgroup is seeking implementer feedback on its use (see link
 /// at bottom of page).
-class RegulatedAuthorizationCase extends BackboneElement {
+class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [RegulatedAuthorizationCase]
+  /// [RegulatedAuthorizationCaseBuilder]
 
-  const RegulatedAuthorizationCase({
+  RegulatedAuthorizationCaseBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1395,26 +1247,25 @@ class RegulatedAuthorizationCase extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RegulatedAuthorizationCase.empty() =>
-      const RegulatedAuthorizationCase();
+  /// For Builder classes, no fields are required
+  factory RegulatedAuthorizationCaseBuilder.empty() =>
+      RegulatedAuthorizationCaseBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RegulatedAuthorizationCase.fromJson(
+  factory RegulatedAuthorizationCaseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RegulatedAuthorization.case';
-    return RegulatedAuthorizationCase(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RegulatedAuthorizationCaseBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1423,8 +1274,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1432,35 +1283,36 @@ class RegulatedAuthorizationCase extends BackboneElement {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
       ),
-      dateX: JsonParser.parsePolymorphic<DateXRegulatedAuthorizationCase>(
+      dateX:
+          JsonParser.parsePolymorphic<DateXRegulatedAuthorizationCaseBuilder>(
         json,
         {
-          'datePeriod': Period.fromJson,
-          'dateDateTime': FhirDateTime.fromJson,
+          'datePeriod': PeriodBuilder.fromJson,
+          'dateDateTime': FhirDateTimeBuilder.fromJson,
         },
         objectPath,
       ),
       application: (json['application'] as List<dynamic>?)
-          ?.map<RegulatedAuthorizationCase>(
-            (v) => RegulatedAuthorizationCase.fromJson(
+          ?.map<RegulatedAuthorizationCaseBuilder>(
+            (v) => RegulatedAuthorizationCaseBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.application',
@@ -1471,22 +1323,22 @@ class RegulatedAuthorizationCase extends BackboneElement {
     );
   }
 
-  /// Deserialize [RegulatedAuthorizationCase]
+  /// Deserialize [RegulatedAuthorizationCaseBuilder]
   /// from a [String] or [YamlMap] object
-  factory RegulatedAuthorizationCase.fromYaml(
+  factory RegulatedAuthorizationCaseBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RegulatedAuthorizationCase.fromJson(
+      return RegulatedAuthorizationCaseBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RegulatedAuthorizationCase.fromJson(
+      return RegulatedAuthorizationCaseBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RegulatedAuthorizationCase '
+        'RegulatedAuthorizationCaseBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1494,16 +1346,16 @@ class RegulatedAuthorizationCase extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [RegulatedAuthorizationCase]
+  /// [RegulatedAuthorizationCaseBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RegulatedAuthorizationCase.fromJsonString(
+  factory RegulatedAuthorizationCaseBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RegulatedAuthorizationCase.fromJson(json);
+      return RegulatedAuthorizationCaseBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1515,25 +1367,25 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   /// [identifier]
   /// Identifier by which this case can be referenced.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [type]
   /// The defining type of case.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [status]
   /// The status associated with the case.
-  final CodeableConcept? status;
+  CodeableConceptBuilder? status;
 
   /// [dateX]
   /// Relevant date for this case.
-  final DateXRegulatedAuthorizationCase? dateX;
+  DateXRegulatedAuthorizationCaseBuilder? dateX;
 
-  /// Getter for [datePeriod] as a Period
-  Period? get datePeriod => dateX?.isAs<Period>();
+  /// Getter for [datePeriod] as a PeriodBuilder
+  PeriodBuilder? get datePeriod => dateX?.isAs<PeriodBuilder>();
 
-  /// Getter for [dateDateTime] as a FhirDateTime
-  FhirDateTime? get dateDateTime => dateX?.isAs<FhirDateTime>();
+  /// Getter for [dateDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get dateDateTime => dateX?.isAs<FhirDateTimeBuilder>();
 
   /// [application]
   /// A regulatory submission from an organization to a regulator, as part of
@@ -1541,23 +1393,23 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// or different information to support or modify the submission or the
   /// authorization. The applications can be considered as steps within the
   /// longer running case or procedure for this authorization process.
-  final List<RegulatedAuthorizationCase>? application;
+  List<RegulatedAuthorizationCaseBuilder>? application;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1566,47 +1418,23 @@ class RegulatedAuthorizationCase extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'status',
-      status,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('type', type);
+    addField('status', status);
     if (dateX != null) {
       final fhirType = dateX!.fhirType;
-      addField(
-        'date${fhirType.capitalize()}',
-        dateX,
-      );
+      addField('date${fhirType.capitalize()}', dateX);
     }
 
-    addField(
-      'application',
-      application,
-    );
+    addField('application', application);
     return json;
   }
 
@@ -1628,11 +1456,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1659,15 +1487,19 @@ class RegulatedAuthorizationCase extends BackboneElement {
           fields.add(status!);
         }
       case 'date':
-        fields.add(dateX!);
+        if (dateX != null) {
+          fields.add(dateX!);
+        }
       case 'dateX':
-        fields.add(dateX!);
+        if (dateX != null) {
+          fields.add(dateX!);
+        }
       case 'datePeriod':
-        if (dateX is Period) {
+        if (dateX is PeriodBuilder) {
           fields.add(dateX!);
         }
       case 'dateDateTime':
-        if (dateX is FhirDateTime) {
+        if (dateX is FhirDateTimeBuilder) {
           fields.add(dateX!);
         }
       case 'application':
@@ -1684,7 +1516,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1693,117 +1525,125 @@ class RegulatedAuthorizationCase extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateX':
         {
-          if (child is DateXRegulatedAuthorizationCase) {
-            return copyWith(dateX: child);
+          if (child is DateXRegulatedAuthorizationCaseBuilder) {
+            dateX = child;
+            return;
           } else {
-            if (child is Period) {
-              return copyWith(dateX: child);
+            if (child is PeriodBuilder) {
+              dateX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(dateX: child);
+            if (child is FhirDateTimeBuilder) {
+              dateX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'datePeriod':
         {
-          if (child is Period) {
-            return copyWith(dateX: child);
+          if (child is PeriodBuilder) {
+            dateX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'dateFhirDateTime':
+      case 'dateDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(dateX: child);
+          if (child is FhirDateTimeBuilder) {
+            dateX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'application':
         {
-          if (child is List<RegulatedAuthorizationCase>) {
-            // Add all elements from passed list
-            final newList = [...?application, ...child];
-            return copyWith(application: newList);
-          } else if (child is RegulatedAuthorizationCase) {
+          if (child is List<RegulatedAuthorizationCaseBuilder>) {
+            // Replace or create new list
+            application = child;
+            return;
+          } else if (child is RegulatedAuthorizationCaseBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?application, child];
-            return copyWith(application: newList);
+            application = [...(application ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1819,95 +1659,82 @@ class RegulatedAuthorizationCase extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'date':
       case 'dateX':
-        return ['Period', 'FhirDateTime'];
+        return ['PeriodBuilder', 'FhirDateTimeBuilder'];
       case 'datePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'dateDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'application':
-        return ['RegulatedAuthorizationCase'];
+        return ['RegulatedAuthorizationCaseBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RegulatedAuthorizationCase]
+  /// Creates a new [RegulatedAuthorizationCaseBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RegulatedAuthorizationCase createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'date':
       case 'dateX':
       case 'datePeriod':
         {
-          return copyWith(
-            dateX: Period.empty(),
-          );
+          dateX = PeriodBuilder.empty();
+          return;
         }
       case 'dateDateTime':
         {
-          return copyWith(
-            dateX: FhirDateTime.empty(),
-          );
+          dateX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'application':
         {
-          return copyWith(
-            application: <RegulatedAuthorizationCase>[],
-          );
+          application = <RegulatedAuthorizationCaseBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1916,7 +1743,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  RegulatedAuthorizationCase clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1926,30 +1753,28 @@ class RegulatedAuthorizationCase extends BackboneElement {
     bool date = false,
     bool application = false,
   }) {
-    return RegulatedAuthorizationCase(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      type: type ? null : this.type,
-      status: status ? null : this.status,
-      dateX: date ? null : dateX,
-      application: application ? null : this.application,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (type) this.type = null;
+    if (status) this.status = null;
+    if (date) this.dateX = null;
+    if (application) this.application = null;
   }
 
   @override
-  RegulatedAuthorizationCase clone() => throw UnimplementedError();
+  RegulatedAuthorizationCaseBuilder clone() => throw UnimplementedError();
   @override
-  RegulatedAuthorizationCase copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    CodeableConcept? type,
-    CodeableConcept? status,
-    DateXRegulatedAuthorizationCase? dateX,
-    List<RegulatedAuthorizationCase>? application,
+  RegulatedAuthorizationCaseBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? status,
+    DateXRegulatedAuthorizationCaseBuilder? dateX,
+    List<RegulatedAuthorizationCaseBuilder>? application,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1957,58 +1782,39 @@ class RegulatedAuthorizationCase extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return RegulatedAuthorizationCase(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      dateX: dateX?.copyWith(
-            objectPath: '$newObjectPath.dateX',
-          ) as DateXRegulatedAuthorizationCase? ??
-          this.dateX,
-      application: application
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.application',
-                ),
-              )
-              .toList() ??
-          this.application,
+    final newResult = RegulatedAuthorizationCaseBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      type: type ?? this.type,
+      status: status ?? this.status,
+      dateX: dateX ?? this.dateX,
+      application: application ?? this.application,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RegulatedAuthorizationCase) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RegulatedAuthorizationCaseBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2019,13 +1825,13 @@ class RegulatedAuthorizationCase extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2055,7 +1861,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<RegulatedAuthorizationCase>(
+    if (!listEquals<RegulatedAuthorizationCaseBuilder>(
       application,
       o.application,
     )) {

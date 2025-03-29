@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Whether an operation is a normal operation or a query.
-class OperationKind extends FhirCodeEnum {
+class OperationKindBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  OperationKind._({
+  OperationKindBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class OperationKind extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory OperationKind(
+  factory OperationKindBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return OperationKind._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return OperationKindBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,62 +43,65 @@ class OperationKind extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [OperationKind] with element only
-  factory OperationKind.empty() => OperationKind._(validatedValue: '');
+  /// Create empty [OperationKindBuilder] with element only
+  factory OperationKindBuilder.empty() =>
+      OperationKindBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [OperationKind] from JSON.
-  factory OperationKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [OperationKindBuilder] from JSON.
+  factory OperationKindBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OperationKind.elementOnly.withElement(element);
+      return OperationKindBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'OperationKind cannot be constructed from JSON.',
+        'OperationKindBuilder cannot be constructed from JSON.',
       );
     }
-    return OperationKind._(
+    return OperationKindBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// operation
-  static final OperationKind operation = OperationKind._(
+  static OperationKindBuilder operation = OperationKindBuilder._(
     validatedValue: 'operation',
-    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Operation'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Operation'.toFhirStringBuilder,
   );
 
   /// query
-  static final OperationKind query = OperationKind._(
+  static OperationKindBuilder query = OperationKindBuilder._(
     validatedValue: 'query',
-    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Query'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Query'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final OperationKind elementOnly = OperationKind._(validatedValue: '');
+  static OperationKindBuilder elementOnly =
+      OperationKindBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<OperationKind> values = [
+  static List<OperationKindBuilder> values = [
     operation,
     query,
   ];
 
   /// Clones the current instance
   @override
-  OperationKind clone() => OperationKind._(
+  OperationKindBuilder clone() => OperationKindBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  OperationKind withElement(Element? newElement) {
-    return OperationKind._(validatedValue: value, element: newElement);
+  OperationKindBuilder withElement(ElementBuilder? newElement) {
+    return OperationKindBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,11 +117,11 @@ class OperationKind extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  OperationKind copyWith({
+  OperationKindBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -129,7 +132,7 @@ class OperationKind extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return OperationKind._(
+    return OperationKindBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -139,7 +142,7 @@ class OperationKind extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

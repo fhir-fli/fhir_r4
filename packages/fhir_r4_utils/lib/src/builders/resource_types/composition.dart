@@ -1,8 +1,10 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Composition]
+/// [CompositionBuilder]
 /// A set of healthcare-related information that is assembled together into
 /// a single logical package that provides a single coherent statement of
 /// meaning, establishes its own context and that has clinical attestation
@@ -13,11 +15,11 @@ import 'package:yaml/yaml.dart';
 /// Bundle.type=document, and any other resources referenced from
 /// Composition must be included as subsequent entries in the Bundle (for
 /// example Patient, Practitioner, Encounter, etc.).
-class Composition extends DomainResource {
+class CompositionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Composition]
+  /// [CompositionBuilder]
 
-  const Composition({
+  CompositionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -27,14 +29,14 @@ class Composition extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
-    required this.type,
+    this.status,
+    this.type,
     this.category,
     this.subject,
     this.encounter,
-    required this.date,
-    required this.author,
-    required this.title,
+    this.date,
+    this.author,
+    this.title,
     this.confidentiality,
     this.attester,
     this.custodian,
@@ -47,55 +49,48 @@ class Composition extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Composition.empty() => Composition(
-        status: CompositionStatus.values.first,
-        type: CodeableConcept.empty(),
-        date: FhirDateTime.empty(),
-        author: <Reference>[],
-        title: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CompositionBuilder.empty() => CompositionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Composition.fromJson(
+  factory CompositionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Composition';
-    return Composition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CompositionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -104,8 +99,8 @@ class Composition extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -114,8 +109,8 @@ class Composition extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -123,27 +118,27 @@ class Composition extends DomainResource {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      status: JsonParser.parsePrimitive<CompositionStatus>(
+      status: JsonParser.parsePrimitive<CompositionStatusBuilder>(
         json,
         'status',
-        CompositionStatus.fromJson,
+        CompositionStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      type: JsonParser.parseObject<CodeableConcept>(
+      ),
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -151,27 +146,27 @@ class Composition extends DomainResource {
             ),
           )
           .toList(),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      encounter: JsonParser.parseObject<Reference>(
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
-      )!,
-      author: (json['author'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
+      ),
+      author: (json['author'] as List<dynamic>?)
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.author',
@@ -179,21 +174,21 @@ class Composition extends DomainResource {
             ),
           )
           .toList(),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
-      )!,
-      confidentiality: JsonParser.parsePrimitive<FhirCode>(
+      ),
+      confidentiality: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'confidentiality',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.confidentiality',
       ),
       attester: (json['attester'] as List<dynamic>?)
-          ?.map<CompositionAttester>(
-            (v) => CompositionAttester.fromJson(
+          ?.map<CompositionAttesterBuilder>(
+            (v) => CompositionAttesterBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.attester',
@@ -201,15 +196,15 @@ class Composition extends DomainResource {
             ),
           )
           .toList(),
-      custodian: JsonParser.parseObject<Reference>(
+      custodian: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'custodian',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.custodian',
       ),
       relatesTo: (json['relatesTo'] as List<dynamic>?)
-          ?.map<CompositionRelatesTo>(
-            (v) => CompositionRelatesTo.fromJson(
+          ?.map<CompositionRelatesToBuilder>(
+            (v) => CompositionRelatesToBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatesTo',
@@ -218,8 +213,8 @@ class Composition extends DomainResource {
           )
           .toList(),
       event: (json['event'] as List<dynamic>?)
-          ?.map<CompositionEvent>(
-            (v) => CompositionEvent.fromJson(
+          ?.map<CompositionEventBuilder>(
+            (v) => CompositionEventBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.event',
@@ -228,8 +223,8 @@ class Composition extends DomainResource {
           )
           .toList(),
       section: (json['section'] as List<dynamic>?)
-          ?.map<CompositionSection>(
-            (v) => CompositionSection.fromJson(
+          ?.map<CompositionSectionBuilder>(
+            (v) => CompositionSectionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.section',
@@ -240,22 +235,22 @@ class Composition extends DomainResource {
     );
   }
 
-  /// Deserialize [Composition]
+  /// Deserialize [CompositionBuilder]
   /// from a [String] or [YamlMap] object
-  factory Composition.fromYaml(
+  factory CompositionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Composition.fromJson(
+      return CompositionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Composition.fromJson(
+      return CompositionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Composition '
+        'CompositionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -263,16 +258,16 @@ class Composition extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Composition]
+  /// [CompositionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Composition.fromJsonString(
+  factory CompositionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Composition.fromJson(json);
+      return CompositionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -285,94 +280,94 @@ class Composition extends DomainResource {
   /// [identifier]
   /// A version-independent identifier for the Composition. This identifier
   /// stays constant as the composition is changed over time.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [status]
   /// The workflow/clinical status of this composition. The status is a
   /// marker for the clinical standing of the document.
-  final CompositionStatus status;
+  CompositionStatusBuilder? status;
 
   /// [type]
   /// Specifies the particular kind of composition (e.g. History and
   /// Physical, Discharge Summary, Progress Note). This usually equates to
   /// the purpose of making the composition.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [category]
   /// A categorization for the type of the composition - helps for indexing
   /// and searching. This may be implied by or derived from the code
   /// specified in the Composition Type.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [subject]
   /// Who or what the composition is about. The composition can be about a
   /// person, (patient or healthcare practitioner), a device (e.g. a machine)
   /// or even a group of subjects (such as a document about a herd of
   /// livestock, or a set of patients that share a common exposure).
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// Describes the clinical encounter or type of care this documentation is
   /// associated with.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [date]
   /// The composition editing time, when the composition was last logically
   /// changed by the author.
-  final FhirDateTime date;
+  FhirDateTimeBuilder? date;
 
   /// [author]
   /// Identifies who is responsible for the information in the composition,
   /// not necessarily who typed it in.
-  final List<Reference> author;
+  List<ReferenceBuilder>? author;
 
   /// [title]
   /// Official human-readable label for the composition.
-  final FhirString title;
+  FhirStringBuilder? title;
 
   /// [confidentiality]
   /// The code specifying the level of confidentiality of the Composition.
-  final FhirCode? confidentiality;
+  FhirCodeBuilder? confidentiality;
 
   /// [attester]
   /// A participant who has attested to the accuracy of the
   /// composition/document.
-  final List<CompositionAttester>? attester;
+  List<CompositionAttesterBuilder>? attester;
 
   /// [custodian]
   /// Identifies the organization or group who is responsible for ongoing
   /// maintenance of and access to the composition/document information.
-  final Reference? custodian;
+  ReferenceBuilder? custodian;
 
   /// [relatesTo]
   /// Relationships that this composition has with other compositions or
   /// documents that already exist.
-  final List<CompositionRelatesTo>? relatesTo;
+  List<CompositionRelatesToBuilder>? relatesTo;
 
   /// [event]
   /// The clinical service, such as a colonoscopy or an appendectomy, being
   /// documented.
-  final List<CompositionEvent>? event;
+  List<CompositionEventBuilder>? event;
 
   /// [section]
   /// The root of the sections that make up the composition.
-  final List<CompositionSection>? section;
+  List<CompositionSectionBuilder>? section;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -381,104 +376,35 @@ class Composition extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'confidentiality',
-      confidentiality,
-    );
-    addField(
-      'attester',
-      attester,
-    );
-    addField(
-      'custodian',
-      custodian,
-    );
-    addField(
-      'relatesTo',
-      relatesTo,
-    );
-    addField(
-      'event',
-      event,
-    );
-    addField(
-      'section',
-      section,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('type', type);
+    addField('category', category);
+    addField('subject', subject);
+    addField('encounter', encounter);
+    addField('date', date);
+    addField('author', author);
+    addField('title', title);
+    addField('confidentiality', confidentiality);
+    addField('attester', attester);
+    addField('custodian', custodian);
+    addField('relatesTo', relatesTo);
+    addField('event', event);
+    addField('section', section);
     return json;
   }
 
@@ -515,11 +441,11 @@ class Composition extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -558,9 +484,13 @@ class Composition extends DomainResource {
           fields.add(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'category':
         if (category != null) {
           fields.addAll(category!);
@@ -574,11 +504,17 @@ class Composition extends DomainResource {
           fields.add(encounter!);
         }
       case 'date':
-        fields.add(date);
+        if (date != null) {
+          fields.add(date!);
+        }
       case 'author':
-        fields.addAll(author);
+        if (author != null) {
+          fields.addAll(author!);
+        }
       case 'title':
-        fields.add(title);
+        if (title != null) {
+          fields.add(title!);
+        }
       case 'confidentiality':
         if (confidentiality != null) {
           fields.add(confidentiality!);
@@ -613,7 +549,7 @@ class Composition extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -622,251 +558,264 @@ class Composition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CompositionStatus) {
-            return copyWith(status: child);
+          if (child is CompositionStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...author, ...child];
-            return copyWith(author: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            author = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...author, child];
-            return copyWith(author: newList);
+            author = [...(author ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'confidentiality':
         {
-          if (child is FhirCode) {
-            return copyWith(confidentiality: child);
+          if (child is FhirCodeBuilder) {
+            confidentiality = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'attester':
         {
-          if (child is List<CompositionAttester>) {
-            // Add all elements from passed list
-            final newList = [...?attester, ...child];
-            return copyWith(attester: newList);
-          } else if (child is CompositionAttester) {
+          if (child is List<CompositionAttesterBuilder>) {
+            // Replace or create new list
+            attester = child;
+            return;
+          } else if (child is CompositionAttesterBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?attester, child];
-            return copyWith(attester: newList);
+            attester = [...(attester ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'custodian':
         {
-          if (child is Reference) {
-            return copyWith(custodian: child);
+          if (child is ReferenceBuilder) {
+            custodian = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatesTo':
         {
-          if (child is List<CompositionRelatesTo>) {
-            // Add all elements from passed list
-            final newList = [...?relatesTo, ...child];
-            return copyWith(relatesTo: newList);
-          } else if (child is CompositionRelatesTo) {
+          if (child is List<CompositionRelatesToBuilder>) {
+            // Replace or create new list
+            relatesTo = child;
+            return;
+          } else if (child is CompositionRelatesToBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatesTo, child];
-            return copyWith(relatesTo: newList);
+            relatesTo = [...(relatesTo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'event':
         {
-          if (child is List<CompositionEvent>) {
-            // Add all elements from passed list
-            final newList = [...?event, ...child];
-            return copyWith(event: newList);
-          } else if (child is CompositionEvent) {
+          if (child is List<CompositionEventBuilder>) {
+            // Replace or create new list
+            event = child;
+            return;
+          } else if (child is CompositionEventBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?event, child];
-            return copyWith(event: newList);
+            event = [...(event ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'section':
         {
-          if (child is List<CompositionSection>) {
-            // Add all elements from passed list
-            final newList = [...?section, ...child];
-            return copyWith(section: newList);
-          } else if (child is CompositionSection) {
+          if (child is List<CompositionSectionBuilder>) {
+            // Replace or create new list
+            section = child;
+            return;
+          } else if (child is CompositionSectionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?section, child];
-            return copyWith(section: newList);
+            section = [...(section ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -882,202 +831,175 @@ class Composition extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'confidentiality':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'attester':
-        return ['CompositionAttester'];
+        return ['CompositionAttesterBuilder'];
       case 'custodian':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'relatesTo':
-        return ['CompositionRelatesTo'];
+        return ['CompositionRelatesToBuilder'];
       case 'event':
-        return ['CompositionEvent'];
+        return ['CompositionEventBuilder'];
       case 'section':
-        return ['CompositionSection'];
+        return ['CompositionSectionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Composition]
+  /// Creates a new [CompositionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Composition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CompositionStatus.empty(),
-          );
+          status = CompositionStatusBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: <Reference>[],
-          );
+          author = <ReferenceBuilder>[];
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'confidentiality':
         {
-          return copyWith(
-            confidentiality: FhirCode.empty(),
-          );
+          confidentiality = FhirCodeBuilder.empty();
+          return;
         }
       case 'attester':
         {
-          return copyWith(
-            attester: <CompositionAttester>[],
-          );
+          attester = <CompositionAttesterBuilder>[];
+          return;
         }
       case 'custodian':
         {
-          return copyWith(
-            custodian: Reference.empty(),
-          );
+          custodian = ReferenceBuilder.empty();
+          return;
         }
       case 'relatesTo':
         {
-          return copyWith(
-            relatesTo: <CompositionRelatesTo>[],
-          );
+          relatesTo = <CompositionRelatesToBuilder>[];
+          return;
         }
       case 'event':
         {
-          return copyWith(
-            event: <CompositionEvent>[],
-          );
+          event = <CompositionEventBuilder>[];
+          return;
         }
       case 'section':
         {
-          return copyWith(
-            section: <CompositionSection>[],
-          );
+          section = <CompositionSectionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1086,7 +1008,7 @@ class Composition extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Composition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1096,9 +1018,14 @@ class Composition extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
+    bool type = false,
     bool category = false,
     bool subject = false,
     bool encounter = false,
+    bool date = false,
+    bool author = false,
+    bool title = false,
     bool confidentiality = false,
     bool attester = false,
     bool custodian = false,
@@ -1106,195 +1033,112 @@ class Composition extends DomainResource {
     bool event = false,
     bool section = false,
   }) {
-    return Composition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      type: type,
-      category: category ? null : this.category,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      date: date,
-      author: author,
-      title: title,
-      confidentiality: confidentiality ? null : this.confidentiality,
-      attester: attester ? null : this.attester,
-      custodian: custodian ? null : this.custodian,
-      relatesTo: relatesTo ? null : this.relatesTo,
-      event: event ? null : this.event,
-      section: section ? null : this.section,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (type) this.type = null;
+    if (category) this.category = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (date) this.date = null;
+    if (author) this.author = null;
+    if (title) this.title = null;
+    if (confidentiality) this.confidentiality = null;
+    if (attester) this.attester = null;
+    if (custodian) this.custodian = null;
+    if (relatesTo) this.relatesTo = null;
+    if (event) this.event = null;
+    if (section) this.section = null;
   }
 
   @override
-  Composition clone() => throw UnimplementedError();
+  CompositionBuilder clone() => throw UnimplementedError();
   @override
-  Composition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    CompositionStatus? status,
-    CodeableConcept? type,
-    List<CodeableConcept>? category,
-    Reference? subject,
-    Reference? encounter,
-    FhirDateTime? date,
-    List<Reference>? author,
-    FhirString? title,
-    FhirCode? confidentiality,
-    List<CompositionAttester>? attester,
-    Reference? custodian,
-    List<CompositionRelatesTo>? relatesTo,
-    List<CompositionEvent>? event,
-    List<CompositionSection>? section,
+  CompositionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    CompositionStatusBuilder? status,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? category,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    FhirDateTimeBuilder? date,
+    List<ReferenceBuilder>? author,
+    FhirStringBuilder? title,
+    FhirCodeBuilder? confidentiality,
+    List<CompositionAttesterBuilder>? attester,
+    ReferenceBuilder? custodian,
+    List<CompositionRelatesToBuilder>? relatesTo,
+    List<CompositionEventBuilder>? event,
+    List<CompositionSectionBuilder>? section,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Composition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CompositionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      confidentiality: confidentiality?.copyWith(
-            objectPath: '$newObjectPath.confidentiality',
-          ) ??
-          this.confidentiality,
-      attester: attester
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.attester',
-                ),
-              )
-              .toList() ??
-          this.attester,
-      custodian: custodian?.copyWith(
-            objectPath: '$newObjectPath.custodian',
-          ) ??
-          this.custodian,
-      relatesTo: relatesTo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatesTo',
-                ),
-              )
-              .toList() ??
-          this.relatesTo,
-      event: event
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.event',
-                ),
-              )
-              .toList() ??
-          this.event,
-      section: section
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.section',
-                ),
-              )
-              .toList() ??
-          this.section,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      type: type ?? this.type,
+      category: category ?? this.category,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      date: date ?? this.date,
+      author: author ?? this.author,
+      title: title ?? this.title,
+      confidentiality: confidentiality ?? this.confidentiality,
+      attester: attester ?? this.attester,
+      custodian: custodian ?? this.custodian,
+      relatesTo: relatesTo ?? this.relatesTo,
+      event: event ?? this.event,
+      section: section ?? this.section,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Composition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CompositionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1329,19 +1173,19 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1365,7 +1209,7 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1389,7 +1233,7 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       author,
       o.author,
     )) {
@@ -1407,7 +1251,7 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CompositionAttester>(
+    if (!listEquals<CompositionAttesterBuilder>(
       attester,
       o.attester,
     )) {
@@ -1419,19 +1263,19 @@ class Composition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CompositionRelatesTo>(
+    if (!listEquals<CompositionRelatesToBuilder>(
       relatesTo,
       o.relatesTo,
     )) {
       return false;
     }
-    if (!listEquals<CompositionEvent>(
+    if (!listEquals<CompositionEventBuilder>(
       event,
       o.event,
     )) {
       return false;
     }
-    if (!listEquals<CompositionSection>(
+    if (!listEquals<CompositionSectionBuilder>(
       section,
       o.section,
     )) {
@@ -1441,18 +1285,18 @@ class Composition extends DomainResource {
   }
 }
 
-/// [CompositionAttester]
+/// [CompositionAttesterBuilder]
 /// A participant who has attested to the accuracy of the
 /// composition/document.
-class CompositionAttester extends BackboneElement {
+class CompositionAttesterBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CompositionAttester]
+  /// [CompositionAttesterBuilder]
 
-  const CompositionAttester({
+  CompositionAttesterBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.mode,
+    this.mode,
     this.time,
     this.party,
     super.disallowExtensions,
@@ -1461,27 +1305,24 @@ class CompositionAttester extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CompositionAttester.empty() => CompositionAttester(
-        mode: CompositionAttestationMode.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory CompositionAttesterBuilder.empty() => CompositionAttesterBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionAttester.fromJson(
+  factory CompositionAttesterBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Composition.attester';
-    return CompositionAttester(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CompositionAttesterBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1490,8 +1331,8 @@ class CompositionAttester extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1499,43 +1340,43 @@ class CompositionAttester extends BackboneElement {
             ),
           )
           .toList(),
-      mode: JsonParser.parsePrimitive<CompositionAttestationMode>(
+      mode: JsonParser.parsePrimitive<CompositionAttestationModeBuilder>(
         json,
         'mode',
-        CompositionAttestationMode.fromJson,
+        CompositionAttestationModeBuilder.fromJson,
         '$objectPath.mode',
-      )!,
-      time: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      time: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'time',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.time',
       ),
-      party: JsonParser.parseObject<Reference>(
+      party: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'party',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.party',
       ),
     );
   }
 
-  /// Deserialize [CompositionAttester]
+  /// Deserialize [CompositionAttesterBuilder]
   /// from a [String] or [YamlMap] object
-  factory CompositionAttester.fromYaml(
+  factory CompositionAttesterBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CompositionAttester.fromJson(
+      return CompositionAttesterBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CompositionAttester.fromJson(
+      return CompositionAttesterBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CompositionAttester '
+        'CompositionAttesterBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1543,16 +1384,16 @@ class CompositionAttester extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CompositionAttester]
+  /// [CompositionAttesterBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CompositionAttester.fromJsonString(
+  factory CompositionAttesterBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CompositionAttester.fromJson(json);
+      return CompositionAttesterBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1564,31 +1405,31 @@ class CompositionAttester extends BackboneElement {
 
   /// [mode]
   /// The type of attestation the authenticator offers.
-  final CompositionAttestationMode mode;
+  CompositionAttestationModeBuilder? mode;
 
   /// [time]
   /// When the composition was attested by the party.
-  final FhirDateTime? time;
+  FhirDateTimeBuilder? time;
 
   /// [party]
   /// Who attested the composition in the specified way.
-  final Reference? party;
+  ReferenceBuilder? party;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1597,35 +1438,17 @@ class CompositionAttester extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'mode',
-      mode,
-    );
-    addField(
-      'time',
-      time,
-    );
-    addField(
-      'party',
-      party,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('mode', mode);
+    addField('time', time);
+    addField('party', party);
     return json;
   }
 
@@ -1645,11 +1468,11 @@ class CompositionAttester extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1664,7 +1487,9 @@ class CompositionAttester extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'mode':
-        fields.add(mode);
+        if (mode != null) {
+          fields.add(mode!);
+        }
       case 'time':
         if (time != null) {
           fields.add(time!);
@@ -1683,7 +1508,7 @@ class CompositionAttester extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1692,73 +1517,76 @@ class CompositionAttester extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
         {
-          if (child is CompositionAttestationMode) {
-            return copyWith(mode: child);
+          if (child is CompositionAttestationModeBuilder) {
+            mode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'time':
         {
-          if (child is FhirDateTime) {
-            return copyWith(time: child);
+          if (child is FhirDateTimeBuilder) {
+            time = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'party':
         {
-          if (child is Reference) {
-            return copyWith(party: child);
+          if (child is ReferenceBuilder) {
+            party = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1774,66 +1602,56 @@ class CompositionAttester extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'mode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'time':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'party':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CompositionAttester]
+  /// Creates a new [CompositionAttesterBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CompositionAttester createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'mode':
         {
-          return copyWith(
-            mode: CompositionAttestationMode.empty(),
-          );
+          mode = CompositionAttestationModeBuilder.empty();
+          return;
         }
       case 'time':
         {
-          return copyWith(
-            time: FhirDateTime.empty(),
-          );
+          time = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'party':
         {
-          return copyWith(
-            party: Reference.empty(),
-          );
+          party = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1842,33 +1660,32 @@ class CompositionAttester extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CompositionAttester clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool mode = false,
     bool time = false,
     bool party = false,
   }) {
-    return CompositionAttester(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      mode: mode,
-      time: time ? null : this.time,
-      party: party ? null : this.party,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (mode) this.mode = null;
+    if (time) this.time = null;
+    if (party) this.party = null;
   }
 
   @override
-  CompositionAttester clone() => throw UnimplementedError();
+  CompositionAttesterBuilder clone() => throw UnimplementedError();
   @override
-  CompositionAttester copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CompositionAttestationMode? mode,
-    FhirDateTime? time,
-    Reference? party,
+  CompositionAttesterBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CompositionAttestationModeBuilder? mode,
+    FhirDateTimeBuilder? time,
+    ReferenceBuilder? party,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1876,46 +1693,37 @@ class CompositionAttester extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CompositionAttester(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      time: time?.copyWith(
-            objectPath: '$newObjectPath.time',
-          ) ??
-          this.time,
-      party: party?.copyWith(
-            objectPath: '$newObjectPath.party',
-          ) ??
-          this.party,
+    final newResult = CompositionAttesterBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      mode: mode ?? this.mode,
+      time: time ?? this.time,
+      party: party ?? this.party,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CompositionAttester) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CompositionAttesterBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1926,13 +1734,13 @@ class CompositionAttester extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1960,47 +1768,43 @@ class CompositionAttester extends BackboneElement {
   }
 }
 
-/// [CompositionRelatesTo]
+/// [CompositionRelatesToBuilder]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
-class CompositionRelatesTo extends BackboneElement {
+class CompositionRelatesToBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CompositionRelatesTo]
+  /// [CompositionRelatesToBuilder]
 
-  const CompositionRelatesTo({
+  CompositionRelatesToBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
-    required this.targetX,
+    this.code,
+    this.targetX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Composition.relatesTo',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CompositionRelatesTo.empty() => CompositionRelatesTo(
-        code: DocumentRelationshipType.values.first,
-        targetX: Identifier.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CompositionRelatesToBuilder.empty() => CompositionRelatesToBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionRelatesTo.fromJson(
+  factory CompositionRelatesToBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Composition.relatesTo';
-    return CompositionRelatesTo(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CompositionRelatesToBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2009,8 +1813,8 @@ class CompositionRelatesTo extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2018,39 +1822,39 @@ class CompositionRelatesTo extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parsePrimitive<DocumentRelationshipType>(
+      code: JsonParser.parsePrimitive<DocumentRelationshipTypeBuilder>(
         json,
         'code',
-        DocumentRelationshipType.fromJson,
+        DocumentRelationshipTypeBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      targetX: JsonParser.parsePolymorphic<TargetXCompositionRelatesTo>(
+      ),
+      targetX: JsonParser.parsePolymorphic<TargetXCompositionRelatesToBuilder>(
         json,
         {
-          'targetIdentifier': Identifier.fromJson,
-          'targetReference': Reference.fromJson,
+          'targetIdentifier': IdentifierBuilder.fromJson,
+          'targetReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CompositionRelatesTo]
+  /// Deserialize [CompositionRelatesToBuilder]
   /// from a [String] or [YamlMap] object
-  factory CompositionRelatesTo.fromYaml(
+  factory CompositionRelatesToBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CompositionRelatesTo.fromJson(
+      return CompositionRelatesToBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CompositionRelatesTo.fromJson(
+      return CompositionRelatesToBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CompositionRelatesTo '
+        'CompositionRelatesToBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2058,16 +1862,16 @@ class CompositionRelatesTo extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CompositionRelatesTo]
+  /// [CompositionRelatesToBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CompositionRelatesTo.fromJsonString(
+  factory CompositionRelatesToBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CompositionRelatesTo.fromJson(json);
+      return CompositionRelatesToBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2080,33 +1884,33 @@ class CompositionRelatesTo extends BackboneElement {
   /// [code]
   /// The type of relationship that this composition has with anther
   /// composition or document.
-  final DocumentRelationshipType code;
+  DocumentRelationshipTypeBuilder? code;
 
   /// [targetX]
   /// The target composition/document of this relationship.
-  final TargetXCompositionRelatesTo targetX;
+  TargetXCompositionRelatesToBuilder? targetX;
 
-  /// Getter for [targetIdentifier] as a Identifier
-  Identifier? get targetIdentifier => targetX.isAs<Identifier>();
+  /// Getter for [targetIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get targetIdentifier => targetX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [targetReference] as a Reference
-  Reference? get targetReference => targetX.isAs<Reference>();
+  /// Getter for [targetReference] as a ReferenceBuilder
+  ReferenceBuilder? get targetReference => targetX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2115,32 +1919,19 @@ class CompositionRelatesTo extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    final targetXFhirType = targetX.fhirType;
-    addField(
-      'target${targetXFhirType.capitalize()}',
-      targetX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    if (targetX != null) {
+      final fhirType = targetX!.fhirType;
+      addField('target${fhirType.capitalize()}', targetX);
+    }
 
     return json;
   }
@@ -2160,11 +1951,11 @@ class CompositionRelatesTo extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2179,18 +1970,24 @@ class CompositionRelatesTo extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'target':
-        fields.add(targetX);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetX':
-        fields.add(targetX);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetIdentifier':
-        if (targetX is Identifier) {
-          fields.add(targetX);
+        if (targetX is IdentifierBuilder) {
+          fields.add(targetX!);
         }
       case 'targetReference':
-        if (targetX is Reference) {
-          fields.add(targetX);
+        if (targetX is ReferenceBuilder) {
+          fields.add(targetX!);
         }
       default:
         if (checkValid) {
@@ -2202,7 +1999,7 @@ class CompositionRelatesTo extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2211,87 +2008,93 @@ class CompositionRelatesTo extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is DocumentRelationshipType) {
-            return copyWith(code: child);
+          if (child is DocumentRelationshipTypeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetX':
         {
-          if (child is TargetXCompositionRelatesTo) {
-            return copyWith(targetX: child);
+          if (child is TargetXCompositionRelatesToBuilder) {
+            targetX = child;
+            return;
           } else {
-            if (child is Identifier) {
-              return copyWith(targetX: child);
+            if (child is IdentifierBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(targetX: child);
+            if (child is ReferenceBuilder) {
+              targetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'targetIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(targetX: child);
+          if (child is IdentifierBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetReference':
         {
-          if (child is Reference) {
-            return copyWith(targetX: child);
+          if (child is ReferenceBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2307,71 +2110,61 @@ class CompositionRelatesTo extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'target':
       case 'targetX':
-        return ['Identifier', 'Reference'];
+        return ['IdentifierBuilder', 'ReferenceBuilder'];
       case 'targetIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'targetReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CompositionRelatesTo]
+  /// Creates a new [CompositionRelatesToBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CompositionRelatesTo createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: DocumentRelationshipType.empty(),
-          );
+          code = DocumentRelationshipTypeBuilder.empty();
+          return;
         }
       case 'target':
       case 'targetX':
       case 'targetIdentifier':
         {
-          return copyWith(
-            targetX: Identifier.empty(),
-          );
+          targetX = IdentifierBuilder.empty();
+          return;
         }
       case 'targetReference':
         {
-          return copyWith(
-            targetX: Reference.empty(),
-          );
+          targetX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2380,29 +2173,29 @@ class CompositionRelatesTo extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CompositionRelatesTo clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
+    bool target = false,
   }) {
-    return CompositionRelatesTo(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      targetX: targetX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (target) this.targetX = null;
   }
 
   @override
-  CompositionRelatesTo clone() => throw UnimplementedError();
+  CompositionRelatesToBuilder clone() => throw UnimplementedError();
   @override
-  CompositionRelatesTo copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    DocumentRelationshipType? code,
-    TargetXCompositionRelatesTo? targetX,
+  CompositionRelatesToBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    DocumentRelationshipTypeBuilder? code,
+    TargetXCompositionRelatesToBuilder? targetX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2410,42 +2203,36 @@ class CompositionRelatesTo extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CompositionRelatesTo(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      targetX: targetX?.copyWith(
-            objectPath: '$newObjectPath.targetX',
-          ) as TargetXCompositionRelatesTo? ??
-          this.targetX,
+    final newResult = CompositionRelatesToBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      targetX: targetX ?? this.targetX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CompositionRelatesTo) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CompositionRelatesToBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2456,13 +2243,13 @@ class CompositionRelatesTo extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2484,14 +2271,14 @@ class CompositionRelatesTo extends BackboneElement {
   }
 }
 
-/// [CompositionEvent]
+/// [CompositionEventBuilder]
 /// The clinical service, such as a colonoscopy or an appendectomy, being
 /// documented.
-class CompositionEvent extends BackboneElement {
+class CompositionEventBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CompositionEvent]
+  /// [CompositionEventBuilder]
 
-  const CompositionEvent({
+  CompositionEventBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2504,25 +2291,24 @@ class CompositionEvent extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CompositionEvent.empty() => const CompositionEvent();
+  /// For Builder classes, no fields are required
+  factory CompositionEventBuilder.empty() => CompositionEventBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionEvent.fromJson(
+  factory CompositionEventBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Composition.event';
-    return CompositionEvent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CompositionEventBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2531,8 +2317,8 @@ class CompositionEvent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2541,8 +2327,8 @@ class CompositionEvent extends BackboneElement {
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -2550,15 +2336,15 @@ class CompositionEvent extends BackboneElement {
             ),
           )
           .toList(),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
       detail: (json['detail'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.detail',
@@ -2569,22 +2355,22 @@ class CompositionEvent extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionEvent]
+  /// Deserialize [CompositionEventBuilder]
   /// from a [String] or [YamlMap] object
-  factory CompositionEvent.fromYaml(
+  factory CompositionEventBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CompositionEvent.fromJson(
+      return CompositionEventBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CompositionEvent.fromJson(
+      return CompositionEventBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CompositionEvent '
+        'CompositionEventBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2592,16 +2378,16 @@ class CompositionEvent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CompositionEvent]
+  /// [CompositionEventBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CompositionEvent.fromJsonString(
+  factory CompositionEventBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CompositionEvent.fromJson(json);
+      return CompositionEventBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2617,35 +2403,35 @@ class CompositionEvent extends BackboneElement {
   /// event is inherent in the typeCode, such as a "History and Physical
   /// Report" in which the procedure being documented is necessarily a
   /// "History and Physical" act.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [period]
   /// The period of time covered by the documentation. There is no assertion
   /// that the documentation is a complete representation for this period,
   /// only that it documents events during this time.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [detail]
   /// The description and/or reference of the event(s) being documented. For
   /// example, this could be used to document such a colonoscopy or an
   /// appendectomy.
-  final List<Reference>? detail;
+  List<ReferenceBuilder>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2654,35 +2440,17 @@ class CompositionEvent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'detail',
-      detail,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('period', period);
+    addField('detail', detail);
     return json;
   }
 
@@ -2702,11 +2470,11 @@ class CompositionEvent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2742,7 +2510,7 @@ class CompositionEvent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2751,85 +2519,86 @@ class CompositionEvent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            detail = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?detail, child];
-            return copyWith(detail: newList);
+            detail = [...(detail ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2845,66 +2614,56 @@ class CompositionEvent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'detail':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CompositionEvent]
+  /// Creates a new [CompositionEventBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CompositionEvent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: <Reference>[],
-          );
+          detail = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2913,7 +2672,7 @@ class CompositionEvent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CompositionEvent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2921,26 +2680,24 @@ class CompositionEvent extends BackboneElement {
     bool period = false,
     bool detail = false,
   }) {
-    return CompositionEvent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      period: period ? null : this.period,
-      detail: detail ? null : this.detail,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (period) this.period = null;
+    if (detail) this.detail = null;
   }
 
   @override
-  CompositionEvent clone() => throw UnimplementedError();
+  CompositionEventBuilder clone() => throw UnimplementedError();
   @override
-  CompositionEvent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? code,
-    Period? period,
-    List<Reference>? detail,
+  CompositionEventBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? code,
+    PeriodBuilder? period,
+    List<ReferenceBuilder>? detail,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2948,54 +2705,37 @@ class CompositionEvent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CompositionEvent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
+    final newResult = CompositionEventBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      period: period ?? this.period,
+      detail: detail ?? this.detail,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CompositionEvent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CompositionEventBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3006,19 +2746,19 @@ class CompositionEvent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
@@ -3030,7 +2770,7 @@ class CompositionEvent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       detail,
       o.detail,
     )) {
@@ -3040,13 +2780,13 @@ class CompositionEvent extends BackboneElement {
   }
 }
 
-/// [CompositionSection]
+/// [CompositionSectionBuilder]
 /// The root of the sections that make up the composition.
-class CompositionSection extends BackboneElement {
+class CompositionSectionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CompositionSection]
+  /// [CompositionSectionBuilder]
 
-  const CompositionSection({
+  CompositionSectionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3066,25 +2806,24 @@ class CompositionSection extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CompositionSection.empty() => const CompositionSection();
+  /// For Builder classes, no fields are required
+  factory CompositionSectionBuilder.empty() => CompositionSectionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionSection.fromJson(
+  factory CompositionSectionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Composition.section';
-    return CompositionSection(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CompositionSectionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3093,8 +2832,8 @@ class CompositionSection extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3102,21 +2841,21 @@ class CompositionSection extends BackboneElement {
             ),
           )
           .toList(),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
       author: (json['author'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.author',
@@ -3124,33 +2863,33 @@ class CompositionSection extends BackboneElement {
             ),
           )
           .toList(),
-      focus: JsonParser.parseObject<Reference>(
+      focus: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'focus',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.focus',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
-      mode: JsonParser.parsePrimitive<ListMode>(
+      mode: JsonParser.parsePrimitive<ListModeBuilder>(
         json,
         'mode',
-        ListMode.fromJson,
+        ListModeBuilder.fromJson,
         '$objectPath.mode',
       ),
-      orderedBy: JsonParser.parseObject<CodeableConcept>(
+      orderedBy: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'orderedBy',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.orderedBy',
       ),
       entry: (json['entry'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.entry',
@@ -3158,15 +2897,15 @@ class CompositionSection extends BackboneElement {
             ),
           )
           .toList(),
-      emptyReason: JsonParser.parseObject<CodeableConcept>(
+      emptyReason: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'emptyReason',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.emptyReason',
       ),
       section: (json['section'] as List<dynamic>?)
-          ?.map<CompositionSection>(
-            (v) => CompositionSection.fromJson(
+          ?.map<CompositionSectionBuilder>(
+            (v) => CompositionSectionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.section',
@@ -3177,22 +2916,22 @@ class CompositionSection extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionSection]
+  /// Deserialize [CompositionSectionBuilder]
   /// from a [String] or [YamlMap] object
-  factory CompositionSection.fromYaml(
+  factory CompositionSectionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CompositionSection.fromJson(
+      return CompositionSectionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CompositionSection.fromJson(
+      return CompositionSectionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CompositionSection '
+        'CompositionSectionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3200,16 +2939,16 @@ class CompositionSection extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CompositionSection]
+  /// [CompositionSectionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CompositionSection.fromJsonString(
+  factory CompositionSectionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CompositionSection.fromJson(json);
+      return CompositionSectionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3223,17 +2962,17 @@ class CompositionSection extends BackboneElement {
   /// The label for this particular section. This will be part of the
   /// rendered content for the document, and is often used to build a table
   /// of contents.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [code]
   /// A code identifying the kind of content contained within the section.
   /// This must be consistent with the section title.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [author]
   /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
-  final List<Reference>? author;
+  List<ReferenceBuilder>? author;
 
   /// [focus]
   /// The actual focus of the section when it is not the subject of the
@@ -3245,7 +2984,7 @@ class CompositionSection extends BackboneElement {
   /// only include resources where the logical subject (patient, subject,
   /// focus, etc.) matches the section focus, or the resources have no
   /// logical subject (few resources).
-  final Reference? focus;
+  ReferenceBuilder? focus;
 
   /// [text]
   /// A human-readable narrative that contains the attested content of the
@@ -3253,48 +2992,48 @@ class CompositionSection extends BackboneElement {
   /// narrative need not encode all the structured data, but is required to
   /// contain sufficient detail to make it "clinically safe" for a human to
   /// just read the narrative.
-  final Narrative? text;
+  NarrativeBuilder? text;
 
   /// [mode]
   /// How the entry list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents
   /// a snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
-  final ListMode? mode;
+  ListModeBuilder? mode;
 
   /// [orderedBy]
   /// Specifies the order applied to the items in the section entries.
-  final CodeableConcept? orderedBy;
+  CodeableConceptBuilder? orderedBy;
 
   /// [entry]
   /// A reference to the actual resource from which the narrative in the
   /// section is derived.
-  final List<Reference>? entry;
+  List<ReferenceBuilder>? entry;
 
   /// [emptyReason]
   /// If the section is empty, why the list is empty. An empty section
   /// typically has some text explaining the empty reason.
-  final CodeableConcept? emptyReason;
+  CodeableConceptBuilder? emptyReason;
 
   /// [section]
   /// A nested sub-section within this section.
-  final List<CompositionSection>? section;
+  List<CompositionSectionBuilder>? section;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3303,63 +3042,24 @@ class CompositionSection extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'focus',
-      focus,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'mode',
-      mode,
-    );
-    addField(
-      'orderedBy',
-      orderedBy,
-    );
-    addField(
-      'entry',
-      entry,
-    );
-    addField(
-      'emptyReason',
-      emptyReason,
-    );
-    addField(
-      'section',
-      section,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('title', title);
+    addField('code', code);
+    addField('author', author);
+    addField('focus', focus);
+    addField('text', text);
+    addField('mode', mode);
+    addField('orderedBy', orderedBy);
+    addField('entry', entry);
+    addField('emptyReason', emptyReason);
+    addField('section', section);
     return json;
   }
 
@@ -3386,11 +3086,11 @@ class CompositionSection extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3454,7 +3154,7 @@ class CompositionSection extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3463,147 +3163,154 @@ class CompositionSection extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?author, ...child];
-            return copyWith(author: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            author = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?author, child];
-            return copyWith(author: newList);
+            author = [...(author ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'focus':
         {
-          if (child is Reference) {
-            return copyWith(focus: child);
+          if (child is ReferenceBuilder) {
+            focus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
         {
-          if (child is ListMode) {
-            return copyWith(mode: child);
+          if (child is ListModeBuilder) {
+            mode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'orderedBy':
         {
-          if (child is CodeableConcept) {
-            return copyWith(orderedBy: child);
+          if (child is CodeableConceptBuilder) {
+            orderedBy = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'entry':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?entry, ...child];
-            return copyWith(entry: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            entry = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?entry, child];
-            return copyWith(entry: newList);
+            entry = [...(entry ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'emptyReason':
         {
-          if (child is CodeableConcept) {
-            return copyWith(emptyReason: child);
+          if (child is CodeableConceptBuilder) {
+            emptyReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'section':
         {
-          if (child is List<CompositionSection>) {
-            // Add all elements from passed list
-            final newList = [...?section, ...child];
-            return copyWith(section: newList);
-          } else if (child is CompositionSection) {
+          if (child is List<CompositionSectionBuilder>) {
+            // Replace or create new list
+            section = child;
+            return;
+          } else if (child is CompositionSectionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?section, child];
-            return copyWith(section: newList);
+            section = [...(section ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3619,122 +3326,105 @@ class CompositionSection extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'focus':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'mode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'orderedBy':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'entry':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'emptyReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'section':
-        return ['CompositionSection'];
+        return ['CompositionSectionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CompositionSection]
+  /// Creates a new [CompositionSectionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CompositionSection createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: <Reference>[],
-          );
+          author = <ReferenceBuilder>[];
+          return;
         }
       case 'focus':
         {
-          return copyWith(
-            focus: Reference.empty(),
-          );
+          focus = ReferenceBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'mode':
         {
-          return copyWith(
-            mode: ListMode.empty(),
-          );
+          mode = ListModeBuilder.empty();
+          return;
         }
       case 'orderedBy':
         {
-          return copyWith(
-            orderedBy: CodeableConcept.empty(),
-          );
+          orderedBy = CodeableConceptBuilder.empty();
+          return;
         }
       case 'entry':
         {
-          return copyWith(
-            entry: <Reference>[],
-          );
+          entry = <ReferenceBuilder>[];
+          return;
         }
       case 'emptyReason':
         {
-          return copyWith(
-            emptyReason: CodeableConcept.empty(),
-          );
+          emptyReason = CodeableConceptBuilder.empty();
+          return;
         }
       case 'section':
         {
-          return copyWith(
-            section: <CompositionSection>[],
-          );
+          section = <CompositionSectionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3743,7 +3433,7 @@ class CompositionSection extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CompositionSection clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3758,40 +3448,38 @@ class CompositionSection extends BackboneElement {
     bool emptyReason = false,
     bool section = false,
   }) {
-    return CompositionSection(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      title: title ? null : this.title,
-      code: code ? null : this.code,
-      author: author ? null : this.author,
-      focus: focus ? null : this.focus,
-      text: text ? null : this.text,
-      mode: mode ? null : this.mode,
-      orderedBy: orderedBy ? null : this.orderedBy,
-      entry: entry ? null : this.entry,
-      emptyReason: emptyReason ? null : this.emptyReason,
-      section: section ? null : this.section,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (title) this.title = null;
+    if (code) this.code = null;
+    if (author) this.author = null;
+    if (focus) this.focus = null;
+    if (text) this.text = null;
+    if (mode) this.mode = null;
+    if (orderedBy) this.orderedBy = null;
+    if (entry) this.entry = null;
+    if (emptyReason) this.emptyReason = null;
+    if (section) this.section = null;
   }
 
   @override
-  CompositionSection clone() => throw UnimplementedError();
+  CompositionSectionBuilder clone() => throw UnimplementedError();
   @override
-  CompositionSection copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? title,
-    CodeableConcept? code,
-    List<Reference>? author,
-    Reference? focus,
-    Narrative? text,
-    ListMode? mode,
-    CodeableConcept? orderedBy,
-    List<Reference>? entry,
-    CodeableConcept? emptyReason,
-    List<CompositionSection>? section,
+  CompositionSectionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? title,
+    CodeableConceptBuilder? code,
+    List<ReferenceBuilder>? author,
+    ReferenceBuilder? focus,
+    NarrativeBuilder? text,
+    ListModeBuilder? mode,
+    CodeableConceptBuilder? orderedBy,
+    List<ReferenceBuilder>? entry,
+    CodeableConceptBuilder? emptyReason,
+    List<CompositionSectionBuilder>? section,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3799,86 +3487,44 @@ class CompositionSection extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CompositionSection(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      focus: focus?.copyWith(
-            objectPath: '$newObjectPath.focus',
-          ) ??
-          this.focus,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      orderedBy: orderedBy?.copyWith(
-            objectPath: '$newObjectPath.orderedBy',
-          ) ??
-          this.orderedBy,
-      entry: entry
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.entry',
-                ),
-              )
-              .toList() ??
-          this.entry,
-      emptyReason: emptyReason?.copyWith(
-            objectPath: '$newObjectPath.emptyReason',
-          ) ??
-          this.emptyReason,
-      section: section
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.section',
-                ),
-              )
-              .toList() ??
-          this.section,
+    final newResult = CompositionSectionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      title: title ?? this.title,
+      code: code ?? this.code,
+      author: author ?? this.author,
+      focus: focus ?? this.focus,
+      text: text ?? this.text,
+      mode: mode ?? this.mode,
+      orderedBy: orderedBy ?? this.orderedBy,
+      entry: entry ?? this.entry,
+      emptyReason: emptyReason ?? this.emptyReason,
+      section: section ?? this.section,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CompositionSection) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CompositionSectionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3889,13 +3535,13 @@ class CompositionSection extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3913,7 +3559,7 @@ class CompositionSection extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       author,
       o.author,
     )) {
@@ -3943,7 +3589,7 @@ class CompositionSection extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       entry,
       o.entry,
     )) {
@@ -3955,7 +3601,7 @@ class CompositionSection extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CompositionSection>(
+    if (!listEquals<CompositionSectionBuilder>(
       section,
       o.section,
     )) {

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Operations supported by REST at the type or instance level.
-class TypeRestfulInteraction extends FhirCodeEnum {
+class TypeRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  TypeRestfulInteraction._({
+  TypeRestfulInteractionBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class TypeRestfulInteraction extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory TypeRestfulInteraction(
+  factory TypeRestfulInteractionBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return TypeRestfulInteraction._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return TypeRestfulInteractionBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,171 +43,197 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [TypeRestfulInteraction] with element only
-  factory TypeRestfulInteraction.empty() =>
-      TypeRestfulInteraction._(validatedValue: '');
+  /// Create empty [TypeRestfulInteractionBuilder] with element only
+  factory TypeRestfulInteractionBuilder.empty() =>
+      TypeRestfulInteractionBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TypeRestfulInteraction] from JSON.
-  factory TypeRestfulInteraction.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TypeRestfulInteractionBuilder] from JSON.
+  factory TypeRestfulInteractionBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TypeRestfulInteraction.elementOnly.withElement(element);
+      return TypeRestfulInteractionBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TypeRestfulInteraction cannot be constructed from JSON.',
+        'TypeRestfulInteractionBuilder cannot be constructed from JSON.',
       );
     }
-    return TypeRestfulInteraction._(
+    return TypeRestfulInteractionBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// read
-  static final TypeRestfulInteraction read = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder read = TypeRestfulInteractionBuilder._(
     validatedValue: 'read',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'read'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'read'.toFhirStringBuilder,
   );
 
   /// vread
-  static final TypeRestfulInteraction vread = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder vread = TypeRestfulInteractionBuilder._(
     validatedValue: 'vread',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'vread'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'vread'.toFhirStringBuilder,
   );
 
   /// update
-  static final TypeRestfulInteraction update = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder update = TypeRestfulInteractionBuilder._(
     validatedValue: 'update',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'update'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'update'.toFhirStringBuilder,
   );
 
   /// patch
-  static final TypeRestfulInteraction patch = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder patch = TypeRestfulInteractionBuilder._(
     validatedValue: 'patch',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'patch'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'patch'.toFhirStringBuilder,
   );
 
   /// delete
-  static final TypeRestfulInteraction delete = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder delete = TypeRestfulInteractionBuilder._(
     validatedValue: 'delete',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'delete'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'delete'.toFhirStringBuilder,
   );
 
   /// history
-  static final TypeRestfulInteraction history = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder history =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'history',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'history'.toFhirStringBuilder,
   );
 
   /// history_instance
-  static final TypeRestfulInteraction history_instance =
-      TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder history_instance =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'history-instance',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-instance'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'history-instance'.toFhirStringBuilder,
   );
 
   /// history_type
-  static final TypeRestfulInteraction history_type = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder history_type =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'history-type',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-type'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'history-type'.toFhirStringBuilder,
   );
 
   /// history_system
-  static final TypeRestfulInteraction history_system = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder history_system =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'history-system',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-system'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'history-system'.toFhirStringBuilder,
   );
 
   /// create
-  static final TypeRestfulInteraction create = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder create = TypeRestfulInteractionBuilder._(
     validatedValue: 'create',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'create'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'create'.toFhirStringBuilder,
   );
 
   /// search
-  static final TypeRestfulInteraction search = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder search = TypeRestfulInteractionBuilder._(
     validatedValue: 'search',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'search'.toFhirStringBuilder,
   );
 
   /// search_type
-  static final TypeRestfulInteraction search_type = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder search_type =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'search-type',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search-type'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'search-type'.toFhirStringBuilder,
   );
 
   /// search_system
-  static final TypeRestfulInteraction search_system = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder search_system =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'search-system',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search-system'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'search-system'.toFhirStringBuilder,
   );
 
   /// capabilities
-  static final TypeRestfulInteraction capabilities = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder capabilities =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'capabilities',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'capabilities'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'capabilities'.toFhirStringBuilder,
   );
 
   /// transaction
-  static final TypeRestfulInteraction transaction = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder transaction =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'transaction',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'transaction'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'transaction'.toFhirStringBuilder,
   );
 
   /// batch
-  static final TypeRestfulInteraction batch = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder batch = TypeRestfulInteractionBuilder._(
     validatedValue: 'batch',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'batch'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'batch'.toFhirStringBuilder,
   );
 
   /// operation
-  static final TypeRestfulInteraction operation = TypeRestfulInteraction._(
+  static TypeRestfulInteractionBuilder operation =
+      TypeRestfulInteractionBuilder._(
     validatedValue: 'operation',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'operation'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'operation'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final TypeRestfulInteraction elementOnly =
-      TypeRestfulInteraction._(validatedValue: '');
+  static TypeRestfulInteractionBuilder elementOnly =
+      TypeRestfulInteractionBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<TypeRestfulInteraction> values = [
+  static List<TypeRestfulInteractionBuilder> values = [
     read,
     vread,
     update,
@@ -229,14 +255,15 @@ class TypeRestfulInteraction extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  TypeRestfulInteraction clone() => TypeRestfulInteraction._(
+  TypeRestfulInteractionBuilder clone() => TypeRestfulInteractionBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  TypeRestfulInteraction withElement(Element? newElement) {
-    return TypeRestfulInteraction._(validatedValue: value, element: newElement);
+  TypeRestfulInteractionBuilder withElement(ElementBuilder? newElement) {
+    return TypeRestfulInteractionBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -252,11 +279,11 @@ class TypeRestfulInteraction extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  TypeRestfulInteraction copyWith({
+  TypeRestfulInteractionBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -267,7 +294,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return TypeRestfulInteraction._(
+    return TypeRestfulInteractionBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -277,7 +304,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

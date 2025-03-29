@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [DeviceUseStatement]
+/// [DeviceUseStatementBuilder]
 /// A record of a device being used by a patient where the record is the
 /// result of a report from the patient or another clinician.
-class DeviceUseStatement extends DomainResource {
+class DeviceUseStatementBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [DeviceUseStatement]
+  /// [DeviceUseStatementBuilder]
 
-  const DeviceUseStatement({
+  DeviceUseStatementBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -20,13 +22,13 @@ class DeviceUseStatement extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.basedOn,
-    required this.status,
-    required this.subject,
+    this.status,
+    this.subject,
     this.derivedFrom,
     this.timingX,
     this.recordedOn,
     this.source,
-    required this.device,
+    this.device,
     this.reasonCode,
     this.reasonReference,
     this.bodySite,
@@ -37,53 +39,48 @@ class DeviceUseStatement extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceUseStatement.empty() => DeviceUseStatement(
-        status: DeviceUseStatementStatus.values.first,
-        subject: Reference.empty(),
-        device: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceUseStatementBuilder.empty() => DeviceUseStatementBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceUseStatement.fromJson(
+  factory DeviceUseStatementBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceUseStatement';
-    return DeviceUseStatement(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceUseStatementBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -92,8 +89,8 @@ class DeviceUseStatement extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -102,8 +99,8 @@ class DeviceUseStatement extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -112,8 +109,8 @@ class DeviceUseStatement extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -122,8 +119,8 @@ class DeviceUseStatement extends DomainResource {
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -131,21 +128,21 @@ class DeviceUseStatement extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<DeviceUseStatementStatus>(
+      status: JsonParser.parsePrimitive<DeviceUseStatementStatusBuilder>(
         json,
         'status',
-        DeviceUseStatementStatus.fromJson,
+        DeviceUseStatementStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      subject: JsonParser.parseObject<Reference>(
+      ),
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
+      ),
       derivedFrom: (json['derivedFrom'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.derivedFrom',
@@ -153,36 +150,36 @@ class DeviceUseStatement extends DomainResource {
             ),
           )
           .toList(),
-      timingX: JsonParser.parsePolymorphic<TimingXDeviceUseStatement>(
+      timingX: JsonParser.parsePolymorphic<TimingXDeviceUseStatementBuilder>(
         json,
         {
-          'timingTiming': Timing.fromJson,
-          'timingPeriod': Period.fromJson,
-          'timingDateTime': FhirDateTime.fromJson,
+          'timingTiming': TimingBuilder.fromJson,
+          'timingPeriod': PeriodBuilder.fromJson,
+          'timingDateTime': FhirDateTimeBuilder.fromJson,
         },
         objectPath,
       ),
-      recordedOn: JsonParser.parsePrimitive<FhirDateTime>(
+      recordedOn: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'recordedOn',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.recordedOn',
       ),
-      source: JsonParser.parseObject<Reference>(
+      source: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'source',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.source',
       ),
-      device: JsonParser.parseObject<Reference>(
+      device: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'device',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.device',
-      )!,
+      ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -191,8 +188,8 @@ class DeviceUseStatement extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -200,15 +197,15 @@ class DeviceUseStatement extends DomainResource {
             ),
           )
           .toList(),
-      bodySite: JsonParser.parseObject<CodeableConcept>(
+      bodySite: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'bodySite',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.bodySite',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -219,22 +216,22 @@ class DeviceUseStatement extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceUseStatement]
+  /// Deserialize [DeviceUseStatementBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceUseStatement.fromYaml(
+  factory DeviceUseStatementBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceUseStatement.fromJson(
+      return DeviceUseStatementBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceUseStatement.fromJson(
+      return DeviceUseStatementBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceUseStatement '
+        'DeviceUseStatementBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -242,16 +239,16 @@ class DeviceUseStatement extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [DeviceUseStatement]
+  /// [DeviceUseStatementBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceUseStatement.fromJsonString(
+  factory DeviceUseStatementBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceUseStatement.fromJson(json);
+      return DeviceUseStatementBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -263,90 +260,91 @@ class DeviceUseStatement extends DomainResource {
 
   /// [identifier]
   /// An external identifier for this statement such as an IRI.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// DeviceUseStatement.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [status]
   /// A code representing the patient or other source's judgment about the
   /// state of the device used that this statement is about. Generally this
   /// will be active or completed.
-  final DeviceUseStatementStatus status;
+  DeviceUseStatementStatusBuilder? status;
 
   /// [subject]
   /// The patient who used the device.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [derivedFrom]
   /// Allows linking the DeviceUseStatement to the underlying Request, or to
   /// other information that supports or is used to derive the
   /// DeviceUseStatement.
-  final List<Reference>? derivedFrom;
+  List<ReferenceBuilder>? derivedFrom;
 
   /// [timingX]
   /// How often the device was used.
-  final TimingXDeviceUseStatement? timingX;
+  TimingXDeviceUseStatementBuilder? timingX;
 
-  /// Getter for [timingTiming] as a Timing
-  Timing? get timingTiming => timingX?.isAs<Timing>();
+  /// Getter for [timingTiming] as a TimingBuilder
+  TimingBuilder? get timingTiming => timingX?.isAs<TimingBuilder>();
 
-  /// Getter for [timingPeriod] as a Period
-  Period? get timingPeriod => timingX?.isAs<Period>();
+  /// Getter for [timingPeriod] as a PeriodBuilder
+  PeriodBuilder? get timingPeriod => timingX?.isAs<PeriodBuilder>();
 
-  /// Getter for [timingDateTime] as a FhirDateTime
-  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+  /// Getter for [timingDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get timingDateTime =>
+      timingX?.isAs<FhirDateTimeBuilder>();
 
   /// [recordedOn]
   /// The time at which the statement was made/recorded.
-  final FhirDateTime? recordedOn;
+  FhirDateTimeBuilder? recordedOn;
 
   /// [source]
   /// Who reported the device was being used by the patient.
-  final Reference? source;
+  ReferenceBuilder? source;
 
   /// [device]
   /// The details of the device used.
-  final Reference device;
+  ReferenceBuilder? device;
 
   /// [reasonCode]
   /// Reason or justification for the use of the device.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource whose existence justifies this
   /// DeviceUseStatement.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [bodySite]
   /// Indicates the anotomic location on the subject's body where the device
   /// was used ( i.e. the target).
-  final CodeableConcept? bodySite;
+  CodeableConceptBuilder? bodySite;
 
   /// [note]
   /// Details about the device statement that were not represented at all or
   /// sufficiently in one of the attributes provided in a class. These may
   /// include for example a comment, an instruction, or a note associated
   /// with the statement.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -355,100 +353,37 @@ class DeviceUseStatement extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'derivedFrom',
-      derivedFrom,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('basedOn', basedOn);
+    addField('status', status);
+    addField('subject', subject);
+    addField('derivedFrom', derivedFrom);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField(
-        'timing${fhirType.capitalize()}',
-        timingX,
-      );
+      addField('timing${fhirType.capitalize()}', timingX);
     }
 
-    addField(
-      'recordedOn',
-      recordedOn,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'device',
-      device,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'bodySite',
-      bodySite,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('recordedOn', recordedOn);
+    addField('source', source);
+    addField('device', device);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('bodySite', bodySite);
+    addField('note', note);
     return json;
   }
 
@@ -483,11 +418,11 @@ class DeviceUseStatement extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -530,27 +465,35 @@ class DeviceUseStatement extends DomainResource {
           fields.addAll(basedOn!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'derivedFrom':
         if (derivedFrom != null) {
           fields.addAll(derivedFrom!);
         }
       case 'timing':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingX':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingTiming':
-        if (timingX is Timing) {
+        if (timingX is TimingBuilder) {
           fields.add(timingX!);
         }
       case 'timingPeriod':
-        if (timingX is Period) {
+        if (timingX is PeriodBuilder) {
           fields.add(timingX!);
         }
       case 'timingDateTime':
-        if (timingX is FhirDateTime) {
+        if (timingX is FhirDateTimeBuilder) {
           fields.add(timingX!);
         }
       case 'recordedOn':
@@ -562,7 +505,9 @@ class DeviceUseStatement extends DomainResource {
           fields.add(source!);
         }
       case 'device':
-        fields.add(device);
+        if (device != null) {
+          fields.add(device!);
+        }
       case 'reasonCode':
         if (reasonCode != null) {
           fields.addAll(reasonCode!);
@@ -589,7 +534,7 @@ class DeviceUseStatement extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -598,268 +543,285 @@ class DeviceUseStatement extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is DeviceUseStatementStatus) {
-            return copyWith(status: child);
+          if (child is DeviceUseStatementStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'derivedFrom':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?derivedFrom, ...child];
-            return copyWith(derivedFrom: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            derivedFrom = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?derivedFrom, child];
-            return copyWith(derivedFrom: newList);
+            derivedFrom = [...(derivedFrom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingX':
         {
-          if (child is TimingXDeviceUseStatement) {
-            return copyWith(timingX: child);
+          if (child is TimingXDeviceUseStatementBuilder) {
+            timingX = child;
+            return;
           } else {
-            if (child is Timing) {
-              return copyWith(timingX: child);
+            if (child is TimingBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(timingX: child);
+            if (child is PeriodBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(timingX: child);
+            if (child is FhirDateTimeBuilder) {
+              timingX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'timingTiming':
         {
-          if (child is Timing) {
-            return copyWith(timingX: child);
+          if (child is TimingBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingPeriod':
         {
-          if (child is Period) {
-            return copyWith(timingX: child);
+          if (child is PeriodBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'timingFhirDateTime':
+      case 'timingDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(timingX: child);
+          if (child is FhirDateTimeBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recordedOn':
         {
-          if (child is FhirDateTime) {
-            return copyWith(recordedOn: child);
+          if (child is FhirDateTimeBuilder) {
+            recordedOn = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is Reference) {
-            return copyWith(source: child);
+          if (child is ReferenceBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'device':
         {
-          if (child is Reference) {
-            return copyWith(device: child);
+          if (child is ReferenceBuilder) {
+            device = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
         {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
+          if (child is CodeableConceptBuilder) {
+            bodySite = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -875,207 +837,180 @@ class DeviceUseStatement extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'derivedFrom':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'timing':
       case 'timingX':
-        return ['Timing', 'Period', 'FhirDateTime'];
+        return ['TimingBuilder', 'PeriodBuilder', 'FhirDateTimeBuilder'];
       case 'timingTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'timingPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'timingDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'recordedOn':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'source':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'device':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'bodySite':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceUseStatement]
+  /// Creates a new [DeviceUseStatementBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceUseStatement createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: DeviceUseStatementStatus.empty(),
-          );
+          status = DeviceUseStatementStatusBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'derivedFrom':
         {
-          return copyWith(
-            derivedFrom: <Reference>[],
-          );
+          derivedFrom = <ReferenceBuilder>[];
+          return;
         }
       case 'timing':
       case 'timingX':
       case 'timingTiming':
         {
-          return copyWith(
-            timingX: Timing.empty(),
-          );
+          timingX = TimingBuilder.empty();
+          return;
         }
       case 'timingPeriod':
         {
-          return copyWith(
-            timingX: Period.empty(),
-          );
+          timingX = PeriodBuilder.empty();
+          return;
         }
       case 'timingDateTime':
         {
-          return copyWith(
-            timingX: FhirDateTime.empty(),
-          );
+          timingX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'recordedOn':
         {
-          return copyWith(
-            recordedOn: FhirDateTime.empty(),
-          );
+          recordedOn = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: Reference.empty(),
-          );
+          source = ReferenceBuilder.empty();
+          return;
         }
       case 'device':
         {
-          return copyWith(
-            device: Reference.empty(),
-          );
+          device = ReferenceBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'bodySite':
         {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
+          bodySite = CodeableConceptBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1084,7 +1019,7 @@ class DeviceUseStatement extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  DeviceUseStatement clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1095,192 +1030,118 @@ class DeviceUseStatement extends DomainResource {
     bool modifierExtension = false,
     bool identifier = false,
     bool basedOn = false,
+    bool status = false,
+    bool subject = false,
     bool derivedFrom = false,
     bool timing = false,
     bool recordedOn = false,
     bool source = false,
+    bool device = false,
     bool reasonCode = false,
     bool reasonReference = false,
     bool bodySite = false,
     bool note = false,
   }) {
-    return DeviceUseStatement(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      status: status,
-      subject: subject,
-      derivedFrom: derivedFrom ? null : this.derivedFrom,
-      timingX: timing ? null : timingX,
-      recordedOn: recordedOn ? null : this.recordedOn,
-      source: source ? null : this.source,
-      device: device,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      bodySite: bodySite ? null : this.bodySite,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (basedOn) this.basedOn = null;
+    if (status) this.status = null;
+    if (subject) this.subject = null;
+    if (derivedFrom) this.derivedFrom = null;
+    if (timing) this.timingX = null;
+    if (recordedOn) this.recordedOn = null;
+    if (source) this.source = null;
+    if (device) this.device = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (bodySite) this.bodySite = null;
+    if (note) this.note = null;
   }
 
   @override
-  DeviceUseStatement clone() => throw UnimplementedError();
+  DeviceUseStatementBuilder clone() => throw UnimplementedError();
   @override
-  DeviceUseStatement copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? basedOn,
-    DeviceUseStatementStatus? status,
-    Reference? subject,
-    List<Reference>? derivedFrom,
-    TimingXDeviceUseStatement? timingX,
-    FhirDateTime? recordedOn,
-    Reference? source,
-    Reference? device,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    CodeableConcept? bodySite,
-    List<Annotation>? note,
+  DeviceUseStatementBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<ReferenceBuilder>? basedOn,
+    DeviceUseStatementStatusBuilder? status,
+    ReferenceBuilder? subject,
+    List<ReferenceBuilder>? derivedFrom,
+    TimingXDeviceUseStatementBuilder? timingX,
+    FhirDateTimeBuilder? recordedOn,
+    ReferenceBuilder? source,
+    ReferenceBuilder? device,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    CodeableConceptBuilder? bodySite,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return DeviceUseStatement(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = DeviceUseStatementBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      derivedFrom: derivedFrom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.derivedFrom',
-                ),
-              )
-              .toList() ??
-          this.derivedFrom,
-      timingX: timingX?.copyWith(
-            objectPath: '$newObjectPath.timingX',
-          ) as TimingXDeviceUseStatement? ??
-          this.timingX,
-      recordedOn: recordedOn?.copyWith(
-            objectPath: '$newObjectPath.recordedOn',
-          ) ??
-          this.recordedOn,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      device: device?.copyWith(
-            objectPath: '$newObjectPath.device',
-          ) ??
-          this.device,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      basedOn: basedOn ?? this.basedOn,
+      status: status ?? this.status,
+      subject: subject ?? this.subject,
+      derivedFrom: derivedFrom ?? this.derivedFrom,
+      timingX: timingX ?? this.timingX,
+      recordedOn: recordedOn ?? this.recordedOn,
+      source: source ?? this.source,
+      device: device ?? this.device,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      bodySite: bodySite ?? this.bodySite,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceUseStatement) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceUseStatementBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1315,31 +1176,31 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
@@ -1357,7 +1218,7 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       derivedFrom,
       o.derivedFrom,
     )) {
@@ -1387,13 +1248,13 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
@@ -1405,7 +1266,7 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {

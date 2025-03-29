@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The status of the endpoint.
-class EndpointStatus extends FhirCodeEnum {
+class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  EndpointStatus._({
+  EndpointStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class EndpointStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory EndpointStatus(
+  factory EndpointStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return EndpointStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return EndpointStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,81 +43,83 @@ class EndpointStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [EndpointStatus] with element only
-  factory EndpointStatus.empty() => EndpointStatus._(validatedValue: '');
+  /// Create empty [EndpointStatusBuilder] with element only
+  factory EndpointStatusBuilder.empty() =>
+      EndpointStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EndpointStatus] from JSON.
-  factory EndpointStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EndpointStatusBuilder] from JSON.
+  factory EndpointStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EndpointStatus.elementOnly.withElement(element);
+      return EndpointStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EndpointStatus cannot be constructed from JSON.',
+        'EndpointStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return EndpointStatus._(
+    return EndpointStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// active
-  static final EndpointStatus active = EndpointStatus._(
+  static EndpointStatusBuilder active = EndpointStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// suspended
-  static final EndpointStatus suspended = EndpointStatus._(
+  static EndpointStatusBuilder suspended = EndpointStatusBuilder._(
     validatedValue: 'suspended',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Suspended'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Suspended'.toFhirStringBuilder,
   );
 
   /// error
-  static final EndpointStatus error = EndpointStatus._(
+  static EndpointStatusBuilder error = EndpointStatusBuilder._(
     validatedValue: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Error'.toFhirStringBuilder,
   );
 
   /// off
-  static final EndpointStatus off = EndpointStatus._(
+  static EndpointStatusBuilder off = EndpointStatusBuilder._(
     validatedValue: 'off',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Off'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Off'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final EndpointStatus entered_in_error = EndpointStatus._(
+  static EndpointStatusBuilder entered_in_error = EndpointStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in error'.toFhirStringBuilder,
   );
 
   /// test
-  static final EndpointStatus test = EndpointStatus._(
+  static EndpointStatusBuilder test = EndpointStatusBuilder._(
     validatedValue: 'test',
-    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Test'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Test'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final EndpointStatus elementOnly =
-      EndpointStatus._(validatedValue: '');
+  static EndpointStatusBuilder elementOnly =
+      EndpointStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<EndpointStatus> values = [
+  static List<EndpointStatusBuilder> values = [
     active,
     suspended,
     error,
@@ -128,14 +130,14 @@ class EndpointStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  EndpointStatus clone() => EndpointStatus._(
+  EndpointStatusBuilder clone() => EndpointStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  EndpointStatus withElement(Element? newElement) {
-    return EndpointStatus._(validatedValue: value, element: newElement);
+  EndpointStatusBuilder withElement(ElementBuilder? newElement) {
+    return EndpointStatusBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,11 +153,11 @@ class EndpointStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  EndpointStatus copyWith({
+  EndpointStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -166,7 +168,7 @@ class EndpointStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return EndpointStatus._(
+    return EndpointStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -176,7 +178,7 @@ class EndpointStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

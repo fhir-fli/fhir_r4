@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of direction to use for assertion.
-class AssertionDirectionType extends FhirCodeEnum {
+class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  AssertionDirectionType._({
+  AssertionDirectionTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class AssertionDirectionType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory AssertionDirectionType(
+  factory AssertionDirectionTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return AssertionDirectionType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return AssertionDirectionTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,64 +43,70 @@ class AssertionDirectionType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [AssertionDirectionType] with element only
-  factory AssertionDirectionType.empty() =>
-      AssertionDirectionType._(validatedValue: '');
+  /// Create empty [AssertionDirectionTypeBuilder] with element only
+  factory AssertionDirectionTypeBuilder.empty() =>
+      AssertionDirectionTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AssertionDirectionType] from JSON.
-  factory AssertionDirectionType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AssertionDirectionTypeBuilder] from JSON.
+  factory AssertionDirectionTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AssertionDirectionType.elementOnly.withElement(element);
+      return AssertionDirectionTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AssertionDirectionType cannot be constructed from JSON.',
+        'AssertionDirectionTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return AssertionDirectionType._(
+    return AssertionDirectionTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// response
-  static final AssertionDirectionType response = AssertionDirectionType._(
+  static AssertionDirectionTypeBuilder response =
+      AssertionDirectionTypeBuilder._(
     validatedValue: 'response',
-    system: 'http://hl7.org/fhir/ValueSet/assert-direction-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'response'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/assert-direction-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'response'.toFhirStringBuilder,
   );
 
   /// request
-  static final AssertionDirectionType request = AssertionDirectionType._(
+  static AssertionDirectionTypeBuilder request =
+      AssertionDirectionTypeBuilder._(
     validatedValue: 'request',
-    system: 'http://hl7.org/fhir/ValueSet/assert-direction-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'request'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/assert-direction-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'request'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final AssertionDirectionType elementOnly =
-      AssertionDirectionType._(validatedValue: '');
+  static AssertionDirectionTypeBuilder elementOnly =
+      AssertionDirectionTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<AssertionDirectionType> values = [
+  static List<AssertionDirectionTypeBuilder> values = [
     response,
     request,
   ];
 
   /// Clones the current instance
   @override
-  AssertionDirectionType clone() => AssertionDirectionType._(
+  AssertionDirectionTypeBuilder clone() => AssertionDirectionTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  AssertionDirectionType withElement(Element? newElement) {
-    return AssertionDirectionType._(validatedValue: value, element: newElement);
+  AssertionDirectionTypeBuilder withElement(ElementBuilder? newElement) {
+    return AssertionDirectionTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,11 +122,11 @@ class AssertionDirectionType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  AssertionDirectionType copyWith({
+  AssertionDirectionTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -131,7 +137,7 @@ class AssertionDirectionType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return AssertionDirectionType._(
+    return AssertionDirectionTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -141,7 +147,7 @@ class AssertionDirectionType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

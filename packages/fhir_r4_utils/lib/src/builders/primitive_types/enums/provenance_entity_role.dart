@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How an entity was used in an activity.
-class ProvenanceEntityRole extends FhirCodeEnum {
+class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ProvenanceEntityRole._({
+  ProvenanceEntityRoleBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ProvenanceEntityRole(
+  factory ProvenanceEntityRoleBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ProvenanceEntityRole._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ProvenanceEntityRoleBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,74 +43,80 @@ class ProvenanceEntityRole extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ProvenanceEntityRole] with element only
-  factory ProvenanceEntityRole.empty() =>
-      ProvenanceEntityRole._(validatedValue: '');
+  /// Create empty [ProvenanceEntityRoleBuilder] with element only
+  factory ProvenanceEntityRoleBuilder.empty() =>
+      ProvenanceEntityRoleBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ProvenanceEntityRole] from JSON.
-  factory ProvenanceEntityRole.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ProvenanceEntityRoleBuilder] from JSON.
+  factory ProvenanceEntityRoleBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProvenanceEntityRole.elementOnly.withElement(element);
+      return ProvenanceEntityRoleBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ProvenanceEntityRole cannot be constructed from JSON.',
+        'ProvenanceEntityRoleBuilder cannot be constructed from JSON.',
       );
     }
-    return ProvenanceEntityRole._(
+    return ProvenanceEntityRoleBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// derivation
-  static final ProvenanceEntityRole derivation = ProvenanceEntityRole._(
+  static ProvenanceEntityRoleBuilder derivation = ProvenanceEntityRoleBuilder._(
     validatedValue: 'derivation',
-    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Derivation'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Derivation'.toFhirStringBuilder,
   );
 
   /// revision
-  static final ProvenanceEntityRole revision = ProvenanceEntityRole._(
+  static ProvenanceEntityRoleBuilder revision = ProvenanceEntityRoleBuilder._(
     validatedValue: 'revision',
-    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Revision'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Revision'.toFhirStringBuilder,
   );
 
   /// quotation
-  static final ProvenanceEntityRole quotation = ProvenanceEntityRole._(
+  static ProvenanceEntityRoleBuilder quotation = ProvenanceEntityRoleBuilder._(
     validatedValue: 'quotation',
-    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Quotation'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Quotation'.toFhirStringBuilder,
   );
 
   /// source
-  static final ProvenanceEntityRole source = ProvenanceEntityRole._(
+  static ProvenanceEntityRoleBuilder source = ProvenanceEntityRoleBuilder._(
     validatedValue: 'source',
-    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Source'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Source'.toFhirStringBuilder,
   );
 
   /// removal
-  static final ProvenanceEntityRole removal = ProvenanceEntityRole._(
+  static ProvenanceEntityRoleBuilder removal = ProvenanceEntityRoleBuilder._(
     validatedValue: 'removal',
-    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Removal'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Removal'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ProvenanceEntityRole elementOnly =
-      ProvenanceEntityRole._(validatedValue: '');
+  static ProvenanceEntityRoleBuilder elementOnly =
+      ProvenanceEntityRoleBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ProvenanceEntityRole> values = [
+  static List<ProvenanceEntityRoleBuilder> values = [
     derivation,
     revision,
     quotation,
@@ -120,14 +126,15 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ProvenanceEntityRole clone() => ProvenanceEntityRole._(
+  ProvenanceEntityRoleBuilder clone() => ProvenanceEntityRoleBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ProvenanceEntityRole withElement(Element? newElement) {
-    return ProvenanceEntityRole._(validatedValue: value, element: newElement);
+  ProvenanceEntityRoleBuilder withElement(ElementBuilder? newElement) {
+    return ProvenanceEntityRoleBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,11 +150,11 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ProvenanceEntityRole copyWith({
+  ProvenanceEntityRoleBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -158,7 +165,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ProvenanceEntityRole._(
+    return ProvenanceEntityRoleBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -168,7 +175,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

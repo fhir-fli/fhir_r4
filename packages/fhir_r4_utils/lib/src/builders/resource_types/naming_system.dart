@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [NamingSystem]
+/// [NamingSystemBuilder]
 /// A curated namespace that issues unique symbols within that namespace
 /// for the identification of concepts, people, devices, etc. Represents a
 /// "System" used within the Identifier and Coding data types.
-class NamingSystem extends DomainResource {
+class NamingSystemBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [NamingSystem]
+  /// [NamingSystemBuilder]
 
-  const NamingSystem({
+  NamingSystemBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -19,10 +21,10 @@ class NamingSystem extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.name,
-    required this.status,
-    required this.kind,
-    required this.date,
+    this.name,
+    this.status,
+    this.kind,
+    this.date,
     this.publisher,
     this.contact,
     this.responsible,
@@ -31,62 +33,55 @@ class NamingSystem extends DomainResource {
     this.useContext,
     this.jurisdiction,
     this.usage,
-    required this.uniqueId,
+    this.uniqueId,
   }) : super(
           objectPath: 'NamingSystem',
           resourceType: R4ResourceType.NamingSystem,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory NamingSystem.empty() => NamingSystem(
-        name: FhirString.empty(),
-        status: PublicationStatus.values.first,
-        kind: NamingSystemType.values.first,
-        date: FhirDateTime.empty(),
-        uniqueId: <NamingSystemUniqueId>[],
-      );
+  /// For Builder classes, no fields are required
+  factory NamingSystemBuilder.empty() => NamingSystemBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NamingSystem.fromJson(
+  factory NamingSystemBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'NamingSystem';
-    return NamingSystem(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return NamingSystemBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -95,8 +90,8 @@ class NamingSystem extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -105,8 +100,8 @@ class NamingSystem extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -114,39 +109,39 @@ class NamingSystem extends DomainResource {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      ),
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      kind: JsonParser.parsePrimitive<NamingSystemType>(
+      ),
+      kind: JsonParser.parsePrimitive<NamingSystemTypeBuilder>(
         json,
         'kind',
-        NamingSystemType.fromJson,
+        NamingSystemTypeBuilder.fromJson,
         '$objectPath.kind',
-      )!,
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
-      )!,
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      ),
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -154,27 +149,27 @@ class NamingSystem extends DomainResource {
             ),
           )
           .toList(),
-      responsible: JsonParser.parsePrimitive<FhirString>(
+      responsible: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'responsible',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.responsible',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -183,8 +178,8 @@ class NamingSystem extends DomainResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -192,15 +187,15 @@ class NamingSystem extends DomainResource {
             ),
           )
           .toList(),
-      usage: JsonParser.parsePrimitive<FhirString>(
+      usage: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'usage',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.usage',
       ),
-      uniqueId: (json['uniqueId'] as List<dynamic>)
-          .map<NamingSystemUniqueId>(
-            (v) => NamingSystemUniqueId.fromJson(
+      uniqueId: (json['uniqueId'] as List<dynamic>?)
+          ?.map<NamingSystemUniqueIdBuilder>(
+            (v) => NamingSystemUniqueIdBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.uniqueId',
@@ -211,22 +206,22 @@ class NamingSystem extends DomainResource {
     );
   }
 
-  /// Deserialize [NamingSystem]
+  /// Deserialize [NamingSystemBuilder]
   /// from a [String] or [YamlMap] object
-  factory NamingSystem.fromYaml(
+  factory NamingSystemBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return NamingSystem.fromJson(
+      return NamingSystemBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return NamingSystem.fromJson(
+      return NamingSystemBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'NamingSystem '
+        'NamingSystemBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -234,16 +229,16 @@ class NamingSystem extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [NamingSystem]
+  /// [NamingSystemBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NamingSystem.fromJsonString(
+  factory NamingSystemBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return NamingSystem.fromJson(json);
+      return NamingSystemBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -257,51 +252,51 @@ class NamingSystem extends DomainResource {
   /// A natural language name identifying the naming system. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [status]
   /// The status of this naming system. Enables tracking the life-cycle of
   /// the content.
-  final PublicationStatus status;
+  PublicationStatusBuilder? status;
 
   /// [kind]
   /// Indicates the purpose for the naming system - what kinds of things does
   /// it make unique?
-  final NamingSystemType kind;
+  NamingSystemTypeBuilder? kind;
 
   /// [date]
   /// The date (and optionally time) when the naming system was published.
   /// The date must change when the business version changes and it must
   /// change if the status code changes. In addition, it should change when
   /// the substantive content of the naming system changes.
-  final FhirDateTime date;
+  FhirDateTimeBuilder? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the naming
   /// system.
-  final FhirString? publisher;
+  FhirStringBuilder? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetailBuilder>? contact;
 
   /// [responsible]
   /// The name of the organization that is responsible for issuing
   /// identifiers or codes for this namespace and ensuring their
   /// non-collision.
-  final FhirString? responsible;
+  FhirStringBuilder? responsible;
 
   /// [type]
   /// Categorizes a naming system for easier search by grouping related
   /// naming systems.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [description]
   /// A free text natural language description of the naming system from a
   /// consumer's perspective. Details about what the namespace identifies
   /// including scope, granularity, version labeling, etc.
-  final FhirMarkdown? description;
+  FhirMarkdownBuilder? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -309,38 +304,38 @@ class NamingSystem extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate naming system instances.
-  final List<UsageContext>? useContext;
+  List<UsageContextBuilder>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the naming system is intended to
   /// be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConceptBuilder>? jurisdiction;
 
   /// [usage]
   /// Provides guidance on the use of the namespace, including the handling
   /// of formatting characters, use of upper vs. lower case, etc.
-  final FhirString? usage;
+  FhirStringBuilder? usage;
 
   /// [uniqueId]
   /// Indicates how the system may be identified when referenced in
   /// electronic exchange.
-  final List<NamingSystemUniqueId> uniqueId;
+  List<NamingSystemUniqueIdBuilder>? uniqueId;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -349,96 +344,33 @@ class NamingSystem extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'kind',
-      kind,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'responsible',
-      responsible,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'usage',
-      usage,
-    );
-    addField(
-      'uniqueId',
-      uniqueId,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('status', status);
+    addField('kind', kind);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('responsible', responsible);
+    addField('type', type);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('usage', usage);
+    addField('uniqueId', uniqueId);
     return json;
   }
 
@@ -473,11 +405,11 @@ class NamingSystem extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -512,13 +444,21 @@ class NamingSystem extends DomainResource {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'kind':
-        fields.add(kind);
+        if (kind != null) {
+          fields.add(kind!);
+        }
       case 'date':
-        fields.add(date);
+        if (date != null) {
+          fields.add(date!);
+        }
       case 'publisher':
         if (publisher != null) {
           fields.add(publisher!);
@@ -552,7 +492,9 @@ class NamingSystem extends DomainResource {
           fields.add(usage!);
         }
       case 'uniqueId':
-        fields.addAll(uniqueId);
+        if (uniqueId != null) {
+          fields.addAll(uniqueId!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -563,7 +505,7 @@ class NamingSystem extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -572,223 +514,236 @@ class NamingSystem extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'kind':
         {
-          if (child is NamingSystemType) {
-            return copyWith(kind: child);
+          if (child is NamingSystemTypeBuilder) {
+            kind = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'responsible':
         {
-          if (child is FhirString) {
-            return copyWith(responsible: child);
+          if (child is FhirStringBuilder) {
+            responsible = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'usage':
         {
-          if (child is FhirString) {
-            return copyWith(usage: child);
+          if (child is FhirStringBuilder) {
+            usage = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'uniqueId':
         {
-          if (child is List<NamingSystemUniqueId>) {
-            // Add all elements from passed list
-            final newList = [...uniqueId, ...child];
-            return copyWith(uniqueId: newList);
-          } else if (child is NamingSystemUniqueId) {
+          if (child is List<NamingSystemUniqueIdBuilder>) {
+            // Replace or create new list
+            uniqueId = child;
+            return;
+          } else if (child is NamingSystemUniqueIdBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...uniqueId, child];
-            return copyWith(uniqueId: newList);
+            uniqueId = [...(uniqueId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -804,186 +759,161 @@ class NamingSystem extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'kind':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'responsible':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'usage':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'uniqueId':
-        return ['NamingSystemUniqueId'];
+        return ['NamingSystemUniqueIdBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [NamingSystem]
+  /// Creates a new [NamingSystemBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  NamingSystem createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'kind':
         {
-          return copyWith(
-            kind: NamingSystemType.empty(),
-          );
+          kind = NamingSystemTypeBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'responsible':
         {
-          return copyWith(
-            responsible: FhirString.empty(),
-          );
+          responsible = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'usage':
         {
-          return copyWith(
-            usage: FhirString.empty(),
-          );
+          usage = FhirStringBuilder.empty();
+          return;
         }
       case 'uniqueId':
         {
-          return copyWith(
-            uniqueId: <NamingSystemUniqueId>[],
-          );
+          uniqueId = <NamingSystemUniqueIdBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -992,7 +922,7 @@ class NamingSystem extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  NamingSystem clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1001,6 +931,10 @@ class NamingSystem extends DomainResource {
     bool contained = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
+    bool status = false,
+    bool kind = false,
+    bool date = false,
     bool publisher = false,
     bool contact = false,
     bool responsible = false,
@@ -1009,176 +943,108 @@ class NamingSystem extends DomainResource {
     bool useContext = false,
     bool jurisdiction = false,
     bool usage = false,
+    bool uniqueId = false,
   }) {
-    return NamingSystem(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      status: status,
-      kind: kind,
-      date: date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      responsible: responsible ? null : this.responsible,
-      type: type ? null : this.type,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      usage: usage ? null : this.usage,
-      uniqueId: uniqueId,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (status) this.status = null;
+    if (kind) this.kind = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (responsible) this.responsible = null;
+    if (type) this.type = null;
+    if (description) this.description = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (usage) this.usage = null;
+    if (uniqueId) this.uniqueId = null;
   }
 
   @override
-  NamingSystem clone() => throw UnimplementedError();
+  NamingSystemBuilder clone() => throw UnimplementedError();
   @override
-  NamingSystem copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    PublicationStatus? status,
-    NamingSystemType? kind,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirString? responsible,
-    CodeableConcept? type,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirString? usage,
-    List<NamingSystemUniqueId>? uniqueId,
+  NamingSystemBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? name,
+    PublicationStatusBuilder? status,
+    NamingSystemTypeBuilder? kind,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirStringBuilder? responsible,
+    CodeableConceptBuilder? type,
+    FhirMarkdownBuilder? description,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirStringBuilder? usage,
+    List<NamingSystemUniqueIdBuilder>? uniqueId,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return NamingSystem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = NamingSystemBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      kind: kind?.copyWith(
-            objectPath: '$newObjectPath.kind',
-          ) ??
-          this.kind,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      responsible: responsible?.copyWith(
-            objectPath: '$newObjectPath.responsible',
-          ) ??
-          this.responsible,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      usage: usage?.copyWith(
-            objectPath: '$newObjectPath.usage',
-          ) ??
-          this.usage,
-      uniqueId: uniqueId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.uniqueId',
-                ),
-              )
-              .toList() ??
-          this.uniqueId,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      status: status ?? this.status,
+      kind: kind ?? this.kind,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      responsible: responsible ?? this.responsible,
+      type: type ?? this.type,
+      description: description ?? this.description,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      usage: usage ?? this.usage,
+      uniqueId: uniqueId ?? this.uniqueId,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! NamingSystem) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! NamingSystemBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1213,19 +1079,19 @@ class NamingSystem extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1261,7 +1127,7 @@ class NamingSystem extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -1285,13 +1151,13 @@ class NamingSystem extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -1303,7 +1169,7 @@ class NamingSystem extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<NamingSystemUniqueId>(
+    if (!listEquals<NamingSystemUniqueIdBuilder>(
       uniqueId,
       o.uniqueId,
     )) {
@@ -1313,19 +1179,19 @@ class NamingSystem extends DomainResource {
   }
 }
 
-/// [NamingSystemUniqueId]
+/// [NamingSystemUniqueIdBuilder]
 /// Indicates how the system may be identified when referenced in
 /// electronic exchange.
-class NamingSystemUniqueId extends BackboneElement {
+class NamingSystemUniqueIdBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [NamingSystemUniqueId]
+  /// [NamingSystemUniqueIdBuilder]
 
-  const NamingSystemUniqueId({
+  NamingSystemUniqueIdBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-    required this.value,
+    this.type,
+    this.value,
     this.preferred,
     this.comment,
     this.period,
@@ -1335,28 +1201,24 @@ class NamingSystemUniqueId extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory NamingSystemUniqueId.empty() => NamingSystemUniqueId(
-        type: NamingSystemIdentifierType.values.first,
-        value: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory NamingSystemUniqueIdBuilder.empty() => NamingSystemUniqueIdBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NamingSystemUniqueId.fromJson(
+  factory NamingSystemUniqueIdBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'NamingSystem.uniqueId';
-    return NamingSystemUniqueId(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return NamingSystemUniqueIdBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1365,8 +1227,8 @@ class NamingSystemUniqueId extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1374,55 +1236,55 @@ class NamingSystemUniqueId extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<NamingSystemIdentifierType>(
+      type: JsonParser.parsePrimitive<NamingSystemIdentifierTypeBuilder>(
         json,
         'type',
-        NamingSystemIdentifierType.fromJson,
+        NamingSystemIdentifierTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      value: JsonParser.parsePrimitive<FhirString>(
+      ),
+      value: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'value',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.value',
-      )!,
-      preferred: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      preferred: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'preferred',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.preferred',
       ),
-      comment: JsonParser.parsePrimitive<FhirString>(
+      comment: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'comment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.comment',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
     );
   }
 
-  /// Deserialize [NamingSystemUniqueId]
+  /// Deserialize [NamingSystemUniqueIdBuilder]
   /// from a [String] or [YamlMap] object
-  factory NamingSystemUniqueId.fromYaml(
+  factory NamingSystemUniqueIdBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return NamingSystemUniqueId.fromJson(
+      return NamingSystemUniqueIdBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return NamingSystemUniqueId.fromJson(
+      return NamingSystemUniqueIdBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'NamingSystemUniqueId '
+        'NamingSystemUniqueIdBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1430,16 +1292,16 @@ class NamingSystemUniqueId extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [NamingSystemUniqueId]
+  /// [NamingSystemUniqueIdBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NamingSystemUniqueId.fromJsonString(
+  factory NamingSystemUniqueIdBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return NamingSystemUniqueId.fromJson(json);
+      return NamingSystemUniqueIdBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1452,43 +1314,43 @@ class NamingSystemUniqueId extends BackboneElement {
   /// [type]
   /// Identifies the unique identifier scheme used for this particular
   /// identifier.
-  final NamingSystemIdentifierType type;
+  NamingSystemIdentifierTypeBuilder? type;
 
   /// [value]
   /// The string that should be sent over the wire to identify the code
   /// system or identifier system.
-  final FhirString value;
+  FhirStringBuilder? value;
 
   /// [preferred]
   /// Indicates whether this identifier is the "preferred" identifier of this
   /// type.
-  final FhirBoolean? preferred;
+  FhirBooleanBuilder? preferred;
 
   /// [comment]
   /// Notes about the past or intended usage of this identifier.
-  final FhirString? comment;
+  FhirStringBuilder? comment;
 
   /// [period]
   /// Identifies the period of time over which this identifier is considered
   /// appropriate to refer to the naming system. Outside of this window, the
   /// identifier might be non-deterministic.
-  final Period? period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1497,43 +1359,19 @@ class NamingSystemUniqueId extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'preferred',
-      preferred,
-    );
-    addField(
-      'comment',
-      comment,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('value', value);
+    addField('preferred', preferred);
+    addField('comment', comment);
+    addField('period', period);
     return json;
   }
 
@@ -1555,11 +1393,11 @@ class NamingSystemUniqueId extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1574,9 +1412,13 @@ class NamingSystemUniqueId extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'value':
-        fields.add(value);
+        if (value != null) {
+          fields.add(value!);
+        }
       case 'preferred':
         if (preferred != null) {
           fields.add(preferred!);
@@ -1599,7 +1441,7 @@ class NamingSystemUniqueId extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1608,89 +1450,94 @@ class NamingSystemUniqueId extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is NamingSystemIdentifierType) {
-            return copyWith(type: child);
+          if (child is NamingSystemIdentifierTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirString) {
-            return copyWith(value: child);
+          if (child is FhirStringBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'preferred':
         {
-          if (child is FhirBoolean) {
-            return copyWith(preferred: child);
+          if (child is FhirBooleanBuilder) {
+            preferred = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is FhirString) {
-            return copyWith(comment: child);
+          if (child is FhirStringBuilder) {
+            comment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1706,82 +1553,70 @@ class NamingSystemUniqueId extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'value':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'preferred':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'comment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [NamingSystemUniqueId]
+  /// Creates a new [NamingSystemUniqueIdBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  NamingSystemUniqueId createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: NamingSystemIdentifierType.empty(),
-          );
+          type = NamingSystemIdentifierTypeBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirString.empty(),
-          );
+          value = FhirStringBuilder.empty();
+          return;
         }
       case 'preferred':
         {
-          return copyWith(
-            preferred: FhirBoolean.empty(),
-          );
+          preferred = FhirBooleanBuilder.empty();
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
+          comment = FhirStringBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1790,38 +1625,38 @@ class NamingSystemUniqueId extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  NamingSystemUniqueId clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
+    bool value = false,
     bool preferred = false,
     bool comment = false,
     bool period = false,
   }) {
-    return NamingSystemUniqueId(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      value: value,
-      preferred: preferred ? null : this.preferred,
-      comment: comment ? null : this.comment,
-      period: period ? null : this.period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (value) this.value = null;
+    if (preferred) this.preferred = null;
+    if (comment) this.comment = null;
+    if (period) this.period = null;
   }
 
   @override
-  NamingSystemUniqueId clone() => throw UnimplementedError();
+  NamingSystemUniqueIdBuilder clone() => throw UnimplementedError();
   @override
-  NamingSystemUniqueId copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    NamingSystemIdentifierType? type,
-    FhirString? value,
-    FhirBoolean? preferred,
-    FhirString? comment,
-    Period? period,
+  NamingSystemUniqueIdBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    NamingSystemIdentifierTypeBuilder? type,
+    FhirStringBuilder? value,
+    FhirBooleanBuilder? preferred,
+    FhirStringBuilder? comment,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1829,54 +1664,39 @@ class NamingSystemUniqueId extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return NamingSystemUniqueId(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      preferred: preferred?.copyWith(
-            objectPath: '$newObjectPath.preferred',
-          ) ??
-          this.preferred,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = NamingSystemUniqueIdBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      value: value ?? this.value,
+      preferred: preferred ?? this.preferred,
+      comment: comment ?? this.comment,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! NamingSystemUniqueId) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! NamingSystemUniqueIdBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1887,13 +1707,13 @@ class NamingSystemUniqueId extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

@@ -1,19 +1,21 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [DocumentReference]
+/// [DocumentReferenceBuilder]
 /// A reference to a document of any kind for any purpose. Provides
 /// metadata about the document so that the document can be discovered and
 /// managed. The scope of a document is any seralized object with a
 /// mime-type, so includes formal patient centric documents (CDA), cliical
 /// notes, scanned paper, and non-patient specific documents like policy
 /// text.
-class DocumentReference extends DomainResource {
+class DocumentReferenceBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [DocumentReference]
+  /// [DocumentReferenceBuilder]
 
-  const DocumentReference({
+  DocumentReferenceBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -24,7 +26,7 @@ class DocumentReference extends DomainResource {
     super.modifierExtension,
     this.masterIdentifier,
     this.identifier,
-    required this.status,
+    this.status,
     this.docStatus,
     this.type,
     this.category,
@@ -36,7 +38,7 @@ class DocumentReference extends DomainResource {
     this.relatesTo,
     this.description,
     this.securityLabel,
-    required this.content,
+    this.content,
     this.context,
   }) : super(
           objectPath: 'DocumentReference',
@@ -44,52 +46,48 @@ class DocumentReference extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DocumentReference.empty() => DocumentReference(
-        status: DocumentReferenceStatus.values.first,
-        content: <DocumentReferenceContent>[],
-      );
+  /// For Builder classes, no fields are required
+  factory DocumentReferenceBuilder.empty() => DocumentReferenceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReference.fromJson(
+  factory DocumentReferenceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DocumentReference';
-    return DocumentReference(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DocumentReferenceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -98,8 +96,8 @@ class DocumentReference extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -108,8 +106,8 @@ class DocumentReference extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -117,15 +115,15 @@ class DocumentReference extends DomainResource {
             ),
           )
           .toList(),
-      masterIdentifier: JsonParser.parseObject<Identifier>(
+      masterIdentifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'masterIdentifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.masterIdentifier',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -133,27 +131,27 @@ class DocumentReference extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<DocumentReferenceStatus>(
+      status: JsonParser.parsePrimitive<DocumentReferenceStatusBuilder>(
         json,
         'status',
-        DocumentReferenceStatus.fromJson,
+        DocumentReferenceStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      docStatus: JsonParser.parsePrimitive<CompositionStatus>(
+      ),
+      docStatus: JsonParser.parsePrimitive<CompositionStatusBuilder>(
         json,
         'docStatus',
-        CompositionStatus.fromJson,
+        CompositionStatusBuilder.fromJson,
         '$objectPath.docStatus',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -161,21 +159,21 @@ class DocumentReference extends DomainResource {
             ),
           )
           .toList(),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      date: JsonParser.parsePrimitive<FhirInstant>(
+      date: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'date',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.date',
       ),
       author: (json['author'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.author',
@@ -183,21 +181,21 @@ class DocumentReference extends DomainResource {
             ),
           )
           .toList(),
-      authenticator: JsonParser.parseObject<Reference>(
+      authenticator: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'authenticator',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.authenticator',
       ),
-      custodian: JsonParser.parseObject<Reference>(
+      custodian: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'custodian',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.custodian',
       ),
       relatesTo: (json['relatesTo'] as List<dynamic>?)
-          ?.map<DocumentReferenceRelatesTo>(
-            (v) => DocumentReferenceRelatesTo.fromJson(
+          ?.map<DocumentReferenceRelatesToBuilder>(
+            (v) => DocumentReferenceRelatesToBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatesTo',
@@ -205,15 +203,15 @@ class DocumentReference extends DomainResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
       securityLabel: (json['securityLabel'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.securityLabel',
@@ -221,9 +219,9 @@ class DocumentReference extends DomainResource {
             ),
           )
           .toList(),
-      content: (json['content'] as List<dynamic>)
-          .map<DocumentReferenceContent>(
-            (v) => DocumentReferenceContent.fromJson(
+      content: (json['content'] as List<dynamic>?)
+          ?.map<DocumentReferenceContentBuilder>(
+            (v) => DocumentReferenceContentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.content',
@@ -231,31 +229,31 @@ class DocumentReference extends DomainResource {
             ),
           )
           .toList(),
-      context: JsonParser.parseObject<DocumentReferenceContext>(
+      context: JsonParser.parseObject<DocumentReferenceContextBuilder>(
         json,
         'context',
-        DocumentReferenceContext.fromJson,
+        DocumentReferenceContextBuilder.fromJson,
         '$objectPath.context',
       ),
     );
   }
 
-  /// Deserialize [DocumentReference]
+  /// Deserialize [DocumentReferenceBuilder]
   /// from a [String] or [YamlMap] object
-  factory DocumentReference.fromYaml(
+  factory DocumentReferenceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DocumentReference.fromJson(
+      return DocumentReferenceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DocumentReference.fromJson(
+      return DocumentReferenceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DocumentReference '
+        'DocumentReferenceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -263,16 +261,16 @@ class DocumentReference extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [DocumentReference]
+  /// [DocumentReferenceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DocumentReference.fromJsonString(
+  factory DocumentReferenceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DocumentReference.fromJson(json);
+      return DocumentReferenceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -287,66 +285,66 @@ class DocumentReference extends DomainResource {
   /// identifier is specific to this version of the document. This unique
   /// identifier may be used elsewhere to identify this version of the
   /// document.
-  final Identifier? masterIdentifier;
+  IdentifierBuilder? masterIdentifier;
 
   /// [identifier]
   /// Other identifiers associated with the document, including version
   /// independent identifiers.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// The status of this document reference.
-  final DocumentReferenceStatus status;
+  DocumentReferenceStatusBuilder? status;
 
   /// [docStatus]
   /// The status of the underlying document.
-  final CompositionStatus? docStatus;
+  CompositionStatusBuilder? docStatus;
 
   /// [type]
   /// Specifies the particular kind of document referenced (e.g. History and
   /// Physical, Discharge Summary, Progress Note). This usually equates to
   /// the purpose of making the document referenced.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [category]
   /// A categorization for the type of document referenced - helps for
   /// indexing and searching. This may be implied by or derived from the code
   /// specified in the DocumentReference.type.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [subject]
   /// Who or what the document is about. The document can be about a person,
   /// (patient or healthcare practitioner), a device (e.g. a machine) or even
   /// a group of subjects (such as a document about a herd of farm animals,
   /// or a set of patients that share a common exposure).
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [date]
   /// When the document reference was created.
-  final FhirInstant? date;
+  FhirInstantBuilder? date;
 
   /// [author]
   /// Identifies who is responsible for adding the information to the
   /// document.
-  final List<Reference>? author;
+  List<ReferenceBuilder>? author;
 
   /// [authenticator]
   /// Which person or organization authenticates that this document is valid.
-  final Reference? authenticator;
+  ReferenceBuilder? authenticator;
 
   /// [custodian]
   /// Identifies the organization or group who is responsible for ongoing
   /// maintenance of and access to the document.
-  final Reference? custodian;
+  ReferenceBuilder? custodian;
 
   /// [relatesTo]
   /// Relationships that this document has with other document references
   /// that already exist.
-  final List<DocumentReferenceRelatesTo>? relatesTo;
+  List<DocumentReferenceRelatesToBuilder>? relatesTo;
 
   /// [description]
   /// Human-readable description of the source document.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [securityLabel]
   /// A set of Security-Tag codes specifying the level of privacy/security of
@@ -354,32 +352,32 @@ class DocumentReference extends DomainResource {
   /// security labels of the "reference" to the document, while
   /// DocumentReference.securityLabel contains a snapshot of the security
   /// labels on the document the reference refers to.
-  final List<CodeableConcept>? securityLabel;
+  List<CodeableConceptBuilder>? securityLabel;
 
   /// [content]
   /// The document and format referenced. There may be multiple content
   /// element repetitions, each with a different format.
-  final List<DocumentReferenceContent> content;
+  List<DocumentReferenceContentBuilder>? content;
 
   /// [context]
   /// The clinical context in which the document was prepared.
-  final DocumentReferenceContext? context;
+  DocumentReferenceContextBuilder? context;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -388,108 +386,36 @@ class DocumentReference extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'masterIdentifier',
-      masterIdentifier,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'docStatus',
-      docStatus,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'authenticator',
-      authenticator,
-    );
-    addField(
-      'custodian',
-      custodian,
-    );
-    addField(
-      'relatesTo',
-      relatesTo,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'securityLabel',
-      securityLabel,
-    );
-    addField(
-      'content',
-      content,
-    );
-    addField(
-      'context',
-      context,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('masterIdentifier', masterIdentifier);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('docStatus', docStatus);
+    addField('type', type);
+    addField('category', category);
+    addField('subject', subject);
+    addField('date', date);
+    addField('author', author);
+    addField('authenticator', authenticator);
+    addField('custodian', custodian);
+    addField('relatesTo', relatesTo);
+    addField('description', description);
+    addField('securityLabel', securityLabel);
+    addField('content', content);
+    addField('context', context);
     return json;
   }
 
@@ -527,11 +453,11 @@ class DocumentReference extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -574,7 +500,9 @@ class DocumentReference extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'docStatus':
         if (docStatus != null) {
           fields.add(docStatus!);
@@ -620,7 +548,9 @@ class DocumentReference extends DomainResource {
           fields.addAll(securityLabel!);
         }
       case 'content':
-        fields.addAll(content);
+        if (content != null) {
+          fields.addAll(content!);
+        }
       case 'context':
         if (context != null) {
           fields.add(context!);
@@ -635,7 +565,7 @@ class DocumentReference extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -644,259 +574,273 @@ class DocumentReference extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'masterIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(masterIdentifier: child);
+          if (child is IdentifierBuilder) {
+            masterIdentifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is DocumentReferenceStatus) {
-            return copyWith(status: child);
+          if (child is DocumentReferenceStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'docStatus':
         {
-          if (child is CompositionStatus) {
-            return copyWith(docStatus: child);
+          if (child is CompositionStatusBuilder) {
+            docStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirInstant) {
-            return copyWith(date: child);
+          if (child is FhirInstantBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?author, ...child];
-            return copyWith(author: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            author = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?author, child];
-            return copyWith(author: newList);
+            author = [...(author ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authenticator':
         {
-          if (child is Reference) {
-            return copyWith(authenticator: child);
+          if (child is ReferenceBuilder) {
+            authenticator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'custodian':
         {
-          if (child is Reference) {
-            return copyWith(custodian: child);
+          if (child is ReferenceBuilder) {
+            custodian = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatesTo':
         {
-          if (child is List<DocumentReferenceRelatesTo>) {
-            // Add all elements from passed list
-            final newList = [...?relatesTo, ...child];
-            return copyWith(relatesTo: newList);
-          } else if (child is DocumentReferenceRelatesTo) {
+          if (child is List<DocumentReferenceRelatesToBuilder>) {
+            // Replace or create new list
+            relatesTo = child;
+            return;
+          } else if (child is DocumentReferenceRelatesToBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatesTo, child];
-            return copyWith(relatesTo: newList);
+            relatesTo = [...(relatesTo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabel':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabel, ...child];
-            return copyWith(securityLabel: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            securityLabel = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabel, child];
-            return copyWith(securityLabel: newList);
+            securityLabel = [...(securityLabel ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'content':
         {
-          if (child is List<DocumentReferenceContent>) {
-            // Add all elements from passed list
-            final newList = [...content, ...child];
-            return copyWith(content: newList);
-          } else if (child is DocumentReferenceContent) {
+          if (child is List<DocumentReferenceContentBuilder>) {
+            // Replace or create new list
+            content = child;
+            return;
+          } else if (child is DocumentReferenceContentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...content, child];
-            return copyWith(content: newList);
+            content = [...(content ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
         {
-          if (child is DocumentReferenceContext) {
-            return copyWith(context: child);
+          if (child is DocumentReferenceContextBuilder) {
+            context = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -912,210 +856,182 @@ class DocumentReference extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'masterIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'docStatus':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'authenticator':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'custodian':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'relatesTo':
-        return ['DocumentReferenceRelatesTo'];
+        return ['DocumentReferenceRelatesToBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'securityLabel':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'content':
-        return ['DocumentReferenceContent'];
+        return ['DocumentReferenceContentBuilder'];
       case 'context':
-        return ['DocumentReferenceContext'];
+        return ['DocumentReferenceContextBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DocumentReference]
+  /// Creates a new [DocumentReferenceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DocumentReference createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'masterIdentifier':
         {
-          return copyWith(
-            masterIdentifier: Identifier.empty(),
-          );
+          masterIdentifier = IdentifierBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: DocumentReferenceStatus.empty(),
-          );
+          status = DocumentReferenceStatusBuilder.empty();
+          return;
         }
       case 'docStatus':
         {
-          return copyWith(
-            docStatus: CompositionStatus.empty(),
-          );
+          docStatus = CompositionStatusBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirInstant.empty(),
-          );
+          date = FhirInstantBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: <Reference>[],
-          );
+          author = <ReferenceBuilder>[];
+          return;
         }
       case 'authenticator':
         {
-          return copyWith(
-            authenticator: Reference.empty(),
-          );
+          authenticator = ReferenceBuilder.empty();
+          return;
         }
       case 'custodian':
         {
-          return copyWith(
-            custodian: Reference.empty(),
-          );
+          custodian = ReferenceBuilder.empty();
+          return;
         }
       case 'relatesTo':
         {
-          return copyWith(
-            relatesTo: <DocumentReferenceRelatesTo>[],
-          );
+          relatesTo = <DocumentReferenceRelatesToBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'securityLabel':
         {
-          return copyWith(
-            securityLabel: <CodeableConcept>[],
-          );
+          securityLabel = <CodeableConceptBuilder>[];
+          return;
         }
       case 'content':
         {
-          return copyWith(
-            content: <DocumentReferenceContent>[],
-          );
+          content = <DocumentReferenceContentBuilder>[];
+          return;
         }
       case 'context':
         {
-          return copyWith(
-            context: DocumentReferenceContext.empty(),
-          );
+          context = DocumentReferenceContextBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1124,7 +1040,7 @@ class DocumentReference extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  DocumentReference clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1135,6 +1051,7 @@ class DocumentReference extends DomainResource {
     bool modifierExtension = false,
     bool masterIdentifier = false,
     bool identifier = false,
+    bool status = false,
     bool docStatus = false,
     bool type = false,
     bool category = false,
@@ -1146,203 +1063,118 @@ class DocumentReference extends DomainResource {
     bool relatesTo = false,
     bool description = false,
     bool securityLabel = false,
+    bool content = false,
     bool context = false,
   }) {
-    return DocumentReference(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      masterIdentifier: masterIdentifier ? null : this.masterIdentifier,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      docStatus: docStatus ? null : this.docStatus,
-      type: type ? null : this.type,
-      category: category ? null : this.category,
-      subject: subject ? null : this.subject,
-      date: date ? null : this.date,
-      author: author ? null : this.author,
-      authenticator: authenticator ? null : this.authenticator,
-      custodian: custodian ? null : this.custodian,
-      relatesTo: relatesTo ? null : this.relatesTo,
-      description: description ? null : this.description,
-      securityLabel: securityLabel ? null : this.securityLabel,
-      content: content,
-      context: context ? null : this.context,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (masterIdentifier) this.masterIdentifier = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (docStatus) this.docStatus = null;
+    if (type) this.type = null;
+    if (category) this.category = null;
+    if (subject) this.subject = null;
+    if (date) this.date = null;
+    if (author) this.author = null;
+    if (authenticator) this.authenticator = null;
+    if (custodian) this.custodian = null;
+    if (relatesTo) this.relatesTo = null;
+    if (description) this.description = null;
+    if (securityLabel) this.securityLabel = null;
+    if (content) this.content = null;
+    if (context) this.context = null;
   }
 
   @override
-  DocumentReference clone() => throw UnimplementedError();
+  DocumentReferenceBuilder clone() => throw UnimplementedError();
   @override
-  DocumentReference copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? masterIdentifier,
-    List<Identifier>? identifier,
-    DocumentReferenceStatus? status,
-    CompositionStatus? docStatus,
-    CodeableConcept? type,
-    List<CodeableConcept>? category,
-    Reference? subject,
-    FhirInstant? date,
-    List<Reference>? author,
-    Reference? authenticator,
-    Reference? custodian,
-    List<DocumentReferenceRelatesTo>? relatesTo,
-    FhirString? description,
-    List<CodeableConcept>? securityLabel,
-    List<DocumentReferenceContent>? content,
-    DocumentReferenceContext? context,
+  DocumentReferenceBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? masterIdentifier,
+    List<IdentifierBuilder>? identifier,
+    DocumentReferenceStatusBuilder? status,
+    CompositionStatusBuilder? docStatus,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? category,
+    ReferenceBuilder? subject,
+    FhirInstantBuilder? date,
+    List<ReferenceBuilder>? author,
+    ReferenceBuilder? authenticator,
+    ReferenceBuilder? custodian,
+    List<DocumentReferenceRelatesToBuilder>? relatesTo,
+    FhirStringBuilder? description,
+    List<CodeableConceptBuilder>? securityLabel,
+    List<DocumentReferenceContentBuilder>? content,
+    DocumentReferenceContextBuilder? context,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return DocumentReference(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = DocumentReferenceBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      masterIdentifier: masterIdentifier?.copyWith(
-            objectPath: '$newObjectPath.masterIdentifier',
-          ) ??
-          this.masterIdentifier,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      docStatus: docStatus?.copyWith(
-            objectPath: '$newObjectPath.docStatus',
-          ) ??
-          this.docStatus,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      authenticator: authenticator?.copyWith(
-            objectPath: '$newObjectPath.authenticator',
-          ) ??
-          this.authenticator,
-      custodian: custodian?.copyWith(
-            objectPath: '$newObjectPath.custodian',
-          ) ??
-          this.custodian,
-      relatesTo: relatesTo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatesTo',
-                ),
-              )
-              .toList() ??
-          this.relatesTo,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      securityLabel: securityLabel
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabel',
-                ),
-              )
-              .toList() ??
-          this.securityLabel,
-      content: content
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.content',
-                ),
-              )
-              .toList() ??
-          this.content,
-      context: context?.copyWith(
-            objectPath: '$newObjectPath.context',
-          ) ??
-          this.context,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      masterIdentifier: masterIdentifier ?? this.masterIdentifier,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      docStatus: docStatus ?? this.docStatus,
+      type: type ?? this.type,
+      category: category ?? this.category,
+      subject: subject ?? this.subject,
+      date: date ?? this.date,
+      author: author ?? this.author,
+      authenticator: authenticator ?? this.authenticator,
+      custodian: custodian ?? this.custodian,
+      relatesTo: relatesTo ?? this.relatesTo,
+      description: description ?? this.description,
+      securityLabel: securityLabel ?? this.securityLabel,
+      content: content ?? this.content,
+      context: context ?? this.context,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DocumentReference) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DocumentReferenceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1377,19 +1209,19 @@ class DocumentReference extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1401,7 +1233,7 @@ class DocumentReference extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1425,7 +1257,7 @@ class DocumentReference extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1443,7 +1275,7 @@ class DocumentReference extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       author,
       o.author,
     )) {
@@ -1461,7 +1293,7 @@ class DocumentReference extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<DocumentReferenceRelatesTo>(
+    if (!listEquals<DocumentReferenceRelatesToBuilder>(
       relatesTo,
       o.relatesTo,
     )) {
@@ -1473,13 +1305,13 @@ class DocumentReference extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       securityLabel,
       o.securityLabel,
     )) {
       return false;
     }
-    if (!listEquals<DocumentReferenceContent>(
+    if (!listEquals<DocumentReferenceContentBuilder>(
       content,
       o.content,
     )) {
@@ -1495,47 +1327,44 @@ class DocumentReference extends DomainResource {
   }
 }
 
-/// [DocumentReferenceRelatesTo]
+/// [DocumentReferenceRelatesToBuilder]
 /// Relationships that this document has with other document references
 /// that already exist.
-class DocumentReferenceRelatesTo extends BackboneElement {
+class DocumentReferenceRelatesToBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DocumentReferenceRelatesTo]
+  /// [DocumentReferenceRelatesToBuilder]
 
-  const DocumentReferenceRelatesTo({
+  DocumentReferenceRelatesToBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
-    required this.target,
+    this.code,
+    this.target,
     super.disallowExtensions,
   }) : super(
           objectPath: 'DocumentReference.relatesTo',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DocumentReferenceRelatesTo.empty() => DocumentReferenceRelatesTo(
-        code: DocumentRelationshipType.values.first,
-        target: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DocumentReferenceRelatesToBuilder.empty() =>
+      DocumentReferenceRelatesToBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReferenceRelatesTo.fromJson(
+  factory DocumentReferenceRelatesToBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DocumentReference.relatesTo';
-    return DocumentReferenceRelatesTo(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DocumentReferenceRelatesToBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1544,8 +1373,8 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1553,37 +1382,37 @@ class DocumentReferenceRelatesTo extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parsePrimitive<DocumentRelationshipType>(
+      code: JsonParser.parsePrimitive<DocumentRelationshipTypeBuilder>(
         json,
         'code',
-        DocumentRelationshipType.fromJson,
+        DocumentRelationshipTypeBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      target: JsonParser.parseObject<Reference>(
+      ),
+      target: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'target',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.target',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [DocumentReferenceRelatesTo]
+  /// Deserialize [DocumentReferenceRelatesToBuilder]
   /// from a [String] or [YamlMap] object
-  factory DocumentReferenceRelatesTo.fromYaml(
+  factory DocumentReferenceRelatesToBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DocumentReferenceRelatesTo.fromJson(
+      return DocumentReferenceRelatesToBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DocumentReferenceRelatesTo.fromJson(
+      return DocumentReferenceRelatesToBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DocumentReferenceRelatesTo '
+        'DocumentReferenceRelatesToBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1591,16 +1420,16 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DocumentReferenceRelatesTo]
+  /// [DocumentReferenceRelatesToBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DocumentReferenceRelatesTo.fromJsonString(
+  factory DocumentReferenceRelatesToBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DocumentReferenceRelatesTo.fromJson(json);
+      return DocumentReferenceRelatesToBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1612,27 +1441,27 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   /// [code]
   /// The type of relationship that this document has with anther document.
-  final DocumentRelationshipType code;
+  DocumentRelationshipTypeBuilder? code;
 
   /// [target]
   /// The target document of this relationship.
-  final Reference target;
+  ReferenceBuilder? target;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1641,31 +1470,16 @@ class DocumentReferenceRelatesTo extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'target',
-      target,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('target', target);
     return json;
   }
 
@@ -1684,11 +1498,11 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1703,9 +1517,13 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'target':
-        fields.add(target);
+        if (target != null) {
+          fields.add(target!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1716,7 +1534,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1725,65 +1543,67 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is DocumentRelationshipType) {
-            return copyWith(code: child);
+          if (child is DocumentRelationshipTypeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is Reference) {
-            return copyWith(target: child);
+          if (child is ReferenceBuilder) {
+            target = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1799,58 +1619,49 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'target':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DocumentReferenceRelatesTo]
+  /// Creates a new [DocumentReferenceRelatesToBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DocumentReferenceRelatesTo createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: DocumentRelationshipType.empty(),
-          );
+          code = DocumentRelationshipTypeBuilder.empty();
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: Reference.empty(),
-          );
+          target = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1859,29 +1670,29 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DocumentReferenceRelatesTo clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
+    bool target = false,
   }) {
-    return DocumentReferenceRelatesTo(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      target: target,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (target) this.target = null;
   }
 
   @override
-  DocumentReferenceRelatesTo clone() => throw UnimplementedError();
+  DocumentReferenceRelatesToBuilder clone() => throw UnimplementedError();
   @override
-  DocumentReferenceRelatesTo copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    DocumentRelationshipType? code,
-    Reference? target,
+  DocumentReferenceRelatesToBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    DocumentRelationshipTypeBuilder? code,
+    ReferenceBuilder? target,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1889,42 +1700,36 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DocumentReferenceRelatesTo(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      target: target?.copyWith(
-            objectPath: '$newObjectPath.target',
-          ) ??
-          this.target,
+    final newResult = DocumentReferenceRelatesToBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      target: target ?? this.target,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DocumentReferenceRelatesTo) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DocumentReferenceRelatesToBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1935,13 +1740,13 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1963,18 +1768,18 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   }
 }
 
-/// [DocumentReferenceContent]
+/// [DocumentReferenceContentBuilder]
 /// The document and format referenced. There may be multiple content
 /// element repetitions, each with a different format.
-class DocumentReferenceContent extends BackboneElement {
+class DocumentReferenceContentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DocumentReferenceContent]
+  /// [DocumentReferenceContentBuilder]
 
-  const DocumentReferenceContent({
+  DocumentReferenceContentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.attachment,
+    this.attachment,
     this.format,
     super.disallowExtensions,
   }) : super(
@@ -1982,27 +1787,25 @@ class DocumentReferenceContent extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DocumentReferenceContent.empty() => DocumentReferenceContent(
-        attachment: Attachment.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DocumentReferenceContentBuilder.empty() =>
+      DocumentReferenceContentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReferenceContent.fromJson(
+  factory DocumentReferenceContentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DocumentReference.content';
-    return DocumentReferenceContent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DocumentReferenceContentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2011,8 +1814,8 @@ class DocumentReferenceContent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2020,37 +1823,37 @@ class DocumentReferenceContent extends BackboneElement {
             ),
           )
           .toList(),
-      attachment: JsonParser.parseObject<Attachment>(
+      attachment: JsonParser.parseObject<AttachmentBuilder>(
         json,
         'attachment',
-        Attachment.fromJson,
+        AttachmentBuilder.fromJson,
         '$objectPath.attachment',
-      )!,
-      format: JsonParser.parseObject<Coding>(
+      ),
+      format: JsonParser.parseObject<CodingBuilder>(
         json,
         'format',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.format',
       ),
     );
   }
 
-  /// Deserialize [DocumentReferenceContent]
+  /// Deserialize [DocumentReferenceContentBuilder]
   /// from a [String] or [YamlMap] object
-  factory DocumentReferenceContent.fromYaml(
+  factory DocumentReferenceContentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DocumentReferenceContent.fromJson(
+      return DocumentReferenceContentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DocumentReferenceContent.fromJson(
+      return DocumentReferenceContentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DocumentReferenceContent '
+        'DocumentReferenceContentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2058,16 +1861,16 @@ class DocumentReferenceContent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DocumentReferenceContent]
+  /// [DocumentReferenceContentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DocumentReferenceContent.fromJsonString(
+  factory DocumentReferenceContentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DocumentReferenceContent.fromJson(json);
+      return DocumentReferenceContentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2080,29 +1883,29 @@ class DocumentReferenceContent extends BackboneElement {
   /// [attachment]
   /// The document or URL of the document along with critical metadata to
   /// prove content has integrity.
-  final Attachment attachment;
+  AttachmentBuilder? attachment;
 
   /// [format]
   /// An identifier of the document encoding, structure, and template that
   /// the document conforms to beyond the base format indicated in the
   /// mimeType.
-  final Coding? format;
+  CodingBuilder? format;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2111,31 +1914,16 @@ class DocumentReferenceContent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'attachment',
-      attachment,
-    );
-    addField(
-      'format',
-      format,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('attachment', attachment);
+    addField('format', format);
     return json;
   }
 
@@ -2154,11 +1942,11 @@ class DocumentReferenceContent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2173,7 +1961,9 @@ class DocumentReferenceContent extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'attachment':
-        fields.add(attachment);
+        if (attachment != null) {
+          fields.add(attachment!);
+        }
       case 'format':
         if (format != null) {
           fields.add(format!);
@@ -2188,7 +1978,7 @@ class DocumentReferenceContent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2197,65 +1987,67 @@ class DocumentReferenceContent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'attachment':
         {
-          if (child is Attachment) {
-            return copyWith(attachment: child);
+          if (child is AttachmentBuilder) {
+            attachment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'format':
         {
-          if (child is Coding) {
-            return copyWith(format: child);
+          if (child is CodingBuilder) {
+            format = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2271,58 +2063,49 @@ class DocumentReferenceContent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'attachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'format':
-        return ['Coding'];
+        return ['CodingBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DocumentReferenceContent]
+  /// Creates a new [DocumentReferenceContentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DocumentReferenceContent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'attachment':
         {
-          return copyWith(
-            attachment: Attachment.empty(),
-          );
+          attachment = AttachmentBuilder.empty();
+          return;
         }
       case 'format':
         {
-          return copyWith(
-            format: Coding.empty(),
-          );
+          format = CodingBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2331,30 +2114,29 @@ class DocumentReferenceContent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DocumentReferenceContent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool attachment = false,
     bool format = false,
   }) {
-    return DocumentReferenceContent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      attachment: attachment,
-      format: format ? null : this.format,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (attachment) this.attachment = null;
+    if (format) this.format = null;
   }
 
   @override
-  DocumentReferenceContent clone() => throw UnimplementedError();
+  DocumentReferenceContentBuilder clone() => throw UnimplementedError();
   @override
-  DocumentReferenceContent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Attachment? attachment,
-    Coding? format,
+  DocumentReferenceContentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    AttachmentBuilder? attachment,
+    CodingBuilder? format,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2362,42 +2144,36 @@ class DocumentReferenceContent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DocumentReferenceContent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      attachment: attachment?.copyWith(
-            objectPath: '$newObjectPath.attachment',
-          ) ??
-          this.attachment,
-      format: format?.copyWith(
-            objectPath: '$newObjectPath.format',
-          ) ??
-          this.format,
+    final newResult = DocumentReferenceContentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      attachment: attachment ?? this.attachment,
+      format: format ?? this.format,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DocumentReferenceContent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DocumentReferenceContentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2408,13 +2184,13 @@ class DocumentReferenceContent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2436,13 +2212,13 @@ class DocumentReferenceContent extends BackboneElement {
   }
 }
 
-/// [DocumentReferenceContext]
+/// [DocumentReferenceContextBuilder]
 /// The clinical context in which the document was prepared.
-class DocumentReferenceContext extends BackboneElement {
+class DocumentReferenceContextBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DocumentReferenceContext]
+  /// [DocumentReferenceContextBuilder]
 
-  const DocumentReferenceContext({
+  DocumentReferenceContextBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2459,25 +2235,25 @@ class DocumentReferenceContext extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DocumentReferenceContext.empty() => const DocumentReferenceContext();
+  /// For Builder classes, no fields are required
+  factory DocumentReferenceContextBuilder.empty() =>
+      DocumentReferenceContextBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReferenceContext.fromJson(
+  factory DocumentReferenceContextBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DocumentReference.context';
-    return DocumentReferenceContext(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DocumentReferenceContextBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2486,8 +2262,8 @@ class DocumentReferenceContext extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2496,8 +2272,8 @@ class DocumentReferenceContext extends BackboneElement {
           )
           .toList(),
       encounter: (json['encounter'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.encounter',
@@ -2506,8 +2282,8 @@ class DocumentReferenceContext extends BackboneElement {
           )
           .toList(),
       event: (json['event'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.event',
@@ -2515,33 +2291,33 @@ class DocumentReferenceContext extends BackboneElement {
             ),
           )
           .toList(),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      facilityType: JsonParser.parseObject<CodeableConcept>(
+      facilityType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'facilityType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.facilityType',
       ),
-      practiceSetting: JsonParser.parseObject<CodeableConcept>(
+      practiceSetting: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'practiceSetting',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.practiceSetting',
       ),
-      sourcePatientInfo: JsonParser.parseObject<Reference>(
+      sourcePatientInfo: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'sourcePatientInfo',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.sourcePatientInfo',
       ),
       related: (json['related'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.related',
@@ -2552,22 +2328,22 @@ class DocumentReferenceContext extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentReferenceContext]
+  /// Deserialize [DocumentReferenceContextBuilder]
   /// from a [String] or [YamlMap] object
-  factory DocumentReferenceContext.fromYaml(
+  factory DocumentReferenceContextBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DocumentReferenceContext.fromJson(
+      return DocumentReferenceContextBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DocumentReferenceContext.fromJson(
+      return DocumentReferenceContextBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DocumentReferenceContext '
+        'DocumentReferenceContextBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2575,16 +2351,16 @@ class DocumentReferenceContext extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DocumentReferenceContext]
+  /// [DocumentReferenceContextBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DocumentReferenceContext.fromJsonString(
+  factory DocumentReferenceContextBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DocumentReferenceContext.fromJson(json);
+      return DocumentReferenceContextBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2597,7 +2373,7 @@ class DocumentReferenceContext extends BackboneElement {
   /// [encounter]
   /// Describes the clinical encounter or type of care that the document
   /// content is associated with.
-  final List<Reference>? encounter;
+  List<ReferenceBuilder>? encounter;
 
   /// [event]
   /// This list of codes represents the main clinical acts, such as a
@@ -2605,46 +2381,46 @@ class DocumentReferenceContext extends BackboneElement {
   /// event is inherent in the type Code, such as a "History and Physical
   /// Report" in which the procedure being documented is necessarily a
   /// "History and Physical" act.
-  final List<CodeableConcept>? event;
+  List<CodeableConceptBuilder>? event;
 
   /// [period]
   /// The time period over which the service that is described by the
   /// document was provided.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [facilityType]
   /// The kind of facility where the patient was seen.
-  final CodeableConcept? facilityType;
+  CodeableConceptBuilder? facilityType;
 
   /// [practiceSetting]
   /// This property may convey specifics about the practice setting where the
   /// content was created, often reflecting the clinical specialty.
-  final CodeableConcept? practiceSetting;
+  CodeableConceptBuilder? practiceSetting;
 
   /// [sourcePatientInfo]
   /// The Patient Information as known when the document was published. May
   /// be a reference to a version specific, or contained.
-  final Reference? sourcePatientInfo;
+  ReferenceBuilder? sourcePatientInfo;
 
   /// [related]
   /// Related identifiers or resources associated with the DocumentReference.
-  final List<Reference>? related;
+  List<ReferenceBuilder>? related;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2653,51 +2429,21 @@ class DocumentReferenceContext extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'event',
-      event,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'facilityType',
-      facilityType,
-    );
-    addField(
-      'practiceSetting',
-      practiceSetting,
-    );
-    addField(
-      'sourcePatientInfo',
-      sourcePatientInfo,
-    );
-    addField(
-      'related',
-      related,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('encounter', encounter);
+    addField('event', event);
+    addField('period', period);
+    addField('facilityType', facilityType);
+    addField('practiceSetting', practiceSetting);
+    addField('sourcePatientInfo', sourcePatientInfo);
+    addField('related', related);
     return json;
   }
 
@@ -2721,11 +2467,11 @@ class DocumentReferenceContext extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2777,7 +2523,7 @@ class DocumentReferenceContext extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2786,123 +2532,127 @@ class DocumentReferenceContext extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?encounter, ...child];
-            return copyWith(encounter: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            encounter = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?encounter, child];
-            return copyWith(encounter: newList);
+            encounter = [...(encounter ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'event':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?event, ...child];
-            return copyWith(event: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            event = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?event, child];
-            return copyWith(event: newList);
+            event = [...(event ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'facilityType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(facilityType: child);
+          if (child is CodeableConceptBuilder) {
+            facilityType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'practiceSetting':
         {
-          if (child is CodeableConcept) {
-            return copyWith(practiceSetting: child);
+          if (child is CodeableConceptBuilder) {
+            practiceSetting = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourcePatientInfo':
         {
-          if (child is Reference) {
-            return copyWith(sourcePatientInfo: child);
+          if (child is ReferenceBuilder) {
+            sourcePatientInfo = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'related':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?related, ...child];
-            return copyWith(related: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            related = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?related, child];
-            return copyWith(related: newList);
+            related = [...(related ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2918,98 +2668,84 @@ class DocumentReferenceContext extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'event':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'facilityType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'practiceSetting':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'sourcePatientInfo':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'related':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DocumentReferenceContext]
+  /// Creates a new [DocumentReferenceContextBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DocumentReferenceContext createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: <Reference>[],
-          );
+          encounter = <ReferenceBuilder>[];
+          return;
         }
       case 'event':
         {
-          return copyWith(
-            event: <CodeableConcept>[],
-          );
+          event = <CodeableConceptBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'facilityType':
         {
-          return copyWith(
-            facilityType: CodeableConcept.empty(),
-          );
+          facilityType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'practiceSetting':
         {
-          return copyWith(
-            practiceSetting: CodeableConcept.empty(),
-          );
+          practiceSetting = CodeableConceptBuilder.empty();
+          return;
         }
       case 'sourcePatientInfo':
         {
-          return copyWith(
-            sourcePatientInfo: Reference.empty(),
-          );
+          sourcePatientInfo = ReferenceBuilder.empty();
+          return;
         }
       case 'related':
         {
-          return copyWith(
-            related: <Reference>[],
-          );
+          related = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3018,7 +2754,7 @@ class DocumentReferenceContext extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DocumentReferenceContext clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3030,34 +2766,32 @@ class DocumentReferenceContext extends BackboneElement {
     bool sourcePatientInfo = false,
     bool related = false,
   }) {
-    return DocumentReferenceContext(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      encounter: encounter ? null : this.encounter,
-      event: event ? null : this.event,
-      period: period ? null : this.period,
-      facilityType: facilityType ? null : this.facilityType,
-      practiceSetting: practiceSetting ? null : this.practiceSetting,
-      sourcePatientInfo: sourcePatientInfo ? null : this.sourcePatientInfo,
-      related: related ? null : this.related,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (encounter) this.encounter = null;
+    if (event) this.event = null;
+    if (period) this.period = null;
+    if (facilityType) this.facilityType = null;
+    if (practiceSetting) this.practiceSetting = null;
+    if (sourcePatientInfo) this.sourcePatientInfo = null;
+    if (related) this.related = null;
   }
 
   @override
-  DocumentReferenceContext clone() => throw UnimplementedError();
+  DocumentReferenceContextBuilder clone() => throw UnimplementedError();
   @override
-  DocumentReferenceContext copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Reference>? encounter,
-    List<CodeableConcept>? event,
-    Period? period,
-    CodeableConcept? facilityType,
-    CodeableConcept? practiceSetting,
-    Reference? sourcePatientInfo,
-    List<Reference>? related,
+  DocumentReferenceContextBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<ReferenceBuilder>? encounter,
+    List<CodeableConceptBuilder>? event,
+    PeriodBuilder? period,
+    CodeableConceptBuilder? facilityType,
+    CodeableConceptBuilder? practiceSetting,
+    ReferenceBuilder? sourcePatientInfo,
+    List<ReferenceBuilder>? related,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3065,74 +2799,41 @@ class DocumentReferenceContext extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DocumentReferenceContext(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      encounter: encounter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.encounter',
-                ),
-              )
-              .toList() ??
-          this.encounter,
-      event: event
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.event',
-                ),
-              )
-              .toList() ??
-          this.event,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      facilityType: facilityType?.copyWith(
-            objectPath: '$newObjectPath.facilityType',
-          ) ??
-          this.facilityType,
-      practiceSetting: practiceSetting?.copyWith(
-            objectPath: '$newObjectPath.practiceSetting',
-          ) ??
-          this.practiceSetting,
-      sourcePatientInfo: sourcePatientInfo?.copyWith(
-            objectPath: '$newObjectPath.sourcePatientInfo',
-          ) ??
-          this.sourcePatientInfo,
-      related: related
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.related',
-                ),
-              )
-              .toList() ??
-          this.related,
+    final newResult = DocumentReferenceContextBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      encounter: encounter ?? this.encounter,
+      event: event ?? this.event,
+      period: period ?? this.period,
+      facilityType: facilityType ?? this.facilityType,
+      practiceSetting: practiceSetting ?? this.practiceSetting,
+      sourcePatientInfo: sourcePatientInfo ?? this.sourcePatientInfo,
+      related: related ?? this.related,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DocumentReferenceContext) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DocumentReferenceContextBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3143,25 +2844,25 @@ class DocumentReferenceContext extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       encounter,
       o.encounter,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       event,
       o.event,
     )) {
@@ -3191,7 +2892,7 @@ class DocumentReferenceContext extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       related,
       o.related,
     )) {

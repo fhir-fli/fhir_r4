@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of relationship between documents.
-class DocumentRelationshipType extends FhirCodeEnum {
+class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  DocumentRelationshipType._({
+  DocumentRelationshipTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory DocumentRelationshipType(
+  factory DocumentRelationshipTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return DocumentRelationshipType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return DocumentRelationshipTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,75 @@ class DocumentRelationshipType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [DocumentRelationshipType] with element only
-  factory DocumentRelationshipType.empty() =>
-      DocumentRelationshipType._(validatedValue: '');
+  /// Create empty [DocumentRelationshipTypeBuilder] with element only
+  factory DocumentRelationshipTypeBuilder.empty() =>
+      DocumentRelationshipTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DocumentRelationshipType] from JSON.
-  factory DocumentRelationshipType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DocumentRelationshipTypeBuilder] from JSON.
+  factory DocumentRelationshipTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentRelationshipType.elementOnly.withElement(element);
+      return DocumentRelationshipTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DocumentRelationshipType cannot be constructed from JSON.',
+        'DocumentRelationshipTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return DocumentRelationshipType._(
+    return DocumentRelationshipTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// replaces
-  static final DocumentRelationshipType replaces = DocumentRelationshipType._(
+  static DocumentRelationshipTypeBuilder replaces =
+      DocumentRelationshipTypeBuilder._(
     validatedValue: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaces'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Replaces'.toFhirStringBuilder,
   );
 
   /// transforms
-  static final DocumentRelationshipType transforms = DocumentRelationshipType._(
+  static DocumentRelationshipTypeBuilder transforms =
+      DocumentRelationshipTypeBuilder._(
     validatedValue: 'transforms',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transforms'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Transforms'.toFhirStringBuilder,
   );
 
   /// signs
-  static final DocumentRelationshipType signs = DocumentRelationshipType._(
+  static DocumentRelationshipTypeBuilder signs =
+      DocumentRelationshipTypeBuilder._(
     validatedValue: 'signs',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Signs'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Signs'.toFhirStringBuilder,
   );
 
   /// appends
-  static final DocumentRelationshipType appends = DocumentRelationshipType._(
+  static DocumentRelationshipTypeBuilder appends =
+      DocumentRelationshipTypeBuilder._(
     validatedValue: 'appends',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appends'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Appends'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final DocumentRelationshipType elementOnly =
-      DocumentRelationshipType._(validatedValue: '');
+  static DocumentRelationshipTypeBuilder elementOnly =
+      DocumentRelationshipTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<DocumentRelationshipType> values = [
+  static List<DocumentRelationshipTypeBuilder> values = [
     replaces,
     transforms,
     signs,
@@ -111,15 +120,15 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  DocumentRelationshipType clone() => DocumentRelationshipType._(
+  DocumentRelationshipTypeBuilder clone() => DocumentRelationshipTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  DocumentRelationshipType withElement(Element? newElement) {
-    return DocumentRelationshipType._(
-        validatedValue: value, element: newElement,);
+  DocumentRelationshipTypeBuilder withElement(ElementBuilder? newElement) {
+    return DocumentRelationshipTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,11 +144,11 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  DocumentRelationshipType copyWith({
+  DocumentRelationshipTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -150,7 +159,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return DocumentRelationshipType._(
+    return DocumentRelationshipTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -160,7 +169,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

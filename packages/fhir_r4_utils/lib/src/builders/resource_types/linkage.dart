@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Linkage]
+/// [LinkageBuilder]
 /// Identifies two or more records (resource instances) that refer to the
 /// same real-world "occurrence".
-class Linkage extends DomainResource {
+class LinkageBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Linkage]
+  /// [LinkageBuilder]
 
-  const Linkage({
+  LinkageBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -20,58 +22,55 @@ class Linkage extends DomainResource {
     super.modifierExtension,
     this.active,
     this.author,
-    required this.item,
+    this.item,
   }) : super(
           objectPath: 'Linkage',
           resourceType: R4ResourceType.Linkage,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Linkage.empty() => const Linkage(
-        item: <LinkageItem>[],
-      );
+  /// For Builder classes, no fields are required
+  factory LinkageBuilder.empty() => LinkageBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Linkage.fromJson(
+  factory LinkageBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Linkage';
-    return Linkage(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return LinkageBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -80,8 +79,8 @@ class Linkage extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -90,8 +89,8 @@ class Linkage extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -99,21 +98,21 @@ class Linkage extends DomainResource {
             ),
           )
           .toList(),
-      active: JsonParser.parsePrimitive<FhirBoolean>(
+      active: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'active',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.active',
       ),
-      author: JsonParser.parseObject<Reference>(
+      author: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'author',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.author',
       ),
-      item: (json['item'] as List<dynamic>)
-          .map<LinkageItem>(
-            (v) => LinkageItem.fromJson(
+      item: (json['item'] as List<dynamic>?)
+          ?.map<LinkageItemBuilder>(
+            (v) => LinkageItemBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.item',
@@ -124,22 +123,22 @@ class Linkage extends DomainResource {
     );
   }
 
-  /// Deserialize [Linkage]
+  /// Deserialize [LinkageBuilder]
   /// from a [String] or [YamlMap] object
-  factory Linkage.fromYaml(
+  factory LinkageBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Linkage.fromJson(
+      return LinkageBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Linkage.fromJson(
+      return LinkageBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Linkage '
+        'LinkageBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -147,16 +146,16 @@ class Linkage extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Linkage]
+  /// [LinkageBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Linkage.fromJsonString(
+  factory LinkageBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Linkage.fromJson(json);
+      return LinkageBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -169,35 +168,35 @@ class Linkage extends DomainResource {
   /// [active]
   /// Indicates whether the asserted set of linkages are considered to be "in
   /// effect".
-  final FhirBoolean? active;
+  FhirBooleanBuilder? active;
 
   /// [author]
   /// Identifies the user or organization responsible for asserting the
   /// linkages as well as the user or organization who establishes the
   /// context in which the nature of each linkage is evaluated.
-  final Reference? author;
+  ReferenceBuilder? author;
 
   /// [item]
   /// Identifies which record considered as the reference to the same
   /// real-world occurrence as well as how the items should be evaluated
   /// within the collection of linked items.
-  final List<LinkageItem> item;
+  List<LinkageItemBuilder>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -206,56 +205,23 @@ class Linkage extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'active',
-      active,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'item',
-      item,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('active', active);
+    addField('author', author);
+    addField('item', item);
     return json;
   }
 
@@ -280,11 +246,11 @@ class Linkage extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -327,7 +293,9 @@ class Linkage extends DomainResource {
           fields.add(author!);
         }
       case 'item':
-        fields.addAll(item);
+        if (item != null) {
+          fields.addAll(item!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -338,7 +306,7 @@ class Linkage extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -347,125 +315,131 @@ class Linkage extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'active':
         {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
+          if (child is FhirBooleanBuilder) {
+            active = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is Reference) {
-            return copyWith(author: child);
+          if (child is ReferenceBuilder) {
+            author = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'item':
         {
-          if (child is List<LinkageItem>) {
-            // Add all elements from passed list
-            final newList = [...item, ...child];
-            return copyWith(item: newList);
-          } else if (child is LinkageItem) {
+          if (child is List<LinkageItemBuilder>) {
+            // Replace or create new list
+            item = child;
+            return;
+          } else if (child is LinkageItemBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...item, child];
-            return copyWith(item: newList);
+            item = [...(item ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -481,106 +455,91 @@ class Linkage extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'active':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'item':
-        return ['LinkageItem'];
+        return ['LinkageItemBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Linkage]
+  /// Creates a new [LinkageBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Linkage createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'active':
         {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
+          active = FhirBooleanBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: Reference.empty(),
-          );
+          author = ReferenceBuilder.empty();
+          return;
         }
       case 'item':
         {
-          return copyWith(
-            item: <LinkageItem>[],
-          );
+          item = <LinkageItemBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -589,7 +548,7 @@ class Linkage extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Linkage clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -600,104 +559,78 @@ class Linkage extends DomainResource {
     bool modifierExtension = false,
     bool active = false,
     bool author = false,
+    bool item = false,
   }) {
-    return Linkage(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      active: active ? null : this.active,
-      author: author ? null : this.author,
-      item: item,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (active) this.active = null;
+    if (author) this.author = null;
+    if (item) this.item = null;
   }
 
   @override
-  Linkage clone() => throw UnimplementedError();
+  LinkageBuilder clone() => throw UnimplementedError();
   @override
-  Linkage copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? active,
-    Reference? author,
-    List<LinkageItem>? item,
+  LinkageBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirBooleanBuilder? active,
+    ReferenceBuilder? author,
+    List<LinkageItemBuilder>? item,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Linkage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = LinkageBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
-      item: item
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.item',
-                ),
-              )
-              .toList() ??
-          this.item,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      active: active ?? this.active,
+      author: author ?? this.author,
+      item: item ?? this.item,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Linkage) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! LinkageBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -732,19 +665,19 @@ class Linkage extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -762,7 +695,7 @@ class Linkage extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<LinkageItem>(
+    if (!listEquals<LinkageItemBuilder>(
       item,
       o.item,
     )) {
@@ -772,48 +705,44 @@ class Linkage extends DomainResource {
   }
 }
 
-/// [LinkageItem]
+/// [LinkageItemBuilder]
 /// Identifies which record considered as the reference to the same
 /// real-world occurrence as well as how the items should be evaluated
 /// within the collection of linked items.
-class LinkageItem extends BackboneElement {
+class LinkageItemBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [LinkageItem]
+  /// [LinkageItemBuilder]
 
-  const LinkageItem({
+  LinkageItemBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-    required this.resource,
+    this.type,
+    this.resource,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Linkage.item',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory LinkageItem.empty() => LinkageItem(
-        type: LinkageType.values.first,
-        resource: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory LinkageItemBuilder.empty() => LinkageItemBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory LinkageItem.fromJson(
+  factory LinkageItemBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Linkage.item';
-    return LinkageItem(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return LinkageItemBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -822,8 +751,8 @@ class LinkageItem extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -831,37 +760,37 @@ class LinkageItem extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<LinkageType>(
+      type: JsonParser.parsePrimitive<LinkageTypeBuilder>(
         json,
         'type',
-        LinkageType.fromJson,
+        LinkageTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      resource: JsonParser.parseObject<Reference>(
+      ),
+      resource: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'resource',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.resource',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [LinkageItem]
+  /// Deserialize [LinkageItemBuilder]
   /// from a [String] or [YamlMap] object
-  factory LinkageItem.fromYaml(
+  factory LinkageItemBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return LinkageItem.fromJson(
+      return LinkageItemBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return LinkageItem.fromJson(
+      return LinkageItemBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'LinkageItem '
+        'LinkageItemBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -869,16 +798,16 @@ class LinkageItem extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [LinkageItem]
+  /// [LinkageItemBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory LinkageItem.fromJsonString(
+  factory LinkageItemBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return LinkageItem.fromJson(json);
+      return LinkageItemBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -891,27 +820,27 @@ class LinkageItem extends BackboneElement {
   /// [type]
   /// Distinguishes which item is "source of truth" (if any) and which items
   /// are no longer considered to be current representations.
-  final LinkageType type;
+  LinkageTypeBuilder? type;
 
   /// [resource]
   /// The resource instance being linked as part of the group.
-  final Reference resource;
+  ReferenceBuilder? resource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -920,31 +849,16 @@ class LinkageItem extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'resource',
-      resource,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('resource', resource);
     return json;
   }
 
@@ -963,11 +877,11 @@ class LinkageItem extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -982,9 +896,13 @@ class LinkageItem extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'resource':
-        fields.add(resource);
+        if (resource != null) {
+          fields.add(resource!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -995,7 +913,7 @@ class LinkageItem extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1004,65 +922,67 @@ class LinkageItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is LinkageType) {
-            return copyWith(type: child);
+          if (child is LinkageTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'resource':
         {
-          if (child is Reference) {
-            return copyWith(resource: child);
+          if (child is ReferenceBuilder) {
+            resource = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1078,58 +998,49 @@ class LinkageItem extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'resource':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [LinkageItem]
+  /// Creates a new [LinkageItemBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  LinkageItem createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: LinkageType.empty(),
-          );
+          type = LinkageTypeBuilder.empty();
+          return;
         }
       case 'resource':
         {
-          return copyWith(
-            resource: Reference.empty(),
-          );
+          resource = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1138,29 +1049,29 @@ class LinkageItem extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  LinkageItem clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
+    bool resource = false,
   }) {
-    return LinkageItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      resource: resource,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (resource) this.resource = null;
   }
 
   @override
-  LinkageItem clone() => throw UnimplementedError();
+  LinkageItemBuilder clone() => throw UnimplementedError();
   @override
-  LinkageItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    LinkageType? type,
-    Reference? resource,
+  LinkageItemBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    LinkageTypeBuilder? type,
+    ReferenceBuilder? resource,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1168,42 +1079,36 @@ class LinkageItem extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return LinkageItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
+    final newResult = LinkageItemBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      resource: resource ?? this.resource,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! LinkageItem) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! LinkageItemBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1214,13 +1119,13 @@ class LinkageItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

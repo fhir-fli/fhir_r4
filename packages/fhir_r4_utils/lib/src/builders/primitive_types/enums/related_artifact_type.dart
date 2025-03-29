@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of relationship to the related artifact.
-class RelatedArtifactType extends FhirCodeEnum {
+class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  RelatedArtifactType._({
+  RelatedArtifactTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory RelatedArtifactType(
+  factory RelatedArtifactTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return RelatedArtifactType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return RelatedArtifactTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,98 +43,109 @@ class RelatedArtifactType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [RelatedArtifactType] with element only
-  factory RelatedArtifactType.empty() =>
-      RelatedArtifactType._(validatedValue: '');
+  /// Create empty [RelatedArtifactTypeBuilder] with element only
+  factory RelatedArtifactTypeBuilder.empty() =>
+      RelatedArtifactTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RelatedArtifactType] from JSON.
-  factory RelatedArtifactType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RelatedArtifactTypeBuilder] from JSON.
+  factory RelatedArtifactTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RelatedArtifactType.elementOnly.withElement(element);
+      return RelatedArtifactTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'RelatedArtifactType cannot be constructed from JSON.',
+        'RelatedArtifactTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return RelatedArtifactType._(
+    return RelatedArtifactTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// documentation
-  static final RelatedArtifactType documentation = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder documentation =
+      RelatedArtifactTypeBuilder._(
     validatedValue: 'documentation',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Documentation'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Documentation'.toFhirStringBuilder,
   );
 
   /// justification
-  static final RelatedArtifactType justification = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder justification =
+      RelatedArtifactTypeBuilder._(
     validatedValue: 'justification',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Justification'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Justification'.toFhirStringBuilder,
   );
 
   /// citation
-  static final RelatedArtifactType citation = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder citation = RelatedArtifactTypeBuilder._(
     validatedValue: 'citation',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Citation'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Citation'.toFhirStringBuilder,
   );
 
   /// predecessor
-  static final RelatedArtifactType predecessor = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder predecessor = RelatedArtifactTypeBuilder._(
     validatedValue: 'predecessor',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Predecessor'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Predecessor'.toFhirStringBuilder,
   );
 
   /// successor
-  static final RelatedArtifactType successor = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder successor = RelatedArtifactTypeBuilder._(
     validatedValue: 'successor',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Successor'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Successor'.toFhirStringBuilder,
   );
 
   /// derived_from
-  static final RelatedArtifactType derived_from = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder derived_from = RelatedArtifactTypeBuilder._(
     validatedValue: 'derived-from',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Derived From'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Derived From'.toFhirStringBuilder,
   );
 
   /// depends_on
-  static final RelatedArtifactType depends_on = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder depends_on = RelatedArtifactTypeBuilder._(
     validatedValue: 'depends-on',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Depends On'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Depends On'.toFhirStringBuilder,
   );
 
   /// composed_of
-  static final RelatedArtifactType composed_of = RelatedArtifactType._(
+  static RelatedArtifactTypeBuilder composed_of = RelatedArtifactTypeBuilder._(
     validatedValue: 'composed-of',
-    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Composed Of'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Composed Of'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final RelatedArtifactType elementOnly =
-      RelatedArtifactType._(validatedValue: '');
+  static RelatedArtifactTypeBuilder elementOnly =
+      RelatedArtifactTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<RelatedArtifactType> values = [
+  static List<RelatedArtifactTypeBuilder> values = [
     documentation,
     justification,
     citation,
@@ -147,14 +158,15 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  RelatedArtifactType clone() => RelatedArtifactType._(
+  RelatedArtifactTypeBuilder clone() => RelatedArtifactTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  RelatedArtifactType withElement(Element? newElement) {
-    return RelatedArtifactType._(validatedValue: value, element: newElement);
+  RelatedArtifactTypeBuilder withElement(ElementBuilder? newElement) {
+    return RelatedArtifactTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -170,11 +182,11 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  RelatedArtifactType copyWith({
+  RelatedArtifactTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -185,7 +197,7 @@ class RelatedArtifactType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return RelatedArtifactType._(
+    return RelatedArtifactTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -195,7 +207,7 @@ class RelatedArtifactType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

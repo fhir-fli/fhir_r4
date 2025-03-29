@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// MedicationRequest Intent Codes
-class MedicationRequestIntent extends FhirCodeEnum {
+class MedicationRequestIntentBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  MedicationRequestIntent._({
+  MedicationRequestIntentBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory MedicationRequestIntent(
+  factory MedicationRequestIntentBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return MedicationRequestIntent._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return MedicationRequestIntentBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,100 +43,114 @@ class MedicationRequestIntent extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [MedicationRequestIntent] with element only
-  factory MedicationRequestIntent.empty() =>
-      MedicationRequestIntent._(validatedValue: '');
+  /// Create empty [MedicationRequestIntentBuilder] with element only
+  factory MedicationRequestIntentBuilder.empty() =>
+      MedicationRequestIntentBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MedicationRequestIntent] from JSON.
-  factory MedicationRequestIntent.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MedicationRequestIntentBuilder] from JSON.
+  factory MedicationRequestIntentBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationRequestIntent.elementOnly.withElement(element);
+      return MedicationRequestIntentBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MedicationRequestIntent cannot be constructed from JSON.',
+        'MedicationRequestIntentBuilder cannot be constructed from JSON.',
       );
     }
-    return MedicationRequestIntent._(
+    return MedicationRequestIntentBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// proposal
-  static final MedicationRequestIntent proposal = MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder proposal =
+      MedicationRequestIntentBuilder._(
     validatedValue: 'proposal',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposal'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Proposal'.toFhirStringBuilder,
   );
 
   /// plan
-  static final MedicationRequestIntent plan = MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder plan = MedicationRequestIntentBuilder._(
     validatedValue: 'plan',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Plan'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Plan'.toFhirStringBuilder,
   );
 
   /// order
-  static final MedicationRequestIntent order = MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder order =
+      MedicationRequestIntentBuilder._(
     validatedValue: 'order',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Order'.toFhirStringBuilder,
   );
 
   /// original_order
-  static final MedicationRequestIntent original_order =
-      MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder original_order =
+      MedicationRequestIntentBuilder._(
     validatedValue: 'original-order',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Original Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Original Order'.toFhirStringBuilder,
   );
 
   /// reflex_order
-  static final MedicationRequestIntent reflex_order = MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder reflex_order =
+      MedicationRequestIntentBuilder._(
     validatedValue: 'reflex-order',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reflex Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Reflex Order'.toFhirStringBuilder,
   );
 
   /// filler_order
-  static final MedicationRequestIntent filler_order = MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder filler_order =
+      MedicationRequestIntentBuilder._(
     validatedValue: 'filler-order',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Filler Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Filler Order'.toFhirStringBuilder,
   );
 
   /// instance_order
-  static final MedicationRequestIntent instance_order =
-      MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder instance_order =
+      MedicationRequestIntentBuilder._(
     validatedValue: 'instance-order',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Instance Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Instance Order'.toFhirStringBuilder,
   );
 
   /// option
-  static final MedicationRequestIntent option = MedicationRequestIntent._(
+  static MedicationRequestIntentBuilder option =
+      MedicationRequestIntentBuilder._(
     validatedValue: 'option',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Option'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Option'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final MedicationRequestIntent elementOnly =
-      MedicationRequestIntent._(validatedValue: '');
+  static MedicationRequestIntentBuilder elementOnly =
+      MedicationRequestIntentBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<MedicationRequestIntent> values = [
+  static List<MedicationRequestIntentBuilder> values = [
     proposal,
     plan,
     order,
@@ -149,15 +163,15 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  MedicationRequestIntent clone() => MedicationRequestIntent._(
+  MedicationRequestIntentBuilder clone() => MedicationRequestIntentBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  MedicationRequestIntent withElement(Element? newElement) {
-    return MedicationRequestIntent._(
-        validatedValue: value, element: newElement,);
+  MedicationRequestIntentBuilder withElement(ElementBuilder? newElement) {
+    return MedicationRequestIntentBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -173,11 +187,11 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  MedicationRequestIntent copyWith({
+  MedicationRequestIntentBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -188,7 +202,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return MedicationRequestIntent._(
+    return MedicationRequestIntentBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -198,7 +212,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [MeasureReport]
+/// [MeasureReportBuilder]
 /// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
-class MeasureReport extends DomainResource {
+class MeasureReportBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [MeasureReport]
+  /// [MeasureReportBuilder]
 
-  const MeasureReport({
+  MeasureReportBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -20,13 +22,13 @@ class MeasureReport extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
-    required this.type,
-    required this.measure,
+    this.status,
+    this.type,
+    this.measure,
     this.subject,
     this.date,
     this.reporter,
-    required this.period,
+    this.period,
     this.improvementNotation,
     this.group,
     this.evaluatedResource,
@@ -36,54 +38,48 @@ class MeasureReport extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureReport.empty() => MeasureReport(
-        status: MeasureReportStatus.values.first,
-        type: MeasureReportType.values.first,
-        measure: FhirCanonical.empty(),
-        period: Period.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory MeasureReportBuilder.empty() => MeasureReportBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReport.fromJson(
+  factory MeasureReportBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MeasureReport';
-    return MeasureReport(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MeasureReportBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -92,8 +88,8 @@ class MeasureReport extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -102,8 +98,8 @@ class MeasureReport extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -112,8 +108,8 @@ class MeasureReport extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -121,57 +117,57 @@ class MeasureReport extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<MeasureReportStatus>(
+      status: JsonParser.parsePrimitive<MeasureReportStatusBuilder>(
         json,
         'status',
-        MeasureReportStatus.fromJson,
+        MeasureReportStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      type: JsonParser.parsePrimitive<MeasureReportType>(
+      ),
+      type: JsonParser.parsePrimitive<MeasureReportTypeBuilder>(
         json,
         'type',
-        MeasureReportType.fromJson,
+        MeasureReportTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      measure: JsonParser.parsePrimitive<FhirCanonical>(
+      ),
+      measure: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'measure',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.measure',
-      )!,
-      subject: JsonParser.parseObject<Reference>(
+      ),
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      reporter: JsonParser.parseObject<Reference>(
+      reporter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'reporter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.reporter',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
-      )!,
-      improvementNotation: JsonParser.parseObject<CodeableConcept>(
+      ),
+      improvementNotation: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'improvementNotation',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.improvementNotation',
       ),
       group: (json['group'] as List<dynamic>?)
-          ?.map<MeasureReportGroup>(
-            (v) => MeasureReportGroup.fromJson(
+          ?.map<MeasureReportGroupBuilder>(
+            (v) => MeasureReportGroupBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.group',
@@ -180,8 +176,8 @@ class MeasureReport extends DomainResource {
           )
           .toList(),
       evaluatedResource: (json['evaluatedResource'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.evaluatedResource',
@@ -192,22 +188,22 @@ class MeasureReport extends DomainResource {
     );
   }
 
-  /// Deserialize [MeasureReport]
+  /// Deserialize [MeasureReportBuilder]
   /// from a [String] or [YamlMap] object
-  factory MeasureReport.fromYaml(
+  factory MeasureReportBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MeasureReport.fromJson(
+      return MeasureReportBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MeasureReport.fromJson(
+      return MeasureReportBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MeasureReport '
+        'MeasureReportBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -215,16 +211,16 @@ class MeasureReport extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [MeasureReport]
+  /// [MeasureReportBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureReport.fromJsonString(
+  factory MeasureReportBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MeasureReport.fromJson(json);
+      return MeasureReportBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -238,12 +234,12 @@ class MeasureReport extends DomainResource {
   /// A formal identifier that is used to identify this MeasureReport when it
   /// is represented in other formats or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// The MeasureReport status. No data will be available until the
   /// MeasureReport status is complete.
-  final MeasureReportStatus status;
+  MeasureReportStatusBuilder? status;
 
   /// [type]
   /// The type of measure report. This may be an individual report, which
@@ -253,59 +249,59 @@ class MeasureReport extends DomainResource {
   /// returns a population count for each of the criteria in the measure; or
   /// a data-collection, which enables the MeasureReport to be used to
   /// exchange the data-of-interest for a quality measure.
-  final MeasureReportType type;
+  MeasureReportTypeBuilder? type;
 
   /// [measure]
   /// A reference to the Measure that was calculated to produce this report.
-  final FhirCanonical measure;
+  FhirCanonicalBuilder? measure;
 
   /// [subject]
   /// Optional subject identifying the individual or individuals the report
   /// is for.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [date]
   /// The date this measure report was generated.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [reporter]
   /// The individual, location, or organization that is reporting the data.
-  final Reference? reporter;
+  ReferenceBuilder? reporter;
 
   /// [period]
   /// The reporting period for which the report was calculated.
-  final Period period;
+  PeriodBuilder? period;
 
   /// [improvementNotation]
   /// Whether improvement in the measure is noted by an increase or decrease
   /// in the measure score.
-  final CodeableConcept? improvementNotation;
+  CodeableConceptBuilder? improvementNotation;
 
   /// [group]
   /// The results of the calculation, one for each population group in the
   /// measure.
-  final List<MeasureReportGroup>? group;
+  List<MeasureReportGroupBuilder>? group;
 
   /// [evaluatedResource]
   /// A reference to a Bundle containing the Resources that were used in the
   /// calculation of this measure.
-  final List<Reference>? evaluatedResource;
+  List<ReferenceBuilder>? evaluatedResource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -314,88 +310,31 @@ class MeasureReport extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'measure',
-      measure,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'reporter',
-      reporter,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'improvementNotation',
-      improvementNotation,
-    );
-    addField(
-      'group',
-      group,
-    );
-    addField(
-      'evaluatedResource',
-      evaluatedResource,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('type', type);
+    addField('measure', measure);
+    addField('subject', subject);
+    addField('date', date);
+    addField('reporter', reporter);
+    addField('period', period);
+    addField('improvementNotation', improvementNotation);
+    addField('group', group);
+    addField('evaluatedResource', evaluatedResource);
     return json;
   }
 
@@ -428,11 +367,11 @@ class MeasureReport extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -471,11 +410,17 @@ class MeasureReport extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'measure':
-        fields.add(measure);
+        if (measure != null) {
+          fields.add(measure!);
+        }
       case 'subject':
         if (subject != null) {
           fields.add(subject!);
@@ -489,7 +434,9 @@ class MeasureReport extends DomainResource {
           fields.add(reporter!);
         }
       case 'period':
-        fields.add(period);
+        if (period != null) {
+          fields.add(period!);
+        }
       case 'improvementNotation':
         if (improvementNotation != null) {
           fields.add(improvementNotation!);
@@ -512,7 +459,7 @@ class MeasureReport extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -521,201 +468,213 @@ class MeasureReport extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is MeasureReportStatus) {
-            return copyWith(status: child);
+          if (child is MeasureReportStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is MeasureReportType) {
-            return copyWith(type: child);
+          if (child is MeasureReportTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measure':
         {
-          if (child is FhirCanonical) {
-            return copyWith(measure: child);
+          if (child is FhirCanonicalBuilder) {
+            measure = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reporter':
         {
-          if (child is Reference) {
-            return copyWith(reporter: child);
+          if (child is ReferenceBuilder) {
+            reporter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'improvementNotation':
         {
-          if (child is CodeableConcept) {
-            return copyWith(improvementNotation: child);
+          if (child is CodeableConceptBuilder) {
+            improvementNotation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'group':
         {
-          if (child is List<MeasureReportGroup>) {
-            // Add all elements from passed list
-            final newList = [...?group, ...child];
-            return copyWith(group: newList);
-          } else if (child is MeasureReportGroup) {
+          if (child is List<MeasureReportGroupBuilder>) {
+            // Replace or create new list
+            group = child;
+            return;
+          } else if (child is MeasureReportGroupBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?group, child];
-            return copyWith(group: newList);
+            group = [...(group ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'evaluatedResource':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?evaluatedResource, ...child];
-            return copyWith(evaluatedResource: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            evaluatedResource = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?evaluatedResource, child];
-            return copyWith(evaluatedResource: newList);
+            evaluatedResource = [...(evaluatedResource ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -731,170 +690,147 @@ class MeasureReport extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'measure':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'reporter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'improvementNotation':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'group':
-        return ['MeasureReportGroup'];
+        return ['MeasureReportGroupBuilder'];
       case 'evaluatedResource':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MeasureReport]
+  /// Creates a new [MeasureReportBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MeasureReport createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: MeasureReportStatus.empty(),
-          );
+          status = MeasureReportStatusBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: MeasureReportType.empty(),
-          );
+          type = MeasureReportTypeBuilder.empty();
+          return;
         }
       case 'measure':
         {
-          return copyWith(
-            measure: FhirCanonical.empty(),
-          );
+          measure = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'reporter':
         {
-          return copyWith(
-            reporter: Reference.empty(),
-          );
+          reporter = ReferenceBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'improvementNotation':
         {
-          return copyWith(
-            improvementNotation: CodeableConcept.empty(),
-          );
+          improvementNotation = CodeableConceptBuilder.empty();
+          return;
         }
       case 'group':
         {
-          return copyWith(
-            group: <MeasureReportGroup>[],
-          );
+          group = <MeasureReportGroupBuilder>[];
+          return;
         }
       case 'evaluatedResource':
         {
-          return copyWith(
-            evaluatedResource: <Reference>[],
-          );
+          evaluatedResource = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -903,7 +839,7 @@ class MeasureReport extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  MeasureReport clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -913,167 +849,111 @@ class MeasureReport extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
+    bool type = false,
+    bool measure = false,
     bool subject = false,
     bool date = false,
     bool reporter = false,
+    bool period = false,
     bool improvementNotation = false,
     bool group = false,
     bool evaluatedResource = false,
   }) {
-    return MeasureReport(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      type: type,
-      measure: measure,
-      subject: subject ? null : this.subject,
-      date: date ? null : this.date,
-      reporter: reporter ? null : this.reporter,
-      period: period,
-      improvementNotation:
-          improvementNotation ? null : this.improvementNotation,
-      group: group ? null : this.group,
-      evaluatedResource: evaluatedResource ? null : this.evaluatedResource,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (type) this.type = null;
+    if (measure) this.measure = null;
+    if (subject) this.subject = null;
+    if (date) this.date = null;
+    if (reporter) this.reporter = null;
+    if (period) this.period = null;
+    if (improvementNotation) this.improvementNotation = null;
+    if (group) this.group = null;
+    if (evaluatedResource) this.evaluatedResource = null;
   }
 
   @override
-  MeasureReport clone() => throw UnimplementedError();
+  MeasureReportBuilder clone() => throw UnimplementedError();
   @override
-  MeasureReport copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    MeasureReportStatus? status,
-    MeasureReportType? type,
-    FhirCanonical? measure,
-    Reference? subject,
-    FhirDateTime? date,
-    Reference? reporter,
-    Period? period,
-    CodeableConcept? improvementNotation,
-    List<MeasureReportGroup>? group,
-    List<Reference>? evaluatedResource,
+  MeasureReportBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    MeasureReportStatusBuilder? status,
+    MeasureReportTypeBuilder? type,
+    FhirCanonicalBuilder? measure,
+    ReferenceBuilder? subject,
+    FhirDateTimeBuilder? date,
+    ReferenceBuilder? reporter,
+    PeriodBuilder? period,
+    CodeableConceptBuilder? improvementNotation,
+    List<MeasureReportGroupBuilder>? group,
+    List<ReferenceBuilder>? evaluatedResource,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return MeasureReport(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = MeasureReportBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      measure: measure?.copyWith(
-            objectPath: '$newObjectPath.measure',
-          ) ??
-          this.measure,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      reporter: reporter?.copyWith(
-            objectPath: '$newObjectPath.reporter',
-          ) ??
-          this.reporter,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      improvementNotation: improvementNotation?.copyWith(
-            objectPath: '$newObjectPath.improvementNotation',
-          ) ??
-          this.improvementNotation,
-      group: group
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.group',
-                ),
-              )
-              .toList() ??
-          this.group,
-      evaluatedResource: evaluatedResource
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.evaluatedResource',
-                ),
-              )
-              .toList() ??
-          this.evaluatedResource,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      type: type ?? this.type,
+      measure: measure ?? this.measure,
+      subject: subject ?? this.subject,
+      date: date ?? this.date,
+      reporter: reporter ?? this.reporter,
+      period: period ?? this.period,
+      improvementNotation: improvementNotation ?? this.improvementNotation,
+      group: group ?? this.group,
+      evaluatedResource: evaluatedResource ?? this.evaluatedResource,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MeasureReport) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MeasureReportBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1108,25 +988,25 @@ class MeasureReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1180,13 +1060,13 @@ class MeasureReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<MeasureReportGroup>(
+    if (!listEquals<MeasureReportGroupBuilder>(
       group,
       o.group,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       evaluatedResource,
       o.evaluatedResource,
     )) {
@@ -1196,14 +1076,14 @@ class MeasureReport extends DomainResource {
   }
 }
 
-/// [MeasureReportGroup]
+/// [MeasureReportGroupBuilder]
 /// The results of the calculation, one for each population group in the
 /// measure.
-class MeasureReportGroup extends BackboneElement {
+class MeasureReportGroupBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MeasureReportGroup]
+  /// [MeasureReportGroupBuilder]
 
-  const MeasureReportGroup({
+  MeasureReportGroupBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1217,25 +1097,24 @@ class MeasureReportGroup extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureReportGroup.empty() => const MeasureReportGroup();
+  /// For Builder classes, no fields are required
+  factory MeasureReportGroupBuilder.empty() => MeasureReportGroupBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportGroup.fromJson(
+  factory MeasureReportGroupBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MeasureReport.group';
-    return MeasureReportGroup(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MeasureReportGroupBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1244,8 +1123,8 @@ class MeasureReportGroup extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1253,15 +1132,15 @@ class MeasureReportGroup extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
       population: (json['population'] as List<dynamic>?)
-          ?.map<MeasureReportPopulation>(
-            (v) => MeasureReportPopulation.fromJson(
+          ?.map<MeasureReportPopulationBuilder>(
+            (v) => MeasureReportPopulationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.population',
@@ -1269,15 +1148,15 @@ class MeasureReportGroup extends BackboneElement {
             ),
           )
           .toList(),
-      measureScore: JsonParser.parseObject<Quantity>(
+      measureScore: JsonParser.parseObject<QuantityBuilder>(
         json,
         'measureScore',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.measureScore',
       ),
       stratifier: (json['stratifier'] as List<dynamic>?)
-          ?.map<MeasureReportStratifier>(
-            (v) => MeasureReportStratifier.fromJson(
+          ?.map<MeasureReportStratifierBuilder>(
+            (v) => MeasureReportStratifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.stratifier',
@@ -1288,22 +1167,22 @@ class MeasureReportGroup extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportGroup]
+  /// Deserialize [MeasureReportGroupBuilder]
   /// from a [String] or [YamlMap] object
-  factory MeasureReportGroup.fromYaml(
+  factory MeasureReportGroupBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MeasureReportGroup.fromJson(
+      return MeasureReportGroupBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MeasureReportGroup.fromJson(
+      return MeasureReportGroupBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MeasureReportGroup '
+        'MeasureReportGroupBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1311,16 +1190,16 @@ class MeasureReportGroup extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MeasureReportGroup]
+  /// [MeasureReportGroupBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureReportGroup.fromJsonString(
+  factory MeasureReportGroupBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MeasureReportGroup.fromJson(json);
+      return MeasureReportGroupBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1333,39 +1212,39 @@ class MeasureReportGroup extends BackboneElement {
   /// [code]
   /// The meaning of the population group as defined in the measure
   /// definition.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [population]
   /// The populations that make up the population group, one for each type of
   /// population appropriate for the measure.
-  final List<MeasureReportPopulation>? population;
+  List<MeasureReportPopulationBuilder>? population;
 
   /// [measureScore]
   /// The measure score for this population group, calculated as appropriate
   /// for the measure type and scoring method, and based on the contents of
   /// the populations defined in the group.
-  final Quantity? measureScore;
+  QuantityBuilder? measureScore;
 
   /// [stratifier]
   /// When a measure includes multiple stratifiers, there will be a
   /// stratifier group for each stratifier defined by the measure.
-  final List<MeasureReportStratifier>? stratifier;
+  List<MeasureReportStratifierBuilder>? stratifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1374,39 +1253,18 @@ class MeasureReportGroup extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'population',
-      population,
-    );
-    addField(
-      'measureScore',
-      measureScore,
-    );
-    addField(
-      'stratifier',
-      stratifier,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('population', population);
+    addField('measureScore', measureScore);
+    addField('stratifier', stratifier);
     return json;
   }
 
@@ -1427,11 +1285,11 @@ class MeasureReportGroup extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1471,7 +1329,7 @@ class MeasureReportGroup extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1480,93 +1338,95 @@ class MeasureReportGroup extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'population':
         {
-          if (child is List<MeasureReportPopulation>) {
-            // Add all elements from passed list
-            final newList = [...?population, ...child];
-            return copyWith(population: newList);
-          } else if (child is MeasureReportPopulation) {
+          if (child is List<MeasureReportPopulationBuilder>) {
+            // Replace or create new list
+            population = child;
+            return;
+          } else if (child is MeasureReportPopulationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?population, child];
-            return copyWith(population: newList);
+            population = [...(population ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measureScore':
         {
-          if (child is Quantity) {
-            return copyWith(measureScore: child);
+          if (child is QuantityBuilder) {
+            measureScore = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'stratifier':
         {
-          if (child is List<MeasureReportStratifier>) {
-            // Add all elements from passed list
-            final newList = [...?stratifier, ...child];
-            return copyWith(stratifier: newList);
-          } else if (child is MeasureReportStratifier) {
+          if (child is List<MeasureReportStratifierBuilder>) {
+            // Replace or create new list
+            stratifier = child;
+            return;
+          } else if (child is MeasureReportStratifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?stratifier, child];
-            return copyWith(stratifier: newList);
+            stratifier = [...(stratifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1582,74 +1442,63 @@ class MeasureReportGroup extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'population':
-        return ['MeasureReportPopulation'];
+        return ['MeasureReportPopulationBuilder'];
       case 'measureScore':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'stratifier':
-        return ['MeasureReportStratifier'];
+        return ['MeasureReportStratifierBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MeasureReportGroup]
+  /// Creates a new [MeasureReportGroupBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MeasureReportGroup createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'population':
         {
-          return copyWith(
-            population: <MeasureReportPopulation>[],
-          );
+          population = <MeasureReportPopulationBuilder>[];
+          return;
         }
       case 'measureScore':
         {
-          return copyWith(
-            measureScore: Quantity.empty(),
-          );
+          measureScore = QuantityBuilder.empty();
+          return;
         }
       case 'stratifier':
         {
-          return copyWith(
-            stratifier: <MeasureReportStratifier>[],
-          );
+          stratifier = <MeasureReportStratifierBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1658,7 +1507,7 @@ class MeasureReportGroup extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MeasureReportGroup clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1667,28 +1516,26 @@ class MeasureReportGroup extends BackboneElement {
     bool measureScore = false,
     bool stratifier = false,
   }) {
-    return MeasureReportGroup(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      population: population ? null : this.population,
-      measureScore: measureScore ? null : this.measureScore,
-      stratifier: stratifier ? null : this.stratifier,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (population) this.population = null;
+    if (measureScore) this.measureScore = null;
+    if (stratifier) this.stratifier = null;
   }
 
   @override
-  MeasureReportGroup clone() => throw UnimplementedError();
+  MeasureReportGroupBuilder clone() => throw UnimplementedError();
   @override
-  MeasureReportGroup copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    List<MeasureReportPopulation>? population,
-    Quantity? measureScore,
-    List<MeasureReportStratifier>? stratifier,
+  MeasureReportGroupBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    List<MeasureReportPopulationBuilder>? population,
+    QuantityBuilder? measureScore,
+    List<MeasureReportStratifierBuilder>? stratifier,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1696,58 +1543,38 @@ class MeasureReportGroup extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MeasureReportGroup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      population: population
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.population',
-                ),
-              )
-              .toList() ??
-          this.population,
-      measureScore: measureScore?.copyWith(
-            objectPath: '$newObjectPath.measureScore',
-          ) ??
-          this.measureScore,
-      stratifier: stratifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.stratifier',
-                ),
-              )
-              .toList() ??
-          this.stratifier,
+    final newResult = MeasureReportGroupBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      population: population ?? this.population,
+      measureScore: measureScore ?? this.measureScore,
+      stratifier: stratifier ?? this.stratifier,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MeasureReportGroup) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MeasureReportGroupBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1758,13 +1585,13 @@ class MeasureReportGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1776,7 +1603,7 @@ class MeasureReportGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<MeasureReportPopulation>(
+    if (!listEquals<MeasureReportPopulationBuilder>(
       population,
       o.population,
     )) {
@@ -1788,7 +1615,7 @@ class MeasureReportGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<MeasureReportStratifier>(
+    if (!listEquals<MeasureReportStratifierBuilder>(
       stratifier,
       o.stratifier,
     )) {
@@ -1798,14 +1625,14 @@ class MeasureReportGroup extends BackboneElement {
   }
 }
 
-/// [MeasureReportPopulation]
+/// [MeasureReportPopulationBuilder]
 /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
-class MeasureReportPopulation extends BackboneElement {
+class MeasureReportPopulationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MeasureReportPopulation]
+  /// [MeasureReportPopulationBuilder]
 
-  const MeasureReportPopulation({
+  MeasureReportPopulationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1818,25 +1645,25 @@ class MeasureReportPopulation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureReportPopulation.empty() => const MeasureReportPopulation();
+  /// For Builder classes, no fields are required
+  factory MeasureReportPopulationBuilder.empty() =>
+      MeasureReportPopulationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportPopulation.fromJson(
+  factory MeasureReportPopulationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MeasureReport.group.population';
-    return MeasureReportPopulation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MeasureReportPopulationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1845,8 +1672,8 @@ class MeasureReportPopulation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1854,43 +1681,43 @@ class MeasureReportPopulation extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      count: JsonParser.parsePrimitive<FhirInteger>(
+      count: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'count',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.count',
       ),
-      subjectResults: JsonParser.parseObject<Reference>(
+      subjectResults: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subjectResults',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subjectResults',
       ),
     );
   }
 
-  /// Deserialize [MeasureReportPopulation]
+  /// Deserialize [MeasureReportPopulationBuilder]
   /// from a [String] or [YamlMap] object
-  factory MeasureReportPopulation.fromYaml(
+  factory MeasureReportPopulationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MeasureReportPopulation.fromJson(
+      return MeasureReportPopulationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MeasureReportPopulation.fromJson(
+      return MeasureReportPopulationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MeasureReportPopulation '
+        'MeasureReportPopulationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1898,16 +1725,16 @@ class MeasureReportPopulation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MeasureReportPopulation]
+  /// [MeasureReportPopulationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureReportPopulation.fromJsonString(
+  factory MeasureReportPopulationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MeasureReportPopulation.fromJson(json);
+      return MeasureReportPopulationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1919,32 +1746,32 @@ class MeasureReportPopulation extends BackboneElement {
 
   /// [code]
   /// The type of the population.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [count]
   /// The number of members of the population.
-  final FhirInteger? count;
+  FhirIntegerBuilder? count;
 
   /// [subjectResults]
   /// This element refers to a List of subject level MeasureReport resources,
   /// one for each subject in this population.
-  final Reference? subjectResults;
+  ReferenceBuilder? subjectResults;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1953,35 +1780,17 @@ class MeasureReportPopulation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'count',
-      count,
-    );
-    addField(
-      'subjectResults',
-      subjectResults,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('count', count);
+    addField('subjectResults', subjectResults);
     return json;
   }
 
@@ -2001,11 +1810,11 @@ class MeasureReportPopulation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2041,7 +1850,7 @@ class MeasureReportPopulation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2050,73 +1859,76 @@ class MeasureReportPopulation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'count':
         {
-          if (child is FhirInteger) {
-            return copyWith(count: child);
+          if (child is FhirIntegerBuilder) {
+            count = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectResults':
         {
-          if (child is Reference) {
-            return copyWith(subjectResults: child);
+          if (child is ReferenceBuilder) {
+            subjectResults = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2132,66 +1944,56 @@ class MeasureReportPopulation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'count':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'subjectResults':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MeasureReportPopulation]
+  /// Creates a new [MeasureReportPopulationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MeasureReportPopulation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'count':
         {
-          return copyWith(
-            count: FhirInteger.empty(),
-          );
+          count = FhirIntegerBuilder.empty();
+          return;
         }
       case 'subjectResults':
         {
-          return copyWith(
-            subjectResults: Reference.empty(),
-          );
+          subjectResults = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2200,7 +2002,7 @@ class MeasureReportPopulation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MeasureReportPopulation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2208,26 +2010,24 @@ class MeasureReportPopulation extends BackboneElement {
     bool count = false,
     bool subjectResults = false,
   }) {
-    return MeasureReportPopulation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      count: count ? null : this.count,
-      subjectResults: subjectResults ? null : this.subjectResults,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (count) this.count = null;
+    if (subjectResults) this.subjectResults = null;
   }
 
   @override
-  MeasureReportPopulation clone() => throw UnimplementedError();
+  MeasureReportPopulationBuilder clone() => throw UnimplementedError();
   @override
-  MeasureReportPopulation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    FhirInteger? count,
-    Reference? subjectResults,
+  MeasureReportPopulationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    FhirIntegerBuilder? count,
+    ReferenceBuilder? subjectResults,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2235,46 +2035,37 @@ class MeasureReportPopulation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MeasureReportPopulation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      count: count?.copyWith(
-            objectPath: '$newObjectPath.count',
-          ) ??
-          this.count,
-      subjectResults: subjectResults?.copyWith(
-            objectPath: '$newObjectPath.subjectResults',
-          ) ??
-          this.subjectResults,
+    final newResult = MeasureReportPopulationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      count: count ?? this.count,
+      subjectResults: subjectResults ?? this.subjectResults,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MeasureReportPopulation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MeasureReportPopulationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2285,13 +2076,13 @@ class MeasureReportPopulation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2319,14 +2110,14 @@ class MeasureReportPopulation extends BackboneElement {
   }
 }
 
-/// [MeasureReportStratifier]
+/// [MeasureReportStratifierBuilder]
 /// When a measure includes multiple stratifiers, there will be a
 /// stratifier group for each stratifier defined by the measure.
-class MeasureReportStratifier extends BackboneElement {
+class MeasureReportStratifierBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MeasureReportStratifier]
+  /// [MeasureReportStratifierBuilder]
 
-  const MeasureReportStratifier({
+  MeasureReportStratifierBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2338,25 +2129,25 @@ class MeasureReportStratifier extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureReportStratifier.empty() => const MeasureReportStratifier();
+  /// For Builder classes, no fields are required
+  factory MeasureReportStratifierBuilder.empty() =>
+      MeasureReportStratifierBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportStratifier.fromJson(
+  factory MeasureReportStratifierBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MeasureReport.group.stratifier';
-    return MeasureReportStratifier(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MeasureReportStratifierBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2365,8 +2156,8 @@ class MeasureReportStratifier extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2375,8 +2166,8 @@ class MeasureReportStratifier extends BackboneElement {
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -2385,8 +2176,8 @@ class MeasureReportStratifier extends BackboneElement {
           )
           .toList(),
       stratum: (json['stratum'] as List<dynamic>?)
-          ?.map<MeasureReportStratum>(
-            (v) => MeasureReportStratum.fromJson(
+          ?.map<MeasureReportStratumBuilder>(
+            (v) => MeasureReportStratumBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.stratum',
@@ -2397,22 +2188,22 @@ class MeasureReportStratifier extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportStratifier]
+  /// Deserialize [MeasureReportStratifierBuilder]
   /// from a [String] or [YamlMap] object
-  factory MeasureReportStratifier.fromYaml(
+  factory MeasureReportStratifierBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MeasureReportStratifier.fromJson(
+      return MeasureReportStratifierBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MeasureReportStratifier.fromJson(
+      return MeasureReportStratifierBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MeasureReportStratifier '
+        'MeasureReportStratifierBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2420,16 +2211,16 @@ class MeasureReportStratifier extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MeasureReportStratifier]
+  /// [MeasureReportStratifierBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureReportStratifier.fromJsonString(
+  factory MeasureReportStratifierBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MeasureReportStratifier.fromJson(json);
+      return MeasureReportStratifierBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2441,29 +2232,29 @@ class MeasureReportStratifier extends BackboneElement {
 
   /// [code]
   /// The meaning of this stratifier, as defined in the measure definition.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [stratum]
   /// This element contains the results for a single stratum within the
   /// stratifier. For example, when stratifying on administrative gender,
   /// there will be four strata, one for each possible gender value.
-  final List<MeasureReportStratum>? stratum;
+  List<MeasureReportStratumBuilder>? stratum;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2472,31 +2263,16 @@ class MeasureReportStratifier extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'stratum',
-      stratum,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('stratum', stratum);
     return json;
   }
 
@@ -2515,11 +2291,11 @@ class MeasureReportStratifier extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2551,7 +2327,7 @@ class MeasureReportStratifier extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2560,77 +2336,77 @@ class MeasureReportStratifier extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'stratum':
         {
-          if (child is List<MeasureReportStratum>) {
-            // Add all elements from passed list
-            final newList = [...?stratum, ...child];
-            return copyWith(stratum: newList);
-          } else if (child is MeasureReportStratum) {
+          if (child is List<MeasureReportStratumBuilder>) {
+            // Replace or create new list
+            stratum = child;
+            return;
+          } else if (child is MeasureReportStratumBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?stratum, child];
-            return copyWith(stratum: newList);
+            stratum = [...(stratum ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2646,58 +2422,49 @@ class MeasureReportStratifier extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'stratum':
-        return ['MeasureReportStratum'];
+        return ['MeasureReportStratumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MeasureReportStratifier]
+  /// Creates a new [MeasureReportStratifierBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MeasureReportStratifier createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'stratum':
         {
-          return copyWith(
-            stratum: <MeasureReportStratum>[],
-          );
+          stratum = <MeasureReportStratumBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2706,31 +2473,29 @@ class MeasureReportStratifier extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MeasureReportStratifier clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool code = false,
     bool stratum = false,
   }) {
-    return MeasureReportStratifier(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      stratum: stratum ? null : this.stratum,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (stratum) this.stratum = null;
   }
 
   @override
-  MeasureReportStratifier clone() => throw UnimplementedError();
+  MeasureReportStratifierBuilder clone() => throw UnimplementedError();
   @override
-  MeasureReportStratifier copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? code,
-    List<MeasureReportStratum>? stratum,
+  MeasureReportStratifierBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? code,
+    List<MeasureReportStratumBuilder>? stratum,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2738,50 +2503,36 @@ class MeasureReportStratifier extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MeasureReportStratifier(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      stratum: stratum
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.stratum',
-                ),
-              )
-              .toList() ??
-          this.stratum,
+    final newResult = MeasureReportStratifierBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      stratum: stratum ?? this.stratum,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MeasureReportStratifier) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MeasureReportStratifierBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2792,25 +2543,25 @@ class MeasureReportStratifier extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
       return false;
     }
-    if (!listEquals<MeasureReportStratum>(
+    if (!listEquals<MeasureReportStratumBuilder>(
       stratum,
       o.stratum,
     )) {
@@ -2820,15 +2571,15 @@ class MeasureReportStratifier extends BackboneElement {
   }
 }
 
-/// [MeasureReportStratum]
+/// [MeasureReportStratumBuilder]
 /// This element contains the results for a single stratum within the
 /// stratifier. For example, when stratifying on administrative gender,
 /// there will be four strata, one for each possible gender value.
-class MeasureReportStratum extends BackboneElement {
+class MeasureReportStratumBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MeasureReportStratum]
+  /// [MeasureReportStratumBuilder]
 
-  const MeasureReportStratum({
+  MeasureReportStratumBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2842,25 +2593,24 @@ class MeasureReportStratum extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureReportStratum.empty() => const MeasureReportStratum();
+  /// For Builder classes, no fields are required
+  factory MeasureReportStratumBuilder.empty() => MeasureReportStratumBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportStratum.fromJson(
+  factory MeasureReportStratumBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MeasureReport.group.stratifier.stratum';
-    return MeasureReportStratum(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MeasureReportStratumBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2869,8 +2619,8 @@ class MeasureReportStratum extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2878,15 +2628,15 @@ class MeasureReportStratum extends BackboneElement {
             ),
           )
           .toList(),
-      value: JsonParser.parseObject<CodeableConcept>(
+      value: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'value',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.value',
       ),
       component: (json['component'] as List<dynamic>?)
-          ?.map<MeasureReportComponent>(
-            (v) => MeasureReportComponent.fromJson(
+          ?.map<MeasureReportComponentBuilder>(
+            (v) => MeasureReportComponentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.component',
@@ -2895,8 +2645,8 @@ class MeasureReportStratum extends BackboneElement {
           )
           .toList(),
       population: (json['population'] as List<dynamic>?)
-          ?.map<MeasureReportPopulation>(
-            (v) => MeasureReportPopulation.fromJson(
+          ?.map<MeasureReportPopulationBuilder>(
+            (v) => MeasureReportPopulationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.population',
@@ -2904,31 +2654,31 @@ class MeasureReportStratum extends BackboneElement {
             ),
           )
           .toList(),
-      measureScore: JsonParser.parseObject<Quantity>(
+      measureScore: JsonParser.parseObject<QuantityBuilder>(
         json,
         'measureScore',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.measureScore',
       ),
     );
   }
 
-  /// Deserialize [MeasureReportStratum]
+  /// Deserialize [MeasureReportStratumBuilder]
   /// from a [String] or [YamlMap] object
-  factory MeasureReportStratum.fromYaml(
+  factory MeasureReportStratumBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MeasureReportStratum.fromJson(
+      return MeasureReportStratumBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MeasureReportStratum.fromJson(
+      return MeasureReportStratumBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MeasureReportStratum '
+        'MeasureReportStratumBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2936,16 +2686,16 @@ class MeasureReportStratum extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MeasureReportStratum]
+  /// [MeasureReportStratumBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureReportStratum.fromJsonString(
+  factory MeasureReportStratumBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MeasureReportStratum.fromJson(json);
+      return MeasureReportStratumBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2959,38 +2709,38 @@ class MeasureReportStratum extends BackboneElement {
   /// The value for this stratum, expressed as a CodeableConcept. When
   /// defining stratifiers on complex values, the value must be rendered such
   /// that the value for each stratum within the stratifier is unique.
-  final CodeableConcept? value;
+  CodeableConceptBuilder? value;
 
   /// [component]
   /// A stratifier component value.
-  final List<MeasureReportComponent>? component;
+  List<MeasureReportComponentBuilder>? component;
 
   /// [population]
   /// The populations that make up the stratum, one for each type of
   /// population appropriate to the measure.
-  final List<MeasureReportPopulation>? population;
+  List<MeasureReportPopulationBuilder>? population;
 
   /// [measureScore]
   /// The measure score for this stratum, calculated as appropriate for the
   /// measure type and scoring method, and based on only the members of this
   /// stratum.
-  final Quantity? measureScore;
+  QuantityBuilder? measureScore;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2999,39 +2749,18 @@ class MeasureReportStratum extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'component',
-      component,
-    );
-    addField(
-      'population',
-      population,
-    );
-    addField(
-      'measureScore',
-      measureScore,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('value', value);
+    addField('component', component);
+    addField('population', population);
+    addField('measureScore', measureScore);
     return json;
   }
 
@@ -3052,11 +2781,11 @@ class MeasureReportStratum extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3096,7 +2825,7 @@ class MeasureReportStratum extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3105,93 +2834,95 @@ class MeasureReportStratum extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is CodeableConcept) {
-            return copyWith(value: child);
+          if (child is CodeableConceptBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'component':
         {
-          if (child is List<MeasureReportComponent>) {
-            // Add all elements from passed list
-            final newList = [...?component, ...child];
-            return copyWith(component: newList);
-          } else if (child is MeasureReportComponent) {
+          if (child is List<MeasureReportComponentBuilder>) {
+            // Replace or create new list
+            component = child;
+            return;
+          } else if (child is MeasureReportComponentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?component, child];
-            return copyWith(component: newList);
+            component = [...(component ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'population':
         {
-          if (child is List<MeasureReportPopulation>) {
-            // Add all elements from passed list
-            final newList = [...?population, ...child];
-            return copyWith(population: newList);
-          } else if (child is MeasureReportPopulation) {
+          if (child is List<MeasureReportPopulationBuilder>) {
+            // Replace or create new list
+            population = child;
+            return;
+          } else if (child is MeasureReportPopulationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?population, child];
-            return copyWith(population: newList);
+            population = [...(population ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measureScore':
         {
-          if (child is Quantity) {
-            return copyWith(measureScore: child);
+          if (child is QuantityBuilder) {
+            measureScore = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3207,74 +2938,63 @@ class MeasureReportStratum extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'value':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'component':
-        return ['MeasureReportComponent'];
+        return ['MeasureReportComponentBuilder'];
       case 'population':
-        return ['MeasureReportPopulation'];
+        return ['MeasureReportPopulationBuilder'];
       case 'measureScore':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MeasureReportStratum]
+  /// Creates a new [MeasureReportStratumBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MeasureReportStratum createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: CodeableConcept.empty(),
-          );
+          value = CodeableConceptBuilder.empty();
+          return;
         }
       case 'component':
         {
-          return copyWith(
-            component: <MeasureReportComponent>[],
-          );
+          component = <MeasureReportComponentBuilder>[];
+          return;
         }
       case 'population':
         {
-          return copyWith(
-            population: <MeasureReportPopulation>[],
-          );
+          population = <MeasureReportPopulationBuilder>[];
+          return;
         }
       case 'measureScore':
         {
-          return copyWith(
-            measureScore: Quantity.empty(),
-          );
+          measureScore = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3283,7 +3003,7 @@ class MeasureReportStratum extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MeasureReportStratum clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3292,28 +3012,26 @@ class MeasureReportStratum extends BackboneElement {
     bool population = false,
     bool measureScore = false,
   }) {
-    return MeasureReportStratum(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      value: value ? null : this.value,
-      component: component ? null : this.component,
-      population: population ? null : this.population,
-      measureScore: measureScore ? null : this.measureScore,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (value) this.value = null;
+    if (component) this.component = null;
+    if (population) this.population = null;
+    if (measureScore) this.measureScore = null;
   }
 
   @override
-  MeasureReportStratum clone() => throw UnimplementedError();
+  MeasureReportStratumBuilder clone() => throw UnimplementedError();
   @override
-  MeasureReportStratum copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? value,
-    List<MeasureReportComponent>? component,
-    List<MeasureReportPopulation>? population,
-    Quantity? measureScore,
+  MeasureReportStratumBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? value,
+    List<MeasureReportComponentBuilder>? component,
+    List<MeasureReportPopulationBuilder>? population,
+    QuantityBuilder? measureScore,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3321,58 +3039,38 @@ class MeasureReportStratum extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MeasureReportStratum(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      component: component
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.component',
-                ),
-              )
-              .toList() ??
-          this.component,
-      population: population
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.population',
-                ),
-              )
-              .toList() ??
-          this.population,
-      measureScore: measureScore?.copyWith(
-            objectPath: '$newObjectPath.measureScore',
-          ) ??
-          this.measureScore,
+    final newResult = MeasureReportStratumBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      value: value ?? this.value,
+      component: component ?? this.component,
+      population: population ?? this.population,
+      measureScore: measureScore ?? this.measureScore,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MeasureReportStratum) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MeasureReportStratumBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3383,13 +3081,13 @@ class MeasureReportStratum extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3401,13 +3099,13 @@ class MeasureReportStratum extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<MeasureReportComponent>(
+    if (!listEquals<MeasureReportComponentBuilder>(
       component,
       o.component,
     )) {
       return false;
     }
-    if (!listEquals<MeasureReportPopulation>(
+    if (!listEquals<MeasureReportPopulationBuilder>(
       population,
       o.population,
     )) {
@@ -3423,46 +3121,43 @@ class MeasureReportStratum extends BackboneElement {
   }
 }
 
-/// [MeasureReportComponent]
+/// [MeasureReportComponentBuilder]
 /// A stratifier component value.
-class MeasureReportComponent extends BackboneElement {
+class MeasureReportComponentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MeasureReportComponent]
+  /// [MeasureReportComponentBuilder]
 
-  const MeasureReportComponent({
+  MeasureReportComponentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
-    required this.value,
+    this.code,
+    this.value,
     super.disallowExtensions,
   }) : super(
           objectPath: 'MeasureReport.group.stratifier.stratum.component',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureReportComponent.empty() => MeasureReportComponent(
-        code: CodeableConcept.empty(),
-        value: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory MeasureReportComponentBuilder.empty() =>
+      MeasureReportComponentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportComponent.fromJson(
+  factory MeasureReportComponentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MeasureReport.group.stratifier.stratum.component';
-    return MeasureReportComponent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MeasureReportComponentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3471,8 +3166,8 @@ class MeasureReportComponent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3480,37 +3175,37 @@ class MeasureReportComponent extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      value: JsonParser.parseObject<CodeableConcept>(
+      ),
+      value: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'value',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.value',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [MeasureReportComponent]
+  /// Deserialize [MeasureReportComponentBuilder]
   /// from a [String] or [YamlMap] object
-  factory MeasureReportComponent.fromYaml(
+  factory MeasureReportComponentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MeasureReportComponent.fromJson(
+      return MeasureReportComponentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MeasureReportComponent.fromJson(
+      return MeasureReportComponentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MeasureReportComponent '
+        'MeasureReportComponentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3518,16 +3213,16 @@ class MeasureReportComponent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MeasureReportComponent]
+  /// [MeasureReportComponentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureReportComponent.fromJsonString(
+  factory MeasureReportComponentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MeasureReportComponent.fromJson(json);
+      return MeasureReportComponentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3539,27 +3234,27 @@ class MeasureReportComponent extends BackboneElement {
 
   /// [code]
   /// The code for the stratum component value.
-  final CodeableConcept code;
+  CodeableConceptBuilder? code;
 
   /// [value]
   /// The stratum component value.
-  final CodeableConcept value;
+  CodeableConceptBuilder? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3568,31 +3263,16 @@ class MeasureReportComponent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'value',
-      value,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('value', value);
     return json;
   }
 
@@ -3611,11 +3291,11 @@ class MeasureReportComponent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3630,9 +3310,13 @@ class MeasureReportComponent extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'value':
-        fields.add(value);
+        if (value != null) {
+          fields.add(value!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -3643,7 +3327,7 @@ class MeasureReportComponent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3652,65 +3336,67 @@ class MeasureReportComponent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is CodeableConcept) {
-            return copyWith(value: child);
+          if (child is CodeableConceptBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3726,58 +3412,49 @@ class MeasureReportComponent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MeasureReportComponent]
+  /// Creates a new [MeasureReportComponentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MeasureReportComponent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: CodeableConcept.empty(),
-          );
+          value = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3786,29 +3463,29 @@ class MeasureReportComponent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MeasureReportComponent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
+    bool value = false,
   }) {
-    return MeasureReportComponent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      value: value,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (value) this.value = null;
   }
 
   @override
-  MeasureReportComponent clone() => throw UnimplementedError();
+  MeasureReportComponentBuilder clone() => throw UnimplementedError();
   @override
-  MeasureReportComponent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    CodeableConcept? value,
+  MeasureReportComponentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    CodeableConceptBuilder? value,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3816,42 +3493,36 @@ class MeasureReportComponent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MeasureReportComponent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
+    final newResult = MeasureReportComponentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      value: value ?? this.value,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MeasureReportComponent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MeasureReportComponentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3862,13 +3533,13 @@ class MeasureReportComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3890,14 +3561,14 @@ class MeasureReportComponent extends BackboneElement {
   }
 }
 
-/// [MeasureReportPopulation1]
+/// [MeasureReportPopulation1Builder]
 /// The populations that make up the stratum, one for each type of
 /// population appropriate to the measure.
-class MeasureReportPopulation1 extends BackboneElement {
+class MeasureReportPopulation1Builder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MeasureReportPopulation1]
+  /// [MeasureReportPopulation1Builder]
 
-  const MeasureReportPopulation1({
+  MeasureReportPopulation1Builder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3910,25 +3581,25 @@ class MeasureReportPopulation1 extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MeasureReportPopulation1.empty() => const MeasureReportPopulation1();
+  /// For Builder classes, no fields are required
+  factory MeasureReportPopulation1Builder.empty() =>
+      MeasureReportPopulation1Builder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportPopulation1.fromJson(
+  factory MeasureReportPopulation1Builder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MeasureReport.group.stratifier.stratum.population';
-    return MeasureReportPopulation1(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MeasureReportPopulation1Builder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3937,8 +3608,8 @@ class MeasureReportPopulation1 extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3946,43 +3617,43 @@ class MeasureReportPopulation1 extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      count: JsonParser.parsePrimitive<FhirInteger>(
+      count: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'count',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.count',
       ),
-      subjectResults: JsonParser.parseObject<Reference>(
+      subjectResults: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subjectResults',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subjectResults',
       ),
     );
   }
 
-  /// Deserialize [MeasureReportPopulation1]
+  /// Deserialize [MeasureReportPopulation1Builder]
   /// from a [String] or [YamlMap] object
-  factory MeasureReportPopulation1.fromYaml(
+  factory MeasureReportPopulation1Builder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MeasureReportPopulation1.fromJson(
+      return MeasureReportPopulation1Builder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MeasureReportPopulation1.fromJson(
+      return MeasureReportPopulation1Builder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MeasureReportPopulation1 '
+        'MeasureReportPopulation1Builder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3990,16 +3661,16 @@ class MeasureReportPopulation1 extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MeasureReportPopulation1]
+  /// [MeasureReportPopulation1Builder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureReportPopulation1.fromJsonString(
+  factory MeasureReportPopulation1Builder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MeasureReportPopulation1.fromJson(json);
+      return MeasureReportPopulation1Builder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4011,32 +3682,32 @@ class MeasureReportPopulation1 extends BackboneElement {
 
   /// [code]
   /// The type of the population.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [count]
   /// The number of members of the population in this stratum.
-  final FhirInteger? count;
+  FhirIntegerBuilder? count;
 
   /// [subjectResults]
   /// This element refers to a List of subject level MeasureReport resources,
   /// one for each subject in this population in this stratum.
-  final Reference? subjectResults;
+  ReferenceBuilder? subjectResults;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4045,35 +3716,17 @@ class MeasureReportPopulation1 extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'count',
-      count,
-    );
-    addField(
-      'subjectResults',
-      subjectResults,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('count', count);
+    addField('subjectResults', subjectResults);
     return json;
   }
 
@@ -4093,11 +3746,11 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4133,7 +3786,7 @@ class MeasureReportPopulation1 extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4142,73 +3795,76 @@ class MeasureReportPopulation1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'count':
         {
-          if (child is FhirInteger) {
-            return copyWith(count: child);
+          if (child is FhirIntegerBuilder) {
+            count = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectResults':
         {
-          if (child is Reference) {
-            return copyWith(subjectResults: child);
+          if (child is ReferenceBuilder) {
+            subjectResults = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4224,66 +3880,56 @@ class MeasureReportPopulation1 extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'count':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'subjectResults':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MeasureReportPopulation1]
+  /// Creates a new [MeasureReportPopulation1Builder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MeasureReportPopulation1 createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'count':
         {
-          return copyWith(
-            count: FhirInteger.empty(),
-          );
+          count = FhirIntegerBuilder.empty();
+          return;
         }
       case 'subjectResults':
         {
-          return copyWith(
-            subjectResults: Reference.empty(),
-          );
+          subjectResults = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4292,7 +3938,7 @@ class MeasureReportPopulation1 extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MeasureReportPopulation1 clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -4300,26 +3946,24 @@ class MeasureReportPopulation1 extends BackboneElement {
     bool count = false,
     bool subjectResults = false,
   }) {
-    return MeasureReportPopulation1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      count: count ? null : this.count,
-      subjectResults: subjectResults ? null : this.subjectResults,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (count) this.count = null;
+    if (subjectResults) this.subjectResults = null;
   }
 
   @override
-  MeasureReportPopulation1 clone() => throw UnimplementedError();
+  MeasureReportPopulation1Builder clone() => throw UnimplementedError();
   @override
-  MeasureReportPopulation1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    FhirInteger? count,
-    Reference? subjectResults,
+  MeasureReportPopulation1Builder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    FhirIntegerBuilder? count,
+    ReferenceBuilder? subjectResults,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4327,46 +3971,37 @@ class MeasureReportPopulation1 extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MeasureReportPopulation1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      count: count?.copyWith(
-            objectPath: '$newObjectPath.count',
-          ) ??
-          this.count,
-      subjectResults: subjectResults?.copyWith(
-            objectPath: '$newObjectPath.subjectResults',
-          ) ??
-          this.subjectResults,
+    final newResult = MeasureReportPopulation1Builder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      count: count ?? this.count,
+      subjectResults: subjectResults ?? this.subjectResults,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MeasureReportPopulation1) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MeasureReportPopulation1Builder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4377,13 +4012,13 @@ class MeasureReportPopulation1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

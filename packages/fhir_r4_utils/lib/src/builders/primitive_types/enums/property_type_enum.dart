@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of a property value.
-class PropertyTypeEnum extends FhirCodeEnum {
+class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  PropertyTypeEnum._({
+  PropertyTypeEnumBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class PropertyTypeEnum extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory PropertyTypeEnum(
+  factory PropertyTypeEnumBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return PropertyTypeEnum._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return PropertyTypeEnumBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,89 +43,98 @@ class PropertyTypeEnum extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [PropertyTypeEnum] with element only
-  factory PropertyTypeEnum.empty() => PropertyTypeEnum._(validatedValue: '');
+  /// Create empty [PropertyTypeEnumBuilder] with element only
+  factory PropertyTypeEnumBuilder.empty() =>
+      PropertyTypeEnumBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [PropertyTypeEnum] from JSON.
-  factory PropertyTypeEnum.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [PropertyTypeEnumBuilder] from JSON.
+  factory PropertyTypeEnumBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyTypeEnum.elementOnly.withElement(element);
+      return PropertyTypeEnumBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'PropertyTypeEnum cannot be constructed from JSON.',
+        'PropertyTypeEnumBuilder cannot be constructed from JSON.',
       );
     }
-    return PropertyTypeEnum._(
+    return PropertyTypeEnumBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// code
-  static final PropertyTypeEnum code = PropertyTypeEnum._(
+  static PropertyTypeEnumBuilder code = PropertyTypeEnumBuilder._(
     validatedValue: 'code',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'code (internal reference)'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'code (internal reference)'.toFhirStringBuilder,
   );
 
   /// Coding
-  static final PropertyTypeEnum Coding = PropertyTypeEnum._(
+  static PropertyTypeEnumBuilder Coding = PropertyTypeEnumBuilder._(
     validatedValue: 'Coding',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coding (external reference)'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Coding (external reference)'.toFhirStringBuilder,
   );
 
   /// string
-  static final PropertyTypeEnum string = PropertyTypeEnum._(
+  static PropertyTypeEnumBuilder string = PropertyTypeEnumBuilder._(
     validatedValue: 'string',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'string'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'string'.toFhirStringBuilder,
   );
 
   /// integer
-  static final PropertyTypeEnum integer = PropertyTypeEnum._(
+  static PropertyTypeEnumBuilder integer = PropertyTypeEnumBuilder._(
     validatedValue: 'integer',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'integer'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'integer'.toFhirStringBuilder,
   );
 
   /// boolean
-  static final PropertyTypeEnum boolean = PropertyTypeEnum._(
+  static PropertyTypeEnumBuilder boolean = PropertyTypeEnumBuilder._(
     validatedValue: 'boolean',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'boolean'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'boolean'.toFhirStringBuilder,
   );
 
   /// dateTime
-  static final PropertyTypeEnum dateTime = PropertyTypeEnum._(
+  static PropertyTypeEnumBuilder dateTime = PropertyTypeEnumBuilder._(
     validatedValue: 'dateTime',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'dateTime'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'dateTime'.toFhirStringBuilder,
   );
 
   /// decimal
-  static final PropertyTypeEnum decimal = PropertyTypeEnum._(
+  static PropertyTypeEnumBuilder decimal = PropertyTypeEnumBuilder._(
     validatedValue: 'decimal',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'decimal'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'decimal'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final PropertyTypeEnum elementOnly =
-      PropertyTypeEnum._(validatedValue: '');
+  static PropertyTypeEnumBuilder elementOnly =
+      PropertyTypeEnumBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<PropertyTypeEnum> values = [
+  static List<PropertyTypeEnumBuilder> values = [
     code,
     Coding,
     string,
@@ -137,14 +146,15 @@ class PropertyTypeEnum extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  PropertyTypeEnum clone() => PropertyTypeEnum._(
+  PropertyTypeEnumBuilder clone() => PropertyTypeEnumBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  PropertyTypeEnum withElement(Element? newElement) {
-    return PropertyTypeEnum._(validatedValue: value, element: newElement);
+  PropertyTypeEnumBuilder withElement(ElementBuilder? newElement) {
+    return PropertyTypeEnumBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,11 +170,11 @@ class PropertyTypeEnum extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  PropertyTypeEnum copyWith({
+  PropertyTypeEnumBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -175,7 +185,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return PropertyTypeEnum._(
+    return PropertyTypeEnumBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -185,7 +195,7 @@ class PropertyTypeEnum extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

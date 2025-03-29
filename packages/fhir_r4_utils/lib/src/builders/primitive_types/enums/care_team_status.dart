@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Indicates the status of the care team.
-class CareTeamStatus extends FhirCodeEnum {
+class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  CareTeamStatus._({
+  CareTeamStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class CareTeamStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory CareTeamStatus(
+  factory CareTeamStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return CareTeamStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return CareTeamStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,73 +43,75 @@ class CareTeamStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [CareTeamStatus] with element only
-  factory CareTeamStatus.empty() => CareTeamStatus._(validatedValue: '');
+  /// Create empty [CareTeamStatusBuilder] with element only
+  factory CareTeamStatusBuilder.empty() =>
+      CareTeamStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CareTeamStatus] from JSON.
-  factory CareTeamStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CareTeamStatusBuilder] from JSON.
+  factory CareTeamStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CareTeamStatus.elementOnly.withElement(element);
+      return CareTeamStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CareTeamStatus cannot be constructed from JSON.',
+        'CareTeamStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return CareTeamStatus._(
+    return CareTeamStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// proposed
-  static final CareTeamStatus proposed = CareTeamStatus._(
+  static CareTeamStatusBuilder proposed = CareTeamStatusBuilder._(
     validatedValue: 'proposed',
-    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Proposed'.toFhirStringBuilder,
   );
 
   /// active
-  static final CareTeamStatus active = CareTeamStatus._(
+  static CareTeamStatusBuilder active = CareTeamStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// suspended
-  static final CareTeamStatus suspended = CareTeamStatus._(
+  static CareTeamStatusBuilder suspended = CareTeamStatusBuilder._(
     validatedValue: 'suspended',
-    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Suspended'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Suspended'.toFhirStringBuilder,
   );
 
   /// inactive
-  static final CareTeamStatus inactive = CareTeamStatus._(
+  static CareTeamStatusBuilder inactive = CareTeamStatusBuilder._(
     validatedValue: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Inactive'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Inactive'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final CareTeamStatus entered_in_error = CareTeamStatus._(
+  static CareTeamStatusBuilder entered_in_error = CareTeamStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final CareTeamStatus elementOnly =
-      CareTeamStatus._(validatedValue: '');
+  static CareTeamStatusBuilder elementOnly =
+      CareTeamStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<CareTeamStatus> values = [
+  static List<CareTeamStatusBuilder> values = [
     proposed,
     active,
     suspended,
@@ -119,14 +121,14 @@ class CareTeamStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  CareTeamStatus clone() => CareTeamStatus._(
+  CareTeamStatusBuilder clone() => CareTeamStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  CareTeamStatus withElement(Element? newElement) {
-    return CareTeamStatus._(validatedValue: value, element: newElement);
+  CareTeamStatusBuilder withElement(ElementBuilder? newElement) {
+    return CareTeamStatusBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -142,11 +144,11 @@ class CareTeamStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  CareTeamStatus copyWith({
+  CareTeamStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -157,7 +159,7 @@ class CareTeamStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return CareTeamStatus._(
+    return CareTeamStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -167,7 +169,7 @@ class CareTeamStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

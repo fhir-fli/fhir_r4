@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [PractitionerRole]
+/// [PractitionerRoleBuilder]
 /// A specific set of Roles/Locations/specialties/services that a
 /// practitioner may perform at an organization for a period of time.
-class PractitionerRole extends DomainResource {
+class PractitionerRoleBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [PractitionerRole]
+  /// [PractitionerRoleBuilder]
 
-  const PractitionerRole({
+  PractitionerRoleBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -38,49 +40,48 @@ class PractitionerRole extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PractitionerRole.empty() => const PractitionerRole();
+  /// For Builder classes, no fields are required
+  factory PractitionerRoleBuilder.empty() => PractitionerRoleBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PractitionerRole.fromJson(
+  factory PractitionerRoleBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PractitionerRole';
-    return PractitionerRole(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PractitionerRoleBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -89,8 +90,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -99,8 +100,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -109,8 +110,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -118,33 +119,33 @@ class PractitionerRole extends DomainResource {
             ),
           )
           .toList(),
-      active: JsonParser.parsePrimitive<FhirBoolean>(
+      active: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'active',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.active',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      practitioner: JsonParser.parseObject<Reference>(
+      practitioner: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'practitioner',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.practitioner',
       ),
-      organization: JsonParser.parseObject<Reference>(
+      organization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'organization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.organization',
       ),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -153,8 +154,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specialty',
@@ -163,8 +164,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       location: (json['location'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.location',
@@ -173,8 +174,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       healthcareService: (json['healthcareService'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.healthcareService',
@@ -183,8 +184,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -193,8 +194,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       availableTime: (json['availableTime'] as List<dynamic>?)
-          ?.map<PractitionerRoleAvailableTime>(
-            (v) => PractitionerRoleAvailableTime.fromJson(
+          ?.map<PractitionerRoleAvailableTimeBuilder>(
+            (v) => PractitionerRoleAvailableTimeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.availableTime',
@@ -203,8 +204,8 @@ class PractitionerRole extends DomainResource {
           )
           .toList(),
       notAvailable: (json['notAvailable'] as List<dynamic>?)
-          ?.map<PractitionerRoleNotAvailable>(
-            (v) => PractitionerRoleNotAvailable.fromJson(
+          ?.map<PractitionerRoleNotAvailableBuilder>(
+            (v) => PractitionerRoleNotAvailableBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.notAvailable',
@@ -212,15 +213,15 @@ class PractitionerRole extends DomainResource {
             ),
           )
           .toList(),
-      availabilityExceptions: JsonParser.parsePrimitive<FhirString>(
+      availabilityExceptions: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'availabilityExceptions',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.availabilityExceptions',
       ),
       endpoint: (json['endpoint'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.endpoint',
@@ -231,22 +232,22 @@ class PractitionerRole extends DomainResource {
     );
   }
 
-  /// Deserialize [PractitionerRole]
+  /// Deserialize [PractitionerRoleBuilder]
   /// from a [String] or [YamlMap] object
-  factory PractitionerRole.fromYaml(
+  factory PractitionerRoleBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PractitionerRole.fromJson(
+      return PractitionerRoleBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PractitionerRole.fromJson(
+      return PractitionerRoleBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PractitionerRole '
+        'PractitionerRoleBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -254,16 +255,16 @@ class PractitionerRole extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [PractitionerRole]
+  /// [PractitionerRoleBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PractitionerRole.fromJsonString(
+  factory PractitionerRoleBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PractitionerRole.fromJson(json);
+      return PractitionerRoleBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -275,85 +276,85 @@ class PractitionerRole extends DomainResource {
 
   /// [identifier]
   /// Business Identifiers that are specific to a role/location.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [active]
   /// Whether this practitioner role record is in active use.
-  final FhirBoolean? active;
+  FhirBooleanBuilder? active;
 
   /// [period]
   /// The period during which the person is authorized to act as a
   /// practitioner in these role(s) for the organization.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [practitioner]
   /// Practitioner that is able to provide the defined services for the
   /// organization.
-  final Reference? practitioner;
+  ReferenceBuilder? practitioner;
 
   /// [organization]
   /// The organization where the Practitioner performs the roles associated.
-  final Reference? organization;
+  ReferenceBuilder? organization;
 
   /// [code]
   /// Roles which this practitioner is authorized to perform for the
   /// organization.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [specialty]
   /// Specific specialty of the practitioner.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConceptBuilder>? specialty;
 
   /// [location]
   /// The location(s) at which this practitioner provides care.
-  final List<Reference>? location;
+  List<ReferenceBuilder>? location;
 
   /// [healthcareService]
   /// The list of healthcare services that this worker provides for this
   /// role's Organization/Location(s).
-  final List<Reference>? healthcareService;
+  List<ReferenceBuilder>? healthcareService;
 
   /// [telecom]
   /// Contact details that are specific to the role/location/service.
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [availableTime]
   /// A collection of times the practitioner is available or performing this
   /// role at the location and/or healthcareservice.
-  final List<PractitionerRoleAvailableTime>? availableTime;
+  List<PractitionerRoleAvailableTimeBuilder>? availableTime;
 
   /// [notAvailable]
   /// The practitioner is not available or performing this role during this
   /// period of time due to the provided reason.
-  final List<PractitionerRoleNotAvailable>? notAvailable;
+  List<PractitionerRoleNotAvailableBuilder>? notAvailable;
 
   /// [availabilityExceptions]
   /// A description of site availability exceptions, e.g. public holiday
   /// availability. Succinctly describing all possible exceptions to normal
   /// site availability as details in the available Times and not available
   /// Times.
-  final FhirString? availabilityExceptions;
+  FhirStringBuilder? availabilityExceptions;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// practitioner with this role.
-  final List<Reference>? endpoint;
+  List<ReferenceBuilder>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -362,100 +363,34 @@ class PractitionerRole extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'active',
-      active,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'practitioner',
-      practitioner,
-    );
-    addField(
-      'organization',
-      organization,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'specialty',
-      specialty,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'healthcareService',
-      healthcareService,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'availableTime',
-      availableTime,
-    );
-    addField(
-      'notAvailable',
-      notAvailable,
-    );
-    addField(
-      'availabilityExceptions',
-      availabilityExceptions,
-    );
-    addField(
-      'endpoint',
-      endpoint,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('active', active);
+    addField('period', period);
+    addField('practitioner', practitioner);
+    addField('organization', organization);
+    addField('code', code);
+    addField('specialty', specialty);
+    addField('location', location);
+    addField('healthcareService', healthcareService);
+    addField('telecom', telecom);
+    addField('availableTime', availableTime);
+    addField('notAvailable', notAvailable);
+    addField('availabilityExceptions', availabilityExceptions);
+    addField('endpoint', endpoint);
     return json;
   }
 
@@ -491,11 +426,11 @@ class PractitionerRole extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -595,7 +530,7 @@ class PractitionerRole extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -604,261 +539,270 @@ class PractitionerRole extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'active':
         {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
+          if (child is FhirBooleanBuilder) {
+            active = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'practitioner':
         {
-          if (child is Reference) {
-            return copyWith(practitioner: child);
+          if (child is ReferenceBuilder) {
+            practitioner = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
         {
-          if (child is Reference) {
-            return copyWith(organization: child);
+          if (child is ReferenceBuilder) {
+            organization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialty':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialty, ...child];
-            return copyWith(specialty: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            specialty = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialty, child];
-            return copyWith(specialty: newList);
+            specialty = [...(specialty ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?location, ...child];
-            return copyWith(location: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            location = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
-            return copyWith(location: newList);
+            location = [...(location ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'healthcareService':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?healthcareService, ...child];
-            return copyWith(healthcareService: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            healthcareService = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?healthcareService, child];
-            return copyWith(healthcareService: newList);
+            healthcareService = [...(healthcareService ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'availableTime':
         {
-          if (child is List<PractitionerRoleAvailableTime>) {
-            // Add all elements from passed list
-            final newList = [...?availableTime, ...child];
-            return copyWith(availableTime: newList);
-          } else if (child is PractitionerRoleAvailableTime) {
+          if (child is List<PractitionerRoleAvailableTimeBuilder>) {
+            // Replace or create new list
+            availableTime = child;
+            return;
+          } else if (child is PractitionerRoleAvailableTimeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?availableTime, child];
-            return copyWith(availableTime: newList);
+            availableTime = [...(availableTime ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'notAvailable':
         {
-          if (child is List<PractitionerRoleNotAvailable>) {
-            // Add all elements from passed list
-            final newList = [...?notAvailable, ...child];
-            return copyWith(notAvailable: newList);
-          } else if (child is PractitionerRoleNotAvailable) {
+          if (child is List<PractitionerRoleNotAvailableBuilder>) {
+            // Replace or create new list
+            notAvailable = child;
+            return;
+          } else if (child is PractitionerRoleNotAvailableBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?notAvailable, child];
-            return copyWith(notAvailable: newList);
+            notAvailable = [...(notAvailable ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'availabilityExceptions':
         {
-          if (child is FhirString) {
-            return copyWith(availabilityExceptions: child);
+          if (child is FhirStringBuilder) {
+            availabilityExceptions = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?endpoint, ...child];
-            return copyWith(endpoint: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            endpoint = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
-            return copyWith(endpoint: newList);
+            endpoint = [...(endpoint ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -874,194 +818,168 @@ class PractitionerRole extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'active':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'practitioner':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'organization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'specialty':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'location':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'healthcareService':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'availableTime':
-        return ['PractitionerRoleAvailableTime'];
+        return ['PractitionerRoleAvailableTimeBuilder'];
       case 'notAvailable':
-        return ['PractitionerRoleNotAvailable'];
+        return ['PractitionerRoleNotAvailableBuilder'];
       case 'availabilityExceptions':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'endpoint':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PractitionerRole]
+  /// Creates a new [PractitionerRoleBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PractitionerRole createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'active':
         {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
+          active = FhirBooleanBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'practitioner':
         {
-          return copyWith(
-            practitioner: Reference.empty(),
-          );
+          practitioner = ReferenceBuilder.empty();
+          return;
         }
       case 'organization':
         {
-          return copyWith(
-            organization: Reference.empty(),
-          );
+          organization = ReferenceBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'specialty':
         {
-          return copyWith(
-            specialty: <CodeableConcept>[],
-          );
+          specialty = <CodeableConceptBuilder>[];
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: <Reference>[],
-          );
+          location = <ReferenceBuilder>[];
+          return;
         }
       case 'healthcareService':
         {
-          return copyWith(
-            healthcareService: <Reference>[],
-          );
+          healthcareService = <ReferenceBuilder>[];
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'availableTime':
         {
-          return copyWith(
-            availableTime: <PractitionerRoleAvailableTime>[],
-          );
+          availableTime = <PractitionerRoleAvailableTimeBuilder>[];
+          return;
         }
       case 'notAvailable':
         {
-          return copyWith(
-            notAvailable: <PractitionerRoleNotAvailable>[],
-          );
+          notAvailable = <PractitionerRoleNotAvailableBuilder>[];
+          return;
         }
       case 'availabilityExceptions':
         {
-          return copyWith(
-            availabilityExceptions: FhirString.empty(),
-          );
+          availabilityExceptions = FhirStringBuilder.empty();
+          return;
         }
       case 'endpoint':
         {
-          return copyWith(
-            endpoint: <Reference>[],
-          );
+          endpoint = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1070,7 +988,7 @@ class PractitionerRole extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  PractitionerRole clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1094,202 +1012,110 @@ class PractitionerRole extends DomainResource {
     bool availabilityExceptions = false,
     bool endpoint = false,
   }) {
-    return PractitionerRole(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      active: active ? null : this.active,
-      period: period ? null : this.period,
-      practitioner: practitioner ? null : this.practitioner,
-      organization: organization ? null : this.organization,
-      code: code ? null : this.code,
-      specialty: specialty ? null : this.specialty,
-      location: location ? null : this.location,
-      healthcareService: healthcareService ? null : this.healthcareService,
-      telecom: telecom ? null : this.telecom,
-      availableTime: availableTime ? null : this.availableTime,
-      notAvailable: notAvailable ? null : this.notAvailable,
-      availabilityExceptions:
-          availabilityExceptions ? null : this.availabilityExceptions,
-      endpoint: endpoint ? null : this.endpoint,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (active) this.active = null;
+    if (period) this.period = null;
+    if (practitioner) this.practitioner = null;
+    if (organization) this.organization = null;
+    if (code) this.code = null;
+    if (specialty) this.specialty = null;
+    if (location) this.location = null;
+    if (healthcareService) this.healthcareService = null;
+    if (telecom) this.telecom = null;
+    if (availableTime) this.availableTime = null;
+    if (notAvailable) this.notAvailable = null;
+    if (availabilityExceptions) this.availabilityExceptions = null;
+    if (endpoint) this.endpoint = null;
   }
 
   @override
-  PractitionerRole clone() => throw UnimplementedError();
+  PractitionerRoleBuilder clone() => throw UnimplementedError();
   @override
-  PractitionerRole copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirBoolean? active,
-    Period? period,
-    Reference? practitioner,
-    Reference? organization,
-    List<CodeableConcept>? code,
-    List<CodeableConcept>? specialty,
-    List<Reference>? location,
-    List<Reference>? healthcareService,
-    List<ContactPoint>? telecom,
-    List<PractitionerRoleAvailableTime>? availableTime,
-    List<PractitionerRoleNotAvailable>? notAvailable,
-    FhirString? availabilityExceptions,
-    List<Reference>? endpoint,
+  PractitionerRoleBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirBooleanBuilder? active,
+    PeriodBuilder? period,
+    ReferenceBuilder? practitioner,
+    ReferenceBuilder? organization,
+    List<CodeableConceptBuilder>? code,
+    List<CodeableConceptBuilder>? specialty,
+    List<ReferenceBuilder>? location,
+    List<ReferenceBuilder>? healthcareService,
+    List<ContactPointBuilder>? telecom,
+    List<PractitionerRoleAvailableTimeBuilder>? availableTime,
+    List<PractitionerRoleNotAvailableBuilder>? notAvailable,
+    FhirStringBuilder? availabilityExceptions,
+    List<ReferenceBuilder>? endpoint,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return PractitionerRole(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = PractitionerRoleBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      practitioner: practitioner?.copyWith(
-            objectPath: '$newObjectPath.practitioner',
-          ) ??
-          this.practitioner,
-      organization: organization?.copyWith(
-            objectPath: '$newObjectPath.organization',
-          ) ??
-          this.organization,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      specialty: specialty
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialty',
-                ),
-              )
-              .toList() ??
-          this.specialty,
-      location: location
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.location',
-                ),
-              )
-              .toList() ??
-          this.location,
-      healthcareService: healthcareService
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.healthcareService',
-                ),
-              )
-              .toList() ??
-          this.healthcareService,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      availableTime: availableTime
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.availableTime',
-                ),
-              )
-              .toList() ??
-          this.availableTime,
-      notAvailable: notAvailable
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.notAvailable',
-                ),
-              )
-              .toList() ??
-          this.notAvailable,
-      availabilityExceptions: availabilityExceptions?.copyWith(
-            objectPath: '$newObjectPath.availabilityExceptions',
-          ) ??
-          this.availabilityExceptions,
-      endpoint: endpoint
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endpoint',
-                ),
-              )
-              .toList() ??
-          this.endpoint,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      active: active ?? this.active,
+      period: period ?? this.period,
+      practitioner: practitioner ?? this.practitioner,
+      organization: organization ?? this.organization,
+      code: code ?? this.code,
+      specialty: specialty ?? this.specialty,
+      location: location ?? this.location,
+      healthcareService: healthcareService ?? this.healthcareService,
+      telecom: telecom ?? this.telecom,
+      availableTime: availableTime ?? this.availableTime,
+      notAvailable: notAvailable ?? this.notAvailable,
+      availabilityExceptions:
+          availabilityExceptions ?? this.availabilityExceptions,
+      endpoint: endpoint ?? this.endpoint,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PractitionerRole) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PractitionerRoleBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1324,25 +1150,25 @@ class PractitionerRole extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1372,43 +1198,43 @@ class PractitionerRole extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       specialty,
       o.specialty,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       location,
       o.location,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       healthcareService,
       o.healthcareService,
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {
       return false;
     }
-    if (!listEquals<PractitionerRoleAvailableTime>(
+    if (!listEquals<PractitionerRoleAvailableTimeBuilder>(
       availableTime,
       o.availableTime,
     )) {
       return false;
     }
-    if (!listEquals<PractitionerRoleNotAvailable>(
+    if (!listEquals<PractitionerRoleNotAvailableBuilder>(
       notAvailable,
       o.notAvailable,
     )) {
@@ -1420,7 +1246,7 @@ class PractitionerRole extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       endpoint,
       o.endpoint,
     )) {
@@ -1430,14 +1256,14 @@ class PractitionerRole extends DomainResource {
   }
 }
 
-/// [PractitionerRoleAvailableTime]
+/// [PractitionerRoleAvailableTimeBuilder]
 /// A collection of times the practitioner is available or performing this
 /// role at the location and/or healthcareservice.
-class PractitionerRoleAvailableTime extends BackboneElement {
+class PractitionerRoleAvailableTimeBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PractitionerRoleAvailableTime]
+  /// [PractitionerRoleAvailableTimeBuilder]
 
-  const PractitionerRoleAvailableTime({
+  PractitionerRoleAvailableTimeBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1451,26 +1277,25 @@ class PractitionerRoleAvailableTime extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PractitionerRoleAvailableTime.empty() =>
-      const PractitionerRoleAvailableTime();
+  /// For Builder classes, no fields are required
+  factory PractitionerRoleAvailableTimeBuilder.empty() =>
+      PractitionerRoleAvailableTimeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PractitionerRoleAvailableTime.fromJson(
+  factory PractitionerRoleAvailableTimeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PractitionerRole.availableTime';
-    return PractitionerRoleAvailableTime(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PractitionerRoleAvailableTimeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1479,8 +1304,8 @@ class PractitionerRoleAvailableTime extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1488,49 +1313,49 @@ class PractitionerRoleAvailableTime extends BackboneElement {
             ),
           )
           .toList(),
-      daysOfWeek: JsonParser.parsePrimitiveList<DaysOfWeek>(
+      daysOfWeek: JsonParser.parsePrimitiveList<DaysOfWeekBuilder>(
         json,
         'daysOfWeek',
-        DaysOfWeek.fromJson,
+        DaysOfWeekBuilder.fromJson,
         '$objectPath.daysOfWeek',
       ),
-      allDay: JsonParser.parsePrimitive<FhirBoolean>(
+      allDay: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'allDay',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.allDay',
       ),
-      availableStartTime: JsonParser.parsePrimitive<FhirTime>(
+      availableStartTime: JsonParser.parsePrimitive<FhirTimeBuilder>(
         json,
         'availableStartTime',
-        FhirTime.fromJson,
+        FhirTimeBuilder.fromJson,
         '$objectPath.availableStartTime',
       ),
-      availableEndTime: JsonParser.parsePrimitive<FhirTime>(
+      availableEndTime: JsonParser.parsePrimitive<FhirTimeBuilder>(
         json,
         'availableEndTime',
-        FhirTime.fromJson,
+        FhirTimeBuilder.fromJson,
         '$objectPath.availableEndTime',
       ),
     );
   }
 
-  /// Deserialize [PractitionerRoleAvailableTime]
+  /// Deserialize [PractitionerRoleAvailableTimeBuilder]
   /// from a [String] or [YamlMap] object
-  factory PractitionerRoleAvailableTime.fromYaml(
+  factory PractitionerRoleAvailableTimeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PractitionerRoleAvailableTime.fromJson(
+      return PractitionerRoleAvailableTimeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PractitionerRoleAvailableTime.fromJson(
+      return PractitionerRoleAvailableTimeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PractitionerRoleAvailableTime '
+        'PractitionerRoleAvailableTimeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1538,16 +1363,16 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PractitionerRoleAvailableTime]
+  /// [PractitionerRoleAvailableTimeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PractitionerRoleAvailableTime.fromJsonString(
+  factory PractitionerRoleAvailableTimeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PractitionerRoleAvailableTime.fromJson(json);
+      return PractitionerRoleAvailableTimeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1560,38 +1385,38 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
   /// end Times.
-  final List<DaysOfWeek>? daysOfWeek;
+  List<DaysOfWeekBuilder>? daysOfWeek;
 
   /// [allDay]
   /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
-  final FhirBoolean? allDay;
+  FhirBooleanBuilder? allDay;
 
   /// [availableStartTime]
   /// The opening time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
-  final FhirTime? availableStartTime;
+  FhirTimeBuilder? availableStartTime;
 
   /// [availableEndTime]
   /// The closing time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
-  final FhirTime? availableEndTime;
+  FhirTimeBuilder? availableEndTime;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1600,39 +1425,18 @@ class PractitionerRoleAvailableTime extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'daysOfWeek',
-      daysOfWeek,
-    );
-    addField(
-      'allDay',
-      allDay,
-    );
-    addField(
-      'availableStartTime',
-      availableStartTime,
-    );
-    addField(
-      'availableEndTime',
-      availableEndTime,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('daysOfWeek', daysOfWeek);
+    addField('allDay', allDay);
+    addField('availableStartTime', availableStartTime);
+    addField('availableEndTime', availableEndTime);
     return json;
   }
 
@@ -1653,11 +1457,11 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1697,7 +1501,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1706,87 +1510,90 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'daysOfWeek':
         {
-          if (child is List<DaysOfWeek>) {
-            // Add all elements from passed list
-            final newList = [...?daysOfWeek, ...child];
-            return copyWith(daysOfWeek: newList);
-          } else if (child is DaysOfWeek) {
+          if (child is List<DaysOfWeekBuilder>) {
+            // Replace or create new list
+            daysOfWeek = child;
+            return;
+          } else if (child is DaysOfWeekBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?daysOfWeek, child];
-            return copyWith(daysOfWeek: newList);
+            daysOfWeek = [...(daysOfWeek ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'allDay':
         {
-          if (child is FhirBoolean) {
-            return copyWith(allDay: child);
+          if (child is FhirBooleanBuilder) {
+            allDay = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'availableStartTime':
         {
-          if (child is FhirTime) {
-            return copyWith(availableStartTime: child);
+          if (child is FhirTimeBuilder) {
+            availableStartTime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'availableEndTime':
         {
-          if (child is FhirTime) {
-            return copyWith(availableEndTime: child);
+          if (child is FhirTimeBuilder) {
+            availableEndTime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1802,74 +1609,63 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'daysOfWeek':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'allDay':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'availableStartTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'availableEndTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PractitionerRoleAvailableTime]
+  /// Creates a new [PractitionerRoleAvailableTimeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PractitionerRoleAvailableTime createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'daysOfWeek':
         {
-          return copyWith(
-            daysOfWeek: <DaysOfWeek>[],
-          );
+          daysOfWeek = <DaysOfWeekBuilder>[];
+          return;
         }
       case 'allDay':
         {
-          return copyWith(
-            allDay: FhirBoolean.empty(),
-          );
+          allDay = FhirBooleanBuilder.empty();
+          return;
         }
       case 'availableStartTime':
         {
-          return copyWith(
-            availableStartTime: FhirTime.empty(),
-          );
+          availableStartTime = FhirTimeBuilder.empty();
+          return;
         }
       case 'availableEndTime':
         {
-          return copyWith(
-            availableEndTime: FhirTime.empty(),
-          );
+          availableEndTime = FhirTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1878,7 +1674,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PractitionerRoleAvailableTime clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1887,28 +1683,26 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     bool availableStartTime = false,
     bool availableEndTime = false,
   }) {
-    return PractitionerRoleAvailableTime(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      daysOfWeek: daysOfWeek ? null : this.daysOfWeek,
-      allDay: allDay ? null : this.allDay,
-      availableStartTime: availableStartTime ? null : this.availableStartTime,
-      availableEndTime: availableEndTime ? null : this.availableEndTime,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (daysOfWeek) this.daysOfWeek = null;
+    if (allDay) this.allDay = null;
+    if (availableStartTime) this.availableStartTime = null;
+    if (availableEndTime) this.availableEndTime = null;
   }
 
   @override
-  PractitionerRoleAvailableTime clone() => throw UnimplementedError();
+  PractitionerRoleAvailableTimeBuilder clone() => throw UnimplementedError();
   @override
-  PractitionerRoleAvailableTime copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<DaysOfWeek>? daysOfWeek,
-    FhirBoolean? allDay,
-    FhirTime? availableStartTime,
-    FhirTime? availableEndTime,
+  PractitionerRoleAvailableTimeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<DaysOfWeekBuilder>? daysOfWeek,
+    FhirBooleanBuilder? allDay,
+    FhirTimeBuilder? availableStartTime,
+    FhirTimeBuilder? availableEndTime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1916,54 +1710,38 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PractitionerRoleAvailableTime(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      daysOfWeek: daysOfWeek
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.daysOfWeek',
-                ),
-              )
-              .toList() ??
-          this.daysOfWeek,
-      allDay: allDay?.copyWith(
-            objectPath: '$newObjectPath.allDay',
-          ) ??
-          this.allDay,
-      availableStartTime: availableStartTime?.copyWith(
-            objectPath: '$newObjectPath.availableStartTime',
-          ) ??
-          this.availableStartTime,
-      availableEndTime: availableEndTime?.copyWith(
-            objectPath: '$newObjectPath.availableEndTime',
-          ) ??
-          this.availableEndTime,
+    final newResult = PractitionerRoleAvailableTimeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      daysOfWeek: daysOfWeek ?? this.daysOfWeek,
+      allDay: allDay ?? this.allDay,
+      availableStartTime: availableStartTime ?? this.availableStartTime,
+      availableEndTime: availableEndTime ?? this.availableEndTime,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PractitionerRoleAvailableTime) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PractitionerRoleAvailableTimeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1974,19 +1752,19 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<DaysOfWeek>(
+    if (!listEquals<DaysOfWeekBuilder>(
       daysOfWeek,
       o.daysOfWeek,
     )) {
@@ -2014,18 +1792,18 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   }
 }
 
-/// [PractitionerRoleNotAvailable]
+/// [PractitionerRoleNotAvailableBuilder]
 /// The practitioner is not available or performing this role during this
 /// period of time due to the provided reason.
-class PractitionerRoleNotAvailable extends BackboneElement {
+class PractitionerRoleNotAvailableBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PractitionerRoleNotAvailable]
+  /// [PractitionerRoleNotAvailableBuilder]
 
-  const PractitionerRoleNotAvailable({
+  PractitionerRoleNotAvailableBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.description,
+    this.description,
     this.during,
     super.disallowExtensions,
   }) : super(
@@ -2033,27 +1811,25 @@ class PractitionerRoleNotAvailable extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PractitionerRoleNotAvailable.empty() => PractitionerRoleNotAvailable(
-        description: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory PractitionerRoleNotAvailableBuilder.empty() =>
+      PractitionerRoleNotAvailableBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PractitionerRoleNotAvailable.fromJson(
+  factory PractitionerRoleNotAvailableBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PractitionerRole.notAvailable';
-    return PractitionerRoleNotAvailable(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PractitionerRoleNotAvailableBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2062,8 +1838,8 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2071,37 +1847,37 @@ class PractitionerRoleNotAvailable extends BackboneElement {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
-      )!,
-      during: JsonParser.parseObject<Period>(
+      ),
+      during: JsonParser.parseObject<PeriodBuilder>(
         json,
         'during',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.during',
       ),
     );
   }
 
-  /// Deserialize [PractitionerRoleNotAvailable]
+  /// Deserialize [PractitionerRoleNotAvailableBuilder]
   /// from a [String] or [YamlMap] object
-  factory PractitionerRoleNotAvailable.fromYaml(
+  factory PractitionerRoleNotAvailableBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PractitionerRoleNotAvailable.fromJson(
+      return PractitionerRoleNotAvailableBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PractitionerRoleNotAvailable.fromJson(
+      return PractitionerRoleNotAvailableBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PractitionerRoleNotAvailable '
+        'PractitionerRoleNotAvailableBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2109,16 +1885,16 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PractitionerRoleNotAvailable]
+  /// [PractitionerRoleNotAvailableBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PractitionerRoleNotAvailable.fromJsonString(
+  factory PractitionerRoleNotAvailableBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PractitionerRoleNotAvailable.fromJson(json);
+      return PractitionerRoleNotAvailableBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2131,28 +1907,28 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// [description]
   /// The reason that can be presented to the user as to why this time is not
   /// available.
-  final FhirString description;
+  FhirStringBuilder? description;
 
   /// [during]
   /// Service is not available (seasonally or for a public holiday) from this
   /// date.
-  final Period? during;
+  PeriodBuilder? during;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2161,31 +1937,16 @@ class PractitionerRoleNotAvailable extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'during',
-      during,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('description', description);
+    addField('during', during);
     return json;
   }
 
@@ -2204,11 +1965,11 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2223,7 +1984,9 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'description':
-        fields.add(description);
+        if (description != null) {
+          fields.add(description!);
+        }
       case 'during':
         if (during != null) {
           fields.add(during!);
@@ -2238,7 +2001,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2247,65 +2010,67 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'during':
         {
-          if (child is Period) {
-            return copyWith(during: child);
+          if (child is PeriodBuilder) {
+            during = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2321,58 +2086,49 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'during':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PractitionerRoleNotAvailable]
+  /// Creates a new [PractitionerRoleNotAvailableBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PractitionerRoleNotAvailable createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'during':
         {
-          return copyWith(
-            during: Period.empty(),
-          );
+          during = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2381,30 +2137,29 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PractitionerRoleNotAvailable clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool description = false,
     bool during = false,
   }) {
-    return PractitionerRoleNotAvailable(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      description: description,
-      during: during ? null : this.during,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (description) this.description = null;
+    if (during) this.during = null;
   }
 
   @override
-  PractitionerRoleNotAvailable clone() => throw UnimplementedError();
+  PractitionerRoleNotAvailableBuilder clone() => throw UnimplementedError();
   @override
-  PractitionerRoleNotAvailable copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? description,
-    Period? during,
+  PractitionerRoleNotAvailableBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? description,
+    PeriodBuilder? during,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2412,42 +2167,36 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PractitionerRoleNotAvailable(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      during: during?.copyWith(
-            objectPath: '$newObjectPath.during',
-          ) ??
-          this.during,
+    final newResult = PractitionerRoleNotAvailableBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      description: description ?? this.description,
+      during: during ?? this.during,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PractitionerRoleNotAvailable) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PractitionerRoleNotAvailableBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2458,13 +2207,13 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

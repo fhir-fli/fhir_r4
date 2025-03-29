@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [OperationOutcome]
+/// [OperationOutcomeBuilder]
 /// A collection of error, warning, or information messages that result
 /// from a system action.
-class OperationOutcome extends DomainResource {
+class OperationOutcomeBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [OperationOutcome]
+  /// [OperationOutcomeBuilder]
 
-  const OperationOutcome({
+  OperationOutcomeBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -18,58 +20,55 @@ class OperationOutcome extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.issue,
+    this.issue,
   }) : super(
           objectPath: 'OperationOutcome',
           resourceType: R4ResourceType.OperationOutcome,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationOutcome.empty() => const OperationOutcome(
-        issue: <OperationOutcomeIssue>[],
-      );
+  /// For Builder classes, no fields are required
+  factory OperationOutcomeBuilder.empty() => OperationOutcomeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationOutcome.fromJson(
+  factory OperationOutcomeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'OperationOutcome';
-    return OperationOutcome(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return OperationOutcomeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -78,8 +77,8 @@ class OperationOutcome extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -88,8 +87,8 @@ class OperationOutcome extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -97,9 +96,9 @@ class OperationOutcome extends DomainResource {
             ),
           )
           .toList(),
-      issue: (json['issue'] as List<dynamic>)
-          .map<OperationOutcomeIssue>(
-            (v) => OperationOutcomeIssue.fromJson(
+      issue: (json['issue'] as List<dynamic>?)
+          ?.map<OperationOutcomeIssueBuilder>(
+            (v) => OperationOutcomeIssueBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.issue',
@@ -110,22 +109,22 @@ class OperationOutcome extends DomainResource {
     );
   }
 
-  /// Deserialize [OperationOutcome]
+  /// Deserialize [OperationOutcomeBuilder]
   /// from a [String] or [YamlMap] object
-  factory OperationOutcome.fromYaml(
+  factory OperationOutcomeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return OperationOutcome.fromJson(
+      return OperationOutcomeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return OperationOutcome.fromJson(
+      return OperationOutcomeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'OperationOutcome '
+        'OperationOutcomeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -133,16 +132,16 @@ class OperationOutcome extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [OperationOutcome]
+  /// [OperationOutcomeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory OperationOutcome.fromJsonString(
+  factory OperationOutcomeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return OperationOutcome.fromJson(json);
+      return OperationOutcomeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -155,23 +154,23 @@ class OperationOutcome extends DomainResource {
   /// [issue]
   /// An error, warning, or information message that results from a system
   /// action.
-  final List<OperationOutcomeIssue> issue;
+  List<OperationOutcomeIssueBuilder>? issue;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -180,48 +179,21 @@ class OperationOutcome extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'issue',
-      issue,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('issue', issue);
     return json;
   }
 
@@ -244,11 +216,11 @@ class OperationOutcome extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -283,7 +255,9 @@ class OperationOutcome extends DomainResource {
           fields.addAll(modifierExtension!);
         }
       case 'issue':
-        fields.addAll(issue);
+        if (issue != null) {
+          fields.addAll(issue!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -294,7 +268,7 @@ class OperationOutcome extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -303,109 +277,113 @@ class OperationOutcome extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issue':
         {
-          if (child is List<OperationOutcomeIssue>) {
-            // Add all elements from passed list
-            final newList = [...issue, ...child];
-            return copyWith(issue: newList);
-          } else if (child is OperationOutcomeIssue) {
+          if (child is List<OperationOutcomeIssueBuilder>) {
+            // Replace or create new list
+            issue = child;
+            return;
+          } else if (child is OperationOutcomeIssueBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...issue, child];
-            return copyWith(issue: newList);
+            issue = [...(issue ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -421,90 +399,77 @@ class OperationOutcome extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'issue':
-        return ['OperationOutcomeIssue'];
+        return ['OperationOutcomeIssueBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [OperationOutcome]
+  /// Creates a new [OperationOutcomeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  OperationOutcome createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'issue':
         {
-          return copyWith(
-            issue: <OperationOutcomeIssue>[],
-          );
+          issue = <OperationOutcomeIssueBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -513,7 +478,7 @@ class OperationOutcome extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  OperationOutcome clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -522,92 +487,72 @@ class OperationOutcome extends DomainResource {
     bool contained = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool issue = false,
   }) {
-    return OperationOutcome(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      issue: issue,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (issue) this.issue = null;
   }
 
   @override
-  OperationOutcome clone() => throw UnimplementedError();
+  OperationOutcomeBuilder clone() => throw UnimplementedError();
   @override
-  OperationOutcome copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<OperationOutcomeIssue>? issue,
+  OperationOutcomeBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<OperationOutcomeIssueBuilder>? issue,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return OperationOutcome(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = OperationOutcomeBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      issue: issue
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.issue',
-                ),
-              )
-              .toList() ??
-          this.issue,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      issue: issue ?? this.issue,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! OperationOutcome) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! OperationOutcomeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -642,25 +587,25 @@ class OperationOutcome extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<OperationOutcomeIssue>(
+    if (!listEquals<OperationOutcomeIssueBuilder>(
       issue,
       o.issue,
     )) {
@@ -670,19 +615,19 @@ class OperationOutcome extends DomainResource {
   }
 }
 
-/// [OperationOutcomeIssue]
+/// [OperationOutcomeIssueBuilder]
 /// An error, warning, or information message that results from a system
 /// action.
-class OperationOutcomeIssue extends BackboneElement {
+class OperationOutcomeIssueBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [OperationOutcomeIssue]
+  /// [OperationOutcomeIssueBuilder]
 
-  const OperationOutcomeIssue({
+  OperationOutcomeIssueBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.severity,
-    required this.code,
+    this.severity,
+    this.code,
     this.details,
     this.diagnostics,
     this.location,
@@ -693,28 +638,25 @@ class OperationOutcomeIssue extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OperationOutcomeIssue.empty() => OperationOutcomeIssue(
-        severity: IssueSeverity.values.first,
-        code: IssueType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory OperationOutcomeIssueBuilder.empty() =>
+      OperationOutcomeIssueBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationOutcomeIssue.fromJson(
+  factory OperationOutcomeIssueBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'OperationOutcome.issue';
-    return OperationOutcomeIssue(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return OperationOutcomeIssueBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -723,8 +665,8 @@ class OperationOutcomeIssue extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -732,61 +674,61 @@ class OperationOutcomeIssue extends BackboneElement {
             ),
           )
           .toList(),
-      severity: JsonParser.parsePrimitive<IssueSeverity>(
+      severity: JsonParser.parsePrimitive<IssueSeverityBuilder>(
         json,
         'severity',
-        IssueSeverity.fromJson,
+        IssueSeverityBuilder.fromJson,
         '$objectPath.severity',
-      )!,
-      code: JsonParser.parsePrimitive<IssueType>(
+      ),
+      code: JsonParser.parsePrimitive<IssueTypeBuilder>(
         json,
         'code',
-        IssueType.fromJson,
+        IssueTypeBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      details: JsonParser.parseObject<CodeableConcept>(
+      ),
+      details: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'details',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.details',
       ),
-      diagnostics: JsonParser.parsePrimitive<FhirString>(
+      diagnostics: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'diagnostics',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.diagnostics',
       ),
-      location: JsonParser.parsePrimitiveList<FhirString>(
+      location: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'location',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.location',
       ),
-      expression: JsonParser.parsePrimitiveList<FhirString>(
+      expression: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'expression',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.expression',
       ),
     );
   }
 
-  /// Deserialize [OperationOutcomeIssue]
+  /// Deserialize [OperationOutcomeIssueBuilder]
   /// from a [String] or [YamlMap] object
-  factory OperationOutcomeIssue.fromYaml(
+  factory OperationOutcomeIssueBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return OperationOutcomeIssue.fromJson(
+      return OperationOutcomeIssueBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return OperationOutcomeIssue.fromJson(
+      return OperationOutcomeIssueBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'OperationOutcomeIssue '
+        'OperationOutcomeIssueBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -794,16 +736,16 @@ class OperationOutcomeIssue extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [OperationOutcomeIssue]
+  /// [OperationOutcomeIssueBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory OperationOutcomeIssue.fromJsonString(
+  factory OperationOutcomeIssueBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return OperationOutcomeIssue.fromJson(json);
+      return OperationOutcomeIssueBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -816,23 +758,23 @@ class OperationOutcomeIssue extends BackboneElement {
   /// [severity]
   /// Indicates whether the issue indicates a variation from successful
   /// processing.
-  final IssueSeverity severity;
+  IssueSeverityBuilder? severity;
 
   /// [code]
   /// Describes the type of the issue. The system that creates an
   /// OperationOutcome SHALL choose the most applicable code from the
   /// IssueType value set, and may additional provide its own code for the
   /// error in the details element.
-  final IssueType code;
+  IssueTypeBuilder? code;
 
   /// [details]
   /// Additional details about the error. This may be a text description of
   /// the error or a system code that identifies the error.
-  final CodeableConcept? details;
+  CodeableConceptBuilder? details;
 
   /// [diagnostics]
   /// Additional diagnostic information about the issue.
-  final FhirString? diagnostics;
+  FhirStringBuilder? diagnostics;
 
   /// [location]
   /// This element is deprecated because it is XML specific. It is replaced
@@ -843,30 +785,30 @@ class OperationOutcomeIssue extends BackboneElement {
   /// names, repetition indicators and the default child accessor that
   /// identifies one of the elements in the resource that caused this issue
   /// to be raised. For HTTP errors, will be "http." + the parameter name.
-  final List<FhirString>? location;
+  List<FhirStringBuilder>? location;
 
   /// [expression]
   /// A [simple subset of FHIRPath](fhirpath.html#simple) limited to element
   /// names, repetition indicators and the default child accessor that
   /// identifies one of the elements in the resource that caused this issue
   /// to be raised.
-  final List<FhirString>? expression;
+  List<FhirStringBuilder>? expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -875,47 +817,20 @@ class OperationOutcomeIssue extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'severity',
-      severity,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'details',
-      details,
-    );
-    addField(
-      'diagnostics',
-      diagnostics,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'expression',
-      expression,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('severity', severity);
+    addField('code', code);
+    addField('details', details);
+    addField('diagnostics', diagnostics);
+    addField('location', location);
+    addField('expression', expression);
     return json;
   }
 
@@ -938,11 +853,11 @@ class OperationOutcomeIssue extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -957,9 +872,13 @@ class OperationOutcomeIssue extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'severity':
-        fields.add(severity);
+        if (severity != null) {
+          fields.add(severity!);
+        }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'details':
         if (details != null) {
           fields.add(details!);
@@ -986,7 +905,7 @@ class OperationOutcomeIssue extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -995,109 +914,113 @@ class OperationOutcomeIssue extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
         {
-          if (child is IssueSeverity) {
-            return copyWith(severity: child);
+          if (child is IssueSeverityBuilder) {
+            severity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is IssueType) {
-            return copyWith(code: child);
+          if (child is IssueTypeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'details':
         {
-          if (child is CodeableConcept) {
-            return copyWith(details: child);
+          if (child is CodeableConceptBuilder) {
+            details = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'diagnostics':
         {
-          if (child is FhirString) {
-            return copyWith(diagnostics: child);
+          if (child is FhirStringBuilder) {
+            diagnostics = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?location, ...child];
-            return copyWith(location: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            location = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
-            return copyWith(location: newList);
+            location = [...(location ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?expression, ...child];
-            return copyWith(expression: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            expression = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?expression, child];
-            return copyWith(expression: newList);
+            expression = [...(expression ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1113,90 +1036,77 @@ class OperationOutcomeIssue extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'severity':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'details':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'diagnostics':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'location':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'expression':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [OperationOutcomeIssue]
+  /// Creates a new [OperationOutcomeIssueBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  OperationOutcomeIssue createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'severity':
         {
-          return copyWith(
-            severity: IssueSeverity.empty(),
-          );
+          severity = IssueSeverityBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: IssueType.empty(),
-          );
+          code = IssueTypeBuilder.empty();
+          return;
         }
       case 'details':
         {
-          return copyWith(
-            details: CodeableConcept.empty(),
-          );
+          details = CodeableConceptBuilder.empty();
+          return;
         }
       case 'diagnostics':
         {
-          return copyWith(
-            diagnostics: FhirString.empty(),
-          );
+          diagnostics = FhirStringBuilder.empty();
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: <FhirString>[],
-          );
+          location = <FhirStringBuilder>[];
+          return;
         }
       case 'expression':
         {
-          return copyWith(
-            expression: <FhirString>[],
-          );
+          expression = <FhirStringBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1205,41 +1115,41 @@ class OperationOutcomeIssue extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  OperationOutcomeIssue clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool severity = false,
+    bool code = false,
     bool details = false,
     bool diagnostics = false,
     bool location = false,
     bool expression = false,
   }) {
-    return OperationOutcomeIssue(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      severity: severity,
-      code: code,
-      details: details ? null : this.details,
-      diagnostics: diagnostics ? null : this.diagnostics,
-      location: location ? null : this.location,
-      expression: expression ? null : this.expression,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (severity) this.severity = null;
+    if (code) this.code = null;
+    if (details) this.details = null;
+    if (diagnostics) this.diagnostics = null;
+    if (location) this.location = null;
+    if (expression) this.expression = null;
   }
 
   @override
-  OperationOutcomeIssue clone() => throw UnimplementedError();
+  OperationOutcomeIssueBuilder clone() => throw UnimplementedError();
   @override
-  OperationOutcomeIssue copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    IssueSeverity? severity,
-    IssueType? code,
-    CodeableConcept? details,
-    FhirString? diagnostics,
-    List<FhirString>? location,
-    List<FhirString>? expression,
+  OperationOutcomeIssueBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IssueSeverityBuilder? severity,
+    IssueTypeBuilder? code,
+    CodeableConceptBuilder? details,
+    FhirStringBuilder? diagnostics,
+    List<FhirStringBuilder>? location,
+    List<FhirStringBuilder>? expression,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1247,66 +1157,40 @@ class OperationOutcomeIssue extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return OperationOutcomeIssue(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      severity: severity?.copyWith(
-            objectPath: '$newObjectPath.severity',
-          ) ??
-          this.severity,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      details: details?.copyWith(
-            objectPath: '$newObjectPath.details',
-          ) ??
-          this.details,
-      diagnostics: diagnostics?.copyWith(
-            objectPath: '$newObjectPath.diagnostics',
-          ) ??
-          this.diagnostics,
-      location: location
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.location',
-                ),
-              )
-              .toList() ??
-          this.location,
-      expression: expression
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.expression',
-                ),
-              )
-              .toList() ??
-          this.expression,
+    final newResult = OperationOutcomeIssueBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      severity: severity ?? this.severity,
+      code: code ?? this.code,
+      details: details ?? this.details,
+      diagnostics: diagnostics ?? this.diagnostics,
+      location: location ?? this.location,
+      expression: expression ?? this.expression,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! OperationOutcomeIssue) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! OperationOutcomeIssueBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1317,13 +1201,13 @@ class OperationOutcomeIssue extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1353,13 +1237,13 @@ class OperationOutcomeIssue extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       location,
       o.location,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       expression,
       o.expression,
     )) {

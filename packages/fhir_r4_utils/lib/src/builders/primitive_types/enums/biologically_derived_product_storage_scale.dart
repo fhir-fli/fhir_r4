@@ -2,9 +2,10 @@
 part of '../primitive_types.dart';
 
 /// BiologicallyDerived Product Storage Scale.
-class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
+class BiologicallyDerivedProductStorageScaleBuilder
+    extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  BiologicallyDerivedProductStorageScale._({
+  BiologicallyDerivedProductStorageScaleBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +19,19 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory BiologicallyDerivedProductStorageScale(
+  factory BiologicallyDerivedProductStorageScaleBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return BiologicallyDerivedProductStorageScale._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return BiologicallyDerivedProductStorageScaleBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,63 +44,67 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [BiologicallyDerivedProductStorageScale] with element only
-  factory BiologicallyDerivedProductStorageScale.empty() =>
-      BiologicallyDerivedProductStorageScale._(validatedValue: '');
+  /// Create empty [BiologicallyDerivedProductStorageScaleBuilder] with element only
+  factory BiologicallyDerivedProductStorageScaleBuilder.empty() =>
+      BiologicallyDerivedProductStorageScaleBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
-  factory BiologicallyDerivedProductStorageScale.fromJson(
-      Map<String, dynamic> json,) {
+  /// Factory constructor to create [BiologicallyDerivedProductStorageScaleBuilder] from JSON.
+  factory BiologicallyDerivedProductStorageScaleBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BiologicallyDerivedProductStorageScale.elementOnly
+      return BiologicallyDerivedProductStorageScaleBuilder.elementOnly
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.',
+        'BiologicallyDerivedProductStorageScaleBuilder cannot be constructed from JSON.',
       );
     }
-    return BiologicallyDerivedProductStorageScale._(
+    return BiologicallyDerivedProductStorageScaleBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// farenheit
-  static final BiologicallyDerivedProductStorageScale farenheit =
-      BiologicallyDerivedProductStorageScale._(
+  static BiologicallyDerivedProductStorageScaleBuilder farenheit =
+      BiologicallyDerivedProductStorageScaleBuilder._(
     validatedValue: 'farenheit',
-    system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fahrenheit'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Fahrenheit'.toFhirStringBuilder,
   );
 
   /// celsius
-  static final BiologicallyDerivedProductStorageScale celsius =
-      BiologicallyDerivedProductStorageScale._(
+  static BiologicallyDerivedProductStorageScaleBuilder celsius =
+      BiologicallyDerivedProductStorageScaleBuilder._(
     validatedValue: 'celsius',
-    system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Celsius'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Celsius'.toFhirStringBuilder,
   );
 
   /// kelvin
-  static final BiologicallyDerivedProductStorageScale kelvin =
-      BiologicallyDerivedProductStorageScale._(
+  static BiologicallyDerivedProductStorageScaleBuilder kelvin =
+      BiologicallyDerivedProductStorageScaleBuilder._(
     validatedValue: 'kelvin',
-    system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Kelvin'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Kelvin'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final BiologicallyDerivedProductStorageScale elementOnly =
-      BiologicallyDerivedProductStorageScale._(validatedValue: '');
+  static BiologicallyDerivedProductStorageScaleBuilder elementOnly =
+      BiologicallyDerivedProductStorageScaleBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<BiologicallyDerivedProductStorageScale> values = [
+  static List<BiologicallyDerivedProductStorageScaleBuilder> values = [
     farenheit,
     celsius,
     kelvin,
@@ -107,16 +112,17 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  BiologicallyDerivedProductStorageScale clone() =>
-      BiologicallyDerivedProductStorageScale._(
+  BiologicallyDerivedProductStorageScaleBuilder clone() =>
+      BiologicallyDerivedProductStorageScaleBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  BiologicallyDerivedProductStorageScale withElement(Element? newElement) {
-    return BiologicallyDerivedProductStorageScale._(
-        validatedValue: value, element: newElement,);
+  BiologicallyDerivedProductStorageScaleBuilder withElement(
+      ElementBuilder? newElement) {
+    return BiologicallyDerivedProductStorageScaleBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -132,11 +138,11 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  BiologicallyDerivedProductStorageScale copyWith({
+  BiologicallyDerivedProductStorageScaleBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -147,7 +153,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return BiologicallyDerivedProductStorageScale._(
+    return BiologicallyDerivedProductStorageScaleBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -157,7 +163,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

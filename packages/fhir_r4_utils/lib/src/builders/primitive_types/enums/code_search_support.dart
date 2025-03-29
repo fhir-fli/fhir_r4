@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// The degree to which the server supports the code search parameter on
 /// ValueSet, if it is supported.
-class CodeSearchSupport extends FhirCodeEnum {
+class CodeSearchSupportBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  CodeSearchSupport._({
+  CodeSearchSupportBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class CodeSearchSupport extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory CodeSearchSupport(
+  factory CodeSearchSupportBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return CodeSearchSupport._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return CodeSearchSupportBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,63 +44,66 @@ class CodeSearchSupport extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [CodeSearchSupport] with element only
-  factory CodeSearchSupport.empty() => CodeSearchSupport._(validatedValue: '');
+  /// Create empty [CodeSearchSupportBuilder] with element only
+  factory CodeSearchSupportBuilder.empty() =>
+      CodeSearchSupportBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CodeSearchSupport] from JSON.
-  factory CodeSearchSupport.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CodeSearchSupportBuilder] from JSON.
+  factory CodeSearchSupportBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSearchSupport.elementOnly.withElement(element);
+      return CodeSearchSupportBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CodeSearchSupport cannot be constructed from JSON.',
+        'CodeSearchSupportBuilder cannot be constructed from JSON.',
       );
     }
-    return CodeSearchSupport._(
+    return CodeSearchSupportBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// explicit
-  static final CodeSearchSupport explicit = CodeSearchSupport._(
+  static CodeSearchSupportBuilder explicit = CodeSearchSupportBuilder._(
     validatedValue: 'explicit',
-    system: 'http://hl7.org/fhir/ValueSet/code-search-support'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Explicit Codes'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/code-search-support'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Explicit Codes'.toFhirStringBuilder,
   );
 
   /// all
-  static final CodeSearchSupport all = CodeSearchSupport._(
+  static CodeSearchSupportBuilder all = CodeSearchSupportBuilder._(
     validatedValue: 'all',
-    system: 'http://hl7.org/fhir/ValueSet/code-search-support'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Implicit Codes'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/code-search-support'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Implicit Codes'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final CodeSearchSupport elementOnly =
-      CodeSearchSupport._(validatedValue: '');
+  static CodeSearchSupportBuilder elementOnly =
+      CodeSearchSupportBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<CodeSearchSupport> values = [
+  static List<CodeSearchSupportBuilder> values = [
     explicit,
     all,
   ];
 
   /// Clones the current instance
   @override
-  CodeSearchSupport clone() => CodeSearchSupport._(
+  CodeSearchSupportBuilder clone() => CodeSearchSupportBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  CodeSearchSupport withElement(Element? newElement) {
-    return CodeSearchSupport._(validatedValue: value, element: newElement);
+  CodeSearchSupportBuilder withElement(ElementBuilder? newElement) {
+    return CodeSearchSupportBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,11 +119,11 @@ class CodeSearchSupport extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  CodeSearchSupport copyWith({
+  CodeSearchSupportBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -131,7 +134,7 @@ class CodeSearchSupport extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return CodeSearchSupport._(
+    return CodeSearchSupportBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -141,7 +144,7 @@ class CodeSearchSupport extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

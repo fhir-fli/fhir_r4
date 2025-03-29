@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Consent]
+/// [ConsentBuilder]
 /// A record of a healthcare consumer’s choices, which permits or denies
 /// identified recipient(s) or recipient role(s) to perform one or more
 /// actions within a given policy context, for specific purposes and
 /// periods of time.
-class Consent extends DomainResource {
+class ConsentBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Consent]
+  /// [ConsentBuilder]
 
-  const Consent({
+  ConsentBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,9 +23,9 @@ class Consent extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
-    required this.scope,
-    required this.category,
+    this.status,
+    this.scope,
+    this.category,
     this.patient,
     this.dateTime,
     this.performer,
@@ -39,53 +41,48 @@ class Consent extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Consent.empty() => Consent(
-        status: ConsentState.values.first,
-        scope: CodeableConcept.empty(),
-        category: <CodeableConcept>[],
-      );
+  /// For Builder classes, no fields are required
+  factory ConsentBuilder.empty() => ConsentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Consent.fromJson(
+  factory ConsentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Consent';
-    return Consent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConsentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -94,8 +91,8 @@ class Consent extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -104,8 +101,8 @@ class Consent extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -114,8 +111,8 @@ class Consent extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -123,21 +120,21 @@ class Consent extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<ConsentState>(
+      status: JsonParser.parsePrimitive<ConsentStateBuilder>(
         json,
         'status',
-        ConsentState.fromJson,
+        ConsentStateBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      scope: JsonParser.parseObject<CodeableConcept>(
+      ),
+      scope: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'scope',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.scope',
-      )!,
-      category: (json['category'] as List<dynamic>)
-          .map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+      ),
+      category: (json['category'] as List<dynamic>?)
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -145,21 +142,21 @@ class Consent extends DomainResource {
             ),
           )
           .toList(),
-      patient: JsonParser.parseObject<Reference>(
+      patient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'patient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.patient',
       ),
-      dateTime: JsonParser.parsePrimitive<FhirDateTime>(
+      dateTime: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'dateTime',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.dateTime',
       ),
       performer: (json['performer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performer',
@@ -168,8 +165,8 @@ class Consent extends DomainResource {
           )
           .toList(),
       organization: (json['organization'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.organization',
@@ -177,17 +174,17 @@ class Consent extends DomainResource {
             ),
           )
           .toList(),
-      sourceX: JsonParser.parsePolymorphic<SourceXConsent>(
+      sourceX: JsonParser.parsePolymorphic<SourceXConsentBuilder>(
         json,
         {
-          'sourceAttachment': Attachment.fromJson,
-          'sourceReference': Reference.fromJson,
+          'sourceAttachment': AttachmentBuilder.fromJson,
+          'sourceReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
       policy: (json['policy'] as List<dynamic>?)
-          ?.map<ConsentPolicy>(
-            (v) => ConsentPolicy.fromJson(
+          ?.map<ConsentPolicyBuilder>(
+            (v) => ConsentPolicyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.policy',
@@ -195,15 +192,15 @@ class Consent extends DomainResource {
             ),
           )
           .toList(),
-      policyRule: JsonParser.parseObject<CodeableConcept>(
+      policyRule: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'policyRule',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.policyRule',
       ),
       verification: (json['verification'] as List<dynamic>?)
-          ?.map<ConsentVerification>(
-            (v) => ConsentVerification.fromJson(
+          ?.map<ConsentVerificationBuilder>(
+            (v) => ConsentVerificationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.verification',
@@ -211,31 +208,31 @@ class Consent extends DomainResource {
             ),
           )
           .toList(),
-      provision: JsonParser.parseObject<ConsentProvision>(
+      provision: JsonParser.parseObject<ConsentProvisionBuilder>(
         json,
         'provision',
-        ConsentProvision.fromJson,
+        ConsentProvisionBuilder.fromJson,
         '$objectPath.provision',
       ),
     );
   }
 
-  /// Deserialize [Consent]
+  /// Deserialize [ConsentBuilder]
   /// from a [String] or [YamlMap] object
-  factory Consent.fromYaml(
+  factory ConsentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Consent.fromJson(
+      return ConsentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Consent.fromJson(
+      return ConsentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Consent '
+        'ConsentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -243,16 +240,16 @@ class Consent extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Consent]
+  /// [ConsentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Consent.fromJsonString(
+  factory ConsentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Consent.fromJson(json);
+      return ConsentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -264,29 +261,29 @@ class Consent extends DomainResource {
 
   /// [identifier]
   /// Unique identifier for this copy of the Consent Statement.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// Indicates the current state of this consent.
-  final ConsentState status;
+  ConsentStateBuilder? status;
 
   /// [scope]
   /// A selector of the type of consent being presented: ADR, Privacy,
   /// Treatment, Research. This list is now extensible.
-  final CodeableConcept scope;
+  CodeableConceptBuilder? scope;
 
   /// [category]
   /// A classification of the type of consents found in the statement. This
   /// element supports indexing and retrieval of consent statements.
-  final List<CodeableConcept> category;
+  List<CodeableConceptBuilder>? category;
 
   /// [patient]
   /// The patient/healthcare consumer to whom this consent applies.
-  final Reference? patient;
+  ReferenceBuilder? patient;
 
   /// [dateTime]
   /// When this Consent was issued / created / indexed.
-  final FhirDateTime? dateTime;
+  FhirDateTimeBuilder? dateTime;
 
   /// [performer]
   /// Either the Grantor, which is the entity responsible for granting the
@@ -294,62 +291,62 @@ class Consent extends DomainResource {
   /// entity responsible for complying with the Consent Directive, including
   /// any obligations or limitations on authorizations and enforcement of
   /// prohibitions.
-  final List<Reference>? performer;
+  List<ReferenceBuilder>? performer;
 
   /// [organization]
   /// The organization that manages the consent, and the framework within
   /// which it is executed.
-  final List<Reference>? organization;
+  List<ReferenceBuilder>? organization;
 
   /// [sourceX]
   /// The source on which this consent statement is based. The source might
   /// be a scanned original paper form, or a reference to a consent that
   /// links back to such a source, a reference to a document repository (e.g.
   /// XDS) that stores the original consent document.
-  final SourceXConsent? sourceX;
+  SourceXConsentBuilder? sourceX;
 
-  /// Getter for [sourceAttachment] as a Attachment
-  Attachment? get sourceAttachment => sourceX?.isAs<Attachment>();
+  /// Getter for [sourceAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get sourceAttachment => sourceX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [sourceReference] as a Reference
-  Reference? get sourceReference => sourceX?.isAs<Reference>();
+  /// Getter for [sourceReference] as a ReferenceBuilder
+  ReferenceBuilder? get sourceReference => sourceX?.isAs<ReferenceBuilder>();
 
   /// [policy]
   /// The references to the policies that are included in this consent scope.
   /// Policies may be organizational, but are often defined jurisdictionally,
   /// or in law.
-  final List<ConsentPolicy>? policy;
+  List<ConsentPolicyBuilder>? policy;
 
   /// [policyRule]
   /// A reference to the specific base computable regulation or policy.
-  final CodeableConcept? policyRule;
+  CodeableConceptBuilder? policyRule;
 
   /// [verification]
   /// Whether a treatment instruction (e.g. artificial respiration yes or no)
   /// was verified with the patient, his/her family or another authorized
   /// person.
-  final List<ConsentVerification>? verification;
+  List<ConsentVerificationBuilder>? verification;
 
   /// [provision]
   /// An exception to the base policy of this consent. An exception can be an
   /// addition or removal of access permissions.
-  final ConsentProvision? provision;
+  ConsentProvisionBuilder? provision;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -358,100 +355,37 @@ class Consent extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'scope',
-      scope,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'patient',
-      patient,
-    );
-    addField(
-      'dateTime',
-      dateTime,
-    );
-    addField(
-      'performer',
-      performer,
-    );
-    addField(
-      'organization',
-      organization,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('scope', scope);
+    addField('category', category);
+    addField('patient', patient);
+    addField('dateTime', dateTime);
+    addField('performer', performer);
+    addField('organization', organization);
     if (sourceX != null) {
       final fhirType = sourceX!.fhirType;
-      addField(
-        'source${fhirType.capitalize()}',
-        sourceX,
-      );
+      addField('source${fhirType.capitalize()}', sourceX);
     }
 
-    addField(
-      'policy',
-      policy,
-    );
-    addField(
-      'policyRule',
-      policyRule,
-    );
-    addField(
-      'verification',
-      verification,
-    );
-    addField(
-      'provision',
-      provision,
-    );
+    addField('policy', policy);
+    addField('policyRule', policyRule);
+    addField('verification', verification);
+    addField('provision', provision);
     return json;
   }
 
@@ -486,11 +420,11 @@ class Consent extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -529,11 +463,17 @@ class Consent extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'scope':
-        fields.add(scope);
+        if (scope != null) {
+          fields.add(scope!);
+        }
       case 'category':
-        fields.addAll(category);
+        if (category != null) {
+          fields.addAll(category!);
+        }
       case 'patient':
         if (patient != null) {
           fields.add(patient!);
@@ -551,15 +491,19 @@ class Consent extends DomainResource {
           fields.addAll(organization!);
         }
       case 'source':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceX':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceAttachment':
-        if (sourceX is Attachment) {
+        if (sourceX is AttachmentBuilder) {
           fields.add(sourceX!);
         }
       case 'sourceReference':
-        if (sourceX is Reference) {
+        if (sourceX is ReferenceBuilder) {
           fields.add(sourceX!);
         }
       case 'policy':
@@ -588,7 +532,7 @@ class Consent extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -597,257 +541,272 @@ class Consent extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ConsentState) {
-            return copyWith(status: child);
+          if (child is ConsentStateBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'scope':
         {
-          if (child is CodeableConcept) {
-            return copyWith(scope: child);
+          if (child is CodeableConceptBuilder) {
+            scope = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
         {
-          if (child is Reference) {
-            return copyWith(patient: child);
+          if (child is ReferenceBuilder) {
+            patient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(dateTime: child);
+          if (child is FhirDateTimeBuilder) {
+            dateTime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            performer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
-            return copyWith(performer: newList);
+            performer = [...(performer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?organization, ...child];
-            return copyWith(organization: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            organization = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?organization, child];
-            return copyWith(organization: newList);
+            organization = [...(organization ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceX':
         {
-          if (child is SourceXConsent) {
-            return copyWith(sourceX: child);
+          if (child is SourceXConsentBuilder) {
+            sourceX = child;
+            return;
           } else {
-            if (child is Attachment) {
-              return copyWith(sourceX: child);
+            if (child is AttachmentBuilder) {
+              sourceX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(sourceX: child);
+            if (child is ReferenceBuilder) {
+              sourceX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'sourceAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(sourceX: child);
+          if (child is AttachmentBuilder) {
+            sourceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceReference':
         {
-          if (child is Reference) {
-            return copyWith(sourceX: child);
+          if (child is ReferenceBuilder) {
+            sourceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'policy':
         {
-          if (child is List<ConsentPolicy>) {
-            // Add all elements from passed list
-            final newList = [...?policy, ...child];
-            return copyWith(policy: newList);
-          } else if (child is ConsentPolicy) {
+          if (child is List<ConsentPolicyBuilder>) {
+            // Replace or create new list
+            policy = child;
+            return;
+          } else if (child is ConsentPolicyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?policy, child];
-            return copyWith(policy: newList);
+            policy = [...(policy ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'policyRule':
         {
-          if (child is CodeableConcept) {
-            return copyWith(policyRule: child);
+          if (child is CodeableConceptBuilder) {
+            policyRule = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'verification':
         {
-          if (child is List<ConsentVerification>) {
-            // Add all elements from passed list
-            final newList = [...?verification, ...child];
-            return copyWith(verification: newList);
-          } else if (child is ConsentVerification) {
+          if (child is List<ConsentVerificationBuilder>) {
+            // Replace or create new list
+            verification = child;
+            return;
+          } else if (child is ConsentVerificationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?verification, child];
-            return copyWith(verification: newList);
+            verification = [...(verification ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'provision':
         {
-          if (child is ConsentProvision) {
-            return copyWith(provision: child);
+          if (child is ConsentProvisionBuilder) {
+            provision = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -863,199 +822,173 @@ class Consent extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'scope':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'patient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'dateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'performer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'organization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'source':
       case 'sourceX':
-        return ['Attachment', 'Reference'];
+        return ['AttachmentBuilder', 'ReferenceBuilder'];
       case 'sourceAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'sourceReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'policy':
-        return ['ConsentPolicy'];
+        return ['ConsentPolicyBuilder'];
       case 'policyRule':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'verification':
-        return ['ConsentVerification'];
+        return ['ConsentVerificationBuilder'];
       case 'provision':
-        return ['ConsentProvision'];
+        return ['ConsentProvisionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Consent]
+  /// Creates a new [ConsentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Consent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ConsentState.empty(),
-          );
+          status = ConsentStateBuilder.empty();
+          return;
         }
       case 'scope':
         {
-          return copyWith(
-            scope: CodeableConcept.empty(),
-          );
+          scope = CodeableConceptBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'patient':
         {
-          return copyWith(
-            patient: Reference.empty(),
-          );
+          patient = ReferenceBuilder.empty();
+          return;
         }
       case 'dateTime':
         {
-          return copyWith(
-            dateTime: FhirDateTime.empty(),
-          );
+          dateTime = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: <Reference>[],
-          );
+          performer = <ReferenceBuilder>[];
+          return;
         }
       case 'organization':
         {
-          return copyWith(
-            organization: <Reference>[],
-          );
+          organization = <ReferenceBuilder>[];
+          return;
         }
       case 'source':
       case 'sourceX':
       case 'sourceAttachment':
         {
-          return copyWith(
-            sourceX: Attachment.empty(),
-          );
+          sourceX = AttachmentBuilder.empty();
+          return;
         }
       case 'sourceReference':
         {
-          return copyWith(
-            sourceX: Reference.empty(),
-          );
+          sourceX = ReferenceBuilder.empty();
+          return;
         }
       case 'policy':
         {
-          return copyWith(
-            policy: <ConsentPolicy>[],
-          );
+          policy = <ConsentPolicyBuilder>[];
+          return;
         }
       case 'policyRule':
         {
-          return copyWith(
-            policyRule: CodeableConcept.empty(),
-          );
+          policyRule = CodeableConceptBuilder.empty();
+          return;
         }
       case 'verification':
         {
-          return copyWith(
-            verification: <ConsentVerification>[],
-          );
+          verification = <ConsentVerificationBuilder>[];
+          return;
         }
       case 'provision':
         {
-          return copyWith(
-            provision: ConsentProvision.empty(),
-          );
+          provision = ConsentProvisionBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1064,7 +997,7 @@ class Consent extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Consent clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1074,6 +1007,9 @@ class Consent extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
+    bool scope = false,
+    bool category = false,
     bool patient = false,
     bool dateTime = false,
     bool performer = false,
@@ -1084,183 +1020,106 @@ class Consent extends DomainResource {
     bool verification = false,
     bool provision = false,
   }) {
-    return Consent(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      scope: scope,
-      category: category,
-      patient: patient ? null : this.patient,
-      dateTime: dateTime ? null : this.dateTime,
-      performer: performer ? null : this.performer,
-      organization: organization ? null : this.organization,
-      sourceX: source ? null : sourceX,
-      policy: policy ? null : this.policy,
-      policyRule: policyRule ? null : this.policyRule,
-      verification: verification ? null : this.verification,
-      provision: provision ? null : this.provision,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (scope) this.scope = null;
+    if (category) this.category = null;
+    if (patient) this.patient = null;
+    if (dateTime) this.dateTime = null;
+    if (performer) this.performer = null;
+    if (organization) this.organization = null;
+    if (source) this.sourceX = null;
+    if (policy) this.policy = null;
+    if (policyRule) this.policyRule = null;
+    if (verification) this.verification = null;
+    if (provision) this.provision = null;
   }
 
   @override
-  Consent clone() => throw UnimplementedError();
+  ConsentBuilder clone() => throw UnimplementedError();
   @override
-  Consent copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    ConsentState? status,
-    CodeableConcept? scope,
-    List<CodeableConcept>? category,
-    Reference? patient,
-    FhirDateTime? dateTime,
-    List<Reference>? performer,
-    List<Reference>? organization,
-    SourceXConsent? sourceX,
-    List<ConsentPolicy>? policy,
-    CodeableConcept? policyRule,
-    List<ConsentVerification>? verification,
-    ConsentProvision? provision,
+  ConsentBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    ConsentStateBuilder? status,
+    CodeableConceptBuilder? scope,
+    List<CodeableConceptBuilder>? category,
+    ReferenceBuilder? patient,
+    FhirDateTimeBuilder? dateTime,
+    List<ReferenceBuilder>? performer,
+    List<ReferenceBuilder>? organization,
+    SourceXConsentBuilder? sourceX,
+    List<ConsentPolicyBuilder>? policy,
+    CodeableConceptBuilder? policyRule,
+    List<ConsentVerificationBuilder>? verification,
+    ConsentProvisionBuilder? provision,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Consent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ConsentBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      scope: scope?.copyWith(
-            objectPath: '$newObjectPath.scope',
-          ) ??
-          this.scope,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      dateTime: dateTime?.copyWith(
-            objectPath: '$newObjectPath.dateTime',
-          ) ??
-          this.dateTime,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      organization: organization
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.organization',
-                ),
-              )
-              .toList() ??
-          this.organization,
-      sourceX: sourceX?.copyWith(
-            objectPath: '$newObjectPath.sourceX',
-          ) as SourceXConsent? ??
-          this.sourceX,
-      policy: policy
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.policy',
-                ),
-              )
-              .toList() ??
-          this.policy,
-      policyRule: policyRule?.copyWith(
-            objectPath: '$newObjectPath.policyRule',
-          ) ??
-          this.policyRule,
-      verification: verification
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.verification',
-                ),
-              )
-              .toList() ??
-          this.verification,
-      provision: provision?.copyWith(
-            objectPath: '$newObjectPath.provision',
-          ) ??
-          this.provision,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      scope: scope ?? this.scope,
+      category: category ?? this.category,
+      patient: patient ?? this.patient,
+      dateTime: dateTime ?? this.dateTime,
+      performer: performer ?? this.performer,
+      organization: organization ?? this.organization,
+      sourceX: sourceX ?? this.sourceX,
+      policy: policy ?? this.policy,
+      policyRule: policyRule ?? this.policyRule,
+      verification: verification ?? this.verification,
+      provision: provision ?? this.provision,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Consent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConsentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1295,25 +1154,25 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1331,7 +1190,7 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1349,13 +1208,13 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       performer,
       o.performer,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       organization,
       o.organization,
     )) {
@@ -1367,7 +1226,7 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ConsentPolicy>(
+    if (!listEquals<ConsentPolicyBuilder>(
       policy,
       o.policy,
     )) {
@@ -1379,7 +1238,7 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ConsentVerification>(
+    if (!listEquals<ConsentVerificationBuilder>(
       verification,
       o.verification,
     )) {
@@ -1395,15 +1254,15 @@ class Consent extends DomainResource {
   }
 }
 
-/// [ConsentPolicy]
+/// [ConsentPolicyBuilder]
 /// The references to the policies that are included in this consent scope.
 /// Policies may be organizational, but are often defined jurisdictionally,
 /// or in law.
-class ConsentPolicy extends BackboneElement {
+class ConsentPolicyBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConsentPolicy]
+  /// [ConsentPolicyBuilder]
 
-  const ConsentPolicy({
+  ConsentPolicyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1415,25 +1274,24 @@ class ConsentPolicy extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConsentPolicy.empty() => const ConsentPolicy();
+  /// For Builder classes, no fields are required
+  factory ConsentPolicyBuilder.empty() => ConsentPolicyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentPolicy.fromJson(
+  factory ConsentPolicyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Consent.policy';
-    return ConsentPolicy(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConsentPolicyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1442,8 +1300,8 @@ class ConsentPolicy extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1451,37 +1309,37 @@ class ConsentPolicy extends BackboneElement {
             ),
           )
           .toList(),
-      authority: JsonParser.parsePrimitive<FhirUri>(
+      authority: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'authority',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.authority',
       ),
-      uri: JsonParser.parsePrimitive<FhirUri>(
+      uri: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'uri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.uri',
       ),
     );
   }
 
-  /// Deserialize [ConsentPolicy]
+  /// Deserialize [ConsentPolicyBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConsentPolicy.fromYaml(
+  factory ConsentPolicyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConsentPolicy.fromJson(
+      return ConsentPolicyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConsentPolicy.fromJson(
+      return ConsentPolicyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConsentPolicy '
+        'ConsentPolicyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1489,16 +1347,16 @@ class ConsentPolicy extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConsentPolicy]
+  /// [ConsentPolicyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentPolicy.fromJsonString(
+  factory ConsentPolicyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConsentPolicy.fromJson(json);
+      return ConsentPolicyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1511,29 +1369,29 @@ class ConsentPolicy extends BackboneElement {
   /// [authority]
   /// Entity or Organization having regulatory jurisdiction or accountability
   /// for enforcing policies pertaining to Consent Directives.
-  final FhirUri? authority;
+  FhirUriBuilder? authority;
 
   /// [uri]
   /// The references to the policies that are included in this consent scope.
   /// Policies may be organizational, but are often defined jurisdictionally,
   /// or in law.
-  final FhirUri? uri;
+  FhirUriBuilder? uri;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1542,31 +1400,16 @@ class ConsentPolicy extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'authority',
-      authority,
-    );
-    addField(
-      'uri',
-      uri,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('authority', authority);
+    addField('uri', uri);
     return json;
   }
 
@@ -1585,11 +1428,11 @@ class ConsentPolicy extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1621,7 +1464,7 @@ class ConsentPolicy extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1630,65 +1473,67 @@ class ConsentPolicy extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authority':
         {
-          if (child is FhirUri) {
-            return copyWith(authority: child);
+          if (child is FhirUriBuilder) {
+            authority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'uri':
         {
-          if (child is FhirUri) {
-            return copyWith(uri: child);
+          if (child is FhirUriBuilder) {
+            uri = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1704,58 +1549,49 @@ class ConsentPolicy extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'authority':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'uri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConsentPolicy]
+  /// Creates a new [ConsentPolicyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentPolicy createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'authority':
         {
-          return copyWith(
-            authority: FhirUri.empty(),
-          );
+          authority = FhirUriBuilder.empty();
+          return;
         }
       case 'uri':
         {
-          return copyWith(
-            uri: FhirUri.empty(),
-          );
+          uri = FhirUriBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1764,31 +1600,29 @@ class ConsentPolicy extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConsentPolicy clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool authority = false,
     bool uri = false,
   }) {
-    return ConsentPolicy(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      authority: authority ? null : this.authority,
-      uri: uri ? null : this.uri,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (authority) this.authority = null;
+    if (uri) this.uri = null;
   }
 
   @override
-  ConsentPolicy clone() => throw UnimplementedError();
+  ConsentPolicyBuilder clone() => throw UnimplementedError();
   @override
-  ConsentPolicy copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? authority,
-    FhirUri? uri,
+  ConsentPolicyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? authority,
+    FhirUriBuilder? uri,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1796,42 +1630,36 @@ class ConsentPolicy extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConsentPolicy(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      authority: authority?.copyWith(
-            objectPath: '$newObjectPath.authority',
-          ) ??
-          this.authority,
-      uri: uri?.copyWith(
-            objectPath: '$newObjectPath.uri',
-          ) ??
-          this.uri,
+    final newResult = ConsentPolicyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      authority: authority ?? this.authority,
+      uri: uri ?? this.uri,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConsentPolicy) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConsentPolicyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1842,13 +1670,13 @@ class ConsentPolicy extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1870,19 +1698,19 @@ class ConsentPolicy extends BackboneElement {
   }
 }
 
-/// [ConsentVerification]
+/// [ConsentVerificationBuilder]
 /// Whether a treatment instruction (e.g. artificial respiration yes or no)
 /// was verified with the patient, his/her family or another authorized
 /// person.
-class ConsentVerification extends BackboneElement {
+class ConsentVerificationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConsentVerification]
+  /// [ConsentVerificationBuilder]
 
-  const ConsentVerification({
+  ConsentVerificationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.verified,
+    this.verified,
     this.verifiedWith,
     this.verificationDate,
     super.disallowExtensions,
@@ -1891,27 +1719,24 @@ class ConsentVerification extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConsentVerification.empty() => ConsentVerification(
-        verified: FhirBoolean.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ConsentVerificationBuilder.empty() => ConsentVerificationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentVerification.fromJson(
+  factory ConsentVerificationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Consent.verification';
-    return ConsentVerification(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConsentVerificationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1920,8 +1745,8 @@ class ConsentVerification extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1929,43 +1754,43 @@ class ConsentVerification extends BackboneElement {
             ),
           )
           .toList(),
-      verified: JsonParser.parsePrimitive<FhirBoolean>(
+      verified: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'verified',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.verified',
-      )!,
-      verifiedWith: JsonParser.parseObject<Reference>(
+      ),
+      verifiedWith: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'verifiedWith',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.verifiedWith',
       ),
-      verificationDate: JsonParser.parsePrimitive<FhirDateTime>(
+      verificationDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'verificationDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.verificationDate',
       ),
     );
   }
 
-  /// Deserialize [ConsentVerification]
+  /// Deserialize [ConsentVerificationBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConsentVerification.fromYaml(
+  factory ConsentVerificationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConsentVerification.fromJson(
+      return ConsentVerificationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConsentVerification.fromJson(
+      return ConsentVerificationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConsentVerification '
+        'ConsentVerificationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1973,16 +1798,16 @@ class ConsentVerification extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConsentVerification]
+  /// [ConsentVerificationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentVerification.fromJsonString(
+  factory ConsentVerificationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConsentVerification.fromJson(json);
+      return ConsentVerificationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1994,32 +1819,32 @@ class ConsentVerification extends BackboneElement {
 
   /// [verified]
   /// Has the instruction been verified.
-  final FhirBoolean verified;
+  FhirBooleanBuilder? verified;
 
   /// [verifiedWith]
   /// Who verified the instruction (Patient, Relative or other Authorized
   /// Person).
-  final Reference? verifiedWith;
+  ReferenceBuilder? verifiedWith;
 
   /// [verificationDate]
   /// Date verification was collected.
-  final FhirDateTime? verificationDate;
+  FhirDateTimeBuilder? verificationDate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2028,35 +1853,17 @@ class ConsentVerification extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'verified',
-      verified,
-    );
-    addField(
-      'verifiedWith',
-      verifiedWith,
-    );
-    addField(
-      'verificationDate',
-      verificationDate,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('verified', verified);
+    addField('verifiedWith', verifiedWith);
+    addField('verificationDate', verificationDate);
     return json;
   }
 
@@ -2076,11 +1883,11 @@ class ConsentVerification extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2095,7 +1902,9 @@ class ConsentVerification extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'verified':
-        fields.add(verified);
+        if (verified != null) {
+          fields.add(verified!);
+        }
       case 'verifiedWith':
         if (verifiedWith != null) {
           fields.add(verifiedWith!);
@@ -2114,7 +1923,7 @@ class ConsentVerification extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2123,73 +1932,76 @@ class ConsentVerification extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'verified':
         {
-          if (child is FhirBoolean) {
-            return copyWith(verified: child);
+          if (child is FhirBooleanBuilder) {
+            verified = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'verifiedWith':
         {
-          if (child is Reference) {
-            return copyWith(verifiedWith: child);
+          if (child is ReferenceBuilder) {
+            verifiedWith = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'verificationDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(verificationDate: child);
+          if (child is FhirDateTimeBuilder) {
+            verificationDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2205,66 +2017,56 @@ class ConsentVerification extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'verified':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'verifiedWith':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'verificationDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConsentVerification]
+  /// Creates a new [ConsentVerificationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentVerification createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'verified':
         {
-          return copyWith(
-            verified: FhirBoolean.empty(),
-          );
+          verified = FhirBooleanBuilder.empty();
+          return;
         }
       case 'verifiedWith':
         {
-          return copyWith(
-            verifiedWith: Reference.empty(),
-          );
+          verifiedWith = ReferenceBuilder.empty();
+          return;
         }
       case 'verificationDate':
         {
-          return copyWith(
-            verificationDate: FhirDateTime.empty(),
-          );
+          verificationDate = FhirDateTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2273,33 +2075,32 @@ class ConsentVerification extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConsentVerification clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool verified = false,
     bool verifiedWith = false,
     bool verificationDate = false,
   }) {
-    return ConsentVerification(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      verified: verified,
-      verifiedWith: verifiedWith ? null : this.verifiedWith,
-      verificationDate: verificationDate ? null : this.verificationDate,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (verified) this.verified = null;
+    if (verifiedWith) this.verifiedWith = null;
+    if (verificationDate) this.verificationDate = null;
   }
 
   @override
-  ConsentVerification clone() => throw UnimplementedError();
+  ConsentVerificationBuilder clone() => throw UnimplementedError();
   @override
-  ConsentVerification copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? verified,
-    Reference? verifiedWith,
-    FhirDateTime? verificationDate,
+  ConsentVerificationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirBooleanBuilder? verified,
+    ReferenceBuilder? verifiedWith,
+    FhirDateTimeBuilder? verificationDate,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2307,46 +2108,37 @@ class ConsentVerification extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConsentVerification(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      verified: verified?.copyWith(
-            objectPath: '$newObjectPath.verified',
-          ) ??
-          this.verified,
-      verifiedWith: verifiedWith?.copyWith(
-            objectPath: '$newObjectPath.verifiedWith',
-          ) ??
-          this.verifiedWith,
-      verificationDate: verificationDate?.copyWith(
-            objectPath: '$newObjectPath.verificationDate',
-          ) ??
-          this.verificationDate,
+    final newResult = ConsentVerificationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      verified: verified ?? this.verified,
+      verifiedWith: verifiedWith ?? this.verifiedWith,
+      verificationDate: verificationDate ?? this.verificationDate,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConsentVerification) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConsentVerificationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2357,13 +2149,13 @@ class ConsentVerification extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2391,14 +2183,14 @@ class ConsentVerification extends BackboneElement {
   }
 }
 
-/// [ConsentProvision]
+/// [ConsentProvisionBuilder]
 /// An exception to the base policy of this consent. An exception can be an
 /// addition or removal of access permissions.
-class ConsentProvision extends BackboneElement {
+class ConsentProvisionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConsentProvision]
+  /// [ConsentProvisionBuilder]
 
-  const ConsentProvision({
+  ConsentProvisionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2419,25 +2211,24 @@ class ConsentProvision extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConsentProvision.empty() => const ConsentProvision();
+  /// For Builder classes, no fields are required
+  factory ConsentProvisionBuilder.empty() => ConsentProvisionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentProvision.fromJson(
+  factory ConsentProvisionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Consent.provision';
-    return ConsentProvision(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConsentProvisionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2446,8 +2237,8 @@ class ConsentProvision extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2455,21 +2246,21 @@ class ConsentProvision extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<ConsentProvisionType>(
+      type: JsonParser.parsePrimitive<ConsentProvisionTypeBuilder>(
         json,
         'type',
-        ConsentProvisionType.fromJson,
+        ConsentProvisionTypeBuilder.fromJson,
         '$objectPath.type',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
       actor: (json['actor'] as List<dynamic>?)
-          ?.map<ConsentActor>(
-            (v) => ConsentActor.fromJson(
+          ?.map<ConsentActorBuilder>(
+            (v) => ConsentActorBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.actor',
@@ -2478,8 +2269,8 @@ class ConsentProvision extends BackboneElement {
           )
           .toList(),
       action: (json['action'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.action',
@@ -2488,8 +2279,8 @@ class ConsentProvision extends BackboneElement {
           )
           .toList(),
       securityLabel: (json['securityLabel'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.securityLabel',
@@ -2498,8 +2289,8 @@ class ConsentProvision extends BackboneElement {
           )
           .toList(),
       purpose: (json['purpose'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.purpose',
@@ -2508,8 +2299,8 @@ class ConsentProvision extends BackboneElement {
           )
           .toList(),
       class_: (json['class'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.class',
@@ -2518,8 +2309,8 @@ class ConsentProvision extends BackboneElement {
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -2527,15 +2318,15 @@ class ConsentProvision extends BackboneElement {
             ),
           )
           .toList(),
-      dataPeriod: JsonParser.parseObject<Period>(
+      dataPeriod: JsonParser.parseObject<PeriodBuilder>(
         json,
         'dataPeriod',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.dataPeriod',
       ),
       data: (json['data'] as List<dynamic>?)
-          ?.map<ConsentData>(
-            (v) => ConsentData.fromJson(
+          ?.map<ConsentDataBuilder>(
+            (v) => ConsentDataBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.data',
@@ -2544,8 +2335,8 @@ class ConsentProvision extends BackboneElement {
           )
           .toList(),
       provision: (json['provision'] as List<dynamic>?)
-          ?.map<ConsentProvision>(
-            (v) => ConsentProvision.fromJson(
+          ?.map<ConsentProvisionBuilder>(
+            (v) => ConsentProvisionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.provision',
@@ -2556,22 +2347,22 @@ class ConsentProvision extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentProvision]
+  /// Deserialize [ConsentProvisionBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConsentProvision.fromYaml(
+  factory ConsentProvisionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConsentProvision.fromJson(
+      return ConsentProvisionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConsentProvision.fromJson(
+      return ConsentProvisionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConsentProvision '
+        'ConsentProvisionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2579,16 +2370,16 @@ class ConsentProvision extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConsentProvision]
+  /// [ConsentProvisionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentProvision.fromJsonString(
+  factory ConsentProvisionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConsentProvision.fromJson(json);
+      return ConsentProvisionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2601,70 +2392,70 @@ class ConsentProvision extends BackboneElement {
   /// [type]
   /// Action to take - permit or deny - when the rule conditions are met. Not
   /// permitted in root rule, required in all nested rules.
-  final ConsentProvisionType? type;
+  ConsentProvisionTypeBuilder? type;
 
   /// [period]
   /// The timeframe in this rule is valid.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [actor]
   /// Who or what is controlled by this rule. Use group to identify a set of
   /// actors by some property they share (e.g. 'admitting officers').
-  final List<ConsentActor>? actor;
+  List<ConsentActorBuilder>? actor;
 
   /// [action]
   /// Actions controlled by this Rule.
-  final List<CodeableConcept>? action;
+  List<CodeableConceptBuilder>? action;
 
   /// [securityLabel]
   /// A security label, comprised of 0..* security label fields (Privacy
   /// tags), which define which resources are controlled by this exception.
-  final List<Coding>? securityLabel;
+  List<CodingBuilder>? securityLabel;
 
   /// [purpose]
   /// The context of the activities a user is taking - why the user is
   /// accessing the data - that are controlled by this rule.
-  final List<Coding>? purpose;
+  List<CodingBuilder>? purpose;
 
   /// [class_]
   /// The class of information covered by this rule. The type can be a FHIR
   /// resource type, a profile on a type, or a CDA document, or some other
   /// type that indicates what sort of information the consent relates to.
-  final List<Coding>? class_;
+  List<CodingBuilder>? class_;
 
   /// [code]
   /// If this code is found in an instance, then the rule applies.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [dataPeriod]
   /// Clinical or Operational Relevant period of time that bounds the data
   /// controlled by this rule.
-  final Period? dataPeriod;
+  PeriodBuilder? dataPeriod;
 
   /// [data]
   /// The resources controlled by this rule if specific resources are
   /// referenced.
-  final List<ConsentData>? data;
+  List<ConsentDataBuilder>? data;
 
   /// [provision]
   /// Rules which provide exceptions to the base rule or subrules.
-  final List<ConsentProvision>? provision;
+  List<ConsentProvisionBuilder>? provision;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2673,67 +2464,25 @@ class ConsentProvision extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'actor',
-      actor,
-    );
-    addField(
-      'action',
-      action,
-    );
-    addField(
-      'securityLabel',
-      securityLabel,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'class',
-      class_,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'dataPeriod',
-      dataPeriod,
-    );
-    addField(
-      'data',
-      data,
-    );
-    addField(
-      'provision',
-      provision,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('period', period);
+    addField('actor', actor);
+    addField('action', action);
+    addField('securityLabel', securityLabel);
+    addField('purpose', purpose);
+    addField('class', class_);
+    addField('code', code);
+    addField('dataPeriod', dataPeriod);
+    addField('data', data);
+    addField('provision', provision);
     return json;
   }
 
@@ -2761,11 +2510,11 @@ class ConsentProvision extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2833,7 +2582,7 @@ class ConsentProvision extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2842,185 +2591,188 @@ class ConsentProvision extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is ConsentProvisionType) {
-            return copyWith(type: child);
+          if (child is ConsentProvisionTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
         {
-          if (child is List<ConsentActor>) {
-            // Add all elements from passed list
-            final newList = [...?actor, ...child];
-            return copyWith(actor: newList);
-          } else if (child is ConsentActor) {
+          if (child is List<ConsentActorBuilder>) {
+            // Replace or create new list
+            actor = child;
+            return;
+          } else if (child is ConsentActorBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?actor, child];
-            return copyWith(actor: newList);
+            actor = [...(actor ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?action, ...child];
-            return copyWith(action: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            action = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?action, child];
-            return copyWith(action: newList);
+            action = [...(action ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabel':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabel, ...child];
-            return copyWith(securityLabel: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            securityLabel = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabel, child];
-            return copyWith(securityLabel: newList);
+            securityLabel = [...(securityLabel ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?purpose, ...child];
-            return copyWith(purpose: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            purpose = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?purpose, child];
-            return copyWith(purpose: newList);
+            purpose = [...(purpose ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'class':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?class_, ...child];
-            return copyWith(class_: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            class_ = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?class_, child];
-            return copyWith(class_: newList);
+            class_ = [...(class_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dataPeriod':
         {
-          if (child is Period) {
-            return copyWith(dataPeriod: child);
+          if (child is PeriodBuilder) {
+            dataPeriod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
         {
-          if (child is List<ConsentData>) {
-            // Add all elements from passed list
-            final newList = [...?data, ...child];
-            return copyWith(data: newList);
-          } else if (child is ConsentData) {
+          if (child is List<ConsentDataBuilder>) {
+            // Replace or create new list
+            data = child;
+            return;
+          } else if (child is ConsentDataBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?data, child];
-            return copyWith(data: newList);
+            data = [...(data ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'provision':
         {
-          if (child is List<ConsentProvision>) {
-            // Add all elements from passed list
-            final newList = [...?provision, ...child];
-            return copyWith(provision: newList);
-          } else if (child is ConsentProvision) {
+          if (child is List<ConsentProvisionBuilder>) {
+            // Replace or create new list
+            provision = child;
+            return;
+          } else if (child is ConsentProvisionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?provision, child];
-            return copyWith(provision: newList);
+            provision = [...(provision ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3036,130 +2788,112 @@ class ConsentProvision extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'actor':
-        return ['ConsentActor'];
+        return ['ConsentActorBuilder'];
       case 'action':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'securityLabel':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'purpose':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'class':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'dataPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'data':
-        return ['ConsentData'];
+        return ['ConsentDataBuilder'];
       case 'provision':
-        return ['ConsentProvision'];
+        return ['ConsentProvisionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConsentProvision]
+  /// Creates a new [ConsentProvisionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentProvision createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: ConsentProvisionType.empty(),
-          );
+          type = ConsentProvisionTypeBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'actor':
         {
-          return copyWith(
-            actor: <ConsentActor>[],
-          );
+          actor = <ConsentActorBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: <CodeableConcept>[],
-          );
+          action = <CodeableConceptBuilder>[];
+          return;
         }
       case 'securityLabel':
         {
-          return copyWith(
-            securityLabel: <Coding>[],
-          );
+          securityLabel = <CodingBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: <Coding>[],
-          );
+          purpose = <CodingBuilder>[];
+          return;
         }
       case 'class':
         {
-          return copyWith(
-            class_: <Coding>[],
-          );
+          class_ = <CodingBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'dataPeriod':
         {
-          return copyWith(
-            dataPeriod: Period.empty(),
-          );
+          dataPeriod = PeriodBuilder.empty();
+          return;
         }
       case 'data':
         {
-          return copyWith(
-            data: <ConsentData>[],
-          );
+          data = <ConsentDataBuilder>[];
+          return;
         }
       case 'provision':
         {
-          return copyWith(
-            provision: <ConsentProvision>[],
-          );
+          provision = <ConsentProvisionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3168,7 +2902,7 @@ class ConsentProvision extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConsentProvision clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3184,42 +2918,40 @@ class ConsentProvision extends BackboneElement {
     bool data = false,
     bool provision = false,
   }) {
-    return ConsentProvision(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      period: period ? null : this.period,
-      actor: actor ? null : this.actor,
-      action: action ? null : this.action,
-      securityLabel: securityLabel ? null : this.securityLabel,
-      purpose: purpose ? null : this.purpose,
-      class_: class_ ? null : this.class_,
-      code: code ? null : this.code,
-      dataPeriod: dataPeriod ? null : this.dataPeriod,
-      data: data ? null : this.data,
-      provision: provision ? null : this.provision,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (period) this.period = null;
+    if (actor) this.actor = null;
+    if (action) this.action = null;
+    if (securityLabel) this.securityLabel = null;
+    if (purpose) this.purpose = null;
+    if (class_) this.class_ = null;
+    if (code) this.code = null;
+    if (dataPeriod) this.dataPeriod = null;
+    if (data) this.data = null;
+    if (provision) this.provision = null;
   }
 
   @override
-  ConsentProvision clone() => throw UnimplementedError();
+  ConsentProvisionBuilder clone() => throw UnimplementedError();
   @override
-  ConsentProvision copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ConsentProvisionType? type,
-    Period? period,
-    List<ConsentActor>? actor,
-    List<CodeableConcept>? action,
-    List<Coding>? securityLabel,
-    List<Coding>? purpose,
-    List<Coding>? class_,
-    List<CodeableConcept>? code,
-    Period? dataPeriod,
-    List<ConsentData>? data,
-    List<ConsentProvision>? provision,
+  ConsentProvisionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ConsentProvisionTypeBuilder? type,
+    PeriodBuilder? period,
+    List<ConsentActorBuilder>? actor,
+    List<CodeableConceptBuilder>? action,
+    List<CodingBuilder>? securityLabel,
+    List<CodingBuilder>? purpose,
+    List<CodingBuilder>? class_,
+    List<CodeableConceptBuilder>? code,
+    PeriodBuilder? dataPeriod,
+    List<ConsentDataBuilder>? data,
+    List<ConsentProvisionBuilder>? provision,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3227,110 +2959,45 @@ class ConsentProvision extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConsentProvision(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      actor: actor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.actor',
-                ),
-              )
-              .toList() ??
-          this.actor,
-      action: action
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.action',
-                ),
-              )
-              .toList() ??
-          this.action,
-      securityLabel: securityLabel
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabel',
-                ),
-              )
-              .toList() ??
-          this.securityLabel,
-      purpose: purpose
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.purpose',
-                ),
-              )
-              .toList() ??
-          this.purpose,
-      class_: class_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.class',
-                ),
-              )
-              .toList() ??
-          this.class_,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      dataPeriod: dataPeriod?.copyWith(
-            objectPath: '$newObjectPath.dataPeriod',
-          ) ??
-          this.dataPeriod,
-      data: data
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.data',
-                ),
-              )
-              .toList() ??
-          this.data,
-      provision: provision
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.provision',
-                ),
-              )
-              .toList() ??
-          this.provision,
+    final newResult = ConsentProvisionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      period: period ?? this.period,
+      actor: actor ?? this.actor,
+      action: action ?? this.action,
+      securityLabel: securityLabel ?? this.securityLabel,
+      purpose: purpose ?? this.purpose,
+      class_: class_ ?? this.class_,
+      code: code ?? this.code,
+      dataPeriod: dataPeriod ?? this.dataPeriod,
+      data: data ?? this.data,
+      provision: provision ?? this.provision,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConsentProvision) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConsentProvisionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3341,13 +3008,13 @@ class ConsentProvision extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3365,37 +3032,37 @@ class ConsentProvision extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ConsentActor>(
+    if (!listEquals<ConsentActorBuilder>(
       actor,
       o.actor,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       action,
       o.action,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       securityLabel,
       o.securityLabel,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       purpose,
       o.purpose,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       class_,
       o.class_,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
@@ -3407,13 +3074,13 @@ class ConsentProvision extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ConsentData>(
+    if (!listEquals<ConsentDataBuilder>(
       data,
       o.data,
     )) {
       return false;
     }
-    if (!listEquals<ConsentProvision>(
+    if (!listEquals<ConsentProvisionBuilder>(
       provision,
       o.provision,
     )) {
@@ -3423,47 +3090,43 @@ class ConsentProvision extends BackboneElement {
   }
 }
 
-/// [ConsentActor]
+/// [ConsentActorBuilder]
 /// Who or what is controlled by this rule. Use group to identify a set of
 /// actors by some property they share (e.g. 'admitting officers').
-class ConsentActor extends BackboneElement {
+class ConsentActorBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConsentActor]
+  /// [ConsentActorBuilder]
 
-  const ConsentActor({
+  ConsentActorBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.role,
-    required this.reference,
+    this.role,
+    this.reference,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Consent.provision.actor',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConsentActor.empty() => ConsentActor(
-        role: CodeableConcept.empty(),
-        reference: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ConsentActorBuilder.empty() => ConsentActorBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentActor.fromJson(
+  factory ConsentActorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Consent.provision.actor';
-    return ConsentActor(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConsentActorBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3472,8 +3135,8 @@ class ConsentActor extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3481,37 +3144,37 @@ class ConsentActor extends BackboneElement {
             ),
           )
           .toList(),
-      role: JsonParser.parseObject<CodeableConcept>(
+      role: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'role',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.role',
-      )!,
-      reference: JsonParser.parseObject<Reference>(
+      ),
+      reference: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'reference',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.reference',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ConsentActor]
+  /// Deserialize [ConsentActorBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConsentActor.fromYaml(
+  factory ConsentActorBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConsentActor.fromJson(
+      return ConsentActorBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConsentActor.fromJson(
+      return ConsentActorBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConsentActor '
+        'ConsentActorBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3519,16 +3182,16 @@ class ConsentActor extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConsentActor]
+  /// [ConsentActorBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentActor.fromJsonString(
+  factory ConsentActorBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConsentActor.fromJson(json);
+      return ConsentActorBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3541,29 +3204,29 @@ class ConsentActor extends BackboneElement {
   /// [role]
   /// How the individual is involved in the resources content that is
   /// described in the exception.
-  final CodeableConcept role;
+  CodeableConceptBuilder? role;
 
   /// [reference]
   /// The resource that identifies the actor. To identify actors by type, use
   /// group to identify a set of actors by some property they share (e.g.
   /// 'admitting officers').
-  final Reference reference;
+  ReferenceBuilder? reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3572,31 +3235,16 @@ class ConsentActor extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'reference',
-      reference,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('role', role);
+    addField('reference', reference);
     return json;
   }
 
@@ -3615,11 +3263,11 @@ class ConsentActor extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3634,9 +3282,13 @@ class ConsentActor extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'role':
-        fields.add(role);
+        if (role != null) {
+          fields.add(role!);
+        }
       case 'reference':
-        fields.add(reference);
+        if (reference != null) {
+          fields.add(reference!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -3647,7 +3299,7 @@ class ConsentActor extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3656,65 +3308,67 @@ class ConsentActor extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
+          if (child is CodeableConceptBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is Reference) {
-            return copyWith(reference: child);
+          if (child is ReferenceBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3730,58 +3384,49 @@ class ConsentActor extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConsentActor]
+  /// Creates a new [ConsentActorBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentActor createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
+          role = CodeableConceptBuilder.empty();
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: Reference.empty(),
-          );
+          reference = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3790,29 +3435,29 @@ class ConsentActor extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConsentActor clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool role = false,
+    bool reference = false,
   }) {
-    return ConsentActor(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      role: role,
-      reference: reference,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (role) this.role = null;
+    if (reference) this.reference = null;
   }
 
   @override
-  ConsentActor clone() => throw UnimplementedError();
+  ConsentActorBuilder clone() => throw UnimplementedError();
   @override
-  ConsentActor copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? role,
-    Reference? reference,
+  ConsentActorBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? role,
+    ReferenceBuilder? reference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3820,42 +3465,36 @@ class ConsentActor extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConsentActor(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
+    final newResult = ConsentActorBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      role: role ?? this.role,
+      reference: reference ?? this.reference,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConsentActor) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConsentActorBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3866,13 +3505,13 @@ class ConsentActor extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3894,47 +3533,43 @@ class ConsentActor extends BackboneElement {
   }
 }
 
-/// [ConsentData]
+/// [ConsentDataBuilder]
 /// The resources controlled by this rule if specific resources are
 /// referenced.
-class ConsentData extends BackboneElement {
+class ConsentDataBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConsentData]
+  /// [ConsentDataBuilder]
 
-  const ConsentData({
+  ConsentDataBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.meaning,
-    required this.reference,
+    this.meaning,
+    this.reference,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Consent.provision.data',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConsentData.empty() => ConsentData(
-        meaning: ConsentDataMeaning.values.first,
-        reference: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ConsentDataBuilder.empty() => ConsentDataBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentData.fromJson(
+  factory ConsentDataBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Consent.provision.data';
-    return ConsentData(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConsentDataBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3943,8 +3578,8 @@ class ConsentData extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3952,37 +3587,37 @@ class ConsentData extends BackboneElement {
             ),
           )
           .toList(),
-      meaning: JsonParser.parsePrimitive<ConsentDataMeaning>(
+      meaning: JsonParser.parsePrimitive<ConsentDataMeaningBuilder>(
         json,
         'meaning',
-        ConsentDataMeaning.fromJson,
+        ConsentDataMeaningBuilder.fromJson,
         '$objectPath.meaning',
-      )!,
-      reference: JsonParser.parseObject<Reference>(
+      ),
+      reference: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'reference',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.reference',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ConsentData]
+  /// Deserialize [ConsentDataBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConsentData.fromYaml(
+  factory ConsentDataBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConsentData.fromJson(
+      return ConsentDataBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConsentData.fromJson(
+      return ConsentDataBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConsentData '
+        'ConsentDataBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3990,16 +3625,16 @@ class ConsentData extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConsentData]
+  /// [ConsentDataBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentData.fromJsonString(
+  factory ConsentDataBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConsentData.fromJson(json);
+      return ConsentDataBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4012,28 +3647,28 @@ class ConsentData extends BackboneElement {
   /// [meaning]
   /// How the resource reference is interpreted when testing consent
   /// restrictions.
-  final ConsentDataMeaning meaning;
+  ConsentDataMeaningBuilder? meaning;
 
   /// [reference]
   /// A reference to a specific resource that defines which resources are
   /// covered by this consent.
-  final Reference reference;
+  ReferenceBuilder? reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4042,31 +3677,16 @@ class ConsentData extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'meaning',
-      meaning,
-    );
-    addField(
-      'reference',
-      reference,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('meaning', meaning);
+    addField('reference', reference);
     return json;
   }
 
@@ -4085,11 +3705,11 @@ class ConsentData extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4104,9 +3724,13 @@ class ConsentData extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'meaning':
-        fields.add(meaning);
+        if (meaning != null) {
+          fields.add(meaning!);
+        }
       case 'reference':
-        fields.add(reference);
+        if (reference != null) {
+          fields.add(reference!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -4117,7 +3741,7 @@ class ConsentData extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4126,65 +3750,67 @@ class ConsentData extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meaning':
         {
-          if (child is ConsentDataMeaning) {
-            return copyWith(meaning: child);
+          if (child is ConsentDataMeaningBuilder) {
+            meaning = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is Reference) {
-            return copyWith(reference: child);
+          if (child is ReferenceBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4200,58 +3826,49 @@ class ConsentData extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'meaning':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'reference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConsentData]
+  /// Creates a new [ConsentDataBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentData createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'meaning':
         {
-          return copyWith(
-            meaning: ConsentDataMeaning.empty(),
-          );
+          meaning = ConsentDataMeaningBuilder.empty();
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: Reference.empty(),
-          );
+          reference = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4260,29 +3877,29 @@ class ConsentData extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConsentData clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool meaning = false,
+    bool reference = false,
   }) {
-    return ConsentData(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      meaning: meaning,
-      reference: reference,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (meaning) this.meaning = null;
+    if (reference) this.reference = null;
   }
 
   @override
-  ConsentData clone() => throw UnimplementedError();
+  ConsentDataBuilder clone() => throw UnimplementedError();
   @override
-  ConsentData copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ConsentDataMeaning? meaning,
-    Reference? reference,
+  ConsentDataBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ConsentDataMeaningBuilder? meaning,
+    ReferenceBuilder? reference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4290,42 +3907,36 @@ class ConsentData extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConsentData(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      meaning: meaning?.copyWith(
-            objectPath: '$newObjectPath.meaning',
-          ) ??
-          this.meaning,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
+    final newResult = ConsentDataBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      meaning: meaning ?? this.meaning,
+      reference: reference ?? this.reference,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConsentData) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConsentDataBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4336,13 +3947,13 @@ class ConsentData extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

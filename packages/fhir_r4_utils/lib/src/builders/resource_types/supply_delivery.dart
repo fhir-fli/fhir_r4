@@ -1,14 +1,16 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [SupplyDelivery]
+/// [SupplyDeliveryBuilder]
 /// Record of delivery of what is supplied.
-class SupplyDelivery extends DomainResource {
+class SupplyDeliveryBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [SupplyDelivery]
+  /// [SupplyDeliveryBuilder]
 
-  const SupplyDelivery({
+  SupplyDeliveryBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -34,49 +36,48 @@ class SupplyDelivery extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SupplyDelivery.empty() => const SupplyDelivery();
+  /// For Builder classes, no fields are required
+  factory SupplyDeliveryBuilder.empty() => SupplyDeliveryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SupplyDelivery.fromJson(
+  factory SupplyDeliveryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SupplyDelivery';
-    return SupplyDelivery(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SupplyDeliveryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -85,8 +86,8 @@ class SupplyDelivery extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -95,8 +96,8 @@ class SupplyDelivery extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -105,8 +106,8 @@ class SupplyDelivery extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -115,8 +116,8 @@ class SupplyDelivery extends DomainResource {
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -125,8 +126,8 @@ class SupplyDelivery extends DomainResource {
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.partOf',
@@ -134,54 +135,55 @@ class SupplyDelivery extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<SupplyDeliveryStatus>(
+      status: JsonParser.parsePrimitive<SupplyDeliveryStatusBuilder>(
         json,
         'status',
-        SupplyDeliveryStatus.fromJson,
+        SupplyDeliveryStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      patient: JsonParser.parseObject<Reference>(
+      patient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'patient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.patient',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      suppliedItem: JsonParser.parseObject<SupplyDeliverySuppliedItem>(
+      suppliedItem: JsonParser.parseObject<SupplyDeliverySuppliedItemBuilder>(
         json,
         'suppliedItem',
-        SupplyDeliverySuppliedItem.fromJson,
+        SupplyDeliverySuppliedItemBuilder.fromJson,
         '$objectPath.suppliedItem',
       ),
-      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXSupplyDelivery>(
+      occurrenceX:
+          JsonParser.parsePolymorphic<OccurrenceXSupplyDeliveryBuilder>(
         json,
         {
-          'occurrenceDateTime': FhirDateTime.fromJson,
-          'occurrencePeriod': Period.fromJson,
-          'occurrenceTiming': Timing.fromJson,
+          'occurrenceDateTime': FhirDateTimeBuilder.fromJson,
+          'occurrencePeriod': PeriodBuilder.fromJson,
+          'occurrenceTiming': TimingBuilder.fromJson,
         },
         objectPath,
       ),
-      supplier: JsonParser.parseObject<Reference>(
+      supplier: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'supplier',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.supplier',
       ),
-      destination: JsonParser.parseObject<Reference>(
+      destination: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'destination',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.destination',
       ),
       receiver: (json['receiver'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.receiver',
@@ -192,22 +194,22 @@ class SupplyDelivery extends DomainResource {
     );
   }
 
-  /// Deserialize [SupplyDelivery]
+  /// Deserialize [SupplyDeliveryBuilder]
   /// from a [String] or [YamlMap] object
-  factory SupplyDelivery.fromYaml(
+  factory SupplyDeliveryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SupplyDelivery.fromJson(
+      return SupplyDeliveryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SupplyDelivery.fromJson(
+      return SupplyDeliveryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SupplyDelivery '
+        'SupplyDeliveryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -215,16 +217,16 @@ class SupplyDelivery extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [SupplyDelivery]
+  /// [SupplyDeliveryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyDelivery.fromJsonString(
+  factory SupplyDeliveryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SupplyDelivery.fromJson(json);
+      return SupplyDeliveryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -237,78 +239,79 @@ class SupplyDelivery extends DomainResource {
   /// [identifier]
   /// Identifier for the supply delivery event that is used to identify it
   /// across multiple disparate systems.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// event.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [partOf]
   /// A larger event of which this particular event is a component or step.
-  final List<Reference>? partOf;
+  List<ReferenceBuilder>? partOf;
 
   /// [status]
   /// A code specifying the state of the dispense event.
-  final SupplyDeliveryStatus? status;
+  SupplyDeliveryStatusBuilder? status;
 
   /// [patient]
   /// A link to a resource representing the person whom the delivered item is
   /// for.
-  final Reference? patient;
+  ReferenceBuilder? patient;
 
   /// [type]
   /// Indicates the type of dispensing event that is performed. Examples
   /// include: Trial Fill, Completion of Trial, Partial Fill, Emergency Fill,
   /// Samples, etc.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [suppliedItem]
   /// The item that is being delivered or has been supplied.
-  final SupplyDeliverySuppliedItem? suppliedItem;
+  SupplyDeliverySuppliedItemBuilder? suppliedItem;
 
   /// [occurrenceX]
   /// The date or time(s) the activity occurred.
-  final OccurrenceXSupplyDelivery? occurrenceX;
+  OccurrenceXSupplyDeliveryBuilder? occurrenceX;
 
-  /// Getter for [occurrenceDateTime] as a FhirDateTime
-  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+  /// Getter for [occurrenceDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get occurrenceDateTime =>
+      occurrenceX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [occurrencePeriod] as a Period
-  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+  /// Getter for [occurrencePeriod] as a PeriodBuilder
+  PeriodBuilder? get occurrencePeriod => occurrenceX?.isAs<PeriodBuilder>();
 
-  /// Getter for [occurrenceTiming] as a Timing
-  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
+  /// Getter for [occurrenceTiming] as a TimingBuilder
+  TimingBuilder? get occurrenceTiming => occurrenceX?.isAs<TimingBuilder>();
 
   /// [supplier]
   /// The individual responsible for dispensing the medication, supplier or
   /// device.
-  final Reference? supplier;
+  ReferenceBuilder? supplier;
 
   /// [destination]
   /// Identification of the facility/location where the Supply was shipped
   /// to, as part of the dispense event.
-  final Reference? destination;
+  ReferenceBuilder? destination;
 
   /// [receiver]
   /// Identifies the person who picked up the Supply.
-  final List<Reference>? receiver;
+  List<ReferenceBuilder>? receiver;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -317,92 +320,35 @@ class SupplyDelivery extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'patient',
-      patient,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'suppliedItem',
-      suppliedItem,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('basedOn', basedOn);
+    addField('partOf', partOf);
+    addField('status', status);
+    addField('patient', patient);
+    addField('type', type);
+    addField('suppliedItem', suppliedItem);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField(
-        'occurrence${fhirType.capitalize()}',
-        occurrenceX,
-      );
+      addField('occurrence${fhirType.capitalize()}', occurrenceX);
     }
 
-    addField(
-      'supplier',
-      supplier,
-    );
-    addField(
-      'destination',
-      destination,
-    );
-    addField(
-      'receiver',
-      receiver,
-    );
+    addField('supplier', supplier);
+    addField('destination', destination);
+    addField('receiver', receiver);
     return json;
   }
 
@@ -435,11 +381,11 @@ class SupplyDelivery extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -502,19 +448,23 @@ class SupplyDelivery extends DomainResource {
           fields.add(suppliedItem!);
         }
       case 'occurrence':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceX':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceDateTime':
-        if (occurrenceX is FhirDateTime) {
+        if (occurrenceX is FhirDateTimeBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrencePeriod':
-        if (occurrenceX is Period) {
+        if (occurrenceX is PeriodBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrenceTiming':
-        if (occurrenceX is Timing) {
+        if (occurrenceX is TimingBuilder) {
           fields.add(occurrenceX!);
         }
       case 'supplier':
@@ -539,7 +489,7 @@ class SupplyDelivery extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -548,240 +498,257 @@ class SupplyDelivery extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            partOf = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
-            return copyWith(partOf: newList);
+            partOf = [...(partOf ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is SupplyDeliveryStatus) {
-            return copyWith(status: child);
+          if (child is SupplyDeliveryStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
         {
-          if (child is Reference) {
-            return copyWith(patient: child);
+          if (child is ReferenceBuilder) {
+            patient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'suppliedItem':
         {
-          if (child is SupplyDeliverySuppliedItem) {
-            return copyWith(suppliedItem: child);
+          if (child is SupplyDeliverySuppliedItemBuilder) {
+            suppliedItem = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceX':
         {
-          if (child is OccurrenceXSupplyDelivery) {
-            return copyWith(occurrenceX: child);
+          if (child is OccurrenceXSupplyDeliveryBuilder) {
+            occurrenceX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(occurrenceX: child);
+            if (child is FhirDateTimeBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(occurrenceX: child);
+            if (child is PeriodBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(occurrenceX: child);
+            if (child is TimingBuilder) {
+              occurrenceX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'occurrenceFhirDateTime':
+      case 'occurrenceDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(occurrenceX: child);
+          if (child is FhirDateTimeBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrencePeriod':
         {
-          if (child is Period) {
-            return copyWith(occurrenceX: child);
+          if (child is PeriodBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceTiming':
         {
-          if (child is Timing) {
-            return copyWith(occurrenceX: child);
+          if (child is TimingBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'supplier':
         {
-          if (child is Reference) {
-            return copyWith(supplier: child);
+          if (child is ReferenceBuilder) {
+            supplier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'destination':
         {
-          if (child is Reference) {
-            return copyWith(destination: child);
+          if (child is ReferenceBuilder) {
+            destination = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'receiver':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?receiver, ...child];
-            return copyWith(receiver: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            receiver = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?receiver, child];
-            return copyWith(receiver: newList);
+            receiver = [...(receiver ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -797,191 +764,166 @@ class SupplyDelivery extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'patient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'suppliedItem':
-        return ['SupplyDeliverySuppliedItem'];
+        return ['SupplyDeliverySuppliedItemBuilder'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTime', 'Period', 'Timing'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder', 'TimingBuilder'];
       case 'occurrenceDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'occurrencePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'occurrenceTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'supplier':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'destination':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'receiver':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SupplyDelivery]
+  /// Creates a new [SupplyDeliveryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SupplyDelivery createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: <Reference>[],
-          );
+          partOf = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: SupplyDeliveryStatus.empty(),
-          );
+          status = SupplyDeliveryStatusBuilder.empty();
+          return;
         }
       case 'patient':
         {
-          return copyWith(
-            patient: Reference.empty(),
-          );
+          patient = ReferenceBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'suppliedItem':
         {
-          return copyWith(
-            suppliedItem: SupplyDeliverySuppliedItem.empty(),
-          );
+          suppliedItem = SupplyDeliverySuppliedItemBuilder.empty();
+          return;
         }
       case 'occurrence':
       case 'occurrenceX':
       case 'occurrenceDateTime':
         {
-          return copyWith(
-            occurrenceX: FhirDateTime.empty(),
-          );
+          occurrenceX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'occurrencePeriod':
         {
-          return copyWith(
-            occurrenceX: Period.empty(),
-          );
+          occurrenceX = PeriodBuilder.empty();
+          return;
         }
       case 'occurrenceTiming':
         {
-          return copyWith(
-            occurrenceX: Timing.empty(),
-          );
+          occurrenceX = TimingBuilder.empty();
+          return;
         }
       case 'supplier':
         {
-          return copyWith(
-            supplier: Reference.empty(),
-          );
+          supplier = ReferenceBuilder.empty();
+          return;
         }
       case 'destination':
         {
-          return copyWith(
-            destination: Reference.empty(),
-          );
+          destination = ReferenceBuilder.empty();
+          return;
         }
       case 'receiver':
         {
-          return copyWith(
-            receiver: <Reference>[],
-          );
+          receiver = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -990,7 +932,7 @@ class SupplyDelivery extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  SupplyDelivery clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1011,163 +953,100 @@ class SupplyDelivery extends DomainResource {
     bool destination = false,
     bool receiver = false,
   }) {
-    return SupplyDelivery(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      partOf: partOf ? null : this.partOf,
-      status: status ? null : this.status,
-      patient: patient ? null : this.patient,
-      type: type ? null : this.type,
-      suppliedItem: suppliedItem ? null : this.suppliedItem,
-      occurrenceX: occurrence ? null : occurrenceX,
-      supplier: supplier ? null : this.supplier,
-      destination: destination ? null : this.destination,
-      receiver: receiver ? null : this.receiver,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (basedOn) this.basedOn = null;
+    if (partOf) this.partOf = null;
+    if (status) this.status = null;
+    if (patient) this.patient = null;
+    if (type) this.type = null;
+    if (suppliedItem) this.suppliedItem = null;
+    if (occurrence) this.occurrenceX = null;
+    if (supplier) this.supplier = null;
+    if (destination) this.destination = null;
+    if (receiver) this.receiver = null;
   }
 
   @override
-  SupplyDelivery clone() => throw UnimplementedError();
+  SupplyDeliveryBuilder clone() => throw UnimplementedError();
   @override
-  SupplyDelivery copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? basedOn,
-    List<Reference>? partOf,
-    SupplyDeliveryStatus? status,
-    Reference? patient,
-    CodeableConcept? type,
-    SupplyDeliverySuppliedItem? suppliedItem,
-    OccurrenceXSupplyDelivery? occurrenceX,
-    Reference? supplier,
-    Reference? destination,
-    List<Reference>? receiver,
+  SupplyDeliveryBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<ReferenceBuilder>? basedOn,
+    List<ReferenceBuilder>? partOf,
+    SupplyDeliveryStatusBuilder? status,
+    ReferenceBuilder? patient,
+    CodeableConceptBuilder? type,
+    SupplyDeliverySuppliedItemBuilder? suppliedItem,
+    OccurrenceXSupplyDeliveryBuilder? occurrenceX,
+    ReferenceBuilder? supplier,
+    ReferenceBuilder? destination,
+    List<ReferenceBuilder>? receiver,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return SupplyDelivery(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = SupplyDeliveryBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      suppliedItem: suppliedItem?.copyWith(
-            objectPath: '$newObjectPath.suppliedItem',
-          ) ??
-          this.suppliedItem,
-      occurrenceX: occurrenceX?.copyWith(
-            objectPath: '$newObjectPath.occurrenceX',
-          ) as OccurrenceXSupplyDelivery? ??
-          this.occurrenceX,
-      supplier: supplier?.copyWith(
-            objectPath: '$newObjectPath.supplier',
-          ) ??
-          this.supplier,
-      destination: destination?.copyWith(
-            objectPath: '$newObjectPath.destination',
-          ) ??
-          this.destination,
-      receiver: receiver
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.receiver',
-                ),
-              )
-              .toList() ??
-          this.receiver,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      basedOn: basedOn ?? this.basedOn,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      patient: patient ?? this.patient,
+      type: type ?? this.type,
+      suppliedItem: suppliedItem ?? this.suppliedItem,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
+      supplier: supplier ?? this.supplier,
+      destination: destination ?? this.destination,
+      receiver: receiver ?? this.receiver,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SupplyDelivery) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SupplyDeliveryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1202,37 +1081,37 @@ class SupplyDelivery extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       partOf,
       o.partOf,
     )) {
@@ -1280,7 +1159,7 @@ class SupplyDelivery extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       receiver,
       o.receiver,
     )) {
@@ -1290,13 +1169,13 @@ class SupplyDelivery extends DomainResource {
   }
 }
 
-/// [SupplyDeliverySuppliedItem]
+/// [SupplyDeliverySuppliedItemBuilder]
 /// The item that is being delivered or has been supplied.
-class SupplyDeliverySuppliedItem extends BackboneElement {
+class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SupplyDeliverySuppliedItem]
+  /// [SupplyDeliverySuppliedItemBuilder]
 
-  const SupplyDeliverySuppliedItem({
+  SupplyDeliverySuppliedItemBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1308,26 +1187,25 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SupplyDeliverySuppliedItem.empty() =>
-      const SupplyDeliverySuppliedItem();
+  /// For Builder classes, no fields are required
+  factory SupplyDeliverySuppliedItemBuilder.empty() =>
+      SupplyDeliverySuppliedItemBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SupplyDeliverySuppliedItem.fromJson(
+  factory SupplyDeliverySuppliedItemBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SupplyDelivery.suppliedItem';
-    return SupplyDeliverySuppliedItem(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SupplyDeliverySuppliedItemBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1336,8 +1214,8 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1345,39 +1223,40 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
             ),
           )
           .toList(),
-      quantity: JsonParser.parseObject<Quantity>(
+      quantity: JsonParser.parseObject<QuantityBuilder>(
         json,
         'quantity',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.quantity',
       ),
-      itemX: JsonParser.parsePolymorphic<ItemXSupplyDeliverySuppliedItem>(
+      itemX:
+          JsonParser.parsePolymorphic<ItemXSupplyDeliverySuppliedItemBuilder>(
         json,
         {
-          'itemCodeableConcept': CodeableConcept.fromJson,
-          'itemReference': Reference.fromJson,
+          'itemCodeableConcept': CodeableConceptBuilder.fromJson,
+          'itemReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [SupplyDeliverySuppliedItem]
+  /// Deserialize [SupplyDeliverySuppliedItemBuilder]
   /// from a [String] or [YamlMap] object
-  factory SupplyDeliverySuppliedItem.fromYaml(
+  factory SupplyDeliverySuppliedItemBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SupplyDeliverySuppliedItem.fromJson(
+      return SupplyDeliverySuppliedItemBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SupplyDeliverySuppliedItem.fromJson(
+      return SupplyDeliverySuppliedItemBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SupplyDeliverySuppliedItem '
+        'SupplyDeliverySuppliedItemBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1385,16 +1264,16 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SupplyDeliverySuppliedItem]
+  /// [SupplyDeliverySuppliedItemBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyDeliverySuppliedItem.fromJsonString(
+  factory SupplyDeliverySuppliedItemBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SupplyDeliverySuppliedItem.fromJson(json);
+      return SupplyDeliverySuppliedItemBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1406,35 +1285,36 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   /// [quantity]
   /// The amount of supply that has been dispensed. Includes unit of measure.
-  final Quantity? quantity;
+  QuantityBuilder? quantity;
 
   /// [itemX]
   /// Identifies the medication, substance or device being dispensed. This is
   /// either a link to a resource representing the details of the item or a
   /// code that identifies the item from a known list.
-  final ItemXSupplyDeliverySuppliedItem? itemX;
+  ItemXSupplyDeliverySuppliedItemBuilder? itemX;
 
-  /// Getter for [itemCodeableConcept] as a CodeableConcept
-  CodeableConcept? get itemCodeableConcept => itemX?.isAs<CodeableConcept>();
+  /// Getter for [itemCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get itemCodeableConcept =>
+      itemX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [itemReference] as a Reference
-  Reference? get itemReference => itemX?.isAs<Reference>();
+  /// Getter for [itemReference] as a ReferenceBuilder
+  ReferenceBuilder? get itemReference => itemX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1443,33 +1323,18 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'quantity',
-      quantity,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('quantity', quantity);
     if (itemX != null) {
       final fhirType = itemX!.fhirType;
-      addField(
-        'item${fhirType.capitalize()}',
-        itemX,
-      );
+      addField('item${fhirType.capitalize()}', itemX);
     }
 
     return json;
@@ -1490,11 +1355,11 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1513,15 +1378,19 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
           fields.add(quantity!);
         }
       case 'item':
-        fields.add(itemX!);
+        if (itemX != null) {
+          fields.add(itemX!);
+        }
       case 'itemX':
-        fields.add(itemX!);
+        if (itemX != null) {
+          fields.add(itemX!);
+        }
       case 'itemCodeableConcept':
-        if (itemX is CodeableConcept) {
+        if (itemX is CodeableConceptBuilder) {
           fields.add(itemX!);
         }
       case 'itemReference':
-        if (itemX is Reference) {
+        if (itemX is ReferenceBuilder) {
           fields.add(itemX!);
         }
       default:
@@ -1534,7 +1403,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1543,87 +1412,93 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
         {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
+          if (child is QuantityBuilder) {
+            quantity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'itemX':
         {
-          if (child is ItemXSupplyDeliverySuppliedItem) {
-            return copyWith(itemX: child);
+          if (child is ItemXSupplyDeliverySuppliedItemBuilder) {
+            itemX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(itemX: child);
+            if (child is CodeableConceptBuilder) {
+              itemX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(itemX: child);
+            if (child is ReferenceBuilder) {
+              itemX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'itemCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(itemX: child);
+          if (child is CodeableConceptBuilder) {
+            itemX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'itemReference':
         {
-          if (child is Reference) {
-            return copyWith(itemX: child);
+          if (child is ReferenceBuilder) {
+            itemX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1639,71 +1514,61 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'quantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'item':
       case 'itemX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'itemCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'itemReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SupplyDeliverySuppliedItem]
+  /// Creates a new [SupplyDeliverySuppliedItemBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SupplyDeliverySuppliedItem createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'quantity':
         {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
+          quantity = QuantityBuilder.empty();
+          return;
         }
       case 'item':
       case 'itemX':
       case 'itemCodeableConcept':
         {
-          return copyWith(
-            itemX: CodeableConcept.empty(),
-          );
+          itemX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'itemReference':
         {
-          return copyWith(
-            itemX: Reference.empty(),
-          );
+          itemX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1712,31 +1577,29 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SupplyDeliverySuppliedItem clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool quantity = false,
     bool item = false,
   }) {
-    return SupplyDeliverySuppliedItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      quantity: quantity ? null : this.quantity,
-      itemX: item ? null : itemX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (quantity) this.quantity = null;
+    if (item) this.itemX = null;
   }
 
   @override
-  SupplyDeliverySuppliedItem clone() => throw UnimplementedError();
+  SupplyDeliverySuppliedItemBuilder clone() => throw UnimplementedError();
   @override
-  SupplyDeliverySuppliedItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Quantity? quantity,
-    ItemXSupplyDeliverySuppliedItem? itemX,
+  SupplyDeliverySuppliedItemBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    QuantityBuilder? quantity,
+    ItemXSupplyDeliverySuppliedItemBuilder? itemX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1744,42 +1607,36 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SupplyDeliverySuppliedItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      itemX: itemX?.copyWith(
-            objectPath: '$newObjectPath.itemX',
-          ) as ItemXSupplyDeliverySuppliedItem? ??
-          this.itemX,
+    final newResult = SupplyDeliverySuppliedItemBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      quantity: quantity ?? this.quantity,
+      itemX: itemX ?? this.itemX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SupplyDeliverySuppliedItem) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SupplyDeliverySuppliedItemBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1790,13 +1647,13 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

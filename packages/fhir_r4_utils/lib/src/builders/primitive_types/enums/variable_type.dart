@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// The possible types of variables for exposures or outcomes (E.g.
 /// Dichotomous, Continuous, Descriptive).
-class VariableType extends FhirCodeEnum {
+class VariableTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  VariableType._({
+  VariableTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class VariableType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory VariableType(
+  factory VariableTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return VariableType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return VariableTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,56 +44,59 @@ class VariableType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [VariableType] with element only
-  factory VariableType.empty() => VariableType._(validatedValue: '');
+  /// Create empty [VariableTypeBuilder] with element only
+  factory VariableTypeBuilder.empty() =>
+      VariableTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [VariableType] from JSON.
-  factory VariableType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [VariableTypeBuilder] from JSON.
+  factory VariableTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return VariableType.elementOnly.withElement(element);
+      return VariableTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'VariableType cannot be constructed from JSON.',
+        'VariableTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return VariableType._(
+    return VariableTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// dichotomous
-  static final VariableType dichotomous = VariableType._(
+  static VariableTypeBuilder dichotomous = VariableTypeBuilder._(
     validatedValue: 'dichotomous',
-    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Dichotomous'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Dichotomous'.toFhirStringBuilder,
   );
 
   /// continuous
-  static final VariableType continuous = VariableType._(
+  static VariableTypeBuilder continuous = VariableTypeBuilder._(
     validatedValue: 'continuous',
-    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Continuous'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Continuous'.toFhirStringBuilder,
   );
 
   /// descriptive
-  static final VariableType descriptive = VariableType._(
+  static VariableTypeBuilder descriptive = VariableTypeBuilder._(
     validatedValue: 'descriptive',
-    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Descriptive'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Descriptive'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final VariableType elementOnly = VariableType._(validatedValue: '');
+  static VariableTypeBuilder elementOnly =
+      VariableTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<VariableType> values = [
+  static List<VariableTypeBuilder> values = [
     dichotomous,
     continuous,
     descriptive,
@@ -101,14 +104,14 @@ class VariableType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  VariableType clone() => VariableType._(
+  VariableTypeBuilder clone() => VariableTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  VariableType withElement(Element? newElement) {
-    return VariableType._(validatedValue: value, element: newElement);
+  VariableTypeBuilder withElement(ElementBuilder? newElement) {
+    return VariableTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,11 +127,11 @@ class VariableType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  VariableType copyWith({
+  VariableTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -139,7 +142,7 @@ class VariableType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return VariableType._(
+    return VariableTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -149,7 +152,7 @@ class VariableType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -143,8 +143,8 @@ abstract class BackboneElementBuilder extends DataTypeBuilder {
 
   /// Creates an empty property in the object
   @override
-  BackboneElementBuilder createProperty(String propertyName);
+  void createProperty(String propertyName);
 
   @override
-  BackboneElementBuilder clear({bool extension_ = false, bool id = false});
+  void clear({bool extension_ = false, bool id = false});
 }

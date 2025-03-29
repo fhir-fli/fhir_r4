@@ -1,14 +1,16 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Ingredient]
+/// [IngredientBuilder]
 /// An ingredient of a manufactured item or pharmaceutical product.
-class Ingredient extends DomainResource {
+class IngredientBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Ingredient]
+  /// [IngredientBuilder]
 
-  const Ingredient({
+  IngredientBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -18,66 +20,61 @@ class Ingredient extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
+    this.status,
     this.for_,
-    required this.role,
+    this.role,
     this.function_,
     this.allergenicIndicator,
     this.manufacturer,
-    required this.substance,
+    this.substance,
   }) : super(
           objectPath: 'Ingredient',
           resourceType: R4ResourceType.Ingredient,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Ingredient.empty() => Ingredient(
-        status: PublicationStatus.values.first,
-        role: CodeableConcept.empty(),
-        substance: IngredientSubstance.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory IngredientBuilder.empty() => IngredientBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Ingredient.fromJson(
+  factory IngredientBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Ingredient';
-    return Ingredient(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return IngredientBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -86,8 +83,8 @@ class Ingredient extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -96,8 +93,8 @@ class Ingredient extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -105,21 +102,21 @@ class Ingredient extends DomainResource {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       for_: (json['for'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.for',
@@ -127,15 +124,15 @@ class Ingredient extends DomainResource {
             ),
           )
           .toList(),
-      role: JsonParser.parseObject<CodeableConcept>(
+      role: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'role',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.role',
-      )!,
+      ),
       function_: (json['function'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.function',
@@ -143,15 +140,15 @@ class Ingredient extends DomainResource {
             ),
           )
           .toList(),
-      allergenicIndicator: JsonParser.parsePrimitive<FhirBoolean>(
+      allergenicIndicator: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'allergenicIndicator',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.allergenicIndicator',
       ),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
-          ?.map<IngredientManufacturer>(
-            (v) => IngredientManufacturer.fromJson(
+          ?.map<IngredientManufacturerBuilder>(
+            (v) => IngredientManufacturerBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.manufacturer',
@@ -159,31 +156,31 @@ class Ingredient extends DomainResource {
             ),
           )
           .toList(),
-      substance: JsonParser.parseObject<IngredientSubstance>(
+      substance: JsonParser.parseObject<IngredientSubstanceBuilder>(
         json,
         'substance',
-        IngredientSubstance.fromJson,
+        IngredientSubstanceBuilder.fromJson,
         '$objectPath.substance',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [Ingredient]
+  /// Deserialize [IngredientBuilder]
   /// from a [String] or [YamlMap] object
-  factory Ingredient.fromYaml(
+  factory IngredientBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Ingredient.fromJson(
+      return IngredientBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Ingredient.fromJson(
+      return IngredientBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Ingredient '
+        'IngredientBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -191,16 +188,16 @@ class Ingredient extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Ingredient]
+  /// [IngredientBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Ingredient.fromJsonString(
+  factory IngredientBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Ingredient.fromJson(json);
+      return IngredientBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -214,34 +211,34 @@ class Ingredient extends DomainResource {
   /// The identifier(s) of this Ingredient that are assigned by business
   /// processes and/or used to refer to it when a direct URL reference to the
   /// resource itself is not appropriate.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [status]
   /// The status of this ingredient. Enables tracking the life-cycle of the
   /// content.
-  final PublicationStatus status;
+  PublicationStatusBuilder? status;
 
   /// [for_]
   /// The product which this ingredient is a constituent part of.
-  final List<Reference>? for_;
+  List<ReferenceBuilder>? for_;
 
   /// [role]
   /// A classification of the ingredient identifying its purpose within the
   /// product, e.g. active, inactive.
-  final CodeableConcept role;
+  CodeableConceptBuilder? role;
 
   /// [function_]
   /// A classification of the ingredient identifying its precise purpose(s)
   /// in the drug product. This extends the Ingredient.role to add more
   /// detail. Example: antioxidant, alkalizing agent.
-  final List<CodeableConcept>? function_;
+  List<CodeableConceptBuilder>? function_;
 
   /// [allergenicIndicator]
   /// If the ingredient is a known or suspected allergen. Note that this is a
   /// property of the substance, so if a reference to a SubstanceDefinition
   /// is used to decribe that (rather than just a code), the allergen
   /// information should go there, not here.
-  final FhirBoolean? allergenicIndicator;
+  FhirBooleanBuilder? allergenicIndicator;
 
   /// [manufacturer]
   /// The organization(s) that manufacture this ingredient. Can be used to
@@ -250,27 +247,27 @@ class Ingredient extends DomainResource {
   /// organisations allowed to manufacture this ingredient for this product
   /// Users must be clear on the application of context relevant to their use
   /// case.
-  final List<IngredientManufacturer>? manufacturer;
+  List<IngredientManufacturerBuilder>? manufacturer;
 
   /// [substance]
   /// The substance that comprises this ingredient.
-  final IngredientSubstance substance;
+  IngredientSubstanceBuilder? substance;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -279,76 +276,28 @@ class Ingredient extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'for',
-      for_,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'function',
-      function_,
-    );
-    addField(
-      'allergenicIndicator',
-      allergenicIndicator,
-    );
-    addField(
-      'manufacturer',
-      manufacturer,
-    );
-    addField(
-      'substance',
-      substance,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('for', for_);
+    addField('role', role);
+    addField('function', function_);
+    addField('allergenicIndicator', allergenicIndicator);
+    addField('manufacturer', manufacturer);
+    addField('substance', substance);
     return json;
   }
 
@@ -378,11 +327,11 @@ class Ingredient extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -421,13 +370,17 @@ class Ingredient extends DomainResource {
           fields.add(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'for':
         if (for_ != null) {
           fields.addAll(for_!);
         }
       case 'role':
-        fields.add(role);
+        if (role != null) {
+          fields.add(role!);
+        }
       case 'function':
         if (function_ != null) {
           fields.addAll(function_!);
@@ -441,7 +394,9 @@ class Ingredient extends DomainResource {
           fields.addAll(manufacturer!);
         }
       case 'substance':
-        fields.add(substance);
+        if (substance != null) {
+          fields.add(substance!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -452,7 +407,7 @@ class Ingredient extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -461,177 +416,186 @@ class Ingredient extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'for':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?for_, ...child];
-            return copyWith(for_: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            for_ = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?for_, child];
-            return copyWith(for_: newList);
+            for_ = [...(for_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
+          if (child is CodeableConceptBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'function':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?function_, ...child];
-            return copyWith(function_: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            function_ = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?function_, child];
-            return copyWith(function_: newList);
+            function_ = [...(function_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'allergenicIndicator':
         {
-          if (child is FhirBoolean) {
-            return copyWith(allergenicIndicator: child);
+          if (child is FhirBooleanBuilder) {
+            allergenicIndicator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
         {
-          if (child is List<IngredientManufacturer>) {
-            // Add all elements from passed list
-            final newList = [...?manufacturer, ...child];
-            return copyWith(manufacturer: newList);
-          } else if (child is IngredientManufacturer) {
+          if (child is List<IngredientManufacturerBuilder>) {
+            // Replace or create new list
+            manufacturer = child;
+            return;
+          } else if (child is IngredientManufacturerBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
-            return copyWith(manufacturer: newList);
+            manufacturer = [...(manufacturer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
         {
-          if (child is IngredientSubstance) {
-            return copyWith(substance: child);
+          if (child is IngredientSubstanceBuilder) {
+            substance = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -647,146 +611,126 @@ class Ingredient extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'for':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'function':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'allergenicIndicator':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'manufacturer':
-        return ['IngredientManufacturer'];
+        return ['IngredientManufacturerBuilder'];
       case 'substance':
-        return ['IngredientSubstance'];
+        return ['IngredientSubstanceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Ingredient]
+  /// Creates a new [IngredientBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Ingredient createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'for':
         {
-          return copyWith(
-            for_: <Reference>[],
-          );
+          for_ = <ReferenceBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
+          role = CodeableConceptBuilder.empty();
+          return;
         }
       case 'function':
         {
-          return copyWith(
-            function_: <CodeableConcept>[],
-          );
+          function_ = <CodeableConceptBuilder>[];
+          return;
         }
       case 'allergenicIndicator':
         {
-          return copyWith(
-            allergenicIndicator: FhirBoolean.empty(),
-          );
+          allergenicIndicator = FhirBooleanBuilder.empty();
+          return;
         }
       case 'manufacturer':
         {
-          return copyWith(
-            manufacturer: <IngredientManufacturer>[],
-          );
+          manufacturer = <IngredientManufacturerBuilder>[];
+          return;
         }
       case 'substance':
         {
-          return copyWith(
-            substance: IngredientSubstance.empty(),
-          );
+          substance = IngredientSubstanceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -795,7 +739,7 @@ class Ingredient extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Ingredient clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -805,147 +749,99 @@ class Ingredient extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
     bool for_ = false,
+    bool role = false,
     bool function_ = false,
     bool allergenicIndicator = false,
     bool manufacturer = false,
+    bool substance = false,
   }) {
-    return Ingredient(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      for_: for_ ? null : this.for_,
-      role: role,
-      function_: function_ ? null : this.function_,
-      allergenicIndicator:
-          allergenicIndicator ? null : this.allergenicIndicator,
-      manufacturer: manufacturer ? null : this.manufacturer,
-      substance: substance,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (for_) this.for_ = null;
+    if (role) this.role = null;
+    if (function_) this.function_ = null;
+    if (allergenicIndicator) this.allergenicIndicator = null;
+    if (manufacturer) this.manufacturer = null;
+    if (substance) this.substance = null;
   }
 
   @override
-  Ingredient clone() => throw UnimplementedError();
+  IngredientBuilder clone() => throw UnimplementedError();
   @override
-  Ingredient copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    PublicationStatus? status,
-    List<Reference>? for_,
-    CodeableConcept? role,
-    List<CodeableConcept>? function_,
-    FhirBoolean? allergenicIndicator,
-    List<IngredientManufacturer>? manufacturer,
-    IngredientSubstance? substance,
+  IngredientBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    PublicationStatusBuilder? status,
+    List<ReferenceBuilder>? for_,
+    CodeableConceptBuilder? role,
+    List<CodeableConceptBuilder>? function_,
+    FhirBooleanBuilder? allergenicIndicator,
+    List<IngredientManufacturerBuilder>? manufacturer,
+    IngredientSubstanceBuilder? substance,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Ingredient(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = IngredientBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      for_: for_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.for',
-                ),
-              )
-              .toList() ??
-          this.for_,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      function_: function_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.function',
-                ),
-              )
-              .toList() ??
-          this.function_,
-      allergenicIndicator: allergenicIndicator?.copyWith(
-            objectPath: '$newObjectPath.allergenicIndicator',
-          ) ??
-          this.allergenicIndicator,
-      manufacturer: manufacturer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manufacturer',
-                ),
-              )
-              .toList() ??
-          this.manufacturer,
-      substance: substance?.copyWith(
-            objectPath: '$newObjectPath.substance',
-          ) ??
-          this.substance,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      for_: for_ ?? this.for_,
+      role: role ?? this.role,
+      function_: function_ ?? this.function_,
+      allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
+      manufacturer: manufacturer ?? this.manufacturer,
+      substance: substance ?? this.substance,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Ingredient) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! IngredientBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -980,19 +876,19 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1010,7 +906,7 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       for_,
       o.for_,
     )) {
@@ -1022,7 +918,7 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       function_,
       o.function_,
     )) {
@@ -1034,7 +930,7 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<IngredientManufacturer>(
+    if (!listEquals<IngredientManufacturerBuilder>(
       manufacturer,
       o.manufacturer,
     )) {
@@ -1050,50 +946,48 @@ class Ingredient extends DomainResource {
   }
 }
 
-/// [IngredientManufacturer]
+/// [IngredientManufacturerBuilder]
 /// The organization(s) that manufacture this ingredient. Can be used to
 /// indicate: 1) Organizations we are aware of that manufacture this
 /// ingredient 2) Specific Manufacturer(s) currently being used 3) Set of
 /// organisations allowed to manufacture this ingredient for this product
 /// Users must be clear on the application of context relevant to their use
 /// case.
-class IngredientManufacturer extends BackboneElement {
+class IngredientManufacturerBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [IngredientManufacturer]
+  /// [IngredientManufacturerBuilder]
 
-  const IngredientManufacturer({
+  IngredientManufacturerBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.role,
-    required this.manufacturer,
+    this.manufacturer,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Ingredient.manufacturer',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientManufacturer.empty() => IngredientManufacturer(
-        manufacturer: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory IngredientManufacturerBuilder.empty() =>
+      IngredientManufacturerBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientManufacturer.fromJson(
+  factory IngredientManufacturerBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Ingredient.manufacturer';
-    return IngredientManufacturer(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return IngredientManufacturerBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1102,8 +996,8 @@ class IngredientManufacturer extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1111,37 +1005,37 @@ class IngredientManufacturer extends BackboneElement {
             ),
           )
           .toList(),
-      role: JsonParser.parsePrimitive<IngredientManufacturerRole>(
+      role: JsonParser.parsePrimitive<IngredientManufacturerRoleBuilder>(
         json,
         'role',
-        IngredientManufacturerRole.fromJson,
+        IngredientManufacturerRoleBuilder.fromJson,
         '$objectPath.role',
       ),
-      manufacturer: JsonParser.parseObject<Reference>(
+      manufacturer: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'manufacturer',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.manufacturer',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [IngredientManufacturer]
+  /// Deserialize [IngredientManufacturerBuilder]
   /// from a [String] or [YamlMap] object
-  factory IngredientManufacturer.fromYaml(
+  factory IngredientManufacturerBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return IngredientManufacturer.fromJson(
+      return IngredientManufacturerBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return IngredientManufacturer.fromJson(
+      return IngredientManufacturerBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'IngredientManufacturer '
+        'IngredientManufacturerBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1149,16 +1043,16 @@ class IngredientManufacturer extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [IngredientManufacturer]
+  /// [IngredientManufacturerBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientManufacturer.fromJsonString(
+  factory IngredientManufacturerBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return IngredientManufacturer.fromJson(json);
+      return IngredientManufacturerBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1173,27 +1067,27 @@ class IngredientManufacturer extends BackboneElement {
   /// For example whether it is a possible one (others allowed), or an
   /// exclusive authorized one for this ingredient. Note that this is not the
   /// manufacturing process role.
-  final IngredientManufacturerRole? role;
+  IngredientManufacturerRoleBuilder? role;
 
   /// [manufacturer]
   /// An organization that manufactures this ingredient.
-  final Reference manufacturer;
+  ReferenceBuilder? manufacturer;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1202,31 +1096,16 @@ class IngredientManufacturer extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'manufacturer',
-      manufacturer,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('role', role);
+    addField('manufacturer', manufacturer);
     return json;
   }
 
@@ -1245,11 +1124,11 @@ class IngredientManufacturer extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1268,7 +1147,9 @@ class IngredientManufacturer extends BackboneElement {
           fields.add(role!);
         }
       case 'manufacturer':
-        fields.add(manufacturer);
+        if (manufacturer != null) {
+          fields.add(manufacturer!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1279,7 +1160,7 @@ class IngredientManufacturer extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1288,65 +1169,67 @@ class IngredientManufacturer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is IngredientManufacturerRole) {
-            return copyWith(role: child);
+          if (child is IngredientManufacturerRoleBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
         {
-          if (child is Reference) {
-            return copyWith(manufacturer: child);
+          if (child is ReferenceBuilder) {
+            manufacturer = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1362,58 +1245,49 @@ class IngredientManufacturer extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'role':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'manufacturer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [IngredientManufacturer]
+  /// Creates a new [IngredientManufacturerBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientManufacturer createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: IngredientManufacturerRole.empty(),
-          );
+          role = IngredientManufacturerRoleBuilder.empty();
+          return;
         }
       case 'manufacturer':
         {
-          return copyWith(
-            manufacturer: Reference.empty(),
-          );
+          manufacturer = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1422,30 +1296,29 @@ class IngredientManufacturer extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  IngredientManufacturer clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool role = false,
+    bool manufacturer = false,
   }) {
-    return IngredientManufacturer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      role: role ? null : this.role,
-      manufacturer: manufacturer,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (role) this.role = null;
+    if (manufacturer) this.manufacturer = null;
   }
 
   @override
-  IngredientManufacturer clone() => throw UnimplementedError();
+  IngredientManufacturerBuilder clone() => throw UnimplementedError();
   @override
-  IngredientManufacturer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    IngredientManufacturerRole? role,
-    Reference? manufacturer,
+  IngredientManufacturerBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IngredientManufacturerRoleBuilder? role,
+    ReferenceBuilder? manufacturer,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1453,42 +1326,36 @@ class IngredientManufacturer extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return IngredientManufacturer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      manufacturer: manufacturer?.copyWith(
-            objectPath: '$newObjectPath.manufacturer',
-          ) ??
-          this.manufacturer,
+    final newResult = IngredientManufacturerBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      role: role ?? this.role,
+      manufacturer: manufacturer ?? this.manufacturer,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! IngredientManufacturer) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! IngredientManufacturerBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1499,13 +1366,13 @@ class IngredientManufacturer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1527,17 +1394,17 @@ class IngredientManufacturer extends BackboneElement {
   }
 }
 
-/// [IngredientSubstance]
+/// [IngredientSubstanceBuilder]
 /// The substance that comprises this ingredient.
-class IngredientSubstance extends BackboneElement {
+class IngredientSubstanceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [IngredientSubstance]
+  /// [IngredientSubstanceBuilder]
 
-  const IngredientSubstance({
+  IngredientSubstanceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
+    this.code,
     this.strength,
     super.disallowExtensions,
   }) : super(
@@ -1545,27 +1412,24 @@ class IngredientSubstance extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientSubstance.empty() => IngredientSubstance(
-        code: CodeableReference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory IngredientSubstanceBuilder.empty() => IngredientSubstanceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientSubstance.fromJson(
+  factory IngredientSubstanceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Ingredient.substance';
-    return IngredientSubstance(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return IngredientSubstanceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1574,8 +1438,8 @@ class IngredientSubstance extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1583,15 +1447,15 @@ class IngredientSubstance extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableReference>(
+      code: JsonParser.parseObject<CodeableReferenceBuilder>(
         json,
         'code',
-        CodeableReference.fromJson,
+        CodeableReferenceBuilder.fromJson,
         '$objectPath.code',
-      )!,
+      ),
       strength: (json['strength'] as List<dynamic>?)
-          ?.map<IngredientStrength>(
-            (v) => IngredientStrength.fromJson(
+          ?.map<IngredientStrengthBuilder>(
+            (v) => IngredientStrengthBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.strength',
@@ -1602,22 +1466,22 @@ class IngredientSubstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientSubstance]
+  /// Deserialize [IngredientSubstanceBuilder]
   /// from a [String] or [YamlMap] object
-  factory IngredientSubstance.fromYaml(
+  factory IngredientSubstanceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return IngredientSubstance.fromJson(
+      return IngredientSubstanceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return IngredientSubstance.fromJson(
+      return IngredientSubstanceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'IngredientSubstance '
+        'IngredientSubstanceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1625,16 +1489,16 @@ class IngredientSubstance extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [IngredientSubstance]
+  /// [IngredientSubstanceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientSubstance.fromJsonString(
+  factory IngredientSubstanceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return IngredientSubstance.fromJson(json);
+      return IngredientSubstanceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1646,7 +1510,7 @@ class IngredientSubstance extends BackboneElement {
 
   /// [code]
   /// A code or full resource that represents the ingredient's substance.
-  final CodeableReference code;
+  CodeableReferenceBuilder? code;
 
   /// [strength]
   /// The quantity of substance in the unit of presentation, or in the volume
@@ -1654,23 +1518,23 @@ class IngredientSubstance extends BackboneElement {
   /// The allowed repetitions do not represent different strengths, but are
   /// different representations - mathematically equivalent - of a single
   /// strength.
-  final List<IngredientStrength>? strength;
+  List<IngredientStrengthBuilder>? strength;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1679,31 +1543,16 @@ class IngredientSubstance extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'strength',
-      strength,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('strength', strength);
     return json;
   }
 
@@ -1722,11 +1571,11 @@ class IngredientSubstance extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1741,7 +1590,9 @@ class IngredientSubstance extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'strength':
         if (strength != null) {
           fields.addAll(strength!);
@@ -1756,7 +1607,7 @@ class IngredientSubstance extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1765,71 +1616,72 @@ class IngredientSubstance extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableReference) {
-            return copyWith(code: child);
+          if (child is CodeableReferenceBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'strength':
         {
-          if (child is List<IngredientStrength>) {
-            // Add all elements from passed list
-            final newList = [...?strength, ...child];
-            return copyWith(strength: newList);
-          } else if (child is IngredientStrength) {
+          if (child is List<IngredientStrengthBuilder>) {
+            // Replace or create new list
+            strength = child;
+            return;
+          } else if (child is IngredientStrengthBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?strength, child];
-            return copyWith(strength: newList);
+            strength = [...(strength ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1845,58 +1697,49 @@ class IngredientSubstance extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'strength':
-        return ['IngredientStrength'];
+        return ['IngredientStrengthBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [IngredientSubstance]
+  /// Creates a new [IngredientSubstanceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientSubstance createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableReference.empty(),
-          );
+          code = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'strength':
         {
-          return copyWith(
-            strength: <IngredientStrength>[],
-          );
+          strength = <IngredientStrengthBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1905,30 +1748,29 @@ class IngredientSubstance extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  IngredientSubstance clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
     bool strength = false,
   }) {
-    return IngredientSubstance(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      strength: strength ? null : this.strength,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (strength) this.strength = null;
   }
 
   @override
-  IngredientSubstance clone() => throw UnimplementedError();
+  IngredientSubstanceBuilder clone() => throw UnimplementedError();
   @override
-  IngredientSubstance copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableReference? code,
-    List<IngredientStrength>? strength,
+  IngredientSubstanceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableReferenceBuilder? code,
+    List<IngredientStrengthBuilder>? strength,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1936,46 +1778,36 @@ class IngredientSubstance extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return IngredientSubstance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      strength: strength
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.strength',
-                ),
-              )
-              .toList() ??
-          this.strength,
+    final newResult = IngredientSubstanceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      strength: strength ?? this.strength,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! IngredientSubstance) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! IngredientSubstanceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1986,13 +1818,13 @@ class IngredientSubstance extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2004,7 +1836,7 @@ class IngredientSubstance extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<IngredientStrength>(
+    if (!listEquals<IngredientStrengthBuilder>(
       strength,
       o.strength,
     )) {
@@ -2014,17 +1846,17 @@ class IngredientSubstance extends BackboneElement {
   }
 }
 
-/// [IngredientStrength]
+/// [IngredientStrengthBuilder]
 /// The quantity of substance in the unit of presentation, or in the volume
 /// (or mass) of the single pharmaceutical product or manufactured item.
 /// The allowed repetitions do not represent different strengths, but are
 /// different representations - mathematically equivalent - of a single
 /// strength.
-class IngredientStrength extends BackboneElement {
+class IngredientStrengthBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [IngredientStrength]
+  /// [IngredientStrengthBuilder]
 
-  const IngredientStrength({
+  IngredientStrengthBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2041,25 +1873,24 @@ class IngredientStrength extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientStrength.empty() => const IngredientStrength();
+  /// For Builder classes, no fields are required
+  factory IngredientStrengthBuilder.empty() => IngredientStrengthBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientStrength.fromJson(
+  factory IngredientStrengthBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Ingredient.substance.strength';
-    return IngredientStrength(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return IngredientStrengthBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2068,8 +1899,8 @@ class IngredientStrength extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2078,44 +1909,44 @@ class IngredientStrength extends BackboneElement {
           )
           .toList(),
       presentationX:
-          JsonParser.parsePolymorphic<PresentationXIngredientStrength>(
+          JsonParser.parsePolymorphic<PresentationXIngredientStrengthBuilder>(
         json,
         {
-          'presentationRatio': Ratio.fromJson,
-          'presentationRatioRange': RatioRange.fromJson,
+          'presentationRatio': RatioBuilder.fromJson,
+          'presentationRatioRange': RatioRangeBuilder.fromJson,
         },
         objectPath,
       ),
-      textPresentation: JsonParser.parsePrimitive<FhirString>(
+      textPresentation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'textPresentation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.textPresentation',
       ),
       concentrationX:
-          JsonParser.parsePolymorphic<ConcentrationXIngredientStrength>(
+          JsonParser.parsePolymorphic<ConcentrationXIngredientStrengthBuilder>(
         json,
         {
-          'concentrationRatio': Ratio.fromJson,
-          'concentrationRatioRange': RatioRange.fromJson,
+          'concentrationRatio': RatioBuilder.fromJson,
+          'concentrationRatioRange': RatioRangeBuilder.fromJson,
         },
         objectPath,
       ),
-      textConcentration: JsonParser.parsePrimitive<FhirString>(
+      textConcentration: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'textConcentration',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.textConcentration',
       ),
-      measurementPoint: JsonParser.parsePrimitive<FhirString>(
+      measurementPoint: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'measurementPoint',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.measurementPoint',
       ),
       country: (json['country'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.country',
@@ -2124,8 +1955,8 @@ class IngredientStrength extends BackboneElement {
           )
           .toList(),
       referenceStrength: (json['referenceStrength'] as List<dynamic>?)
-          ?.map<IngredientReferenceStrength>(
-            (v) => IngredientReferenceStrength.fromJson(
+          ?.map<IngredientReferenceStrengthBuilder>(
+            (v) => IngredientReferenceStrengthBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.referenceStrength',
@@ -2136,22 +1967,22 @@ class IngredientStrength extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientStrength]
+  /// Deserialize [IngredientStrengthBuilder]
   /// from a [String] or [YamlMap] object
-  factory IngredientStrength.fromYaml(
+  factory IngredientStrengthBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return IngredientStrength.fromJson(
+      return IngredientStrengthBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return IngredientStrength.fromJson(
+      return IngredientStrengthBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'IngredientStrength '
+        'IngredientStrengthBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2159,16 +1990,16 @@ class IngredientStrength extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [IngredientStrength]
+  /// [IngredientStrengthBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientStrength.fromJsonString(
+  factory IngredientStrengthBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return IngredientStrength.fromJson(json);
+      return IngredientStrengthBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2185,46 +2016,48 @@ class IngredientStrength extends BackboneElement {
   /// e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the
   /// tablet). It is not generally normalized as a unitary unit, which would
   /// be 'per mg').
-  final PresentationXIngredientStrength? presentationX;
+  PresentationXIngredientStrengthBuilder? presentationX;
 
-  /// Getter for [presentationRatio] as a Ratio
-  Ratio? get presentationRatio => presentationX?.isAs<Ratio>();
+  /// Getter for [presentationRatio] as a RatioBuilder
+  RatioBuilder? get presentationRatio => presentationX?.isAs<RatioBuilder>();
 
-  /// Getter for [presentationRatioRange] as a RatioRange
-  RatioRange? get presentationRatioRange => presentationX?.isAs<RatioRange>();
+  /// Getter for [presentationRatioRange] as a RatioRangeBuilder
+  RatioRangeBuilder? get presentationRatioRange =>
+      presentationX?.isAs<RatioRangeBuilder>();
 
   /// [textPresentation]
   /// A textual represention of either the whole of the presentation strength
   /// or a part of it - with the rest being in Strength.presentation as a
   /// ratio.
-  final FhirString? textPresentation;
+  FhirStringBuilder? textPresentation;
 
   /// [concentrationX]
   /// The strength per unitary volume (or mass).
-  final ConcentrationXIngredientStrength? concentrationX;
+  ConcentrationXIngredientStrengthBuilder? concentrationX;
 
-  /// Getter for [concentrationRatio] as a Ratio
-  Ratio? get concentrationRatio => concentrationX?.isAs<Ratio>();
+  /// Getter for [concentrationRatio] as a RatioBuilder
+  RatioBuilder? get concentrationRatio => concentrationX?.isAs<RatioBuilder>();
 
-  /// Getter for [concentrationRatioRange] as a RatioRange
-  RatioRange? get concentrationRatioRange => concentrationX?.isAs<RatioRange>();
+  /// Getter for [concentrationRatioRange] as a RatioRangeBuilder
+  RatioRangeBuilder? get concentrationRatioRange =>
+      concentrationX?.isAs<RatioRangeBuilder>();
 
   /// [textConcentration]
   /// A textual represention of either the whole of the concentration
   /// strength or a part of it - with the rest being in
   /// Strength.concentration as a ratio.
-  final FhirString? textConcentration;
+  FhirStringBuilder? textConcentration;
 
   /// [measurementPoint]
   /// For when strength is measured at a particular point or distance. There
   /// are products where strength is measured at a particular point. For
   /// example, the strength of the ingredient in some inhalers is measured at
   /// a particular position relative to the point of aerosolization.
-  final FhirString? measurementPoint;
+  FhirStringBuilder? measurementPoint;
 
   /// [country]
   /// The country or countries for which the strength range applies.
-  final List<CodeableConcept>? country;
+  List<CodeableConceptBuilder>? country;
 
   /// [referenceStrength]
   /// Strength expressed in terms of a reference substance. For when the
@@ -2234,23 +2067,23 @@ class IngredientStrength extends BackboneElement {
   /// of the active moiety of the active substance. There are situations when
   /// the active substance and active moiety are different, therefore both a
   /// strength and a reference strength are needed.
-  final List<IngredientReferenceStrength>? referenceStrength;
+  List<IngredientReferenceStrengthBuilder>? referenceStrength;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2259,59 +2092,29 @@ class IngredientStrength extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
     if (presentationX != null) {
       final fhirType = presentationX!.fhirType;
-      addField(
-        'presentation${fhirType.capitalize()}',
-        presentationX,
-      );
+      addField('presentation${fhirType.capitalize()}', presentationX);
     }
 
-    addField(
-      'textPresentation',
-      textPresentation,
-    );
+    addField('textPresentation', textPresentation);
     if (concentrationX != null) {
       final fhirType = concentrationX!.fhirType;
-      addField(
-        'concentration${fhirType.capitalize()}',
-        concentrationX,
-      );
+      addField('concentration${fhirType.capitalize()}', concentrationX);
     }
 
-    addField(
-      'textConcentration',
-      textConcentration,
-    );
-    addField(
-      'measurementPoint',
-      measurementPoint,
-    );
-    addField(
-      'country',
-      country,
-    );
-    addField(
-      'referenceStrength',
-      referenceStrength,
-    );
+    addField('textConcentration', textConcentration);
+    addField('measurementPoint', measurementPoint);
+    addField('country', country);
+    addField('referenceStrength', referenceStrength);
     return json;
   }
 
@@ -2335,11 +2138,11 @@ class IngredientStrength extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2354,15 +2157,19 @@ class IngredientStrength extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'presentation':
-        fields.add(presentationX!);
+        if (presentationX != null) {
+          fields.add(presentationX!);
+        }
       case 'presentationX':
-        fields.add(presentationX!);
+        if (presentationX != null) {
+          fields.add(presentationX!);
+        }
       case 'presentationRatio':
-        if (presentationX is Ratio) {
+        if (presentationX is RatioBuilder) {
           fields.add(presentationX!);
         }
       case 'presentationRatioRange':
-        if (presentationX is RatioRange) {
+        if (presentationX is RatioRangeBuilder) {
           fields.add(presentationX!);
         }
       case 'textPresentation':
@@ -2370,15 +2177,19 @@ class IngredientStrength extends BackboneElement {
           fields.add(textPresentation!);
         }
       case 'concentration':
-        fields.add(concentrationX!);
+        if (concentrationX != null) {
+          fields.add(concentrationX!);
+        }
       case 'concentrationX':
-        fields.add(concentrationX!);
+        if (concentrationX != null) {
+          fields.add(concentrationX!);
+        }
       case 'concentrationRatio':
-        if (concentrationX is Ratio) {
+        if (concentrationX is RatioBuilder) {
           fields.add(concentrationX!);
         }
       case 'concentrationRatioRange':
-        if (concentrationX is RatioRange) {
+        if (concentrationX is RatioRangeBuilder) {
           fields.add(concentrationX!);
         }
       case 'textConcentration':
@@ -2407,7 +2218,7 @@ class IngredientStrength extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2416,161 +2227,174 @@ class IngredientStrength extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'presentationX':
         {
-          if (child is PresentationXIngredientStrength) {
-            return copyWith(presentationX: child);
+          if (child is PresentationXIngredientStrengthBuilder) {
+            presentationX = child;
+            return;
           } else {
-            if (child is Ratio) {
-              return copyWith(presentationX: child);
+            if (child is RatioBuilder) {
+              presentationX = child;
+              return;
             }
-            if (child is RatioRange) {
-              return copyWith(presentationX: child);
+            if (child is RatioRangeBuilder) {
+              presentationX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'presentationRatio':
         {
-          if (child is Ratio) {
-            return copyWith(presentationX: child);
+          if (child is RatioBuilder) {
+            presentationX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'presentationRatioRange':
         {
-          if (child is RatioRange) {
-            return copyWith(presentationX: child);
+          if (child is RatioRangeBuilder) {
+            presentationX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'textPresentation':
         {
-          if (child is FhirString) {
-            return copyWith(textPresentation: child);
+          if (child is FhirStringBuilder) {
+            textPresentation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'concentrationX':
         {
-          if (child is ConcentrationXIngredientStrength) {
-            return copyWith(concentrationX: child);
+          if (child is ConcentrationXIngredientStrengthBuilder) {
+            concentrationX = child;
+            return;
           } else {
-            if (child is Ratio) {
-              return copyWith(concentrationX: child);
+            if (child is RatioBuilder) {
+              concentrationX = child;
+              return;
             }
-            if (child is RatioRange) {
-              return copyWith(concentrationX: child);
+            if (child is RatioRangeBuilder) {
+              concentrationX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'concentrationRatio':
         {
-          if (child is Ratio) {
-            return copyWith(concentrationX: child);
+          if (child is RatioBuilder) {
+            concentrationX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'concentrationRatioRange':
         {
-          if (child is RatioRange) {
-            return copyWith(concentrationX: child);
+          if (child is RatioRangeBuilder) {
+            concentrationX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'textConcentration':
         {
-          if (child is FhirString) {
-            return copyWith(textConcentration: child);
+          if (child is FhirStringBuilder) {
+            textConcentration = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measurementPoint':
         {
-          if (child is FhirString) {
-            return copyWith(measurementPoint: child);
+          if (child is FhirStringBuilder) {
+            measurementPoint = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?country, ...child];
-            return copyWith(country: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            country = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?country, child];
-            return copyWith(country: newList);
+            country = [...(country ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceStrength':
         {
-          if (child is List<IngredientReferenceStrength>) {
-            // Add all elements from passed list
-            final newList = [...?referenceStrength, ...child];
-            return copyWith(referenceStrength: newList);
-          } else if (child is IngredientReferenceStrength) {
+          if (child is List<IngredientReferenceStrengthBuilder>) {
+            // Replace or create new list
+            referenceStrength = child;
+            return;
+          } else if (child is IngredientReferenceStrengthBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceStrength, child];
-            return copyWith(referenceStrength: newList);
+            referenceStrength = [...(referenceStrength ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2586,124 +2410,108 @@ class IngredientStrength extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'presentation':
       case 'presentationX':
-        return ['Ratio', 'RatioRange'];
+        return ['RatioBuilder', 'RatioRangeBuilder'];
       case 'presentationRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'presentationRatioRange':
-        return ['RatioRange'];
+        return ['RatioRangeBuilder'];
       case 'textPresentation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'concentration':
       case 'concentrationX':
-        return ['Ratio', 'RatioRange'];
+        return ['RatioBuilder', 'RatioRangeBuilder'];
       case 'concentrationRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'concentrationRatioRange':
-        return ['RatioRange'];
+        return ['RatioRangeBuilder'];
       case 'textConcentration':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'measurementPoint':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'country':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'referenceStrength':
-        return ['IngredientReferenceStrength'];
+        return ['IngredientReferenceStrengthBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [IngredientStrength]
+  /// Creates a new [IngredientStrengthBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientStrength createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'presentation':
       case 'presentationX':
       case 'presentationRatio':
         {
-          return copyWith(
-            presentationX: Ratio.empty(),
-          );
+          presentationX = RatioBuilder.empty();
+          return;
         }
       case 'presentationRatioRange':
         {
-          return copyWith(
-            presentationX: RatioRange.empty(),
-          );
+          presentationX = RatioRangeBuilder.empty();
+          return;
         }
       case 'textPresentation':
         {
-          return copyWith(
-            textPresentation: FhirString.empty(),
-          );
+          textPresentation = FhirStringBuilder.empty();
+          return;
         }
       case 'concentration':
       case 'concentrationX':
       case 'concentrationRatio':
         {
-          return copyWith(
-            concentrationX: Ratio.empty(),
-          );
+          concentrationX = RatioBuilder.empty();
+          return;
         }
       case 'concentrationRatioRange':
         {
-          return copyWith(
-            concentrationX: RatioRange.empty(),
-          );
+          concentrationX = RatioRangeBuilder.empty();
+          return;
         }
       case 'textConcentration':
         {
-          return copyWith(
-            textConcentration: FhirString.empty(),
-          );
+          textConcentration = FhirStringBuilder.empty();
+          return;
         }
       case 'measurementPoint':
         {
-          return copyWith(
-            measurementPoint: FhirString.empty(),
-          );
+          measurementPoint = FhirStringBuilder.empty();
+          return;
         }
       case 'country':
         {
-          return copyWith(
-            country: <CodeableConcept>[],
-          );
+          country = <CodeableConceptBuilder>[];
+          return;
         }
       case 'referenceStrength':
         {
-          return copyWith(
-            referenceStrength: <IngredientReferenceStrength>[],
-          );
+          referenceStrength = <IngredientReferenceStrengthBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2712,7 +2520,7 @@ class IngredientStrength extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  IngredientStrength clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2724,34 +2532,32 @@ class IngredientStrength extends BackboneElement {
     bool country = false,
     bool referenceStrength = false,
   }) {
-    return IngredientStrength(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      presentationX: presentation ? null : presentationX,
-      textPresentation: textPresentation ? null : this.textPresentation,
-      concentrationX: concentration ? null : concentrationX,
-      textConcentration: textConcentration ? null : this.textConcentration,
-      measurementPoint: measurementPoint ? null : this.measurementPoint,
-      country: country ? null : this.country,
-      referenceStrength: referenceStrength ? null : this.referenceStrength,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (presentation) this.presentationX = null;
+    if (textPresentation) this.textPresentation = null;
+    if (concentration) this.concentrationX = null;
+    if (textConcentration) this.textConcentration = null;
+    if (measurementPoint) this.measurementPoint = null;
+    if (country) this.country = null;
+    if (referenceStrength) this.referenceStrength = null;
   }
 
   @override
-  IngredientStrength clone() => throw UnimplementedError();
+  IngredientStrengthBuilder clone() => throw UnimplementedError();
   @override
-  IngredientStrength copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    PresentationXIngredientStrength? presentationX,
-    FhirString? textPresentation,
-    ConcentrationXIngredientStrength? concentrationX,
-    FhirString? textConcentration,
-    FhirString? measurementPoint,
-    List<CodeableConcept>? country,
-    List<IngredientReferenceStrength>? referenceStrength,
+  IngredientStrengthBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    PresentationXIngredientStrengthBuilder? presentationX,
+    FhirStringBuilder? textPresentation,
+    ConcentrationXIngredientStrengthBuilder? concentrationX,
+    FhirStringBuilder? textConcentration,
+    FhirStringBuilder? measurementPoint,
+    List<CodeableConceptBuilder>? country,
+    List<IngredientReferenceStrengthBuilder>? referenceStrength,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2759,70 +2565,41 @@ class IngredientStrength extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return IngredientStrength(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      presentationX: presentationX?.copyWith(
-            objectPath: '$newObjectPath.presentationX',
-          ) as PresentationXIngredientStrength? ??
-          this.presentationX,
-      textPresentation: textPresentation?.copyWith(
-            objectPath: '$newObjectPath.textPresentation',
-          ) ??
-          this.textPresentation,
-      concentrationX: concentrationX?.copyWith(
-            objectPath: '$newObjectPath.concentrationX',
-          ) as ConcentrationXIngredientStrength? ??
-          this.concentrationX,
-      textConcentration: textConcentration?.copyWith(
-            objectPath: '$newObjectPath.textConcentration',
-          ) ??
-          this.textConcentration,
-      measurementPoint: measurementPoint?.copyWith(
-            objectPath: '$newObjectPath.measurementPoint',
-          ) ??
-          this.measurementPoint,
-      country: country
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.country',
-                ),
-              )
-              .toList() ??
-          this.country,
-      referenceStrength: referenceStrength
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referenceStrength',
-                ),
-              )
-              .toList() ??
-          this.referenceStrength,
+    final newResult = IngredientStrengthBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      presentationX: presentationX ?? this.presentationX,
+      textPresentation: textPresentation ?? this.textPresentation,
+      concentrationX: concentrationX ?? this.concentrationX,
+      textConcentration: textConcentration ?? this.textConcentration,
+      measurementPoint: measurementPoint ?? this.measurementPoint,
+      country: country ?? this.country,
+      referenceStrength: referenceStrength ?? this.referenceStrength,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! IngredientStrength) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! IngredientStrengthBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2833,13 +2610,13 @@ class IngredientStrength extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2875,13 +2652,13 @@ class IngredientStrength extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       country,
       o.country,
     )) {
       return false;
     }
-    if (!listEquals<IngredientReferenceStrength>(
+    if (!listEquals<IngredientReferenceStrengthBuilder>(
       referenceStrength,
       o.referenceStrength,
     )) {
@@ -2891,7 +2668,7 @@ class IngredientStrength extends BackboneElement {
   }
 }
 
-/// [IngredientReferenceStrength]
+/// [IngredientReferenceStrengthBuilder]
 /// Strength expressed in terms of a reference substance. For when the
 /// ingredient strength is additionally expressed as equivalent to the
 /// strength of some other closely related substance (e.g. salt vs. base).
@@ -2899,16 +2676,16 @@ class IngredientStrength extends BackboneElement {
 /// of the active moiety of the active substance. There are situations when
 /// the active substance and active moiety are different, therefore both a
 /// strength and a reference strength are needed.
-class IngredientReferenceStrength extends BackboneElement {
+class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [IngredientReferenceStrength]
+  /// [IngredientReferenceStrengthBuilder]
 
-  const IngredientReferenceStrength({
+  IngredientReferenceStrengthBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.substance,
-    required this.strengthX,
+    this.strengthX,
     this.measurementPoint,
     this.country,
     super.disallowExtensions,
@@ -2917,27 +2694,25 @@ class IngredientReferenceStrength extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientReferenceStrength.empty() => IngredientReferenceStrength(
-        strengthX: Ratio.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory IngredientReferenceStrengthBuilder.empty() =>
+      IngredientReferenceStrengthBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientReferenceStrength.fromJson(
+  factory IngredientReferenceStrengthBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Ingredient.substance.strength.referenceStrength';
-    return IngredientReferenceStrength(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return IngredientReferenceStrengthBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2946,8 +2721,8 @@ class IngredientReferenceStrength extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2955,30 +2730,30 @@ class IngredientReferenceStrength extends BackboneElement {
             ),
           )
           .toList(),
-      substance: JsonParser.parseObject<CodeableReference>(
+      substance: JsonParser.parseObject<CodeableReferenceBuilder>(
         json,
         'substance',
-        CodeableReference.fromJson,
+        CodeableReferenceBuilder.fromJson,
         '$objectPath.substance',
       ),
-      strengthX:
-          JsonParser.parsePolymorphic<StrengthXIngredientReferenceStrength>(
+      strengthX: JsonParser.parsePolymorphic<
+          StrengthXIngredientReferenceStrengthBuilder>(
         json,
         {
-          'strengthRatio': Ratio.fromJson,
-          'strengthRatioRange': RatioRange.fromJson,
+          'strengthRatio': RatioBuilder.fromJson,
+          'strengthRatioRange': RatioRangeBuilder.fromJson,
         },
         objectPath,
-      )!,
-      measurementPoint: JsonParser.parsePrimitive<FhirString>(
+      ),
+      measurementPoint: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'measurementPoint',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.measurementPoint',
       ),
       country: (json['country'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.country',
@@ -2989,22 +2764,22 @@ class IngredientReferenceStrength extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientReferenceStrength]
+  /// Deserialize [IngredientReferenceStrengthBuilder]
   /// from a [String] or [YamlMap] object
-  factory IngredientReferenceStrength.fromYaml(
+  factory IngredientReferenceStrengthBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return IngredientReferenceStrength.fromJson(
+      return IngredientReferenceStrengthBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return IngredientReferenceStrength.fromJson(
+      return IngredientReferenceStrengthBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'IngredientReferenceStrength '
+        'IngredientReferenceStrengthBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3012,16 +2787,16 @@ class IngredientReferenceStrength extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [IngredientReferenceStrength]
+  /// [IngredientReferenceStrengthBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientReferenceStrength.fromJsonString(
+  factory IngredientReferenceStrengthBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return IngredientReferenceStrength.fromJson(json);
+      return IngredientReferenceStrengthBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3033,41 +2808,42 @@ class IngredientReferenceStrength extends BackboneElement {
 
   /// [substance]
   /// Relevant reference substance.
-  final CodeableReference? substance;
+  CodeableReferenceBuilder? substance;
 
   /// [strengthX]
   /// Strength expressed in terms of a reference substance.
-  final StrengthXIngredientReferenceStrength strengthX;
+  StrengthXIngredientReferenceStrengthBuilder? strengthX;
 
-  /// Getter for [strengthRatio] as a Ratio
-  Ratio? get strengthRatio => strengthX.isAs<Ratio>();
+  /// Getter for [strengthRatio] as a RatioBuilder
+  RatioBuilder? get strengthRatio => strengthX?.isAs<RatioBuilder>();
 
-  /// Getter for [strengthRatioRange] as a RatioRange
-  RatioRange? get strengthRatioRange => strengthX.isAs<RatioRange>();
+  /// Getter for [strengthRatioRange] as a RatioRangeBuilder
+  RatioRangeBuilder? get strengthRatioRange =>
+      strengthX?.isAs<RatioRangeBuilder>();
 
   /// [measurementPoint]
   /// For when strength is measured at a particular point or distance.
-  final FhirString? measurementPoint;
+  FhirStringBuilder? measurementPoint;
 
   /// [country]
   /// The country or countries for which the strength range applies.
-  final List<CodeableConcept>? country;
+  List<CodeableConceptBuilder>? country;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3076,41 +2852,22 @@ class IngredientReferenceStrength extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'substance',
-      substance,
-    );
-    final strengthXFhirType = strengthX.fhirType;
-    addField(
-      'strength${strengthXFhirType.capitalize()}',
-      strengthX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('substance', substance);
+    if (strengthX != null) {
+      final fhirType = strengthX!.fhirType;
+      addField('strength${fhirType.capitalize()}', strengthX);
+    }
 
-    addField(
-      'measurementPoint',
-      measurementPoint,
-    );
-    addField(
-      'country',
-      country,
-    );
+    addField('measurementPoint', measurementPoint);
+    addField('country', country);
     return json;
   }
 
@@ -3131,11 +2888,11 @@ class IngredientReferenceStrength extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3154,16 +2911,20 @@ class IngredientReferenceStrength extends BackboneElement {
           fields.add(substance!);
         }
       case 'strength':
-        fields.add(strengthX);
+        if (strengthX != null) {
+          fields.add(strengthX!);
+        }
       case 'strengthX':
-        fields.add(strengthX);
+        if (strengthX != null) {
+          fields.add(strengthX!);
+        }
       case 'strengthRatio':
-        if (strengthX is Ratio) {
-          fields.add(strengthX);
+        if (strengthX is RatioBuilder) {
+          fields.add(strengthX!);
         }
       case 'strengthRatioRange':
-        if (strengthX is RatioRange) {
-          fields.add(strengthX);
+        if (strengthX is RatioRangeBuilder) {
+          fields.add(strengthX!);
         }
       case 'measurementPoint':
         if (measurementPoint != null) {
@@ -3183,7 +2944,7 @@ class IngredientReferenceStrength extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3192,109 +2953,116 @@ class IngredientReferenceStrength extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
         {
-          if (child is CodeableReference) {
-            return copyWith(substance: child);
+          if (child is CodeableReferenceBuilder) {
+            substance = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'strengthX':
         {
-          if (child is StrengthXIngredientReferenceStrength) {
-            return copyWith(strengthX: child);
+          if (child is StrengthXIngredientReferenceStrengthBuilder) {
+            strengthX = child;
+            return;
           } else {
-            if (child is Ratio) {
-              return copyWith(strengthX: child);
+            if (child is RatioBuilder) {
+              strengthX = child;
+              return;
             }
-            if (child is RatioRange) {
-              return copyWith(strengthX: child);
+            if (child is RatioRangeBuilder) {
+              strengthX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'strengthRatio':
         {
-          if (child is Ratio) {
-            return copyWith(strengthX: child);
+          if (child is RatioBuilder) {
+            strengthX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'strengthRatioRange':
         {
-          if (child is RatioRange) {
-            return copyWith(strengthX: child);
+          if (child is RatioRangeBuilder) {
+            strengthX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measurementPoint':
         {
-          if (child is FhirString) {
-            return copyWith(measurementPoint: child);
+          if (child is FhirStringBuilder) {
+            measurementPoint = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?country, ...child];
-            return copyWith(country: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            country = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?country, child];
-            return copyWith(country: newList);
+            country = [...(country ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3310,87 +3078,75 @@ class IngredientReferenceStrength extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'substance':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'strength':
       case 'strengthX':
-        return ['Ratio', 'RatioRange'];
+        return ['RatioBuilder', 'RatioRangeBuilder'];
       case 'strengthRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'strengthRatioRange':
-        return ['RatioRange'];
+        return ['RatioRangeBuilder'];
       case 'measurementPoint':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'country':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [IngredientReferenceStrength]
+  /// Creates a new [IngredientReferenceStrengthBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientReferenceStrength createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'substance':
         {
-          return copyWith(
-            substance: CodeableReference.empty(),
-          );
+          substance = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'strength':
       case 'strengthX':
       case 'strengthRatio':
         {
-          return copyWith(
-            strengthX: Ratio.empty(),
-          );
+          strengthX = RatioBuilder.empty();
+          return;
         }
       case 'strengthRatioRange':
         {
-          return copyWith(
-            strengthX: RatioRange.empty(),
-          );
+          strengthX = RatioRangeBuilder.empty();
+          return;
         }
       case 'measurementPoint':
         {
-          return copyWith(
-            measurementPoint: FhirString.empty(),
-          );
+          measurementPoint = FhirStringBuilder.empty();
+          return;
         }
       case 'country':
         {
-          return copyWith(
-            country: <CodeableConcept>[],
-          );
+          country = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3399,36 +3155,35 @@ class IngredientReferenceStrength extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  IngredientReferenceStrength clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool substance = false,
+    bool strength = false,
     bool measurementPoint = false,
     bool country = false,
   }) {
-    return IngredientReferenceStrength(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      substance: substance ? null : this.substance,
-      strengthX: strengthX,
-      measurementPoint: measurementPoint ? null : this.measurementPoint,
-      country: country ? null : this.country,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (substance) this.substance = null;
+    if (strength) this.strengthX = null;
+    if (measurementPoint) this.measurementPoint = null;
+    if (country) this.country = null;
   }
 
   @override
-  IngredientReferenceStrength clone() => throw UnimplementedError();
+  IngredientReferenceStrengthBuilder clone() => throw UnimplementedError();
   @override
-  IngredientReferenceStrength copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableReference? substance,
-    StrengthXIngredientReferenceStrength? strengthX,
-    FhirString? measurementPoint,
-    List<CodeableConcept>? country,
+  IngredientReferenceStrengthBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableReferenceBuilder? substance,
+    StrengthXIngredientReferenceStrengthBuilder? strengthX,
+    FhirStringBuilder? measurementPoint,
+    List<CodeableConceptBuilder>? country,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3436,54 +3191,38 @@ class IngredientReferenceStrength extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return IngredientReferenceStrength(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      substance: substance?.copyWith(
-            objectPath: '$newObjectPath.substance',
-          ) ??
-          this.substance,
-      strengthX: strengthX?.copyWith(
-            objectPath: '$newObjectPath.strengthX',
-          ) as StrengthXIngredientReferenceStrength? ??
-          this.strengthX,
-      measurementPoint: measurementPoint?.copyWith(
-            objectPath: '$newObjectPath.measurementPoint',
-          ) ??
-          this.measurementPoint,
-      country: country
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.country',
-                ),
-              )
-              .toList() ??
-          this.country,
+    final newResult = IngredientReferenceStrengthBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      substance: substance ?? this.substance,
+      strengthX: strengthX ?? this.strengthX,
+      measurementPoint: measurementPoint ?? this.measurementPoint,
+      country: country ?? this.country,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! IngredientReferenceStrength) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! IngredientReferenceStrengthBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3494,13 +3233,13 @@ class IngredientReferenceStrength extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3524,7 +3263,7 @@ class IngredientReferenceStrength extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       country,
       o.country,
     )) {

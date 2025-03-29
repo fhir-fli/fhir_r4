@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Code of parameter that is input to the guide.
-class GuideParameterCode extends FhirCodeEnum {
+class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  GuideParameterCode._({
+  GuideParameterCodeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory GuideParameterCode(
+  factory GuideParameterCodeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return GuideParameterCode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return GuideParameterCodeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,114 +43,128 @@ class GuideParameterCode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [GuideParameterCode] with element only
-  factory GuideParameterCode.empty() =>
-      GuideParameterCode._(validatedValue: '');
+  /// Create empty [GuideParameterCodeBuilder] with element only
+  factory GuideParameterCodeBuilder.empty() =>
+      GuideParameterCodeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GuideParameterCode] from JSON.
-  factory GuideParameterCode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GuideParameterCodeBuilder] from JSON.
+  factory GuideParameterCodeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuideParameterCode.elementOnly.withElement(element);
+      return GuideParameterCodeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'GuideParameterCode cannot be constructed from JSON.',
+        'GuideParameterCodeBuilder cannot be constructed from JSON.',
       );
     }
-    return GuideParameterCode._(
+    return GuideParameterCodeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// apply
-  static final GuideParameterCode apply = GuideParameterCode._(
+  static GuideParameterCodeBuilder apply = GuideParameterCodeBuilder._(
     validatedValue: 'apply',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Apply Metadata Value'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Apply Metadata Value'.toFhirStringBuilder,
   );
 
   /// path_resource
-  static final GuideParameterCode path_resource = GuideParameterCode._(
+  static GuideParameterCodeBuilder path_resource = GuideParameterCodeBuilder._(
     validatedValue: 'path-resource',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Resource Path'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Resource Path'.toFhirStringBuilder,
   );
 
   /// path_pages
-  static final GuideParameterCode path_pages = GuideParameterCode._(
+  static GuideParameterCodeBuilder path_pages = GuideParameterCodeBuilder._(
     validatedValue: 'path-pages',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Pages Path'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Pages Path'.toFhirStringBuilder,
   );
 
   /// path_tx_cache
-  static final GuideParameterCode path_tx_cache = GuideParameterCode._(
+  static GuideParameterCodeBuilder path_tx_cache = GuideParameterCodeBuilder._(
     validatedValue: 'path-tx-cache',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Terminology Cache Path'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Terminology Cache Path'.toFhirStringBuilder,
   );
 
   /// expansion_parameter
-  static final GuideParameterCode expansion_parameter = GuideParameterCode._(
+  static GuideParameterCodeBuilder expansion_parameter =
+      GuideParameterCodeBuilder._(
     validatedValue: 'expansion-parameter',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Expansion Profile'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Expansion Profile'.toFhirStringBuilder,
   );
 
   /// rule_broken_links
-  static final GuideParameterCode rule_broken_links = GuideParameterCode._(
+  static GuideParameterCodeBuilder rule_broken_links =
+      GuideParameterCodeBuilder._(
     validatedValue: 'rule-broken-links',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Broken Links Rule'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Broken Links Rule'.toFhirStringBuilder,
   );
 
   /// generate_xml
-  static final GuideParameterCode generate_xml = GuideParameterCode._(
+  static GuideParameterCodeBuilder generate_xml = GuideParameterCodeBuilder._(
     validatedValue: 'generate-xml',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Generate XML'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Generate XML'.toFhirStringBuilder,
   );
 
   /// generate_json
-  static final GuideParameterCode generate_json = GuideParameterCode._(
+  static GuideParameterCodeBuilder generate_json = GuideParameterCodeBuilder._(
     validatedValue: 'generate-json',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Generate JSON'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Generate JSON'.toFhirStringBuilder,
   );
 
   /// generate_turtle
-  static final GuideParameterCode generate_turtle = GuideParameterCode._(
+  static GuideParameterCodeBuilder generate_turtle =
+      GuideParameterCodeBuilder._(
     validatedValue: 'generate-turtle',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Generate Turtle'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Generate Turtle'.toFhirStringBuilder,
   );
 
   /// html_template
-  static final GuideParameterCode html_template = GuideParameterCode._(
+  static GuideParameterCodeBuilder html_template = GuideParameterCodeBuilder._(
     validatedValue: 'html-template',
-    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'HTML Template'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'HTML Template'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final GuideParameterCode elementOnly =
-      GuideParameterCode._(validatedValue: '');
+  static GuideParameterCodeBuilder elementOnly =
+      GuideParameterCodeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<GuideParameterCode> values = [
+  static List<GuideParameterCodeBuilder> values = [
     apply,
     path_resource,
     path_pages,
@@ -165,14 +179,15 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  GuideParameterCode clone() => GuideParameterCode._(
+  GuideParameterCodeBuilder clone() => GuideParameterCodeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  GuideParameterCode withElement(Element? newElement) {
-    return GuideParameterCode._(validatedValue: value, element: newElement);
+  GuideParameterCodeBuilder withElement(ElementBuilder? newElement) {
+    return GuideParameterCodeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -188,11 +203,11 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  GuideParameterCode copyWith({
+  GuideParameterCodeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -203,7 +218,7 @@ class GuideParameterCode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return GuideParameterCode._(
+    return GuideParameterCodeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -213,7 +228,7 @@ class GuideParameterCode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

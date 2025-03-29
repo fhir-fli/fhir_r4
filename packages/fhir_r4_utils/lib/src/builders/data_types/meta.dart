@@ -1,21 +1,23 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [FhirMeta]
+/// [FhirMetaBuilder]
 /// The metadata about a resource. This is content in the resource that is
 /// maintained by the infrastructure. Changes to the content might not
 /// always be associated with version changes to the resource.
-class FhirMeta extends DataType
+class FhirMetaBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder {
   /// Primary constructor for
-  /// [FhirMeta]
+  /// [FhirMetaBuilder]
 
-  const FhirMeta({
+  FhirMetaBuilder({
     super.id,
     super.extension_,
     this.versionId,
@@ -25,29 +27,28 @@ class FhirMeta extends DataType
     this.security,
     this.tag,
     super.disallowExtensions,
-    super.objectPath = 'FhirMeta',
+    super.objectPath = 'FhirMetaBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FhirMeta.empty() => const FhirMeta();
+  /// For Builder classes, no fields are required
+  factory FhirMetaBuilder.empty() => FhirMetaBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirMeta.fromJson(
+  factory FhirMetaBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'FhirMeta';
-    return FhirMeta(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return FhirMetaBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -55,33 +56,33 @@ class FhirMeta extends DataType
             ),
           )
           .toList(),
-      versionId: JsonParser.parsePrimitive<FhirId>(
+      versionId: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'versionId',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.versionId',
       ),
-      lastUpdated: JsonParser.parsePrimitive<FhirInstant>(
+      lastUpdated: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'lastUpdated',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.lastUpdated',
       ),
-      source: JsonParser.parsePrimitive<FhirUri>(
+      source: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'source',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.source',
       ),
-      profile: JsonParser.parsePrimitiveList<FhirCanonical>(
+      profile: JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'profile',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.profile',
       ),
       security: (json['security'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.security',
@@ -90,8 +91,8 @@ class FhirMeta extends DataType
           )
           .toList(),
       tag: (json['tag'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.tag',
@@ -102,22 +103,22 @@ class FhirMeta extends DataType
     );
   }
 
-  /// Deserialize [FhirMeta]
+  /// Deserialize [FhirMetaBuilder]
   /// from a [String] or [YamlMap] object
-  factory FhirMeta.fromYaml(
+  factory FhirMetaBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return FhirMeta.fromJson(
+      return FhirMetaBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return FhirMeta.fromJson(
+      return FhirMetaBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'FhirMeta '
+        'FhirMetaBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -125,16 +126,16 @@ class FhirMeta extends DataType
   }
 
   /// Factory constructor for
-  /// [FhirMeta]
+  /// [FhirMetaBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirMeta.fromJsonString(
+  factory FhirMetaBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FhirMeta.fromJson(json);
+      return FhirMetaBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -148,11 +149,11 @@ class FhirMeta extends DataType
   /// The version specific identifier, as it appears in the version portion
   /// of the URL. This value changes when the resource is created, updated,
   /// or deleted.
-  final FhirId? versionId;
+  FhirIdBuilder? versionId;
 
   /// [lastUpdated]
   /// When the resource last changed - e.g. when the version changed.
-  final FhirInstant? lastUpdated;
+  FhirInstantBuilder? lastUpdated;
 
   /// [source]
   /// A uri that identifies the source system of the resource. This provides
@@ -160,42 +161,42 @@ class FhirMeta extends DataType
   /// be used to track or differentiate the source of information in the
   /// resource. The source may identify another FHIR server, document,
   /// message, database, etc.
-  final FhirUri? source;
+  FhirUriBuilder? source;
 
   /// [profile]
   /// A list of profiles (references to
   /// [StructureDefinition](structuredefinition.html#) resources) that this
   /// resource claims to conform to. The URL is a reference to
   /// [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).
-  final List<FhirCanonical>? profile;
+  List<FhirCanonicalBuilder>? profile;
 
   /// [security]
   /// Security labels applied to this resource. These tags connect specific
   /// resources to the overall security policy and infrastructure.
-  final List<Coding>? security;
+  List<CodingBuilder>? security;
 
   /// [tag]
   /// Tags applied to this resource. Tags are intended to be used to identify
   /// and relate resources to process and workflow, and applications are not
   /// required to consider the tags when interpreting the meaning of a
   /// resource.
-  final List<Coding>? tag;
+  List<CodingBuilder>? tag;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -204,43 +205,19 @@ class FhirMeta extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'versionId',
-      versionId,
-    );
-    addField(
-      'lastUpdated',
-      lastUpdated,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'profile',
-      profile,
-    );
-    addField(
-      'security',
-      security,
-    );
-    addField(
-      'tag',
-      tag,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('versionId', versionId);
+    addField('lastUpdated', lastUpdated);
+    addField('source', source);
+    addField('profile', profile);
+    addField('security', security);
+    addField('tag', tag);
     return json;
   }
 
@@ -262,11 +239,11 @@ class FhirMeta extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -310,7 +287,7 @@ class FhirMeta extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -319,101 +296,104 @@ class FhirMeta extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'versionId':
         {
-          if (child is FhirId) {
-            return copyWith(versionId: child);
+          if (child is FhirIdBuilder) {
+            versionId = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastUpdated':
         {
-          if (child is FhirInstant) {
-            return copyWith(lastUpdated: child);
+          if (child is FhirInstantBuilder) {
+            lastUpdated = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is FhirUri) {
-            return copyWith(source: child);
+          if (child is FhirUriBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?profile, ...child];
-            return copyWith(profile: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            profile = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?profile, child];
-            return copyWith(profile: newList);
+            profile = [...(profile ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'security':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?security, ...child];
-            return copyWith(security: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            security = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?security, child];
-            return copyWith(security: newList);
+            security = [...(security ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'tag':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?tag, ...child];
-            return copyWith(tag: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            tag = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?tag, child];
-            return copyWith(tag: newList);
+            tag = [...(tag ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -429,82 +409,70 @@ class FhirMeta extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'versionId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'lastUpdated':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'source':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'profile':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'security':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'tag':
-        return ['Coding'];
+        return ['CodingBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [FhirMeta]
+  /// Creates a new [FhirMetaBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  FhirMeta createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'versionId':
         {
-          return copyWith(
-            versionId: FhirId.empty(),
-          );
+          versionId = FhirIdBuilder.empty();
+          return;
         }
       case 'lastUpdated':
         {
-          return copyWith(
-            lastUpdated: FhirInstant.empty(),
-          );
+          lastUpdated = FhirInstantBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: FhirUri.empty(),
-          );
+          source = FhirUriBuilder.empty();
+          return;
         }
       case 'profile':
         {
-          return copyWith(
-            profile: <FhirCanonical>[],
-          );
+          profile = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'security':
         {
-          return copyWith(
-            security: <Coding>[],
-          );
+          security = <CodingBuilder>[];
+          return;
         }
       case 'tag':
         {
-          return copyWith(
-            tag: <Coding>[],
-          );
+          tag = <CodingBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -513,7 +481,7 @@ class FhirMeta extends DataType
 
   /// Clears specific fields in this object
   @override
-  FhirMeta clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool versionId = false,
@@ -523,30 +491,28 @@ class FhirMeta extends DataType
     bool security = false,
     bool tag = false,
   }) {
-    return FhirMeta(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      versionId: versionId ? null : this.versionId,
-      lastUpdated: lastUpdated ? null : this.lastUpdated,
-      source: source ? null : this.source,
-      profile: profile ? null : this.profile,
-      security: security ? null : this.security,
-      tag: tag ? null : this.tag,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (versionId) this.versionId = null;
+    if (lastUpdated) this.lastUpdated = null;
+    if (source) this.source = null;
+    if (profile) this.profile = null;
+    if (security) this.security = null;
+    if (tag) this.tag = null;
   }
 
   @override
-  FhirMeta clone() => throw UnimplementedError();
+  FhirMetaBuilder clone() => throw UnimplementedError();
   @override
-  FhirMeta copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirId? versionId,
-    FhirInstant? lastUpdated,
-    FhirUri? source,
-    List<FhirCanonical>? profile,
-    List<Coding>? security,
-    List<Coding>? tag,
+  FhirMetaBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirIdBuilder? versionId,
+    FhirInstantBuilder? lastUpdated,
+    FhirUriBuilder? source,
+    List<FhirCanonicalBuilder>? profile,
+    List<CodingBuilder>? security,
+    List<CodingBuilder>? tag,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -554,62 +520,39 @@ class FhirMeta extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return FhirMeta(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      versionId: versionId?.copyWith(
-            objectPath: '$newObjectPath.versionId',
-          ) ??
-          this.versionId,
-      lastUpdated: lastUpdated?.copyWith(
-            objectPath: '$newObjectPath.lastUpdated',
-          ) ??
-          this.lastUpdated,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      profile: profile
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.profile',
-                ),
-              )
-              .toList() ??
-          this.profile,
-      security: security
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.security',
-                ),
-              )
-              .toList() ??
-          this.security,
-      tag: tag
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.tag',
-                ),
-              )
-              .toList() ??
-          this.tag,
+    final newResult = FhirMetaBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      versionId: versionId ?? this.versionId,
+      lastUpdated: lastUpdated ?? this.lastUpdated,
+      source: source ?? this.source,
+      profile: profile ?? this.profile,
+      security: security ?? this.security,
+      tag: tag ?? this.tag,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! FhirMeta) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! FhirMetaBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -620,7 +563,7 @@ class FhirMeta extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -644,19 +587,19 @@ class FhirMeta extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       profile,
       o.profile,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       security,
       o.security,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       tag,
       o.tag,
     )) {

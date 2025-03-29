@@ -1,290 +1,298 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Creates a new [id] for the Resources that's passed
-Resource resourceWithNewId(Resource resource) {
+ResourceBuilder resourceWithNewId(ResourceBuilder resource) {
   final newId = generateNewUuidFhirString();
   switch (resource.resourceType) {
     case R4ResourceType.Account:
-      return (resource as Account).copyWith(id: newId);
+      return (resource as AccountBuilder).copyWith(id: newId);
     case R4ResourceType.ActivityDefinition:
-      return (resource as ActivityDefinition).copyWith(id: newId);
+      return (resource as ActivityDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.AdministrableProductDefinition:
-      return (resource as AdministrableProductDefinition).copyWith(id: newId);
+      return (resource as AdministrableProductDefinitionBuilder)
+          .copyWith(id: newId);
     case R4ResourceType.AdverseEvent:
-      return (resource as AdverseEvent).copyWith(id: newId);
+      return (resource as AdverseEventBuilder).copyWith(id: newId);
     case R4ResourceType.AllergyIntolerance:
-      return (resource as AllergyIntolerance).copyWith(id: newId);
+      return (resource as AllergyIntoleranceBuilder).copyWith(id: newId);
     case R4ResourceType.Appointment:
-      return (resource as Appointment).copyWith(id: newId);
+      return (resource as AppointmentBuilder).copyWith(id: newId);
     case R4ResourceType.AppointmentResponse:
-      return (resource as AppointmentResponse).copyWith(id: newId);
+      return (resource as AppointmentResponseBuilder).copyWith(id: newId);
     case R4ResourceType.AuditEvent:
-      return (resource as AuditEvent).copyWith(id: newId);
+      return (resource as AuditEventBuilder).copyWith(id: newId);
     case R4ResourceType.Basic:
-      return (resource as Basic).copyWith(id: newId);
+      return (resource as BasicBuilder).copyWith(id: newId);
     case R4ResourceType.Binary:
-      return (resource as Binary).copyWith(id: newId);
+      return (resource as BinaryBuilder).copyWith(id: newId);
     case R4ResourceType.BiologicallyDerivedProduct:
-      return (resource as BiologicallyDerivedProduct).copyWith(id: newId);
+      return (resource as BiologicallyDerivedProductBuilder)
+          .copyWith(id: newId);
     case R4ResourceType.BodyStructure:
-      return (resource as BodyStructure).copyWith(id: newId);
+      return (resource as BodyStructureBuilder).copyWith(id: newId);
     case R4ResourceType.Bundle:
-      return (resource as Bundle).copyWith(id: newId);
+      return (resource as BundleBuilder).copyWith(id: newId);
     case R4ResourceType.CapabilityStatement:
-      return (resource as CapabilityStatement).copyWith(id: newId);
+      return (resource as CapabilityStatementBuilder).copyWith(id: newId);
     case R4ResourceType.CarePlan:
-      return (resource as CarePlan).copyWith(id: newId);
+      return (resource as CarePlanBuilder).copyWith(id: newId);
     case R4ResourceType.CareTeam:
-      return (resource as CareTeam).copyWith(id: newId);
+      return (resource as CareTeamBuilder).copyWith(id: newId);
     case R4ResourceType.CatalogEntry:
-      return (resource as CatalogEntry).copyWith(id: newId);
+      return (resource as CatalogEntryBuilder).copyWith(id: newId);
     case R4ResourceType.ChargeItem:
-      return (resource as ChargeItem).copyWith(id: newId);
+      return (resource as ChargeItemBuilder).copyWith(id: newId);
     case R4ResourceType.ChargeItemDefinition:
-      return (resource as ChargeItemDefinition).copyWith(id: newId);
+      return (resource as ChargeItemDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.Citation:
-      return (resource as Citation).copyWith(id: newId);
+      return (resource as CitationBuilder).copyWith(id: newId);
     case R4ResourceType.Claim:
-      return (resource as Claim).copyWith(id: newId);
+      return (resource as ClaimBuilder).copyWith(id: newId);
     case R4ResourceType.ClaimResponse:
-      return (resource as ClaimResponse).copyWith(id: newId);
+      return (resource as ClaimResponseBuilder).copyWith(id: newId);
     case R4ResourceType.ClinicalImpression:
-      return (resource as ClinicalImpression).copyWith(id: newId);
+      return (resource as ClinicalImpressionBuilder).copyWith(id: newId);
     case R4ResourceType.ClinicalUseDefinition:
-      return (resource as ClinicalUseDefinition).copyWith(id: newId);
+      return (resource as ClinicalUseDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.CodeSystem:
-      return (resource as CodeSystem).copyWith(id: newId);
+      return (resource as CodeSystemBuilder).copyWith(id: newId);
     case R4ResourceType.Communication:
-      return (resource as Communication).copyWith(id: newId);
+      return (resource as CommunicationBuilder).copyWith(id: newId);
     case R4ResourceType.CommunicationRequest:
-      return (resource as CommunicationRequest).copyWith(id: newId);
+      return (resource as CommunicationRequestBuilder).copyWith(id: newId);
     case R4ResourceType.CompartmentDefinition:
-      return (resource as CompartmentDefinition).copyWith(id: newId);
+      return (resource as CompartmentDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.Composition:
-      return (resource as Composition).copyWith(id: newId);
+      return (resource as CompositionBuilder).copyWith(id: newId);
     case R4ResourceType.ConceptMap:
-      return (resource as ConceptMap).copyWith(id: newId);
+      return (resource as ConceptMapBuilder).copyWith(id: newId);
     case R4ResourceType.Condition:
-      return (resource as Condition).copyWith(id: newId);
+      return (resource as ConditionBuilder).copyWith(id: newId);
     case R4ResourceType.Consent:
-      return (resource as Consent).copyWith(id: newId);
+      return (resource as ConsentBuilder).copyWith(id: newId);
     case R4ResourceType.Contract:
-      return (resource as Contract).copyWith(id: newId);
+      return (resource as ContractBuilder).copyWith(id: newId);
     case R4ResourceType.Coverage:
-      return (resource as Coverage).copyWith(id: newId);
+      return (resource as CoverageBuilder).copyWith(id: newId);
     case R4ResourceType.CoverageEligibilityRequest:
-      return (resource as CoverageEligibilityRequest).copyWith(id: newId);
+      return (resource as CoverageEligibilityRequestBuilder)
+          .copyWith(id: newId);
     case R4ResourceType.CoverageEligibilityResponse:
-      return (resource as CoverageEligibilityResponse).copyWith(id: newId);
+      return (resource as CoverageEligibilityResponseBuilder)
+          .copyWith(id: newId);
     case R4ResourceType.DetectedIssue:
-      return (resource as DetectedIssue).copyWith(id: newId);
+      return (resource as DetectedIssueBuilder).copyWith(id: newId);
     case R4ResourceType.Device:
-      return (resource as Device).copyWith(id: newId);
+      return (resource as DeviceBuilder).copyWith(id: newId);
     case R4ResourceType.DeviceDefinition:
-      return (resource as DeviceDefinition).copyWith(id: newId);
+      return (resource as DeviceDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.DeviceMetric:
-      return (resource as DeviceMetric).copyWith(id: newId);
+      return (resource as DeviceMetricBuilder).copyWith(id: newId);
     case R4ResourceType.DeviceRequest:
-      return (resource as DeviceRequest).copyWith(id: newId);
+      return (resource as DeviceRequestBuilder).copyWith(id: newId);
     case R4ResourceType.DeviceUseStatement:
-      return (resource as DeviceUseStatement).copyWith(id: newId);
+      return (resource as DeviceUseStatementBuilder).copyWith(id: newId);
     case R4ResourceType.DiagnosticReport:
-      return (resource as DiagnosticReport).copyWith(id: newId);
+      return (resource as DiagnosticReportBuilder).copyWith(id: newId);
     case R4ResourceType.DocumentManifest:
-      return (resource as DocumentManifest).copyWith(id: newId);
+      return (resource as DocumentManifestBuilder).copyWith(id: newId);
     case R4ResourceType.DocumentReference:
-      return (resource as DocumentReference).copyWith(id: newId);
+      return (resource as DocumentReferenceBuilder).copyWith(id: newId);
     case R4ResourceType.Encounter:
-      return (resource as Encounter).copyWith(id: newId);
+      return (resource as EncounterBuilder).copyWith(id: newId);
     case R4ResourceType.EnrollmentRequest:
-      return (resource as EnrollmentRequest).copyWith(id: newId);
+      return (resource as EnrollmentRequestBuilder).copyWith(id: newId);
     case R4ResourceType.EnrollmentResponse:
-      return (resource as EnrollmentResponse).copyWith(id: newId);
+      return (resource as EnrollmentResponseBuilder).copyWith(id: newId);
     case R4ResourceType.EpisodeOfCare:
-      return (resource as EpisodeOfCare).copyWith(id: newId);
+      return (resource as EpisodeOfCareBuilder).copyWith(id: newId);
     case R4ResourceType.EventDefinition:
-      return (resource as EventDefinition).copyWith(id: newId);
+      return (resource as EventDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.Evidence:
-      return (resource as Evidence).copyWith(id: newId);
+      return (resource as EvidenceBuilder).copyWith(id: newId);
     case R4ResourceType.EvidenceReport:
-      return (resource as EvidenceReport).copyWith(id: newId);
+      return (resource as EvidenceReportBuilder).copyWith(id: newId);
     case R4ResourceType.EvidenceVariable:
-      return (resource as EvidenceVariable).copyWith(id: newId);
+      return (resource as EvidenceVariableBuilder).copyWith(id: newId);
     case R4ResourceType.ExampleScenario:
-      return (resource as ExampleScenario).copyWith(id: newId);
+      return (resource as ExampleScenarioBuilder).copyWith(id: newId);
     case R4ResourceType.ExplanationOfBenefit:
-      return (resource as ExplanationOfBenefit).copyWith(id: newId);
+      return (resource as ExplanationOfBenefitBuilder).copyWith(id: newId);
     case R4ResourceType.FamilyMemberHistory:
-      return (resource as FamilyMemberHistory).copyWith(id: newId);
+      return (resource as FamilyMemberHistoryBuilder).copyWith(id: newId);
     case R4ResourceType.FhirEndpoint:
-      return (resource as FhirEndpoint).copyWith(id: newId);
+      return (resource as FhirEndpointBuilder).copyWith(id: newId);
     case R4ResourceType.FhirGroup:
-      return (resource as FhirGroup).copyWith(id: newId);
+      return (resource as FhirGroupBuilder).copyWith(id: newId);
     case R4ResourceType.FhirList:
-      return (resource as FhirList).copyWith(id: newId);
+      return (resource as FhirListBuilder).copyWith(id: newId);
     case R4ResourceType.Flag:
-      return (resource as Flag).copyWith(id: newId);
+      return (resource as FlagBuilder).copyWith(id: newId);
     case R4ResourceType.Goal:
-      return (resource as Goal).copyWith(id: newId);
+      return (resource as GoalBuilder).copyWith(id: newId);
     case R4ResourceType.GraphDefinition:
-      return (resource as GraphDefinition).copyWith(id: newId);
+      return (resource as GraphDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.GuidanceResponse:
-      return (resource as GuidanceResponse).copyWith(id: newId);
+      return (resource as GuidanceResponseBuilder).copyWith(id: newId);
     case R4ResourceType.HealthcareService:
-      return (resource as HealthcareService).copyWith(id: newId);
+      return (resource as HealthcareServiceBuilder).copyWith(id: newId);
     case R4ResourceType.ImagingStudy:
-      return (resource as ImagingStudy).copyWith(id: newId);
+      return (resource as ImagingStudyBuilder).copyWith(id: newId);
     case R4ResourceType.Immunization:
-      return (resource as Immunization).copyWith(id: newId);
+      return (resource as ImmunizationBuilder).copyWith(id: newId);
     case R4ResourceType.ImmunizationEvaluation:
-      return (resource as ImmunizationEvaluation).copyWith(id: newId);
+      return (resource as ImmunizationEvaluationBuilder).copyWith(id: newId);
     case R4ResourceType.ImmunizationRecommendation:
-      return (resource as ImmunizationRecommendation).copyWith(id: newId);
+      return (resource as ImmunizationRecommendationBuilder)
+          .copyWith(id: newId);
     case R4ResourceType.ImplementationGuide:
-      return (resource as ImplementationGuide).copyWith(id: newId);
+      return (resource as ImplementationGuideBuilder).copyWith(id: newId);
     case R4ResourceType.Ingredient:
-      return (resource as Ingredient).copyWith(id: newId);
+      return (resource as IngredientBuilder).copyWith(id: newId);
     case R4ResourceType.InsurancePlan:
-      return (resource as InsurancePlan).copyWith(id: newId);
+      return (resource as InsurancePlanBuilder).copyWith(id: newId);
     case R4ResourceType.Invoice:
-      return (resource as Invoice).copyWith(id: newId);
+      return (resource as InvoiceBuilder).copyWith(id: newId);
     case R4ResourceType.Library:
-      return (resource as Library).copyWith(id: newId);
+      return (resource as LibraryBuilder).copyWith(id: newId);
     case R4ResourceType.Linkage:
-      return (resource as Linkage).copyWith(id: newId);
+      return (resource as LinkageBuilder).copyWith(id: newId);
     case R4ResourceType.Location:
-      return (resource as Location).copyWith(id: newId);
+      return (resource as LocationBuilder).copyWith(id: newId);
     case R4ResourceType.ManufacturedItemDefinition:
-      return (resource as ManufacturedItemDefinition).copyWith(id: newId);
+      return (resource as ManufacturedItemDefinitionBuilder)
+          .copyWith(id: newId);
     case R4ResourceType.Measure:
-      return (resource as Measure).copyWith(id: newId);
+      return (resource as MeasureBuilder).copyWith(id: newId);
     case R4ResourceType.MeasureReport:
-      return (resource as MeasureReport).copyWith(id: newId);
+      return (resource as MeasureReportBuilder).copyWith(id: newId);
     case R4ResourceType.Media:
-      return (resource as Media).copyWith(id: newId);
+      return (resource as MediaBuilder).copyWith(id: newId);
     case R4ResourceType.Medication:
-      return (resource as Medication).copyWith(id: newId);
+      return (resource as MedicationBuilder).copyWith(id: newId);
     case R4ResourceType.MedicationAdministration:
-      return (resource as MedicationAdministration).copyWith(id: newId);
+      return (resource as MedicationAdministrationBuilder).copyWith(id: newId);
     case R4ResourceType.MedicationDispense:
-      return (resource as MedicationDispense).copyWith(id: newId);
+      return (resource as MedicationDispenseBuilder).copyWith(id: newId);
     case R4ResourceType.MedicationKnowledge:
-      return (resource as MedicationKnowledge).copyWith(id: newId);
+      return (resource as MedicationKnowledgeBuilder).copyWith(id: newId);
     case R4ResourceType.MedicationRequest:
-      return (resource as MedicationRequest).copyWith(id: newId);
+      return (resource as MedicationRequestBuilder).copyWith(id: newId);
     case R4ResourceType.MedicationStatement:
-      return (resource as MedicationStatement).copyWith(id: newId);
+      return (resource as MedicationStatementBuilder).copyWith(id: newId);
     case R4ResourceType.MedicinalProductDefinition:
-      return (resource as MedicinalProductDefinition).copyWith(id: newId);
+      return (resource as MedicinalProductDefinitionBuilder)
+          .copyWith(id: newId);
     case R4ResourceType.MessageDefinition:
-      return (resource as MessageDefinition).copyWith(id: newId);
+      return (resource as MessageDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.MessageHeader:
-      return (resource as MessageHeader).copyWith(id: newId);
+      return (resource as MessageHeaderBuilder).copyWith(id: newId);
     case R4ResourceType.MolecularSequence:
-      return (resource as MolecularSequence).copyWith(id: newId);
+      return (resource as MolecularSequenceBuilder).copyWith(id: newId);
     case R4ResourceType.NamingSystem:
-      return (resource as NamingSystem).copyWith(id: newId);
+      return (resource as NamingSystemBuilder).copyWith(id: newId);
     case R4ResourceType.NutritionOrder:
-      return (resource as NutritionOrder).copyWith(id: newId);
+      return (resource as NutritionOrderBuilder).copyWith(id: newId);
     case R4ResourceType.NutritionProduct:
-      return (resource as NutritionProduct).copyWith(id: newId);
+      return (resource as NutritionProductBuilder).copyWith(id: newId);
     case R4ResourceType.Observation:
-      return (resource as Observation).copyWith(id: newId);
+      return (resource as ObservationBuilder).copyWith(id: newId);
     case R4ResourceType.ObservationDefinition:
-      return (resource as ObservationDefinition).copyWith(id: newId);
+      return (resource as ObservationDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.OperationDefinition:
-      return (resource as OperationDefinition).copyWith(id: newId);
+      return (resource as OperationDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.OperationOutcome:
-      return (resource as OperationOutcome).copyWith(id: newId);
+      return (resource as OperationOutcomeBuilder).copyWith(id: newId);
     case R4ResourceType.Organization:
-      return (resource as Organization).copyWith(id: newId);
+      return (resource as OrganizationBuilder).copyWith(id: newId);
     case R4ResourceType.OrganizationAffiliation:
-      return (resource as OrganizationAffiliation).copyWith(id: newId);
+      return (resource as OrganizationAffiliationBuilder).copyWith(id: newId);
     case R4ResourceType.PackagedProductDefinition:
-      return (resource as PackagedProductDefinition).copyWith(id: newId);
+      return (resource as PackagedProductDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.Parameters:
-      return (resource as Parameters).copyWith(id: newId);
+      return (resource as ParametersBuilder).copyWith(id: newId);
     case R4ResourceType.Patient:
-      return (resource as Patient).copyWith(id: newId);
+      return (resource as PatientBuilder).copyWith(id: newId);
     case R4ResourceType.PaymentNotice:
-      return (resource as PaymentNotice).copyWith(id: newId);
+      return (resource as PaymentNoticeBuilder).copyWith(id: newId);
     case R4ResourceType.PaymentReconciliation:
-      return (resource as PaymentReconciliation).copyWith(id: newId);
+      return (resource as PaymentReconciliationBuilder).copyWith(id: newId);
     case R4ResourceType.Person:
-      return (resource as Person).copyWith(id: newId);
+      return (resource as PersonBuilder).copyWith(id: newId);
     case R4ResourceType.PlanDefinition:
-      return (resource as PlanDefinition).copyWith(id: newId);
+      return (resource as PlanDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.Practitioner:
-      return (resource as Practitioner).copyWith(id: newId);
+      return (resource as PractitionerBuilder).copyWith(id: newId);
     case R4ResourceType.PractitionerRole:
-      return (resource as PractitionerRole).copyWith(id: newId);
+      return (resource as PractitionerRoleBuilder).copyWith(id: newId);
     case R4ResourceType.Procedure:
-      return (resource as Procedure).copyWith(id: newId);
+      return (resource as ProcedureBuilder).copyWith(id: newId);
     case R4ResourceType.Provenance:
-      return (resource as Provenance).copyWith(id: newId);
+      return (resource as ProvenanceBuilder).copyWith(id: newId);
     case R4ResourceType.Questionnaire:
-      return (resource as Questionnaire).copyWith(id: newId);
+      return (resource as QuestionnaireBuilder).copyWith(id: newId);
     case R4ResourceType.QuestionnaireResponse:
-      return (resource as QuestionnaireResponse).copyWith(id: newId);
+      return (resource as QuestionnaireResponseBuilder).copyWith(id: newId);
     case R4ResourceType.RegulatedAuthorization:
-      return (resource as RegulatedAuthorization).copyWith(id: newId);
+      return (resource as RegulatedAuthorizationBuilder).copyWith(id: newId);
     case R4ResourceType.RelatedPerson:
-      return (resource as RelatedPerson).copyWith(id: newId);
+      return (resource as RelatedPersonBuilder).copyWith(id: newId);
     case R4ResourceType.RequestGroup:
-      return (resource as RequestGroup).copyWith(id: newId);
+      return (resource as RequestGroupBuilder).copyWith(id: newId);
     case R4ResourceType.ResearchDefinition:
-      return (resource as ResearchDefinition).copyWith(id: newId);
+      return (resource as ResearchDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.ResearchElementDefinition:
-      return (resource as ResearchElementDefinition).copyWith(id: newId);
+      return (resource as ResearchElementDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.ResearchStudy:
-      return (resource as ResearchStudy).copyWith(id: newId);
+      return (resource as ResearchStudyBuilder).copyWith(id: newId);
     case R4ResourceType.ResearchSubject:
-      return (resource as ResearchSubject).copyWith(id: newId);
+      return (resource as ResearchSubjectBuilder).copyWith(id: newId);
     case R4ResourceType.RiskAssessment:
-      return (resource as RiskAssessment).copyWith(id: newId);
+      return (resource as RiskAssessmentBuilder).copyWith(id: newId);
     case R4ResourceType.Schedule:
-      return (resource as Schedule).copyWith(id: newId);
+      return (resource as ScheduleBuilder).copyWith(id: newId);
     case R4ResourceType.SearchParameter:
-      return (resource as SearchParameter).copyWith(id: newId);
+      return (resource as SearchParameterBuilder).copyWith(id: newId);
     case R4ResourceType.ServiceRequest:
-      return (resource as ServiceRequest).copyWith(id: newId);
+      return (resource as ServiceRequestBuilder).copyWith(id: newId);
     case R4ResourceType.Slot:
-      return (resource as Slot).copyWith(id: newId);
+      return (resource as SlotBuilder).copyWith(id: newId);
     case R4ResourceType.Specimen:
-      return (resource as Specimen).copyWith(id: newId);
+      return (resource as SpecimenBuilder).copyWith(id: newId);
     case R4ResourceType.SpecimenDefinition:
-      return (resource as SpecimenDefinition).copyWith(id: newId);
+      return (resource as SpecimenDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.StructureDefinition:
-      return (resource as StructureDefinition).copyWith(id: newId);
+      return (resource as StructureDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.StructureMap:
-      return (resource as StructureMap).copyWith(id: newId);
+      return (resource as StructureMapBuilder).copyWith(id: newId);
     case R4ResourceType.Subscription:
-      return (resource as Subscription).copyWith(id: newId);
+      return (resource as SubscriptionBuilder).copyWith(id: newId);
     case R4ResourceType.SubscriptionStatus:
-      return (resource as SubscriptionStatus).copyWith(id: newId);
+      return (resource as SubscriptionStatusBuilder).copyWith(id: newId);
     case R4ResourceType.SubscriptionTopic:
-      return (resource as SubscriptionTopic).copyWith(id: newId);
+      return (resource as SubscriptionTopicBuilder).copyWith(id: newId);
     case R4ResourceType.Substance:
-      return (resource as Substance).copyWith(id: newId);
+      return (resource as SubstanceBuilder).copyWith(id: newId);
     case R4ResourceType.SubstanceDefinition:
-      return (resource as SubstanceDefinition).copyWith(id: newId);
+      return (resource as SubstanceDefinitionBuilder).copyWith(id: newId);
     case R4ResourceType.SupplyDelivery:
-      return (resource as SupplyDelivery).copyWith(id: newId);
+      return (resource as SupplyDeliveryBuilder).copyWith(id: newId);
     case R4ResourceType.SupplyRequest:
-      return (resource as SupplyRequest).copyWith(id: newId);
+      return (resource as SupplyRequestBuilder).copyWith(id: newId);
     case R4ResourceType.Task:
-      return (resource as Task).copyWith(id: newId);
+      return (resource as TaskBuilder).copyWith(id: newId);
     case R4ResourceType.TerminologyCapabilities:
-      return (resource as TerminologyCapabilities).copyWith(id: newId);
+      return (resource as TerminologyCapabilitiesBuilder).copyWith(id: newId);
     case R4ResourceType.TestReport:
-      return (resource as TestReport).copyWith(id: newId);
+      return (resource as TestReportBuilder).copyWith(id: newId);
     case R4ResourceType.TestScript:
-      return (resource as TestScript).copyWith(id: newId);
+      return (resource as TestScriptBuilder).copyWith(id: newId);
     case R4ResourceType.ValueSet:
-      return (resource as ValueSet).copyWith(id: newId);
+      return (resource as ValueSetBuilder).copyWith(id: newId);
     case R4ResourceType.VerificationResult:
-      return (resource as VerificationResult).copyWith(id: newId);
+      return (resource as VerificationResultBuilder).copyWith(id: newId);
     case R4ResourceType.VisionPrescription:
-      return (resource as VisionPrescription).copyWith(id: newId);
+      return (resource as VisionPrescriptionBuilder).copyWith(id: newId);
   }
 }

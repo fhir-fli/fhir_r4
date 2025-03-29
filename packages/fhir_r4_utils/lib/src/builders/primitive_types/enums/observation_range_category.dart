@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Codes identifying the category of observation range.
-class ObservationRangeCategory extends FhirCodeEnum {
+class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ObservationRangeCategory._({
+  ObservationRangeCategoryBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ObservationRangeCategory extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ObservationRangeCategory(
+  factory ObservationRangeCategoryBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ObservationRangeCategory._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ObservationRangeCategoryBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,58 +43,65 @@ class ObservationRangeCategory extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ObservationRangeCategory] with element only
-  factory ObservationRangeCategory.empty() =>
-      ObservationRangeCategory._(validatedValue: '');
+  /// Create empty [ObservationRangeCategoryBuilder] with element only
+  factory ObservationRangeCategoryBuilder.empty() =>
+      ObservationRangeCategoryBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ObservationRangeCategory] from JSON.
-  factory ObservationRangeCategory.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ObservationRangeCategoryBuilder] from JSON.
+  factory ObservationRangeCategoryBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationRangeCategory.elementOnly.withElement(element);
+      return ObservationRangeCategoryBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ObservationRangeCategory cannot be constructed from JSON.',
+        'ObservationRangeCategoryBuilder cannot be constructed from JSON.',
       );
     }
-    return ObservationRangeCategory._(
+    return ObservationRangeCategoryBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// reference
-  static final ObservationRangeCategory reference = ObservationRangeCategory._(
+  static ObservationRangeCategoryBuilder reference =
+      ObservationRangeCategoryBuilder._(
     validatedValue: 'reference',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'reference range'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'reference range'.toFhirStringBuilder,
   );
 
   /// critical
-  static final ObservationRangeCategory critical = ObservationRangeCategory._(
+  static ObservationRangeCategoryBuilder critical =
+      ObservationRangeCategoryBuilder._(
     validatedValue: 'critical',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'critical range'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'critical range'.toFhirStringBuilder,
   );
 
   /// absolute
-  static final ObservationRangeCategory absolute = ObservationRangeCategory._(
+  static ObservationRangeCategoryBuilder absolute =
+      ObservationRangeCategoryBuilder._(
     validatedValue: 'absolute',
-    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'absolute range'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'absolute range'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ObservationRangeCategory elementOnly =
-      ObservationRangeCategory._(validatedValue: '');
+  static ObservationRangeCategoryBuilder elementOnly =
+      ObservationRangeCategoryBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ObservationRangeCategory> values = [
+  static List<ObservationRangeCategoryBuilder> values = [
     reference,
     critical,
     absolute,
@@ -102,15 +109,15 @@ class ObservationRangeCategory extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ObservationRangeCategory clone() => ObservationRangeCategory._(
+  ObservationRangeCategoryBuilder clone() => ObservationRangeCategoryBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ObservationRangeCategory withElement(Element? newElement) {
-    return ObservationRangeCategory._(
-        validatedValue: value, element: newElement,);
+  ObservationRangeCategoryBuilder withElement(ElementBuilder? newElement) {
+    return ObservationRangeCategoryBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,11 +133,11 @@ class ObservationRangeCategory extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ObservationRangeCategory copyWith({
+  ObservationRangeCategoryBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -141,7 +148,7 @@ class ObservationRangeCategory extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ObservationRangeCategory._(
+    return ObservationRangeCategoryBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -151,7 +158,7 @@ class ObservationRangeCategory extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -1,50 +1,49 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [MarketingStatus]
+/// [MarketingStatusBuilder]
 /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
-class MarketingStatus extends BackboneType {
+class MarketingStatusBuilder extends BackboneTypeBuilder {
   /// Primary constructor for
-  /// [MarketingStatus]
+  /// [MarketingStatusBuilder]
 
-  const MarketingStatus({
+  MarketingStatusBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.country,
     this.jurisdiction,
-    required this.status,
+    this.status,
     this.dateRange,
     this.restoreDate,
     super.disallowExtensions,
-    super.objectPath = 'MarketingStatus',
+    super.objectPath = 'MarketingStatusBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MarketingStatus.empty() => MarketingStatus(
-        status: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory MarketingStatusBuilder.empty() => MarketingStatusBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MarketingStatus.fromJson(
+  factory MarketingStatusBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'MarketingStatus';
-    return MarketingStatus(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MarketingStatusBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -53,8 +52,8 @@ class MarketingStatus extends BackboneType {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -62,55 +61,55 @@ class MarketingStatus extends BackboneType {
             ),
           )
           .toList(),
-      country: JsonParser.parseObject<CodeableConcept>(
+      country: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'country',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.country',
       ),
-      jurisdiction: JsonParser.parseObject<CodeableConcept>(
+      jurisdiction: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'jurisdiction',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.jurisdiction',
       ),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      dateRange: JsonParser.parseObject<Period>(
+      ),
+      dateRange: JsonParser.parseObject<PeriodBuilder>(
         json,
         'dateRange',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.dateRange',
       ),
-      restoreDate: JsonParser.parsePrimitive<FhirDateTime>(
+      restoreDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'restoreDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.restoreDate',
       ),
     );
   }
 
-  /// Deserialize [MarketingStatus]
+  /// Deserialize [MarketingStatusBuilder]
   /// from a [String] or [YamlMap] object
-  factory MarketingStatus.fromYaml(
+  factory MarketingStatusBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MarketingStatus.fromJson(
+      return MarketingStatusBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MarketingStatus.fromJson(
+      return MarketingStatusBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MarketingStatus '
+        'MarketingStatusBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -118,16 +117,16 @@ class MarketingStatus extends BackboneType {
   }
 
   /// Factory constructor for
-  /// [MarketingStatus]
+  /// [MarketingStatusBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MarketingStatus.fromJsonString(
+  factory MarketingStatusBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MarketingStatus.fromJson(json);
+      return MarketingStatusBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -141,7 +140,7 @@ class MarketingStatus extends BackboneType {
   /// The country in which the marketing authorisation has been granted shall
   /// be specified It should be specified using the ISO 3166 ‑ 1 alpha-2 code
   /// elements.
-  final CodeableConcept? country;
+  CodeableConceptBuilder? country;
 
   /// [jurisdiction]
   /// Where a Medicines Regulatory Agency has granted a marketing
@@ -149,13 +148,13 @@ class MarketingStatus extends BackboneType {
   /// apply, the jurisdiction can be specified using an appropriate
   /// controlled terminology The controlled term and the controlled term
   /// identifier shall be specified.
-  final CodeableConcept? jurisdiction;
+  CodeableConceptBuilder? jurisdiction;
 
   /// [status]
   /// This attribute provides information on the status of the marketing of
   /// the medicinal product See ISO/TS 20443 for more information and
   /// examples.
-  final CodeableConcept status;
+  CodeableConceptBuilder? status;
 
   /// [dateRange]
   /// The date when the Medicinal Product is placed on the market by the
@@ -165,7 +164,7 @@ class MarketingStatus extends BackboneType {
   /// specified using the ISO 8601 date format NOTE “Placed on the market”
   /// refers to the release of the Medicinal Product into the distribution
   /// chain.
-  final Period? dateRange;
+  PeriodBuilder? dateRange;
 
   /// [restoreDate]
   /// The date when the Medicinal Product is placed on the market by the
@@ -175,23 +174,23 @@ class MarketingStatus extends BackboneType {
   /// specified using the ISO 8601 date format NOTE “Placed on the market”
   /// refers to the release of the Medicinal Product into the distribution
   /// chain.
-  final FhirDateTime? restoreDate;
+  FhirDateTimeBuilder? restoreDate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -200,43 +199,19 @@ class MarketingStatus extends BackboneType {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'country',
-      country,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'dateRange',
-      dateRange,
-    );
-    addField(
-      'restoreDate',
-      restoreDate,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('country', country);
+    addField('jurisdiction', jurisdiction);
+    addField('status', status);
+    addField('dateRange', dateRange);
+    addField('restoreDate', restoreDate);
     return json;
   }
 
@@ -258,11 +233,11 @@ class MarketingStatus extends BackboneType {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -285,7 +260,9 @@ class MarketingStatus extends BackboneType {
           fields.add(jurisdiction!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'dateRange':
         if (dateRange != null) {
           fields.add(dateRange!);
@@ -304,7 +281,7 @@ class MarketingStatus extends BackboneType {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -313,89 +290,94 @@ class MarketingStatus extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
         {
-          if (child is CodeableConcept) {
-            return copyWith(country: child);
+          if (child is CodeableConceptBuilder) {
+            country = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is CodeableConcept) {
-            return copyWith(jurisdiction: child);
+          if (child is CodeableConceptBuilder) {
+            jurisdiction = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateRange':
         {
-          if (child is Period) {
-            return copyWith(dateRange: child);
+          if (child is PeriodBuilder) {
+            dateRange = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'restoreDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(restoreDate: child);
+          if (child is FhirDateTimeBuilder) {
+            restoreDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -411,82 +393,70 @@ class MarketingStatus extends BackboneType {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'country':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'dateRange':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'restoreDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MarketingStatus]
+  /// Creates a new [MarketingStatusBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MarketingStatus createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'country':
         {
-          return copyWith(
-            country: CodeableConcept.empty(),
-          );
+          country = CodeableConceptBuilder.empty();
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: CodeableConcept.empty(),
-          );
+          jurisdiction = CodeableConceptBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'dateRange':
         {
-          return copyWith(
-            dateRange: Period.empty(),
-          );
+          dateRange = PeriodBuilder.empty();
+          return;
         }
       case 'restoreDate':
         {
-          return copyWith(
-            restoreDate: FhirDateTime.empty(),
-          );
+          restoreDate = FhirDateTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -495,39 +465,38 @@ class MarketingStatus extends BackboneType {
 
   /// Clears specific fields in this object
   @override
-  MarketingStatus clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool country = false,
     bool jurisdiction = false,
+    bool status = false,
     bool dateRange = false,
     bool restoreDate = false,
   }) {
-    return MarketingStatus(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      country: country ? null : this.country,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      status: status,
-      dateRange: dateRange ? null : this.dateRange,
-      restoreDate: restoreDate ? null : this.restoreDate,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (country) this.country = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (status) this.status = null;
+    if (dateRange) this.dateRange = null;
+    if (restoreDate) this.restoreDate = null;
   }
 
   @override
-  MarketingStatus clone() => throw UnimplementedError();
+  MarketingStatusBuilder clone() => throw UnimplementedError();
   @override
-  MarketingStatus copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? country,
-    CodeableConcept? jurisdiction,
-    CodeableConcept? status,
-    Period? dateRange,
-    FhirDateTime? restoreDate,
+  MarketingStatusBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? country,
+    CodeableConceptBuilder? jurisdiction,
+    CodeableConceptBuilder? status,
+    PeriodBuilder? dateRange,
+    FhirDateTimeBuilder? restoreDate,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -535,54 +504,39 @@ class MarketingStatus extends BackboneType {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return MarketingStatus(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      country: country?.copyWith(
-            objectPath: '$newObjectPath.country',
-          ) ??
-          this.country,
-      jurisdiction: jurisdiction?.copyWith(
-            objectPath: '$newObjectPath.jurisdiction',
-          ) ??
-          this.jurisdiction,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      dateRange: dateRange?.copyWith(
-            objectPath: '$newObjectPath.dateRange',
-          ) ??
-          this.dateRange,
-      restoreDate: restoreDate?.copyWith(
-            objectPath: '$newObjectPath.restoreDate',
-          ) ??
-          this.restoreDate,
+    final newResult = MarketingStatusBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      country: country ?? this.country,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      status: status ?? this.status,
+      dateRange: dateRange ?? this.dateRange,
+      restoreDate: restoreDate ?? this.restoreDate,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MarketingStatus) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MarketingStatusBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -593,13 +547,13 @@ class MarketingStatus extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

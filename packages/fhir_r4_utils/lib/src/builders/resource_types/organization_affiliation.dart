@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [OrganizationAffiliation]
+/// [OrganizationAffiliationBuilder]
 /// Defines an affiliation/assotiation/relationship between 2 distinct
 /// oganizations, that is not a part-of relationship/sub-division
 /// relationship.
-class OrganizationAffiliation extends DomainResource {
+class OrganizationAffiliationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [OrganizationAffiliation]
+  /// [OrganizationAffiliationBuilder]
 
-  const OrganizationAffiliation({
+  OrganizationAffiliationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -37,49 +39,49 @@ class OrganizationAffiliation extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OrganizationAffiliation.empty() => const OrganizationAffiliation();
+  /// For Builder classes, no fields are required
+  factory OrganizationAffiliationBuilder.empty() =>
+      OrganizationAffiliationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OrganizationAffiliation.fromJson(
+  factory OrganizationAffiliationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'OrganizationAffiliation';
-    return OrganizationAffiliation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return OrganizationAffiliationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -88,8 +90,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -98,8 +100,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -108,8 +110,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -117,33 +119,33 @@ class OrganizationAffiliation extends DomainResource {
             ),
           )
           .toList(),
-      active: JsonParser.parsePrimitive<FhirBoolean>(
+      active: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'active',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.active',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      organization: JsonParser.parseObject<Reference>(
+      organization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'organization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.organization',
       ),
-      participatingOrganization: JsonParser.parseObject<Reference>(
+      participatingOrganization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'participatingOrganization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.participatingOrganization',
       ),
       network: (json['network'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.network',
@@ -152,8 +154,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -162,8 +164,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specialty',
@@ -172,8 +174,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       location: (json['location'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.location',
@@ -182,8 +184,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       healthcareService: (json['healthcareService'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.healthcareService',
@@ -192,8 +194,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -202,8 +204,8 @@ class OrganizationAffiliation extends DomainResource {
           )
           .toList(),
       endpoint: (json['endpoint'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.endpoint',
@@ -214,22 +216,22 @@ class OrganizationAffiliation extends DomainResource {
     );
   }
 
-  /// Deserialize [OrganizationAffiliation]
+  /// Deserialize [OrganizationAffiliationBuilder]
   /// from a [String] or [YamlMap] object
-  factory OrganizationAffiliation.fromYaml(
+  factory OrganizationAffiliationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return OrganizationAffiliation.fromJson(
+      return OrganizationAffiliationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return OrganizationAffiliation.fromJson(
+      return OrganizationAffiliationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'OrganizationAffiliation '
+        'OrganizationAffiliationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -237,16 +239,16 @@ class OrganizationAffiliation extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [OrganizationAffiliation]
+  /// [OrganizationAffiliationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory OrganizationAffiliation.fromJsonString(
+  factory OrganizationAffiliationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return OrganizationAffiliation.fromJson(json);
+      return OrganizationAffiliationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -258,77 +260,77 @@ class OrganizationAffiliation extends DomainResource {
 
   /// [identifier]
   /// Business identifiers that are specific to this role.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [active]
   /// Whether this organization affiliation record is in active use.
-  final FhirBoolean? active;
+  FhirBooleanBuilder? active;
 
   /// [period]
   /// The period during which the participatingOrganization is affiliated
   /// with the primary organization.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [organization]
   /// Organization where the role is available (primary organization/has
   /// members).
-  final Reference? organization;
+  ReferenceBuilder? organization;
 
   /// [participatingOrganization]
   /// The Participating Organization provides/performs the role(s) defined by
   /// the code to the Primary Organization (e.g. providing services or is a
   /// member of).
-  final Reference? participatingOrganization;
+  ReferenceBuilder? participatingOrganization;
 
   /// [network]
   /// Health insurance provider network in which the
   /// participatingOrganization provides the role's services (if defined) at
   /// the indicated locations (if defined).
-  final List<Reference>? network;
+  List<ReferenceBuilder>? network;
 
   /// [code]
   /// Definition of the role the participatingOrganization plays in the
   /// association.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [specialty]
   /// Specific specialty of the participatingOrganization in the context of
   /// the role.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConceptBuilder>? specialty;
 
   /// [location]
   /// The location(s) at which the role occurs.
-  final List<Reference>? location;
+  List<ReferenceBuilder>? location;
 
   /// [healthcareService]
   /// Healthcare services provided through the role.
-  final List<Reference>? healthcareService;
+  List<ReferenceBuilder>? healthcareService;
 
   /// [telecom]
   /// Contact details at the participatingOrganization relevant to this
   /// Affiliation.
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for this
   /// role.
-  final List<Reference>? endpoint;
+  List<ReferenceBuilder>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -337,92 +339,32 @@ class OrganizationAffiliation extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'active',
-      active,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'organization',
-      organization,
-    );
-    addField(
-      'participatingOrganization',
-      participatingOrganization,
-    );
-    addField(
-      'network',
-      network,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'specialty',
-      specialty,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'healthcareService',
-      healthcareService,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'endpoint',
-      endpoint,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('active', active);
+    addField('period', period);
+    addField('organization', organization);
+    addField('participatingOrganization', participatingOrganization);
+    addField('network', network);
+    addField('code', code);
+    addField('specialty', specialty);
+    addField('location', location);
+    addField('healthcareService', healthcareService);
+    addField('telecom', telecom);
+    addField('endpoint', endpoint);
     return json;
   }
 
@@ -456,11 +398,11 @@ class OrganizationAffiliation extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -552,7 +494,7 @@ class OrganizationAffiliation extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -561,239 +503,247 @@ class OrganizationAffiliation extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'active':
         {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
+          if (child is FhirBooleanBuilder) {
+            active = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
         {
-          if (child is Reference) {
-            return copyWith(organization: child);
+          if (child is ReferenceBuilder) {
+            organization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participatingOrganization':
         {
-          if (child is Reference) {
-            return copyWith(participatingOrganization: child);
+          if (child is ReferenceBuilder) {
+            participatingOrganization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'network':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?network, ...child];
-            return copyWith(network: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            network = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?network, child];
-            return copyWith(network: newList);
+            network = [...(network ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialty':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialty, ...child];
-            return copyWith(specialty: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            specialty = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialty, child];
-            return copyWith(specialty: newList);
+            specialty = [...(specialty ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?location, ...child];
-            return copyWith(location: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            location = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
-            return copyWith(location: newList);
+            location = [...(location ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'healthcareService':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?healthcareService, ...child];
-            return copyWith(healthcareService: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            healthcareService = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?healthcareService, child];
-            return copyWith(healthcareService: newList);
+            healthcareService = [...(healthcareService ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?endpoint, ...child];
-            return copyWith(endpoint: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            endpoint = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
-            return copyWith(endpoint: newList);
+            endpoint = [...(endpoint ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -809,178 +759,154 @@ class OrganizationAffiliation extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'active':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'organization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'participatingOrganization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'network':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'specialty':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'location':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'healthcareService':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'endpoint':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [OrganizationAffiliation]
+  /// Creates a new [OrganizationAffiliationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  OrganizationAffiliation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'active':
         {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
+          active = FhirBooleanBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'organization':
         {
-          return copyWith(
-            organization: Reference.empty(),
-          );
+          organization = ReferenceBuilder.empty();
+          return;
         }
       case 'participatingOrganization':
         {
-          return copyWith(
-            participatingOrganization: Reference.empty(),
-          );
+          participatingOrganization = ReferenceBuilder.empty();
+          return;
         }
       case 'network':
         {
-          return copyWith(
-            network: <Reference>[],
-          );
+          network = <ReferenceBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'specialty':
         {
-          return copyWith(
-            specialty: <CodeableConcept>[],
-          );
+          specialty = <CodeableConceptBuilder>[];
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: <Reference>[],
-          );
+          location = <ReferenceBuilder>[];
+          return;
         }
       case 'healthcareService':
         {
-          return copyWith(
-            healthcareService: <Reference>[],
-          );
+          healthcareService = <ReferenceBuilder>[];
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'endpoint':
         {
-          return copyWith(
-            endpoint: <Reference>[],
-          );
+          endpoint = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -989,7 +915,7 @@ class OrganizationAffiliation extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  OrganizationAffiliation clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1011,186 +937,104 @@ class OrganizationAffiliation extends DomainResource {
     bool telecom = false,
     bool endpoint = false,
   }) {
-    return OrganizationAffiliation(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      active: active ? null : this.active,
-      period: period ? null : this.period,
-      organization: organization ? null : this.organization,
-      participatingOrganization:
-          participatingOrganization ? null : this.participatingOrganization,
-      network: network ? null : this.network,
-      code: code ? null : this.code,
-      specialty: specialty ? null : this.specialty,
-      location: location ? null : this.location,
-      healthcareService: healthcareService ? null : this.healthcareService,
-      telecom: telecom ? null : this.telecom,
-      endpoint: endpoint ? null : this.endpoint,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (active) this.active = null;
+    if (period) this.period = null;
+    if (organization) this.organization = null;
+    if (participatingOrganization) this.participatingOrganization = null;
+    if (network) this.network = null;
+    if (code) this.code = null;
+    if (specialty) this.specialty = null;
+    if (location) this.location = null;
+    if (healthcareService) this.healthcareService = null;
+    if (telecom) this.telecom = null;
+    if (endpoint) this.endpoint = null;
   }
 
   @override
-  OrganizationAffiliation clone() => throw UnimplementedError();
+  OrganizationAffiliationBuilder clone() => throw UnimplementedError();
   @override
-  OrganizationAffiliation copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirBoolean? active,
-    Period? period,
-    Reference? organization,
-    Reference? participatingOrganization,
-    List<Reference>? network,
-    List<CodeableConcept>? code,
-    List<CodeableConcept>? specialty,
-    List<Reference>? location,
-    List<Reference>? healthcareService,
-    List<ContactPoint>? telecom,
-    List<Reference>? endpoint,
+  OrganizationAffiliationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirBooleanBuilder? active,
+    PeriodBuilder? period,
+    ReferenceBuilder? organization,
+    ReferenceBuilder? participatingOrganization,
+    List<ReferenceBuilder>? network,
+    List<CodeableConceptBuilder>? code,
+    List<CodeableConceptBuilder>? specialty,
+    List<ReferenceBuilder>? location,
+    List<ReferenceBuilder>? healthcareService,
+    List<ContactPointBuilder>? telecom,
+    List<ReferenceBuilder>? endpoint,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return OrganizationAffiliation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = OrganizationAffiliationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      organization: organization?.copyWith(
-            objectPath: '$newObjectPath.organization',
-          ) ??
-          this.organization,
-      participatingOrganization: participatingOrganization?.copyWith(
-            objectPath: '$newObjectPath.participatingOrganization',
-          ) ??
-          this.participatingOrganization,
-      network: network
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.network',
-                ),
-              )
-              .toList() ??
-          this.network,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      specialty: specialty
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialty',
-                ),
-              )
-              .toList() ??
-          this.specialty,
-      location: location
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.location',
-                ),
-              )
-              .toList() ??
-          this.location,
-      healthcareService: healthcareService
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.healthcareService',
-                ),
-              )
-              .toList() ??
-          this.healthcareService,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      endpoint: endpoint
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endpoint',
-                ),
-              )
-              .toList() ??
-          this.endpoint,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      active: active ?? this.active,
+      period: period ?? this.period,
+      organization: organization ?? this.organization,
+      participatingOrganization:
+          participatingOrganization ?? this.participatingOrganization,
+      network: network ?? this.network,
+      code: code ?? this.code,
+      specialty: specialty ?? this.specialty,
+      location: location ?? this.location,
+      healthcareService: healthcareService ?? this.healthcareService,
+      telecom: telecom ?? this.telecom,
+      endpoint: endpoint ?? this.endpoint,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! OrganizationAffiliation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! OrganizationAffiliationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1225,25 +1069,25 @@ class OrganizationAffiliation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1273,43 +1117,43 @@ class OrganizationAffiliation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       network,
       o.network,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       specialty,
       o.specialty,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       location,
       o.location,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       healthcareService,
       o.healthcareService,
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       endpoint,
       o.endpoint,
     )) {

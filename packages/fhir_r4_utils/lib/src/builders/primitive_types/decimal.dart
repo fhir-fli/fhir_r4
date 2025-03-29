@@ -50,7 +50,7 @@ class FhirDecimalBuilder extends FhirNumberBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Decimal',
+    String? objectPath = 'Decimal',
   }) {
     // 1) Check if rawInput is null or a num
     num? finalNum;
@@ -158,7 +158,7 @@ class FhirDecimalBuilder extends FhirNumberBuilder
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Boolean flag to track if the input was originally an integer.
   bool _isInt; // rename from isInt → private?

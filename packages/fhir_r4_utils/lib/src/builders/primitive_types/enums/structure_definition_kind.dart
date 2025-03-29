@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Defines the type of structure that a definition is describing.
-class StructureDefinitionKind extends FhirCodeEnum {
+class StructureDefinitionKindBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  StructureDefinitionKind._({
+  StructureDefinitionKindBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory StructureDefinitionKind(
+  factory StructureDefinitionKindBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return StructureDefinitionKind._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return StructureDefinitionKindBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,67 +43,75 @@ class StructureDefinitionKind extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [StructureDefinitionKind] with element only
-  factory StructureDefinitionKind.empty() =>
-      StructureDefinitionKind._(validatedValue: '');
+  /// Create empty [StructureDefinitionKindBuilder] with element only
+  factory StructureDefinitionKindBuilder.empty() =>
+      StructureDefinitionKindBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureDefinitionKind] from JSON.
-  factory StructureDefinitionKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureDefinitionKindBuilder] from JSON.
+  factory StructureDefinitionKindBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureDefinitionKind.elementOnly.withElement(element);
+      return StructureDefinitionKindBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureDefinitionKind cannot be constructed from JSON.',
+        'StructureDefinitionKindBuilder cannot be constructed from JSON.',
       );
     }
-    return StructureDefinitionKind._(
+    return StructureDefinitionKindBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// primitive_type
-  static final StructureDefinitionKind primitive_type =
-      StructureDefinitionKind._(
+  static StructureDefinitionKindBuilder primitive_type =
+      StructureDefinitionKindBuilder._(
     validatedValue: 'primitive-type',
-    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Primitive Data Type'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Primitive Data Type'.toFhirStringBuilder,
   );
 
   /// complex_type
-  static final StructureDefinitionKind complex_type = StructureDefinitionKind._(
+  static StructureDefinitionKindBuilder complex_type =
+      StructureDefinitionKindBuilder._(
     validatedValue: 'complex-type',
-    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Complex Data Type'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Complex Data Type'.toFhirStringBuilder,
   );
 
   /// resource
-  static final StructureDefinitionKind resource = StructureDefinitionKind._(
+  static StructureDefinitionKindBuilder resource =
+      StructureDefinitionKindBuilder._(
     validatedValue: 'resource',
-    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Resource'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Resource'.toFhirStringBuilder,
   );
 
   /// logical
-  static final StructureDefinitionKind logical = StructureDefinitionKind._(
+  static StructureDefinitionKindBuilder logical =
+      StructureDefinitionKindBuilder._(
     validatedValue: 'logical',
-    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Logical'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Logical'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final StructureDefinitionKind elementOnly =
-      StructureDefinitionKind._(validatedValue: '');
+  static StructureDefinitionKindBuilder elementOnly =
+      StructureDefinitionKindBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<StructureDefinitionKind> values = [
+  static List<StructureDefinitionKindBuilder> values = [
     primitive_type,
     complex_type,
     resource,
@@ -112,15 +120,15 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  StructureDefinitionKind clone() => StructureDefinitionKind._(
+  StructureDefinitionKindBuilder clone() => StructureDefinitionKindBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  StructureDefinitionKind withElement(Element? newElement) {
-    return StructureDefinitionKind._(
-        validatedValue: value, element: newElement,);
+  StructureDefinitionKindBuilder withElement(ElementBuilder? newElement) {
+    return StructureDefinitionKindBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,11 +144,11 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  StructureDefinitionKind copyWith({
+  StructureDefinitionKindBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -151,7 +159,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return StructureDefinitionKind._(
+    return StructureDefinitionKindBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -161,7 +169,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -113,7 +113,7 @@ class FhirDateTimeBuilder extends FhirDateTimeBaseBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'DateTime',
+    String? objectPath = 'DateTime',
   }) {
     // If you need any specialized logic, do it here.
     // Otherwise, just pass everything to the private constructor:
@@ -267,7 +267,7 @@ class FhirDateTimeBuilder extends FhirDateTimeBaseBuilder
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Factory constructor to create [FhirDateTimeBuilder] from YAML.
   static FhirDateTimeBuilder fromYaml(dynamic yaml) => yaml is String

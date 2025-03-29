@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Condition]
+/// [ConditionBuilder]
 /// A clinical condition, problem, diagnosis, or other event, situation,
 /// issue, or clinical concept that has risen to a level of concern.
-class Condition extends DomainResource {
+class ConditionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Condition]
+  /// [ConditionBuilder]
 
-  const Condition({
+  ConditionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -25,7 +27,7 @@ class Condition extends DomainResource {
     this.severity,
     this.code,
     this.bodySite,
-    required this.subject,
+    this.subject,
     this.encounter,
     this.onsetX,
     this.abatementX,
@@ -41,51 +43,48 @@ class Condition extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Condition.empty() => Condition(
-        subject: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ConditionBuilder.empty() => ConditionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Condition.fromJson(
+  factory ConditionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Condition';
-    return Condition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConditionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -94,8 +93,8 @@ class Condition extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -104,8 +103,8 @@ class Condition extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -114,8 +113,8 @@ class Condition extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -123,21 +122,21 @@ class Condition extends DomainResource {
             ),
           )
           .toList(),
-      clinicalStatus: JsonParser.parseObject<CodeableConcept>(
+      clinicalStatus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'clinicalStatus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.clinicalStatus',
       ),
-      verificationStatus: JsonParser.parseObject<CodeableConcept>(
+      verificationStatus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'verificationStatus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.verificationStatus',
       ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -145,21 +144,21 @@ class Condition extends DomainResource {
             ),
           )
           .toList(),
-      severity: JsonParser.parseObject<CodeableConcept>(
+      severity: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'severity',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.severity',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
       bodySite: (json['bodySite'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.bodySite',
@@ -167,61 +166,61 @@ class Condition extends DomainResource {
             ),
           )
           .toList(),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      onsetX: JsonParser.parsePolymorphic<OnsetXCondition>(
+      onsetX: JsonParser.parsePolymorphic<OnsetXConditionBuilder>(
         json,
         {
-          'onsetDateTime': FhirDateTime.fromJson,
-          'onsetAge': Age.fromJson,
-          'onsetPeriod': Period.fromJson,
-          'onsetRange': Range.fromJson,
-          'onsetString': FhirString.fromJson,
+          'onsetDateTime': FhirDateTimeBuilder.fromJson,
+          'onsetAge': AgeBuilder.fromJson,
+          'onsetPeriod': PeriodBuilder.fromJson,
+          'onsetRange': RangeBuilder.fromJson,
+          'onsetString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      abatementX: JsonParser.parsePolymorphic<AbatementXCondition>(
+      abatementX: JsonParser.parsePolymorphic<AbatementXConditionBuilder>(
         json,
         {
-          'abatementDateTime': FhirDateTime.fromJson,
-          'abatementAge': Age.fromJson,
-          'abatementPeriod': Period.fromJson,
-          'abatementRange': Range.fromJson,
-          'abatementString': FhirString.fromJson,
+          'abatementDateTime': FhirDateTimeBuilder.fromJson,
+          'abatementAge': AgeBuilder.fromJson,
+          'abatementPeriod': PeriodBuilder.fromJson,
+          'abatementRange': RangeBuilder.fromJson,
+          'abatementString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      recordedDate: JsonParser.parsePrimitive<FhirDateTime>(
+      recordedDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'recordedDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.recordedDate',
       ),
-      recorder: JsonParser.parseObject<Reference>(
+      recorder: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'recorder',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.recorder',
       ),
-      asserter: JsonParser.parseObject<Reference>(
+      asserter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'asserter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.asserter',
       ),
       stage: (json['stage'] as List<dynamic>?)
-          ?.map<ConditionStage>(
-            (v) => ConditionStage.fromJson(
+          ?.map<ConditionStageBuilder>(
+            (v) => ConditionStageBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.stage',
@@ -230,8 +229,8 @@ class Condition extends DomainResource {
           )
           .toList(),
       evidence: (json['evidence'] as List<dynamic>?)
-          ?.map<ConditionEvidence>(
-            (v) => ConditionEvidence.fromJson(
+          ?.map<ConditionEvidenceBuilder>(
+            (v) => ConditionEvidenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.evidence',
@@ -240,8 +239,8 @@ class Condition extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -252,22 +251,22 @@ class Condition extends DomainResource {
     );
   }
 
-  /// Deserialize [Condition]
+  /// Deserialize [ConditionBuilder]
   /// from a [String] or [YamlMap] object
-  factory Condition.fromYaml(
+  factory ConditionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Condition.fromJson(
+      return ConditionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Condition.fromJson(
+      return ConditionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Condition '
+        'ConditionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -275,16 +274,16 @@ class Condition extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Condition]
+  /// [ConditionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Condition.fromJsonString(
+  factory ConditionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Condition.fromJson(json);
+      return ConditionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -298,132 +297,134 @@ class Condition extends DomainResource {
   /// Business identifiers assigned to this condition by the performer or
   /// other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [clinicalStatus]
   /// The clinical status of the condition.
-  final CodeableConcept? clinicalStatus;
+  CodeableConceptBuilder? clinicalStatus;
 
   /// [verificationStatus]
   /// The verification status to support the clinical status of the
   /// condition.
-  final CodeableConcept? verificationStatus;
+  CodeableConceptBuilder? verificationStatus;
 
   /// [category]
   /// A category assigned to the condition.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [severity]
   /// A subjective assessment of the severity of the condition as evaluated
   /// by the clinician.
-  final CodeableConcept? severity;
+  CodeableConceptBuilder? severity;
 
   /// [code]
   /// Identification of the condition, problem or diagnosis.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [bodySite]
   /// The anatomical location where this condition manifests itself.
-  final List<CodeableConcept>? bodySite;
+  List<CodeableConceptBuilder>? bodySite;
 
   /// [subject]
   /// Indicates the patient or group who the condition record is associated
   /// with.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The Encounter during which this Condition was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [onsetX]
   /// Estimated or actual date or date-time the condition began, in the
   /// opinion of the clinician.
-  final OnsetXCondition? onsetX;
+  OnsetXConditionBuilder? onsetX;
 
-  /// Getter for [onsetDateTime] as a FhirDateTime
-  FhirDateTime? get onsetDateTime => onsetX?.isAs<FhirDateTime>();
+  /// Getter for [onsetDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get onsetDateTime => onsetX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [onsetAge] as a Age
-  Age? get onsetAge => onsetX?.isAs<Age>();
+  /// Getter for [onsetAge] as a AgeBuilder
+  AgeBuilder? get onsetAge => onsetX?.isAs<AgeBuilder>();
 
-  /// Getter for [onsetPeriod] as a Period
-  Period? get onsetPeriod => onsetX?.isAs<Period>();
+  /// Getter for [onsetPeriod] as a PeriodBuilder
+  PeriodBuilder? get onsetPeriod => onsetX?.isAs<PeriodBuilder>();
 
-  /// Getter for [onsetRange] as a Range
-  Range? get onsetRange => onsetX?.isAs<Range>();
+  /// Getter for [onsetRange] as a RangeBuilder
+  RangeBuilder? get onsetRange => onsetX?.isAs<RangeBuilder>();
 
-  /// Getter for [onsetString] as a FhirString
-  FhirString? get onsetString => onsetX?.isAs<FhirString>();
+  /// Getter for [onsetString] as a FhirStringBuilder
+  FhirStringBuilder? get onsetString => onsetX?.isAs<FhirStringBuilder>();
 
   /// [abatementX]
   /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions
   /// are never really resolved, but they can abate.
-  final AbatementXCondition? abatementX;
+  AbatementXConditionBuilder? abatementX;
 
-  /// Getter for [abatementDateTime] as a FhirDateTime
-  FhirDateTime? get abatementDateTime => abatementX?.isAs<FhirDateTime>();
+  /// Getter for [abatementDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get abatementDateTime =>
+      abatementX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [abatementAge] as a Age
-  Age? get abatementAge => abatementX?.isAs<Age>();
+  /// Getter for [abatementAge] as a AgeBuilder
+  AgeBuilder? get abatementAge => abatementX?.isAs<AgeBuilder>();
 
-  /// Getter for [abatementPeriod] as a Period
-  Period? get abatementPeriod => abatementX?.isAs<Period>();
+  /// Getter for [abatementPeriod] as a PeriodBuilder
+  PeriodBuilder? get abatementPeriod => abatementX?.isAs<PeriodBuilder>();
 
-  /// Getter for [abatementRange] as a Range
-  Range? get abatementRange => abatementX?.isAs<Range>();
+  /// Getter for [abatementRange] as a RangeBuilder
+  RangeBuilder? get abatementRange => abatementX?.isAs<RangeBuilder>();
 
-  /// Getter for [abatementString] as a FhirString
-  FhirString? get abatementString => abatementX?.isAs<FhirString>();
+  /// Getter for [abatementString] as a FhirStringBuilder
+  FhirStringBuilder? get abatementString =>
+      abatementX?.isAs<FhirStringBuilder>();
 
   /// [recordedDate]
   /// The recordedDate represents when this particular Condition record was
   /// created in the system, which is often a system-generated date.
-  final FhirDateTime? recordedDate;
+  FhirDateTimeBuilder? recordedDate;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
   /// content.
-  final Reference? recorder;
+  ReferenceBuilder? recorder;
 
   /// [asserter]
   /// Individual who is making the condition statement.
-  final Reference? asserter;
+  ReferenceBuilder? asserter;
 
   /// [stage]
   /// Clinical stage or grade of a condition. May include formal severity
   /// assessments.
-  final List<ConditionStage>? stage;
+  List<ConditionStageBuilder>? stage;
 
   /// [evidence]
   /// Supporting evidence / manifestations that are the basis of the
   /// Condition's verification status, such as evidence that confirmed or
   /// refuted the condition.
-  final List<ConditionEvidence>? evidence;
+  List<ConditionEvidenceBuilder>? evidence;
 
   /// [note]
   /// Additional information about the Condition. This is a general
   /// notes/comments entry for description of the Condition, its diagnosis
   /// and prognosis.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -432,120 +433,45 @@ class Condition extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'clinicalStatus',
-      clinicalStatus,
-    );
-    addField(
-      'verificationStatus',
-      verificationStatus,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'severity',
-      severity,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'bodySite',
-      bodySite,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('clinicalStatus', clinicalStatus);
+    addField('verificationStatus', verificationStatus);
+    addField('category', category);
+    addField('severity', severity);
+    addField('code', code);
+    addField('bodySite', bodySite);
+    addField('subject', subject);
+    addField('encounter', encounter);
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField(
-        'onset${fhirType.capitalize()}',
-        onsetX,
-      );
+      addField('onset${fhirType.capitalize()}', onsetX);
     }
 
     if (abatementX != null) {
       final fhirType = abatementX!.fhirType;
-      addField(
-        'abatement${fhirType.capitalize()}',
-        abatementX,
-      );
+      addField('abatement${fhirType.capitalize()}', abatementX);
     }
 
-    addField(
-      'recordedDate',
-      recordedDate,
-    );
-    addField(
-      'recorder',
-      recorder,
-    );
-    addField(
-      'asserter',
-      asserter,
-    );
-    addField(
-      'stage',
-      stage,
-    );
-    addField(
-      'evidence',
-      evidence,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('recordedDate', recordedDate);
+    addField('recorder', recorder);
+    addField('asserter', asserter);
+    addField('stage', stage);
+    addField('evidence', evidence);
+    addField('note', note);
     return json;
   }
 
@@ -584,11 +510,11 @@ class Condition extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -651,57 +577,67 @@ class Condition extends DomainResource {
           fields.addAll(bodySite!);
         }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
         }
       case 'onset':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetX':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetDateTime':
-        if (onsetX is FhirDateTime) {
+        if (onsetX is FhirDateTimeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetAge':
-        if (onsetX is Age) {
+        if (onsetX is AgeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetPeriod':
-        if (onsetX is Period) {
+        if (onsetX is PeriodBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetRange':
-        if (onsetX is Range) {
+        if (onsetX is RangeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetString':
-        if (onsetX is FhirString) {
+        if (onsetX is FhirStringBuilder) {
           fields.add(onsetX!);
         }
       case 'abatement':
-        fields.add(abatementX!);
+        if (abatementX != null) {
+          fields.add(abatementX!);
+        }
       case 'abatementX':
-        fields.add(abatementX!);
+        if (abatementX != null) {
+          fields.add(abatementX!);
+        }
       case 'abatementDateTime':
-        if (abatementX is FhirDateTime) {
+        if (abatementX is FhirDateTimeBuilder) {
           fields.add(abatementX!);
         }
       case 'abatementAge':
-        if (abatementX is Age) {
+        if (abatementX is AgeBuilder) {
           fields.add(abatementX!);
         }
       case 'abatementPeriod':
-        if (abatementX is Period) {
+        if (abatementX is PeriodBuilder) {
           fields.add(abatementX!);
         }
       case 'abatementRange':
-        if (abatementX is Range) {
+        if (abatementX is RangeBuilder) {
           fields.add(abatementX!);
         }
       case 'abatementString':
-        if (abatementX is FhirString) {
+        if (abatementX is FhirStringBuilder) {
           fields.add(abatementX!);
         }
       case 'recordedDate':
@@ -738,7 +674,7 @@ class Condition extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -747,377 +683,412 @@ class Condition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'clinicalStatus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(clinicalStatus: child);
+          if (child is CodeableConceptBuilder) {
+            clinicalStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'verificationStatus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(verificationStatus: child);
+          if (child is CodeableConceptBuilder) {
+            verificationStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
         {
-          if (child is CodeableConcept) {
-            return copyWith(severity: child);
+          if (child is CodeableConceptBuilder) {
+            severity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?bodySite, ...child];
-            return copyWith(bodySite: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            bodySite = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?bodySite, child];
-            return copyWith(bodySite: newList);
+            bodySite = [...(bodySite ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetX':
         {
-          if (child is OnsetXCondition) {
-            return copyWith(onsetX: child);
+          if (child is OnsetXConditionBuilder) {
+            onsetX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(onsetX: child);
+            if (child is FhirDateTimeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(onsetX: child);
+            if (child is AgeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(onsetX: child);
+            if (child is PeriodBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(onsetX: child);
+            if (child is RangeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(onsetX: child);
+            if (child is FhirStringBuilder) {
+              onsetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'onsetFhirDateTime':
+      case 'onsetDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(onsetX: child);
+          if (child is FhirDateTimeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetAge':
         {
-          if (child is Age) {
-            return copyWith(onsetX: child);
+          if (child is AgeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetPeriod':
         {
-          if (child is Period) {
-            return copyWith(onsetX: child);
+          if (child is PeriodBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetRange':
         {
-          if (child is Range) {
-            return copyWith(onsetX: child);
+          if (child is RangeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'onsetFhirString':
+      case 'onsetString':
         {
-          if (child is FhirString) {
-            return copyWith(onsetX: child);
+          if (child is FhirStringBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'abatementX':
         {
-          if (child is AbatementXCondition) {
-            return copyWith(abatementX: child);
+          if (child is AbatementXConditionBuilder) {
+            abatementX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(abatementX: child);
+            if (child is FhirDateTimeBuilder) {
+              abatementX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(abatementX: child);
+            if (child is AgeBuilder) {
+              abatementX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(abatementX: child);
+            if (child is PeriodBuilder) {
+              abatementX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(abatementX: child);
+            if (child is RangeBuilder) {
+              abatementX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(abatementX: child);
+            if (child is FhirStringBuilder) {
+              abatementX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'abatementFhirDateTime':
+      case 'abatementDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(abatementX: child);
+          if (child is FhirDateTimeBuilder) {
+            abatementX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'abatementAge':
         {
-          if (child is Age) {
-            return copyWith(abatementX: child);
+          if (child is AgeBuilder) {
+            abatementX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'abatementPeriod':
         {
-          if (child is Period) {
-            return copyWith(abatementX: child);
+          if (child is PeriodBuilder) {
+            abatementX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'abatementRange':
         {
-          if (child is Range) {
-            return copyWith(abatementX: child);
+          if (child is RangeBuilder) {
+            abatementX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'abatementFhirString':
+      case 'abatementString':
         {
-          if (child is FhirString) {
-            return copyWith(abatementX: child);
+          if (child is FhirStringBuilder) {
+            abatementX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recordedDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(recordedDate: child);
+          if (child is FhirDateTimeBuilder) {
+            recordedDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorder':
         {
-          if (child is Reference) {
-            return copyWith(recorder: child);
+          if (child is ReferenceBuilder) {
+            recorder = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asserter':
         {
-          if (child is Reference) {
-            return copyWith(asserter: child);
+          if (child is ReferenceBuilder) {
+            asserter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'stage':
         {
-          if (child is List<ConditionStage>) {
-            // Add all elements from passed list
-            final newList = [...?stage, ...child];
-            return copyWith(stage: newList);
-          } else if (child is ConditionStage) {
+          if (child is List<ConditionStageBuilder>) {
+            // Replace or create new list
+            stage = child;
+            return;
+          } else if (child is ConditionStageBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?stage, child];
-            return copyWith(stage: newList);
+            stage = [...(stage ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'evidence':
         {
-          if (child is List<ConditionEvidence>) {
-            // Add all elements from passed list
-            final newList = [...?evidence, ...child];
-            return copyWith(evidence: newList);
-          } else if (child is ConditionEvidence) {
+          if (child is List<ConditionEvidenceBuilder>) {
+            // Replace or create new list
+            evidence = child;
+            return;
+          } else if (child is ConditionEvidenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?evidence, child];
-            return copyWith(evidence: newList);
+            evidence = [...(evidence ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1133,292 +1104,267 @@ class Condition extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'clinicalStatus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'verificationStatus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'severity':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'bodySite':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'onset':
       case 'onsetX':
-        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+        return [
+          'FhirDateTimeBuilder',
+          'AgeBuilder',
+          'PeriodBuilder',
+          'RangeBuilder',
+          'FhirStringBuilder'
+        ];
       case 'onsetDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'onsetAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'onsetPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'onsetRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'onsetString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'abatement':
       case 'abatementX':
-        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+        return [
+          'FhirDateTimeBuilder',
+          'AgeBuilder',
+          'PeriodBuilder',
+          'RangeBuilder',
+          'FhirStringBuilder'
+        ];
       case 'abatementDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'abatementAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'abatementPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'abatementRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'abatementString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'recordedDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'recorder':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'asserter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'stage':
-        return ['ConditionStage'];
+        return ['ConditionStageBuilder'];
       case 'evidence':
-        return ['ConditionEvidence'];
+        return ['ConditionEvidenceBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Condition]
+  /// Creates a new [ConditionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Condition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'clinicalStatus':
         {
-          return copyWith(
-            clinicalStatus: CodeableConcept.empty(),
-          );
+          clinicalStatus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'verificationStatus':
         {
-          return copyWith(
-            verificationStatus: CodeableConcept.empty(),
-          );
+          verificationStatus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'severity':
         {
-          return copyWith(
-            severity: CodeableConcept.empty(),
-          );
+          severity = CodeableConceptBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'bodySite':
         {
-          return copyWith(
-            bodySite: <CodeableConcept>[],
-          );
+          bodySite = <CodeableConceptBuilder>[];
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'onset':
       case 'onsetX':
       case 'onsetDateTime':
         {
-          return copyWith(
-            onsetX: FhirDateTime.empty(),
-          );
+          onsetX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'onsetAge':
         {
-          return copyWith(
-            onsetX: Age.empty(),
-          );
+          onsetX = AgeBuilder.empty();
+          return;
         }
       case 'onsetPeriod':
         {
-          return copyWith(
-            onsetX: Period.empty(),
-          );
+          onsetX = PeriodBuilder.empty();
+          return;
         }
       case 'onsetRange':
         {
-          return copyWith(
-            onsetX: Range.empty(),
-          );
+          onsetX = RangeBuilder.empty();
+          return;
         }
       case 'onsetString':
         {
-          return copyWith(
-            onsetX: FhirString.empty(),
-          );
+          onsetX = FhirStringBuilder.empty();
+          return;
         }
       case 'abatement':
       case 'abatementX':
       case 'abatementDateTime':
         {
-          return copyWith(
-            abatementX: FhirDateTime.empty(),
-          );
+          abatementX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'abatementAge':
         {
-          return copyWith(
-            abatementX: Age.empty(),
-          );
+          abatementX = AgeBuilder.empty();
+          return;
         }
       case 'abatementPeriod':
         {
-          return copyWith(
-            abatementX: Period.empty(),
-          );
+          abatementX = PeriodBuilder.empty();
+          return;
         }
       case 'abatementRange':
         {
-          return copyWith(
-            abatementX: Range.empty(),
-          );
+          abatementX = RangeBuilder.empty();
+          return;
         }
       case 'abatementString':
         {
-          return copyWith(
-            abatementX: FhirString.empty(),
-          );
+          abatementX = FhirStringBuilder.empty();
+          return;
         }
       case 'recordedDate':
         {
-          return copyWith(
-            recordedDate: FhirDateTime.empty(),
-          );
+          recordedDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'recorder':
         {
-          return copyWith(
-            recorder: Reference.empty(),
-          );
+          recorder = ReferenceBuilder.empty();
+          return;
         }
       case 'asserter':
         {
-          return copyWith(
-            asserter: Reference.empty(),
-          );
+          asserter = ReferenceBuilder.empty();
+          return;
         }
       case 'stage':
         {
-          return copyWith(
-            stage: <ConditionStage>[],
-          );
+          stage = <ConditionStageBuilder>[];
+          return;
         }
       case 'evidence':
         {
-          return copyWith(
-            evidence: <ConditionEvidence>[],
-          );
+          evidence = <ConditionEvidenceBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1427,7 +1373,7 @@ class Condition extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Condition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1443,6 +1389,7 @@ class Condition extends DomainResource {
     bool severity = false,
     bool code = false,
     bool bodySite = false,
+    bool subject = false,
     bool encounter = false,
     bool onset = false,
     bool abatement = false,
@@ -1453,207 +1400,118 @@ class Condition extends DomainResource {
     bool evidence = false,
     bool note = false,
   }) {
-    return Condition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      clinicalStatus: clinicalStatus ? null : this.clinicalStatus,
-      verificationStatus: verificationStatus ? null : this.verificationStatus,
-      category: category ? null : this.category,
-      severity: severity ? null : this.severity,
-      code: code ? null : this.code,
-      bodySite: bodySite ? null : this.bodySite,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      onsetX: onset ? null : onsetX,
-      abatementX: abatement ? null : abatementX,
-      recordedDate: recordedDate ? null : this.recordedDate,
-      recorder: recorder ? null : this.recorder,
-      asserter: asserter ? null : this.asserter,
-      stage: stage ? null : this.stage,
-      evidence: evidence ? null : this.evidence,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (clinicalStatus) this.clinicalStatus = null;
+    if (verificationStatus) this.verificationStatus = null;
+    if (category) this.category = null;
+    if (severity) this.severity = null;
+    if (code) this.code = null;
+    if (bodySite) this.bodySite = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (onset) this.onsetX = null;
+    if (abatement) this.abatementX = null;
+    if (recordedDate) this.recordedDate = null;
+    if (recorder) this.recorder = null;
+    if (asserter) this.asserter = null;
+    if (stage) this.stage = null;
+    if (evidence) this.evidence = null;
+    if (note) this.note = null;
   }
 
   @override
-  Condition clone() => throw UnimplementedError();
+  ConditionBuilder clone() => throw UnimplementedError();
   @override
-  Condition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    CodeableConcept? clinicalStatus,
-    CodeableConcept? verificationStatus,
-    List<CodeableConcept>? category,
-    CodeableConcept? severity,
-    CodeableConcept? code,
-    List<CodeableConcept>? bodySite,
-    Reference? subject,
-    Reference? encounter,
-    OnsetXCondition? onsetX,
-    AbatementXCondition? abatementX,
-    FhirDateTime? recordedDate,
-    Reference? recorder,
-    Reference? asserter,
-    List<ConditionStage>? stage,
-    List<ConditionEvidence>? evidence,
-    List<Annotation>? note,
+  ConditionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    CodeableConceptBuilder? clinicalStatus,
+    CodeableConceptBuilder? verificationStatus,
+    List<CodeableConceptBuilder>? category,
+    CodeableConceptBuilder? severity,
+    CodeableConceptBuilder? code,
+    List<CodeableConceptBuilder>? bodySite,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    OnsetXConditionBuilder? onsetX,
+    AbatementXConditionBuilder? abatementX,
+    FhirDateTimeBuilder? recordedDate,
+    ReferenceBuilder? recorder,
+    ReferenceBuilder? asserter,
+    List<ConditionStageBuilder>? stage,
+    List<ConditionEvidenceBuilder>? evidence,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Condition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ConditionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      clinicalStatus: clinicalStatus?.copyWith(
-            objectPath: '$newObjectPath.clinicalStatus',
-          ) ??
-          this.clinicalStatus,
-      verificationStatus: verificationStatus?.copyWith(
-            objectPath: '$newObjectPath.verificationStatus',
-          ) ??
-          this.verificationStatus,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      severity: severity?.copyWith(
-            objectPath: '$newObjectPath.severity',
-          ) ??
-          this.severity,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      bodySite: bodySite
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.bodySite',
-                ),
-              )
-              .toList() ??
-          this.bodySite,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      onsetX: onsetX?.copyWith(
-            objectPath: '$newObjectPath.onsetX',
-          ) as OnsetXCondition? ??
-          this.onsetX,
-      abatementX: abatementX?.copyWith(
-            objectPath: '$newObjectPath.abatementX',
-          ) as AbatementXCondition? ??
-          this.abatementX,
-      recordedDate: recordedDate?.copyWith(
-            objectPath: '$newObjectPath.recordedDate',
-          ) ??
-          this.recordedDate,
-      recorder: recorder?.copyWith(
-            objectPath: '$newObjectPath.recorder',
-          ) ??
-          this.recorder,
-      asserter: asserter?.copyWith(
-            objectPath: '$newObjectPath.asserter',
-          ) ??
-          this.asserter,
-      stage: stage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.stage',
-                ),
-              )
-              .toList() ??
-          this.stage,
-      evidence: evidence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.evidence',
-                ),
-              )
-              .toList() ??
-          this.evidence,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      clinicalStatus: clinicalStatus ?? this.clinicalStatus,
+      verificationStatus: verificationStatus ?? this.verificationStatus,
+      category: category ?? this.category,
+      severity: severity ?? this.severity,
+      code: code ?? this.code,
+      bodySite: bodySite ?? this.bodySite,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      onsetX: onsetX ?? this.onsetX,
+      abatementX: abatementX ?? this.abatementX,
+      recordedDate: recordedDate ?? this.recordedDate,
+      recorder: recorder ?? this.recorder,
+      asserter: asserter ?? this.asserter,
+      stage: stage ?? this.stage,
+      evidence: evidence ?? this.evidence,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Condition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConditionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1688,25 +1546,25 @@ class Condition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1724,7 +1582,7 @@ class Condition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1742,7 +1600,7 @@ class Condition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       bodySite,
       o.bodySite,
     )) {
@@ -1790,19 +1648,19 @@ class Condition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ConditionStage>(
+    if (!listEquals<ConditionStageBuilder>(
       stage,
       o.stage,
     )) {
       return false;
     }
-    if (!listEquals<ConditionEvidence>(
+    if (!listEquals<ConditionEvidenceBuilder>(
       evidence,
       o.evidence,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -1812,14 +1670,14 @@ class Condition extends DomainResource {
   }
 }
 
-/// [ConditionStage]
+/// [ConditionStageBuilder]
 /// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
-class ConditionStage extends BackboneElement {
+class ConditionStageBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConditionStage]
+  /// [ConditionStageBuilder]
 
-  const ConditionStage({
+  ConditionStageBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1832,25 +1690,24 @@ class ConditionStage extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConditionStage.empty() => const ConditionStage();
+  /// For Builder classes, no fields are required
+  factory ConditionStageBuilder.empty() => ConditionStageBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConditionStage.fromJson(
+  factory ConditionStageBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Condition.stage';
-    return ConditionStage(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConditionStageBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1859,8 +1716,8 @@ class ConditionStage extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1868,15 +1725,15 @@ class ConditionStage extends BackboneElement {
             ),
           )
           .toList(),
-      summary: JsonParser.parseObject<CodeableConcept>(
+      summary: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'summary',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.summary',
       ),
       assessment: (json['assessment'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.assessment',
@@ -1884,31 +1741,31 @@ class ConditionStage extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
     );
   }
 
-  /// Deserialize [ConditionStage]
+  /// Deserialize [ConditionStageBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConditionStage.fromYaml(
+  factory ConditionStageBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConditionStage.fromJson(
+      return ConditionStageBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConditionStage.fromJson(
+      return ConditionStageBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConditionStage '
+        'ConditionStageBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1916,16 +1773,16 @@ class ConditionStage extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConditionStage]
+  /// [ConditionStageBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConditionStage.fromJsonString(
+  factory ConditionStageBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConditionStage.fromJson(json);
+      return ConditionStageBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1938,32 +1795,32 @@ class ConditionStage extends BackboneElement {
   /// [summary]
   /// A simple summary of the stage such as "Stage 3". The determination of
   /// the stage is disease-specific.
-  final CodeableConcept? summary;
+  CodeableConceptBuilder? summary;
 
   /// [assessment]
   /// Reference to a formal record of the evidence on which the staging
   /// assessment is based.
-  final List<Reference>? assessment;
+  List<ReferenceBuilder>? assessment;
 
   /// [type]
   /// The kind of staging, such as pathological or clinical staging.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1972,35 +1829,17 @@ class ConditionStage extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'summary',
-      summary,
-    );
-    addField(
-      'assessment',
-      assessment,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('summary', summary);
+    addField('assessment', assessment);
+    addField('type', type);
     return json;
   }
 
@@ -2020,11 +1859,11 @@ class ConditionStage extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2060,7 +1899,7 @@ class ConditionStage extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2069,79 +1908,81 @@ class ConditionStage extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'summary':
         {
-          if (child is CodeableConcept) {
-            return copyWith(summary: child);
+          if (child is CodeableConceptBuilder) {
+            summary = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'assessment':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?assessment, ...child];
-            return copyWith(assessment: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            assessment = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?assessment, child];
-            return copyWith(assessment: newList);
+            assessment = [...(assessment ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2157,66 +1998,56 @@ class ConditionStage extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'summary':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'assessment':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConditionStage]
+  /// Creates a new [ConditionStageBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConditionStage createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'summary':
         {
-          return copyWith(
-            summary: CodeableConcept.empty(),
-          );
+          summary = CodeableConceptBuilder.empty();
+          return;
         }
       case 'assessment':
         {
-          return copyWith(
-            assessment: <Reference>[],
-          );
+          assessment = <ReferenceBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2225,7 +2056,7 @@ class ConditionStage extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConditionStage clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2233,26 +2064,24 @@ class ConditionStage extends BackboneElement {
     bool assessment = false,
     bool type = false,
   }) {
-    return ConditionStage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      summary: summary ? null : this.summary,
-      assessment: assessment ? null : this.assessment,
-      type: type ? null : this.type,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (summary) this.summary = null;
+    if (assessment) this.assessment = null;
+    if (type) this.type = null;
   }
 
   @override
-  ConditionStage clone() => throw UnimplementedError();
+  ConditionStageBuilder clone() => throw UnimplementedError();
   @override
-  ConditionStage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? summary,
-    List<Reference>? assessment,
-    CodeableConcept? type,
+  ConditionStageBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? summary,
+    List<ReferenceBuilder>? assessment,
+    CodeableConceptBuilder? type,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2260,50 +2089,37 @@ class ConditionStage extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConditionStage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      summary: summary?.copyWith(
-            objectPath: '$newObjectPath.summary',
-          ) ??
-          this.summary,
-      assessment: assessment
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.assessment',
-                ),
-              )
-              .toList() ??
-          this.assessment,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
+    final newResult = ConditionStageBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      summary: summary ?? this.summary,
+      assessment: assessment ?? this.assessment,
+      type: type ?? this.type,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConditionStage) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConditionStageBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2314,13 +2130,13 @@ class ConditionStage extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2332,7 +2148,7 @@ class ConditionStage extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       assessment,
       o.assessment,
     )) {
@@ -2348,15 +2164,15 @@ class ConditionStage extends BackboneElement {
   }
 }
 
-/// [ConditionEvidence]
+/// [ConditionEvidenceBuilder]
 /// Supporting evidence / manifestations that are the basis of the
 /// Condition's verification status, such as evidence that confirmed or
 /// refuted the condition.
-class ConditionEvidence extends BackboneElement {
+class ConditionEvidenceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConditionEvidence]
+  /// [ConditionEvidenceBuilder]
 
-  const ConditionEvidence({
+  ConditionEvidenceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2368,25 +2184,24 @@ class ConditionEvidence extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConditionEvidence.empty() => const ConditionEvidence();
+  /// For Builder classes, no fields are required
+  factory ConditionEvidenceBuilder.empty() => ConditionEvidenceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConditionEvidence.fromJson(
+  factory ConditionEvidenceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Condition.evidence';
-    return ConditionEvidence(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConditionEvidenceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2395,8 +2210,8 @@ class ConditionEvidence extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2405,8 +2220,8 @@ class ConditionEvidence extends BackboneElement {
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -2415,8 +2230,8 @@ class ConditionEvidence extends BackboneElement {
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.detail',
@@ -2427,22 +2242,22 @@ class ConditionEvidence extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConditionEvidence]
+  /// Deserialize [ConditionEvidenceBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConditionEvidence.fromYaml(
+  factory ConditionEvidenceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConditionEvidence.fromJson(
+      return ConditionEvidenceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConditionEvidence.fromJson(
+      return ConditionEvidenceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConditionEvidence '
+        'ConditionEvidenceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2450,16 +2265,16 @@ class ConditionEvidence extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConditionEvidence]
+  /// [ConditionEvidenceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConditionEvidence.fromJsonString(
+  factory ConditionEvidenceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConditionEvidence.fromJson(json);
+      return ConditionEvidenceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2471,27 +2286,27 @@ class ConditionEvidence extends BackboneElement {
 
   /// [code]
   /// A manifestation or symptom that led to the recording of this condition.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [detail]
   /// Links to other relevant information, including pathology reports.
-  final List<Reference>? detail;
+  List<ReferenceBuilder>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2500,31 +2315,16 @@ class ConditionEvidence extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'detail',
-      detail,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('detail', detail);
     return json;
   }
 
@@ -2543,11 +2343,11 @@ class ConditionEvidence extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2579,7 +2379,7 @@ class ConditionEvidence extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2588,77 +2388,77 @@ class ConditionEvidence extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            detail = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?detail, child];
-            return copyWith(detail: newList);
+            detail = [...(detail ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2674,58 +2474,49 @@ class ConditionEvidence extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'detail':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConditionEvidence]
+  /// Creates a new [ConditionEvidenceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConditionEvidence createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: <Reference>[],
-          );
+          detail = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2734,31 +2525,29 @@ class ConditionEvidence extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConditionEvidence clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool code = false,
     bool detail = false,
   }) {
-    return ConditionEvidence(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      detail: detail ? null : this.detail,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (detail) this.detail = null;
   }
 
   @override
-  ConditionEvidence clone() => throw UnimplementedError();
+  ConditionEvidenceBuilder clone() => throw UnimplementedError();
   @override
-  ConditionEvidence copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? code,
-    List<Reference>? detail,
+  ConditionEvidenceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? code,
+    List<ReferenceBuilder>? detail,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2766,50 +2555,36 @@ class ConditionEvidence extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConditionEvidence(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
+    final newResult = ConditionEvidenceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      detail: detail ?? this.detail,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConditionEvidence) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConditionEvidenceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2820,25 +2595,25 @@ class ConditionEvidence extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       detail,
       o.detail,
     )) {

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Overall nature of the adverse event, e.g. real or potential.
-class AdverseEventActuality extends FhirCodeEnum {
+class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  AdverseEventActuality._({
+  AdverseEventActualityBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class AdverseEventActuality extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory AdverseEventActuality(
+  factory AdverseEventActualityBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return AdverseEventActuality._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return AdverseEventActualityBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,64 +43,69 @@ class AdverseEventActuality extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [AdverseEventActuality] with element only
-  factory AdverseEventActuality.empty() =>
-      AdverseEventActuality._(validatedValue: '');
+  /// Create empty [AdverseEventActualityBuilder] with element only
+  factory AdverseEventActualityBuilder.empty() =>
+      AdverseEventActualityBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AdverseEventActuality] from JSON.
-  factory AdverseEventActuality.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AdverseEventActualityBuilder] from JSON.
+  factory AdverseEventActualityBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventActuality.elementOnly.withElement(element);
+      return AdverseEventActualityBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AdverseEventActuality cannot be constructed from JSON.',
+        'AdverseEventActualityBuilder cannot be constructed from JSON.',
       );
     }
-    return AdverseEventActuality._(
+    return AdverseEventActualityBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// actual
-  static final AdverseEventActuality actual = AdverseEventActuality._(
+  static AdverseEventActualityBuilder actual = AdverseEventActualityBuilder._(
     validatedValue: 'actual',
-    system: 'http://hl7.org/fhir/ValueSet/adverse-event-actuality'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Adverse Event'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/adverse-event-actuality'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Adverse Event'.toFhirStringBuilder,
   );
 
   /// potential
-  static final AdverseEventActuality potential = AdverseEventActuality._(
+  static AdverseEventActualityBuilder potential =
+      AdverseEventActualityBuilder._(
     validatedValue: 'potential',
-    system: 'http://hl7.org/fhir/ValueSet/adverse-event-actuality'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Potential Adverse Event'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/adverse-event-actuality'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Potential Adverse Event'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final AdverseEventActuality elementOnly =
-      AdverseEventActuality._(validatedValue: '');
+  static AdverseEventActualityBuilder elementOnly =
+      AdverseEventActualityBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<AdverseEventActuality> values = [
+  static List<AdverseEventActualityBuilder> values = [
     actual,
     potential,
   ];
 
   /// Clones the current instance
   @override
-  AdverseEventActuality clone() => AdverseEventActuality._(
+  AdverseEventActualityBuilder clone() => AdverseEventActualityBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  AdverseEventActuality withElement(Element? newElement) {
-    return AdverseEventActuality._(validatedValue: value, element: newElement);
+  AdverseEventActualityBuilder withElement(ElementBuilder? newElement) {
+    return AdverseEventActualityBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,11 +121,11 @@ class AdverseEventActuality extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  AdverseEventActuality copyWith({
+  AdverseEventActualityBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -131,7 +136,7 @@ class AdverseEventActuality extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return AdverseEventActuality._(
+    return AdverseEventActualityBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -141,7 +146,7 @@ class AdverseEventActuality extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -1,14 +1,16 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [SpecimenDefinition]
+/// [SpecimenDefinitionBuilder]
 /// A kind of specimen with associated set of requirements.
-class SpecimenDefinition extends DomainResource {
+class SpecimenDefinitionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [SpecimenDefinition]
+  /// [SpecimenDefinitionBuilder]
 
-  const SpecimenDefinition({
+  SpecimenDefinitionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -29,49 +31,48 @@ class SpecimenDefinition extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinition.empty() => const SpecimenDefinition();
+  /// For Builder classes, no fields are required
+  factory SpecimenDefinitionBuilder.empty() => SpecimenDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinition.fromJson(
+  factory SpecimenDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SpecimenDefinition';
-    return SpecimenDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SpecimenDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -80,8 +81,8 @@ class SpecimenDefinition extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -90,8 +91,8 @@ class SpecimenDefinition extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -99,21 +100,21 @@ class SpecimenDefinition extends DomainResource {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      typeCollected: JsonParser.parseObject<CodeableConcept>(
+      typeCollected: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'typeCollected',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.typeCollected',
       ),
       patientPreparation: (json['patientPreparation'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.patientPreparation',
@@ -121,15 +122,15 @@ class SpecimenDefinition extends DomainResource {
             ),
           )
           .toList(),
-      timeAspect: JsonParser.parsePrimitive<FhirString>(
+      timeAspect: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'timeAspect',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.timeAspect',
       ),
       collection: (json['collection'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.collection',
@@ -138,8 +139,8 @@ class SpecimenDefinition extends DomainResource {
           )
           .toList(),
       typeTested: (json['typeTested'] as List<dynamic>?)
-          ?.map<SpecimenDefinitionTypeTested>(
-            (v) => SpecimenDefinitionTypeTested.fromJson(
+          ?.map<SpecimenDefinitionTypeTestedBuilder>(
+            (v) => SpecimenDefinitionTypeTestedBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.typeTested',
@@ -150,22 +151,22 @@ class SpecimenDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [SpecimenDefinition]
+  /// Deserialize [SpecimenDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory SpecimenDefinition.fromYaml(
+  factory SpecimenDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SpecimenDefinition.fromJson(
+      return SpecimenDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SpecimenDefinition.fromJson(
+      return SpecimenDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinition '
+        'SpecimenDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -173,16 +174,16 @@ class SpecimenDefinition extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [SpecimenDefinition]
+  /// [SpecimenDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinition.fromJsonString(
+  factory SpecimenDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SpecimenDefinition.fromJson(json);
+      return SpecimenDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -194,44 +195,44 @@ class SpecimenDefinition extends DomainResource {
 
   /// [identifier]
   /// A business identifier associated with the kind of specimen.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [typeCollected]
   /// The kind of material to be collected.
-  final CodeableConcept? typeCollected;
+  CodeableConceptBuilder? typeCollected;
 
   /// [patientPreparation]
   /// Preparation of the patient for specimen collection.
-  final List<CodeableConcept>? patientPreparation;
+  List<CodeableConceptBuilder>? patientPreparation;
 
   /// [timeAspect]
   /// Time aspect of specimen collection (duration or offset).
-  final FhirString? timeAspect;
+  FhirStringBuilder? timeAspect;
 
   /// [collection]
   /// The action to be performed for collecting the specimen.
-  final List<CodeableConcept>? collection;
+  List<CodeableConceptBuilder>? collection;
 
   /// [typeTested]
   /// Specimen conditioned in a container as expected by the testing
   /// laboratory.
-  final List<SpecimenDefinitionTypeTested>? typeTested;
+  List<SpecimenDefinitionTypeTestedBuilder>? typeTested;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -240,68 +241,26 @@ class SpecimenDefinition extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'typeCollected',
-      typeCollected,
-    );
-    addField(
-      'patientPreparation',
-      patientPreparation,
-    );
-    addField(
-      'timeAspect',
-      timeAspect,
-    );
-    addField(
-      'collection',
-      collection,
-    );
-    addField(
-      'typeTested',
-      typeTested,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('typeCollected', typeCollected);
+    addField('patientPreparation', patientPreparation);
+    addField('timeAspect', timeAspect);
+    addField('collection', collection);
+    addField('typeTested', typeTested);
     return json;
   }
 
@@ -329,11 +288,11 @@ class SpecimenDefinition extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -401,7 +360,7 @@ class SpecimenDefinition extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -410,161 +369,168 @@ class SpecimenDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'typeCollected':
         {
-          if (child is CodeableConcept) {
-            return copyWith(typeCollected: child);
+          if (child is CodeableConceptBuilder) {
+            typeCollected = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patientPreparation':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?patientPreparation, ...child];
-            return copyWith(patientPreparation: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            patientPreparation = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?patientPreparation, child];
-            return copyWith(patientPreparation: newList);
+            patientPreparation = [...(patientPreparation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timeAspect':
         {
-          if (child is FhirString) {
-            return copyWith(timeAspect: child);
+          if (child is FhirStringBuilder) {
+            timeAspect = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'collection':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?collection, ...child];
-            return copyWith(collection: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            collection = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?collection, child];
-            return copyWith(collection: newList);
+            collection = [...(collection ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'typeTested':
         {
-          if (child is List<SpecimenDefinitionTypeTested>) {
-            // Add all elements from passed list
-            final newList = [...?typeTested, ...child];
-            return copyWith(typeTested: newList);
-          } else if (child is SpecimenDefinitionTypeTested) {
+          if (child is List<SpecimenDefinitionTypeTestedBuilder>) {
+            // Replace or create new list
+            typeTested = child;
+            return;
+          } else if (child is SpecimenDefinitionTypeTestedBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?typeTested, child];
-            return copyWith(typeTested: newList);
+            typeTested = [...(typeTested ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -580,130 +546,112 @@ class SpecimenDefinition extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'typeCollected':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'patientPreparation':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'timeAspect':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'collection':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'typeTested':
-        return ['SpecimenDefinitionTypeTested'];
+        return ['SpecimenDefinitionTypeTestedBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SpecimenDefinition]
+  /// Creates a new [SpecimenDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'typeCollected':
         {
-          return copyWith(
-            typeCollected: CodeableConcept.empty(),
-          );
+          typeCollected = CodeableConceptBuilder.empty();
+          return;
         }
       case 'patientPreparation':
         {
-          return copyWith(
-            patientPreparation: <CodeableConcept>[],
-          );
+          patientPreparation = <CodeableConceptBuilder>[];
+          return;
         }
       case 'timeAspect':
         {
-          return copyWith(
-            timeAspect: FhirString.empty(),
-          );
+          timeAspect = FhirStringBuilder.empty();
+          return;
         }
       case 'collection':
         {
-          return copyWith(
-            collection: <CodeableConcept>[],
-          );
+          collection = <CodeableConceptBuilder>[];
+          return;
         }
       case 'typeTested':
         {
-          return copyWith(
-            typeTested: <SpecimenDefinitionTypeTested>[],
-          );
+          typeTested = <SpecimenDefinitionTypeTestedBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -712,7 +660,7 @@ class SpecimenDefinition extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  SpecimenDefinition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -728,129 +676,85 @@ class SpecimenDefinition extends DomainResource {
     bool collection = false,
     bool typeTested = false,
   }) {
-    return SpecimenDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      typeCollected: typeCollected ? null : this.typeCollected,
-      patientPreparation: patientPreparation ? null : this.patientPreparation,
-      timeAspect: timeAspect ? null : this.timeAspect,
-      collection: collection ? null : this.collection,
-      typeTested: typeTested ? null : this.typeTested,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (typeCollected) this.typeCollected = null;
+    if (patientPreparation) this.patientPreparation = null;
+    if (timeAspect) this.timeAspect = null;
+    if (collection) this.collection = null;
+    if (typeTested) this.typeTested = null;
   }
 
   @override
-  SpecimenDefinition clone() => throw UnimplementedError();
+  SpecimenDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  SpecimenDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    CodeableConcept? typeCollected,
-    List<CodeableConcept>? patientPreparation,
-    FhirString? timeAspect,
-    List<CodeableConcept>? collection,
-    List<SpecimenDefinitionTypeTested>? typeTested,
+  SpecimenDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    CodeableConceptBuilder? typeCollected,
+    List<CodeableConceptBuilder>? patientPreparation,
+    FhirStringBuilder? timeAspect,
+    List<CodeableConceptBuilder>? collection,
+    List<SpecimenDefinitionTypeTestedBuilder>? typeTested,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return SpecimenDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = SpecimenDefinitionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      typeCollected: typeCollected?.copyWith(
-            objectPath: '$newObjectPath.typeCollected',
-          ) ??
-          this.typeCollected,
-      patientPreparation: patientPreparation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.patientPreparation',
-                ),
-              )
-              .toList() ??
-          this.patientPreparation,
-      timeAspect: timeAspect?.copyWith(
-            objectPath: '$newObjectPath.timeAspect',
-          ) ??
-          this.timeAspect,
-      collection: collection
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.collection',
-                ),
-              )
-              .toList() ??
-          this.collection,
-      typeTested: typeTested
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.typeTested',
-                ),
-              )
-              .toList() ??
-          this.typeTested,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      typeCollected: typeCollected ?? this.typeCollected,
+      patientPreparation: patientPreparation ?? this.patientPreparation,
+      timeAspect: timeAspect ?? this.timeAspect,
+      collection: collection ?? this.collection,
+      typeTested: typeTested ?? this.typeTested,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SpecimenDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SpecimenDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -885,19 +789,19 @@ class SpecimenDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -915,7 +819,7 @@ class SpecimenDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       patientPreparation,
       o.patientPreparation,
     )) {
@@ -927,13 +831,13 @@ class SpecimenDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       collection,
       o.collection,
     )) {
       return false;
     }
-    if (!listEquals<SpecimenDefinitionTypeTested>(
+    if (!listEquals<SpecimenDefinitionTypeTestedBuilder>(
       typeTested,
       o.typeTested,
     )) {
@@ -943,20 +847,20 @@ class SpecimenDefinition extends DomainResource {
   }
 }
 
-/// [SpecimenDefinitionTypeTested]
+/// [SpecimenDefinitionTypeTestedBuilder]
 /// Specimen conditioned in a container as expected by the testing
 /// laboratory.
-class SpecimenDefinitionTypeTested extends BackboneElement {
+class SpecimenDefinitionTypeTestedBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SpecimenDefinitionTypeTested]
+  /// [SpecimenDefinitionTypeTestedBuilder]
 
-  const SpecimenDefinitionTypeTested({
+  SpecimenDefinitionTypeTestedBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.isDerived,
     this.type,
-    required this.preference,
+    this.preference,
     this.container,
     this.requirement,
     this.retentionTime,
@@ -968,27 +872,25 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionTypeTested.empty() => SpecimenDefinitionTypeTested(
-        preference: SpecimenContainedPreference.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory SpecimenDefinitionTypeTestedBuilder.empty() =>
+      SpecimenDefinitionTypeTestedBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionTypeTested.fromJson(
+  factory SpecimenDefinitionTypeTestedBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SpecimenDefinition.typeTested';
-    return SpecimenDefinitionTypeTested(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SpecimenDefinitionTypeTestedBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -997,8 +899,8 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1006,45 +908,45 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
             ),
           )
           .toList(),
-      isDerived: JsonParser.parsePrimitive<FhirBoolean>(
+      isDerived: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'isDerived',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.isDerived',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      preference: JsonParser.parsePrimitive<SpecimenContainedPreference>(
+      preference: JsonParser.parsePrimitive<SpecimenContainedPreferenceBuilder>(
         json,
         'preference',
-        SpecimenContainedPreference.fromJson,
+        SpecimenContainedPreferenceBuilder.fromJson,
         '$objectPath.preference',
-      )!,
-      container: JsonParser.parseObject<SpecimenDefinitionContainer>(
+      ),
+      container: JsonParser.parseObject<SpecimenDefinitionContainerBuilder>(
         json,
         'container',
-        SpecimenDefinitionContainer.fromJson,
+        SpecimenDefinitionContainerBuilder.fromJson,
         '$objectPath.container',
       ),
-      requirement: JsonParser.parsePrimitive<FhirString>(
+      requirement: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'requirement',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.requirement',
       ),
-      retentionTime: JsonParser.parseObject<FhirDuration>(
+      retentionTime: JsonParser.parseObject<FhirDurationBuilder>(
         json,
         'retentionTime',
-        FhirDuration.fromJson,
+        FhirDurationBuilder.fromJson,
         '$objectPath.retentionTime',
       ),
       rejectionCriterion: (json['rejectionCriterion'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.rejectionCriterion',
@@ -1053,8 +955,8 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           )
           .toList(),
       handling: (json['handling'] as List<dynamic>?)
-          ?.map<SpecimenDefinitionHandling>(
-            (v) => SpecimenDefinitionHandling.fromJson(
+          ?.map<SpecimenDefinitionHandlingBuilder>(
+            (v) => SpecimenDefinitionHandlingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.handling',
@@ -1065,22 +967,22 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenDefinitionTypeTested]
+  /// Deserialize [SpecimenDefinitionTypeTestedBuilder]
   /// from a [String] or [YamlMap] object
-  factory SpecimenDefinitionTypeTested.fromYaml(
+  factory SpecimenDefinitionTypeTestedBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SpecimenDefinitionTypeTested.fromJson(
+      return SpecimenDefinitionTypeTestedBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SpecimenDefinitionTypeTested.fromJson(
+      return SpecimenDefinitionTypeTestedBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionTypeTested '
+        'SpecimenDefinitionTypeTestedBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1088,16 +990,16 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SpecimenDefinitionTypeTested]
+  /// [SpecimenDefinitionTypeTestedBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionTypeTested.fromJsonString(
+  factory SpecimenDefinitionTypeTestedBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SpecimenDefinitionTypeTested.fromJson(json);
+      return SpecimenDefinitionTypeTestedBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1109,55 +1011,55 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   /// [isDerived]
   /// Primary of secondary specimen.
-  final FhirBoolean? isDerived;
+  FhirBooleanBuilder? isDerived;
 
   /// [type]
   /// The kind of specimen conditioned for testing expected by lab.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [preference]
   /// The preference for this type of conditioned specimen.
-  final SpecimenContainedPreference preference;
+  SpecimenContainedPreferenceBuilder? preference;
 
   /// [container]
   /// The specimen's container.
-  final SpecimenDefinitionContainer? container;
+  SpecimenDefinitionContainerBuilder? container;
 
   /// [requirement]
   /// Requirements for delivery and special handling of this kind of
   /// conditioned specimen.
-  final FhirString? requirement;
+  FhirStringBuilder? requirement;
 
   /// [retentionTime]
   /// The usual time that a specimen of this kind is retained after the
   /// ordered tests are completed, for the purpose of additional testing.
-  final FhirDuration? retentionTime;
+  FhirDurationBuilder? retentionTime;
 
   /// [rejectionCriterion]
   /// Criterion for rejection of the specimen in its container by the
   /// laboratory.
-  final List<CodeableConcept>? rejectionCriterion;
+  List<CodeableConceptBuilder>? rejectionCriterion;
 
   /// [handling]
   /// Set of instructions for preservation/transport of the specimen at a
   /// defined temperature interval, prior the testing process.
-  final List<SpecimenDefinitionHandling>? handling;
+  List<SpecimenDefinitionHandlingBuilder>? handling;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1166,55 +1068,22 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'isDerived',
-      isDerived,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'preference',
-      preference,
-    );
-    addField(
-      'container',
-      container,
-    );
-    addField(
-      'requirement',
-      requirement,
-    );
-    addField(
-      'retentionTime',
-      retentionTime,
-    );
-    addField(
-      'rejectionCriterion',
-      rejectionCriterion,
-    );
-    addField(
-      'handling',
-      handling,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('isDerived', isDerived);
+    addField('type', type);
+    addField('preference', preference);
+    addField('container', container);
+    addField('requirement', requirement);
+    addField('retentionTime', retentionTime);
+    addField('rejectionCriterion', rejectionCriterion);
+    addField('handling', handling);
     return json;
   }
 
@@ -1239,11 +1108,11 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1266,7 +1135,9 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           fields.add(type!);
         }
       case 'preference':
-        fields.add(preference);
+        if (preference != null) {
+          fields.add(preference!);
+        }
       case 'container':
         if (container != null) {
           fields.add(container!);
@@ -1297,7 +1168,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1306,125 +1177,131 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'isDerived':
         {
-          if (child is FhirBoolean) {
-            return copyWith(isDerived: child);
+          if (child is FhirBooleanBuilder) {
+            isDerived = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'preference':
         {
-          if (child is SpecimenContainedPreference) {
-            return copyWith(preference: child);
+          if (child is SpecimenContainedPreferenceBuilder) {
+            preference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'container':
         {
-          if (child is SpecimenDefinitionContainer) {
-            return copyWith(container: child);
+          if (child is SpecimenDefinitionContainerBuilder) {
+            container = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requirement':
         {
-          if (child is FhirString) {
-            return copyWith(requirement: child);
+          if (child is FhirStringBuilder) {
+            requirement = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'retentionTime':
         {
-          if (child is FhirDuration) {
-            return copyWith(retentionTime: child);
+          if (child is FhirDurationBuilder) {
+            retentionTime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rejectionCriterion':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?rejectionCriterion, ...child];
-            return copyWith(rejectionCriterion: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            rejectionCriterion = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?rejectionCriterion, child];
-            return copyWith(rejectionCriterion: newList);
+            rejectionCriterion = [...(rejectionCriterion ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'handling':
         {
-          if (child is List<SpecimenDefinitionHandling>) {
-            // Add all elements from passed list
-            final newList = [...?handling, ...child];
-            return copyWith(handling: newList);
-          } else if (child is SpecimenDefinitionHandling) {
+          if (child is List<SpecimenDefinitionHandlingBuilder>) {
+            // Replace or create new list
+            handling = child;
+            return;
+          } else if (child is SpecimenDefinitionHandlingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?handling, child];
-            return copyWith(handling: newList);
+            handling = [...(handling ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1440,106 +1317,91 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'isDerived':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'preference':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'container':
-        return ['SpecimenDefinitionContainer'];
+        return ['SpecimenDefinitionContainerBuilder'];
       case 'requirement':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'retentionTime':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'rejectionCriterion':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'handling':
-        return ['SpecimenDefinitionHandling'];
+        return ['SpecimenDefinitionHandlingBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SpecimenDefinitionTypeTested]
+  /// Creates a new [SpecimenDefinitionTypeTestedBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionTypeTested createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'isDerived':
         {
-          return copyWith(
-            isDerived: FhirBoolean.empty(),
-          );
+          isDerived = FhirBooleanBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'preference':
         {
-          return copyWith(
-            preference: SpecimenContainedPreference.empty(),
-          );
+          preference = SpecimenContainedPreferenceBuilder.empty();
+          return;
         }
       case 'container':
         {
-          return copyWith(
-            container: SpecimenDefinitionContainer.empty(),
-          );
+          container = SpecimenDefinitionContainerBuilder.empty();
+          return;
         }
       case 'requirement':
         {
-          return copyWith(
-            requirement: FhirString.empty(),
-          );
+          requirement = FhirStringBuilder.empty();
+          return;
         }
       case 'retentionTime':
         {
-          return copyWith(
-            retentionTime: FhirDuration.empty(),
-          );
+          retentionTime = FhirDurationBuilder.empty();
+          return;
         }
       case 'rejectionCriterion':
         {
-          return copyWith(
-            rejectionCriterion: <CodeableConcept>[],
-          );
+          rejectionCriterion = <CodeableConceptBuilder>[];
+          return;
         }
       case 'handling':
         {
-          return copyWith(
-            handling: <SpecimenDefinitionHandling>[],
-          );
+          handling = <SpecimenDefinitionHandlingBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1548,48 +1410,47 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SpecimenDefinitionTypeTested clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool isDerived = false,
     bool type = false,
+    bool preference = false,
     bool container = false,
     bool requirement = false,
     bool retentionTime = false,
     bool rejectionCriterion = false,
     bool handling = false,
   }) {
-    return SpecimenDefinitionTypeTested(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      isDerived: isDerived ? null : this.isDerived,
-      type: type ? null : this.type,
-      preference: preference,
-      container: container ? null : this.container,
-      requirement: requirement ? null : this.requirement,
-      retentionTime: retentionTime ? null : this.retentionTime,
-      rejectionCriterion: rejectionCriterion ? null : this.rejectionCriterion,
-      handling: handling ? null : this.handling,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (isDerived) this.isDerived = null;
+    if (type) this.type = null;
+    if (preference) this.preference = null;
+    if (container) this.container = null;
+    if (requirement) this.requirement = null;
+    if (retentionTime) this.retentionTime = null;
+    if (rejectionCriterion) this.rejectionCriterion = null;
+    if (handling) this.handling = null;
   }
 
   @override
-  SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
+  SpecimenDefinitionTypeTestedBuilder clone() => throw UnimplementedError();
   @override
-  SpecimenDefinitionTypeTested copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? isDerived,
-    CodeableConcept? type,
-    SpecimenContainedPreference? preference,
-    SpecimenDefinitionContainer? container,
-    FhirString? requirement,
-    FhirDuration? retentionTime,
-    List<CodeableConcept>? rejectionCriterion,
-    List<SpecimenDefinitionHandling>? handling,
+  SpecimenDefinitionTypeTestedBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirBooleanBuilder? isDerived,
+    CodeableConceptBuilder? type,
+    SpecimenContainedPreferenceBuilder? preference,
+    SpecimenDefinitionContainerBuilder? container,
+    FhirStringBuilder? requirement,
+    FhirDurationBuilder? retentionTime,
+    List<CodeableConceptBuilder>? rejectionCriterion,
+    List<SpecimenDefinitionHandlingBuilder>? handling,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1597,74 +1458,42 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SpecimenDefinitionTypeTested(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      isDerived: isDerived?.copyWith(
-            objectPath: '$newObjectPath.isDerived',
-          ) ??
-          this.isDerived,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      preference: preference?.copyWith(
-            objectPath: '$newObjectPath.preference',
-          ) ??
-          this.preference,
-      container: container?.copyWith(
-            objectPath: '$newObjectPath.container',
-          ) ??
-          this.container,
-      requirement: requirement?.copyWith(
-            objectPath: '$newObjectPath.requirement',
-          ) ??
-          this.requirement,
-      retentionTime: retentionTime?.copyWith(
-            objectPath: '$newObjectPath.retentionTime',
-          ) ??
-          this.retentionTime,
-      rejectionCriterion: rejectionCriterion
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.rejectionCriterion',
-                ),
-              )
-              .toList() ??
-          this.rejectionCriterion,
-      handling: handling
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.handling',
-                ),
-              )
-              .toList() ??
-          this.handling,
+    final newResult = SpecimenDefinitionTypeTestedBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      isDerived: isDerived ?? this.isDerived,
+      type: type ?? this.type,
+      preference: preference ?? this.preference,
+      container: container ?? this.container,
+      requirement: requirement ?? this.requirement,
+      retentionTime: retentionTime ?? this.retentionTime,
+      rejectionCriterion: rejectionCriterion ?? this.rejectionCriterion,
+      handling: handling ?? this.handling,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SpecimenDefinitionTypeTested) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SpecimenDefinitionTypeTestedBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1675,13 +1504,13 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1723,13 +1552,13 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       rejectionCriterion,
       o.rejectionCriterion,
     )) {
       return false;
     }
-    if (!listEquals<SpecimenDefinitionHandling>(
+    if (!listEquals<SpecimenDefinitionHandlingBuilder>(
       handling,
       o.handling,
     )) {
@@ -1739,13 +1568,13 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   }
 }
 
-/// [SpecimenDefinitionContainer]
+/// [SpecimenDefinitionContainerBuilder]
 /// The specimen's container.
-class SpecimenDefinitionContainer extends BackboneElement {
+class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SpecimenDefinitionContainer]
+  /// [SpecimenDefinitionContainerBuilder]
 
-  const SpecimenDefinitionContainer({
+  SpecimenDefinitionContainerBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1763,26 +1592,25 @@ class SpecimenDefinitionContainer extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionContainer.empty() =>
-      const SpecimenDefinitionContainer();
+  /// For Builder classes, no fields are required
+  factory SpecimenDefinitionContainerBuilder.empty() =>
+      SpecimenDefinitionContainerBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionContainer.fromJson(
+  factory SpecimenDefinitionContainerBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SpecimenDefinition.typeTested.container';
-    return SpecimenDefinitionContainer(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SpecimenDefinitionContainerBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1791,8 +1619,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1800,48 +1628,48 @@ class SpecimenDefinitionContainer extends BackboneElement {
             ),
           )
           .toList(),
-      material: JsonParser.parseObject<CodeableConcept>(
+      material: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'material',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.material',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      cap: JsonParser.parseObject<CodeableConcept>(
+      cap: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'cap',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.cap',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      capacity: JsonParser.parseObject<Quantity>(
+      capacity: JsonParser.parseObject<QuantityBuilder>(
         json,
         'capacity',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.capacity',
       ),
       minimumVolumeX: JsonParser.parsePolymorphic<
-          MinimumVolumeXSpecimenDefinitionContainer>(
+          MinimumVolumeXSpecimenDefinitionContainerBuilder>(
         json,
         {
-          'minimumVolumeQuantity': Quantity.fromJson,
-          'minimumVolumeString': FhirString.fromJson,
+          'minimumVolumeQuantity': QuantityBuilder.fromJson,
+          'minimumVolumeString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
       additive: (json['additive'] as List<dynamic>?)
-          ?.map<SpecimenDefinitionAdditive>(
-            (v) => SpecimenDefinitionAdditive.fromJson(
+          ?.map<SpecimenDefinitionAdditiveBuilder>(
+            (v) => SpecimenDefinitionAdditiveBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.additive',
@@ -1849,31 +1677,31 @@ class SpecimenDefinitionContainer extends BackboneElement {
             ),
           )
           .toList(),
-      preparation: JsonParser.parsePrimitive<FhirString>(
+      preparation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'preparation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.preparation',
       ),
     );
   }
 
-  /// Deserialize [SpecimenDefinitionContainer]
+  /// Deserialize [SpecimenDefinitionContainerBuilder]
   /// from a [String] or [YamlMap] object
-  factory SpecimenDefinitionContainer.fromYaml(
+  factory SpecimenDefinitionContainerBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SpecimenDefinitionContainer.fromJson(
+      return SpecimenDefinitionContainerBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SpecimenDefinitionContainer.fromJson(
+      return SpecimenDefinitionContainerBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionContainer '
+        'SpecimenDefinitionContainerBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1881,16 +1709,16 @@ class SpecimenDefinitionContainer extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SpecimenDefinitionContainer]
+  /// [SpecimenDefinitionContainerBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionContainer.fromJsonString(
+  factory SpecimenDefinitionContainerBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SpecimenDefinitionContainer.fromJson(json);
+      return SpecimenDefinitionContainerBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1902,59 +1730,61 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// [material]
   /// The type of material of the container.
-  final CodeableConcept? material;
+  CodeableConceptBuilder? material;
 
   /// [type]
   /// The type of container used to contain this kind of specimen.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [cap]
   /// Color of container cap.
-  final CodeableConcept? cap;
+  CodeableConceptBuilder? cap;
 
   /// [description]
   /// The textual description of the kind of container.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [capacity]
   /// The capacity (volume or other measure) of this kind of container.
-  final Quantity? capacity;
+  QuantityBuilder? capacity;
 
   /// [minimumVolumeX]
   /// The minimum volume to be conditioned in the container.
-  final MinimumVolumeXSpecimenDefinitionContainer? minimumVolumeX;
+  MinimumVolumeXSpecimenDefinitionContainerBuilder? minimumVolumeX;
 
-  /// Getter for [minimumVolumeQuantity] as a Quantity
-  Quantity? get minimumVolumeQuantity => minimumVolumeX?.isAs<Quantity>();
+  /// Getter for [minimumVolumeQuantity] as a QuantityBuilder
+  QuantityBuilder? get minimumVolumeQuantity =>
+      minimumVolumeX?.isAs<QuantityBuilder>();
 
-  /// Getter for [minimumVolumeString] as a FhirString
-  FhirString? get minimumVolumeString => minimumVolumeX?.isAs<FhirString>();
+  /// Getter for [minimumVolumeString] as a FhirStringBuilder
+  FhirStringBuilder? get minimumVolumeString =>
+      minimumVolumeX?.isAs<FhirStringBuilder>();
 
   /// [additive]
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  final List<SpecimenDefinitionAdditive>? additive;
+  List<SpecimenDefinitionAdditiveBuilder>? additive;
 
   /// [preparation]
   /// Special processing that should be applied to the container for this
   /// kind of specimen.
-  final FhirString? preparation;
+  FhirStringBuilder? preparation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1963,59 +1793,26 @@ class SpecimenDefinitionContainer extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'material',
-      material,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'cap',
-      cap,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'capacity',
-      capacity,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('material', material);
+    addField('type', type);
+    addField('cap', cap);
+    addField('description', description);
+    addField('capacity', capacity);
     if (minimumVolumeX != null) {
       final fhirType = minimumVolumeX!.fhirType;
-      addField(
-        'minimumVolume${fhirType.capitalize()}',
-        minimumVolumeX,
-      );
+      addField('minimumVolume${fhirType.capitalize()}', minimumVolumeX);
     }
 
-    addField(
-      'additive',
-      additive,
-    );
-    addField(
-      'preparation',
-      preparation,
-    );
+    addField('additive', additive);
+    addField('preparation', preparation);
     return json;
   }
 
@@ -2040,11 +1837,11 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2079,15 +1876,19 @@ class SpecimenDefinitionContainer extends BackboneElement {
           fields.add(capacity!);
         }
       case 'minimumVolume':
-        fields.add(minimumVolumeX!);
+        if (minimumVolumeX != null) {
+          fields.add(minimumVolumeX!);
+        }
       case 'minimumVolumeX':
-        fields.add(minimumVolumeX!);
+        if (minimumVolumeX != null) {
+          fields.add(minimumVolumeX!);
+        }
       case 'minimumVolumeQuantity':
-        if (minimumVolumeX is Quantity) {
+        if (minimumVolumeX is QuantityBuilder) {
           fields.add(minimumVolumeX!);
         }
       case 'minimumVolumeString':
-        if (minimumVolumeX is FhirString) {
+        if (minimumVolumeX is FhirStringBuilder) {
           fields.add(minimumVolumeX!);
         }
       case 'additive':
@@ -2108,7 +1909,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2117,141 +1918,152 @@ class SpecimenDefinitionContainer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'material':
         {
-          if (child is CodeableConcept) {
-            return copyWith(material: child);
+          if (child is CodeableConceptBuilder) {
+            material = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'cap':
         {
-          if (child is CodeableConcept) {
-            return copyWith(cap: child);
+          if (child is CodeableConceptBuilder) {
+            cap = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'capacity':
         {
-          if (child is Quantity) {
-            return copyWith(capacity: child);
+          if (child is QuantityBuilder) {
+            capacity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'minimumVolumeX':
         {
-          if (child is MinimumVolumeXSpecimenDefinitionContainer) {
-            return copyWith(minimumVolumeX: child);
+          if (child is MinimumVolumeXSpecimenDefinitionContainerBuilder) {
+            minimumVolumeX = child;
+            return;
           } else {
-            if (child is Quantity) {
-              return copyWith(minimumVolumeX: child);
+            if (child is QuantityBuilder) {
+              minimumVolumeX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(minimumVolumeX: child);
+            if (child is FhirStringBuilder) {
+              minimumVolumeX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'minimumVolumeQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(minimumVolumeX: child);
+          if (child is QuantityBuilder) {
+            minimumVolumeX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minimumVolumeFhirString':
+      case 'minimumVolumeString':
         {
-          if (child is FhirString) {
-            return copyWith(minimumVolumeX: child);
+          if (child is FhirStringBuilder) {
+            minimumVolumeX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'additive':
         {
-          if (child is List<SpecimenDefinitionAdditive>) {
-            // Add all elements from passed list
-            final newList = [...?additive, ...child];
-            return copyWith(additive: newList);
-          } else if (child is SpecimenDefinitionAdditive) {
+          if (child is List<SpecimenDefinitionAdditiveBuilder>) {
+            // Replace or create new list
+            additive = child;
+            return;
+          } else if (child is SpecimenDefinitionAdditiveBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?additive, child];
-            return copyWith(additive: newList);
+            additive = [...(additive ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'preparation':
         {
-          if (child is FhirString) {
-            return copyWith(preparation: child);
+          if (child is FhirStringBuilder) {
+            preparation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2267,119 +2079,103 @@ class SpecimenDefinitionContainer extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'material':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'cap':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'capacity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'minimumVolume':
       case 'minimumVolumeX':
-        return ['Quantity', 'FhirString'];
+        return ['QuantityBuilder', 'FhirStringBuilder'];
       case 'minimumVolumeQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'minimumVolumeString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'additive':
-        return ['SpecimenDefinitionAdditive'];
+        return ['SpecimenDefinitionAdditiveBuilder'];
       case 'preparation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SpecimenDefinitionContainer]
+  /// Creates a new [SpecimenDefinitionContainerBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionContainer createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'material':
         {
-          return copyWith(
-            material: CodeableConcept.empty(),
-          );
+          material = CodeableConceptBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'cap':
         {
-          return copyWith(
-            cap: CodeableConcept.empty(),
-          );
+          cap = CodeableConceptBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'capacity':
         {
-          return copyWith(
-            capacity: Quantity.empty(),
-          );
+          capacity = QuantityBuilder.empty();
+          return;
         }
       case 'minimumVolume':
       case 'minimumVolumeX':
       case 'minimumVolumeQuantity':
         {
-          return copyWith(
-            minimumVolumeX: Quantity.empty(),
-          );
+          minimumVolumeX = QuantityBuilder.empty();
+          return;
         }
       case 'minimumVolumeString':
         {
-          return copyWith(
-            minimumVolumeX: FhirString.empty(),
-          );
+          minimumVolumeX = FhirStringBuilder.empty();
+          return;
         }
       case 'additive':
         {
-          return copyWith(
-            additive: <SpecimenDefinitionAdditive>[],
-          );
+          additive = <SpecimenDefinitionAdditiveBuilder>[];
+          return;
         }
       case 'preparation':
         {
-          return copyWith(
-            preparation: FhirString.empty(),
-          );
+          preparation = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2388,7 +2184,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SpecimenDefinitionContainer clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2401,36 +2197,34 @@ class SpecimenDefinitionContainer extends BackboneElement {
     bool additive = false,
     bool preparation = false,
   }) {
-    return SpecimenDefinitionContainer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      material: material ? null : this.material,
-      type: type ? null : this.type,
-      cap: cap ? null : this.cap,
-      description: description ? null : this.description,
-      capacity: capacity ? null : this.capacity,
-      minimumVolumeX: minimumVolume ? null : minimumVolumeX,
-      additive: additive ? null : this.additive,
-      preparation: preparation ? null : this.preparation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (material) this.material = null;
+    if (type) this.type = null;
+    if (cap) this.cap = null;
+    if (description) this.description = null;
+    if (capacity) this.capacity = null;
+    if (minimumVolume) this.minimumVolumeX = null;
+    if (additive) this.additive = null;
+    if (preparation) this.preparation = null;
   }
 
   @override
-  SpecimenDefinitionContainer clone() => throw UnimplementedError();
+  SpecimenDefinitionContainerBuilder clone() => throw UnimplementedError();
   @override
-  SpecimenDefinitionContainer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? material,
-    CodeableConcept? type,
-    CodeableConcept? cap,
-    FhirString? description,
-    Quantity? capacity,
-    MinimumVolumeXSpecimenDefinitionContainer? minimumVolumeX,
-    List<SpecimenDefinitionAdditive>? additive,
-    FhirString? preparation,
+  SpecimenDefinitionContainerBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? material,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? cap,
+    FhirStringBuilder? description,
+    QuantityBuilder? capacity,
+    MinimumVolumeXSpecimenDefinitionContainerBuilder? minimumVolumeX,
+    List<SpecimenDefinitionAdditiveBuilder>? additive,
+    FhirStringBuilder? preparation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2438,70 +2232,42 @@ class SpecimenDefinitionContainer extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SpecimenDefinitionContainer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      material: material?.copyWith(
-            objectPath: '$newObjectPath.material',
-          ) ??
-          this.material,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      cap: cap?.copyWith(
-            objectPath: '$newObjectPath.cap',
-          ) ??
-          this.cap,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      capacity: capacity?.copyWith(
-            objectPath: '$newObjectPath.capacity',
-          ) ??
-          this.capacity,
-      minimumVolumeX: minimumVolumeX?.copyWith(
-            objectPath: '$newObjectPath.minimumVolumeX',
-          ) as MinimumVolumeXSpecimenDefinitionContainer? ??
-          this.minimumVolumeX,
-      additive: additive
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.additive',
-                ),
-              )
-              .toList() ??
-          this.additive,
-      preparation: preparation?.copyWith(
-            objectPath: '$newObjectPath.preparation',
-          ) ??
-          this.preparation,
+    final newResult = SpecimenDefinitionContainerBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      material: material ?? this.material,
+      type: type ?? this.type,
+      cap: cap ?? this.cap,
+      description: description ?? this.description,
+      capacity: capacity ?? this.capacity,
+      minimumVolumeX: minimumVolumeX ?? this.minimumVolumeX,
+      additive: additive ?? this.additive,
+      preparation: preparation ?? this.preparation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SpecimenDefinitionContainer) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SpecimenDefinitionContainerBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2512,13 +2278,13 @@ class SpecimenDefinitionContainer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2560,7 +2326,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<SpecimenDefinitionAdditive>(
+    if (!listEquals<SpecimenDefinitionAdditiveBuilder>(
       additive,
       o.additive,
     )) {
@@ -2576,45 +2342,43 @@ class SpecimenDefinitionContainer extends BackboneElement {
   }
 }
 
-/// [SpecimenDefinitionAdditive]
+/// [SpecimenDefinitionAdditiveBuilder]
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-class SpecimenDefinitionAdditive extends BackboneElement {
+class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SpecimenDefinitionAdditive]
+  /// [SpecimenDefinitionAdditiveBuilder]
 
-  const SpecimenDefinitionAdditive({
+  SpecimenDefinitionAdditiveBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.additiveX,
+    this.additiveX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'SpecimenDefinition.typeTested.container.additive',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionAdditive.empty() => SpecimenDefinitionAdditive(
-        additiveX: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SpecimenDefinitionAdditiveBuilder.empty() =>
+      SpecimenDefinitionAdditiveBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionAdditive.fromJson(
+  factory SpecimenDefinitionAdditiveBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SpecimenDefinition.typeTested.container.additive';
-    return SpecimenDefinitionAdditive(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SpecimenDefinitionAdditiveBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2623,8 +2387,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2632,34 +2396,34 @@ class SpecimenDefinitionAdditive extends BackboneElement {
             ),
           )
           .toList(),
-      additiveX:
-          JsonParser.parsePolymorphic<AdditiveXSpecimenDefinitionAdditive>(
+      additiveX: JsonParser.parsePolymorphic<
+          AdditiveXSpecimenDefinitionAdditiveBuilder>(
         json,
         {
-          'additiveCodeableConcept': CodeableConcept.fromJson,
-          'additiveReference': Reference.fromJson,
+          'additiveCodeableConcept': CodeableConceptBuilder.fromJson,
+          'additiveReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [SpecimenDefinitionAdditive]
+  /// Deserialize [SpecimenDefinitionAdditiveBuilder]
   /// from a [String] or [YamlMap] object
-  factory SpecimenDefinitionAdditive.fromYaml(
+  factory SpecimenDefinitionAdditiveBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SpecimenDefinitionAdditive.fromJson(
+      return SpecimenDefinitionAdditiveBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SpecimenDefinitionAdditive.fromJson(
+      return SpecimenDefinitionAdditiveBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionAdditive '
+        'SpecimenDefinitionAdditiveBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2667,16 +2431,16 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SpecimenDefinitionAdditive]
+  /// [SpecimenDefinitionAdditiveBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionAdditive.fromJsonString(
+  factory SpecimenDefinitionAdditiveBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SpecimenDefinitionAdditive.fromJson(json);
+      return SpecimenDefinitionAdditiveBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2689,30 +2453,31 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// [additiveX]
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  final AdditiveXSpecimenDefinitionAdditive additiveX;
+  AdditiveXSpecimenDefinitionAdditiveBuilder? additiveX;
 
-  /// Getter for [additiveCodeableConcept] as a CodeableConcept
-  CodeableConcept? get additiveCodeableConcept =>
-      additiveX.isAs<CodeableConcept>();
+  /// Getter for [additiveCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get additiveCodeableConcept =>
+      additiveX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [additiveReference] as a Reference
-  Reference? get additiveReference => additiveX.isAs<Reference>();
+  /// Getter for [additiveReference] as a ReferenceBuilder
+  ReferenceBuilder? get additiveReference =>
+      additiveX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2721,28 +2486,18 @@ class SpecimenDefinitionAdditive extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    final additiveXFhirType = additiveX.fhirType;
-    addField(
-      'additive${additiveXFhirType.capitalize()}',
-      additiveX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    if (additiveX != null) {
+      final fhirType = additiveX!.fhirType;
+      addField('additive${fhirType.capitalize()}', additiveX);
+    }
 
     return json;
   }
@@ -2761,11 +2516,11 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2780,16 +2535,20 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'additive':
-        fields.add(additiveX);
+        if (additiveX != null) {
+          fields.add(additiveX!);
+        }
       case 'additiveX':
-        fields.add(additiveX);
+        if (additiveX != null) {
+          fields.add(additiveX!);
+        }
       case 'additiveCodeableConcept':
-        if (additiveX is CodeableConcept) {
-          fields.add(additiveX);
+        if (additiveX is CodeableConceptBuilder) {
+          fields.add(additiveX!);
         }
       case 'additiveReference':
-        if (additiveX is Reference) {
-          fields.add(additiveX);
+        if (additiveX is ReferenceBuilder) {
+          fields.add(additiveX!);
         }
       default:
         if (checkValid) {
@@ -2801,7 +2560,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2810,79 +2569,84 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'additiveX':
         {
-          if (child is AdditiveXSpecimenDefinitionAdditive) {
-            return copyWith(additiveX: child);
+          if (child is AdditiveXSpecimenDefinitionAdditiveBuilder) {
+            additiveX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(additiveX: child);
+            if (child is CodeableConceptBuilder) {
+              additiveX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(additiveX: child);
+            if (child is ReferenceBuilder) {
+              additiveX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'additiveCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(additiveX: child);
+          if (child is CodeableConceptBuilder) {
+            additiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'additiveReference':
         {
-          if (child is Reference) {
-            return copyWith(additiveX: child);
+          if (child is ReferenceBuilder) {
+            additiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2898,63 +2662,54 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'additive':
       case 'additiveX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'additiveCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'additiveReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SpecimenDefinitionAdditive]
+  /// Creates a new [SpecimenDefinitionAdditiveBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionAdditive createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'additive':
       case 'additiveX':
       case 'additiveCodeableConcept':
         {
-          return copyWith(
-            additiveX: CodeableConcept.empty(),
-          );
+          additiveX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'additiveReference':
         {
-          return copyWith(
-            additiveX: Reference.empty(),
-          );
+          additiveX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2963,27 +2718,26 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SpecimenDefinitionAdditive clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool additive = false,
   }) {
-    return SpecimenDefinitionAdditive(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      additiveX: additiveX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (additive) this.additiveX = null;
   }
 
   @override
-  SpecimenDefinitionAdditive clone() => throw UnimplementedError();
+  SpecimenDefinitionAdditiveBuilder clone() => throw UnimplementedError();
   @override
-  SpecimenDefinitionAdditive copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    AdditiveXSpecimenDefinitionAdditive? additiveX,
+  SpecimenDefinitionAdditiveBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    AdditiveXSpecimenDefinitionAdditiveBuilder? additiveX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2991,38 +2745,35 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SpecimenDefinitionAdditive(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      additiveX: additiveX?.copyWith(
-            objectPath: '$newObjectPath.additiveX',
-          ) as AdditiveXSpecimenDefinitionAdditive? ??
-          this.additiveX,
+    final newResult = SpecimenDefinitionAdditiveBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      additiveX: additiveX ?? this.additiveX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SpecimenDefinitionAdditive) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SpecimenDefinitionAdditiveBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3033,13 +2784,13 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3055,14 +2806,14 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   }
 }
 
-/// [SpecimenDefinitionHandling]
+/// [SpecimenDefinitionHandlingBuilder]
 /// Set of instructions for preservation/transport of the specimen at a
 /// defined temperature interval, prior the testing process.
-class SpecimenDefinitionHandling extends BackboneElement {
+class SpecimenDefinitionHandlingBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SpecimenDefinitionHandling]
+  /// [SpecimenDefinitionHandlingBuilder]
 
-  const SpecimenDefinitionHandling({
+  SpecimenDefinitionHandlingBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3076,26 +2827,25 @@ class SpecimenDefinitionHandling extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionHandling.empty() =>
-      const SpecimenDefinitionHandling();
+  /// For Builder classes, no fields are required
+  factory SpecimenDefinitionHandlingBuilder.empty() =>
+      SpecimenDefinitionHandlingBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionHandling.fromJson(
+  factory SpecimenDefinitionHandlingBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SpecimenDefinition.typeTested.handling';
-    return SpecimenDefinitionHandling(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SpecimenDefinitionHandlingBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3104,8 +2854,8 @@ class SpecimenDefinitionHandling extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3113,49 +2863,49 @@ class SpecimenDefinitionHandling extends BackboneElement {
             ),
           )
           .toList(),
-      temperatureQualifier: JsonParser.parseObject<CodeableConcept>(
+      temperatureQualifier: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'temperatureQualifier',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.temperatureQualifier',
       ),
-      temperatureRange: JsonParser.parseObject<Range>(
+      temperatureRange: JsonParser.parseObject<RangeBuilder>(
         json,
         'temperatureRange',
-        Range.fromJson,
+        RangeBuilder.fromJson,
         '$objectPath.temperatureRange',
       ),
-      maxDuration: JsonParser.parseObject<FhirDuration>(
+      maxDuration: JsonParser.parseObject<FhirDurationBuilder>(
         json,
         'maxDuration',
-        FhirDuration.fromJson,
+        FhirDurationBuilder.fromJson,
         '$objectPath.maxDuration',
       ),
-      instruction: JsonParser.parsePrimitive<FhirString>(
+      instruction: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'instruction',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.instruction',
       ),
     );
   }
 
-  /// Deserialize [SpecimenDefinitionHandling]
+  /// Deserialize [SpecimenDefinitionHandlingBuilder]
   /// from a [String] or [YamlMap] object
-  factory SpecimenDefinitionHandling.fromYaml(
+  factory SpecimenDefinitionHandlingBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SpecimenDefinitionHandling.fromJson(
+      return SpecimenDefinitionHandlingBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SpecimenDefinitionHandling.fromJson(
+      return SpecimenDefinitionHandlingBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionHandling '
+        'SpecimenDefinitionHandlingBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3163,16 +2913,16 @@ class SpecimenDefinitionHandling extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SpecimenDefinitionHandling]
+  /// [SpecimenDefinitionHandlingBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionHandling.fromJsonString(
+  factory SpecimenDefinitionHandlingBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SpecimenDefinitionHandling.fromJson(json);
+      return SpecimenDefinitionHandlingBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3186,37 +2936,37 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// It qualifies the interval of temperature, which characterizes an
   /// occurrence of handling. Conditions that are not related to temperature
   /// may be handled in the instruction element.
-  final CodeableConcept? temperatureQualifier;
+  CodeableConceptBuilder? temperatureQualifier;
 
   /// [temperatureRange]
   /// The temperature interval for this set of handling instructions.
-  final Range? temperatureRange;
+  RangeBuilder? temperatureRange;
 
   /// [maxDuration]
   /// The maximum time interval of preservation of the specimen with these
   /// conditions.
-  final FhirDuration? maxDuration;
+  FhirDurationBuilder? maxDuration;
 
   /// [instruction]
   /// Additional textual instructions for the preservation or transport of
   /// the specimen. For instance, 'Protect from light exposure'.
-  final FhirString? instruction;
+  FhirStringBuilder? instruction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3225,39 +2975,18 @@ class SpecimenDefinitionHandling extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'temperatureQualifier',
-      temperatureQualifier,
-    );
-    addField(
-      'temperatureRange',
-      temperatureRange,
-    );
-    addField(
-      'maxDuration',
-      maxDuration,
-    );
-    addField(
-      'instruction',
-      instruction,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('temperatureQualifier', temperatureQualifier);
+    addField('temperatureRange', temperatureRange);
+    addField('maxDuration', maxDuration);
+    addField('instruction', instruction);
     return json;
   }
 
@@ -3278,11 +3007,11 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3322,7 +3051,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3331,81 +3060,85 @@ class SpecimenDefinitionHandling extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'temperatureQualifier':
         {
-          if (child is CodeableConcept) {
-            return copyWith(temperatureQualifier: child);
+          if (child is CodeableConceptBuilder) {
+            temperatureQualifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'temperatureRange':
         {
-          if (child is Range) {
-            return copyWith(temperatureRange: child);
+          if (child is RangeBuilder) {
+            temperatureRange = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(maxDuration: child);
+          if (child is FhirDurationBuilder) {
+            maxDuration = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instruction':
         {
-          if (child is FhirString) {
-            return copyWith(instruction: child);
+          if (child is FhirStringBuilder) {
+            instruction = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3421,74 +3154,63 @@ class SpecimenDefinitionHandling extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'temperatureQualifier':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'temperatureRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'maxDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'instruction':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SpecimenDefinitionHandling]
+  /// Creates a new [SpecimenDefinitionHandlingBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionHandling createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'temperatureQualifier':
         {
-          return copyWith(
-            temperatureQualifier: CodeableConcept.empty(),
-          );
+          temperatureQualifier = CodeableConceptBuilder.empty();
+          return;
         }
       case 'temperatureRange':
         {
-          return copyWith(
-            temperatureRange: Range.empty(),
-          );
+          temperatureRange = RangeBuilder.empty();
+          return;
         }
       case 'maxDuration':
         {
-          return copyWith(
-            maxDuration: FhirDuration.empty(),
-          );
+          maxDuration = FhirDurationBuilder.empty();
+          return;
         }
       case 'instruction':
         {
-          return copyWith(
-            instruction: FhirString.empty(),
-          );
+          instruction = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3497,7 +3219,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SpecimenDefinitionHandling clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3506,29 +3228,26 @@ class SpecimenDefinitionHandling extends BackboneElement {
     bool maxDuration = false,
     bool instruction = false,
   }) {
-    return SpecimenDefinitionHandling(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      temperatureQualifier:
-          temperatureQualifier ? null : this.temperatureQualifier,
-      temperatureRange: temperatureRange ? null : this.temperatureRange,
-      maxDuration: maxDuration ? null : this.maxDuration,
-      instruction: instruction ? null : this.instruction,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (temperatureQualifier) this.temperatureQualifier = null;
+    if (temperatureRange) this.temperatureRange = null;
+    if (maxDuration) this.maxDuration = null;
+    if (instruction) this.instruction = null;
   }
 
   @override
-  SpecimenDefinitionHandling clone() => throw UnimplementedError();
+  SpecimenDefinitionHandlingBuilder clone() => throw UnimplementedError();
   @override
-  SpecimenDefinitionHandling copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? temperatureQualifier,
-    Range? temperatureRange,
-    FhirDuration? maxDuration,
-    FhirString? instruction,
+  SpecimenDefinitionHandlingBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? temperatureQualifier,
+    RangeBuilder? temperatureRange,
+    FhirDurationBuilder? maxDuration,
+    FhirStringBuilder? instruction,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3536,50 +3255,38 @@ class SpecimenDefinitionHandling extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SpecimenDefinitionHandling(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      temperatureQualifier: temperatureQualifier?.copyWith(
-            objectPath: '$newObjectPath.temperatureQualifier',
-          ) ??
-          this.temperatureQualifier,
-      temperatureRange: temperatureRange?.copyWith(
-            objectPath: '$newObjectPath.temperatureRange',
-          ) ??
-          this.temperatureRange,
-      maxDuration: maxDuration?.copyWith(
-            objectPath: '$newObjectPath.maxDuration',
-          ) ??
-          this.maxDuration,
-      instruction: instruction?.copyWith(
-            objectPath: '$newObjectPath.instruction',
-          ) ??
-          this.instruction,
+    final newResult = SpecimenDefinitionHandlingBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      temperatureQualifier: temperatureQualifier ?? this.temperatureQualifier,
+      temperatureRange: temperatureRange ?? this.temperatureRange,
+      maxDuration: maxDuration ?? this.maxDuration,
+      instruction: instruction ?? this.instruction,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SpecimenDefinitionHandling) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SpecimenDefinitionHandlingBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3590,13 +3297,13 @@ class SpecimenDefinitionHandling extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

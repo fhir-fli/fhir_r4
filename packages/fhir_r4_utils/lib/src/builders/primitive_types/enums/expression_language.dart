@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The media type of the expression language.
-class ExpressionLanguage extends FhirCodeEnum {
+class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ExpressionLanguage._({
+  ExpressionLanguageBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ExpressionLanguage(
+  factory ExpressionLanguageBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ExpressionLanguage._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ExpressionLanguageBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,75 +43,78 @@ class ExpressionLanguage extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ExpressionLanguage] with element only
-  factory ExpressionLanguage.empty() =>
-      ExpressionLanguage._(validatedValue: '');
+  /// Create empty [ExpressionLanguageBuilder] with element only
+  factory ExpressionLanguageBuilder.empty() =>
+      ExpressionLanguageBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ExpressionLanguage] from JSON.
-  factory ExpressionLanguage.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ExpressionLanguageBuilder] from JSON.
+  factory ExpressionLanguageBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExpressionLanguage.elementOnly.withElement(element);
+      return ExpressionLanguageBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ExpressionLanguage cannot be constructed from JSON.',
+        'ExpressionLanguageBuilder cannot be constructed from JSON.',
       );
     }
-    return ExpressionLanguage._(
+    return ExpressionLanguageBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// text_cql
-  static final ExpressionLanguage text_cql = ExpressionLanguage._(
+  static ExpressionLanguageBuilder text_cql = ExpressionLanguageBuilder._(
     validatedValue: 'text/cql',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CQL'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'CQL'.toFhirStringBuilder,
   );
 
   /// text_fhirpath
-  static final ExpressionLanguage text_fhirpath = ExpressionLanguage._(
+  static ExpressionLanguageBuilder text_fhirpath = ExpressionLanguageBuilder._(
     validatedValue: 'text/fhirpath',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'FHIRPath'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'FHIRPath'.toFhirStringBuilder,
   );
 
   /// application_x_fhir_query
-  static final ExpressionLanguage application_x_fhir_query =
-      ExpressionLanguage._(
+  static ExpressionLanguageBuilder application_x_fhir_query =
+      ExpressionLanguageBuilder._(
     validatedValue: 'application/x-fhir-query',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'FHIR Query'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'FHIR Query'.toFhirStringBuilder,
   );
 
   /// text_cql_identifier
-  static final ExpressionLanguage text_cql_identifier = ExpressionLanguage._(
+  static ExpressionLanguageBuilder text_cql_identifier =
+      ExpressionLanguageBuilder._(
     validatedValue: 'text/cql-identifier',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CQL Identifier'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'CQL Identifier'.toFhirStringBuilder,
   );
 
   /// text_cql_expression
-  static final ExpressionLanguage text_cql_expression = ExpressionLanguage._(
+  static ExpressionLanguageBuilder text_cql_expression =
+      ExpressionLanguageBuilder._(
     validatedValue: 'text/cql-expression',
-    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CQL Expression'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'CQL Expression'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ExpressionLanguage elementOnly =
-      ExpressionLanguage._(validatedValue: '');
+  static ExpressionLanguageBuilder elementOnly =
+      ExpressionLanguageBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ExpressionLanguage> values = [
+  static List<ExpressionLanguageBuilder> values = [
     text_cql,
     text_fhirpath,
     application_x_fhir_query,
@@ -121,14 +124,15 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ExpressionLanguage clone() => ExpressionLanguage._(
+  ExpressionLanguageBuilder clone() => ExpressionLanguageBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ExpressionLanguage withElement(Element? newElement) {
-    return ExpressionLanguage._(validatedValue: value, element: newElement);
+  ExpressionLanguageBuilder withElement(ElementBuilder? newElement) {
+    return ExpressionLanguageBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -144,11 +148,11 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ExpressionLanguage copyWith({
+  ExpressionLanguageBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -159,7 +163,7 @@ class ExpressionLanguage extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ExpressionLanguage._(
+    return ExpressionLanguageBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -169,7 +173,7 @@ class ExpressionLanguage extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

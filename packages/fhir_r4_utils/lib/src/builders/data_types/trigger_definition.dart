@@ -1,58 +1,57 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [TriggerDefinition]
+/// [TriggerDefinitionBuilder]
 /// A description of a triggering event. Triggering events can be named
 /// events, data events, or periodic, as determined by the type element.
-class TriggerDefinition extends DataType
+class TriggerDefinitionBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [TriggerDefinition]
+  /// [TriggerDefinitionBuilder]
 
-  const TriggerDefinition({
+  TriggerDefinitionBuilder({
     super.id,
     super.extension_,
-    required this.type,
+    this.type,
     this.name,
     this.timingX,
     this.data,
     this.condition,
     super.disallowExtensions,
-    super.objectPath = 'TriggerDefinition',
+    super.objectPath = 'TriggerDefinitionBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TriggerDefinition.empty() => TriggerDefinition(
-        type: TriggerType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory TriggerDefinitionBuilder.empty() => TriggerDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TriggerDefinition.fromJson(
+  factory TriggerDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'TriggerDefinition';
-    return TriggerDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TriggerDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -60,31 +59,31 @@ class TriggerDefinition extends DataType
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<TriggerType>(
+      type: JsonParser.parsePrimitive<TriggerTypeBuilder>(
         json,
         'type',
-        TriggerType.fromJson,
+        TriggerTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      name: JsonParser.parsePrimitive<FhirString>(
+      ),
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      timingX: JsonParser.parsePolymorphic<TimingXTriggerDefinition>(
+      timingX: JsonParser.parsePolymorphic<TimingXTriggerDefinitionBuilder>(
         json,
         {
-          'timingTiming': Timing.fromJson,
-          'timingReference': Reference.fromJson,
-          'timingDate': FhirDate.fromJson,
-          'timingDateTime': FhirDateTime.fromJson,
+          'timingTiming': TimingBuilder.fromJson,
+          'timingReference': ReferenceBuilder.fromJson,
+          'timingDate': FhirDateBuilder.fromJson,
+          'timingDateTime': FhirDateTimeBuilder.fromJson,
         },
         objectPath,
       ),
       data: (json['data'] as List<dynamic>?)
-          ?.map<DataRequirement>(
-            (v) => DataRequirement.fromJson(
+          ?.map<DataRequirementBuilder>(
+            (v) => DataRequirementBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.data',
@@ -92,31 +91,31 @@ class TriggerDefinition extends DataType
             ),
           )
           .toList(),
-      condition: JsonParser.parseObject<FhirExpression>(
+      condition: JsonParser.parseObject<FhirExpressionBuilder>(
         json,
         'condition',
-        FhirExpression.fromJson,
+        FhirExpressionBuilder.fromJson,
         '$objectPath.condition',
       ),
     );
   }
 
-  /// Deserialize [TriggerDefinition]
+  /// Deserialize [TriggerDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory TriggerDefinition.fromYaml(
+  factory TriggerDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TriggerDefinition.fromJson(
+      return TriggerDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TriggerDefinition.fromJson(
+      return TriggerDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TriggerDefinition '
+        'TriggerDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -124,16 +123,16 @@ class TriggerDefinition extends DataType
   }
 
   /// Factory constructor for
-  /// [TriggerDefinition]
+  /// [TriggerDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TriggerDefinition.fromJsonString(
+  factory TriggerDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TriggerDefinition.fromJson(json);
+      return TriggerDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -145,57 +144,58 @@ class TriggerDefinition extends DataType
 
   /// [type]
   /// The type of triggering event.
-  final TriggerType type;
+  TriggerTypeBuilder? type;
 
   /// [name]
   /// A formal name for the event. This may be an absolute URI that
   /// identifies the event formally (e.g. from a trigger registry), or a
   /// simple relative URI that identifies the event in a local context.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [timingX]
   /// The timing of the event (if this is a periodic trigger).
-  final TimingXTriggerDefinition? timingX;
+  TimingXTriggerDefinitionBuilder? timingX;
 
-  /// Getter for [timingTiming] as a Timing
-  Timing? get timingTiming => timingX?.isAs<Timing>();
+  /// Getter for [timingTiming] as a TimingBuilder
+  TimingBuilder? get timingTiming => timingX?.isAs<TimingBuilder>();
 
-  /// Getter for [timingReference] as a Reference
-  Reference? get timingReference => timingX?.isAs<Reference>();
+  /// Getter for [timingReference] as a ReferenceBuilder
+  ReferenceBuilder? get timingReference => timingX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [timingDate] as a FhirDate
-  FhirDate? get timingDate => timingX?.isAs<FhirDate>();
+  /// Getter for [timingDate] as a FhirDateBuilder
+  FhirDateBuilder? get timingDate => timingX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [timingDateTime] as a FhirDateTime
-  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+  /// Getter for [timingDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get timingDateTime =>
+      timingX?.isAs<FhirDateTimeBuilder>();
 
   /// [data]
   /// The triggering data of the event (if this is a data trigger). If more
   /// than one data is requirement is specified, then all the data
   /// requirements must be true.
-  final List<DataRequirement>? data;
+  List<DataRequirementBuilder>? data;
 
   /// [condition]
   /// A boolean-valued expression that is evaluated in the context of the
   /// container of the trigger definition and returns whether or not the
   /// trigger fires.
-  final FhirExpression? condition;
+  FhirExpressionBuilder? condition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -204,43 +204,22 @@ class TriggerDefinition extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'name',
-      name,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('type', type);
+    addField('name', name);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField(
-        'timing${fhirType.capitalize()}',
-        timingX,
-      );
+      addField('timing${fhirType.capitalize()}', timingX);
     }
 
-    addField(
-      'data',
-      data,
-    );
-    addField(
-      'condition',
-      condition,
-    );
+    addField('data', data);
+    addField('condition', condition);
     return json;
   }
 
@@ -261,11 +240,11 @@ class TriggerDefinition extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -276,29 +255,35 @@ class TriggerDefinition extends DataType
           fields.addAll(extension_!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'name':
         if (name != null) {
           fields.add(name!);
         }
       case 'timing':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingX':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingTiming':
-        if (timingX is Timing) {
+        if (timingX is TimingBuilder) {
           fields.add(timingX!);
         }
       case 'timingReference':
-        if (timingX is Reference) {
+        if (timingX is ReferenceBuilder) {
           fields.add(timingX!);
         }
       case 'timingDate':
-        if (timingX is FhirDate) {
+        if (timingX is FhirDateBuilder) {
           fields.add(timingX!);
         }
       case 'timingDateTime':
-        if (timingX is FhirDateTime) {
+        if (timingX is FhirDateTimeBuilder) {
           fields.add(timingX!);
         }
       case 'data':
@@ -319,7 +304,7 @@ class TriggerDefinition extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -328,125 +313,137 @@ class TriggerDefinition extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is TriggerType) {
-            return copyWith(type: child);
+          if (child is TriggerTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingX':
         {
-          if (child is TimingXTriggerDefinition) {
-            return copyWith(timingX: child);
+          if (child is TimingXTriggerDefinitionBuilder) {
+            timingX = child;
+            return;
           } else {
-            if (child is Timing) {
-              return copyWith(timingX: child);
+            if (child is TimingBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(timingX: child);
+            if (child is ReferenceBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(timingX: child);
+            if (child is FhirDateBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(timingX: child);
+            if (child is FhirDateTimeBuilder) {
+              timingX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'timingTiming':
         {
-          if (child is Timing) {
-            return copyWith(timingX: child);
+          if (child is TimingBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingReference':
         {
-          if (child is Reference) {
-            return copyWith(timingX: child);
+          if (child is ReferenceBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'timingFhirDate':
+      case 'timingDate':
         {
-          if (child is FhirDate) {
-            return copyWith(timingX: child);
+          if (child is FhirDateBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'timingFhirDateTime':
+      case 'timingDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(timingX: child);
+          if (child is FhirDateTimeBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
         {
-          if (child is List<DataRequirement>) {
-            // Add all elements from passed list
-            final newList = [...?data, ...child];
-            return copyWith(data: newList);
-          } else if (child is DataRequirement) {
+          if (child is List<DataRequirementBuilder>) {
+            // Replace or create new list
+            data = child;
+            return;
+          } else if (child is DataRequirementBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?data, child];
-            return copyWith(data: newList);
+            data = [...(data ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is FhirExpression) {
-            return copyWith(condition: child);
+          if (child is FhirExpressionBuilder) {
+            condition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -462,103 +459,94 @@ class TriggerDefinition extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'timing':
       case 'timingX':
-        return ['Timing', 'Reference', 'FhirDate', 'FhirDateTime'];
+        return [
+          'TimingBuilder',
+          'ReferenceBuilder',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder'
+        ];
       case 'timingTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'timingReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'timingDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'timingDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'data':
-        return ['DataRequirement'];
+        return ['DataRequirementBuilder'];
       case 'condition':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TriggerDefinition]
+  /// Creates a new [TriggerDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TriggerDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: TriggerType.empty(),
-          );
+          type = TriggerTypeBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'timing':
       case 'timingX':
       case 'timingTiming':
         {
-          return copyWith(
-            timingX: Timing.empty(),
-          );
+          timingX = TimingBuilder.empty();
+          return;
         }
       case 'timingReference':
         {
-          return copyWith(
-            timingX: Reference.empty(),
-          );
+          timingX = ReferenceBuilder.empty();
+          return;
         }
       case 'timingDate':
         {
-          return copyWith(
-            timingX: FhirDate.empty(),
-          );
+          timingX = FhirDateBuilder.empty();
+          return;
         }
       case 'timingDateTime':
         {
-          return copyWith(
-            timingX: FhirDateTime.empty(),
-          );
+          timingX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'data':
         {
-          return copyWith(
-            data: <DataRequirement>[],
-          );
+          data = <DataRequirementBuilder>[];
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: FhirExpression.empty(),
-          );
+          condition = FhirExpressionBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -567,36 +555,35 @@ class TriggerDefinition extends DataType
 
   /// Clears specific fields in this object
   @override
-  TriggerDefinition clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool type = false,
     bool name = false,
     bool timing = false,
     bool data = false,
     bool condition = false,
   }) {
-    return TriggerDefinition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      name: name ? null : this.name,
-      timingX: timing ? null : timingX,
-      data: data ? null : this.data,
-      condition: condition ? null : this.condition,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (type) this.type = null;
+    if (name) this.name = null;
+    if (timing) this.timingX = null;
+    if (data) this.data = null;
+    if (condition) this.condition = null;
   }
 
   @override
-  TriggerDefinition clone() => throw UnimplementedError();
+  TriggerDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  TriggerDefinition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    TriggerType? type,
-    FhirString? name,
-    TimingXTriggerDefinition? timingX,
-    List<DataRequirement>? data,
-    FhirExpression? condition,
+  TriggerDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    TriggerTypeBuilder? type,
+    FhirStringBuilder? name,
+    TimingXTriggerDefinitionBuilder? timingX,
+    List<DataRequirementBuilder>? data,
+    FhirExpressionBuilder? condition,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -604,50 +591,38 @@ class TriggerDefinition extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return TriggerDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      timingX: timingX?.copyWith(
-            objectPath: '$newObjectPath.timingX',
-          ) as TimingXTriggerDefinition? ??
-          this.timingX,
-      data: data
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.data',
-                ),
-              )
-              .toList() ??
-          this.data,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
+    final newResult = TriggerDefinitionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      type: type ?? this.type,
+      name: name ?? this.name,
+      timingX: timingX ?? this.timingX,
+      data: data ?? this.data,
+      condition: condition ?? this.condition,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TriggerDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TriggerDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -658,7 +633,7 @@ class TriggerDefinition extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -682,7 +657,7 @@ class TriggerDefinition extends DataType
     )) {
       return false;
     }
-    if (!listEquals<DataRequirement>(
+    if (!listEquals<DataRequirementBuilder>(
       data,
       o.data,
     )) {

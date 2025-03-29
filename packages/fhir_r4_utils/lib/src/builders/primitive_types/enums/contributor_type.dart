@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of contributor.
-class ContributorType extends FhirCodeEnum {
+class ContributorTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ContributorType._({
+  ContributorTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ContributorType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ContributorType(
+  factory ContributorTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ContributorType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ContributorTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class ContributorType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ContributorType] with element only
-  factory ContributorType.empty() => ContributorType._(validatedValue: '');
+  /// Create empty [ContributorTypeBuilder] with element only
+  factory ContributorTypeBuilder.empty() =>
+      ContributorTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ContributorType] from JSON.
-  factory ContributorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ContributorTypeBuilder] from JSON.
+  factory ContributorTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorType.elementOnly.withElement(element);
+      return ContributorTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ContributorType cannot be constructed from JSON.',
+        'ContributorTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return ContributorType._(
+    return ContributorTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// author
-  static final ContributorType author = ContributorType._(
+  static ContributorTypeBuilder author = ContributorTypeBuilder._(
     validatedValue: 'author',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Author'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Author'.toFhirStringBuilder,
   );
 
   /// editor
-  static final ContributorType editor = ContributorType._(
+  static ContributorTypeBuilder editor = ContributorTypeBuilder._(
     validatedValue: 'editor',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Editor'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Editor'.toFhirStringBuilder,
   );
 
   /// reviewer
-  static final ContributorType reviewer = ContributorType._(
+  static ContributorTypeBuilder reviewer = ContributorTypeBuilder._(
     validatedValue: 'reviewer',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reviewer'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Reviewer'.toFhirStringBuilder,
   );
 
   /// endorser
-  static final ContributorType endorser = ContributorType._(
+  static ContributorTypeBuilder endorser = ContributorTypeBuilder._(
     validatedValue: 'endorser',
-    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Endorser'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Endorser'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ContributorType elementOnly =
-      ContributorType._(validatedValue: '');
+  static ContributorTypeBuilder elementOnly =
+      ContributorTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ContributorType> values = [
+  static List<ContributorTypeBuilder> values = [
     author,
     editor,
     reviewer,
@@ -110,14 +112,14 @@ class ContributorType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ContributorType clone() => ContributorType._(
+  ContributorTypeBuilder clone() => ContributorTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ContributorType withElement(Element? newElement) {
-    return ContributorType._(validatedValue: value, element: newElement);
+  ContributorTypeBuilder withElement(ElementBuilder? newElement) {
+    return ContributorTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +135,11 @@ class ContributorType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ContributorType copyWith({
+  ContributorTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +150,7 @@ class ContributorType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ContributorType._(
+    return ContributorTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +160,7 @@ class ContributorType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -69,7 +69,7 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Boolean',
+    String? objectPath = 'Boolean',
   }) {
     // 1) Parse/validate
     bool? finalValue;
@@ -165,7 +165,7 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Boolean getter to determine if only a value is present
   bool get valueOnly => value != null && element == null;

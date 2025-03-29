@@ -1,100 +1,101 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Period]
+/// [PeriodBuilder]
 /// A time period defined by a start and end date and optionally time.
-class Period extends DataType
+class PeriodBuilder extends DataTypeBuilder
     implements
-        TimingXActivityDefinition,
-        OnsetXAllergyIntolerance,
-        CollectedXBiologicallyDerivedProductCollection,
-        TimeXBiologicallyDerivedProductProcessing,
-        TimeXBiologicallyDerivedProductManipulation,
-        ScheduledXCarePlanDetail,
-        OccurrenceXChargeItem,
-        TimingXClaimSupportingInfo,
-        ServicedXClaimItem,
-        ServicedXClaimResponseAddItem,
-        EffectiveXClinicalImpression,
-        OccurrenceXCommunicationRequest,
-        OnsetXCondition,
-        AbatementXCondition,
-        OccurrenceXContractAction,
-        ServicedXCoverageEligibilityRequest,
-        ServicedXCoverageEligibilityResponse,
-        IdentifiedXDetectedIssue,
-        OccurrenceXDeviceRequest,
-        TimingXDeviceUseStatement,
-        EffectiveXDiagnosticReport,
-        TimingXExplanationOfBenefitSupportingInfo,
-        ServicedXExplanationOfBenefitItem,
-        ServicedXExplanationOfBenefitAddItem,
-        BornXFamilyMemberHistory,
-        OnsetXFamilyMemberHistoryCondition,
-        CreatedXMedia,
-        EffectiveXMedicationAdministration,
-        EffectiveXMedicationStatement,
-        EffectiveXObservation,
-        ValueXObservation,
-        ValueXObservationComponent,
-        ValueXParametersParameter,
-        TimingXPlanDefinitionAction,
-        PerformedXProcedure,
-        OccurredXProvenance,
-        DateXRegulatedAuthorizationCase,
-        TimingXRequestGroupAction,
-        StudyEffectiveXResearchElementDefinitionCharacteristic,
-        ParticipantEffectiveXResearchElementDefinitionCharacteristic,
-        OccurrenceXRiskAssessment,
-        WhenXRiskAssessmentPrediction,
-        OccurrenceXServiceRequest,
-        CollectedXSpecimenCollection,
-        TimeXSpecimenProcessing,
-        DefaultValueXStructureMapSource,
-        OccurrenceXSupplyDelivery,
-        OccurrenceXSupplyRequest,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        ValueXDataRequirementDateFilter,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension,
-        BoundsXTimingRepeat {
+        TimingXActivityDefinitionBuilder,
+        OnsetXAllergyIntoleranceBuilder,
+        CollectedXBiologicallyDerivedProductCollectionBuilder,
+        TimeXBiologicallyDerivedProductProcessingBuilder,
+        TimeXBiologicallyDerivedProductManipulationBuilder,
+        ScheduledXCarePlanDetailBuilder,
+        OccurrenceXChargeItemBuilder,
+        TimingXClaimSupportingInfoBuilder,
+        ServicedXClaimItemBuilder,
+        ServicedXClaimResponseAddItemBuilder,
+        EffectiveXClinicalImpressionBuilder,
+        OccurrenceXCommunicationRequestBuilder,
+        OnsetXConditionBuilder,
+        AbatementXConditionBuilder,
+        OccurrenceXContractActionBuilder,
+        ServicedXCoverageEligibilityRequestBuilder,
+        ServicedXCoverageEligibilityResponseBuilder,
+        IdentifiedXDetectedIssueBuilder,
+        OccurrenceXDeviceRequestBuilder,
+        TimingXDeviceUseStatementBuilder,
+        EffectiveXDiagnosticReportBuilder,
+        TimingXExplanationOfBenefitSupportingInfoBuilder,
+        ServicedXExplanationOfBenefitItemBuilder,
+        ServicedXExplanationOfBenefitAddItemBuilder,
+        BornXFamilyMemberHistoryBuilder,
+        OnsetXFamilyMemberHistoryConditionBuilder,
+        CreatedXMediaBuilder,
+        EffectiveXMedicationAdministrationBuilder,
+        EffectiveXMedicationStatementBuilder,
+        EffectiveXObservationBuilder,
+        ValueXObservationBuilder,
+        ValueXObservationComponentBuilder,
+        ValueXParametersParameterBuilder,
+        TimingXPlanDefinitionActionBuilder,
+        PerformedXProcedureBuilder,
+        OccurredXProvenanceBuilder,
+        DateXRegulatedAuthorizationCaseBuilder,
+        TimingXRequestGroupActionBuilder,
+        StudyEffectiveXResearchElementDefinitionCharacteristicBuilder,
+        ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder,
+        OccurrenceXRiskAssessmentBuilder,
+        WhenXRiskAssessmentPredictionBuilder,
+        OccurrenceXServiceRequestBuilder,
+        CollectedXSpecimenCollectionBuilder,
+        TimeXSpecimenProcessingBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        OccurrenceXSupplyDeliveryBuilder,
+        OccurrenceXSupplyRequestBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        ValueXDataRequirementDateFilterBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder,
+        BoundsXTimingRepeatBuilder {
   /// Primary constructor for
-  /// [Period]
+  /// [PeriodBuilder]
 
-  const Period({
+  PeriodBuilder({
     super.id,
     super.extension_,
     this.start,
     this.end,
     super.disallowExtensions,
-    super.objectPath = 'Period',
+    super.objectPath = 'PeriodBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Period.empty() => const Period();
+  /// For Builder classes, no fields are required
+  factory PeriodBuilder.empty() => PeriodBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Period.fromJson(
+  factory PeriodBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Period';
-    return Period(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PeriodBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -102,37 +103,37 @@ class Period extends DataType
             ),
           )
           .toList(),
-      start: JsonParser.parsePrimitive<FhirDateTime>(
+      start: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'start',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.start',
       ),
-      end: JsonParser.parsePrimitive<FhirDateTime>(
+      end: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'end',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.end',
       ),
     );
   }
 
-  /// Deserialize [Period]
+  /// Deserialize [PeriodBuilder]
   /// from a [String] or [YamlMap] object
-  factory Period.fromYaml(
+  factory PeriodBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Period.fromJson(
+      return PeriodBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Period.fromJson(
+      return PeriodBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Period '
+        'PeriodBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -140,16 +141,16 @@ class Period extends DataType
   }
 
   /// Factory constructor for
-  /// [Period]
+  /// [PeriodBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Period.fromJsonString(
+  factory PeriodBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Period.fromJson(json);
+      return PeriodBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -161,30 +162,30 @@ class Period extends DataType
 
   /// [start]
   /// The start of the period. The boundary is inclusive.
-  final FhirDateTime? start;
+  FhirDateTimeBuilder? start;
 
   /// [end]
   /// The end of the period. If the end of the period is missing, it means no
   /// end was known or planned at the time the instance was created. The
   /// start may be in the past, and the end date in the future, which means
   /// that period is expected/planned to end at that time.
-  final FhirDateTime? end;
+  FhirDateTimeBuilder? end;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -193,27 +194,15 @@ class Period extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'start',
-      start,
-    );
-    addField(
-      'end',
-      end,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('start', start);
+    addField('end', end);
     return json;
   }
 
@@ -231,11 +220,11 @@ class Period extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -263,7 +252,7 @@ class Period extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -272,51 +261,53 @@ class Period extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
         {
-          if (child is FhirDateTime) {
-            return copyWith(start: child);
+          if (child is FhirDateTimeBuilder) {
+            start = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
         {
-          if (child is FhirDateTime) {
-            return copyWith(end: child);
+          if (child is FhirDateTimeBuilder) {
+            end = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -332,50 +323,42 @@ class Period extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'start':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'end':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Period]
+  /// Creates a new [PeriodBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Period createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'start':
         {
-          return copyWith(
-            start: FhirDateTime.empty(),
-          );
+          start = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'end':
         {
-          return copyWith(
-            end: FhirDateTime.empty(),
-          );
+          end = FhirDateTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -384,28 +367,26 @@ class Period extends DataType
 
   /// Clears specific fields in this object
   @override
-  Period clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool start = false,
     bool end = false,
   }) {
-    return Period(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      start: start ? null : this.start,
-      end: end ? null : this.end,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (start) this.start = null;
+    if (end) this.end = null;
   }
 
   @override
-  Period clone() => throw UnimplementedError();
+  PeriodBuilder clone() => throw UnimplementedError();
   @override
-  Period copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirDateTime? start,
-    FhirDateTime? end,
+  PeriodBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirDateTimeBuilder? start,
+    FhirDateTimeBuilder? end,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -413,34 +394,35 @@ class Period extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Period(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      start: start?.copyWith(
-            objectPath: '$newObjectPath.start',
-          ) ??
-          this.start,
-      end: end?.copyWith(
-            objectPath: '$newObjectPath.end',
-          ) ??
-          this.end,
+    final newResult = PeriodBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      start: start ?? this.start,
+      end: end ?? this.end,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Period) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PeriodBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -451,7 +433,7 @@ class Period extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

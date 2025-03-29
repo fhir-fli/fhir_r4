@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Indicates the state of the consent.
-class ConsentState extends FhirCodeEnum {
+class ConsentStateBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ConsentState._({
+  ConsentStateBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ConsentState extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ConsentState(
+  factory ConsentStateBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ConsentState._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ConsentStateBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,80 +43,83 @@ class ConsentState extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ConsentState] with element only
-  factory ConsentState.empty() => ConsentState._(validatedValue: '');
+  /// Create empty [ConsentStateBuilder] with element only
+  factory ConsentStateBuilder.empty() =>
+      ConsentStateBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConsentState] from JSON.
-  factory ConsentState.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConsentStateBuilder] from JSON.
+  factory ConsentStateBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentState.elementOnly.withElement(element);
+      return ConsentStateBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ConsentState cannot be constructed from JSON.',
+        'ConsentStateBuilder cannot be constructed from JSON.',
       );
     }
-    return ConsentState._(
+    return ConsentStateBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// draft
-  static final ConsentState draft = ConsentState._(
+  static ConsentStateBuilder draft = ConsentStateBuilder._(
     validatedValue: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Pending'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Pending'.toFhirStringBuilder,
   );
 
   /// proposed
-  static final ConsentState proposed = ConsentState._(
+  static ConsentStateBuilder proposed = ConsentStateBuilder._(
     validatedValue: 'proposed',
-    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Proposed'.toFhirStringBuilder,
   );
 
   /// active
-  static final ConsentState active = ConsentState._(
+  static ConsentStateBuilder active = ConsentStateBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// rejected
-  static final ConsentState rejected = ConsentState._(
+  static ConsentStateBuilder rejected = ConsentStateBuilder._(
     validatedValue: 'rejected',
-    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Rejected'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Rejected'.toFhirStringBuilder,
   );
 
   /// inactive
-  static final ConsentState inactive = ConsentState._(
+  static ConsentStateBuilder inactive = ConsentStateBuilder._(
     validatedValue: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Inactive'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Inactive'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final ConsentState entered_in_error = ConsentState._(
+  static ConsentStateBuilder entered_in_error = ConsentStateBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ConsentState elementOnly = ConsentState._(validatedValue: '');
+  static ConsentStateBuilder elementOnly =
+      ConsentStateBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ConsentState> values = [
+  static List<ConsentStateBuilder> values = [
     draft,
     proposed,
     active,
@@ -127,14 +130,14 @@ class ConsentState extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ConsentState clone() => ConsentState._(
+  ConsentStateBuilder clone() => ConsentStateBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ConsentState withElement(Element? newElement) {
-    return ConsentState._(validatedValue: value, element: newElement);
+  ConsentStateBuilder withElement(ElementBuilder? newElement) {
+    return ConsentStateBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,11 +153,11 @@ class ConsentState extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ConsentState copyWith({
+  ConsentStateBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -165,7 +168,7 @@ class ConsentState extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ConsentState._(
+    return ConsentStateBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -175,7 +178,7 @@ class ConsentState extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

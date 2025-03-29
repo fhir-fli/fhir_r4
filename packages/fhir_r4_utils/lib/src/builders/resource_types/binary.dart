@@ -1,21 +1,23 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Binary]
+/// [BinaryBuilder]
 /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain
 /// any content, whether text, image, pdf, zip archive, etc.
-class Binary extends Resource {
+class BinaryBuilder extends ResourceBuilder {
   /// Primary constructor for
-  /// [Binary]
+  /// [BinaryBuilder]
 
-  const Binary({
+  BinaryBuilder({
     super.id,
     super.meta,
     super.implicitRules,
     super.language,
-    required this.contentType,
+    this.contentType,
     this.securityContext,
     this.data,
   }) : super(
@@ -24,79 +26,76 @@ class Binary extends Resource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Binary.empty() => Binary(
-        contentType: FhirCode.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory BinaryBuilder.empty() => BinaryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Binary.fromJson(
+  factory BinaryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Binary';
-    return Binary(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return BinaryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      contentType: JsonParser.parsePrimitive<FhirCode>(
+      contentType: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'contentType',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.contentType',
-      )!,
-      securityContext: JsonParser.parseObject<Reference>(
+      ),
+      securityContext: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'securityContext',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.securityContext',
       ),
-      data: JsonParser.parsePrimitive<FhirBase64Binary>(
+      data: JsonParser.parsePrimitive<FhirBase64BinaryBuilder>(
         json,
         'data',
-        FhirBase64Binary.fromJson,
+        FhirBase64BinaryBuilder.fromJson,
         '$objectPath.data',
       ),
     );
   }
 
-  /// Deserialize [Binary]
+  /// Deserialize [BinaryBuilder]
   /// from a [String] or [YamlMap] object
-  factory Binary.fromYaml(
+  factory BinaryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Binary.fromJson(
+      return BinaryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Binary.fromJson(
+      return BinaryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Binary '
+        'BinaryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -104,16 +103,16 @@ class Binary extends Resource {
   }
 
   /// Factory constructor for
-  /// [Binary]
+  /// [BinaryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Binary.fromJsonString(
+  factory BinaryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Binary.fromJson(json);
+      return BinaryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -126,7 +125,7 @@ class Binary extends Resource {
   /// [contentType]
   /// MimeType of the binary content represented as a standard MimeType (BCP
   /// 13).
-  final FhirCode contentType;
+  FhirCodeBuilder? contentType;
 
   /// [securityContext]
   /// This element identifies another resource that can be used as a proxy of
@@ -140,27 +139,27 @@ class Binary extends Resource {
   /// security proxy. E.g. to identify that the binary resource relates to a
   /// patient, and access should only be granted to applications that have
   /// access to the patient.
-  final Reference? securityContext;
+  ReferenceBuilder? securityContext;
 
   /// [data]
   /// The actual content, base64 encoded.
-  final FhirBase64Binary? data;
+  FhirBase64BinaryBuilder? data;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -169,40 +168,19 @@ class Binary extends Resource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'contentType',
-      contentType,
-    );
-    addField(
-      'securityContext',
-      securityContext,
-    );
-    addField(
-      'data',
-      data,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('contentType', contentType);
+    addField('securityContext', securityContext);
+    addField('data', data);
     return json;
   }
 
@@ -223,11 +201,11 @@ class Binary extends Resource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -246,7 +224,9 @@ class Binary extends Resource {
           fields.add(language!);
         }
       case 'contentType':
-        fields.add(contentType);
+        if (contentType != null) {
+          fields.add(contentType!);
+        }
       case 'securityContext':
         if (securityContext != null) {
           fields.add(securityContext!);
@@ -265,7 +245,7 @@ class Binary extends Resource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -274,69 +254,75 @@ class Binary extends Resource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentType':
         {
-          if (child is FhirCode) {
-            return copyWith(contentType: child);
+          if (child is FhirCodeBuilder) {
+            contentType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityContext':
         {
-          if (child is Reference) {
-            return copyWith(securityContext: child);
+          if (child is ReferenceBuilder) {
+            securityContext = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(data: child);
+          if (child is FhirBase64BinaryBuilder) {
+            data = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -352,74 +338,63 @@ class Binary extends Resource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'contentType':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'securityContext':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'data':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Binary]
+  /// Creates a new [BinaryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Binary createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'contentType':
         {
-          return copyWith(
-            contentType: FhirCode.empty(),
-          );
+          contentType = FhirCodeBuilder.empty();
+          return;
         }
       case 'securityContext':
         {
-          return copyWith(
-            securityContext: Reference.empty(),
-          );
+          securityContext = ReferenceBuilder.empty();
+          return;
         }
       case 'data':
         {
-          return copyWith(
-            data: FhirBase64Binary.empty(),
-          );
+          data = FhirBase64BinaryBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -428,78 +403,73 @@ class Binary extends Resource {
 
   /// Clears specific fields in this object
   @override
-  Binary clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
     bool language = false,
+    bool contentType = false,
     bool securityContext = false,
     bool data = false,
   }) {
-    return Binary(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      contentType: contentType,
-      securityContext: securityContext ? null : this.securityContext,
-      data: data ? null : this.data,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (contentType) this.contentType = null;
+    if (securityContext) this.securityContext = null;
+    if (data) this.data = null;
   }
 
   @override
-  Binary clone() => throw UnimplementedError();
+  BinaryBuilder clone() => throw UnimplementedError();
   @override
-  Binary copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    FhirCode? contentType,
-    Reference? securityContext,
-    FhirBase64Binary? data,
+  BinaryBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    FhirCodeBuilder? contentType,
+    ReferenceBuilder? securityContext,
+    FhirBase64BinaryBuilder? data,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Binary(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      contentType: contentType?.copyWith(
-            objectPath: '$newObjectPath.contentType',
-          ) ??
-          this.contentType,
-      securityContext: securityContext?.copyWith(
-            objectPath: '$newObjectPath.securityContext',
-          ) ??
-          this.securityContext,
-      data: data?.copyWith(
-            objectPath: '$newObjectPath.data',
-          ) ??
-          this.data,
+    final newResult = BinaryBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      contentType: contentType ?? this.contentType,
+      securityContext: securityContext ?? this.securityContext,
+      data: data ?? this.data,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Binary) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! BinaryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;

@@ -1,66 +1,63 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Signature]
+/// [SignatureBuilder]
 /// A signature along with supporting context. The signature may be a
 /// digital signature that is cryptographic in nature, or some other
 /// signature acceptable to the domain. This other signature may be as
 /// simple as a graphical image representing a hand-written signature, or a
 /// signature ceremony Different signature approaches have different
 /// utilities.
-class Signature extends DataType
+class SignatureBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Signature]
+  /// [SignatureBuilder]
 
-  const Signature({
+  SignatureBuilder({
     super.id,
     super.extension_,
-    required this.type,
-    required this.when,
-    required this.who,
+    this.type,
+    this.when,
+    this.who,
     this.onBehalfOf,
     this.targetFormat,
     this.sigFormat,
     this.data,
     super.disallowExtensions,
-    super.objectPath = 'Signature',
+    super.objectPath = 'SignatureBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Signature.empty() => Signature(
-        type: <Coding>[],
-        when: FhirInstant.empty(),
-        who: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SignatureBuilder.empty() => SignatureBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Signature.fromJson(
+  factory SignatureBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Signature';
-    return Signature(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SignatureBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -68,9 +65,9 @@ class Signature extends DataType
             ),
           )
           .toList(),
-      type: (json['type'] as List<dynamic>)
-          .map<Coding>(
-            (v) => Coding.fromJson(
+      type: (json['type'] as List<dynamic>?)
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -78,61 +75,61 @@ class Signature extends DataType
             ),
           )
           .toList(),
-      when: JsonParser.parsePrimitive<FhirInstant>(
+      when: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'when',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.when',
-      )!,
-      who: JsonParser.parseObject<Reference>(
+      ),
+      who: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'who',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.who',
-      )!,
-      onBehalfOf: JsonParser.parseObject<Reference>(
+      ),
+      onBehalfOf: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'onBehalfOf',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.onBehalfOf',
       ),
-      targetFormat: JsonParser.parsePrimitive<FhirCode>(
+      targetFormat: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'targetFormat',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.targetFormat',
       ),
-      sigFormat: JsonParser.parsePrimitive<FhirCode>(
+      sigFormat: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'sigFormat',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.sigFormat',
       ),
-      data: JsonParser.parsePrimitive<FhirBase64Binary>(
+      data: JsonParser.parsePrimitive<FhirBase64BinaryBuilder>(
         json,
         'data',
-        FhirBase64Binary.fromJson,
+        FhirBase64BinaryBuilder.fromJson,
         '$objectPath.data',
       ),
     );
   }
 
-  /// Deserialize [Signature]
+  /// Deserialize [SignatureBuilder]
   /// from a [String] or [YamlMap] object
-  factory Signature.fromYaml(
+  factory SignatureBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Signature.fromJson(
+      return SignatureBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Signature.fromJson(
+      return SignatureBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Signature '
+        'SignatureBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -140,16 +137,16 @@ class Signature extends DataType
   }
 
   /// Factory constructor for
-  /// [Signature]
+  /// [SignatureBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Signature.fromJsonString(
+  factory SignatureBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Signature.fromJson(json);
+      return SignatureBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -164,54 +161,54 @@ class Signature extends DataType
   /// may be explicitly included as part of the signature information and can
   /// be used when determining accountability for various actions concerning
   /// the document.
-  final List<Coding> type;
+  List<CodingBuilder>? type;
 
   /// [when]
   /// When the digital signature was signed.
-  final FhirInstant when;
+  FhirInstantBuilder? when;
 
   /// [who]
   /// A reference to an application-usable description of the identity that
   /// signed (e.g. the signature used their private key).
-  final Reference who;
+  ReferenceBuilder? who;
 
   /// [onBehalfOf]
   /// A reference to an application-usable description of the identity that
   /// is represented by the signature.
-  final Reference? onBehalfOf;
+  ReferenceBuilder? onBehalfOf;
 
   /// [targetFormat]
   /// A mime type that indicates the technical format of the target resources
   /// signed by the signature.
-  final FhirCode? targetFormat;
+  FhirCodeBuilder? targetFormat;
 
   /// [sigFormat]
   /// A mime type that indicates the technical format of the signature.
   /// Important mime types are application/signature+xml for X ML DigSig,
   /// application/jose for JWS, and image/* for a graphical image of a
   /// signature, etc.
-  final FhirCode? sigFormat;
+  FhirCodeBuilder? sigFormat;
 
   /// [data]
   /// The base64 encoding of the Signature content. When signature is not
   /// recorded electronically this element would be empty.
-  final FhirBase64Binary? data;
+  FhirBase64BinaryBuilder? data;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -220,47 +217,20 @@ class Signature extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'when',
-      when,
-    );
-    addField(
-      'who',
-      who,
-    );
-    addField(
-      'onBehalfOf',
-      onBehalfOf,
-    );
-    addField(
-      'targetFormat',
-      targetFormat,
-    );
-    addField(
-      'sigFormat',
-      sigFormat,
-    );
-    addField(
-      'data',
-      data,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('type', type);
+    addField('when', when);
+    addField('who', who);
+    addField('onBehalfOf', onBehalfOf);
+    addField('targetFormat', targetFormat);
+    addField('sigFormat', sigFormat);
+    addField('data', data);
     return json;
   }
 
@@ -283,11 +253,11 @@ class Signature extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -298,11 +268,17 @@ class Signature extends DataType
           fields.addAll(extension_!);
         }
       case 'type':
-        fields.addAll(type);
+        if (type != null) {
+          fields.addAll(type!);
+        }
       case 'when':
-        fields.add(when);
+        if (when != null) {
+          fields.add(when!);
+        }
       case 'who':
-        fields.add(who);
+        if (who != null) {
+          fields.add(who!);
+        }
       case 'onBehalfOf':
         if (onBehalfOf != null) {
           fields.add(onBehalfOf!);
@@ -329,7 +305,7 @@ class Signature extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -338,97 +314,103 @@ class Signature extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...type, ...child];
-            return copyWith(type: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'when':
         {
-          if (child is FhirInstant) {
-            return copyWith(when: child);
+          if (child is FhirInstantBuilder) {
+            when = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
         {
-          if (child is Reference) {
-            return copyWith(who: child);
+          if (child is ReferenceBuilder) {
+            who = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onBehalfOf':
         {
-          if (child is Reference) {
-            return copyWith(onBehalfOf: child);
+          if (child is ReferenceBuilder) {
+            onBehalfOf = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetFormat':
         {
-          if (child is FhirCode) {
-            return copyWith(targetFormat: child);
+          if (child is FhirCodeBuilder) {
+            targetFormat = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sigFormat':
         {
-          if (child is FhirCode) {
-            return copyWith(sigFormat: child);
+          if (child is FhirCodeBuilder) {
+            sigFormat = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(data: child);
+          if (child is FhirBase64BinaryBuilder) {
+            data = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -444,90 +426,77 @@ class Signature extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'when':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'who':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'onBehalfOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'targetFormat':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'sigFormat':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'data':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Signature]
+  /// Creates a new [SignatureBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Signature createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <Coding>[],
-          );
+          type = <CodingBuilder>[];
+          return;
         }
       case 'when':
         {
-          return copyWith(
-            when: FhirInstant.empty(),
-          );
+          when = FhirInstantBuilder.empty();
+          return;
         }
       case 'who':
         {
-          return copyWith(
-            who: Reference.empty(),
-          );
+          who = ReferenceBuilder.empty();
+          return;
         }
       case 'onBehalfOf':
         {
-          return copyWith(
-            onBehalfOf: Reference.empty(),
-          );
+          onBehalfOf = ReferenceBuilder.empty();
+          return;
         }
       case 'targetFormat':
         {
-          return copyWith(
-            targetFormat: FhirCode.empty(),
-          );
+          targetFormat = FhirCodeBuilder.empty();
+          return;
         }
       case 'sigFormat':
         {
-          return copyWith(
-            sigFormat: FhirCode.empty(),
-          );
+          sigFormat = FhirCodeBuilder.empty();
+          return;
         }
       case 'data':
         {
-          return copyWith(
-            data: FhirBase64Binary.empty(),
-          );
+          data = FhirBase64BinaryBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -536,40 +505,41 @@ class Signature extends DataType
 
   /// Clears specific fields in this object
   @override
-  Signature clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool type = false,
+    bool when = false,
+    bool who = false,
     bool onBehalfOf = false,
     bool targetFormat = false,
     bool sigFormat = false,
     bool data = false,
   }) {
-    return Signature(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      when: when,
-      who: who,
-      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
-      targetFormat: targetFormat ? null : this.targetFormat,
-      sigFormat: sigFormat ? null : this.sigFormat,
-      data: data ? null : this.data,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (type) this.type = null;
+    if (when) this.when = null;
+    if (who) this.who = null;
+    if (onBehalfOf) this.onBehalfOf = null;
+    if (targetFormat) this.targetFormat = null;
+    if (sigFormat) this.sigFormat = null;
+    if (data) this.data = null;
   }
 
   @override
-  Signature clone() => throw UnimplementedError();
+  SignatureBuilder clone() => throw UnimplementedError();
   @override
-  Signature copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<Coding>? type,
-    FhirInstant? when,
-    Reference? who,
-    Reference? onBehalfOf,
-    FhirCode? targetFormat,
-    FhirCode? sigFormat,
-    FhirBase64Binary? data,
+  SignatureBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<CodingBuilder>? type,
+    FhirInstantBuilder? when,
+    ReferenceBuilder? who,
+    ReferenceBuilder? onBehalfOf,
+    FhirCodeBuilder? targetFormat,
+    FhirCodeBuilder? sigFormat,
+    FhirBase64BinaryBuilder? data,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -577,58 +547,40 @@ class Signature extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Signature(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      when: when?.copyWith(
-            objectPath: '$newObjectPath.when',
-          ) ??
-          this.when,
-      who: who?.copyWith(
-            objectPath: '$newObjectPath.who',
-          ) ??
-          this.who,
-      onBehalfOf: onBehalfOf?.copyWith(
-            objectPath: '$newObjectPath.onBehalfOf',
-          ) ??
-          this.onBehalfOf,
-      targetFormat: targetFormat?.copyWith(
-            objectPath: '$newObjectPath.targetFormat',
-          ) ??
-          this.targetFormat,
-      sigFormat: sigFormat?.copyWith(
-            objectPath: '$newObjectPath.sigFormat',
-          ) ??
-          this.sigFormat,
-      data: data?.copyWith(
-            objectPath: '$newObjectPath.data',
-          ) ??
-          this.data,
+    final newResult = SignatureBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      type: type ?? this.type,
+      when: when ?? this.when,
+      who: who ?? this.who,
+      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
+      targetFormat: targetFormat ?? this.targetFormat,
+      sigFormat: sigFormat ?? this.sigFormat,
+      data: data ?? this.data,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Signature) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SignatureBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -639,13 +591,13 @@ class Signature extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       type,
       o.type,
     )) {

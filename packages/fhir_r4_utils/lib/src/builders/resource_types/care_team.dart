@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [CareTeam]
+/// [CareTeamBuilder]
 /// The Care Team includes all the people and organizations who plan to
 /// participate in the coordination and delivery of care for a patient.
-class CareTeam extends DomainResource {
+class CareTeamBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [CareTeam]
+  /// [CareTeamBuilder]
 
-  const CareTeam({
+  CareTeamBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -37,49 +39,48 @@ class CareTeam extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CareTeam.empty() => const CareTeam();
+  /// For Builder classes, no fields are required
+  factory CareTeamBuilder.empty() => CareTeamBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CareTeam.fromJson(
+  factory CareTeamBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'CareTeam';
-    return CareTeam(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CareTeamBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -88,8 +89,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -98,8 +99,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -108,8 +109,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -117,15 +118,15 @@ class CareTeam extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<CareTeamStatus>(
+      status: JsonParser.parsePrimitive<CareTeamStatusBuilder>(
         json,
         'status',
-        CareTeamStatus.fromJson,
+        CareTeamStatusBuilder.fromJson,
         '$objectPath.status',
       ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -133,33 +134,33 @@ class CareTeam extends DomainResource {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      encounter: JsonParser.parseObject<Reference>(
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
       participant: (json['participant'] as List<dynamic>?)
-          ?.map<CareTeamParticipant>(
-            (v) => CareTeamParticipant.fromJson(
+          ?.map<CareTeamParticipantBuilder>(
+            (v) => CareTeamParticipantBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.participant',
@@ -168,8 +169,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -178,8 +179,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -188,8 +189,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       managingOrganization: (json['managingOrganization'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.managingOrganization',
@@ -198,8 +199,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -208,8 +209,8 @@ class CareTeam extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -220,22 +221,22 @@ class CareTeam extends DomainResource {
     );
   }
 
-  /// Deserialize [CareTeam]
+  /// Deserialize [CareTeamBuilder]
   /// from a [String] or [YamlMap] object
-  factory CareTeam.fromYaml(
+  factory CareTeamBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CareTeam.fromJson(
+      return CareTeamBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CareTeam.fromJson(
+      return CareTeamBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CareTeam '
+        'CareTeamBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -243,16 +244,16 @@ class CareTeam extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [CareTeam]
+  /// [CareTeamBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CareTeam.fromJsonString(
+  factory CareTeamBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CareTeam.fromJson(json);
+      return CareTeamBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -266,79 +267,79 @@ class CareTeam extends DomainResource {
   /// Business identifiers assigned to this care team by the performer or
   /// other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// Indicates the current state of the care team.
-  final CareTeamStatus? status;
+  CareTeamStatusBuilder? status;
 
   /// [category]
   /// Identifies what kind of team. This is to support differentiation
   /// between multiple co-existing teams, such as care plan team, episode of
   /// care team, longitudinal care team.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [name]
   /// A label for human use intended to distinguish like teams. E.g. the
   /// "red" vs. "green" trauma teams.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [subject]
   /// Identifies the patient or group whose intended care is handled by the
   /// team.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The Encounter during which this CareTeam was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [period]
   /// Indicates when the team did (or is intended to) come into effect and
   /// end.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [participant]
   /// Identifies all people and organizations who are expected to be involved
   /// in the care team.
-  final List<CareTeamParticipant>? participant;
+  List<CareTeamParticipantBuilder>? participant;
 
   /// [reasonCode]
   /// Describes why the care team exists.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Condition(s) that this care team addresses.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [managingOrganization]
   /// The organization responsible for the care team.
-  final List<Reference>? managingOrganization;
+  List<ReferenceBuilder>? managingOrganization;
 
   /// [telecom]
   /// A central contact detail for the care team (that applies to all
   /// members).
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [note]
   /// Comments made about the CareTeam.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -347,96 +348,33 @@ class CareTeam extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'participant',
-      participant,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'managingOrganization',
-      managingOrganization,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('category', category);
+    addField('name', name);
+    addField('subject', subject);
+    addField('encounter', encounter);
+    addField('period', period);
+    addField('participant', participant);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('managingOrganization', managingOrganization);
+    addField('telecom', telecom);
+    addField('note', note);
     return json;
   }
 
@@ -471,11 +409,11 @@ class CareTeam extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -571,7 +509,7 @@ class CareTeam extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -580,247 +518,256 @@ class CareTeam extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CareTeamStatus) {
-            return copyWith(status: child);
+          if (child is CareTeamStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participant':
         {
-          if (child is List<CareTeamParticipant>) {
-            // Add all elements from passed list
-            final newList = [...?participant, ...child];
-            return copyWith(participant: newList);
-          } else if (child is CareTeamParticipant) {
+          if (child is List<CareTeamParticipantBuilder>) {
+            // Replace or create new list
+            participant = child;
+            return;
+          } else if (child is CareTeamParticipantBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?participant, child];
-            return copyWith(participant: newList);
+            participant = [...(participant ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'managingOrganization':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?managingOrganization, ...child];
-            return copyWith(managingOrganization: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            managingOrganization = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?managingOrganization, child];
-            return copyWith(managingOrganization: newList);
+            managingOrganization = [...(managingOrganization ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -836,186 +783,161 @@ class CareTeam extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'participant':
-        return ['CareTeamParticipant'];
+        return ['CareTeamParticipantBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'managingOrganization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CareTeam]
+  /// Creates a new [CareTeamBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CareTeam createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CareTeamStatus.empty(),
-          );
+          status = CareTeamStatusBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'participant':
         {
-          return copyWith(
-            participant: <CareTeamParticipant>[],
-          );
+          participant = <CareTeamParticipantBuilder>[];
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'managingOrganization':
         {
-          return copyWith(
-            managingOrganization: <Reference>[],
-          );
+          managingOrganization = <ReferenceBuilder>[];
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1024,7 +946,7 @@ class CareTeam extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  CareTeam clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1047,192 +969,106 @@ class CareTeam extends DomainResource {
     bool telecom = false,
     bool note = false,
   }) {
-    return CareTeam(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status ? null : this.status,
-      category: category ? null : this.category,
-      name: name ? null : this.name,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      period: period ? null : this.period,
-      participant: participant ? null : this.participant,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      managingOrganization:
-          managingOrganization ? null : this.managingOrganization,
-      telecom: telecom ? null : this.telecom,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (category) this.category = null;
+    if (name) this.name = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (period) this.period = null;
+    if (participant) this.participant = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (managingOrganization) this.managingOrganization = null;
+    if (telecom) this.telecom = null;
+    if (note) this.note = null;
   }
 
   @override
-  CareTeam clone() => throw UnimplementedError();
+  CareTeamBuilder clone() => throw UnimplementedError();
   @override
-  CareTeam copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    CareTeamStatus? status,
-    List<CodeableConcept>? category,
-    FhirString? name,
-    Reference? subject,
-    Reference? encounter,
-    Period? period,
-    List<CareTeamParticipant>? participant,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Reference>? managingOrganization,
-    List<ContactPoint>? telecom,
-    List<Annotation>? note,
+  CareTeamBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    CareTeamStatusBuilder? status,
+    List<CodeableConceptBuilder>? category,
+    FhirStringBuilder? name,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    PeriodBuilder? period,
+    List<CareTeamParticipantBuilder>? participant,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<ReferenceBuilder>? managingOrganization,
+    List<ContactPointBuilder>? telecom,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return CareTeam(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CareTeamBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      participant: participant
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.participant',
-                ),
-              )
-              .toList() ??
-          this.participant,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      managingOrganization: managingOrganization
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.managingOrganization',
-                ),
-              )
-              .toList() ??
-          this.managingOrganization,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      category: category ?? this.category,
+      name: name ?? this.name,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      period: period ?? this.period,
+      participant: participant ?? this.participant,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      managingOrganization: managingOrganization ?? this.managingOrganization,
+      telecom: telecom ?? this.telecom,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CareTeam) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CareTeamBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1267,25 +1103,25 @@ class CareTeam extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1297,7 +1133,7 @@ class CareTeam extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1327,37 +1163,37 @@ class CareTeam extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CareTeamParticipant>(
+    if (!listEquals<CareTeamParticipantBuilder>(
       participant,
       o.participant,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       managingOrganization,
       o.managingOrganization,
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -1367,14 +1203,14 @@ class CareTeam extends DomainResource {
   }
 }
 
-/// [CareTeamParticipant]
+/// [CareTeamParticipantBuilder]
 /// Identifies all people and organizations who are expected to be involved
 /// in the care team.
-class CareTeamParticipant extends BackboneElement {
+class CareTeamParticipantBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CareTeamParticipant]
+  /// [CareTeamParticipantBuilder]
 
-  const CareTeamParticipant({
+  CareTeamParticipantBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1388,25 +1224,24 @@ class CareTeamParticipant extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CareTeamParticipant.empty() => const CareTeamParticipant();
+  /// For Builder classes, no fields are required
+  factory CareTeamParticipantBuilder.empty() => CareTeamParticipantBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CareTeamParticipant.fromJson(
+  factory CareTeamParticipantBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'CareTeam.participant';
-    return CareTeamParticipant(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CareTeamParticipantBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1415,8 +1250,8 @@ class CareTeamParticipant extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1425,8 +1260,8 @@ class CareTeamParticipant extends BackboneElement {
           )
           .toList(),
       role: (json['role'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.role',
@@ -1434,43 +1269,43 @@ class CareTeamParticipant extends BackboneElement {
             ),
           )
           .toList(),
-      member: JsonParser.parseObject<Reference>(
+      member: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'member',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.member',
       ),
-      onBehalfOf: JsonParser.parseObject<Reference>(
+      onBehalfOf: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'onBehalfOf',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.onBehalfOf',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
     );
   }
 
-  /// Deserialize [CareTeamParticipant]
+  /// Deserialize [CareTeamParticipantBuilder]
   /// from a [String] or [YamlMap] object
-  factory CareTeamParticipant.fromYaml(
+  factory CareTeamParticipantBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CareTeamParticipant.fromJson(
+      return CareTeamParticipantBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CareTeamParticipant.fromJson(
+      return CareTeamParticipantBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CareTeamParticipant '
+        'CareTeamParticipantBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1478,16 +1313,16 @@ class CareTeamParticipant extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CareTeamParticipant]
+  /// [CareTeamParticipantBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CareTeamParticipant.fromJsonString(
+  factory CareTeamParticipantBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CareTeamParticipant.fromJson(json);
+      return CareTeamParticipantBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1501,37 +1336,37 @@ class CareTeamParticipant extends BackboneElement {
   /// Indicates specific responsibility of an individual within the care
   /// team, such as "Primary care physician", "Trained social worker
   /// counselor", "Caregiver", etc.
-  final List<CodeableConcept>? role;
+  List<CodeableConceptBuilder>? role;
 
   /// [member]
   /// The specific person or organization who is participating/expected to
   /// participate in the care team.
-  final Reference? member;
+  ReferenceBuilder? member;
 
   /// [onBehalfOf]
   /// The organization of the practitioner.
-  final Reference? onBehalfOf;
+  ReferenceBuilder? onBehalfOf;
 
   /// [period]
   /// Indicates when the specific member or organization did (or is intended
   /// to) come into effect and end.
-  final Period? period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1540,39 +1375,18 @@ class CareTeamParticipant extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'member',
-      member,
-    );
-    addField(
-      'onBehalfOf',
-      onBehalfOf,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('role', role);
+    addField('member', member);
+    addField('onBehalfOf', onBehalfOf);
+    addField('period', period);
     return json;
   }
 
@@ -1593,11 +1407,11 @@ class CareTeamParticipant extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1637,7 +1451,7 @@ class CareTeamParticipant extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1646,87 +1460,90 @@ class CareTeamParticipant extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?role, ...child];
-            return copyWith(role: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            role = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?role, child];
-            return copyWith(role: newList);
+            role = [...(role ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'member':
         {
-          if (child is Reference) {
-            return copyWith(member: child);
+          if (child is ReferenceBuilder) {
+            member = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onBehalfOf':
         {
-          if (child is Reference) {
-            return copyWith(onBehalfOf: child);
+          if (child is ReferenceBuilder) {
+            onBehalfOf = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1742,74 +1559,63 @@ class CareTeamParticipant extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'member':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'onBehalfOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CareTeamParticipant]
+  /// Creates a new [CareTeamParticipantBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CareTeamParticipant createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: <CodeableConcept>[],
-          );
+          role = <CodeableConceptBuilder>[];
+          return;
         }
       case 'member':
         {
-          return copyWith(
-            member: Reference.empty(),
-          );
+          member = ReferenceBuilder.empty();
+          return;
         }
       case 'onBehalfOf':
         {
-          return copyWith(
-            onBehalfOf: Reference.empty(),
-          );
+          onBehalfOf = ReferenceBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1818,7 +1624,7 @@ class CareTeamParticipant extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CareTeamParticipant clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1827,28 +1633,26 @@ class CareTeamParticipant extends BackboneElement {
     bool onBehalfOf = false,
     bool period = false,
   }) {
-    return CareTeamParticipant(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      role: role ? null : this.role,
-      member: member ? null : this.member,
-      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
-      period: period ? null : this.period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (role) this.role = null;
+    if (member) this.member = null;
+    if (onBehalfOf) this.onBehalfOf = null;
+    if (period) this.period = null;
   }
 
   @override
-  CareTeamParticipant clone() => throw UnimplementedError();
+  CareTeamParticipantBuilder clone() => throw UnimplementedError();
   @override
-  CareTeamParticipant copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? role,
-    Reference? member,
-    Reference? onBehalfOf,
-    Period? period,
+  CareTeamParticipantBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? role,
+    ReferenceBuilder? member,
+    ReferenceBuilder? onBehalfOf,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1856,54 +1660,38 @@ class CareTeamParticipant extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CareTeamParticipant(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      role: role
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.role',
-                ),
-              )
-              .toList() ??
-          this.role,
-      member: member?.copyWith(
-            objectPath: '$newObjectPath.member',
-          ) ??
-          this.member,
-      onBehalfOf: onBehalfOf?.copyWith(
-            objectPath: '$newObjectPath.onBehalfOf',
-          ) ??
-          this.onBehalfOf,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = CareTeamParticipantBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      role: role ?? this.role,
+      member: member ?? this.member,
+      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CareTeamParticipant) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CareTeamParticipantBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1914,19 +1702,19 @@ class CareTeamParticipant extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       role,
       o.role,
     )) {

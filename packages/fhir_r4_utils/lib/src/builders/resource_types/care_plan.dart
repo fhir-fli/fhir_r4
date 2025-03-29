@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [CarePlan]
+/// [CarePlanBuilder]
 /// Describes the intention of how one or more practitioners intend to
 /// deliver care for a particular patient, group or community for a period
 /// of time, possibly limited to care for a specific condition or set of
 /// conditions.
-class CarePlan extends DomainResource {
+class CarePlanBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [CarePlan]
+  /// [CarePlanBuilder]
 
-  const CarePlan({
+  CarePlanBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -26,12 +28,12 @@ class CarePlan extends DomainResource {
     this.basedOn,
     this.replaces,
     this.partOf,
-    required this.status,
-    required this.intent,
+    this.status,
+    this.intent,
     this.category,
     this.title,
     this.description,
-    required this.subject,
+    this.subject,
     this.encounter,
     this.period,
     this.created,
@@ -49,53 +51,48 @@ class CarePlan extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CarePlan.empty() => CarePlan(
-        status: RequestStatus.values.first,
-        intent: CarePlanIntent.values.first,
-        subject: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CarePlanBuilder.empty() => CarePlanBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CarePlan.fromJson(
+  factory CarePlanBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'CarePlan';
-    return CarePlan(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CarePlanBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -104,8 +101,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -114,8 +111,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -124,8 +121,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -133,21 +130,22 @@ class CarePlan extends DomainResource {
             ),
           )
           .toList(),
-      instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
+      instantiatesCanonical:
+          JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'instantiatesCanonical',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.instantiatesCanonical',
       ),
-      instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
+      instantiatesUri: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'instantiatesUri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -156,8 +154,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       replaces: (json['replaces'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.replaces',
@@ -166,8 +164,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.partOf',
@@ -175,21 +173,21 @@ class CarePlan extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<RequestStatus>(
+      status: JsonParser.parsePrimitive<RequestStatusBuilder>(
         json,
         'status',
-        RequestStatus.fromJson,
+        RequestStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      intent: JsonParser.parsePrimitive<CarePlanIntent>(
+      ),
+      intent: JsonParser.parsePrimitive<CarePlanIntentBuilder>(
         json,
         'intent',
-        CarePlanIntent.fromJson,
+        CarePlanIntentBuilder.fromJson,
         '$objectPath.intent',
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -197,51 +195,51 @@ class CarePlan extends DomainResource {
             ),
           )
           .toList(),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      created: JsonParser.parsePrimitive<FhirDateTime>(
+      created: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'created',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.created',
       ),
-      author: JsonParser.parseObject<Reference>(
+      author: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'author',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.author',
       ),
       contributor: (json['contributor'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contributor',
@@ -250,8 +248,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       careTeam: (json['careTeam'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.careTeam',
@@ -260,8 +258,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       addresses: (json['addresses'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.addresses',
@@ -270,8 +268,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.supportingInfo',
@@ -280,8 +278,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       goal: (json['goal'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.goal',
@@ -290,8 +288,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       activity: (json['activity'] as List<dynamic>?)
-          ?.map<CarePlanActivity>(
-            (v) => CarePlanActivity.fromJson(
+          ?.map<CarePlanActivityBuilder>(
+            (v) => CarePlanActivityBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.activity',
@@ -300,8 +298,8 @@ class CarePlan extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -312,22 +310,22 @@ class CarePlan extends DomainResource {
     );
   }
 
-  /// Deserialize [CarePlan]
+  /// Deserialize [CarePlanBuilder]
   /// from a [String] or [YamlMap] object
-  factory CarePlan.fromYaml(
+  factory CarePlanBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CarePlan.fromJson(
+      return CarePlanBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CarePlan.fromJson(
+      return CarePlanBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CarePlan '
+        'CarePlanBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -335,16 +333,16 @@ class CarePlan extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [CarePlan]
+  /// [CarePlanBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CarePlan.fromJsonString(
+  factory CarePlanBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CarePlan.fromJson(json);
+      return CarePlanBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -358,133 +356,133 @@ class CarePlan extends DomainResource {
   /// Business identifiers assigned to this care plan by the performer or
   /// other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, questionnaire
   /// or other definition that is adhered to in whole or in part by this
   /// CarePlan.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonicalBuilder>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// questionnaire or other definition that is adhered to in whole or in
   /// part by this CarePlan.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUriBuilder>? instantiatesUri;
 
   /// [basedOn]
   /// A care plan that is fulfilled in whole or in part by this care plan.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [replaces]
   /// Completed or terminated care plan whose function is taken by this new
   /// care plan.
-  final List<Reference>? replaces;
+  List<ReferenceBuilder>? replaces;
 
   /// [partOf]
   /// A larger care plan of which this particular care plan is a component or
   /// step.
-  final List<Reference>? partOf;
+  List<ReferenceBuilder>? partOf;
 
   /// [status]
   /// Indicates whether the plan is currently being acted upon, represents
   /// future intentions or is now a historical record.
-  final RequestStatus status;
+  RequestStatusBuilder? status;
 
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// care plan and where the care plan fits into the workflow chain.
-  final CarePlanIntent intent;
+  CarePlanIntentBuilder? intent;
 
   /// [category]
   /// Identifies what "kind" of plan this is to support differentiation
   /// between multiple co-existing plans; e.g. "Home health", "psychiatric",
   /// "asthma", "disease management", "wellness plan", etc.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [title]
   /// Human-friendly name for the care plan.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [description]
   /// A description of the scope and nature of the plan.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [subject]
   /// Identifies the patient or group whose intended care is described by the
   /// plan.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The Encounter during which this CarePlan was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [period]
   /// Indicates when the plan did (or is intended to) come into effect and
   /// end.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [created]
   /// Represents when this particular CarePlan record was created in the
   /// system, which is often a system-generated date.
-  final FhirDateTime? created;
+  FhirDateTimeBuilder? created;
 
   /// [author]
   /// When populated, the author is responsible for the care plan. The care
   /// plan is attributed to the author.
-  final Reference? author;
+  ReferenceBuilder? author;
 
   /// [contributor]
   /// Identifies the individual(s) or organization who provided the contents
   /// of the care plan.
-  final List<Reference>? contributor;
+  List<ReferenceBuilder>? contributor;
 
   /// [careTeam]
   /// Identifies all people and organizations who are expected to be involved
   /// in the care envisioned by this plan.
-  final List<Reference>? careTeam;
+  List<ReferenceBuilder>? careTeam;
 
   /// [addresses]
   /// Identifies the conditions/problems/concerns/diagnoses/etc. whose
   /// management and/or mitigation are handled by this plan.
-  final List<Reference>? addresses;
+  List<ReferenceBuilder>? addresses;
 
   /// [supportingInfo]
   /// Identifies portions of the patient's record that specifically
   /// influenced the formation of the plan. These might include
   /// comorbidities, recent procedures, limitations, recent assessments, etc.
-  final List<Reference>? supportingInfo;
+  List<ReferenceBuilder>? supportingInfo;
 
   /// [goal]
   /// Describes the intended objective(s) of carrying out the care plan.
-  final List<Reference>? goal;
+  List<ReferenceBuilder>? goal;
 
   /// [activity]
   /// Identifies a planned action to occur as part of the plan. For example,
   /// a medication to be used, lab tests to perform, self-monitoring,
   /// education, etc.
-  final List<CarePlanActivity>? activity;
+  List<CarePlanActivityBuilder>? activity;
 
   /// [note]
   /// General notes about the care plan not covered elsewhere.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -493,136 +491,43 @@ class CarePlan extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'instantiatesCanonical',
-      instantiatesCanonical,
-    );
-    addField(
-      'instantiatesUri',
-      instantiatesUri,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'replaces',
-      replaces,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'intent',
-      intent,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'created',
-      created,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'contributor',
-      contributor,
-    );
-    addField(
-      'careTeam',
-      careTeam,
-    );
-    addField(
-      'addresses',
-      addresses,
-    );
-    addField(
-      'supportingInfo',
-      supportingInfo,
-    );
-    addField(
-      'goal',
-      goal,
-    );
-    addField(
-      'activity',
-      activity,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('instantiatesCanonical', instantiatesCanonical);
+    addField('instantiatesUri', instantiatesUri);
+    addField('basedOn', basedOn);
+    addField('replaces', replaces);
+    addField('partOf', partOf);
+    addField('status', status);
+    addField('intent', intent);
+    addField('category', category);
+    addField('title', title);
+    addField('description', description);
+    addField('subject', subject);
+    addField('encounter', encounter);
+    addField('period', period);
+    addField('created', created);
+    addField('author', author);
+    addField('contributor', contributor);
+    addField('careTeam', careTeam);
+    addField('addresses', addresses);
+    addField('supportingInfo', supportingInfo);
+    addField('goal', goal);
+    addField('activity', activity);
+    addField('note', note);
     return json;
   }
 
@@ -667,11 +572,11 @@ class CarePlan extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -730,9 +635,13 @@ class CarePlan extends DomainResource {
           fields.addAll(partOf!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'intent':
-        fields.add(intent);
+        if (intent != null) {
+          fields.add(intent!);
+        }
       case 'category':
         if (category != null) {
           fields.addAll(category!);
@@ -746,7 +655,9 @@ class CarePlan extends DomainResource {
           fields.add(description!);
         }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
@@ -801,7 +712,7 @@ class CarePlan extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -810,363 +721,376 @@ class CarePlan extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            instantiatesCanonical = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
-            return copyWith(instantiatesCanonical: newList);
+            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            instantiatesUri = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
-            return copyWith(instantiatesUri: newList);
+            instantiatesUri = [...(instantiatesUri ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'replaces':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?replaces, ...child];
-            return copyWith(replaces: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            replaces = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?replaces, child];
-            return copyWith(replaces: newList);
+            replaces = [...(replaces ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            partOf = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
-            return copyWith(partOf: newList);
+            partOf = [...(partOf ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is RequestStatus) {
-            return copyWith(status: child);
+          if (child is RequestStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'intent':
         {
-          if (child is CarePlanIntent) {
-            return copyWith(intent: child);
+          if (child is CarePlanIntentBuilder) {
+            intent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'created':
         {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
+          if (child is FhirDateTimeBuilder) {
+            created = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is Reference) {
-            return copyWith(author: child);
+          if (child is ReferenceBuilder) {
+            author = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contributor':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?contributor, ...child];
-            return copyWith(contributor: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            contributor = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contributor, child];
-            return copyWith(contributor: newList);
+            contributor = [...(contributor ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'careTeam':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?careTeam, ...child];
-            return copyWith(careTeam: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            careTeam = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?careTeam, child];
-            return copyWith(careTeam: newList);
+            careTeam = [...(careTeam ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'addresses':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?addresses, ...child];
-            return copyWith(addresses: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            addresses = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?addresses, child];
-            return copyWith(addresses: newList);
+            addresses = [...(addresses ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportingInfo':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInfo, ...child];
-            return copyWith(supportingInfo: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            supportingInfo = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInfo, child];
-            return copyWith(supportingInfo: newList);
+            supportingInfo = [...(supportingInfo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'goal':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?goal, ...child];
-            return copyWith(goal: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            goal = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?goal, child];
-            return copyWith(goal: newList);
+            goal = [...(goal ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'activity':
         {
-          if (child is List<CarePlanActivity>) {
-            // Add all elements from passed list
-            final newList = [...?activity, ...child];
-            return copyWith(activity: newList);
-          } else if (child is CarePlanActivity) {
+          if (child is List<CarePlanActivityBuilder>) {
+            // Replace or create new list
+            activity = child;
+            return;
+          } else if (child is CarePlanActivityBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?activity, child];
-            return copyWith(activity: newList);
+            activity = [...(activity ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1182,266 +1106,231 @@ class CarePlan extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'instantiatesCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'instantiatesUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'replaces':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'intent':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'created':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'contributor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'careTeam':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'addresses':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'supportingInfo':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'goal':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'activity':
-        return ['CarePlanActivity'];
+        return ['CarePlanActivityBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CarePlan]
+  /// Creates a new [CarePlanBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CarePlan createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
+          instantiatesCanonical = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'instantiatesUri':
         {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
+          instantiatesUri = <FhirUriBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'replaces':
         {
-          return copyWith(
-            replaces: <Reference>[],
-          );
+          replaces = <ReferenceBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: <Reference>[],
-          );
+          partOf = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: RequestStatus.empty(),
-          );
+          status = RequestStatusBuilder.empty();
+          return;
         }
       case 'intent':
         {
-          return copyWith(
-            intent: CarePlanIntent.empty(),
-          );
+          intent = CarePlanIntentBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'created':
         {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
+          created = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: Reference.empty(),
-          );
+          author = ReferenceBuilder.empty();
+          return;
         }
       case 'contributor':
         {
-          return copyWith(
-            contributor: <Reference>[],
-          );
+          contributor = <ReferenceBuilder>[];
+          return;
         }
       case 'careTeam':
         {
-          return copyWith(
-            careTeam: <Reference>[],
-          );
+          careTeam = <ReferenceBuilder>[];
+          return;
         }
       case 'addresses':
         {
-          return copyWith(
-            addresses: <Reference>[],
-          );
+          addresses = <ReferenceBuilder>[];
+          return;
         }
       case 'supportingInfo':
         {
-          return copyWith(
-            supportingInfo: <Reference>[],
-          );
+          supportingInfo = <ReferenceBuilder>[];
+          return;
         }
       case 'goal':
         {
-          return copyWith(
-            goal: <Reference>[],
-          );
+          goal = <ReferenceBuilder>[];
+          return;
         }
       case 'activity':
         {
-          return copyWith(
-            activity: <CarePlanActivity>[],
-          );
+          activity = <CarePlanActivityBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1450,7 +1339,7 @@ class CarePlan extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  CarePlan clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1465,9 +1354,12 @@ class CarePlan extends DomainResource {
     bool basedOn = false,
     bool replaces = false,
     bool partOf = false,
+    bool status = false,
+    bool intent = false,
     bool category = false,
     bool title = false,
     bool description = false,
+    bool subject = false,
     bool encounter = false,
     bool period = false,
     bool created = false,
@@ -1480,276 +1372,137 @@ class CarePlan extends DomainResource {
     bool activity = false,
     bool note = false,
   }) {
-    return CarePlan(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      basedOn: basedOn ? null : this.basedOn,
-      replaces: replaces ? null : this.replaces,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      intent: intent,
-      category: category ? null : this.category,
-      title: title ? null : this.title,
-      description: description ? null : this.description,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      period: period ? null : this.period,
-      created: created ? null : this.created,
-      author: author ? null : this.author,
-      contributor: contributor ? null : this.contributor,
-      careTeam: careTeam ? null : this.careTeam,
-      addresses: addresses ? null : this.addresses,
-      supportingInfo: supportingInfo ? null : this.supportingInfo,
-      goal: goal ? null : this.goal,
-      activity: activity ? null : this.activity,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (instantiatesCanonical) this.instantiatesCanonical = null;
+    if (instantiatesUri) this.instantiatesUri = null;
+    if (basedOn) this.basedOn = null;
+    if (replaces) this.replaces = null;
+    if (partOf) this.partOf = null;
+    if (status) this.status = null;
+    if (intent) this.intent = null;
+    if (category) this.category = null;
+    if (title) this.title = null;
+    if (description) this.description = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (period) this.period = null;
+    if (created) this.created = null;
+    if (author) this.author = null;
+    if (contributor) this.contributor = null;
+    if (careTeam) this.careTeam = null;
+    if (addresses) this.addresses = null;
+    if (supportingInfo) this.supportingInfo = null;
+    if (goal) this.goal = null;
+    if (activity) this.activity = null;
+    if (note) this.note = null;
   }
 
   @override
-  CarePlan clone() => throw UnimplementedError();
+  CarePlanBuilder clone() => throw UnimplementedError();
   @override
-  CarePlan copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    List<Reference>? basedOn,
-    List<Reference>? replaces,
-    List<Reference>? partOf,
-    RequestStatus? status,
-    CarePlanIntent? intent,
-    List<CodeableConcept>? category,
-    FhirString? title,
-    FhirString? description,
-    Reference? subject,
-    Reference? encounter,
-    Period? period,
-    FhirDateTime? created,
-    Reference? author,
-    List<Reference>? contributor,
-    List<Reference>? careTeam,
-    List<Reference>? addresses,
-    List<Reference>? supportingInfo,
-    List<Reference>? goal,
-    List<CarePlanActivity>? activity,
-    List<Annotation>? note,
+  CarePlanBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<FhirCanonicalBuilder>? instantiatesCanonical,
+    List<FhirUriBuilder>? instantiatesUri,
+    List<ReferenceBuilder>? basedOn,
+    List<ReferenceBuilder>? replaces,
+    List<ReferenceBuilder>? partOf,
+    RequestStatusBuilder? status,
+    CarePlanIntentBuilder? intent,
+    List<CodeableConceptBuilder>? category,
+    FhirStringBuilder? title,
+    FhirStringBuilder? description,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    PeriodBuilder? period,
+    FhirDateTimeBuilder? created,
+    ReferenceBuilder? author,
+    List<ReferenceBuilder>? contributor,
+    List<ReferenceBuilder>? careTeam,
+    List<ReferenceBuilder>? addresses,
+    List<ReferenceBuilder>? supportingInfo,
+    List<ReferenceBuilder>? goal,
+    List<CarePlanActivityBuilder>? activity,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return CarePlan(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CarePlanBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      replaces: replaces
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.replaces',
-                ),
-              )
-              .toList() ??
-          this.replaces,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      intent: intent?.copyWith(
-            objectPath: '$newObjectPath.intent',
-          ) ??
-          this.intent,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
-      contributor: contributor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contributor',
-                ),
-              )
-              .toList() ??
-          this.contributor,
-      careTeam: careTeam
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.careTeam',
-                ),
-              )
-              .toList() ??
-          this.careTeam,
-      addresses: addresses
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.addresses',
-                ),
-              )
-              .toList() ??
-          this.addresses,
-      supportingInfo: supportingInfo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInfo',
-                ),
-              )
-              .toList() ??
-          this.supportingInfo,
-      goal: goal
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.goal',
-                ),
-              )
-              .toList() ??
-          this.goal,
-      activity: activity
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.activity',
-                ),
-              )
-              .toList() ??
-          this.activity,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ?? this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
+      basedOn: basedOn ?? this.basedOn,
+      replaces: replaces ?? this.replaces,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      intent: intent ?? this.intent,
+      category: category ?? this.category,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      period: period ?? this.period,
+      created: created ?? this.created,
+      author: author ?? this.author,
+      contributor: contributor ?? this.contributor,
+      careTeam: careTeam ?? this.careTeam,
+      addresses: addresses ?? this.addresses,
+      supportingInfo: supportingInfo ?? this.supportingInfo,
+      goal: goal ?? this.goal,
+      activity: activity ?? this.activity,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CarePlan) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CarePlanBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1784,55 +1537,55 @@ class CarePlan extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       instantiatesCanonical,
       o.instantiatesCanonical,
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       instantiatesUri,
       o.instantiatesUri,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       replaces,
       o.replaces,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       partOf,
       o.partOf,
     )) {
@@ -1850,7 +1603,7 @@ class CarePlan extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1898,43 +1651,43 @@ class CarePlan extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       contributor,
       o.contributor,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       careTeam,
       o.careTeam,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       addresses,
       o.addresses,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       supportingInfo,
       o.supportingInfo,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       goal,
       o.goal,
     )) {
       return false;
     }
-    if (!listEquals<CarePlanActivity>(
+    if (!listEquals<CarePlanActivityBuilder>(
       activity,
       o.activity,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -1944,15 +1697,15 @@ class CarePlan extends DomainResource {
   }
 }
 
-/// [CarePlanActivity]
+/// [CarePlanActivityBuilder]
 /// Identifies a planned action to occur as part of the plan. For example,
 /// a medication to be used, lab tests to perform, self-monitoring,
 /// education, etc.
-class CarePlanActivity extends BackboneElement {
+class CarePlanActivityBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CarePlanActivity]
+  /// [CarePlanActivityBuilder]
 
-  const CarePlanActivity({
+  CarePlanActivityBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1967,25 +1720,24 @@ class CarePlanActivity extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CarePlanActivity.empty() => const CarePlanActivity();
+  /// For Builder classes, no fields are required
+  factory CarePlanActivityBuilder.empty() => CarePlanActivityBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CarePlanActivity.fromJson(
+  factory CarePlanActivityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'CarePlan.activity';
-    return CarePlanActivity(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CarePlanActivityBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1994,8 +1746,8 @@ class CarePlanActivity extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2004,8 +1756,8 @@ class CarePlanActivity extends BackboneElement {
           )
           .toList(),
       outcomeCodeableConcept: (json['outcomeCodeableConcept'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.outcomeCodeableConcept',
@@ -2014,8 +1766,8 @@ class CarePlanActivity extends BackboneElement {
           )
           .toList(),
       outcomeReference: (json['outcomeReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.outcomeReference',
@@ -2024,8 +1776,8 @@ class CarePlanActivity extends BackboneElement {
           )
           .toList(),
       progress: (json['progress'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.progress',
@@ -2033,37 +1785,37 @@ class CarePlanActivity extends BackboneElement {
             ),
           )
           .toList(),
-      reference: JsonParser.parseObject<Reference>(
+      reference: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'reference',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.reference',
       ),
-      detail: JsonParser.parseObject<CarePlanDetail>(
+      detail: JsonParser.parseObject<CarePlanDetailBuilder>(
         json,
         'detail',
-        CarePlanDetail.fromJson,
+        CarePlanDetailBuilder.fromJson,
         '$objectPath.detail',
       ),
     );
   }
 
-  /// Deserialize [CarePlanActivity]
+  /// Deserialize [CarePlanActivityBuilder]
   /// from a [String] or [YamlMap] object
-  factory CarePlanActivity.fromYaml(
+  factory CarePlanActivityBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CarePlanActivity.fromJson(
+      return CarePlanActivityBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CarePlanActivity.fromJson(
+      return CarePlanActivityBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CarePlanActivity '
+        'CarePlanActivityBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2071,16 +1823,16 @@ class CarePlanActivity extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CarePlanActivity]
+  /// [CarePlanActivityBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CarePlanActivity.fromJsonString(
+  factory CarePlanActivityBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CarePlanActivity.fromJson(json);
+      return CarePlanActivityBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2094,7 +1846,7 @@ class CarePlanActivity extends BackboneElement {
   /// Identifies the outcome at the point when the status of the activity is
   /// assessed. For example, the outcome of an education activity could be
   /// patient understands (or not).
-  final List<CodeableConcept>? outcomeCodeableConcept;
+  List<CodeableConceptBuilder>? outcomeCodeableConcept;
 
   /// [outcomeReference]
   /// Details of the outcome or action resulting from the activity. The
@@ -2102,38 +1854,38 @@ class CarePlanActivity extends BackboneElement {
   /// Observation, is the result/outcome of the activity itself. The activity
   /// can be conveyed using CarePlan.activity.detail OR using the
   /// CarePlan.activity.reference (a reference to a “request” resource).
-  final List<Reference>? outcomeReference;
+  List<ReferenceBuilder>? outcomeReference;
 
   /// [progress]
   /// Notes about the adherence/status/progress of the activity.
-  final List<Annotation>? progress;
+  List<AnnotationBuilder>? progress;
 
   /// [reference]
   /// The details of the proposed activity represented in a specific
   /// resource.
-  final Reference? reference;
+  ReferenceBuilder? reference;
 
   /// [detail]
   /// A simple summary of a planned activity suitable for a general care plan
   /// system (e.g. form driven) that doesn't know about specific resources
   /// such as procedure etc.
-  final CarePlanDetail? detail;
+  CarePlanDetailBuilder? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2142,43 +1894,19 @@ class CarePlanActivity extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'outcomeCodeableConcept',
-      outcomeCodeableConcept,
-    );
-    addField(
-      'outcomeReference',
-      outcomeReference,
-    );
-    addField(
-      'progress',
-      progress,
-    );
-    addField(
-      'reference',
-      reference,
-    );
-    addField(
-      'detail',
-      detail,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('outcomeCodeableConcept', outcomeCodeableConcept);
+    addField('outcomeReference', outcomeReference);
+    addField('progress', progress);
+    addField('reference', reference);
+    addField('detail', detail);
     return json;
   }
 
@@ -2200,11 +1928,11 @@ class CarePlanActivity extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2248,7 +1976,7 @@ class CarePlanActivity extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2257,107 +1985,109 @@ class CarePlanActivity extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcomeCodeableConcept':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?outcomeCodeableConcept, ...child];
-            return copyWith(outcomeCodeableConcept: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            outcomeCodeableConcept = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeCodeableConcept, child];
-            return copyWith(outcomeCodeableConcept: newList);
+            outcomeCodeableConcept = [...(outcomeCodeableConcept ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcomeReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?outcomeReference, ...child];
-            return copyWith(outcomeReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            outcomeReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeReference, child];
-            return copyWith(outcomeReference: newList);
+            outcomeReference = [...(outcomeReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'progress':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?progress, ...child];
-            return copyWith(progress: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            progress = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?progress, child];
-            return copyWith(progress: newList);
+            progress = [...(progress ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is Reference) {
-            return copyWith(reference: child);
+          if (child is ReferenceBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is CarePlanDetail) {
-            return copyWith(detail: child);
+          if (child is CarePlanDetailBuilder) {
+            detail = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2373,82 +2103,70 @@ class CarePlanActivity extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'outcomeCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'outcomeReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'progress':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'reference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'detail':
-        return ['CarePlanDetail'];
+        return ['CarePlanDetailBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CarePlanActivity]
+  /// Creates a new [CarePlanActivityBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CarePlanActivity createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'outcomeCodeableConcept':
         {
-          return copyWith(
-            outcomeCodeableConcept: <CodeableConcept>[],
-          );
+          outcomeCodeableConcept = <CodeableConceptBuilder>[];
+          return;
         }
       case 'outcomeReference':
         {
-          return copyWith(
-            outcomeReference: <Reference>[],
-          );
+          outcomeReference = <ReferenceBuilder>[];
+          return;
         }
       case 'progress':
         {
-          return copyWith(
-            progress: <Annotation>[],
-          );
+          progress = <AnnotationBuilder>[];
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: Reference.empty(),
-          );
+          reference = ReferenceBuilder.empty();
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: CarePlanDetail.empty(),
-          );
+          detail = CarePlanDetailBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2457,7 +2175,7 @@ class CarePlanActivity extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CarePlanActivity clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2467,31 +2185,28 @@ class CarePlanActivity extends BackboneElement {
     bool reference = false,
     bool detail = false,
   }) {
-    return CarePlanActivity(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      outcomeCodeableConcept:
-          outcomeCodeableConcept ? null : this.outcomeCodeableConcept,
-      outcomeReference: outcomeReference ? null : this.outcomeReference,
-      progress: progress ? null : this.progress,
-      reference: reference ? null : this.reference,
-      detail: detail ? null : this.detail,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (outcomeCodeableConcept) this.outcomeCodeableConcept = null;
+    if (outcomeReference) this.outcomeReference = null;
+    if (progress) this.progress = null;
+    if (reference) this.reference = null;
+    if (detail) this.detail = null;
   }
 
   @override
-  CarePlanActivity clone() => throw UnimplementedError();
+  CarePlanActivityBuilder clone() => throw UnimplementedError();
   @override
-  CarePlanActivity copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? outcomeCodeableConcept,
-    List<Reference>? outcomeReference,
-    List<Annotation>? progress,
-    Reference? reference,
-    CarePlanDetail? detail,
+  CarePlanActivityBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? outcomeCodeableConcept,
+    List<ReferenceBuilder>? outcomeReference,
+    List<AnnotationBuilder>? progress,
+    ReferenceBuilder? reference,
+    CarePlanDetailBuilder? detail,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2499,66 +2214,40 @@ class CarePlanActivity extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CarePlanActivity(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      outcomeCodeableConcept: outcomeCodeableConcept
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.outcomeCodeableConcept',
-                ),
-              )
-              .toList() ??
-          this.outcomeCodeableConcept,
-      outcomeReference: outcomeReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.outcomeReference',
-                ),
-              )
-              .toList() ??
-          this.outcomeReference,
-      progress: progress
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.progress',
-                ),
-              )
-              .toList() ??
-          this.progress,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-      detail: detail?.copyWith(
-            objectPath: '$newObjectPath.detail',
-          ) ??
-          this.detail,
+    final newResult = CarePlanActivityBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      outcomeCodeableConcept:
+          outcomeCodeableConcept ?? this.outcomeCodeableConcept,
+      outcomeReference: outcomeReference ?? this.outcomeReference,
+      progress: progress ?? this.progress,
+      reference: reference ?? this.reference,
+      detail: detail ?? this.detail,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CarePlanActivity) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CarePlanActivityBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2569,31 +2258,31 @@ class CarePlanActivity extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       outcomeCodeableConcept,
       o.outcomeCodeableConcept,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       outcomeReference,
       o.outcomeReference,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       progress,
       o.progress,
     )) {
@@ -2615,15 +2304,15 @@ class CarePlanActivity extends BackboneElement {
   }
 }
 
-/// [CarePlanDetail]
+/// [CarePlanDetailBuilder]
 /// A simple summary of a planned activity suitable for a general care plan
 /// system (e.g. form driven) that doesn't know about specific resources
 /// such as procedure etc.
-class CarePlanDetail extends BackboneElement {
+class CarePlanDetailBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CarePlanDetail]
+  /// [CarePlanDetailBuilder]
 
-  const CarePlanDetail({
+  CarePlanDetailBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2634,7 +2323,7 @@ class CarePlanDetail extends BackboneElement {
     this.reasonCode,
     this.reasonReference,
     this.goal,
-    required this.status,
+    this.status,
     this.statusReason,
     this.doNotPerform,
     this.scheduledX,
@@ -2650,27 +2339,24 @@ class CarePlanDetail extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CarePlanDetail.empty() => CarePlanDetail(
-        status: CarePlanActivityStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory CarePlanDetailBuilder.empty() => CarePlanDetailBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CarePlanDetail.fromJson(
+  factory CarePlanDetailBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'CarePlan.activity.detail';
-    return CarePlanDetail(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CarePlanDetailBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2679,8 +2365,8 @@ class CarePlanDetail extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2688,33 +2374,34 @@ class CarePlanDetail extends BackboneElement {
             ),
           )
           .toList(),
-      kind: JsonParser.parsePrimitive<CarePlanActivityKind>(
+      kind: JsonParser.parsePrimitive<CarePlanActivityKindBuilder>(
         json,
         'kind',
-        CarePlanActivityKind.fromJson,
+        CarePlanActivityKindBuilder.fromJson,
         '$objectPath.kind',
       ),
-      instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
+      instantiatesCanonical:
+          JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'instantiatesCanonical',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.instantiatesCanonical',
       ),
-      instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
+      instantiatesUri: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'instantiatesUri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiatesUri',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -2723,8 +2410,8 @@ class CarePlanDetail extends BackboneElement {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -2733,8 +2420,8 @@ class CarePlanDetail extends BackboneElement {
           )
           .toList(),
       goal: (json['goal'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.goal',
@@ -2742,42 +2429,42 @@ class CarePlanDetail extends BackboneElement {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<CarePlanActivityStatus>(
+      status: JsonParser.parsePrimitive<CarePlanActivityStatusBuilder>(
         json,
         'status',
-        CarePlanActivityStatus.fromJson,
+        CarePlanActivityStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      statusReason: JsonParser.parseObject<CodeableConcept>(
+      ),
+      statusReason: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'statusReason',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.statusReason',
       ),
-      doNotPerform: JsonParser.parsePrimitive<FhirBoolean>(
+      doNotPerform: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'doNotPerform',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.doNotPerform',
       ),
-      scheduledX: JsonParser.parsePolymorphic<ScheduledXCarePlanDetail>(
+      scheduledX: JsonParser.parsePolymorphic<ScheduledXCarePlanDetailBuilder>(
         json,
         {
-          'scheduledTiming': Timing.fromJson,
-          'scheduledPeriod': Period.fromJson,
-          'scheduledString': FhirString.fromJson,
+          'scheduledTiming': TimingBuilder.fromJson,
+          'scheduledPeriod': PeriodBuilder.fromJson,
+          'scheduledString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      location: JsonParser.parseObject<Reference>(
+      location: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'location',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.location',
       ),
       performer: (json['performer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performer',
@@ -2785,51 +2472,51 @@ class CarePlanDetail extends BackboneElement {
             ),
           )
           .toList(),
-      productX: JsonParser.parsePolymorphic<ProductXCarePlanDetail>(
+      productX: JsonParser.parsePolymorphic<ProductXCarePlanDetailBuilder>(
         json,
         {
-          'productCodeableConcept': CodeableConcept.fromJson,
-          'productReference': Reference.fromJson,
+          'productCodeableConcept': CodeableConceptBuilder.fromJson,
+          'productReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
-      dailyAmount: JsonParser.parseObject<Quantity>(
+      dailyAmount: JsonParser.parseObject<QuantityBuilder>(
         json,
         'dailyAmount',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.dailyAmount',
       ),
-      quantity: JsonParser.parseObject<Quantity>(
+      quantity: JsonParser.parseObject<QuantityBuilder>(
         json,
         'quantity',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.quantity',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
     );
   }
 
-  /// Deserialize [CarePlanDetail]
+  /// Deserialize [CarePlanDetailBuilder]
   /// from a [String] or [YamlMap] object
-  factory CarePlanDetail.fromYaml(
+  factory CarePlanDetailBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CarePlanDetail.fromJson(
+      return CarePlanDetailBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CarePlanDetail.fromJson(
+      return CarePlanDetailBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CarePlanDetail '
+        'CarePlanDetailBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2837,16 +2524,16 @@ class CarePlanDetail extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CarePlanDetail]
+  /// [CarePlanDetailBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CarePlanDetail.fromJsonString(
+  factory CarePlanDetailBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CarePlanDetail.fromJson(json);
+      return CarePlanDetailBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2862,101 +2549,102 @@ class CarePlanDetail extends BackboneElement {
   /// in-line definition when a resource is not referenced using
   /// CarePlan.activity.reference. For example, a MedicationRequest, a
   /// ServiceRequest, or a CommunicationRequest.
-  final CarePlanActivityKind? kind;
+  CarePlanActivityKindBuilder? kind;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, questionnaire
   /// or other definition that is adhered to in whole or in part by this
   /// CarePlan activity.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonicalBuilder>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// questionnaire or other definition that is adhered to in whole or in
   /// part by this CarePlan activity.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUriBuilder>? instantiatesUri;
 
   /// [code]
   /// Detailed description of the type of planned activity; e.g. what lab
   /// test, what procedure, what kind of encounter.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [reasonCode]
   /// Provides the rationale that drove the inclusion of this particular
   /// activity as part of the plan or the reason why the activity was
   /// prohibited.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource, such as the health condition(s), whose
   /// existence justifies this request and drove the inclusion of this
   /// particular activity as part of the plan.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [goal]
   /// Internal reference that identifies the goals that this activity is
   /// intended to contribute towards meeting.
-  final List<Reference>? goal;
+  List<ReferenceBuilder>? goal;
 
   /// [status]
   /// Identifies what progress is being made for the specific activity.
-  final CarePlanActivityStatus status;
+  CarePlanActivityStatusBuilder? status;
 
   /// [statusReason]
   /// Provides reason why the activity isn't yet started, is on hold, was
   /// cancelled, etc.
-  final CodeableConcept? statusReason;
+  CodeableConceptBuilder? statusReason;
 
   /// [doNotPerform]
   /// If true, indicates that the described activity is one that must NOT be
   /// engaged in when following the plan. If false, or missing, indicates
   /// that the described activity is one that should be engaged in when
   /// following the plan.
-  final FhirBoolean? doNotPerform;
+  FhirBooleanBuilder? doNotPerform;
 
   /// [scheduledX]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final ScheduledXCarePlanDetail? scheduledX;
+  ScheduledXCarePlanDetailBuilder? scheduledX;
 
-  /// Getter for [scheduledTiming] as a Timing
-  Timing? get scheduledTiming => scheduledX?.isAs<Timing>();
+  /// Getter for [scheduledTiming] as a TimingBuilder
+  TimingBuilder? get scheduledTiming => scheduledX?.isAs<TimingBuilder>();
 
-  /// Getter for [scheduledPeriod] as a Period
-  Period? get scheduledPeriod => scheduledX?.isAs<Period>();
+  /// Getter for [scheduledPeriod] as a PeriodBuilder
+  PeriodBuilder? get scheduledPeriod => scheduledX?.isAs<PeriodBuilder>();
 
-  /// Getter for [scheduledString] as a FhirString
-  FhirString? get scheduledString => scheduledX?.isAs<FhirString>();
+  /// Getter for [scheduledString] as a FhirStringBuilder
+  FhirStringBuilder? get scheduledString =>
+      scheduledX?.isAs<FhirStringBuilder>();
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
   /// hospital, specific clinic, etc.
-  final Reference? location;
+  ReferenceBuilder? location;
 
   /// [performer]
   /// Identifies who's expected to be involved in the activity.
-  final List<Reference>? performer;
+  List<ReferenceBuilder>? performer;
 
   /// [productX]
   /// Identifies the food, drug or other product to be consumed or supplied
   /// in the activity.
-  final ProductXCarePlanDetail? productX;
+  ProductXCarePlanDetailBuilder? productX;
 
-  /// Getter for [productCodeableConcept] as a CodeableConcept
-  CodeableConcept? get productCodeableConcept =>
-      productX?.isAs<CodeableConcept>();
+  /// Getter for [productCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get productCodeableConcept =>
+      productX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [productReference] as a Reference
-  Reference? get productReference => productX?.isAs<Reference>();
+  /// Getter for [productReference] as a ReferenceBuilder
+  ReferenceBuilder? get productReference => productX?.isAs<ReferenceBuilder>();
 
   /// [dailyAmount]
   /// Identifies the quantity expected to be consumed in a given day.
-  final Quantity? dailyAmount;
+  QuantityBuilder? dailyAmount;
 
   /// [quantity]
   /// Identifies the quantity expected to be supplied, administered or
   /// consumed by the subject.
-  final Quantity? quantity;
+  QuantityBuilder? quantity;
 
   /// [description]
   /// This provides a textual description of constraints on the intended
@@ -2964,23 +2652,23 @@ class CarePlanDetail extends BackboneElement {
   /// also include objectives, pre-conditions and end-conditions. Finally, it
   /// may convey specifics about the activity such as body site, method,
   /// route, etc.
-  final FhirString? description;
+  FhirStringBuilder? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2989,99 +2677,39 @@ class CarePlanDetail extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'kind',
-      kind,
-    );
-    addField(
-      'instantiatesCanonical',
-      instantiatesCanonical,
-    );
-    addField(
-      'instantiatesUri',
-      instantiatesUri,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'goal',
-      goal,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusReason',
-      statusReason,
-    );
-    addField(
-      'doNotPerform',
-      doNotPerform,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('kind', kind);
+    addField('instantiatesCanonical', instantiatesCanonical);
+    addField('instantiatesUri', instantiatesUri);
+    addField('code', code);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('goal', goal);
+    addField('status', status);
+    addField('statusReason', statusReason);
+    addField('doNotPerform', doNotPerform);
     if (scheduledX != null) {
       final fhirType = scheduledX!.fhirType;
-      addField(
-        'scheduled${fhirType.capitalize()}',
-        scheduledX,
-      );
+      addField('scheduled${fhirType.capitalize()}', scheduledX);
     }
 
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'performer',
-      performer,
-    );
+    addField('location', location);
+    addField('performer', performer);
     if (productX != null) {
       final fhirType = productX!.fhirType;
-      addField(
-        'product${fhirType.capitalize()}',
-        productX,
-      );
+      addField('product${fhirType.capitalize()}', productX);
     }
 
-    addField(
-      'dailyAmount',
-      dailyAmount,
-    );
-    addField(
-      'quantity',
-      quantity,
-    );
-    addField(
-      'description',
-      description,
-    );
+    addField('dailyAmount', dailyAmount);
+    addField('quantity', quantity);
+    addField('description', description);
     return json;
   }
 
@@ -3115,11 +2743,11 @@ class CarePlanDetail extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3162,7 +2790,9 @@ class CarePlanDetail extends BackboneElement {
           fields.addAll(goal!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'statusReason':
         if (statusReason != null) {
           fields.add(statusReason!);
@@ -3172,19 +2802,23 @@ class CarePlanDetail extends BackboneElement {
           fields.add(doNotPerform!);
         }
       case 'scheduled':
-        fields.add(scheduledX!);
+        if (scheduledX != null) {
+          fields.add(scheduledX!);
+        }
       case 'scheduledX':
-        fields.add(scheduledX!);
+        if (scheduledX != null) {
+          fields.add(scheduledX!);
+        }
       case 'scheduledTiming':
-        if (scheduledX is Timing) {
+        if (scheduledX is TimingBuilder) {
           fields.add(scheduledX!);
         }
       case 'scheduledPeriod':
-        if (scheduledX is Period) {
+        if (scheduledX is PeriodBuilder) {
           fields.add(scheduledX!);
         }
       case 'scheduledString':
-        if (scheduledX is FhirString) {
+        if (scheduledX is FhirStringBuilder) {
           fields.add(scheduledX!);
         }
       case 'location':
@@ -3196,15 +2830,19 @@ class CarePlanDetail extends BackboneElement {
           fields.addAll(performer!);
         }
       case 'product':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productX':
-        fields.add(productX!);
+        if (productX != null) {
+          fields.add(productX!);
+        }
       case 'productCodeableConcept':
-        if (productX is CodeableConcept) {
+        if (productX is CodeableConceptBuilder) {
           fields.add(productX!);
         }
       case 'productReference':
-        if (productX is Reference) {
+        if (productX is ReferenceBuilder) {
           fields.add(productX!);
         }
       case 'dailyAmount':
@@ -3229,7 +2867,7 @@ class CarePlanDetail extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3238,276 +2876,297 @@ class CarePlanDetail extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'kind':
         {
-          if (child is CarePlanActivityKind) {
-            return copyWith(kind: child);
+          if (child is CarePlanActivityKindBuilder) {
+            kind = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            instantiatesCanonical = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
-            return copyWith(instantiatesCanonical: newList);
+            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            instantiatesUri = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
-            return copyWith(instantiatesUri: newList);
+            instantiatesUri = [...(instantiatesUri ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'goal':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?goal, ...child];
-            return copyWith(goal: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            goal = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?goal, child];
-            return copyWith(goal: newList);
+            goal = [...(goal ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CarePlanActivityStatus) {
-            return copyWith(status: child);
+          if (child is CarePlanActivityStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusReason':
         {
-          if (child is CodeableConcept) {
-            return copyWith(statusReason: child);
+          if (child is CodeableConceptBuilder) {
+            statusReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doNotPerform':
         {
-          if (child is FhirBoolean) {
-            return copyWith(doNotPerform: child);
+          if (child is FhirBooleanBuilder) {
+            doNotPerform = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'scheduledX':
         {
-          if (child is ScheduledXCarePlanDetail) {
-            return copyWith(scheduledX: child);
+          if (child is ScheduledXCarePlanDetailBuilder) {
+            scheduledX = child;
+            return;
           } else {
-            if (child is Timing) {
-              return copyWith(scheduledX: child);
+            if (child is TimingBuilder) {
+              scheduledX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(scheduledX: child);
+            if (child is PeriodBuilder) {
+              scheduledX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(scheduledX: child);
+            if (child is FhirStringBuilder) {
+              scheduledX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'scheduledTiming':
         {
-          if (child is Timing) {
-            return copyWith(scheduledX: child);
+          if (child is TimingBuilder) {
+            scheduledX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'scheduledPeriod':
         {
-          if (child is Period) {
-            return copyWith(scheduledX: child);
+          if (child is PeriodBuilder) {
+            scheduledX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'scheduledFhirString':
+      case 'scheduledString':
         {
-          if (child is FhirString) {
-            return copyWith(scheduledX: child);
+          if (child is FhirStringBuilder) {
+            scheduledX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is Reference) {
-            return copyWith(location: child);
+          if (child is ReferenceBuilder) {
+            location = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            performer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
-            return copyWith(performer: newList);
+            performer = [...(performer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'productX':
         {
-          if (child is ProductXCarePlanDetail) {
-            return copyWith(productX: child);
+          if (child is ProductXCarePlanDetailBuilder) {
+            productX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(productX: child);
+            if (child is CodeableConceptBuilder) {
+              productX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(productX: child);
+            if (child is ReferenceBuilder) {
+              productX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'productCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(productX: child);
+          if (child is CodeableConceptBuilder) {
+            productX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'productReference':
         {
-          if (child is Reference) {
-            return copyWith(productX: child);
+          if (child is ReferenceBuilder) {
+            productX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dailyAmount':
         {
-          if (child is Quantity) {
-            return copyWith(dailyAmount: child);
+          if (child is QuantityBuilder) {
+            dailyAmount = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
         {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
+          if (child is QuantityBuilder) {
+            quantity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3523,212 +3182,185 @@ class CarePlanDetail extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'kind':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'instantiatesCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'instantiatesUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'goal':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'statusReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'doNotPerform':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'scheduled':
       case 'scheduledX':
-        return ['Timing', 'Period', 'FhirString'];
+        return ['TimingBuilder', 'PeriodBuilder', 'FhirStringBuilder'];
       case 'scheduledTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'scheduledPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'scheduledString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'location':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'performer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'product':
       case 'productX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'productCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'productReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'dailyAmount':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'quantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CarePlanDetail]
+  /// Creates a new [CarePlanDetailBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CarePlanDetail createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'kind':
         {
-          return copyWith(
-            kind: CarePlanActivityKind.empty(),
-          );
+          kind = CarePlanActivityKindBuilder.empty();
+          return;
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
+          instantiatesCanonical = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'instantiatesUri':
         {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
+          instantiatesUri = <FhirUriBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'goal':
         {
-          return copyWith(
-            goal: <Reference>[],
-          );
+          goal = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CarePlanActivityStatus.empty(),
-          );
+          status = CarePlanActivityStatusBuilder.empty();
+          return;
         }
       case 'statusReason':
         {
-          return copyWith(
-            statusReason: CodeableConcept.empty(),
-          );
+          statusReason = CodeableConceptBuilder.empty();
+          return;
         }
       case 'doNotPerform':
         {
-          return copyWith(
-            doNotPerform: FhirBoolean.empty(),
-          );
+          doNotPerform = FhirBooleanBuilder.empty();
+          return;
         }
       case 'scheduled':
       case 'scheduledX':
       case 'scheduledTiming':
         {
-          return copyWith(
-            scheduledX: Timing.empty(),
-          );
+          scheduledX = TimingBuilder.empty();
+          return;
         }
       case 'scheduledPeriod':
         {
-          return copyWith(
-            scheduledX: Period.empty(),
-          );
+          scheduledX = PeriodBuilder.empty();
+          return;
         }
       case 'scheduledString':
         {
-          return copyWith(
-            scheduledX: FhirString.empty(),
-          );
+          scheduledX = FhirStringBuilder.empty();
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: Reference.empty(),
-          );
+          location = ReferenceBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: <Reference>[],
-          );
+          performer = <ReferenceBuilder>[];
+          return;
         }
       case 'product':
       case 'productX':
       case 'productCodeableConcept':
         {
-          return copyWith(
-            productX: CodeableConcept.empty(),
-          );
+          productX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'productReference':
         {
-          return copyWith(
-            productX: Reference.empty(),
-          );
+          productX = ReferenceBuilder.empty();
+          return;
         }
       case 'dailyAmount':
         {
-          return copyWith(
-            dailyAmount: Quantity.empty(),
-          );
+          dailyAmount = QuantityBuilder.empty();
+          return;
         }
       case 'quantity':
         {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
+          quantity = QuantityBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3737,7 +3369,7 @@ class CarePlanDetail extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CarePlanDetail clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3748,6 +3380,7 @@ class CarePlanDetail extends BackboneElement {
     bool reasonCode = false,
     bool reasonReference = false,
     bool goal = false,
+    bool status = false,
     bool statusReason = false,
     bool doNotPerform = false,
     bool scheduled = false,
@@ -3758,55 +3391,52 @@ class CarePlanDetail extends BackboneElement {
     bool quantity = false,
     bool description = false,
   }) {
-    return CarePlanDetail(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      kind: kind ? null : this.kind,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      code: code ? null : this.code,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      goal: goal ? null : this.goal,
-      status: status,
-      statusReason: statusReason ? null : this.statusReason,
-      doNotPerform: doNotPerform ? null : this.doNotPerform,
-      scheduledX: scheduled ? null : scheduledX,
-      location: location ? null : this.location,
-      performer: performer ? null : this.performer,
-      productX: product ? null : productX,
-      dailyAmount: dailyAmount ? null : this.dailyAmount,
-      quantity: quantity ? null : this.quantity,
-      description: description ? null : this.description,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (kind) this.kind = null;
+    if (instantiatesCanonical) this.instantiatesCanonical = null;
+    if (instantiatesUri) this.instantiatesUri = null;
+    if (code) this.code = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (goal) this.goal = null;
+    if (status) this.status = null;
+    if (statusReason) this.statusReason = null;
+    if (doNotPerform) this.doNotPerform = null;
+    if (scheduled) this.scheduledX = null;
+    if (location) this.location = null;
+    if (performer) this.performer = null;
+    if (product) this.productX = null;
+    if (dailyAmount) this.dailyAmount = null;
+    if (quantity) this.quantity = null;
+    if (description) this.description = null;
   }
 
   @override
-  CarePlanDetail clone() => throw UnimplementedError();
+  CarePlanDetailBuilder clone() => throw UnimplementedError();
   @override
-  CarePlanDetail copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CarePlanActivityKind? kind,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    CodeableConcept? code,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Reference>? goal,
-    CarePlanActivityStatus? status,
-    CodeableConcept? statusReason,
-    FhirBoolean? doNotPerform,
-    ScheduledXCarePlanDetail? scheduledX,
-    Reference? location,
-    List<Reference>? performer,
-    ProductXCarePlanDetail? productX,
-    Quantity? dailyAmount,
-    Quantity? quantity,
-    FhirString? description,
+  CarePlanDetailBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CarePlanActivityKindBuilder? kind,
+    List<FhirCanonicalBuilder>? instantiatesCanonical,
+    List<FhirUriBuilder>? instantiatesUri,
+    CodeableConceptBuilder? code,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<ReferenceBuilder>? goal,
+    CarePlanActivityStatusBuilder? status,
+    CodeableConceptBuilder? statusReason,
+    FhirBooleanBuilder? doNotPerform,
+    ScheduledXCarePlanDetailBuilder? scheduledX,
+    ReferenceBuilder? location,
+    List<ReferenceBuilder>? performer,
+    ProductXCarePlanDetailBuilder? productX,
+    QuantityBuilder? dailyAmount,
+    QuantityBuilder? quantity,
+    FhirStringBuilder? description,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3814,126 +3444,52 @@ class CarePlanDetail extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CarePlanDetail(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      kind: kind?.copyWith(
-            objectPath: '$newObjectPath.kind',
-          ) ??
-          this.kind,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      goal: goal
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.goal',
-                ),
-              )
-              .toList() ??
-          this.goal,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusReason: statusReason?.copyWith(
-            objectPath: '$newObjectPath.statusReason',
-          ) ??
-          this.statusReason,
-      doNotPerform: doNotPerform?.copyWith(
-            objectPath: '$newObjectPath.doNotPerform',
-          ) ??
-          this.doNotPerform,
-      scheduledX: scheduledX?.copyWith(
-            objectPath: '$newObjectPath.scheduledX',
-          ) as ScheduledXCarePlanDetail? ??
-          this.scheduledX,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      productX: productX?.copyWith(
-            objectPath: '$newObjectPath.productX',
-          ) as ProductXCarePlanDetail? ??
-          this.productX,
-      dailyAmount: dailyAmount?.copyWith(
-            objectPath: '$newObjectPath.dailyAmount',
-          ) ??
-          this.dailyAmount,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
+    final newResult = CarePlanDetailBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      kind: kind ?? this.kind,
+      instantiatesCanonical:
+          instantiatesCanonical ?? this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
+      code: code ?? this.code,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      goal: goal ?? this.goal,
+      status: status ?? this.status,
+      statusReason: statusReason ?? this.statusReason,
+      doNotPerform: doNotPerform ?? this.doNotPerform,
+      scheduledX: scheduledX ?? this.scheduledX,
+      location: location ?? this.location,
+      performer: performer ?? this.performer,
+      productX: productX ?? this.productX,
+      dailyAmount: dailyAmount ?? this.dailyAmount,
+      quantity: quantity ?? this.quantity,
+      description: description ?? this.description,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CarePlanDetail) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CarePlanDetailBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3944,13 +3500,13 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3962,13 +3518,13 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       instantiatesCanonical,
       o.instantiatesCanonical,
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       instantiatesUri,
       o.instantiatesUri,
     )) {
@@ -3980,19 +3536,19 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       goal,
       o.goal,
     )) {
@@ -4028,7 +3584,7 @@ class CarePlanDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       performer,
       o.performer,
     )) {

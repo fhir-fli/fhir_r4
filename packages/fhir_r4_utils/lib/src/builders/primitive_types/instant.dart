@@ -69,7 +69,7 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'DateTime',
+    String? objectPath = 'DateTime',
   }) {
     // If you need any specialized logic, do it here.
     // Otherwise, just pass everything to the private constructor:
@@ -180,7 +180,7 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Creates empty [FhirInstantBuilder] object
   factory FhirInstantBuilder.empty() => FhirInstantBuilder.fromBase(

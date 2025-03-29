@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Whether an operation parameter is an input or an output parameter.
-class OperationParameterUse extends FhirCodeEnum {
+class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  OperationParameterUse._({
+  OperationParameterUseBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class OperationParameterUse extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory OperationParameterUse(
+  factory OperationParameterUseBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return OperationParameterUse._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return OperationParameterUseBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,64 +43,68 @@ class OperationParameterUse extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [OperationParameterUse] with element only
-  factory OperationParameterUse.empty() =>
-      OperationParameterUse._(validatedValue: '');
+  /// Create empty [OperationParameterUseBuilder] with element only
+  factory OperationParameterUseBuilder.empty() =>
+      OperationParameterUseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [OperationParameterUse] from JSON.
-  factory OperationParameterUse.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [OperationParameterUseBuilder] from JSON.
+  factory OperationParameterUseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OperationParameterUse.elementOnly.withElement(element);
+      return OperationParameterUseBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'OperationParameterUse cannot be constructed from JSON.',
+        'OperationParameterUseBuilder cannot be constructed from JSON.',
       );
     }
-    return OperationParameterUse._(
+    return OperationParameterUseBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// in_
-  static final OperationParameterUse in_ = OperationParameterUse._(
+  static OperationParameterUseBuilder in_ = OperationParameterUseBuilder._(
     validatedValue: 'in',
-    system: 'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In'.toFhirStringBuilder,
   );
 
   /// out
-  static final OperationParameterUse out = OperationParameterUse._(
+  static OperationParameterUseBuilder out = OperationParameterUseBuilder._(
     validatedValue: 'out',
-    system: 'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Out'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Out'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final OperationParameterUse elementOnly =
-      OperationParameterUse._(validatedValue: '');
+  static OperationParameterUseBuilder elementOnly =
+      OperationParameterUseBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<OperationParameterUse> values = [
+  static List<OperationParameterUseBuilder> values = [
     in_,
     out,
   ];
 
   /// Clones the current instance
   @override
-  OperationParameterUse clone() => OperationParameterUse._(
+  OperationParameterUseBuilder clone() => OperationParameterUseBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  OperationParameterUse withElement(Element? newElement) {
-    return OperationParameterUse._(validatedValue: value, element: newElement);
+  OperationParameterUseBuilder withElement(ElementBuilder? newElement) {
+    return OperationParameterUseBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,11 +120,11 @@ class OperationParameterUse extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  OperationParameterUse copyWith({
+  OperationParameterUseBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -131,7 +135,7 @@ class OperationParameterUse extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return OperationParameterUse._(
+    return OperationParameterUseBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -141,7 +145,7 @@ class OperationParameterUse extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Possible group measure aggregates (E.g. Mean, Median).
-class GroupMeasure extends FhirCodeEnum {
+class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  GroupMeasure._({
+  GroupMeasureBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory GroupMeasure(
+  factory GroupMeasureBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return GroupMeasure._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return GroupMeasureBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,80 +43,83 @@ class GroupMeasure extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [GroupMeasure] with element only
-  factory GroupMeasure.empty() => GroupMeasure._(validatedValue: '');
+  /// Create empty [GroupMeasureBuilder] with element only
+  factory GroupMeasureBuilder.empty() =>
+      GroupMeasureBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GroupMeasure] from JSON.
-  factory GroupMeasure.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GroupMeasureBuilder] from JSON.
+  factory GroupMeasureBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupMeasure.elementOnly.withElement(element);
+      return GroupMeasureBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'GroupMeasure cannot be constructed from JSON.',
+        'GroupMeasureBuilder cannot be constructed from JSON.',
       );
     }
-    return GroupMeasure._(
+    return GroupMeasureBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// mean
-  static final GroupMeasure mean = GroupMeasure._(
+  static GroupMeasureBuilder mean = GroupMeasureBuilder._(
     validatedValue: 'mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mean'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Mean'.toFhirStringBuilder,
   );
 
   /// median
-  static final GroupMeasure median = GroupMeasure._(
+  static GroupMeasureBuilder median = GroupMeasureBuilder._(
     validatedValue: 'median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Median'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Median'.toFhirStringBuilder,
   );
 
   /// mean_of_mean
-  static final GroupMeasure mean_of_mean = GroupMeasure._(
+  static GroupMeasureBuilder mean_of_mean = GroupMeasureBuilder._(
     validatedValue: 'mean-of-mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mean of Study Means'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Mean of Study Means'.toFhirStringBuilder,
   );
 
   /// mean_of_median
-  static final GroupMeasure mean_of_median = GroupMeasure._(
+  static GroupMeasureBuilder mean_of_median = GroupMeasureBuilder._(
     validatedValue: 'mean-of-median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mean of Study Medins'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Mean of Study Medins'.toFhirStringBuilder,
   );
 
   /// median_of_mean
-  static final GroupMeasure median_of_mean = GroupMeasure._(
+  static GroupMeasureBuilder median_of_mean = GroupMeasureBuilder._(
     validatedValue: 'median-of-mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Median of Study Means'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Median of Study Means'.toFhirStringBuilder,
   );
 
   /// median_of_median
-  static final GroupMeasure median_of_median = GroupMeasure._(
+  static GroupMeasureBuilder median_of_median = GroupMeasureBuilder._(
     validatedValue: 'median-of-median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Median of Study Medians'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Median of Study Medians'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final GroupMeasure elementOnly = GroupMeasure._(validatedValue: '');
+  static GroupMeasureBuilder elementOnly =
+      GroupMeasureBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<GroupMeasure> values = [
+  static List<GroupMeasureBuilder> values = [
     mean,
     median,
     mean_of_mean,
@@ -127,14 +130,14 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  GroupMeasure clone() => GroupMeasure._(
+  GroupMeasureBuilder clone() => GroupMeasureBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  GroupMeasure withElement(Element? newElement) {
-    return GroupMeasure._(validatedValue: value, element: newElement);
+  GroupMeasureBuilder withElement(ElementBuilder? newElement) {
+    return GroupMeasureBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,11 +153,11 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  GroupMeasure copyWith({
+  GroupMeasureBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -165,7 +168,7 @@ class GroupMeasure extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return GroupMeasure._(
+    return GroupMeasureBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -175,7 +178,7 @@ class GroupMeasure extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

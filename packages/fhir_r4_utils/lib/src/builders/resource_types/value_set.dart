@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ValueSet]
+/// [ValueSetBuilder]
 /// A ValueSet resource instance specifies a set of codes drawn from one or
 /// more code systems, intended for use in a particular context. Value sets
 /// link between [CodeSystem](codesystem.html) definitions and their use in
 /// [coded elements](terminologies.html).
-class ValueSet extends CanonicalResource {
+class ValueSetBuilder extends CanonicalResourceBuilder {
   /// Primary constructor for
-  /// [ValueSet]
+  /// [ValueSetBuilder]
 
-  const ValueSet({
+  ValueSetBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -25,7 +27,7 @@ class ValueSet extends CanonicalResource {
     super.version,
     this.name,
     this.title,
-    required super.status,
+    super.status,
     super.experimental,
     super.date,
     super.publisher,
@@ -44,51 +46,48 @@ class ValueSet extends CanonicalResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSet.empty() => ValueSet(
-        status: PublicationStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ValueSetBuilder.empty() => ValueSetBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSet.fromJson(
+  factory ValueSetBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet';
-    return ValueSet(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -97,8 +96,8 @@ class ValueSet extends CanonicalResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -107,8 +106,8 @@ class ValueSet extends CanonicalResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -116,15 +115,15 @@ class ValueSet extends CanonicalResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -132,51 +131,51 @@ class ValueSet extends CanonicalResource {
             ),
           )
           .toList(),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+      experimental: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'experimental',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.experimental',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -184,15 +183,15 @@ class ValueSet extends CanonicalResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -201,8 +200,8 @@ class ValueSet extends CanonicalResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -210,55 +209,55 @@ class ValueSet extends CanonicalResource {
             ),
           )
           .toList(),
-      immutable: JsonParser.parsePrimitive<FhirBoolean>(
+      immutable: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'immutable',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.immutable',
       ),
-      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+      purpose: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'purpose',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
-      compose: JsonParser.parseObject<ValueSetCompose>(
+      compose: JsonParser.parseObject<ValueSetComposeBuilder>(
         json,
         'compose',
-        ValueSetCompose.fromJson,
+        ValueSetComposeBuilder.fromJson,
         '$objectPath.compose',
       ),
-      expansion: JsonParser.parseObject<ValueSetExpansion>(
+      expansion: JsonParser.parseObject<ValueSetExpansionBuilder>(
         json,
         'expansion',
-        ValueSetExpansion.fromJson,
+        ValueSetExpansionBuilder.fromJson,
         '$objectPath.expansion',
       ),
     );
   }
 
-  /// Deserialize [ValueSet]
+  /// Deserialize [ValueSetBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSet.fromYaml(
+  factory ValueSetBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSet.fromJson(
+      return ValueSetBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSet.fromJson(
+      return ValueSetBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSet '
+        'ValueSetBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -266,16 +265,16 @@ class ValueSet extends CanonicalResource {
   }
 
   /// Factory constructor for
-  /// [ValueSet]
+  /// [ValueSetBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSet.fromJsonString(
+  factory ValueSetBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSet.fromJson(json);
+      return ValueSetBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -289,62 +288,62 @@ class ValueSet extends CanonicalResource {
   /// A formal identifier that is used to identify this value set when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [name]
   /// A natural language name identifying the value set. This name should be
   /// usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the value set.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [immutable]
   /// If this is set to 'true', then no new versions of the content logical
   /// definition can be created. Note: Other metadata might still change.
-  final FhirBoolean? immutable;
+  FhirBooleanBuilder? immutable;
 
   /// [purpose]
   /// Explanation of why this value set is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdownBuilder? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the value set and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the value set.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
 
   /// [compose]
   /// A set of criteria that define the contents of the value set by
   /// including or excluding codes selected from the specified code system(s)
   /// that the value set draws from. This is also known as the Content
   /// Logical Definition (CLD).
-  final ValueSetCompose? compose;
+  ValueSetComposeBuilder? compose;
 
   /// [expansion]
   /// A value set can also be "expanded", where the value set is turned into
   /// a simple collection of enumerated codes. This element holds the
   /// expansion, if it has been performed.
-  final ValueSetExpansion? expansion;
+  ValueSetExpansionBuilder? expansion;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -353,116 +352,38 @@ class ValueSet extends CanonicalResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'immutable',
-      immutable,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
-    addField(
-      'compose',
-      compose,
-    );
-    addField(
-      'expansion',
-      expansion,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('identifier', identifier);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('immutable', immutable);
+    addField('purpose', purpose);
+    addField('copyright', copyright);
+    addField('compose', compose);
+    addField('expansion', expansion);
     return json;
   }
 
@@ -502,11 +423,11 @@ class ValueSet extends CanonicalResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -622,7 +543,7 @@ class ValueSet extends CanonicalResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -631,263 +552,281 @@ class ValueSet extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
         {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
+          if (child is FhirBooleanBuilder) {
+            experimental = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'immutable':
         {
-          if (child is FhirBoolean) {
-            return copyWith(immutable: child);
+          if (child is FhirBooleanBuilder) {
+            immutable = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
+          if (child is FhirMarkdownBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'compose':
         {
-          if (child is ValueSetCompose) {
-            return copyWith(compose: child);
+          if (child is ValueSetComposeBuilder) {
+            compose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expansion':
         {
-          if (child is ValueSetExpansion) {
-            return copyWith(expansion: child);
+          if (child is ValueSetExpansionBuilder) {
+            expansion = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -903,226 +842,196 @@ class ValueSet extends CanonicalResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'experimental':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'immutable':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'purpose':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'compose':
-        return ['ValueSetCompose'];
+        return ['ValueSetComposeBuilder'];
       case 'expansion':
-        return ['ValueSetExpansion'];
+        return ['ValueSetExpansionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSet]
+  /// Creates a new [ValueSetBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSet createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'experimental':
         {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
+          experimental = FhirBooleanBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'immutable':
         {
-          return copyWith(
-            immutable: FhirBoolean.empty(),
-          );
+          immutable = FhirBooleanBuilder.empty();
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
+          purpose = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'compose':
         {
-          return copyWith(
-            compose: ValueSetCompose.empty(),
-          );
+          compose = ValueSetComposeBuilder.empty();
+          return;
         }
       case 'expansion':
         {
-          return copyWith(
-            expansion: ValueSetExpansion.empty(),
-          );
+          expansion = ValueSetExpansionBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1131,7 +1040,7 @@ class ValueSet extends CanonicalResource {
 
   /// Clears specific fields in this object
   @override
-  ValueSet clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1145,6 +1054,7 @@ class ValueSet extends CanonicalResource {
     bool version = false,
     bool name = false,
     bool title = false,
+    bool status = false,
     bool experimental = false,
     bool date = false,
     bool publisher = false,
@@ -1158,205 +1068,121 @@ class ValueSet extends CanonicalResource {
     bool compose = false,
     bool expansion = false,
   }) {
-    return ValueSet(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      immutable: immutable ? null : this.immutable,
-      purpose: purpose ? null : this.purpose,
-      copyright: copyright ? null : this.copyright,
-      compose: compose ? null : this.compose,
-      expansion: expansion ? null : this.expansion,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (identifier) this.identifier = null;
+    if (version) this.version = null;
+    if (name) this.name = null;
+    if (title) this.title = null;
+    if (status) this.status = null;
+    if (experimental) this.experimental = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (description) this.description = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (immutable) this.immutable = null;
+    if (purpose) this.purpose = null;
+    if (copyright) this.copyright = null;
+    if (compose) this.compose = null;
+    if (expansion) this.expansion = null;
   }
 
   @override
-  ValueSet clone() => throw UnimplementedError();
+  ValueSetBuilder clone() => throw UnimplementedError();
   @override
-  ValueSet copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirBoolean? immutable,
-    FhirMarkdown? purpose,
-    FhirMarkdown? copyright,
-    ValueSetCompose? compose,
-    ValueSetExpansion? expansion,
+  ValueSetBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? url,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? version,
+    FhirStringBuilder? name,
+    FhirStringBuilder? title,
+    PublicationStatusBuilder? status,
+    FhirBooleanBuilder? experimental,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirMarkdownBuilder? description,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirBooleanBuilder? immutable,
+    FhirMarkdownBuilder? purpose,
+    FhirMarkdownBuilder? copyright,
+    ValueSetComposeBuilder? compose,
+    ValueSetExpansionBuilder? expansion,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return ValueSet(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ValueSetBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      immutable: immutable?.copyWith(
-            objectPath: '$newObjectPath.immutable',
-          ) ??
-          this.immutable,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      compose: compose?.copyWith(
-            objectPath: '$newObjectPath.compose',
-          ) ??
-          this.compose,
-      expansion: expansion?.copyWith(
-            objectPath: '$newObjectPath.expansion',
-          ) ??
-          this.expansion,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      identifier: identifier ?? this.identifier,
+      version: version ?? this.version,
+      name: name ?? this.name,
+      title: title ?? this.title,
+      status: status ?? this.status,
+      experimental: experimental ?? this.experimental,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      description: description ?? this.description,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      immutable: immutable ?? this.immutable,
+      purpose: purpose ?? this.purpose,
+      copyright: copyright ?? this.copyright,
+      compose: compose ?? this.compose,
+      expansion: expansion ?? this.expansion,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSet) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1391,19 +1217,19 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1415,7 +1241,7 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1463,7 +1289,7 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -1475,13 +1301,13 @@ class ValueSet extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -1521,22 +1347,22 @@ class ValueSet extends CanonicalResource {
   }
 }
 
-/// [ValueSetCompose]
+/// [ValueSetComposeBuilder]
 /// A set of criteria that define the contents of the value set by
 /// including or excluding codes selected from the specified code system(s)
 /// that the value set draws from. This is also known as the Content
 /// Logical Definition (CLD).
-class ValueSetCompose extends BackboneElement {
+class ValueSetComposeBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetCompose]
+  /// [ValueSetComposeBuilder]
 
-  const ValueSetCompose({
+  ValueSetComposeBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.lockedDate,
     this.inactive,
-    required this.include,
+    this.include,
     this.exclude,
     super.disallowExtensions,
   }) : super(
@@ -1544,27 +1370,24 @@ class ValueSetCompose extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetCompose.empty() => const ValueSetCompose(
-        include: <ValueSetInclude>[],
-      );
+  /// For Builder classes, no fields are required
+  factory ValueSetComposeBuilder.empty() => ValueSetComposeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetCompose.fromJson(
+  factory ValueSetComposeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.compose';
-    return ValueSetCompose(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetComposeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1573,8 +1396,8 @@ class ValueSetCompose extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1582,21 +1405,21 @@ class ValueSetCompose extends BackboneElement {
             ),
           )
           .toList(),
-      lockedDate: JsonParser.parsePrimitive<FhirDate>(
+      lockedDate: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'lockedDate',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.lockedDate',
       ),
-      inactive: JsonParser.parsePrimitive<FhirBoolean>(
+      inactive: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'inactive',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.inactive',
       ),
-      include: (json['include'] as List<dynamic>)
-          .map<ValueSetInclude>(
-            (v) => ValueSetInclude.fromJson(
+      include: (json['include'] as List<dynamic>?)
+          ?.map<ValueSetIncludeBuilder>(
+            (v) => ValueSetIncludeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.include',
@@ -1605,8 +1428,8 @@ class ValueSetCompose extends BackboneElement {
           )
           .toList(),
       exclude: (json['exclude'] as List<dynamic>?)
-          ?.map<ValueSetInclude>(
-            (v) => ValueSetInclude.fromJson(
+          ?.map<ValueSetIncludeBuilder>(
+            (v) => ValueSetIncludeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.exclude',
@@ -1617,22 +1440,22 @@ class ValueSetCompose extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetCompose]
+  /// Deserialize [ValueSetComposeBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetCompose.fromYaml(
+  factory ValueSetComposeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetCompose.fromJson(
+      return ValueSetComposeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetCompose.fromJson(
+      return ValueSetComposeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetCompose '
+        'ValueSetComposeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1640,16 +1463,16 @@ class ValueSetCompose extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetCompose]
+  /// [ValueSetComposeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetCompose.fromJsonString(
+  factory ValueSetComposeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetCompose.fromJson(json);
+      return ValueSetComposeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1664,7 +1487,7 @@ class ValueSetCompose extends BackboneElement {
   /// version of all referenced Code Systems and Value Set Definitions
   /// included in the compose that are not already tied to a specific
   /// version.
-  final FhirDate? lockedDate;
+  FhirDateBuilder? lockedDate;
 
   /// [inactive]
   /// Whether inactive codes - codes that are not approved for current use -
@@ -1673,32 +1496,32 @@ class ValueSetCompose extends BackboneElement {
   /// not be included in the expansion. If absent, the behavior is determined
   /// by the implementation, or by the applicable $expand parameters (but
   /// generally, inactive codes would be expected to be included).
-  final FhirBoolean? inactive;
+  FhirBooleanBuilder? inactive;
 
   /// [include]
   /// Include one or more codes from a code system or other value set(s).
-  final List<ValueSetInclude> include;
+  List<ValueSetIncludeBuilder>? include;
 
   /// [exclude]
   /// Exclude one or more codes from the value set based on code system
   /// filters and/or other value sets.
-  final List<ValueSetInclude>? exclude;
+  List<ValueSetIncludeBuilder>? exclude;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1707,39 +1530,18 @@ class ValueSetCompose extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'lockedDate',
-      lockedDate,
-    );
-    addField(
-      'inactive',
-      inactive,
-    );
-    addField(
-      'include',
-      include,
-    );
-    addField(
-      'exclude',
-      exclude,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('lockedDate', lockedDate);
+    addField('inactive', inactive);
+    addField('include', include);
+    addField('exclude', exclude);
     return json;
   }
 
@@ -1760,11 +1562,11 @@ class ValueSetCompose extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1787,7 +1589,9 @@ class ValueSetCompose extends BackboneElement {
           fields.add(inactive!);
         }
       case 'include':
-        fields.addAll(include);
+        if (include != null) {
+          fields.addAll(include!);
+        }
       case 'exclude':
         if (exclude != null) {
           fields.addAll(exclude!);
@@ -1802,7 +1606,7 @@ class ValueSetCompose extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1811,93 +1615,95 @@ class ValueSetCompose extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lockedDate':
         {
-          if (child is FhirDate) {
-            return copyWith(lockedDate: child);
+          if (child is FhirDateBuilder) {
+            lockedDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'inactive':
         {
-          if (child is FhirBoolean) {
-            return copyWith(inactive: child);
+          if (child is FhirBooleanBuilder) {
+            inactive = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'include':
         {
-          if (child is List<ValueSetInclude>) {
-            // Add all elements from passed list
-            final newList = [...include, ...child];
-            return copyWith(include: newList);
-          } else if (child is ValueSetInclude) {
+          if (child is List<ValueSetIncludeBuilder>) {
+            // Replace or create new list
+            include = child;
+            return;
+          } else if (child is ValueSetIncludeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...include, child];
-            return copyWith(include: newList);
+            include = [...(include ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'exclude':
         {
-          if (child is List<ValueSetInclude>) {
-            // Add all elements from passed list
-            final newList = [...?exclude, ...child];
-            return copyWith(exclude: newList);
-          } else if (child is ValueSetInclude) {
+          if (child is List<ValueSetIncludeBuilder>) {
+            // Replace or create new list
+            exclude = child;
+            return;
+          } else if (child is ValueSetIncludeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?exclude, child];
-            return copyWith(exclude: newList);
+            exclude = [...(exclude ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1913,74 +1719,63 @@ class ValueSetCompose extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'lockedDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'inactive':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'include':
-        return ['ValueSetInclude'];
+        return ['ValueSetIncludeBuilder'];
       case 'exclude':
-        return ['ValueSetInclude'];
+        return ['ValueSetIncludeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetCompose]
+  /// Creates a new [ValueSetComposeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetCompose createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'lockedDate':
         {
-          return copyWith(
-            lockedDate: FhirDate.empty(),
-          );
+          lockedDate = FhirDateBuilder.empty();
+          return;
         }
       case 'inactive':
         {
-          return copyWith(
-            inactive: FhirBoolean.empty(),
-          );
+          inactive = FhirBooleanBuilder.empty();
+          return;
         }
       case 'include':
         {
-          return copyWith(
-            include: <ValueSetInclude>[],
-          );
+          include = <ValueSetIncludeBuilder>[];
+          return;
         }
       case 'exclude':
         {
-          return copyWith(
-            exclude: <ValueSetInclude>[],
-          );
+          exclude = <ValueSetIncludeBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1989,36 +1784,35 @@ class ValueSetCompose extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetCompose clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool lockedDate = false,
     bool inactive = false,
+    bool include = false,
     bool exclude = false,
   }) {
-    return ValueSetCompose(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      lockedDate: lockedDate ? null : this.lockedDate,
-      inactive: inactive ? null : this.inactive,
-      include: include,
-      exclude: exclude ? null : this.exclude,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (lockedDate) this.lockedDate = null;
+    if (inactive) this.inactive = null;
+    if (include) this.include = null;
+    if (exclude) this.exclude = null;
   }
 
   @override
-  ValueSetCompose clone() => throw UnimplementedError();
+  ValueSetComposeBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetCompose copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirDate? lockedDate,
-    FhirBoolean? inactive,
-    List<ValueSetInclude>? include,
-    List<ValueSetInclude>? exclude,
+  ValueSetComposeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirDateBuilder? lockedDate,
+    FhirBooleanBuilder? inactive,
+    List<ValueSetIncludeBuilder>? include,
+    List<ValueSetIncludeBuilder>? exclude,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2026,58 +1820,38 @@ class ValueSetCompose extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetCompose(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      lockedDate: lockedDate?.copyWith(
-            objectPath: '$newObjectPath.lockedDate',
-          ) ??
-          this.lockedDate,
-      inactive: inactive?.copyWith(
-            objectPath: '$newObjectPath.inactive',
-          ) ??
-          this.inactive,
-      include: include
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.include',
-                ),
-              )
-              .toList() ??
-          this.include,
-      exclude: exclude
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.exclude',
-                ),
-              )
-              .toList() ??
-          this.exclude,
+    final newResult = ValueSetComposeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      lockedDate: lockedDate ?? this.lockedDate,
+      inactive: inactive ?? this.inactive,
+      include: include ?? this.include,
+      exclude: exclude ?? this.exclude,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetCompose) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetComposeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2088,13 +1862,13 @@ class ValueSetCompose extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2112,13 +1886,13 @@ class ValueSetCompose extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ValueSetInclude>(
+    if (!listEquals<ValueSetIncludeBuilder>(
       include,
       o.include,
     )) {
       return false;
     }
-    if (!listEquals<ValueSetInclude>(
+    if (!listEquals<ValueSetIncludeBuilder>(
       exclude,
       o.exclude,
     )) {
@@ -2128,13 +1902,13 @@ class ValueSetCompose extends BackboneElement {
   }
 }
 
-/// [ValueSetInclude]
+/// [ValueSetIncludeBuilder]
 /// Include one or more codes from a code system or other value set(s).
-class ValueSetInclude extends BackboneElement {
+class ValueSetIncludeBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetInclude]
+  /// [ValueSetIncludeBuilder]
 
-  const ValueSetInclude({
+  ValueSetIncludeBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2149,25 +1923,24 @@ class ValueSetInclude extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetInclude.empty() => const ValueSetInclude();
+  /// For Builder classes, no fields are required
+  factory ValueSetIncludeBuilder.empty() => ValueSetIncludeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetInclude.fromJson(
+  factory ValueSetIncludeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.compose.include';
-    return ValueSetInclude(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetIncludeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2176,8 +1949,8 @@ class ValueSetInclude extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2185,21 +1958,21 @@ class ValueSetInclude extends BackboneElement {
             ),
           )
           .toList(),
-      system: JsonParser.parsePrimitive<FhirUri>(
+      system: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'system',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.system',
       ),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
       concept: (json['concept'] as List<dynamic>?)
-          ?.map<ValueSetConcept>(
-            (v) => ValueSetConcept.fromJson(
+          ?.map<ValueSetConceptBuilder>(
+            (v) => ValueSetConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.concept',
@@ -2208,8 +1981,8 @@ class ValueSetInclude extends BackboneElement {
           )
           .toList(),
       filter: (json['filter'] as List<dynamic>?)
-          ?.map<ValueSetFilter>(
-            (v) => ValueSetFilter.fromJson(
+          ?.map<ValueSetFilterBuilder>(
+            (v) => ValueSetFilterBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.filter',
@@ -2217,31 +1990,31 @@ class ValueSetInclude extends BackboneElement {
             ),
           )
           .toList(),
-      valueSet: JsonParser.parsePrimitiveList<FhirCanonical>(
+      valueSet: JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'valueSet',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.valueSet',
       ),
     );
   }
 
-  /// Deserialize [ValueSetInclude]
+  /// Deserialize [ValueSetIncludeBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetInclude.fromYaml(
+  factory ValueSetIncludeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetInclude.fromJson(
+      return ValueSetIncludeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetInclude.fromJson(
+      return ValueSetIncludeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetInclude '
+        'ValueSetIncludeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2249,16 +2022,16 @@ class ValueSetInclude extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetInclude]
+  /// [ValueSetIncludeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetInclude.fromJsonString(
+  factory ValueSetIncludeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetInclude.fromJson(json);
+      return ValueSetIncludeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2271,46 +2044,46 @@ class ValueSetInclude extends BackboneElement {
   /// [system]
   /// An absolute URI which is the code system from which the selected codes
   /// come from.
-  final FhirUri? system;
+  FhirUriBuilder? system;
 
   /// [version]
   /// The version of the code system that the codes are selected from, or the
   /// special version '*' for all versions.
-  final FhirString? version;
+  FhirStringBuilder? version;
 
   /// [concept]
   /// Specifies a concept to be included or excluded.
-  final List<ValueSetConcept>? concept;
+  List<ValueSetConceptBuilder>? concept;
 
   /// [filter]
   /// Select concepts by specify a matching criterion based on the properties
   /// (including relationships) defined by the system, or on filters defined
   /// by the system. If multiple filters are specified, they SHALL all be
   /// true.
-  final List<ValueSetFilter>? filter;
+  List<ValueSetFilterBuilder>? filter;
 
   /// [valueSet]
   /// Selects the concepts found in this value set (based on its value set
   /// definition). This is an absolute URI that is a reference to
   /// ValueSet.url. If multiple value sets are specified this includes the
   /// union of the contents of all of the referenced value sets.
-  final List<FhirCanonical>? valueSet;
+  List<FhirCanonicalBuilder>? valueSet;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2319,43 +2092,19 @@ class ValueSetInclude extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'system',
-      system,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'concept',
-      concept,
-    );
-    addField(
-      'filter',
-      filter,
-    );
-    addField(
-      'valueSet',
-      valueSet,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('system', system);
+    addField('version', version);
+    addField('concept', concept);
+    addField('filter', filter);
+    addField('valueSet', valueSet);
     return json;
   }
 
@@ -2377,11 +2126,11 @@ class ValueSetInclude extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2425,7 +2174,7 @@ class ValueSetInclude extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2434,107 +2183,109 @@ class ValueSetInclude extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'system':
         {
-          if (child is FhirUri) {
-            return copyWith(system: child);
+          if (child is FhirUriBuilder) {
+            system = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'concept':
         {
-          if (child is List<ValueSetConcept>) {
-            // Add all elements from passed list
-            final newList = [...?concept, ...child];
-            return copyWith(concept: newList);
-          } else if (child is ValueSetConcept) {
+          if (child is List<ValueSetConceptBuilder>) {
+            // Replace or create new list
+            concept = child;
+            return;
+          } else if (child is ValueSetConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?concept, child];
-            return copyWith(concept: newList);
+            concept = [...(concept ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'filter':
         {
-          if (child is List<ValueSetFilter>) {
-            // Add all elements from passed list
-            final newList = [...?filter, ...child];
-            return copyWith(filter: newList);
-          } else if (child is ValueSetFilter) {
+          if (child is List<ValueSetFilterBuilder>) {
+            // Replace or create new list
+            filter = child;
+            return;
+          } else if (child is ValueSetFilterBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?filter, child];
-            return copyWith(filter: newList);
+            filter = [...(filter ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSet':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?valueSet, ...child];
-            return copyWith(valueSet: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            valueSet = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?valueSet, child];
-            return copyWith(valueSet: newList);
+            valueSet = [...(valueSet ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2550,82 +2301,70 @@ class ValueSetInclude extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'system':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'concept':
-        return ['ValueSetConcept'];
+        return ['ValueSetConceptBuilder'];
       case 'filter':
-        return ['ValueSetFilter'];
+        return ['ValueSetFilterBuilder'];
       case 'valueSet':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetInclude]
+  /// Creates a new [ValueSetIncludeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetInclude createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'system':
         {
-          return copyWith(
-            system: FhirUri.empty(),
-          );
+          system = FhirUriBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'concept':
         {
-          return copyWith(
-            concept: <ValueSetConcept>[],
-          );
+          concept = <ValueSetConceptBuilder>[];
+          return;
         }
       case 'filter':
         {
-          return copyWith(
-            filter: <ValueSetFilter>[],
-          );
+          filter = <ValueSetFilterBuilder>[];
+          return;
         }
       case 'valueSet':
         {
-          return copyWith(
-            valueSet: <FhirCanonical>[],
-          );
+          valueSet = <FhirCanonicalBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2634,7 +2373,7 @@ class ValueSetInclude extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetInclude clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2644,30 +2383,28 @@ class ValueSetInclude extends BackboneElement {
     bool filter = false,
     bool valueSet = false,
   }) {
-    return ValueSetInclude(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      system: system ? null : this.system,
-      version: version ? null : this.version,
-      concept: concept ? null : this.concept,
-      filter: filter ? null : this.filter,
-      valueSet: valueSet ? null : this.valueSet,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (system) this.system = null;
+    if (version) this.version = null;
+    if (concept) this.concept = null;
+    if (filter) this.filter = null;
+    if (valueSet) this.valueSet = null;
   }
 
   @override
-  ValueSetInclude clone() => throw UnimplementedError();
+  ValueSetIncludeBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetInclude copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? system,
-    FhirString? version,
-    List<ValueSetConcept>? concept,
-    List<ValueSetFilter>? filter,
-    List<FhirCanonical>? valueSet,
+  ValueSetIncludeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    List<ValueSetConceptBuilder>? concept,
+    List<ValueSetFilterBuilder>? filter,
+    List<FhirCanonicalBuilder>? valueSet,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2675,66 +2412,39 @@ class ValueSetInclude extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetInclude(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      concept: concept
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.concept',
-                ),
-              )
-              .toList() ??
-          this.concept,
-      filter: filter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.filter',
-                ),
-              )
-              .toList() ??
-          this.filter,
-      valueSet: valueSet
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.valueSet',
-                ),
-              )
-              .toList() ??
-          this.valueSet,
+    final newResult = ValueSetIncludeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      system: system ?? this.system,
+      version: version ?? this.version,
+      concept: concept ?? this.concept,
+      filter: filter ?? this.filter,
+      valueSet: valueSet ?? this.valueSet,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetInclude) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetIncludeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2745,13 +2455,13 @@ class ValueSetInclude extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2769,19 +2479,19 @@ class ValueSetInclude extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ValueSetConcept>(
+    if (!listEquals<ValueSetConceptBuilder>(
       concept,
       o.concept,
     )) {
       return false;
     }
-    if (!listEquals<ValueSetFilter>(
+    if (!listEquals<ValueSetFilterBuilder>(
       filter,
       o.filter,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       valueSet,
       o.valueSet,
     )) {
@@ -2791,17 +2501,17 @@ class ValueSetInclude extends BackboneElement {
   }
 }
 
-/// [ValueSetConcept]
+/// [ValueSetConceptBuilder]
 /// Specifies a concept to be included or excluded.
-class ValueSetConcept extends BackboneElement {
+class ValueSetConceptBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetConcept]
+  /// [ValueSetConceptBuilder]
 
-  const ValueSetConcept({
+  ValueSetConceptBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
+    this.code,
     this.display,
     this.designation,
     super.disallowExtensions,
@@ -2810,27 +2520,24 @@ class ValueSetConcept extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetConcept.empty() => ValueSetConcept(
-        code: FhirCode.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ValueSetConceptBuilder.empty() => ValueSetConceptBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetConcept.fromJson(
+  factory ValueSetConceptBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.compose.include.concept';
-    return ValueSetConcept(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetConceptBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2839,8 +2546,8 @@ class ValueSetConcept extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2848,21 +2555,21 @@ class ValueSetConcept extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parsePrimitive<FhirCode>(
+      code: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'code',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      display: JsonParser.parsePrimitive<FhirString>(
+      ),
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
       designation: (json['designation'] as List<dynamic>?)
-          ?.map<ValueSetDesignation>(
-            (v) => ValueSetDesignation.fromJson(
+          ?.map<ValueSetDesignationBuilder>(
+            (v) => ValueSetDesignationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.designation',
@@ -2873,22 +2580,22 @@ class ValueSetConcept extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetConcept]
+  /// Deserialize [ValueSetConceptBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetConcept.fromYaml(
+  factory ValueSetConceptBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetConcept.fromJson(
+      return ValueSetConceptBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetConcept.fromJson(
+      return ValueSetConceptBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetConcept '
+        'ValueSetConceptBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2896,16 +2603,16 @@ class ValueSetConcept extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetConcept]
+  /// [ValueSetConceptBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetConcept.fromJsonString(
+  factory ValueSetConceptBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetConcept.fromJson(json);
+      return ValueSetConceptBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2917,35 +2624,35 @@ class ValueSetConcept extends BackboneElement {
 
   /// [code]
   /// Specifies a code for the concept to be included or excluded.
-  final FhirCode code;
+  FhirCodeBuilder? code;
 
   /// [display]
   /// The text to display to the user for this concept in the context of this
   /// valueset. If no display is provided, then applications using the value
   /// set use the display specified for the code by the system.
-  final FhirString? display;
+  FhirStringBuilder? display;
 
   /// [designation]
   /// Additional representations for this concept when used in this value set
   /// - other languages, aliases, specialized purposes, used for particular
   /// purposes, etc.
-  final List<ValueSetDesignation>? designation;
+  List<ValueSetDesignationBuilder>? designation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2954,35 +2661,17 @@ class ValueSetConcept extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'display',
-      display,
-    );
-    addField(
-      'designation',
-      designation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('display', display);
+    addField('designation', designation);
     return json;
   }
 
@@ -3002,11 +2691,11 @@ class ValueSetConcept extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3021,7 +2710,9 @@ class ValueSetConcept extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'display':
         if (display != null) {
           fields.add(display!);
@@ -3040,7 +2731,7 @@ class ValueSetConcept extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3049,79 +2740,81 @@ class ValueSetConcept extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirCode) {
-            return copyWith(code: child);
+          if (child is FhirCodeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'designation':
         {
-          if (child is List<ValueSetDesignation>) {
-            // Add all elements from passed list
-            final newList = [...?designation, ...child];
-            return copyWith(designation: newList);
-          } else if (child is ValueSetDesignation) {
+          if (child is List<ValueSetDesignationBuilder>) {
+            // Replace or create new list
+            designation = child;
+            return;
+          } else if (child is ValueSetDesignationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?designation, child];
-            return copyWith(designation: newList);
+            designation = [...(designation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3137,66 +2830,56 @@ class ValueSetConcept extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'designation':
-        return ['ValueSetDesignation'];
+        return ['ValueSetDesignationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetConcept]
+  /// Creates a new [ValueSetConceptBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetConcept createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
+          code = FhirCodeBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       case 'designation':
         {
-          return copyWith(
-            designation: <ValueSetDesignation>[],
-          );
+          designation = <ValueSetDesignationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3205,33 +2888,32 @@ class ValueSetConcept extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetConcept clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
     bool display = false,
     bool designation = false,
   }) {
-    return ValueSetConcept(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      display: display ? null : this.display,
-      designation: designation ? null : this.designation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (display) this.display = null;
+    if (designation) this.designation = null;
   }
 
   @override
-  ValueSetConcept clone() => throw UnimplementedError();
+  ValueSetConceptBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetConcept copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? code,
-    FhirString? display,
-    List<ValueSetDesignation>? designation,
+  ValueSetConceptBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirCodeBuilder? code,
+    FhirStringBuilder? display,
+    List<ValueSetDesignationBuilder>? designation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3239,50 +2921,37 @@ class ValueSetConcept extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetConcept(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      designation: designation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.designation',
-                ),
-              )
-              .toList() ??
-          this.designation,
+    final newResult = ValueSetConceptBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      display: display ?? this.display,
+      designation: designation ?? this.designation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetConcept) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetConceptBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3293,13 +2962,13 @@ class ValueSetConcept extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3317,7 +2986,7 @@ class ValueSetConcept extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ValueSetDesignation>(
+    if (!listEquals<ValueSetDesignationBuilder>(
       designation,
       o.designation,
     )) {
@@ -3327,48 +2996,45 @@ class ValueSetConcept extends BackboneElement {
   }
 }
 
-/// [ValueSetDesignation]
+/// [ValueSetDesignationBuilder]
 /// Additional representations for this concept when used in this value set
 /// - other languages, aliases, specialized purposes, used for particular
 /// purposes, etc.
-class ValueSetDesignation extends BackboneElement {
+class ValueSetDesignationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetDesignation]
+  /// [ValueSetDesignationBuilder]
 
-  const ValueSetDesignation({
+  ValueSetDesignationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.language,
     this.use,
-    required this.value,
+    this.value,
     super.disallowExtensions,
   }) : super(
           objectPath: 'ValueSet.compose.include.concept.designation',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetDesignation.empty() => ValueSetDesignation(
-        value: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ValueSetDesignationBuilder.empty() => ValueSetDesignationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetDesignation.fromJson(
+  factory ValueSetDesignationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.compose.include.concept.designation';
-    return ValueSetDesignation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetDesignationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3377,8 +3043,8 @@ class ValueSetDesignation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3386,43 +3052,43 @@ class ValueSetDesignation extends BackboneElement {
             ),
           )
           .toList(),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      use: JsonParser.parseObject<Coding>(
+      use: JsonParser.parseObject<CodingBuilder>(
         json,
         'use',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.use',
       ),
-      value: JsonParser.parsePrimitive<FhirString>(
+      value: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'value',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.value',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ValueSetDesignation]
+  /// Deserialize [ValueSetDesignationBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetDesignation.fromYaml(
+  factory ValueSetDesignationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetDesignation.fromJson(
+      return ValueSetDesignationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetDesignation.fromJson(
+      return ValueSetDesignationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetDesignation '
+        'ValueSetDesignationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3430,16 +3096,16 @@ class ValueSetDesignation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetDesignation]
+  /// [ValueSetDesignationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetDesignation.fromJsonString(
+  factory ValueSetDesignationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetDesignation.fromJson(json);
+      return ValueSetDesignationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3451,31 +3117,31 @@ class ValueSetDesignation extends BackboneElement {
 
   /// [language]
   /// The language this designation is defined for.
-  final CommonLanguages? language;
+  CommonLanguagesBuilder? language;
 
   /// [use]
   /// A code that represents types of uses of designations.
-  final Coding? use;
+  CodingBuilder? use;
 
   /// [value]
   /// The text value for this designation.
-  final FhirString value;
+  FhirStringBuilder? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3484,35 +3150,17 @@ class ValueSetDesignation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'value',
-      value,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('language', language);
+    addField('use', use);
+    addField('value', value);
     return json;
   }
 
@@ -3532,11 +3180,11 @@ class ValueSetDesignation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3559,7 +3207,9 @@ class ValueSetDesignation extends BackboneElement {
           fields.add(use!);
         }
       case 'value':
-        fields.add(value);
+        if (value != null) {
+          fields.add(value!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -3570,7 +3220,7 @@ class ValueSetDesignation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3579,73 +3229,76 @@ class ValueSetDesignation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
         {
-          if (child is Coding) {
-            return copyWith(use: child);
+          if (child is CodingBuilder) {
+            use = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirString) {
-            return copyWith(value: child);
+          if (child is FhirStringBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3661,66 +3314,56 @@ class ValueSetDesignation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'use':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'value':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetDesignation]
+  /// Creates a new [ValueSetDesignationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetDesignation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'use':
         {
-          return copyWith(
-            use: Coding.empty(),
-          );
+          use = CodingBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirString.empty(),
-          );
+          value = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3729,33 +3372,32 @@ class ValueSetDesignation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetDesignation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool language = false,
     bool use = false,
+    bool value = false,
   }) {
-    return ValueSetDesignation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      language: language ? null : this.language,
-      use: use ? null : this.use,
-      value: value,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (language) this.language = null;
+    if (use) this.use = null;
+    if (value) this.value = null;
   }
 
   @override
-  ValueSetDesignation clone() => throw UnimplementedError();
+  ValueSetDesignationBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetDesignation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CommonLanguages? language,
-    Coding? use,
-    FhirString? value,
+  ValueSetDesignationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CommonLanguagesBuilder? language,
+    CodingBuilder? use,
+    FhirStringBuilder? value,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3763,46 +3405,37 @@ class ValueSetDesignation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetDesignation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
+    final newResult = ValueSetDesignationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      language: language ?? this.language,
+      use: use ?? this.use,
+      value: value ?? this.value,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetDesignation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetDesignationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3813,13 +3446,13 @@ class ValueSetDesignation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3847,51 +3480,46 @@ class ValueSetDesignation extends BackboneElement {
   }
 }
 
-/// [ValueSetFilter]
+/// [ValueSetFilterBuilder]
 /// Select concepts by specify a matching criterion based on the properties
 /// (including relationships) defined by the system, or on filters defined
 /// by the system. If multiple filters are specified, they SHALL all be
 /// true.
-class ValueSetFilter extends BackboneElement {
+class ValueSetFilterBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetFilter]
+  /// [ValueSetFilterBuilder]
 
-  const ValueSetFilter({
+  ValueSetFilterBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.property,
-    required this.op,
-    required this.value,
+    this.property,
+    this.op,
+    this.value,
     super.disallowExtensions,
   }) : super(
           objectPath: 'ValueSet.compose.include.filter',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetFilter.empty() => ValueSetFilter(
-        property: FhirCode.empty(),
-        op: FilterOperator.values.first,
-        value: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ValueSetFilterBuilder.empty() => ValueSetFilterBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetFilter.fromJson(
+  factory ValueSetFilterBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.compose.include.filter';
-    return ValueSetFilter(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetFilterBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3900,8 +3528,8 @@ class ValueSetFilter extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3909,43 +3537,43 @@ class ValueSetFilter extends BackboneElement {
             ),
           )
           .toList(),
-      property: JsonParser.parsePrimitive<FhirCode>(
+      property: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'property',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.property',
-      )!,
-      op: JsonParser.parsePrimitive<FilterOperator>(
+      ),
+      op: JsonParser.parsePrimitive<FilterOperatorBuilder>(
         json,
         'op',
-        FilterOperator.fromJson,
+        FilterOperatorBuilder.fromJson,
         '$objectPath.op',
-      )!,
-      value: JsonParser.parsePrimitive<FhirString>(
+      ),
+      value: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'value',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.value',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ValueSetFilter]
+  /// Deserialize [ValueSetFilterBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetFilter.fromYaml(
+  factory ValueSetFilterBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetFilter.fromJson(
+      return ValueSetFilterBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetFilter.fromJson(
+      return ValueSetFilterBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetFilter '
+        'ValueSetFilterBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3953,16 +3581,16 @@ class ValueSetFilter extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetFilter]
+  /// [ValueSetFilterBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetFilter.fromJsonString(
+  factory ValueSetFilterBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetFilter.fromJson(json);
+      return ValueSetFilterBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3975,11 +3603,11 @@ class ValueSetFilter extends BackboneElement {
   /// [property]
   /// A code that identifies a property or a filter defined in the code
   /// system.
-  final FhirCode property;
+  FhirCodeBuilder? property;
 
   /// [op]
   /// The kind of operation to perform as a part of the filter criteria.
-  final FilterOperator op;
+  FilterOperatorBuilder? op;
 
   /// [value]
   /// The match value may be either a code defined by the system, or a string
@@ -3988,23 +3616,23 @@ class ValueSetFilter extends BackboneElement {
   /// the system filter value (if the filter represents a filter defined in
   /// CodeSystem) when the operation is 'regex', or one of the values (true
   /// and false), when the operation is 'exists'.
-  final FhirString value;
+  FhirStringBuilder? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4013,35 +3641,17 @@ class ValueSetFilter extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'property',
-      property,
-    );
-    addField(
-      'op',
-      op,
-    );
-    addField(
-      'value',
-      value,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('property', property);
+    addField('op', op);
+    addField('value', value);
     return json;
   }
 
@@ -4061,11 +3671,11 @@ class ValueSetFilter extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4080,11 +3690,17 @@ class ValueSetFilter extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'property':
-        fields.add(property);
+        if (property != null) {
+          fields.add(property!);
+        }
       case 'op':
-        fields.add(op);
+        if (op != null) {
+          fields.add(op!);
+        }
       case 'value':
-        fields.add(value);
+        if (value != null) {
+          fields.add(value!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -4095,7 +3711,7 @@ class ValueSetFilter extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4104,73 +3720,76 @@ class ValueSetFilter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
         {
-          if (child is FhirCode) {
-            return copyWith(property: child);
+          if (child is FhirCodeBuilder) {
+            property = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'op':
         {
-          if (child is FilterOperator) {
-            return copyWith(op: child);
+          if (child is FilterOperatorBuilder) {
+            op = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirString) {
-            return copyWith(value: child);
+          if (child is FhirStringBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4186,66 +3805,56 @@ class ValueSetFilter extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'property':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'op':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'value':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetFilter]
+  /// Creates a new [ValueSetFilterBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetFilter createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'property':
         {
-          return copyWith(
-            property: FhirCode.empty(),
-          );
+          property = FhirCodeBuilder.empty();
+          return;
         }
       case 'op':
         {
-          return copyWith(
-            op: FilterOperator.empty(),
-          );
+          op = FilterOperatorBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirString.empty(),
-          );
+          value = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4254,31 +3863,32 @@ class ValueSetFilter extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetFilter clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool property = false,
+    bool op = false,
+    bool value = false,
   }) {
-    return ValueSetFilter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      property: property,
-      op: op,
-      value: value,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (property) this.property = null;
+    if (op) this.op = null;
+    if (value) this.value = null;
   }
 
   @override
-  ValueSetFilter clone() => throw UnimplementedError();
+  ValueSetFilterBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetFilter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? property,
-    FilterOperator? op,
-    FhirString? value,
+  ValueSetFilterBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirCodeBuilder? property,
+    FilterOperatorBuilder? op,
+    FhirStringBuilder? value,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4286,46 +3896,37 @@ class ValueSetFilter extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetFilter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      property: property?.copyWith(
-            objectPath: '$newObjectPath.property',
-          ) ??
-          this.property,
-      op: op?.copyWith(
-            objectPath: '$newObjectPath.op',
-          ) ??
-          this.op,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
+    final newResult = ValueSetFilterBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      property: property ?? this.property,
+      op: op ?? this.op,
+      value: value ?? this.value,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetFilter) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetFilterBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4336,13 +3937,13 @@ class ValueSetFilter extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4370,20 +3971,20 @@ class ValueSetFilter extends BackboneElement {
   }
 }
 
-/// [ValueSetExpansion]
+/// [ValueSetExpansionBuilder]
 /// A value set can also be "expanded", where the value set is turned into
 /// a simple collection of enumerated codes. This element holds the
 /// expansion, if it has been performed.
-class ValueSetExpansion extends BackboneElement {
+class ValueSetExpansionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetExpansion]
+  /// [ValueSetExpansionBuilder]
 
-  const ValueSetExpansion({
+  ValueSetExpansionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.timestamp,
+    this.timestamp,
     this.total,
     this.offset,
     this.parameter,
@@ -4394,27 +3995,24 @@ class ValueSetExpansion extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetExpansion.empty() => ValueSetExpansion(
-        timestamp: FhirDateTime.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ValueSetExpansionBuilder.empty() => ValueSetExpansionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetExpansion.fromJson(
+  factory ValueSetExpansionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.expansion';
-    return ValueSetExpansion(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetExpansionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4423,8 +4021,8 @@ class ValueSetExpansion extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4432,33 +4030,33 @@ class ValueSetExpansion extends BackboneElement {
             ),
           )
           .toList(),
-      identifier: JsonParser.parsePrimitive<FhirUri>(
+      identifier: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'identifier',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      timestamp: JsonParser.parsePrimitive<FhirDateTime>(
+      timestamp: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'timestamp',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.timestamp',
-      )!,
-      total: JsonParser.parsePrimitive<FhirInteger>(
+      ),
+      total: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'total',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.total',
       ),
-      offset: JsonParser.parsePrimitive<FhirInteger>(
+      offset: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'offset',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.offset',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
-          ?.map<ValueSetParameter>(
-            (v) => ValueSetParameter.fromJson(
+          ?.map<ValueSetParameterBuilder>(
+            (v) => ValueSetParameterBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.parameter',
@@ -4467,8 +4065,8 @@ class ValueSetExpansion extends BackboneElement {
           )
           .toList(),
       contains: (json['contains'] as List<dynamic>?)
-          ?.map<ValueSetContains>(
-            (v) => ValueSetContains.fromJson(
+          ?.map<ValueSetContainsBuilder>(
+            (v) => ValueSetContainsBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contains',
@@ -4479,22 +4077,22 @@ class ValueSetExpansion extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetExpansion]
+  /// Deserialize [ValueSetExpansionBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetExpansion.fromYaml(
+  factory ValueSetExpansionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetExpansion.fromJson(
+      return ValueSetExpansionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetExpansion.fromJson(
+      return ValueSetExpansionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetExpansion '
+        'ValueSetExpansionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4502,16 +4100,16 @@ class ValueSetExpansion extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetExpansion]
+  /// [ValueSetExpansionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetExpansion.fromJsonString(
+  factory ValueSetExpansionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetExpansion.fromJson(json);
+      return ValueSetExpansionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4528,49 +4126,49 @@ class ValueSetExpansion extends BackboneElement {
   /// Systems may re-use the same identifier as long as those factors remain
   /// the same, and the expansion is the same, but are not required to do so.
   /// This is a business identifier.
-  final FhirUri? identifier;
+  FhirUriBuilder? identifier;
 
   /// [timestamp]
   /// The time at which the expansion was produced by the expanding system.
-  final FhirDateTime timestamp;
+  FhirDateTimeBuilder? timestamp;
 
   /// [total]
   /// The total number of concepts in the expansion. If the number of concept
   /// nodes in this resource is less than the stated number, then the server
   /// can return more using the offset parameter.
-  final FhirInteger? total;
+  FhirIntegerBuilder? total;
 
   /// [offset]
   /// If paging is being used, the offset at which this resource starts. I.e.
   /// this resource is a partial view into the expansion. If paging is not
   /// being used, this element SHALL NOT be present.
-  final FhirInteger? offset;
+  FhirIntegerBuilder? offset;
 
   /// [parameter]
   /// A parameter that controlled the expansion process. These parameters may
   /// be used by users of expanded value sets to check whether the expansion
   /// is suitable for a particular purpose, or to pick the correct expansion.
-  final List<ValueSetParameter>? parameter;
+  List<ValueSetParameterBuilder>? parameter;
 
   /// [contains]
   /// The codes that are contained in the value set expansion.
-  final List<ValueSetContains>? contains;
+  List<ValueSetContainsBuilder>? contains;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4579,47 +4177,20 @@ class ValueSetExpansion extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'timestamp',
-      timestamp,
-    );
-    addField(
-      'total',
-      total,
-    );
-    addField(
-      'offset',
-      offset,
-    );
-    addField(
-      'parameter',
-      parameter,
-    );
-    addField(
-      'contains',
-      contains,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('timestamp', timestamp);
+    addField('total', total);
+    addField('offset', offset);
+    addField('parameter', parameter);
+    addField('contains', contains);
     return json;
   }
 
@@ -4642,11 +4213,11 @@ class ValueSetExpansion extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4665,7 +4236,9 @@ class ValueSetExpansion extends BackboneElement {
           fields.add(identifier!);
         }
       case 'timestamp':
-        fields.add(timestamp);
+        if (timestamp != null) {
+          fields.add(timestamp!);
+        }
       case 'total':
         if (total != null) {
           fields.add(total!);
@@ -4692,7 +4265,7 @@ class ValueSetExpansion extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4701,109 +4274,113 @@ class ValueSetExpansion extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is FhirUri) {
-            return copyWith(identifier: child);
+          if (child is FhirUriBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timestamp':
         {
-          if (child is FhirDateTime) {
-            return copyWith(timestamp: child);
+          if (child is FhirDateTimeBuilder) {
+            timestamp = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'total':
         {
-          if (child is FhirInteger) {
-            return copyWith(total: child);
+          if (child is FhirIntegerBuilder) {
+            total = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'offset':
         {
-          if (child is FhirInteger) {
-            return copyWith(offset: child);
+          if (child is FhirIntegerBuilder) {
+            offset = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'parameter':
         {
-          if (child is List<ValueSetParameter>) {
-            // Add all elements from passed list
-            final newList = [...?parameter, ...child];
-            return copyWith(parameter: newList);
-          } else if (child is ValueSetParameter) {
+          if (child is List<ValueSetParameterBuilder>) {
+            // Replace or create new list
+            parameter = child;
+            return;
+          } else if (child is ValueSetParameterBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?parameter, child];
-            return copyWith(parameter: newList);
+            parameter = [...(parameter ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contains':
         {
-          if (child is List<ValueSetContains>) {
-            // Add all elements from passed list
-            final newList = [...?contains, ...child];
-            return copyWith(contains: newList);
-          } else if (child is ValueSetContains) {
+          if (child is List<ValueSetContainsBuilder>) {
+            // Replace or create new list
+            contains = child;
+            return;
+          } else if (child is ValueSetContainsBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contains, child];
-            return copyWith(contains: newList);
+            contains = [...(contains ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4819,90 +4396,77 @@ class ValueSetExpansion extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'timestamp':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'total':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'offset':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'parameter':
-        return ['ValueSetParameter'];
+        return ['ValueSetParameterBuilder'];
       case 'contains':
-        return ['ValueSetContains'];
+        return ['ValueSetContainsBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetExpansion]
+  /// Creates a new [ValueSetExpansionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetExpansion createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: FhirUri.empty(),
-          );
+          identifier = FhirUriBuilder.empty();
+          return;
         }
       case 'timestamp':
         {
-          return copyWith(
-            timestamp: FhirDateTime.empty(),
-          );
+          timestamp = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'total':
         {
-          return copyWith(
-            total: FhirInteger.empty(),
-          );
+          total = FhirIntegerBuilder.empty();
+          return;
         }
       case 'offset':
         {
-          return copyWith(
-            offset: FhirInteger.empty(),
-          );
+          offset = FhirIntegerBuilder.empty();
+          return;
         }
       case 'parameter':
         {
-          return copyWith(
-            parameter: <ValueSetParameter>[],
-          );
+          parameter = <ValueSetParameterBuilder>[];
+          return;
         }
       case 'contains':
         {
-          return copyWith(
-            contains: <ValueSetContains>[],
-          );
+          contains = <ValueSetContainsBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4911,42 +4475,41 @@ class ValueSetExpansion extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetExpansion clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool timestamp = false,
     bool total = false,
     bool offset = false,
     bool parameter = false,
     bool contains = false,
   }) {
-    return ValueSetExpansion(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      timestamp: timestamp,
-      total: total ? null : this.total,
-      offset: offset ? null : this.offset,
-      parameter: parameter ? null : this.parameter,
-      contains: contains ? null : this.contains,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (timestamp) this.timestamp = null;
+    if (total) this.total = null;
+    if (offset) this.offset = null;
+    if (parameter) this.parameter = null;
+    if (contains) this.contains = null;
   }
 
   @override
-  ValueSetExpansion clone() => throw UnimplementedError();
+  ValueSetExpansionBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetExpansion copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? identifier,
-    FhirDateTime? timestamp,
-    FhirInteger? total,
-    FhirInteger? offset,
-    List<ValueSetParameter>? parameter,
-    List<ValueSetContains>? contains,
+  ValueSetExpansionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? identifier,
+    FhirDateTimeBuilder? timestamp,
+    FhirIntegerBuilder? total,
+    FhirIntegerBuilder? offset,
+    List<ValueSetParameterBuilder>? parameter,
+    List<ValueSetContainsBuilder>? contains,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4954,66 +4517,40 @@ class ValueSetExpansion extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetExpansion(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      timestamp: timestamp?.copyWith(
-            objectPath: '$newObjectPath.timestamp',
-          ) ??
-          this.timestamp,
-      total: total?.copyWith(
-            objectPath: '$newObjectPath.total',
-          ) ??
-          this.total,
-      offset: offset?.copyWith(
-            objectPath: '$newObjectPath.offset',
-          ) ??
-          this.offset,
-      parameter: parameter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameter',
-                ),
-              )
-              .toList() ??
-          this.parameter,
-      contains: contains
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contains',
-                ),
-              )
-              .toList() ??
-          this.contains,
+    final newResult = ValueSetExpansionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      timestamp: timestamp ?? this.timestamp,
+      total: total ?? this.total,
+      offset: offset ?? this.offset,
+      parameter: parameter ?? this.parameter,
+      contains: contains ?? this.contains,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetExpansion) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetExpansionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5024,13 +4561,13 @@ class ValueSetExpansion extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -5060,13 +4597,13 @@ class ValueSetExpansion extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ValueSetParameter>(
+    if (!listEquals<ValueSetParameterBuilder>(
       parameter,
       o.parameter,
     )) {
       return false;
     }
-    if (!listEquals<ValueSetContains>(
+    if (!listEquals<ValueSetContainsBuilder>(
       contains,
       o.contains,
     )) {
@@ -5076,19 +4613,19 @@ class ValueSetExpansion extends BackboneElement {
   }
 }
 
-/// [ValueSetParameter]
+/// [ValueSetParameterBuilder]
 /// A parameter that controlled the expansion process. These parameters may
 /// be used by users of expanded value sets to check whether the expansion
 /// is suitable for a particular purpose, or to pick the correct expansion.
-class ValueSetParameter extends BackboneElement {
+class ValueSetParameterBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetParameter]
+  /// [ValueSetParameterBuilder]
 
-  const ValueSetParameter({
+  ValueSetParameterBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
+    this.name,
     this.valueX,
     super.disallowExtensions,
   }) : super(
@@ -5096,27 +4633,24 @@ class ValueSetParameter extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetParameter.empty() => ValueSetParameter(
-        name: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ValueSetParameterBuilder.empty() => ValueSetParameterBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetParameter.fromJson(
+  factory ValueSetParameterBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.expansion.parameter';
-    return ValueSetParameter(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetParameterBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5125,8 +4659,8 @@ class ValueSetParameter extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5134,44 +4668,44 @@ class ValueSetParameter extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      valueX: JsonParser.parsePolymorphic<ValueXValueSetParameter>(
+      ),
+      valueX: JsonParser.parsePolymorphic<ValueXValueSetParameterBuilder>(
         json,
         {
-          'valueString': FhirString.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueInteger': FhirInteger.fromJson,
-          'valueDecimal': FhirDecimal.fromJson,
-          'valueUri': FhirUri.fromJson,
-          'valueCode': FhirCode.fromJson,
-          'valueDateTime': FhirDateTime.fromJson,
+          'valueString': FhirStringBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueInteger': FhirIntegerBuilder.fromJson,
+          'valueDecimal': FhirDecimalBuilder.fromJson,
+          'valueUri': FhirUriBuilder.fromJson,
+          'valueCode': FhirCodeBuilder.fromJson,
+          'valueDateTime': FhirDateTimeBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [ValueSetParameter]
+  /// Deserialize [ValueSetParameterBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetParameter.fromYaml(
+  factory ValueSetParameterBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetParameter.fromJson(
+      return ValueSetParameterBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetParameter.fromJson(
+      return ValueSetParameterBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetParameter '
+        'ValueSetParameterBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5179,16 +4713,16 @@ class ValueSetParameter extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetParameter]
+  /// [ValueSetParameterBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetParameter.fromJsonString(
+  factory ValueSetParameterBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetParameter.fromJson(json);
+      return ValueSetParameterBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5202,48 +4736,48 @@ class ValueSetParameter extends BackboneElement {
   /// Name of the input parameter to the $expand operation; may be a
   /// server-assigned name for additional default or other server-supplied
   /// parameters used to control the expansion process.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [valueX]
   /// The value of the parameter.
-  final ValueXValueSetParameter? valueX;
+  ValueXValueSetParameterBuilder? valueX;
 
-  /// Getter for [valueString] as a FhirString
-  FhirString? get valueString => valueX?.isAs<FhirString>();
+  /// Getter for [valueString] as a FhirStringBuilder
+  FhirStringBuilder? get valueString => valueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueInteger] as a FhirInteger
-  FhirInteger? get valueInteger => valueX?.isAs<FhirInteger>();
+  /// Getter for [valueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get valueInteger => valueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [valueDecimal] as a FhirDecimal
-  FhirDecimal? get valueDecimal => valueX?.isAs<FhirDecimal>();
+  /// Getter for [valueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [valueUri] as a FhirUri
-  FhirUri? get valueUri => valueX?.isAs<FhirUri>();
+  /// Getter for [valueUri] as a FhirUriBuilder
+  FhirUriBuilder? get valueUri => valueX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [valueCode] as a FhirCode
-  FhirCode? get valueCode => valueX?.isAs<FhirCode>();
+  /// Getter for [valueCode] as a FhirCodeBuilder
+  FhirCodeBuilder? get valueCode => valueX?.isAs<FhirCodeBuilder>();
 
-  /// Getter for [valueDateTime] as a FhirDateTime
-  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
+  /// Getter for [valueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get valueDateTime => valueX?.isAs<FhirDateTimeBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -5252,33 +4786,18 @@ class ValueSetParameter extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField(
-        'value${fhirType.capitalize()}',
-        valueX,
-      );
+      addField('value${fhirType.capitalize()}', valueX);
     }
 
     return json;
@@ -5299,11 +4818,11 @@ class ValueSetParameter extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -5318,37 +4837,43 @@ class ValueSetParameter extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueString':
-        if (valueX is FhirString) {
+        if (valueX is FhirStringBuilder) {
           fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
+        if (valueX is FhirBooleanBuilder) {
           fields.add(valueX!);
         }
       case 'valueInteger':
-        if (valueX is FhirInteger) {
+        if (valueX is FhirIntegerBuilder) {
           fields.add(valueX!);
         }
       case 'valueDecimal':
-        if (valueX is FhirDecimal) {
+        if (valueX is FhirDecimalBuilder) {
           fields.add(valueX!);
         }
       case 'valueUri':
-        if (valueX is FhirUri) {
+        if (valueX is FhirUriBuilder) {
           fields.add(valueX!);
         }
       case 'valueCode':
-        if (valueX is FhirCode) {
+        if (valueX is FhirCodeBuilder) {
           fields.add(valueX!);
         }
       case 'valueDateTime':
-        if (valueX is FhirDateTime) {
+        if (valueX is FhirDateTimeBuilder) {
           fields.add(valueX!);
         }
       default:
@@ -5361,7 +4886,7 @@ class ValueSetParameter extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -5370,142 +4895,158 @@ class ValueSetParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXValueSetParameter) {
-            return copyWith(valueX: child);
+          if (child is ValueXValueSetParameterBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is FhirString) {
-              return copyWith(valueX: child);
+            if (child is FhirStringBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
+            if (child is FhirIntegerBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(valueX: child);
+            if (child is FhirDecimalBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirUri) {
-              return copyWith(valueX: child);
+            if (child is FhirUriBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirCode) {
-              return copyWith(valueX: child);
+            if (child is FhirCodeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
+            if (child is FhirDateTimeBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'valueFhirString':
+      case 'valueString':
         {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
+          if (child is FhirStringBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirInteger':
+      case 'valueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
+          if (child is FhirIntegerBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDecimal':
+      case 'valueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(valueX: child);
+          if (child is FhirDecimalBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirUri':
+      case 'valueUri':
         {
-          if (child is FhirUri) {
-            return copyWith(valueX: child);
+          if (child is FhirUriBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirCode':
+      case 'valueCode':
         {
-          if (child is FhirCode) {
-            return copyWith(valueX: child);
+          if (child is FhirCodeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDateTime':
+      case 'valueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
+          if (child is FhirDateTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5521,119 +5062,104 @@ class ValueSetParameter extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'FhirDecimal',
-          'FhirUri',
-          'FhirCode',
-          'FhirDateTime',
+          'FhirStringBuilder',
+          'FhirBooleanBuilder',
+          'FhirIntegerBuilder',
+          'FhirDecimalBuilder',
+          'FhirUriBuilder',
+          'FhirCodeBuilder',
+          'FhirDateTimeBuilder'
         ];
       case 'valueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'valueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'valueUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'valueCode':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'valueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetParameter]
+  /// Creates a new [ValueSetParameterBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetParameter createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueString':
         {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
+          valueX = FhirStringBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueInteger':
         {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
+          valueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'valueDecimal':
         {
-          return copyWith(
-            valueX: FhirDecimal.empty(),
-          );
+          valueX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'valueUri':
         {
-          return copyWith(
-            valueX: FhirUri.empty(),
-          );
+          valueX = FhirUriBuilder.empty();
+          return;
         }
       case 'valueCode':
         {
-          return copyWith(
-            valueX: FhirCode.empty(),
-          );
+          valueX = FhirCodeBuilder.empty();
+          return;
         }
       case 'valueDateTime':
         {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
+          valueX = FhirDateTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5642,30 +5168,29 @@ class ValueSetParameter extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetParameter clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
     bool value = false,
   }) {
-    return ValueSetParameter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      valueX: value ? null : valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  ValueSetParameter clone() => throw UnimplementedError();
+  ValueSetParameterBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetParameter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    ValueXValueSetParameter? valueX,
+  ValueSetParameterBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? name,
+    ValueXValueSetParameterBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5673,42 +5198,36 @@ class ValueSetParameter extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXValueSetParameter? ??
-          this.valueX,
+    final newResult = ValueSetParameterBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetParameter) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetParameterBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5719,13 +5238,13 @@ class ValueSetParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -5747,13 +5266,13 @@ class ValueSetParameter extends BackboneElement {
   }
 }
 
-/// [ValueSetContains]
+/// [ValueSetContainsBuilder]
 /// The codes that are contained in the value set expansion.
-class ValueSetContains extends BackboneElement {
+class ValueSetContainsBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ValueSetContains]
+  /// [ValueSetContainsBuilder]
 
-  const ValueSetContains({
+  ValueSetContainsBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5771,25 +5290,24 @@ class ValueSetContains extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ValueSetContains.empty() => const ValueSetContains();
+  /// For Builder classes, no fields are required
+  factory ValueSetContainsBuilder.empty() => ValueSetContainsBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetContains.fromJson(
+  factory ValueSetContainsBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ValueSet.expansion.contains';
-    return ValueSetContains(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ValueSetContainsBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5798,8 +5316,8 @@ class ValueSetContains extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5807,45 +5325,45 @@ class ValueSetContains extends BackboneElement {
             ),
           )
           .toList(),
-      system: JsonParser.parsePrimitive<FhirUri>(
+      system: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'system',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.system',
       ),
-      abstract_: JsonParser.parsePrimitive<FhirBoolean>(
+      abstract_: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'abstract',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.abstract',
       ),
-      inactive: JsonParser.parsePrimitive<FhirBoolean>(
+      inactive: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'inactive',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.inactive',
       ),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      code: JsonParser.parsePrimitive<FhirCode>(
+      code: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'code',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.code',
       ),
-      display: JsonParser.parsePrimitive<FhirString>(
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
       designation: (json['designation'] as List<dynamic>?)
-          ?.map<ValueSetDesignation>(
-            (v) => ValueSetDesignation.fromJson(
+          ?.map<ValueSetDesignationBuilder>(
+            (v) => ValueSetDesignationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.designation',
@@ -5854,8 +5372,8 @@ class ValueSetContains extends BackboneElement {
           )
           .toList(),
       contains: (json['contains'] as List<dynamic>?)
-          ?.map<ValueSetContains>(
-            (v) => ValueSetContains.fromJson(
+          ?.map<ValueSetContainsBuilder>(
+            (v) => ValueSetContainsBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contains',
@@ -5866,22 +5384,22 @@ class ValueSetContains extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetContains]
+  /// Deserialize [ValueSetContainsBuilder]
   /// from a [String] or [YamlMap] object
-  factory ValueSetContains.fromYaml(
+  factory ValueSetContainsBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ValueSetContains.fromJson(
+      return ValueSetContainsBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ValueSetContains.fromJson(
+      return ValueSetContainsBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ValueSetContains '
+        'ValueSetContainsBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5889,16 +5407,16 @@ class ValueSetContains extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ValueSetContains]
+  /// [ValueSetContainsBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetContains.fromJsonString(
+  factory ValueSetContainsBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ValueSetContains.fromJson(json);
+      return ValueSetContainsBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5911,13 +5429,13 @@ class ValueSetContains extends BackboneElement {
   /// [system]
   /// An absolute URI which is the code system in which the code for this
   /// item in the expansion is defined.
-  final FhirUri? system;
+  FhirUriBuilder? system;
 
   /// [abstract_]
   /// If true, this entry is included in the expansion for navigational
   /// purposes, and the user cannot select the code directly as a proper
   /// value.
-  final FhirBoolean? abstract_;
+  FhirBooleanBuilder? abstract_;
 
   /// [inactive]
   /// If the concept is inactive in the code system that defines it. Inactive
@@ -5925,7 +5443,7 @@ class ValueSetContains extends BackboneElement {
   /// the code system for understanding legacy data. It might not be known or
   /// specified whether an concept is inactive (and it may depend on the
   /// context of use).
-  final FhirBoolean? inactive;
+  FhirBooleanBuilder? inactive;
 
   /// [version]
   /// The version of the code system from this code was taken. Note that a
@@ -5933,44 +5451,44 @@ class ValueSetContains extends BackboneElement {
   /// the meaning of codes is consistent across versions. However this cannot
   /// consistently be assured, and when the meaning is not guaranteed to be
   /// consistent, the version SHOULD be exchanged.
-  final FhirString? version;
+  FhirStringBuilder? version;
 
   /// [code]
   /// The code for this item in the expansion hierarchy. If this code is
   /// missing the entry in the hierarchy is a place holder (abstract) and
   /// does not represent a valid code in the value set.
-  final FhirCode? code;
+  FhirCodeBuilder? code;
 
   /// [display]
   /// The recommended display for this item in the expansion.
-  final FhirString? display;
+  FhirStringBuilder? display;
 
   /// [designation]
   /// Additional representations for this item - other languages, aliases,
   /// specialized purposes, used for particular purposes, etc. These are
   /// relevant when the conditions of the expansion do not fix to a single
   /// correct representation.
-  final List<ValueSetDesignation>? designation;
+  List<ValueSetDesignationBuilder>? designation;
 
   /// [contains]
   /// Other codes and entries contained under this entry in the hierarchy.
-  final List<ValueSetContains>? contains;
+  List<ValueSetContainsBuilder>? contains;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -5979,55 +5497,22 @@ class ValueSetContains extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'system',
-      system,
-    );
-    addField(
-      'abstract',
-      abstract_,
-    );
-    addField(
-      'inactive',
-      inactive,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'display',
-      display,
-    );
-    addField(
-      'designation',
-      designation,
-    );
-    addField(
-      'contains',
-      contains,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('system', system);
+    addField('abstract', abstract_);
+    addField('inactive', inactive);
+    addField('version', version);
+    addField('code', code);
+    addField('display', display);
+    addField('designation', designation);
+    addField('contains', contains);
     return json;
   }
 
@@ -6052,11 +5537,11 @@ class ValueSetContains extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6112,7 +5597,7 @@ class ValueSetContains extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6121,125 +5606,131 @@ class ValueSetContains extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'system':
         {
-          if (child is FhirUri) {
-            return copyWith(system: child);
+          if (child is FhirUriBuilder) {
+            system = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'abstract':
         {
-          if (child is FhirBoolean) {
-            return copyWith(abstract_: child);
+          if (child is FhirBooleanBuilder) {
+            abstract_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'inactive':
         {
-          if (child is FhirBoolean) {
-            return copyWith(inactive: child);
+          if (child is FhirBooleanBuilder) {
+            inactive = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirCode) {
-            return copyWith(code: child);
+          if (child is FhirCodeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'designation':
         {
-          if (child is List<ValueSetDesignation>) {
-            // Add all elements from passed list
-            final newList = [...?designation, ...child];
-            return copyWith(designation: newList);
-          } else if (child is ValueSetDesignation) {
+          if (child is List<ValueSetDesignationBuilder>) {
+            // Replace or create new list
+            designation = child;
+            return;
+          } else if (child is ValueSetDesignationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?designation, child];
-            return copyWith(designation: newList);
+            designation = [...(designation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contains':
         {
-          if (child is List<ValueSetContains>) {
-            // Add all elements from passed list
-            final newList = [...?contains, ...child];
-            return copyWith(contains: newList);
-          } else if (child is ValueSetContains) {
+          if (child is List<ValueSetContainsBuilder>) {
+            // Replace or create new list
+            contains = child;
+            return;
+          } else if (child is ValueSetContainsBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contains, child];
-            return copyWith(contains: newList);
+            contains = [...(contains ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -6255,106 +5746,91 @@ class ValueSetContains extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'system':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'abstract':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'inactive':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'designation':
-        return ['ValueSetDesignation'];
+        return ['ValueSetDesignationBuilder'];
       case 'contains':
-        return ['ValueSetContains'];
+        return ['ValueSetContainsBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ValueSetContains]
+  /// Creates a new [ValueSetContainsBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ValueSetContains createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'system':
         {
-          return copyWith(
-            system: FhirUri.empty(),
-          );
+          system = FhirUriBuilder.empty();
+          return;
         }
       case 'abstract':
         {
-          return copyWith(
-            abstract_: FhirBoolean.empty(),
-          );
+          abstract_ = FhirBooleanBuilder.empty();
+          return;
         }
       case 'inactive':
         {
-          return copyWith(
-            inactive: FhirBoolean.empty(),
-          );
+          inactive = FhirBooleanBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
+          code = FhirCodeBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       case 'designation':
         {
-          return copyWith(
-            designation: <ValueSetDesignation>[],
-          );
+          designation = <ValueSetDesignationBuilder>[];
+          return;
         }
       case 'contains':
         {
-          return copyWith(
-            contains: <ValueSetContains>[],
-          );
+          contains = <ValueSetContainsBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6363,7 +5839,7 @@ class ValueSetContains extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ValueSetContains clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -6376,36 +5852,34 @@ class ValueSetContains extends BackboneElement {
     bool designation = false,
     bool contains = false,
   }) {
-    return ValueSetContains(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      system: system ? null : this.system,
-      abstract_: abstract_ ? null : this.abstract_,
-      inactive: inactive ? null : this.inactive,
-      version: version ? null : this.version,
-      code: code ? null : this.code,
-      display: display ? null : this.display,
-      designation: designation ? null : this.designation,
-      contains: contains ? null : this.contains,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (system) this.system = null;
+    if (abstract_) this.abstract_ = null;
+    if (inactive) this.inactive = null;
+    if (version) this.version = null;
+    if (code) this.code = null;
+    if (display) this.display = null;
+    if (designation) this.designation = null;
+    if (contains) this.contains = null;
   }
 
   @override
-  ValueSetContains clone() => throw UnimplementedError();
+  ValueSetContainsBuilder clone() => throw UnimplementedError();
   @override
-  ValueSetContains copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? system,
-    FhirBoolean? abstract_,
-    FhirBoolean? inactive,
-    FhirString? version,
-    FhirCode? code,
-    FhirString? display,
-    List<ValueSetDesignation>? designation,
-    List<ValueSetContains>? contains,
+  ValueSetContainsBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? system,
+    FhirBooleanBuilder? abstract_,
+    FhirBooleanBuilder? inactive,
+    FhirStringBuilder? version,
+    FhirCodeBuilder? code,
+    FhirStringBuilder? display,
+    List<ValueSetDesignationBuilder>? designation,
+    List<ValueSetContainsBuilder>? contains,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6413,74 +5887,42 @@ class ValueSetContains extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ValueSetContains(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      abstract_: abstract_?.copyWith(
-            objectPath: '$newObjectPath.abstract',
-          ) ??
-          this.abstract_,
-      inactive: inactive?.copyWith(
-            objectPath: '$newObjectPath.inactive',
-          ) ??
-          this.inactive,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      designation: designation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.designation',
-                ),
-              )
-              .toList() ??
-          this.designation,
-      contains: contains
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contains',
-                ),
-              )
-              .toList() ??
-          this.contains,
+    final newResult = ValueSetContainsBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      system: system ?? this.system,
+      abstract_: abstract_ ?? this.abstract_,
+      inactive: inactive ?? this.inactive,
+      version: version ?? this.version,
+      code: code ?? this.code,
+      display: display ?? this.display,
+      designation: designation ?? this.designation,
+      contains: contains ?? this.contains,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ValueSetContains) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ValueSetContainsBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -6491,13 +5933,13 @@ class ValueSetContains extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -6539,13 +5981,13 @@ class ValueSetContains extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ValueSetDesignation>(
+    if (!listEquals<ValueSetDesignationBuilder>(
       designation,
       o.designation,
     )) {
       return false;
     }
-    if (!listEquals<ValueSetContains>(
+    if (!listEquals<ValueSetContainsBuilder>(
       contains,
       o.contains,
     )) {

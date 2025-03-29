@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [VerificationResult]
+/// [VerificationResultBuilder]
 /// Describes validation requirements, source(s), status and dates for one
 /// or more elements.
-class VerificationResult extends DomainResource {
+class VerificationResultBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [VerificationResult]
+  /// [VerificationResultBuilder]
 
-  const VerificationResult({
+  VerificationResultBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,7 +23,7 @@ class VerificationResult extends DomainResource {
     this.target,
     this.targetLocation,
     this.need,
-    required this.status,
+    this.status,
     this.statusDate,
     this.validationType,
     this.validationProcess,
@@ -38,51 +40,48 @@ class VerificationResult extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory VerificationResult.empty() => VerificationResult(
-        status: Status.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory VerificationResultBuilder.empty() => VerificationResultBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResult.fromJson(
+  factory VerificationResultBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'VerificationResult';
-    return VerificationResult(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return VerificationResultBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -91,8 +90,8 @@ class VerificationResult extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -101,8 +100,8 @@ class VerificationResult extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -111,8 +110,8 @@ class VerificationResult extends DomainResource {
           )
           .toList(),
       target: (json['target'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.target',
@@ -120,39 +119,39 @@ class VerificationResult extends DomainResource {
             ),
           )
           .toList(),
-      targetLocation: JsonParser.parsePrimitiveList<FhirString>(
+      targetLocation: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'targetLocation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.targetLocation',
       ),
-      need: JsonParser.parseObject<CodeableConcept>(
+      need: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'need',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.need',
       ),
-      status: JsonParser.parsePrimitive<Status>(
+      status: JsonParser.parsePrimitive<StatusBuilder>(
         json,
         'status',
-        Status.fromJson,
+        StatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      statusDate: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      statusDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'statusDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.statusDate',
       ),
-      validationType: JsonParser.parseObject<CodeableConcept>(
+      validationType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'validationType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.validationType',
       ),
       validationProcess: (json['validationProcess'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.validationProcess',
@@ -160,33 +159,33 @@ class VerificationResult extends DomainResource {
             ),
           )
           .toList(),
-      frequency: JsonParser.parseObject<Timing>(
+      frequency: JsonParser.parseObject<TimingBuilder>(
         json,
         'frequency',
-        Timing.fromJson,
+        TimingBuilder.fromJson,
         '$objectPath.frequency',
       ),
-      lastPerformed: JsonParser.parsePrimitive<FhirDateTime>(
+      lastPerformed: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'lastPerformed',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.lastPerformed',
       ),
-      nextScheduled: JsonParser.parsePrimitive<FhirDate>(
+      nextScheduled: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'nextScheduled',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.nextScheduled',
       ),
-      failureAction: JsonParser.parseObject<CodeableConcept>(
+      failureAction: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'failureAction',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.failureAction',
       ),
       primarySource: (json['primarySource'] as List<dynamic>?)
-          ?.map<VerificationResultPrimarySource>(
-            (v) => VerificationResultPrimarySource.fromJson(
+          ?.map<VerificationResultPrimarySourceBuilder>(
+            (v) => VerificationResultPrimarySourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.primarySource',
@@ -194,15 +193,15 @@ class VerificationResult extends DomainResource {
             ),
           )
           .toList(),
-      attestation: JsonParser.parseObject<VerificationResultAttestation>(
+      attestation: JsonParser.parseObject<VerificationResultAttestationBuilder>(
         json,
         'attestation',
-        VerificationResultAttestation.fromJson,
+        VerificationResultAttestationBuilder.fromJson,
         '$objectPath.attestation',
       ),
       validator: (json['validator'] as List<dynamic>?)
-          ?.map<VerificationResultValidator>(
-            (v) => VerificationResultValidator.fromJson(
+          ?.map<VerificationResultValidatorBuilder>(
+            (v) => VerificationResultValidatorBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.validator',
@@ -213,22 +212,22 @@ class VerificationResult extends DomainResource {
     );
   }
 
-  /// Deserialize [VerificationResult]
+  /// Deserialize [VerificationResultBuilder]
   /// from a [String] or [YamlMap] object
-  factory VerificationResult.fromYaml(
+  factory VerificationResultBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return VerificationResult.fromJson(
+      return VerificationResultBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return VerificationResult.fromJson(
+      return VerificationResultBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'VerificationResult '
+        'VerificationResultBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -236,16 +235,16 @@ class VerificationResult extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [VerificationResult]
+  /// [VerificationResultBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResult.fromJsonString(
+  factory VerificationResultBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return VerificationResult.fromJson(json);
+      return VerificationResultBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -257,80 +256,80 @@ class VerificationResult extends DomainResource {
 
   /// [target]
   /// A resource that was validated.
-  final List<Reference>? target;
+  List<ReferenceBuilder>? target;
 
   /// [targetLocation]
   /// The fhirpath location(s) within the resource that was validated.
-  final List<FhirString>? targetLocation;
+  List<FhirStringBuilder>? targetLocation;
 
   /// [need]
   /// The frequency with which the target must be validated (none; initial;
   /// periodic).
-  final CodeableConcept? need;
+  CodeableConceptBuilder? need;
 
   /// [status]
   /// The validation status of the target (attested; validated; in process;
   /// requires revalidation; validation failed; revalidation failed).
-  final Status status;
+  StatusBuilder? status;
 
   /// [statusDate]
   /// When the validation status was updated.
-  final FhirDateTime? statusDate;
+  FhirDateTimeBuilder? statusDate;
 
   /// [validationType]
   /// What the target is validated against (nothing; primary source; multiple
   /// sources).
-  final CodeableConcept? validationType;
+  CodeableConceptBuilder? validationType;
 
   /// [validationProcess]
   /// The primary process by which the target is validated (edit check; value
   /// set; primary source; multiple sources; standalone; in context).
-  final List<CodeableConcept>? validationProcess;
+  List<CodeableConceptBuilder>? validationProcess;
 
   /// [frequency]
   /// Frequency of revalidation.
-  final Timing? frequency;
+  TimingBuilder? frequency;
 
   /// [lastPerformed]
   /// The date/time validation was last completed (including failed
   /// validations).
-  final FhirDateTime? lastPerformed;
+  FhirDateTimeBuilder? lastPerformed;
 
   /// [nextScheduled]
   /// The date when target is next validated, if appropriate.
-  final FhirDate? nextScheduled;
+  FhirDateBuilder? nextScheduled;
 
   /// [failureAction]
   /// The result if validation fails (fatal; warning; record only; none).
-  final CodeableConcept? failureAction;
+  CodeableConceptBuilder? failureAction;
 
   /// [primarySource]
   /// Information about the primary source(s) involved in validation.
-  final List<VerificationResultPrimarySource>? primarySource;
+  List<VerificationResultPrimarySourceBuilder>? primarySource;
 
   /// [attestation]
   /// Information about the entity attesting to information.
-  final VerificationResultAttestation? attestation;
+  VerificationResultAttestationBuilder? attestation;
 
   /// [validator]
   /// Information about the entity validating information.
-  final List<VerificationResultValidator>? validator;
+  List<VerificationResultValidatorBuilder>? validator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -339,100 +338,34 @@ class VerificationResult extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'target',
-      target,
-    );
-    addField(
-      'targetLocation',
-      targetLocation,
-    );
-    addField(
-      'need',
-      need,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusDate',
-      statusDate,
-    );
-    addField(
-      'validationType',
-      validationType,
-    );
-    addField(
-      'validationProcess',
-      validationProcess,
-    );
-    addField(
-      'frequency',
-      frequency,
-    );
-    addField(
-      'lastPerformed',
-      lastPerformed,
-    );
-    addField(
-      'nextScheduled',
-      nextScheduled,
-    );
-    addField(
-      'failureAction',
-      failureAction,
-    );
-    addField(
-      'primarySource',
-      primarySource,
-    );
-    addField(
-      'attestation',
-      attestation,
-    );
-    addField(
-      'validator',
-      validator,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('target', target);
+    addField('targetLocation', targetLocation);
+    addField('need', need);
+    addField('status', status);
+    addField('statusDate', statusDate);
+    addField('validationType', validationType);
+    addField('validationProcess', validationProcess);
+    addField('frequency', frequency);
+    addField('lastPerformed', lastPerformed);
+    addField('nextScheduled', nextScheduled);
+    addField('failureAction', failureAction);
+    addField('primarySource', primarySource);
+    addField('attestation', attestation);
+    addField('validator', validator);
     return json;
   }
 
@@ -468,11 +401,11 @@ class VerificationResult extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -519,7 +452,9 @@ class VerificationResult extends DomainResource {
           fields.add(need!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'statusDate':
         if (statusDate != null) {
           fields.add(statusDate!);
@@ -570,7 +505,7 @@ class VerificationResult extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -579,237 +514,250 @@ class VerificationResult extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?target, ...child];
-            return copyWith(target: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            target = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
-            return copyWith(target: newList);
+            target = [...(target ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetLocation':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?targetLocation, ...child];
-            return copyWith(targetLocation: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            targetLocation = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?targetLocation, child];
-            return copyWith(targetLocation: newList);
+            targetLocation = [...(targetLocation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'need':
         {
-          if (child is CodeableConcept) {
-            return copyWith(need: child);
+          if (child is CodeableConceptBuilder) {
+            need = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is Status) {
-            return copyWith(status: child);
+          if (child is StatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(statusDate: child);
+          if (child is FhirDateTimeBuilder) {
+            statusDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(validationType: child);
+          if (child is CodeableConceptBuilder) {
+            validationType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationProcess':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?validationProcess, ...child];
-            return copyWith(validationProcess: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            validationProcess = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?validationProcess, child];
-            return copyWith(validationProcess: newList);
+            validationProcess = [...(validationProcess ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'frequency':
         {
-          if (child is Timing) {
-            return copyWith(frequency: child);
+          if (child is TimingBuilder) {
+            frequency = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastPerformed':
         {
-          if (child is FhirDateTime) {
-            return copyWith(lastPerformed: child);
+          if (child is FhirDateTimeBuilder) {
+            lastPerformed = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'nextScheduled':
         {
-          if (child is FhirDate) {
-            return copyWith(nextScheduled: child);
+          if (child is FhirDateBuilder) {
+            nextScheduled = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'failureAction':
         {
-          if (child is CodeableConcept) {
-            return copyWith(failureAction: child);
+          if (child is CodeableConceptBuilder) {
+            failureAction = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'primarySource':
         {
-          if (child is List<VerificationResultPrimarySource>) {
-            // Add all elements from passed list
-            final newList = [...?primarySource, ...child];
-            return copyWith(primarySource: newList);
-          } else if (child is VerificationResultPrimarySource) {
+          if (child is List<VerificationResultPrimarySourceBuilder>) {
+            // Replace or create new list
+            primarySource = child;
+            return;
+          } else if (child is VerificationResultPrimarySourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?primarySource, child];
-            return copyWith(primarySource: newList);
+            primarySource = [...(primarySource ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'attestation':
         {
-          if (child is VerificationResultAttestation) {
-            return copyWith(attestation: child);
+          if (child is VerificationResultAttestationBuilder) {
+            attestation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validator':
         {
-          if (child is List<VerificationResultValidator>) {
-            // Add all elements from passed list
-            final newList = [...?validator, ...child];
-            return copyWith(validator: newList);
-          } else if (child is VerificationResultValidator) {
+          if (child is List<VerificationResultValidatorBuilder>) {
+            // Replace or create new list
+            validator = child;
+            return;
+          } else if (child is VerificationResultValidatorBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?validator, child];
-            return copyWith(validator: newList);
+            validator = [...(validator ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -825,194 +773,168 @@ class VerificationResult extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'target':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'targetLocation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'need':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'statusDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'validationType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'validationProcess':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'frequency':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'lastPerformed':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'nextScheduled':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'failureAction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'primarySource':
-        return ['VerificationResultPrimarySource'];
+        return ['VerificationResultPrimarySourceBuilder'];
       case 'attestation':
-        return ['VerificationResultAttestation'];
+        return ['VerificationResultAttestationBuilder'];
       case 'validator':
-        return ['VerificationResultValidator'];
+        return ['VerificationResultValidatorBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [VerificationResult]
+  /// Creates a new [VerificationResultBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResult createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: <Reference>[],
-          );
+          target = <ReferenceBuilder>[];
+          return;
         }
       case 'targetLocation':
         {
-          return copyWith(
-            targetLocation: <FhirString>[],
-          );
+          targetLocation = <FhirStringBuilder>[];
+          return;
         }
       case 'need':
         {
-          return copyWith(
-            need: CodeableConcept.empty(),
-          );
+          need = CodeableConceptBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: Status.empty(),
-          );
+          status = StatusBuilder.empty();
+          return;
         }
       case 'statusDate':
         {
-          return copyWith(
-            statusDate: FhirDateTime.empty(),
-          );
+          statusDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'validationType':
         {
-          return copyWith(
-            validationType: CodeableConcept.empty(),
-          );
+          validationType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'validationProcess':
         {
-          return copyWith(
-            validationProcess: <CodeableConcept>[],
-          );
+          validationProcess = <CodeableConceptBuilder>[];
+          return;
         }
       case 'frequency':
         {
-          return copyWith(
-            frequency: Timing.empty(),
-          );
+          frequency = TimingBuilder.empty();
+          return;
         }
       case 'lastPerformed':
         {
-          return copyWith(
-            lastPerformed: FhirDateTime.empty(),
-          );
+          lastPerformed = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'nextScheduled':
         {
-          return copyWith(
-            nextScheduled: FhirDate.empty(),
-          );
+          nextScheduled = FhirDateBuilder.empty();
+          return;
         }
       case 'failureAction':
         {
-          return copyWith(
-            failureAction: CodeableConcept.empty(),
-          );
+          failureAction = CodeableConceptBuilder.empty();
+          return;
         }
       case 'primarySource':
         {
-          return copyWith(
-            primarySource: <VerificationResultPrimarySource>[],
-          );
+          primarySource = <VerificationResultPrimarySourceBuilder>[];
+          return;
         }
       case 'attestation':
         {
-          return copyWith(
-            attestation: VerificationResultAttestation.empty(),
-          );
+          attestation = VerificationResultAttestationBuilder.empty();
+          return;
         }
       case 'validator':
         {
-          return copyWith(
-            validator: <VerificationResultValidator>[],
-          );
+          validator = <VerificationResultValidatorBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1021,7 +943,7 @@ class VerificationResult extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  VerificationResult clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1033,6 +955,7 @@ class VerificationResult extends DomainResource {
     bool target = false,
     bool targetLocation = false,
     bool need = false,
+    bool status = false,
     bool statusDate = false,
     bool validationType = false,
     bool validationProcess = false,
@@ -1044,185 +967,109 @@ class VerificationResult extends DomainResource {
     bool attestation = false,
     bool validator = false,
   }) {
-    return VerificationResult(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      target: target ? null : this.target,
-      targetLocation: targetLocation ? null : this.targetLocation,
-      need: need ? null : this.need,
-      status: status,
-      statusDate: statusDate ? null : this.statusDate,
-      validationType: validationType ? null : this.validationType,
-      validationProcess: validationProcess ? null : this.validationProcess,
-      frequency: frequency ? null : this.frequency,
-      lastPerformed: lastPerformed ? null : this.lastPerformed,
-      nextScheduled: nextScheduled ? null : this.nextScheduled,
-      failureAction: failureAction ? null : this.failureAction,
-      primarySource: primarySource ? null : this.primarySource,
-      attestation: attestation ? null : this.attestation,
-      validator: validator ? null : this.validator,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (target) this.target = null;
+    if (targetLocation) this.targetLocation = null;
+    if (need) this.need = null;
+    if (status) this.status = null;
+    if (statusDate) this.statusDate = null;
+    if (validationType) this.validationType = null;
+    if (validationProcess) this.validationProcess = null;
+    if (frequency) this.frequency = null;
+    if (lastPerformed) this.lastPerformed = null;
+    if (nextScheduled) this.nextScheduled = null;
+    if (failureAction) this.failureAction = null;
+    if (primarySource) this.primarySource = null;
+    if (attestation) this.attestation = null;
+    if (validator) this.validator = null;
   }
 
   @override
-  VerificationResult clone() => throw UnimplementedError();
+  VerificationResultBuilder clone() => throw UnimplementedError();
   @override
-  VerificationResult copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Reference>? target,
-    List<FhirString>? targetLocation,
-    CodeableConcept? need,
-    Status? status,
-    FhirDateTime? statusDate,
-    CodeableConcept? validationType,
-    List<CodeableConcept>? validationProcess,
-    Timing? frequency,
-    FhirDateTime? lastPerformed,
-    FhirDate? nextScheduled,
-    CodeableConcept? failureAction,
-    List<VerificationResultPrimarySource>? primarySource,
-    VerificationResultAttestation? attestation,
-    List<VerificationResultValidator>? validator,
+  VerificationResultBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<ReferenceBuilder>? target,
+    List<FhirStringBuilder>? targetLocation,
+    CodeableConceptBuilder? need,
+    StatusBuilder? status,
+    FhirDateTimeBuilder? statusDate,
+    CodeableConceptBuilder? validationType,
+    List<CodeableConceptBuilder>? validationProcess,
+    TimingBuilder? frequency,
+    FhirDateTimeBuilder? lastPerformed,
+    FhirDateBuilder? nextScheduled,
+    CodeableConceptBuilder? failureAction,
+    List<VerificationResultPrimarySourceBuilder>? primarySource,
+    VerificationResultAttestationBuilder? attestation,
+    List<VerificationResultValidatorBuilder>? validator,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return VerificationResult(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = VerificationResultBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
-      targetLocation: targetLocation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.targetLocation',
-                ),
-              )
-              .toList() ??
-          this.targetLocation,
-      need: need?.copyWith(
-            objectPath: '$newObjectPath.need',
-          ) ??
-          this.need,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusDate: statusDate?.copyWith(
-            objectPath: '$newObjectPath.statusDate',
-          ) ??
-          this.statusDate,
-      validationType: validationType?.copyWith(
-            objectPath: '$newObjectPath.validationType',
-          ) ??
-          this.validationType,
-      validationProcess: validationProcess
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.validationProcess',
-                ),
-              )
-              .toList() ??
-          this.validationProcess,
-      frequency: frequency?.copyWith(
-            objectPath: '$newObjectPath.frequency',
-          ) ??
-          this.frequency,
-      lastPerformed: lastPerformed?.copyWith(
-            objectPath: '$newObjectPath.lastPerformed',
-          ) ??
-          this.lastPerformed,
-      nextScheduled: nextScheduled?.copyWith(
-            objectPath: '$newObjectPath.nextScheduled',
-          ) ??
-          this.nextScheduled,
-      failureAction: failureAction?.copyWith(
-            objectPath: '$newObjectPath.failureAction',
-          ) ??
-          this.failureAction,
-      primarySource: primarySource
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.primarySource',
-                ),
-              )
-              .toList() ??
-          this.primarySource,
-      attestation: attestation?.copyWith(
-            objectPath: '$newObjectPath.attestation',
-          ) ??
-          this.attestation,
-      validator: validator
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.validator',
-                ),
-              )
-              .toList() ??
-          this.validator,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      target: target ?? this.target,
+      targetLocation: targetLocation ?? this.targetLocation,
+      need: need ?? this.need,
+      status: status ?? this.status,
+      statusDate: statusDate ?? this.statusDate,
+      validationType: validationType ?? this.validationType,
+      validationProcess: validationProcess ?? this.validationProcess,
+      frequency: frequency ?? this.frequency,
+      lastPerformed: lastPerformed ?? this.lastPerformed,
+      nextScheduled: nextScheduled ?? this.nextScheduled,
+      failureAction: failureAction ?? this.failureAction,
+      primarySource: primarySource ?? this.primarySource,
+      attestation: attestation ?? this.attestation,
+      validator: validator ?? this.validator,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! VerificationResult) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! VerificationResultBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1257,31 +1104,31 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       target,
       o.target,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       targetLocation,
       o.targetLocation,
     )) {
@@ -1311,7 +1158,7 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       validationProcess,
       o.validationProcess,
     )) {
@@ -1341,7 +1188,7 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<VerificationResultPrimarySource>(
+    if (!listEquals<VerificationResultPrimarySourceBuilder>(
       primarySource,
       o.primarySource,
     )) {
@@ -1353,7 +1200,7 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<VerificationResultValidator>(
+    if (!listEquals<VerificationResultValidatorBuilder>(
       validator,
       o.validator,
     )) {
@@ -1363,13 +1210,13 @@ class VerificationResult extends DomainResource {
   }
 }
 
-/// [VerificationResultPrimarySource]
+/// [VerificationResultPrimarySourceBuilder]
 /// Information about the primary source(s) involved in validation.
-class VerificationResultPrimarySource extends BackboneElement {
+class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [VerificationResultPrimarySource]
+  /// [VerificationResultPrimarySourceBuilder]
 
-  const VerificationResultPrimarySource({
+  VerificationResultPrimarySourceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1386,26 +1233,25 @@ class VerificationResultPrimarySource extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory VerificationResultPrimarySource.empty() =>
-      const VerificationResultPrimarySource();
+  /// For Builder classes, no fields are required
+  factory VerificationResultPrimarySourceBuilder.empty() =>
+      VerificationResultPrimarySourceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResultPrimarySource.fromJson(
+  factory VerificationResultPrimarySourceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'VerificationResult.primarySource';
-    return VerificationResultPrimarySource(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return VerificationResultPrimarySourceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1414,8 +1260,8 @@ class VerificationResultPrimarySource extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1423,15 +1269,15 @@ class VerificationResultPrimarySource extends BackboneElement {
             ),
           )
           .toList(),
-      who: JsonParser.parseObject<Reference>(
+      who: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'who',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.who',
       ),
       type: (json['type'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -1440,8 +1286,8 @@ class VerificationResultPrimarySource extends BackboneElement {
           )
           .toList(),
       communicationMethod: (json['communicationMethod'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.communicationMethod',
@@ -1449,27 +1295,27 @@ class VerificationResultPrimarySource extends BackboneElement {
             ),
           )
           .toList(),
-      validationStatus: JsonParser.parseObject<CodeableConcept>(
+      validationStatus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'validationStatus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.validationStatus',
       ),
-      validationDate: JsonParser.parsePrimitive<FhirDateTime>(
+      validationDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'validationDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.validationDate',
       ),
-      canPushUpdates: JsonParser.parseObject<CodeableConcept>(
+      canPushUpdates: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'canPushUpdates',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.canPushUpdates',
       ),
       pushTypeAvailable: (json['pushTypeAvailable'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.pushTypeAvailable',
@@ -1480,22 +1326,22 @@ class VerificationResultPrimarySource extends BackboneElement {
     );
   }
 
-  /// Deserialize [VerificationResultPrimarySource]
+  /// Deserialize [VerificationResultPrimarySourceBuilder]
   /// from a [String] or [YamlMap] object
-  factory VerificationResultPrimarySource.fromYaml(
+  factory VerificationResultPrimarySourceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return VerificationResultPrimarySource.fromJson(
+      return VerificationResultPrimarySourceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return VerificationResultPrimarySource.fromJson(
+      return VerificationResultPrimarySourceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'VerificationResultPrimarySource '
+        'VerificationResultPrimarySourceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1503,16 +1349,16 @@ class VerificationResultPrimarySource extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [VerificationResultPrimarySource]
+  /// [VerificationResultPrimarySourceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResultPrimarySource.fromJsonString(
+  factory VerificationResultPrimarySourceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return VerificationResultPrimarySource.fromJson(json);
+      return VerificationResultPrimarySourceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1524,52 +1370,52 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   /// [who]
   /// Reference to the primary source.
-  final Reference? who;
+  ReferenceBuilder? who;
 
   /// [type]
   /// Type of primary source (License Board; Primary Education; Continuing
   /// Education; Postal Service; Relationship owner; Registration Authority;
   /// legal source; issuing source; authoritative source).
-  final List<CodeableConcept>? type;
+  List<CodeableConceptBuilder>? type;
 
   /// [communicationMethod]
   /// Method for communicating with the primary source (manual; API; Push).
-  final List<CodeableConcept>? communicationMethod;
+  List<CodeableConceptBuilder>? communicationMethod;
 
   /// [validationStatus]
   /// Status of the validation of the target against the primary source
   /// (successful; failed; unknown).
-  final CodeableConcept? validationStatus;
+  CodeableConceptBuilder? validationStatus;
 
   /// [validationDate]
   /// When the target was validated against the primary source.
-  final FhirDateTime? validationDate;
+  FhirDateTimeBuilder? validationDate;
 
   /// [canPushUpdates]
   /// Ability of the primary source to push updates/alerts (yes; no;
   /// undetermined).
-  final CodeableConcept? canPushUpdates;
+  CodeableConceptBuilder? canPushUpdates;
 
   /// [pushTypeAvailable]
   /// Type of alerts/updates the primary source can send (specific requested
   /// changes; any changes; as defined by source).
-  final List<CodeableConcept>? pushTypeAvailable;
+  List<CodeableConceptBuilder>? pushTypeAvailable;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1578,51 +1424,21 @@ class VerificationResultPrimarySource extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'who',
-      who,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'communicationMethod',
-      communicationMethod,
-    );
-    addField(
-      'validationStatus',
-      validationStatus,
-    );
-    addField(
-      'validationDate',
-      validationDate,
-    );
-    addField(
-      'canPushUpdates',
-      canPushUpdates,
-    );
-    addField(
-      'pushTypeAvailable',
-      pushTypeAvailable,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('who', who);
+    addField('type', type);
+    addField('communicationMethod', communicationMethod);
+    addField('validationStatus', validationStatus);
+    addField('validationDate', validationDate);
+    addField('canPushUpdates', canPushUpdates);
+    addField('pushTypeAvailable', pushTypeAvailable);
     return json;
   }
 
@@ -1646,11 +1462,11 @@ class VerificationResultPrimarySource extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1702,7 +1518,7 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1711,123 +1527,127 @@ class VerificationResultPrimarySource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
         {
-          if (child is Reference) {
-            return copyWith(who: child);
+          if (child is ReferenceBuilder) {
+            who = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'communicationMethod':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?communicationMethod, ...child];
-            return copyWith(communicationMethod: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            communicationMethod = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?communicationMethod, child];
-            return copyWith(communicationMethod: newList);
+            communicationMethod = [...(communicationMethod ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationStatus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(validationStatus: child);
+          if (child is CodeableConceptBuilder) {
+            validationStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(validationDate: child);
+          if (child is FhirDateTimeBuilder) {
+            validationDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'canPushUpdates':
         {
-          if (child is CodeableConcept) {
-            return copyWith(canPushUpdates: child);
+          if (child is CodeableConceptBuilder) {
+            canPushUpdates = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'pushTypeAvailable':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?pushTypeAvailable, ...child];
-            return copyWith(pushTypeAvailable: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            pushTypeAvailable = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?pushTypeAvailable, child];
-            return copyWith(pushTypeAvailable: newList);
+            pushTypeAvailable = [...(pushTypeAvailable ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1843,98 +1663,84 @@ class VerificationResultPrimarySource extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'who':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'communicationMethod':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'validationStatus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'validationDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'canPushUpdates':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'pushTypeAvailable':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [VerificationResultPrimarySource]
+  /// Creates a new [VerificationResultPrimarySourceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResultPrimarySource createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'who':
         {
-          return copyWith(
-            who: Reference.empty(),
-          );
+          who = ReferenceBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
+          type = <CodeableConceptBuilder>[];
+          return;
         }
       case 'communicationMethod':
         {
-          return copyWith(
-            communicationMethod: <CodeableConcept>[],
-          );
+          communicationMethod = <CodeableConceptBuilder>[];
+          return;
         }
       case 'validationStatus':
         {
-          return copyWith(
-            validationStatus: CodeableConcept.empty(),
-          );
+          validationStatus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'validationDate':
         {
-          return copyWith(
-            validationDate: FhirDateTime.empty(),
-          );
+          validationDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'canPushUpdates':
         {
-          return copyWith(
-            canPushUpdates: CodeableConcept.empty(),
-          );
+          canPushUpdates = CodeableConceptBuilder.empty();
+          return;
         }
       case 'pushTypeAvailable':
         {
-          return copyWith(
-            pushTypeAvailable: <CodeableConcept>[],
-          );
+          pushTypeAvailable = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1943,7 +1749,7 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  VerificationResultPrimarySource clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1955,35 +1761,32 @@ class VerificationResultPrimarySource extends BackboneElement {
     bool canPushUpdates = false,
     bool pushTypeAvailable = false,
   }) {
-    return VerificationResultPrimarySource(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      who: who ? null : this.who,
-      type: type ? null : this.type,
-      communicationMethod:
-          communicationMethod ? null : this.communicationMethod,
-      validationStatus: validationStatus ? null : this.validationStatus,
-      validationDate: validationDate ? null : this.validationDate,
-      canPushUpdates: canPushUpdates ? null : this.canPushUpdates,
-      pushTypeAvailable: pushTypeAvailable ? null : this.pushTypeAvailable,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (who) this.who = null;
+    if (type) this.type = null;
+    if (communicationMethod) this.communicationMethod = null;
+    if (validationStatus) this.validationStatus = null;
+    if (validationDate) this.validationDate = null;
+    if (canPushUpdates) this.canPushUpdates = null;
+    if (pushTypeAvailable) this.pushTypeAvailable = null;
   }
 
   @override
-  VerificationResultPrimarySource clone() => throw UnimplementedError();
+  VerificationResultPrimarySourceBuilder clone() => throw UnimplementedError();
   @override
-  VerificationResultPrimarySource copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? who,
-    List<CodeableConcept>? type,
-    List<CodeableConcept>? communicationMethod,
-    CodeableConcept? validationStatus,
-    FhirDateTime? validationDate,
-    CodeableConcept? canPushUpdates,
-    List<CodeableConcept>? pushTypeAvailable,
+  VerificationResultPrimarySourceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? who,
+    List<CodeableConceptBuilder>? type,
+    List<CodeableConceptBuilder>? communicationMethod,
+    CodeableConceptBuilder? validationStatus,
+    FhirDateTimeBuilder? validationDate,
+    CodeableConceptBuilder? canPushUpdates,
+    List<CodeableConceptBuilder>? pushTypeAvailable,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1991,74 +1794,41 @@ class VerificationResultPrimarySource extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return VerificationResultPrimarySource(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      who: who?.copyWith(
-            objectPath: '$newObjectPath.who',
-          ) ??
-          this.who,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      communicationMethod: communicationMethod
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.communicationMethod',
-                ),
-              )
-              .toList() ??
-          this.communicationMethod,
-      validationStatus: validationStatus?.copyWith(
-            objectPath: '$newObjectPath.validationStatus',
-          ) ??
-          this.validationStatus,
-      validationDate: validationDate?.copyWith(
-            objectPath: '$newObjectPath.validationDate',
-          ) ??
-          this.validationDate,
-      canPushUpdates: canPushUpdates?.copyWith(
-            objectPath: '$newObjectPath.canPushUpdates',
-          ) ??
-          this.canPushUpdates,
-      pushTypeAvailable: pushTypeAvailable
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.pushTypeAvailable',
-                ),
-              )
-              .toList() ??
-          this.pushTypeAvailable,
+    final newResult = VerificationResultPrimarySourceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      who: who ?? this.who,
+      type: type ?? this.type,
+      communicationMethod: communicationMethod ?? this.communicationMethod,
+      validationStatus: validationStatus ?? this.validationStatus,
+      validationDate: validationDate ?? this.validationDate,
+      canPushUpdates: canPushUpdates ?? this.canPushUpdates,
+      pushTypeAvailable: pushTypeAvailable ?? this.pushTypeAvailable,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! VerificationResultPrimarySource) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! VerificationResultPrimarySourceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2069,13 +1839,13 @@ class VerificationResultPrimarySource extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2087,13 +1857,13 @@ class VerificationResultPrimarySource extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       type,
       o.type,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       communicationMethod,
       o.communicationMethod,
     )) {
@@ -2117,7 +1887,7 @@ class VerificationResultPrimarySource extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       pushTypeAvailable,
       o.pushTypeAvailable,
     )) {
@@ -2127,13 +1897,13 @@ class VerificationResultPrimarySource extends BackboneElement {
   }
 }
 
-/// [VerificationResultAttestation]
+/// [VerificationResultAttestationBuilder]
 /// Information about the entity attesting to information.
-class VerificationResultAttestation extends BackboneElement {
+class VerificationResultAttestationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [VerificationResultAttestation]
+  /// [VerificationResultAttestationBuilder]
 
-  const VerificationResultAttestation({
+  VerificationResultAttestationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2151,26 +1921,25 @@ class VerificationResultAttestation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory VerificationResultAttestation.empty() =>
-      const VerificationResultAttestation();
+  /// For Builder classes, no fields are required
+  factory VerificationResultAttestationBuilder.empty() =>
+      VerificationResultAttestationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResultAttestation.fromJson(
+  factory VerificationResultAttestationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'VerificationResult.attestation';
-    return VerificationResultAttestation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return VerificationResultAttestationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2179,8 +1948,8 @@ class VerificationResultAttestation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2188,73 +1957,73 @@ class VerificationResultAttestation extends BackboneElement {
             ),
           )
           .toList(),
-      who: JsonParser.parseObject<Reference>(
+      who: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'who',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.who',
       ),
-      onBehalfOf: JsonParser.parseObject<Reference>(
+      onBehalfOf: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'onBehalfOf',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.onBehalfOf',
       ),
-      communicationMethod: JsonParser.parseObject<CodeableConcept>(
+      communicationMethod: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'communicationMethod',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.communicationMethod',
       ),
-      date: JsonParser.parsePrimitive<FhirDate>(
+      date: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'date',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.date',
       ),
-      sourceIdentityCertificate: JsonParser.parsePrimitive<FhirString>(
+      sourceIdentityCertificate: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'sourceIdentityCertificate',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.sourceIdentityCertificate',
       ),
-      proxyIdentityCertificate: JsonParser.parsePrimitive<FhirString>(
+      proxyIdentityCertificate: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'proxyIdentityCertificate',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.proxyIdentityCertificate',
       ),
-      proxySignature: JsonParser.parseObject<Signature>(
+      proxySignature: JsonParser.parseObject<SignatureBuilder>(
         json,
         'proxySignature',
-        Signature.fromJson,
+        SignatureBuilder.fromJson,
         '$objectPath.proxySignature',
       ),
-      sourceSignature: JsonParser.parseObject<Signature>(
+      sourceSignature: JsonParser.parseObject<SignatureBuilder>(
         json,
         'sourceSignature',
-        Signature.fromJson,
+        SignatureBuilder.fromJson,
         '$objectPath.sourceSignature',
       ),
     );
   }
 
-  /// Deserialize [VerificationResultAttestation]
+  /// Deserialize [VerificationResultAttestationBuilder]
   /// from a [String] or [YamlMap] object
-  factory VerificationResultAttestation.fromYaml(
+  factory VerificationResultAttestationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return VerificationResultAttestation.fromJson(
+      return VerificationResultAttestationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return VerificationResultAttestation.fromJson(
+      return VerificationResultAttestationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'VerificationResultAttestation '
+        'VerificationResultAttestationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2262,16 +2031,16 @@ class VerificationResultAttestation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [VerificationResultAttestation]
+  /// [VerificationResultAttestationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResultAttestation.fromJsonString(
+  factory VerificationResultAttestationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return VerificationResultAttestation.fromJson(json);
+      return VerificationResultAttestationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2283,57 +2052,57 @@ class VerificationResultAttestation extends BackboneElement {
 
   /// [who]
   /// The individual or organization attesting to information.
-  final Reference? who;
+  ReferenceBuilder? who;
 
   /// [onBehalfOf]
   /// When the who is asserting on behalf of another (organization or
   /// individual).
-  final Reference? onBehalfOf;
+  ReferenceBuilder? onBehalfOf;
 
   /// [communicationMethod]
   /// The method by which attested information was submitted/retrieved
   /// (manual; API; Push).
-  final CodeableConcept? communicationMethod;
+  CodeableConceptBuilder? communicationMethod;
 
   /// [date]
   /// The date the information was attested to.
-  final FhirDate? date;
+  FhirDateBuilder? date;
 
   /// [sourceIdentityCertificate]
   /// A digital identity certificate associated with the attestation source.
-  final FhirString? sourceIdentityCertificate;
+  FhirStringBuilder? sourceIdentityCertificate;
 
   /// [proxyIdentityCertificate]
   /// A digital identity certificate associated with the proxy entity
   /// submitting attested information on behalf of the attestation source.
-  final FhirString? proxyIdentityCertificate;
+  FhirStringBuilder? proxyIdentityCertificate;
 
   /// [proxySignature]
   /// Signed assertion by the proxy entity indicating that they have the
   /// right to submit attested information on behalf of the attestation
   /// source.
-  final Signature? proxySignature;
+  SignatureBuilder? proxySignature;
 
   /// [sourceSignature]
   /// Signed assertion by the attestation source that they have attested to
   /// the information.
-  final Signature? sourceSignature;
+  SignatureBuilder? sourceSignature;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2342,55 +2111,22 @@ class VerificationResultAttestation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'who',
-      who,
-    );
-    addField(
-      'onBehalfOf',
-      onBehalfOf,
-    );
-    addField(
-      'communicationMethod',
-      communicationMethod,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'sourceIdentityCertificate',
-      sourceIdentityCertificate,
-    );
-    addField(
-      'proxyIdentityCertificate',
-      proxyIdentityCertificate,
-    );
-    addField(
-      'proxySignature',
-      proxySignature,
-    );
-    addField(
-      'sourceSignature',
-      sourceSignature,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('who', who);
+    addField('onBehalfOf', onBehalfOf);
+    addField('communicationMethod', communicationMethod);
+    addField('date', date);
+    addField('sourceIdentityCertificate', sourceIdentityCertificate);
+    addField('proxyIdentityCertificate', proxyIdentityCertificate);
+    addField('proxySignature', proxySignature);
+    addField('sourceSignature', sourceSignature);
     return json;
   }
 
@@ -2415,11 +2151,11 @@ class VerificationResultAttestation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2475,7 +2211,7 @@ class VerificationResultAttestation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2484,113 +2220,121 @@ class VerificationResultAttestation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
         {
-          if (child is Reference) {
-            return copyWith(who: child);
+          if (child is ReferenceBuilder) {
+            who = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onBehalfOf':
         {
-          if (child is Reference) {
-            return copyWith(onBehalfOf: child);
+          if (child is ReferenceBuilder) {
+            onBehalfOf = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'communicationMethod':
         {
-          if (child is CodeableConcept) {
-            return copyWith(communicationMethod: child);
+          if (child is CodeableConceptBuilder) {
+            communicationMethod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDate) {
-            return copyWith(date: child);
+          if (child is FhirDateBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceIdentityCertificate':
         {
-          if (child is FhirString) {
-            return copyWith(sourceIdentityCertificate: child);
+          if (child is FhirStringBuilder) {
+            sourceIdentityCertificate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'proxyIdentityCertificate':
         {
-          if (child is FhirString) {
-            return copyWith(proxyIdentityCertificate: child);
+          if (child is FhirStringBuilder) {
+            proxyIdentityCertificate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'proxySignature':
         {
-          if (child is Signature) {
-            return copyWith(proxySignature: child);
+          if (child is SignatureBuilder) {
+            proxySignature = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceSignature':
         {
-          if (child is Signature) {
-            return copyWith(sourceSignature: child);
+          if (child is SignatureBuilder) {
+            sourceSignature = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2606,106 +2350,91 @@ class VerificationResultAttestation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'who':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'onBehalfOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'communicationMethod':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'date':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'sourceIdentityCertificate':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'proxyIdentityCertificate':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'proxySignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       case 'sourceSignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [VerificationResultAttestation]
+  /// Creates a new [VerificationResultAttestationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResultAttestation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'who':
         {
-          return copyWith(
-            who: Reference.empty(),
-          );
+          who = ReferenceBuilder.empty();
+          return;
         }
       case 'onBehalfOf':
         {
-          return copyWith(
-            onBehalfOf: Reference.empty(),
-          );
+          onBehalfOf = ReferenceBuilder.empty();
+          return;
         }
       case 'communicationMethod':
         {
-          return copyWith(
-            communicationMethod: CodeableConcept.empty(),
-          );
+          communicationMethod = CodeableConceptBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDate.empty(),
-          );
+          date = FhirDateBuilder.empty();
+          return;
         }
       case 'sourceIdentityCertificate':
         {
-          return copyWith(
-            sourceIdentityCertificate: FhirString.empty(),
-          );
+          sourceIdentityCertificate = FhirStringBuilder.empty();
+          return;
         }
       case 'proxyIdentityCertificate':
         {
-          return copyWith(
-            proxyIdentityCertificate: FhirString.empty(),
-          );
+          proxyIdentityCertificate = FhirStringBuilder.empty();
+          return;
         }
       case 'proxySignature':
         {
-          return copyWith(
-            proxySignature: Signature.empty(),
-          );
+          proxySignature = SignatureBuilder.empty();
+          return;
         }
       case 'sourceSignature':
         {
-          return copyWith(
-            sourceSignature: Signature.empty(),
-          );
+          sourceSignature = SignatureBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2714,7 +2443,7 @@ class VerificationResultAttestation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  VerificationResultAttestation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2727,39 +2456,34 @@ class VerificationResultAttestation extends BackboneElement {
     bool proxySignature = false,
     bool sourceSignature = false,
   }) {
-    return VerificationResultAttestation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      who: who ? null : this.who,
-      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
-      communicationMethod:
-          communicationMethod ? null : this.communicationMethod,
-      date: date ? null : this.date,
-      sourceIdentityCertificate:
-          sourceIdentityCertificate ? null : this.sourceIdentityCertificate,
-      proxyIdentityCertificate:
-          proxyIdentityCertificate ? null : this.proxyIdentityCertificate,
-      proxySignature: proxySignature ? null : this.proxySignature,
-      sourceSignature: sourceSignature ? null : this.sourceSignature,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (who) this.who = null;
+    if (onBehalfOf) this.onBehalfOf = null;
+    if (communicationMethod) this.communicationMethod = null;
+    if (date) this.date = null;
+    if (sourceIdentityCertificate) this.sourceIdentityCertificate = null;
+    if (proxyIdentityCertificate) this.proxyIdentityCertificate = null;
+    if (proxySignature) this.proxySignature = null;
+    if (sourceSignature) this.sourceSignature = null;
   }
 
   @override
-  VerificationResultAttestation clone() => throw UnimplementedError();
+  VerificationResultAttestationBuilder clone() => throw UnimplementedError();
   @override
-  VerificationResultAttestation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? who,
-    Reference? onBehalfOf,
-    CodeableConcept? communicationMethod,
-    FhirDate? date,
-    FhirString? sourceIdentityCertificate,
-    FhirString? proxyIdentityCertificate,
-    Signature? proxySignature,
-    Signature? sourceSignature,
+  VerificationResultAttestationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? who,
+    ReferenceBuilder? onBehalfOf,
+    CodeableConceptBuilder? communicationMethod,
+    FhirDateBuilder? date,
+    FhirStringBuilder? sourceIdentityCertificate,
+    FhirStringBuilder? proxyIdentityCertificate,
+    SignatureBuilder? proxySignature,
+    SignatureBuilder? sourceSignature,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2767,66 +2491,44 @@ class VerificationResultAttestation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return VerificationResultAttestation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      who: who?.copyWith(
-            objectPath: '$newObjectPath.who',
-          ) ??
-          this.who,
-      onBehalfOf: onBehalfOf?.copyWith(
-            objectPath: '$newObjectPath.onBehalfOf',
-          ) ??
-          this.onBehalfOf,
-      communicationMethod: communicationMethod?.copyWith(
-            objectPath: '$newObjectPath.communicationMethod',
-          ) ??
-          this.communicationMethod,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      sourceIdentityCertificate: sourceIdentityCertificate?.copyWith(
-            objectPath: '$newObjectPath.sourceIdentityCertificate',
-          ) ??
-          this.sourceIdentityCertificate,
-      proxyIdentityCertificate: proxyIdentityCertificate?.copyWith(
-            objectPath: '$newObjectPath.proxyIdentityCertificate',
-          ) ??
-          this.proxyIdentityCertificate,
-      proxySignature: proxySignature?.copyWith(
-            objectPath: '$newObjectPath.proxySignature',
-          ) ??
-          this.proxySignature,
-      sourceSignature: sourceSignature?.copyWith(
-            objectPath: '$newObjectPath.sourceSignature',
-          ) ??
-          this.sourceSignature,
+    final newResult = VerificationResultAttestationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      who: who ?? this.who,
+      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
+      communicationMethod: communicationMethod ?? this.communicationMethod,
+      date: date ?? this.date,
+      sourceIdentityCertificate:
+          sourceIdentityCertificate ?? this.sourceIdentityCertificate,
+      proxyIdentityCertificate:
+          proxyIdentityCertificate ?? this.proxyIdentityCertificate,
+      proxySignature: proxySignature ?? this.proxySignature,
+      sourceSignature: sourceSignature ?? this.sourceSignature,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! VerificationResultAttestation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! VerificationResultAttestationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2837,13 +2539,13 @@ class VerificationResultAttestation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2901,17 +2603,17 @@ class VerificationResultAttestation extends BackboneElement {
   }
 }
 
-/// [VerificationResultValidator]
+/// [VerificationResultValidatorBuilder]
 /// Information about the entity validating information.
-class VerificationResultValidator extends BackboneElement {
+class VerificationResultValidatorBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [VerificationResultValidator]
+  /// [VerificationResultValidatorBuilder]
 
-  const VerificationResultValidator({
+  VerificationResultValidatorBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.organization,
+    this.organization,
     this.identityCertificate,
     this.attestationSignature,
     super.disallowExtensions,
@@ -2920,27 +2622,25 @@ class VerificationResultValidator extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory VerificationResultValidator.empty() => VerificationResultValidator(
-        organization: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory VerificationResultValidatorBuilder.empty() =>
+      VerificationResultValidatorBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResultValidator.fromJson(
+  factory VerificationResultValidatorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'VerificationResult.validator';
-    return VerificationResultValidator(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return VerificationResultValidatorBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2949,8 +2649,8 @@ class VerificationResultValidator extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2958,43 +2658,43 @@ class VerificationResultValidator extends BackboneElement {
             ),
           )
           .toList(),
-      organization: JsonParser.parseObject<Reference>(
+      organization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'organization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.organization',
-      )!,
-      identityCertificate: JsonParser.parsePrimitive<FhirString>(
+      ),
+      identityCertificate: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'identityCertificate',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.identityCertificate',
       ),
-      attestationSignature: JsonParser.parseObject<Signature>(
+      attestationSignature: JsonParser.parseObject<SignatureBuilder>(
         json,
         'attestationSignature',
-        Signature.fromJson,
+        SignatureBuilder.fromJson,
         '$objectPath.attestationSignature',
       ),
     );
   }
 
-  /// Deserialize [VerificationResultValidator]
+  /// Deserialize [VerificationResultValidatorBuilder]
   /// from a [String] or [YamlMap] object
-  factory VerificationResultValidator.fromYaml(
+  factory VerificationResultValidatorBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return VerificationResultValidator.fromJson(
+      return VerificationResultValidatorBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return VerificationResultValidator.fromJson(
+      return VerificationResultValidatorBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'VerificationResultValidator '
+        'VerificationResultValidatorBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3002,16 +2702,16 @@ class VerificationResultValidator extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [VerificationResultValidator]
+  /// [VerificationResultValidatorBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResultValidator.fromJsonString(
+  factory VerificationResultValidatorBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return VerificationResultValidator.fromJson(json);
+      return VerificationResultValidatorBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3023,32 +2723,32 @@ class VerificationResultValidator extends BackboneElement {
 
   /// [organization]
   /// Reference to the organization validating information.
-  final Reference organization;
+  ReferenceBuilder? organization;
 
   /// [identityCertificate]
   /// A digital identity certificate associated with the validator.
-  final FhirString? identityCertificate;
+  FhirStringBuilder? identityCertificate;
 
   /// [attestationSignature]
   /// Signed assertion by the validator that they have validated the
   /// information.
-  final Signature? attestationSignature;
+  SignatureBuilder? attestationSignature;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3057,35 +2757,17 @@ class VerificationResultValidator extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'organization',
-      organization,
-    );
-    addField(
-      'identityCertificate',
-      identityCertificate,
-    );
-    addField(
-      'attestationSignature',
-      attestationSignature,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('organization', organization);
+    addField('identityCertificate', identityCertificate);
+    addField('attestationSignature', attestationSignature);
     return json;
   }
 
@@ -3105,11 +2787,11 @@ class VerificationResultValidator extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3124,7 +2806,9 @@ class VerificationResultValidator extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'organization':
-        fields.add(organization);
+        if (organization != null) {
+          fields.add(organization!);
+        }
       case 'identityCertificate':
         if (identityCertificate != null) {
           fields.add(identityCertificate!);
@@ -3143,7 +2827,7 @@ class VerificationResultValidator extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3152,73 +2836,76 @@ class VerificationResultValidator extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
         {
-          if (child is Reference) {
-            return copyWith(organization: child);
+          if (child is ReferenceBuilder) {
+            organization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identityCertificate':
         {
-          if (child is FhirString) {
-            return copyWith(identityCertificate: child);
+          if (child is FhirStringBuilder) {
+            identityCertificate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'attestationSignature':
         {
-          if (child is Signature) {
-            return copyWith(attestationSignature: child);
+          if (child is SignatureBuilder) {
+            attestationSignature = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3234,66 +2921,56 @@ class VerificationResultValidator extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'organization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'identityCertificate':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'attestationSignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [VerificationResultValidator]
+  /// Creates a new [VerificationResultValidatorBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResultValidator createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'organization':
         {
-          return copyWith(
-            organization: Reference.empty(),
-          );
+          organization = ReferenceBuilder.empty();
+          return;
         }
       case 'identityCertificate':
         {
-          return copyWith(
-            identityCertificate: FhirString.empty(),
-          );
+          identityCertificate = FhirStringBuilder.empty();
+          return;
         }
       case 'attestationSignature':
         {
-          return copyWith(
-            attestationSignature: Signature.empty(),
-          );
+          attestationSignature = SignatureBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3302,35 +2979,32 @@ class VerificationResultValidator extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  VerificationResultValidator clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool organization = false,
     bool identityCertificate = false,
     bool attestationSignature = false,
   }) {
-    return VerificationResultValidator(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      organization: organization,
-      identityCertificate:
-          identityCertificate ? null : this.identityCertificate,
-      attestationSignature:
-          attestationSignature ? null : this.attestationSignature,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (organization) this.organization = null;
+    if (identityCertificate) this.identityCertificate = null;
+    if (attestationSignature) this.attestationSignature = null;
   }
 
   @override
-  VerificationResultValidator clone() => throw UnimplementedError();
+  VerificationResultValidatorBuilder clone() => throw UnimplementedError();
   @override
-  VerificationResultValidator copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? organization,
-    FhirString? identityCertificate,
-    Signature? attestationSignature,
+  VerificationResultValidatorBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? organization,
+    FhirStringBuilder? identityCertificate,
+    SignatureBuilder? attestationSignature,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3338,46 +3012,37 @@ class VerificationResultValidator extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return VerificationResultValidator(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      organization: organization?.copyWith(
-            objectPath: '$newObjectPath.organization',
-          ) ??
-          this.organization,
-      identityCertificate: identityCertificate?.copyWith(
-            objectPath: '$newObjectPath.identityCertificate',
-          ) ??
-          this.identityCertificate,
-      attestationSignature: attestationSignature?.copyWith(
-            objectPath: '$newObjectPath.attestationSignature',
-          ) ??
-          this.attestationSignature,
+    final newResult = VerificationResultValidatorBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      organization: organization ?? this.organization,
+      identityCertificate: identityCertificate ?? this.identityCertificate,
+      attestationSignature: attestationSignature ?? this.attestationSignature,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! VerificationResultValidator) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! VerificationResultValidatorBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3388,13 +3053,13 @@ class VerificationResultValidator extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

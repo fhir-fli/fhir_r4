@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Codes identifying the lifecycle stage of an Invoice.
-class InvoiceStatus extends FhirCodeEnum {
+class InvoiceStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  InvoiceStatus._({
+  InvoiceStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class InvoiceStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory InvoiceStatus(
+  factory InvoiceStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return InvoiceStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return InvoiceStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,72 +43,75 @@ class InvoiceStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [InvoiceStatus] with element only
-  factory InvoiceStatus.empty() => InvoiceStatus._(validatedValue: '');
+  /// Create empty [InvoiceStatusBuilder] with element only
+  factory InvoiceStatusBuilder.empty() =>
+      InvoiceStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [InvoiceStatus] from JSON.
-  factory InvoiceStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [InvoiceStatusBuilder] from JSON.
+  factory InvoiceStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvoiceStatus.elementOnly.withElement(element);
+      return InvoiceStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'InvoiceStatus cannot be constructed from JSON.',
+        'InvoiceStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return InvoiceStatus._(
+    return InvoiceStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// draft
-  static final InvoiceStatus draft = InvoiceStatus._(
+  static InvoiceStatusBuilder draft = InvoiceStatusBuilder._(
     validatedValue: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'draft'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'draft'.toFhirStringBuilder,
   );
 
   /// issued
-  static final InvoiceStatus issued = InvoiceStatus._(
+  static InvoiceStatusBuilder issued = InvoiceStatusBuilder._(
     validatedValue: 'issued',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'issued'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'issued'.toFhirStringBuilder,
   );
 
   /// balanced
-  static final InvoiceStatus balanced = InvoiceStatus._(
+  static InvoiceStatusBuilder balanced = InvoiceStatusBuilder._(
     validatedValue: 'balanced',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'balanced'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'balanced'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final InvoiceStatus cancelled = InvoiceStatus._(
+  static InvoiceStatusBuilder cancelled = InvoiceStatusBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'cancelled'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final InvoiceStatus entered_in_error = InvoiceStatus._(
+  static InvoiceStatusBuilder entered_in_error = InvoiceStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'entered in error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'entered in error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final InvoiceStatus elementOnly = InvoiceStatus._(validatedValue: '');
+  static InvoiceStatusBuilder elementOnly =
+      InvoiceStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<InvoiceStatus> values = [
+  static List<InvoiceStatusBuilder> values = [
     draft,
     issued,
     balanced,
@@ -118,14 +121,14 @@ class InvoiceStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  InvoiceStatus clone() => InvoiceStatus._(
+  InvoiceStatusBuilder clone() => InvoiceStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  InvoiceStatus withElement(Element? newElement) {
-    return InvoiceStatus._(validatedValue: value, element: newElement);
+  InvoiceStatusBuilder withElement(ElementBuilder? newElement) {
+    return InvoiceStatusBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -141,11 +144,11 @@ class InvoiceStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  InvoiceStatus copyWith({
+  InvoiceStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -156,7 +159,7 @@ class InvoiceStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return InvoiceStatus._(
+    return InvoiceStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -166,7 +169,7 @@ class InvoiceStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

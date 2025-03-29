@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// Category of an identified substance associated with allergies or
 /// intolerances.
-class AllergyIntoleranceCategory extends FhirCodeEnum {
+class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  AllergyIntoleranceCategory._({
+  AllergyIntoleranceCategoryBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory AllergyIntoleranceCategory(
+  factory AllergyIntoleranceCategoryBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return AllergyIntoleranceCategory._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return AllergyIntoleranceCategoryBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,73 +44,76 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [AllergyIntoleranceCategory] with element only
-  factory AllergyIntoleranceCategory.empty() =>
-      AllergyIntoleranceCategory._(validatedValue: '');
+  /// Create empty [AllergyIntoleranceCategoryBuilder] with element only
+  factory AllergyIntoleranceCategoryBuilder.empty() =>
+      AllergyIntoleranceCategoryBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AllergyIntoleranceCategory] from JSON.
-  factory AllergyIntoleranceCategory.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AllergyIntoleranceCategoryBuilder] from JSON.
+  factory AllergyIntoleranceCategoryBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceCategory.elementOnly.withElement(element);
+      return AllergyIntoleranceCategoryBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AllergyIntoleranceCategory cannot be constructed from JSON.',
+        'AllergyIntoleranceCategoryBuilder cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceCategory._(
+    return AllergyIntoleranceCategoryBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// food
-  static final AllergyIntoleranceCategory food = AllergyIntoleranceCategory._(
+  static AllergyIntoleranceCategoryBuilder food =
+      AllergyIntoleranceCategoryBuilder._(
     validatedValue: 'food',
-    system:
-        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Food'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Food'.toFhirStringBuilder,
   );
 
   /// medication
-  static final AllergyIntoleranceCategory medication =
-      AllergyIntoleranceCategory._(
+  static AllergyIntoleranceCategoryBuilder medication =
+      AllergyIntoleranceCategoryBuilder._(
     validatedValue: 'medication',
-    system:
-        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Medication'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Medication'.toFhirStringBuilder,
   );
 
   /// environment
-  static final AllergyIntoleranceCategory environment =
-      AllergyIntoleranceCategory._(
+  static AllergyIntoleranceCategoryBuilder environment =
+      AllergyIntoleranceCategoryBuilder._(
     validatedValue: 'environment',
-    system:
-        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Environment'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Environment'.toFhirStringBuilder,
   );
 
   /// biologic
-  static final AllergyIntoleranceCategory biologic =
-      AllergyIntoleranceCategory._(
+  static AllergyIntoleranceCategoryBuilder biologic =
+      AllergyIntoleranceCategoryBuilder._(
     validatedValue: 'biologic',
-    system:
-        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Biologic'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Biologic'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final AllergyIntoleranceCategory elementOnly =
-      AllergyIntoleranceCategory._(validatedValue: '');
+  static AllergyIntoleranceCategoryBuilder elementOnly =
+      AllergyIntoleranceCategoryBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<AllergyIntoleranceCategory> values = [
+  static List<AllergyIntoleranceCategoryBuilder> values = [
     food,
     medication,
     environment,
@@ -119,15 +122,16 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  AllergyIntoleranceCategory clone() => AllergyIntoleranceCategory._(
+  AllergyIntoleranceCategoryBuilder clone() =>
+      AllergyIntoleranceCategoryBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  AllergyIntoleranceCategory withElement(Element? newElement) {
-    return AllergyIntoleranceCategory._(
-        validatedValue: value, element: newElement,);
+  AllergyIntoleranceCategoryBuilder withElement(ElementBuilder? newElement) {
+    return AllergyIntoleranceCategoryBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,11 +147,11 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  AllergyIntoleranceCategory copyWith({
+  AllergyIntoleranceCategoryBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -158,7 +162,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return AllergyIntoleranceCategory._(
+    return AllergyIntoleranceCategoryBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -168,7 +172,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

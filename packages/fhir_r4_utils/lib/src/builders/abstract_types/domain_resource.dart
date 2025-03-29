@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -154,8 +155,8 @@ abstract class DomainResourceBuilder extends ResourceBuilder {
 
   /// Creates an empty property in the object
   @override
-  DomainResourceBuilder createProperty(String propertyName);
+  void createProperty(String propertyName);
 
   @override
-  DomainResourceBuilder clear();
+  void clear();
 }

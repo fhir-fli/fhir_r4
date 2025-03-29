@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// The extent of the content of the code system (the concepts and codes it
 /// defines) are represented in a code system resource.
-class CodeSystemContentMode extends FhirCodeEnum {
+class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  CodeSystemContentMode._({
+  CodeSystemContentModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory CodeSystemContentMode(
+  factory CodeSystemContentModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return CodeSystemContentMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return CodeSystemContentModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,74 +44,82 @@ class CodeSystemContentMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [CodeSystemContentMode] with element only
-  factory CodeSystemContentMode.empty() =>
-      CodeSystemContentMode._(validatedValue: '');
+  /// Create empty [CodeSystemContentModeBuilder] with element only
+  factory CodeSystemContentModeBuilder.empty() =>
+      CodeSystemContentModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CodeSystemContentMode] from JSON.
-  factory CodeSystemContentMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CodeSystemContentModeBuilder] from JSON.
+  factory CodeSystemContentModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSystemContentMode.elementOnly.withElement(element);
+      return CodeSystemContentModeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CodeSystemContentMode cannot be constructed from JSON.',
+        'CodeSystemContentModeBuilder cannot be constructed from JSON.',
       );
     }
-    return CodeSystemContentMode._(
+    return CodeSystemContentModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// not_present
-  static final CodeSystemContentMode not_present = CodeSystemContentMode._(
+  static CodeSystemContentModeBuilder not_present =
+      CodeSystemContentModeBuilder._(
     validatedValue: 'not-present',
-    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Present'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not Present'.toFhirStringBuilder,
   );
 
   /// example
-  static final CodeSystemContentMode example = CodeSystemContentMode._(
+  static CodeSystemContentModeBuilder example = CodeSystemContentModeBuilder._(
     validatedValue: 'example',
-    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Example'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Example'.toFhirStringBuilder,
   );
 
   /// fragment
-  static final CodeSystemContentMode fragment = CodeSystemContentMode._(
+  static CodeSystemContentModeBuilder fragment = CodeSystemContentModeBuilder._(
     validatedValue: 'fragment',
-    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fragment'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Fragment'.toFhirStringBuilder,
   );
 
   /// complete
-  static final CodeSystemContentMode complete = CodeSystemContentMode._(
+  static CodeSystemContentModeBuilder complete = CodeSystemContentModeBuilder._(
     validatedValue: 'complete',
-    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Complete'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Complete'.toFhirStringBuilder,
   );
 
   /// supplement
-  static final CodeSystemContentMode supplement = CodeSystemContentMode._(
+  static CodeSystemContentModeBuilder supplement =
+      CodeSystemContentModeBuilder._(
     validatedValue: 'supplement',
-    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Supplement'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Supplement'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final CodeSystemContentMode elementOnly =
-      CodeSystemContentMode._(validatedValue: '');
+  static CodeSystemContentModeBuilder elementOnly =
+      CodeSystemContentModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<CodeSystemContentMode> values = [
+  static List<CodeSystemContentModeBuilder> values = [
     not_present,
     example,
     fragment,
@@ -121,14 +129,15 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  CodeSystemContentMode clone() => CodeSystemContentMode._(
+  CodeSystemContentModeBuilder clone() => CodeSystemContentModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  CodeSystemContentMode withElement(Element? newElement) {
-    return CodeSystemContentMode._(validatedValue: value, element: newElement);
+  CodeSystemContentModeBuilder withElement(ElementBuilder? newElement) {
+    return CodeSystemContentModeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -144,11 +153,11 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  CodeSystemContentMode copyWith({
+  CodeSystemContentModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -159,7 +168,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return CodeSystemContentMode._(
+    return CodeSystemContentModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -169,7 +178,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

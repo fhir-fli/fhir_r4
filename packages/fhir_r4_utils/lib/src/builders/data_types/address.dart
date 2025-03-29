@@ -1,34 +1,36 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Address]
+/// [AddressBuilder]
 /// An address expressed using postal conventions (as opposed to GPS or
 /// other location definition formats). This data type may be used to
 /// convey addresses for use in delivering mail as well as for visiting
 /// locations which might not be valid for mail delivery. There are a
 /// variety of postal address formats defined around the world.
-class Address extends DataType
+class AddressBuilder extends DataTypeBuilder
     implements
-        LocationXClaimAccident,
-        LocationXClaimItem,
-        LocationXClaimResponseAddItem,
-        LocationXExplanationOfBenefitAccident,
-        LocationXExplanationOfBenefitItem,
-        LocationXExplanationOfBenefitAddItem,
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        LocationXClaimAccidentBuilder,
+        LocationXClaimItemBuilder,
+        LocationXClaimResponseAddItemBuilder,
+        LocationXExplanationOfBenefitAccidentBuilder,
+        LocationXExplanationOfBenefitItemBuilder,
+        LocationXExplanationOfBenefitAddItemBuilder,
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Address]
+  /// [AddressBuilder]
 
-  const Address({
+  AddressBuilder({
     super.id,
     super.extension_,
     this.use,
@@ -42,29 +44,28 @@ class Address extends DataType
     this.country,
     this.period,
     super.disallowExtensions,
-    super.objectPath = 'Address',
+    super.objectPath = 'AddressBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Address.empty() => const Address();
+  /// For Builder classes, no fields are required
+  factory AddressBuilder.empty() => AddressBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Address.fromJson(
+  factory AddressBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Address';
-    return Address(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AddressBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -72,85 +73,85 @@ class Address extends DataType
             ),
           )
           .toList(),
-      use: JsonParser.parsePrimitive<AddressUse>(
+      use: JsonParser.parsePrimitive<AddressUseBuilder>(
         json,
         'use',
-        AddressUse.fromJson,
+        AddressUseBuilder.fromJson,
         '$objectPath.use',
       ),
-      type: JsonParser.parsePrimitive<AddressType>(
+      type: JsonParser.parsePrimitive<AddressTypeBuilder>(
         json,
         'type',
-        AddressType.fromJson,
+        AddressTypeBuilder.fromJson,
         '$objectPath.type',
       ),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
-      line: JsonParser.parsePrimitiveList<FhirString>(
+      line: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'line',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.line',
       ),
-      city: JsonParser.parsePrimitive<FhirString>(
+      city: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'city',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.city',
       ),
-      district: JsonParser.parsePrimitive<FhirString>(
+      district: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'district',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.district',
       ),
-      state: JsonParser.parsePrimitive<FhirString>(
+      state: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'state',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.state',
       ),
-      postalCode: JsonParser.parsePrimitive<FhirString>(
+      postalCode: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'postalCode',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.postalCode',
       ),
-      country: JsonParser.parsePrimitive<FhirString>(
+      country: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'country',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.country',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
     );
   }
 
-  /// Deserialize [Address]
+  /// Deserialize [AddressBuilder]
   /// from a [String] or [YamlMap] object
-  factory Address.fromYaml(
+  factory AddressBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Address.fromJson(
+      return AddressBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Address.fromJson(
+      return AddressBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Address '
+        'AddressBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -158,16 +159,16 @@ class Address extends DataType
   }
 
   /// Factory constructor for
-  /// [Address]
+  /// [AddressBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Address.fromJsonString(
+  factory AddressBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Address.fromJson(json);
+      return AddressBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -179,68 +180,68 @@ class Address extends DataType
 
   /// [use]
   /// The purpose of this address.
-  final AddressUse? use;
+  AddressUseBuilder? use;
 
   /// [type]
   /// Distinguishes between physical addresses (those you can visit) and
   /// mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses
   /// are both.
-  final AddressType? type;
+  AddressTypeBuilder? type;
 
   /// [text]
   /// Specifies the entire address as it should be displayed e.g. on a postal
   /// label. This may be provided instead of or as well as the specific
   /// parts.
-  final FhirString? text;
+  FhirStringBuilder? text;
 
   /// [line]
   /// This component contains the house number, apartment number, street
   /// name, street direction, P.O. Box number, delivery hints, and similar
   /// address information.
-  final List<FhirString>? line;
+  List<FhirStringBuilder>? line;
 
   /// [city]
   /// The name of the city, town, suburb, village or other community or
   /// delivery center.
-  final FhirString? city;
+  FhirStringBuilder? city;
 
   /// [district]
   /// The name of the administrative area (county).
-  final FhirString? district;
+  FhirStringBuilder? district;
 
   /// [state]
   /// Sub-unit of a country with limited sovereignty in a federally organized
   /// country. A code may be used if codes are in common use (e.g. US 2
   /// letter state codes).
-  final FhirString? state;
+  FhirStringBuilder? state;
 
   /// [postalCode]
   /// A postal code designating a region defined by the postal service.
-  final FhirString? postalCode;
+  FhirStringBuilder? postalCode;
 
   /// [country]
   /// Country - a nation as commonly understood or generally accepted.
-  final FhirString? country;
+  FhirStringBuilder? country;
 
   /// [period]
   /// Time period when address was/is in use.
-  final Period? period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -249,59 +250,23 @@ class Address extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'line',
-      line,
-    );
-    addField(
-      'city',
-      city,
-    );
-    addField(
-      'district',
-      district,
-    );
-    addField(
-      'state',
-      state,
-    );
-    addField(
-      'postalCode',
-      postalCode,
-    );
-    addField(
-      'country',
-      country,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('use', use);
+    addField('type', type);
+    addField('text', text);
+    addField('line', line);
+    addField('city', city);
+    addField('district', district);
+    addField('state', state);
+    addField('postalCode', postalCode);
+    addField('country', country);
+    addField('period', period);
     return json;
   }
 
@@ -327,11 +292,11 @@ class Address extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -391,7 +356,7 @@ class Address extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -400,121 +365,130 @@ class Address extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
         {
-          if (child is AddressUse) {
-            return copyWith(use: child);
+          if (child is AddressUseBuilder) {
+            use = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is AddressType) {
-            return copyWith(type: child);
+          if (child is AddressTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'line':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?line, ...child];
-            return copyWith(line: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            line = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?line, child];
-            return copyWith(line: newList);
+            line = [...(line ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'city':
         {
-          if (child is FhirString) {
-            return copyWith(city: child);
+          if (child is FhirStringBuilder) {
+            city = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'district':
         {
-          if (child is FhirString) {
-            return copyWith(district: child);
+          if (child is FhirStringBuilder) {
+            district = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'state':
         {
-          if (child is FhirString) {
-            return copyWith(state: child);
+          if (child is FhirStringBuilder) {
+            state = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'postalCode':
         {
-          if (child is FhirString) {
-            return copyWith(postalCode: child);
+          if (child is FhirStringBuilder) {
+            postalCode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
         {
-          if (child is FhirString) {
-            return copyWith(country: child);
+          if (child is FhirStringBuilder) {
+            country = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -530,114 +504,98 @@ class Address extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'use':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'line':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'city':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'district':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'state':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'postalCode':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'country':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Address]
+  /// Creates a new [AddressBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Address createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'use':
         {
-          return copyWith(
-            use: AddressUse.empty(),
-          );
+          use = AddressUseBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: AddressType.empty(),
-          );
+          type = AddressTypeBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       case 'line':
         {
-          return copyWith(
-            line: <FhirString>[],
-          );
+          line = <FhirStringBuilder>[];
+          return;
         }
       case 'city':
         {
-          return copyWith(
-            city: FhirString.empty(),
-          );
+          city = FhirStringBuilder.empty();
+          return;
         }
       case 'district':
         {
-          return copyWith(
-            district: FhirString.empty(),
-          );
+          district = FhirStringBuilder.empty();
+          return;
         }
       case 'state':
         {
-          return copyWith(
-            state: FhirString.empty(),
-          );
+          state = FhirStringBuilder.empty();
+          return;
         }
       case 'postalCode':
         {
-          return copyWith(
-            postalCode: FhirString.empty(),
-          );
+          postalCode = FhirStringBuilder.empty();
+          return;
         }
       case 'country':
         {
-          return copyWith(
-            country: FhirString.empty(),
-          );
+          country = FhirStringBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -646,7 +604,7 @@ class Address extends DataType
 
   /// Clears specific fields in this object
   @override
-  Address clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool use = false,
@@ -660,38 +618,36 @@ class Address extends DataType
     bool country = false,
     bool period = false,
   }) {
-    return Address(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      use: use ? null : this.use,
-      type: type ? null : this.type,
-      text: text ? null : this.text,
-      line: line ? null : this.line,
-      city: city ? null : this.city,
-      district: district ? null : this.district,
-      state: state ? null : this.state,
-      postalCode: postalCode ? null : this.postalCode,
-      country: country ? null : this.country,
-      period: period ? null : this.period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (use) this.use = null;
+    if (type) this.type = null;
+    if (text) this.text = null;
+    if (line) this.line = null;
+    if (city) this.city = null;
+    if (district) this.district = null;
+    if (state) this.state = null;
+    if (postalCode) this.postalCode = null;
+    if (country) this.country = null;
+    if (period) this.period = null;
   }
 
   @override
-  Address clone() => throw UnimplementedError();
+  AddressBuilder clone() => throw UnimplementedError();
   @override
-  Address copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    AddressUse? use,
-    AddressType? type,
-    FhirString? text,
-    List<FhirString>? line,
-    FhirString? city,
-    FhirString? district,
-    FhirString? state,
-    FhirString? postalCode,
-    FhirString? country,
-    Period? period,
+  AddressBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    AddressUseBuilder? use,
+    AddressTypeBuilder? type,
+    FhirStringBuilder? text,
+    List<FhirStringBuilder>? line,
+    FhirStringBuilder? city,
+    FhirStringBuilder? district,
+    FhirStringBuilder? state,
+    FhirStringBuilder? postalCode,
+    FhirStringBuilder? country,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -699,70 +655,43 @@ class Address extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Address(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      line: line
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.line',
-                ),
-              )
-              .toList() ??
-          this.line,
-      city: city?.copyWith(
-            objectPath: '$newObjectPath.city',
-          ) ??
-          this.city,
-      district: district?.copyWith(
-            objectPath: '$newObjectPath.district',
-          ) ??
-          this.district,
-      state: state?.copyWith(
-            objectPath: '$newObjectPath.state',
-          ) ??
-          this.state,
-      postalCode: postalCode?.copyWith(
-            objectPath: '$newObjectPath.postalCode',
-          ) ??
-          this.postalCode,
-      country: country?.copyWith(
-            objectPath: '$newObjectPath.country',
-          ) ??
-          this.country,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = AddressBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      use: use ?? this.use,
+      type: type ?? this.type,
+      text: text ?? this.text,
+      line: line ?? this.line,
+      city: city ?? this.city,
+      district: district ?? this.district,
+      state: state ?? this.state,
+      postalCode: postalCode ?? this.postalCode,
+      country: country ?? this.country,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Address) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AddressBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -773,7 +702,7 @@ class Address extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -797,7 +726,7 @@ class Address extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       line,
       o.line,
     )) {

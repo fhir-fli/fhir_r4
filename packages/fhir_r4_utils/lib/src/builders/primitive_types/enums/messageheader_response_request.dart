@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// HL7-defined table of codes which identify conditions under which
 /// acknowledgments are required to be returned in response to a message.
-class MessageheaderResponseRequest extends FhirCodeEnum {
+class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  MessageheaderResponseRequest._({
+  MessageheaderResponseRequestBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory MessageheaderResponseRequest(
+  factory MessageheaderResponseRequestBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return MessageheaderResponseRequest._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return MessageheaderResponseRequestBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,74 +44,77 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [MessageheaderResponseRequest] with element only
-  factory MessageheaderResponseRequest.empty() =>
-      MessageheaderResponseRequest._(validatedValue: '');
+  /// Create empty [MessageheaderResponseRequestBuilder] with element only
+  factory MessageheaderResponseRequestBuilder.empty() =>
+      MessageheaderResponseRequestBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
-  factory MessageheaderResponseRequest.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MessageheaderResponseRequestBuilder] from JSON.
+  factory MessageheaderResponseRequestBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MessageheaderResponseRequest.elementOnly.withElement(element);
+      return MessageheaderResponseRequestBuilder.elementOnly
+          .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MessageheaderResponseRequest cannot be constructed from JSON.',
+        'MessageheaderResponseRequestBuilder cannot be constructed from JSON.',
       );
     }
-    return MessageheaderResponseRequest._(
+    return MessageheaderResponseRequestBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// always
-  static final MessageheaderResponseRequest always =
-      MessageheaderResponseRequest._(
+  static MessageheaderResponseRequestBuilder always =
+      MessageheaderResponseRequestBuilder._(
     validatedValue: 'always',
-    system:
-        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Always'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Always'.toFhirStringBuilder,
   );
 
   /// on_error
-  static final MessageheaderResponseRequest on_error =
-      MessageheaderResponseRequest._(
+  static MessageheaderResponseRequestBuilder on_error =
+      MessageheaderResponseRequestBuilder._(
     validatedValue: 'on-error',
-    system:
-        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error/reject conditions only'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Error/reject conditions only'.toFhirStringBuilder,
   );
 
   /// never
-  static final MessageheaderResponseRequest never =
-      MessageheaderResponseRequest._(
+  static MessageheaderResponseRequestBuilder never =
+      MessageheaderResponseRequestBuilder._(
     validatedValue: 'never',
-    system:
-        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Never'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Never'.toFhirStringBuilder,
   );
 
   /// on_success
-  static final MessageheaderResponseRequest on_success =
-      MessageheaderResponseRequest._(
+  static MessageheaderResponseRequestBuilder on_success =
+      MessageheaderResponseRequestBuilder._(
     validatedValue: 'on-success',
-    system:
-        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Successful completion only'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/messageheader-response-request'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Successful completion only'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final MessageheaderResponseRequest elementOnly =
-      MessageheaderResponseRequest._(validatedValue: '');
+  static MessageheaderResponseRequestBuilder elementOnly =
+      MessageheaderResponseRequestBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<MessageheaderResponseRequest> values = [
+  static List<MessageheaderResponseRequestBuilder> values = [
     always,
     on_error,
     never,
@@ -120,15 +123,16 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  MessageheaderResponseRequest clone() => MessageheaderResponseRequest._(
+  MessageheaderResponseRequestBuilder clone() =>
+      MessageheaderResponseRequestBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  MessageheaderResponseRequest withElement(Element? newElement) {
-    return MessageheaderResponseRequest._(
-        validatedValue: value, element: newElement,);
+  MessageheaderResponseRequestBuilder withElement(ElementBuilder? newElement) {
+    return MessageheaderResponseRequestBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -144,11 +148,11 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  MessageheaderResponseRequest copyWith({
+  MessageheaderResponseRequestBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -159,7 +163,7 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return MessageheaderResponseRequest._(
+    return MessageheaderResponseRequestBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -169,7 +173,7 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

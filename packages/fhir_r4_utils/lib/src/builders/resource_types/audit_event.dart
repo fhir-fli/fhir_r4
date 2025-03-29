@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [AuditEvent]
+/// [AuditEventBuilder]
 /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
 /// inappropriate usage.
-class AuditEvent extends DomainResource {
+class AuditEventBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [AuditEvent]
+  /// [AuditEventBuilder]
 
-  const AuditEvent({
+  AuditEventBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -19,16 +21,16 @@ class AuditEvent extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.subtype,
     this.action,
     this.period,
-    required this.recorded,
+    this.recorded,
     this.outcome,
     this.outcomeDesc,
     this.purposeOfEvent,
-    required this.agent,
-    required this.source,
+    this.agent,
+    this.source,
     this.entity,
   }) : super(
           objectPath: 'AuditEvent',
@@ -36,54 +38,48 @@ class AuditEvent extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AuditEvent.empty() => AuditEvent(
-        type: Coding.empty(),
-        recorded: FhirInstant.empty(),
-        agent: <AuditEventAgent>[],
-        source: AuditEventSource.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory AuditEventBuilder.empty() => AuditEventBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEvent.fromJson(
+  factory AuditEventBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AuditEvent';
-    return AuditEvent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AuditEventBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -92,8 +88,8 @@ class AuditEvent extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -102,8 +98,8 @@ class AuditEvent extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -111,15 +107,15 @@ class AuditEvent extends DomainResource {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<Coding>(
+      type: JsonParser.parseObject<CodingBuilder>(
         json,
         'type',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.type',
-      )!,
+      ),
       subtype: (json['subtype'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.subtype',
@@ -127,39 +123,39 @@ class AuditEvent extends DomainResource {
             ),
           )
           .toList(),
-      action: JsonParser.parsePrimitive<AuditEventAction>(
+      action: JsonParser.parsePrimitive<AuditEventActionBuilder>(
         json,
         'action',
-        AuditEventAction.fromJson,
+        AuditEventActionBuilder.fromJson,
         '$objectPath.action',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      recorded: JsonParser.parsePrimitive<FhirInstant>(
+      recorded: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'recorded',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.recorded',
-      )!,
-      outcome: JsonParser.parsePrimitive<AuditEventOutcome>(
+      ),
+      outcome: JsonParser.parsePrimitive<AuditEventOutcomeBuilder>(
         json,
         'outcome',
-        AuditEventOutcome.fromJson,
+        AuditEventOutcomeBuilder.fromJson,
         '$objectPath.outcome',
       ),
-      outcomeDesc: JsonParser.parsePrimitive<FhirString>(
+      outcomeDesc: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'outcomeDesc',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.outcomeDesc',
       ),
       purposeOfEvent: (json['purposeOfEvent'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.purposeOfEvent',
@@ -167,9 +163,9 @@ class AuditEvent extends DomainResource {
             ),
           )
           .toList(),
-      agent: (json['agent'] as List<dynamic>)
-          .map<AuditEventAgent>(
-            (v) => AuditEventAgent.fromJson(
+      agent: (json['agent'] as List<dynamic>?)
+          ?.map<AuditEventAgentBuilder>(
+            (v) => AuditEventAgentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.agent',
@@ -177,15 +173,15 @@ class AuditEvent extends DomainResource {
             ),
           )
           .toList(),
-      source: JsonParser.parseObject<AuditEventSource>(
+      source: JsonParser.parseObject<AuditEventSourceBuilder>(
         json,
         'source',
-        AuditEventSource.fromJson,
+        AuditEventSourceBuilder.fromJson,
         '$objectPath.source',
-      )!,
+      ),
       entity: (json['entity'] as List<dynamic>?)
-          ?.map<AuditEventEntity>(
-            (v) => AuditEventEntity.fromJson(
+          ?.map<AuditEventEntityBuilder>(
+            (v) => AuditEventEntityBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.entity',
@@ -196,22 +192,22 @@ class AuditEvent extends DomainResource {
     );
   }
 
-  /// Deserialize [AuditEvent]
+  /// Deserialize [AuditEventBuilder]
   /// from a [String] or [YamlMap] object
-  factory AuditEvent.fromYaml(
+  factory AuditEventBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AuditEvent.fromJson(
+      return AuditEventBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AuditEvent.fromJson(
+      return AuditEventBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AuditEvent '
+        'AuditEventBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -219,16 +215,16 @@ class AuditEvent extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [AuditEvent]
+  /// [AuditEventBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEvent.fromJsonString(
+  factory AuditEventBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AuditEvent.fromJson(json);
+      return AuditEventBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -242,65 +238,65 @@ class AuditEvent extends DomainResource {
   /// Identifier for a family of the event. For example, a menu item,
   /// program, rule, policy, function code, application name or URL. It
   /// identifies the performed function.
-  final Coding type;
+  CodingBuilder? type;
 
   /// [subtype]
   /// Identifier for the category of event.
-  final List<Coding>? subtype;
+  List<CodingBuilder>? subtype;
 
   /// [action]
   /// Indicator for type of action performed during the event that generated
   /// the audit.
-  final AuditEventAction? action;
+  AuditEventActionBuilder? action;
 
   /// [period]
   /// The period during which the activity occurred.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [recorded]
   /// The time when the event was recorded.
-  final FhirInstant recorded;
+  FhirInstantBuilder? recorded;
 
   /// [outcome]
   /// Indicates whether the event succeeded or failed.
-  final AuditEventOutcome? outcome;
+  AuditEventOutcomeBuilder? outcome;
 
   /// [outcomeDesc]
   /// A free text description of the outcome of the event.
-  final FhirString? outcomeDesc;
+  FhirStringBuilder? outcomeDesc;
 
   /// [purposeOfEvent]
   /// The purposeOfUse (reason) that was used during the event being
   /// recorded.
-  final List<CodeableConcept>? purposeOfEvent;
+  List<CodeableConceptBuilder>? purposeOfEvent;
 
   /// [agent]
   /// An actor taking an active role in the event or activity that is logged.
-  final List<AuditEventAgent> agent;
+  List<AuditEventAgentBuilder>? agent;
 
   /// [source]
   /// The system that is reporting the event.
-  final AuditEventSource source;
+  AuditEventSourceBuilder? source;
 
   /// [entity]
   /// Specific instances of data or objects that have been accessed.
-  final List<AuditEventEntity>? entity;
+  List<AuditEventEntityBuilder>? entity;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -309,88 +305,31 @@ class AuditEvent extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'subtype',
-      subtype,
-    );
-    addField(
-      'action',
-      action,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'recorded',
-      recorded,
-    );
-    addField(
-      'outcome',
-      outcome,
-    );
-    addField(
-      'outcomeDesc',
-      outcomeDesc,
-    );
-    addField(
-      'purposeOfEvent',
-      purposeOfEvent,
-    );
-    addField(
-      'agent',
-      agent,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'entity',
-      entity,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('subtype', subtype);
+    addField('action', action);
+    addField('period', period);
+    addField('recorded', recorded);
+    addField('outcome', outcome);
+    addField('outcomeDesc', outcomeDesc);
+    addField('purposeOfEvent', purposeOfEvent);
+    addField('agent', agent);
+    addField('source', source);
+    addField('entity', entity);
     return json;
   }
 
@@ -423,11 +362,11 @@ class AuditEvent extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -462,7 +401,9 @@ class AuditEvent extends DomainResource {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'subtype':
         if (subtype != null) {
           fields.addAll(subtype!);
@@ -476,7 +417,9 @@ class AuditEvent extends DomainResource {
           fields.add(period!);
         }
       case 'recorded':
-        fields.add(recorded);
+        if (recorded != null) {
+          fields.add(recorded!);
+        }
       case 'outcome':
         if (outcome != null) {
           fields.add(outcome!);
@@ -490,9 +433,13 @@ class AuditEvent extends DomainResource {
           fields.addAll(purposeOfEvent!);
         }
       case 'agent':
-        fields.addAll(agent);
+        if (agent != null) {
+          fields.addAll(agent!);
+        }
       case 'source':
-        fields.add(source);
+        if (source != null) {
+          fields.add(source!);
+        }
       case 'entity':
         if (entity != null) {
           fields.addAll(entity!);
@@ -507,7 +454,7 @@ class AuditEvent extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -516,207 +463,218 @@ class AuditEvent extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is Coding) {
-            return copyWith(type: child);
+          if (child is CodingBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subtype':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?subtype, ...child];
-            return copyWith(subtype: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            subtype = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?subtype, child];
-            return copyWith(subtype: newList);
+            subtype = [...(subtype ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is AuditEventAction) {
-            return copyWith(action: child);
+          if (child is AuditEventActionBuilder) {
+            action = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorded':
         {
-          if (child is FhirInstant) {
-            return copyWith(recorded: child);
+          if (child is FhirInstantBuilder) {
+            recorded = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
         {
-          if (child is AuditEventOutcome) {
-            return copyWith(outcome: child);
+          if (child is AuditEventOutcomeBuilder) {
+            outcome = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcomeDesc':
         {
-          if (child is FhirString) {
-            return copyWith(outcomeDesc: child);
+          if (child is FhirStringBuilder) {
+            outcomeDesc = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purposeOfEvent':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?purposeOfEvent, ...child];
-            return copyWith(purposeOfEvent: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            purposeOfEvent = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?purposeOfEvent, child];
-            return copyWith(purposeOfEvent: newList);
+            purposeOfEvent = [...(purposeOfEvent ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'agent':
         {
-          if (child is List<AuditEventAgent>) {
-            // Add all elements from passed list
-            final newList = [...agent, ...child];
-            return copyWith(agent: newList);
-          } else if (child is AuditEventAgent) {
+          if (child is List<AuditEventAgentBuilder>) {
+            // Replace or create new list
+            agent = child;
+            return;
+          } else if (child is AuditEventAgentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...agent, child];
-            return copyWith(agent: newList);
+            agent = [...(agent ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is AuditEventSource) {
-            return copyWith(source: child);
+          if (child is AuditEventSourceBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'entity':
         {
-          if (child is List<AuditEventEntity>) {
-            // Add all elements from passed list
-            final newList = [...?entity, ...child];
-            return copyWith(entity: newList);
-          } else if (child is AuditEventEntity) {
+          if (child is List<AuditEventEntityBuilder>) {
+            // Replace or create new list
+            entity = child;
+            return;
+          } else if (child is AuditEventEntityBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?entity, child];
-            return copyWith(entity: newList);
+            entity = [...(entity ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -732,170 +690,147 @@ class AuditEvent extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'subtype':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'action':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'recorded':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'outcome':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'outcomeDesc':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'purposeOfEvent':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'agent':
-        return ['AuditEventAgent'];
+        return ['AuditEventAgentBuilder'];
       case 'source':
-        return ['AuditEventSource'];
+        return ['AuditEventSourceBuilder'];
       case 'entity':
-        return ['AuditEventEntity'];
+        return ['AuditEventEntityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AuditEvent]
+  /// Creates a new [AuditEventBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEvent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: Coding.empty(),
-          );
+          type = CodingBuilder.empty();
+          return;
         }
       case 'subtype':
         {
-          return copyWith(
-            subtype: <Coding>[],
-          );
+          subtype = <CodingBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: AuditEventAction.empty(),
-          );
+          action = AuditEventActionBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'recorded':
         {
-          return copyWith(
-            recorded: FhirInstant.empty(),
-          );
+          recorded = FhirInstantBuilder.empty();
+          return;
         }
       case 'outcome':
         {
-          return copyWith(
-            outcome: AuditEventOutcome.empty(),
-          );
+          outcome = AuditEventOutcomeBuilder.empty();
+          return;
         }
       case 'outcomeDesc':
         {
-          return copyWith(
-            outcomeDesc: FhirString.empty(),
-          );
+          outcomeDesc = FhirStringBuilder.empty();
+          return;
         }
       case 'purposeOfEvent':
         {
-          return copyWith(
-            purposeOfEvent: <CodeableConcept>[],
-          );
+          purposeOfEvent = <CodeableConceptBuilder>[];
+          return;
         }
       case 'agent':
         {
-          return copyWith(
-            agent: <AuditEventAgent>[],
-          );
+          agent = <AuditEventAgentBuilder>[];
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: AuditEventSource.empty(),
-          );
+          source = AuditEventSourceBuilder.empty();
+          return;
         }
       case 'entity':
         {
-          return copyWith(
-            entity: <AuditEventEntity>[],
-          );
+          entity = <AuditEventEntityBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -904,7 +839,7 @@ class AuditEvent extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  AuditEvent clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -913,171 +848,112 @@ class AuditEvent extends DomainResource {
     bool contained = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool subtype = false,
     bool action = false,
     bool period = false,
+    bool recorded = false,
     bool outcome = false,
     bool outcomeDesc = false,
     bool purposeOfEvent = false,
+    bool agent = false,
+    bool source = false,
     bool entity = false,
   }) {
-    return AuditEvent(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      subtype: subtype ? null : this.subtype,
-      action: action ? null : this.action,
-      period: period ? null : this.period,
-      recorded: recorded,
-      outcome: outcome ? null : this.outcome,
-      outcomeDesc: outcomeDesc ? null : this.outcomeDesc,
-      purposeOfEvent: purposeOfEvent ? null : this.purposeOfEvent,
-      agent: agent,
-      source: source,
-      entity: entity ? null : this.entity,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (subtype) this.subtype = null;
+    if (action) this.action = null;
+    if (period) this.period = null;
+    if (recorded) this.recorded = null;
+    if (outcome) this.outcome = null;
+    if (outcomeDesc) this.outcomeDesc = null;
+    if (purposeOfEvent) this.purposeOfEvent = null;
+    if (agent) this.agent = null;
+    if (source) this.source = null;
+    if (entity) this.entity = null;
   }
 
   @override
-  AuditEvent clone() => throw UnimplementedError();
+  AuditEventBuilder clone() => throw UnimplementedError();
   @override
-  AuditEvent copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Coding? type,
-    List<Coding>? subtype,
-    AuditEventAction? action,
-    Period? period,
-    FhirInstant? recorded,
-    AuditEventOutcome? outcome,
-    FhirString? outcomeDesc,
-    List<CodeableConcept>? purposeOfEvent,
-    List<AuditEventAgent>? agent,
-    AuditEventSource? source,
-    List<AuditEventEntity>? entity,
+  AuditEventBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodingBuilder? type,
+    List<CodingBuilder>? subtype,
+    AuditEventActionBuilder? action,
+    PeriodBuilder? period,
+    FhirInstantBuilder? recorded,
+    AuditEventOutcomeBuilder? outcome,
+    FhirStringBuilder? outcomeDesc,
+    List<CodeableConceptBuilder>? purposeOfEvent,
+    List<AuditEventAgentBuilder>? agent,
+    AuditEventSourceBuilder? source,
+    List<AuditEventEntityBuilder>? entity,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return AuditEvent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = AuditEventBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subtype: subtype
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subtype',
-                ),
-              )
-              .toList() ??
-          this.subtype,
-      action: action?.copyWith(
-            objectPath: '$newObjectPath.action',
-          ) ??
-          this.action,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      recorded: recorded?.copyWith(
-            objectPath: '$newObjectPath.recorded',
-          ) ??
-          this.recorded,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      outcomeDesc: outcomeDesc?.copyWith(
-            objectPath: '$newObjectPath.outcomeDesc',
-          ) ??
-          this.outcomeDesc,
-      purposeOfEvent: purposeOfEvent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.purposeOfEvent',
-                ),
-              )
-              .toList() ??
-          this.purposeOfEvent,
-      agent: agent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.agent',
-                ),
-              )
-              .toList() ??
-          this.agent,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      entity: entity
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.entity',
-                ),
-              )
-              .toList() ??
-          this.entity,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      subtype: subtype ?? this.subtype,
+      action: action ?? this.action,
+      period: period ?? this.period,
+      recorded: recorded ?? this.recorded,
+      outcome: outcome ?? this.outcome,
+      outcomeDesc: outcomeDesc ?? this.outcomeDesc,
+      purposeOfEvent: purposeOfEvent ?? this.purposeOfEvent,
+      agent: agent ?? this.agent,
+      source: source ?? this.source,
+      entity: entity ?? this.entity,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AuditEvent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AuditEventBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1112,19 +988,19 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1136,7 +1012,7 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       subtype,
       o.subtype,
     )) {
@@ -1172,13 +1048,13 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       purposeOfEvent,
       o.purposeOfEvent,
     )) {
       return false;
     }
-    if (!listEquals<AuditEventAgent>(
+    if (!listEquals<AuditEventAgentBuilder>(
       agent,
       o.agent,
     )) {
@@ -1190,7 +1066,7 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<AuditEventEntity>(
+    if (!listEquals<AuditEventEntityBuilder>(
       entity,
       o.entity,
     )) {
@@ -1200,13 +1076,13 @@ class AuditEvent extends DomainResource {
   }
 }
 
-/// [AuditEventAgent]
+/// [AuditEventAgentBuilder]
 /// An actor taking an active role in the event or activity that is logged.
-class AuditEventAgent extends BackboneElement {
+class AuditEventAgentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AuditEventAgent]
+  /// [AuditEventAgentBuilder]
 
-  const AuditEventAgent({
+  AuditEventAgentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1215,7 +1091,7 @@ class AuditEventAgent extends BackboneElement {
     this.who,
     this.altId,
     this.name,
-    required this.requestor,
+    this.requestor,
     this.location,
     this.policy,
     this.media,
@@ -1227,27 +1103,24 @@ class AuditEventAgent extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AuditEventAgent.empty() => AuditEventAgent(
-        requestor: FhirBoolean.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory AuditEventAgentBuilder.empty() => AuditEventAgentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventAgent.fromJson(
+  factory AuditEventAgentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AuditEvent.agent';
-    return AuditEventAgent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AuditEventAgentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1256,8 +1129,8 @@ class AuditEventAgent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1265,15 +1138,15 @@ class AuditEventAgent extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       role: (json['role'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.role',
@@ -1281,57 +1154,57 @@ class AuditEventAgent extends BackboneElement {
             ),
           )
           .toList(),
-      who: JsonParser.parseObject<Reference>(
+      who: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'who',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.who',
       ),
-      altId: JsonParser.parsePrimitive<FhirString>(
+      altId: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'altId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.altId',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      requestor: JsonParser.parsePrimitive<FhirBoolean>(
+      requestor: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'requestor',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.requestor',
-      )!,
-      location: JsonParser.parseObject<Reference>(
+      ),
+      location: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'location',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.location',
       ),
-      policy: JsonParser.parsePrimitiveList<FhirUri>(
+      policy: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'policy',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.policy',
       ),
-      media: JsonParser.parseObject<Coding>(
+      media: JsonParser.parseObject<CodingBuilder>(
         json,
         'media',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.media',
       ),
-      network: JsonParser.parseObject<AuditEventNetwork>(
+      network: JsonParser.parseObject<AuditEventNetworkBuilder>(
         json,
         'network',
-        AuditEventNetwork.fromJson,
+        AuditEventNetworkBuilder.fromJson,
         '$objectPath.network',
       ),
       purposeOfUse: (json['purposeOfUse'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.purposeOfUse',
@@ -1342,22 +1215,22 @@ class AuditEventAgent extends BackboneElement {
     );
   }
 
-  /// Deserialize [AuditEventAgent]
+  /// Deserialize [AuditEventAgentBuilder]
   /// from a [String] or [YamlMap] object
-  factory AuditEventAgent.fromYaml(
+  factory AuditEventAgentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AuditEventAgent.fromJson(
+      return AuditEventAgentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AuditEventAgent.fromJson(
+      return AuditEventAgentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AuditEventAgent '
+        'AuditEventAgentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1365,16 +1238,16 @@ class AuditEventAgent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AuditEventAgent]
+  /// [AuditEventAgentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventAgent.fromJsonString(
+  factory AuditEventAgentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AuditEventAgent.fromJson(json);
+      return AuditEventAgentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1387,75 +1260,75 @@ class AuditEventAgent extends BackboneElement {
   /// [type]
   /// Specification of the participation type the user plays when performing
   /// the event.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [role]
   /// The security role that the user was acting under, that come from local
   /// codes defined by the access control security system (e.g. RBAC, ABAC)
   /// used in the local context.
-  final List<CodeableConcept>? role;
+  List<CodeableConceptBuilder>? role;
 
   /// [who]
   /// Reference to who this agent is that was involved in the event.
-  final Reference? who;
+  ReferenceBuilder? who;
 
   /// [altId]
   /// Alternative agent Identifier. For a human, this should be a user
   /// identifier text string from authentication system. This identifier
   /// would be one known to a common authentication system (e.g. single
   /// sign-on), if available.
-  final FhirString? altId;
+  FhirStringBuilder? altId;
 
   /// [name]
   /// Human-meaningful name for the agent.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [requestor]
   /// Indicator that the user is or is not the requestor, or initiator, for
   /// the event being audited.
-  final FhirBoolean requestor;
+  FhirBooleanBuilder? requestor;
 
   /// [location]
   /// Where the event occurred.
-  final Reference? location;
+  ReferenceBuilder? location;
 
   /// [policy]
   /// The policy or plan that authorized the activity being recorded.
   /// Typically, a single activity may have multiple applicable policies,
   /// such as patient consent, guarantor funding, etc. The policy would also
   /// indicate the security token used.
-  final List<FhirUri>? policy;
+  List<FhirUriBuilder>? policy;
 
   /// [media]
   /// Type of media involved. Used when the event is about
   /// exporting/importing onto media.
-  final Coding? media;
+  CodingBuilder? media;
 
   /// [network]
   /// Logical network location for application activity, if the activity has
   /// a network location.
-  final AuditEventNetwork? network;
+  AuditEventNetworkBuilder? network;
 
   /// [purposeOfUse]
   /// The reason (purpose of use), specific to this agent, that was used
   /// during the event being recorded.
-  final List<CodeableConcept>? purposeOfUse;
+  List<CodeableConceptBuilder>? purposeOfUse;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1464,67 +1337,25 @@ class AuditEventAgent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'who',
-      who,
-    );
-    addField(
-      'altId',
-      altId,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'requestor',
-      requestor,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'policy',
-      policy,
-    );
-    addField(
-      'media',
-      media,
-    );
-    addField(
-      'network',
-      network,
-    );
-    addField(
-      'purposeOfUse',
-      purposeOfUse,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('role', role);
+    addField('who', who);
+    addField('altId', altId);
+    addField('name', name);
+    addField('requestor', requestor);
+    addField('location', location);
+    addField('policy', policy);
+    addField('media', media);
+    addField('network', network);
+    addField('purposeOfUse', purposeOfUse);
     return json;
   }
 
@@ -1552,11 +1383,11 @@ class AuditEventAgent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1591,7 +1422,9 @@ class AuditEventAgent extends BackboneElement {
           fields.add(name!);
         }
       case 'requestor':
-        fields.add(requestor);
+        if (requestor != null) {
+          fields.add(requestor!);
+        }
       case 'location':
         if (location != null) {
           fields.add(location!);
@@ -1622,7 +1455,7 @@ class AuditEventAgent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1631,155 +1464,163 @@ class AuditEventAgent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?role, ...child];
-            return copyWith(role: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            role = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?role, child];
-            return copyWith(role: newList);
+            role = [...(role ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
         {
-          if (child is Reference) {
-            return copyWith(who: child);
+          if (child is ReferenceBuilder) {
+            who = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'altId':
         {
-          if (child is FhirString) {
-            return copyWith(altId: child);
+          if (child is FhirStringBuilder) {
+            altId = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requestor':
         {
-          if (child is FhirBoolean) {
-            return copyWith(requestor: child);
+          if (child is FhirBooleanBuilder) {
+            requestor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is Reference) {
-            return copyWith(location: child);
+          if (child is ReferenceBuilder) {
+            location = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'policy':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?policy, ...child];
-            return copyWith(policy: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            policy = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?policy, child];
-            return copyWith(policy: newList);
+            policy = [...(policy ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'media':
         {
-          if (child is Coding) {
-            return copyWith(media: child);
+          if (child is CodingBuilder) {
+            media = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'network':
         {
-          if (child is AuditEventNetwork) {
-            return copyWith(network: child);
+          if (child is AuditEventNetworkBuilder) {
+            network = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purposeOfUse':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?purposeOfUse, ...child];
-            return copyWith(purposeOfUse: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            purposeOfUse = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?purposeOfUse, child];
-            return copyWith(purposeOfUse: newList);
+            purposeOfUse = [...(purposeOfUse ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1795,130 +1636,112 @@ class AuditEventAgent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'who':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'altId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'requestor':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'location':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'policy':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'media':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'network':
-        return ['AuditEventNetwork'];
+        return ['AuditEventNetworkBuilder'];
       case 'purposeOfUse':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AuditEventAgent]
+  /// Creates a new [AuditEventAgentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventAgent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: <CodeableConcept>[],
-          );
+          role = <CodeableConceptBuilder>[];
+          return;
         }
       case 'who':
         {
-          return copyWith(
-            who: Reference.empty(),
-          );
+          who = ReferenceBuilder.empty();
+          return;
         }
       case 'altId':
         {
-          return copyWith(
-            altId: FhirString.empty(),
-          );
+          altId = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'requestor':
         {
-          return copyWith(
-            requestor: FhirBoolean.empty(),
-          );
+          requestor = FhirBooleanBuilder.empty();
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: Reference.empty(),
-          );
+          location = ReferenceBuilder.empty();
+          return;
         }
       case 'policy':
         {
-          return copyWith(
-            policy: <FhirUri>[],
-          );
+          policy = <FhirUriBuilder>[];
+          return;
         }
       case 'media':
         {
-          return copyWith(
-            media: Coding.empty(),
-          );
+          media = CodingBuilder.empty();
+          return;
         }
       case 'network':
         {
-          return copyWith(
-            network: AuditEventNetwork.empty(),
-          );
+          network = AuditEventNetworkBuilder.empty();
+          return;
         }
       case 'purposeOfUse':
         {
-          return copyWith(
-            purposeOfUse: <CodeableConcept>[],
-          );
+          purposeOfUse = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1927,7 +1750,7 @@ class AuditEventAgent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AuditEventAgent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1936,48 +1759,47 @@ class AuditEventAgent extends BackboneElement {
     bool who = false,
     bool altId = false,
     bool name = false,
+    bool requestor = false,
     bool location = false,
     bool policy = false,
     bool media = false,
     bool network = false,
     bool purposeOfUse = false,
   }) {
-    return AuditEventAgent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      role: role ? null : this.role,
-      who: who ? null : this.who,
-      altId: altId ? null : this.altId,
-      name: name ? null : this.name,
-      requestor: requestor,
-      location: location ? null : this.location,
-      policy: policy ? null : this.policy,
-      media: media ? null : this.media,
-      network: network ? null : this.network,
-      purposeOfUse: purposeOfUse ? null : this.purposeOfUse,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (role) this.role = null;
+    if (who) this.who = null;
+    if (altId) this.altId = null;
+    if (name) this.name = null;
+    if (requestor) this.requestor = null;
+    if (location) this.location = null;
+    if (policy) this.policy = null;
+    if (media) this.media = null;
+    if (network) this.network = null;
+    if (purposeOfUse) this.purposeOfUse = null;
   }
 
   @override
-  AuditEventAgent clone() => throw UnimplementedError();
+  AuditEventAgentBuilder clone() => throw UnimplementedError();
   @override
-  AuditEventAgent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? role,
-    Reference? who,
-    FhirString? altId,
-    FhirString? name,
-    FhirBoolean? requestor,
-    Reference? location,
-    List<FhirUri>? policy,
-    Coding? media,
-    AuditEventNetwork? network,
-    List<CodeableConcept>? purposeOfUse,
+  AuditEventAgentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? role,
+    ReferenceBuilder? who,
+    FhirStringBuilder? altId,
+    FhirStringBuilder? name,
+    FhirBooleanBuilder? requestor,
+    ReferenceBuilder? location,
+    List<FhirUriBuilder>? policy,
+    CodingBuilder? media,
+    AuditEventNetworkBuilder? network,
+    List<CodeableConceptBuilder>? purposeOfUse,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1985,90 +1807,45 @@ class AuditEventAgent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AuditEventAgent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      role: role
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.role',
-                ),
-              )
-              .toList() ??
-          this.role,
-      who: who?.copyWith(
-            objectPath: '$newObjectPath.who',
-          ) ??
-          this.who,
-      altId: altId?.copyWith(
-            objectPath: '$newObjectPath.altId',
-          ) ??
-          this.altId,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      requestor: requestor?.copyWith(
-            objectPath: '$newObjectPath.requestor',
-          ) ??
-          this.requestor,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      policy: policy
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.policy',
-                ),
-              )
-              .toList() ??
-          this.policy,
-      media: media?.copyWith(
-            objectPath: '$newObjectPath.media',
-          ) ??
-          this.media,
-      network: network?.copyWith(
-            objectPath: '$newObjectPath.network',
-          ) ??
-          this.network,
-      purposeOfUse: purposeOfUse
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.purposeOfUse',
-                ),
-              )
-              .toList() ??
-          this.purposeOfUse,
+    final newResult = AuditEventAgentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      role: role ?? this.role,
+      who: who ?? this.who,
+      altId: altId ?? this.altId,
+      name: name ?? this.name,
+      requestor: requestor ?? this.requestor,
+      location: location ?? this.location,
+      policy: policy ?? this.policy,
+      media: media ?? this.media,
+      network: network ?? this.network,
+      purposeOfUse: purposeOfUse ?? this.purposeOfUse,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AuditEventAgent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AuditEventAgentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2079,13 +1856,13 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2097,7 +1874,7 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       role,
       o.role,
     )) {
@@ -2133,7 +1910,7 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       policy,
       o.policy,
     )) {
@@ -2151,7 +1928,7 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       purposeOfUse,
       o.purposeOfUse,
     )) {
@@ -2161,14 +1938,14 @@ class AuditEventAgent extends BackboneElement {
   }
 }
 
-/// [AuditEventNetwork]
+/// [AuditEventNetworkBuilder]
 /// Logical network location for application activity, if the activity has
 /// a network location.
-class AuditEventNetwork extends BackboneElement {
+class AuditEventNetworkBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AuditEventNetwork]
+  /// [AuditEventNetworkBuilder]
 
-  const AuditEventNetwork({
+  AuditEventNetworkBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2180,25 +1957,24 @@ class AuditEventNetwork extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AuditEventNetwork.empty() => const AuditEventNetwork();
+  /// For Builder classes, no fields are required
+  factory AuditEventNetworkBuilder.empty() => AuditEventNetworkBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventNetwork.fromJson(
+  factory AuditEventNetworkBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AuditEvent.agent.network';
-    return AuditEventNetwork(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AuditEventNetworkBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2207,8 +1983,8 @@ class AuditEventNetwork extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2216,37 +1992,37 @@ class AuditEventNetwork extends BackboneElement {
             ),
           )
           .toList(),
-      address: JsonParser.parsePrimitive<FhirString>(
+      address: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'address',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.address',
       ),
-      type: JsonParser.parsePrimitive<AuditEventAgentNetworkType>(
+      type: JsonParser.parsePrimitive<AuditEventAgentNetworkTypeBuilder>(
         json,
         'type',
-        AuditEventAgentNetworkType.fromJson,
+        AuditEventAgentNetworkTypeBuilder.fromJson,
         '$objectPath.type',
       ),
     );
   }
 
-  /// Deserialize [AuditEventNetwork]
+  /// Deserialize [AuditEventNetworkBuilder]
   /// from a [String] or [YamlMap] object
-  factory AuditEventNetwork.fromYaml(
+  factory AuditEventNetworkBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AuditEventNetwork.fromJson(
+      return AuditEventNetworkBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AuditEventNetwork.fromJson(
+      return AuditEventNetworkBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AuditEventNetwork '
+        'AuditEventNetworkBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2254,16 +2030,16 @@ class AuditEventNetwork extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AuditEventNetwork]
+  /// [AuditEventNetworkBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventNetwork.fromJsonString(
+  factory AuditEventNetworkBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AuditEventNetwork.fromJson(json);
+      return AuditEventNetworkBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2276,28 +2052,28 @@ class AuditEventNetwork extends BackboneElement {
   /// [address]
   /// An identifier for the network access point of the user device for the
   /// audit event.
-  final FhirString? address;
+  FhirStringBuilder? address;
 
   /// [type]
   /// An identifier for the type of network access point that originated the
   /// audit event.
-  final AuditEventAgentNetworkType? type;
+  AuditEventAgentNetworkTypeBuilder? type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2306,31 +2082,16 @@ class AuditEventNetwork extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'address',
-      address,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('address', address);
+    addField('type', type);
     return json;
   }
 
@@ -2349,11 +2110,11 @@ class AuditEventNetwork extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2385,7 +2146,7 @@ class AuditEventNetwork extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2394,65 +2155,67 @@ class AuditEventNetwork extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
         {
-          if (child is FhirString) {
-            return copyWith(address: child);
+          if (child is FhirStringBuilder) {
+            address = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is AuditEventAgentNetworkType) {
-            return copyWith(type: child);
+          if (child is AuditEventAgentNetworkTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2468,58 +2231,49 @@ class AuditEventNetwork extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'address':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AuditEventNetwork]
+  /// Creates a new [AuditEventNetworkBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventNetwork createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'address':
         {
-          return copyWith(
-            address: FhirString.empty(),
-          );
+          address = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: AuditEventAgentNetworkType.empty(),
-          );
+          type = AuditEventAgentNetworkTypeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2528,31 +2282,29 @@ class AuditEventNetwork extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AuditEventNetwork clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool address = false,
     bool type = false,
   }) {
-    return AuditEventNetwork(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      address: address ? null : this.address,
-      type: type ? null : this.type,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (address) this.address = null;
+    if (type) this.type = null;
   }
 
   @override
-  AuditEventNetwork clone() => throw UnimplementedError();
+  AuditEventNetworkBuilder clone() => throw UnimplementedError();
   @override
-  AuditEventNetwork copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? address,
-    AuditEventAgentNetworkType? type,
+  AuditEventNetworkBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? address,
+    AuditEventAgentNetworkTypeBuilder? type,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2560,42 +2312,36 @@ class AuditEventNetwork extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AuditEventNetwork(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      address: address?.copyWith(
-            objectPath: '$newObjectPath.address',
-          ) ??
-          this.address,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
+    final newResult = AuditEventNetworkBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      address: address ?? this.address,
+      type: type ?? this.type,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AuditEventNetwork) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AuditEventNetworkBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2606,13 +2352,13 @@ class AuditEventNetwork extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2634,18 +2380,18 @@ class AuditEventNetwork extends BackboneElement {
   }
 }
 
-/// [AuditEventSource]
+/// [AuditEventSourceBuilder]
 /// The system that is reporting the event.
-class AuditEventSource extends BackboneElement {
+class AuditEventSourceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AuditEventSource]
+  /// [AuditEventSourceBuilder]
 
-  const AuditEventSource({
+  AuditEventSourceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.site,
-    required this.observer,
+    this.observer,
     this.type,
     super.disallowExtensions,
   }) : super(
@@ -2653,27 +2399,24 @@ class AuditEventSource extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AuditEventSource.empty() => AuditEventSource(
-        observer: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory AuditEventSourceBuilder.empty() => AuditEventSourceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventSource.fromJson(
+  factory AuditEventSourceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AuditEvent.source';
-    return AuditEventSource(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AuditEventSourceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2682,8 +2425,8 @@ class AuditEventSource extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2691,21 +2434,21 @@ class AuditEventSource extends BackboneElement {
             ),
           )
           .toList(),
-      site: JsonParser.parsePrimitive<FhirString>(
+      site: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'site',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.site',
       ),
-      observer: JsonParser.parseObject<Reference>(
+      observer: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'observer',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.observer',
-      )!,
+      ),
       type: (json['type'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -2716,22 +2459,22 @@ class AuditEventSource extends BackboneElement {
     );
   }
 
-  /// Deserialize [AuditEventSource]
+  /// Deserialize [AuditEventSourceBuilder]
   /// from a [String] or [YamlMap] object
-  factory AuditEventSource.fromYaml(
+  factory AuditEventSourceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AuditEventSource.fromJson(
+      return AuditEventSourceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AuditEventSource.fromJson(
+      return AuditEventSourceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AuditEventSource '
+        'AuditEventSourceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2739,16 +2482,16 @@ class AuditEventSource extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AuditEventSource]
+  /// [AuditEventSourceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventSource.fromJsonString(
+  factory AuditEventSourceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AuditEventSource.fromJson(json);
+      return AuditEventSourceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2762,31 +2505,31 @@ class AuditEventSource extends BackboneElement {
   /// Logical source location within the healthcare enterprise network. For
   /// example, a hospital or other provider location within a multi-entity
   /// provider group.
-  final FhirString? site;
+  FhirStringBuilder? site;
 
   /// [observer]
   /// Identifier of the source where the event was detected.
-  final Reference observer;
+  ReferenceBuilder? observer;
 
   /// [type]
   /// Code specifying the type of source where event originated.
-  final List<Coding>? type;
+  List<CodingBuilder>? type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2795,35 +2538,17 @@ class AuditEventSource extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'site',
-      site,
-    );
-    addField(
-      'observer',
-      observer,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('site', site);
+    addField('observer', observer);
+    addField('type', type);
     return json;
   }
 
@@ -2843,11 +2568,11 @@ class AuditEventSource extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2866,7 +2591,9 @@ class AuditEventSource extends BackboneElement {
           fields.add(site!);
         }
       case 'observer':
-        fields.add(observer);
+        if (observer != null) {
+          fields.add(observer!);
+        }
       case 'type':
         if (type != null) {
           fields.addAll(type!);
@@ -2881,7 +2608,7 @@ class AuditEventSource extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2890,79 +2617,81 @@ class AuditEventSource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'site':
         {
-          if (child is FhirString) {
-            return copyWith(site: child);
+          if (child is FhirStringBuilder) {
+            site = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'observer':
         {
-          if (child is Reference) {
-            return copyWith(observer: child);
+          if (child is ReferenceBuilder) {
+            observer = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2978,66 +2707,56 @@ class AuditEventSource extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'site':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'observer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['Coding'];
+        return ['CodingBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AuditEventSource]
+  /// Creates a new [AuditEventSourceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventSource createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'site':
         {
-          return copyWith(
-            site: FhirString.empty(),
-          );
+          site = FhirStringBuilder.empty();
+          return;
         }
       case 'observer':
         {
-          return copyWith(
-            observer: Reference.empty(),
-          );
+          observer = ReferenceBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <Coding>[],
-          );
+          type = <CodingBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3046,33 +2765,32 @@ class AuditEventSource extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AuditEventSource clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool site = false,
+    bool observer = false,
     bool type = false,
   }) {
-    return AuditEventSource(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      site: site ? null : this.site,
-      observer: observer,
-      type: type ? null : this.type,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (site) this.site = null;
+    if (observer) this.observer = null;
+    if (type) this.type = null;
   }
 
   @override
-  AuditEventSource clone() => throw UnimplementedError();
+  AuditEventSourceBuilder clone() => throw UnimplementedError();
   @override
-  AuditEventSource copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? site,
-    Reference? observer,
-    List<Coding>? type,
+  AuditEventSourceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? site,
+    ReferenceBuilder? observer,
+    List<CodingBuilder>? type,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3080,50 +2798,37 @@ class AuditEventSource extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AuditEventSource(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      site: site?.copyWith(
-            objectPath: '$newObjectPath.site',
-          ) ??
-          this.site,
-      observer: observer?.copyWith(
-            objectPath: '$newObjectPath.observer',
-          ) ??
-          this.observer,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
+    final newResult = AuditEventSourceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      site: site ?? this.site,
+      observer: observer ?? this.observer,
+      type: type ?? this.type,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AuditEventSource) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AuditEventSourceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3134,13 +2839,13 @@ class AuditEventSource extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3158,7 +2863,7 @@ class AuditEventSource extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       type,
       o.type,
     )) {
@@ -3168,13 +2873,13 @@ class AuditEventSource extends BackboneElement {
   }
 }
 
-/// [AuditEventEntity]
+/// [AuditEventEntityBuilder]
 /// Specific instances of data or objects that have been accessed.
-class AuditEventEntity extends BackboneElement {
+class AuditEventEntityBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AuditEventEntity]
+  /// [AuditEventEntityBuilder]
 
-  const AuditEventEntity({
+  AuditEventEntityBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3193,25 +2898,24 @@ class AuditEventEntity extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AuditEventEntity.empty() => const AuditEventEntity();
+  /// For Builder classes, no fields are required
+  factory AuditEventEntityBuilder.empty() => AuditEventEntityBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventEntity.fromJson(
+  factory AuditEventEntityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AuditEvent.entity';
-    return AuditEventEntity(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AuditEventEntityBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3220,8 +2924,8 @@ class AuditEventEntity extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3229,33 +2933,33 @@ class AuditEventEntity extends BackboneElement {
             ),
           )
           .toList(),
-      what: JsonParser.parseObject<Reference>(
+      what: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'what',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.what',
       ),
-      type: JsonParser.parseObject<Coding>(
+      type: JsonParser.parseObject<CodingBuilder>(
         json,
         'type',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.type',
       ),
-      role: JsonParser.parseObject<Coding>(
+      role: JsonParser.parseObject<CodingBuilder>(
         json,
         'role',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.role',
       ),
-      lifecycle: JsonParser.parseObject<Coding>(
+      lifecycle: JsonParser.parseObject<CodingBuilder>(
         json,
         'lifecycle',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.lifecycle',
       ),
       securityLabel: (json['securityLabel'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.securityLabel',
@@ -3263,27 +2967,27 @@ class AuditEventEntity extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      query: JsonParser.parsePrimitive<FhirBase64Binary>(
+      query: JsonParser.parsePrimitive<FhirBase64BinaryBuilder>(
         json,
         'query',
-        FhirBase64Binary.fromJson,
+        FhirBase64BinaryBuilder.fromJson,
         '$objectPath.query',
       ),
       detail: (json['detail'] as List<dynamic>?)
-          ?.map<AuditEventDetail>(
-            (v) => AuditEventDetail.fromJson(
+          ?.map<AuditEventDetailBuilder>(
+            (v) => AuditEventDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.detail',
@@ -3294,22 +2998,22 @@ class AuditEventEntity extends BackboneElement {
     );
   }
 
-  /// Deserialize [AuditEventEntity]
+  /// Deserialize [AuditEventEntityBuilder]
   /// from a [String] or [YamlMap] object
-  factory AuditEventEntity.fromYaml(
+  factory AuditEventEntityBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AuditEventEntity.fromJson(
+      return AuditEventEntityBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AuditEventEntity.fromJson(
+      return AuditEventEntityBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AuditEventEntity '
+        'AuditEventEntityBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3317,16 +3021,16 @@ class AuditEventEntity extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AuditEventEntity]
+  /// [AuditEventEntityBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventEntity.fromJsonString(
+  factory AuditEventEntityBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AuditEventEntity.fromJson(json);
+      return AuditEventEntityBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3339,57 +3043,57 @@ class AuditEventEntity extends BackboneElement {
   /// [what]
   /// Identifies a specific instance of the entity. The reference should be
   /// version specific.
-  final Reference? what;
+  ReferenceBuilder? what;
 
   /// [type]
   /// The type of the object that was involved in this audit event.
-  final Coding? type;
+  CodingBuilder? type;
 
   /// [role]
   /// Code representing the role the entity played in the event being
   /// audited.
-  final Coding? role;
+  CodingBuilder? role;
 
   /// [lifecycle]
   /// Identifier for the data life-cycle stage for the entity.
-  final Coding? lifecycle;
+  CodingBuilder? lifecycle;
 
   /// [securityLabel]
   /// Security labels for the identified entity.
-  final List<Coding>? securityLabel;
+  List<CodingBuilder>? securityLabel;
 
   /// [name]
   /// A name of the entity in the audit event.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [description]
   /// Text that describes the entity in more detail.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [query]
   /// The query parameters for a query-type entities.
-  final FhirBase64Binary? query;
+  FhirBase64BinaryBuilder? query;
 
   /// [detail]
   /// Tagged value pairs for conveying additional information about the
   /// entity.
-  final List<AuditEventDetail>? detail;
+  List<AuditEventDetailBuilder>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3398,59 +3102,23 @@ class AuditEventEntity extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'what',
-      what,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'lifecycle',
-      lifecycle,
-    );
-    addField(
-      'securityLabel',
-      securityLabel,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'query',
-      query,
-    );
-    addField(
-      'detail',
-      detail,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('what', what);
+    addField('type', type);
+    addField('role', role);
+    addField('lifecycle', lifecycle);
+    addField('securityLabel', securityLabel);
+    addField('name', name);
+    addField('description', description);
+    addField('query', query);
+    addField('detail', detail);
     return json;
   }
 
@@ -3476,11 +3144,11 @@ class AuditEventEntity extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3540,7 +3208,7 @@ class AuditEventEntity extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3549,133 +3217,140 @@ class AuditEventEntity extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'what':
         {
-          if (child is Reference) {
-            return copyWith(what: child);
+          if (child is ReferenceBuilder) {
+            what = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is Coding) {
-            return copyWith(type: child);
+          if (child is CodingBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is Coding) {
-            return copyWith(role: child);
+          if (child is CodingBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lifecycle':
         {
-          if (child is Coding) {
-            return copyWith(lifecycle: child);
+          if (child is CodingBuilder) {
+            lifecycle = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabel':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabel, ...child];
-            return copyWith(securityLabel: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            securityLabel = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabel, child];
-            return copyWith(securityLabel: newList);
+            securityLabel = [...(securityLabel ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'query':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(query: child);
+          if (child is FhirBase64BinaryBuilder) {
+            query = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is List<AuditEventDetail>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is AuditEventDetail) {
+          if (child is List<AuditEventDetailBuilder>) {
+            // Replace or create new list
+            detail = child;
+            return;
+          } else if (child is AuditEventDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?detail, child];
-            return copyWith(detail: newList);
+            detail = [...(detail ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3691,114 +3366,98 @@ class AuditEventEntity extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'what':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'role':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'lifecycle':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'securityLabel':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'query':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'detail':
-        return ['AuditEventDetail'];
+        return ['AuditEventDetailBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AuditEventEntity]
+  /// Creates a new [AuditEventEntityBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventEntity createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'what':
         {
-          return copyWith(
-            what: Reference.empty(),
-          );
+          what = ReferenceBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: Coding.empty(),
-          );
+          type = CodingBuilder.empty();
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: Coding.empty(),
-          );
+          role = CodingBuilder.empty();
+          return;
         }
       case 'lifecycle':
         {
-          return copyWith(
-            lifecycle: Coding.empty(),
-          );
+          lifecycle = CodingBuilder.empty();
+          return;
         }
       case 'securityLabel':
         {
-          return copyWith(
-            securityLabel: <Coding>[],
-          );
+          securityLabel = <CodingBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'query':
         {
-          return copyWith(
-            query: FhirBase64Binary.empty(),
-          );
+          query = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: <AuditEventDetail>[],
-          );
+          detail = <AuditEventDetailBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3807,7 +3466,7 @@ class AuditEventEntity extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AuditEventEntity clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3821,38 +3480,36 @@ class AuditEventEntity extends BackboneElement {
     bool query = false,
     bool detail = false,
   }) {
-    return AuditEventEntity(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      what: what ? null : this.what,
-      type: type ? null : this.type,
-      role: role ? null : this.role,
-      lifecycle: lifecycle ? null : this.lifecycle,
-      securityLabel: securityLabel ? null : this.securityLabel,
-      name: name ? null : this.name,
-      description: description ? null : this.description,
-      query: query ? null : this.query,
-      detail: detail ? null : this.detail,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (what) this.what = null;
+    if (type) this.type = null;
+    if (role) this.role = null;
+    if (lifecycle) this.lifecycle = null;
+    if (securityLabel) this.securityLabel = null;
+    if (name) this.name = null;
+    if (description) this.description = null;
+    if (query) this.query = null;
+    if (detail) this.detail = null;
   }
 
   @override
-  AuditEventEntity clone() => throw UnimplementedError();
+  AuditEventEntityBuilder clone() => throw UnimplementedError();
   @override
-  AuditEventEntity copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? what,
-    Coding? type,
-    Coding? role,
-    Coding? lifecycle,
-    List<Coding>? securityLabel,
-    FhirString? name,
-    FhirString? description,
-    FhirBase64Binary? query,
-    List<AuditEventDetail>? detail,
+  AuditEventEntityBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? what,
+    CodingBuilder? type,
+    CodingBuilder? role,
+    CodingBuilder? lifecycle,
+    List<CodingBuilder>? securityLabel,
+    FhirStringBuilder? name,
+    FhirStringBuilder? description,
+    FhirBase64BinaryBuilder? query,
+    List<AuditEventDetailBuilder>? detail,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3860,78 +3517,43 @@ class AuditEventEntity extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AuditEventEntity(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      what: what?.copyWith(
-            objectPath: '$newObjectPath.what',
-          ) ??
-          this.what,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      lifecycle: lifecycle?.copyWith(
-            objectPath: '$newObjectPath.lifecycle',
-          ) ??
-          this.lifecycle,
-      securityLabel: securityLabel
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabel',
-                ),
-              )
-              .toList() ??
-          this.securityLabel,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      query: query?.copyWith(
-            objectPath: '$newObjectPath.query',
-          ) ??
-          this.query,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
+    final newResult = AuditEventEntityBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      what: what ?? this.what,
+      type: type ?? this.type,
+      role: role ?? this.role,
+      lifecycle: lifecycle ?? this.lifecycle,
+      securityLabel: securityLabel ?? this.securityLabel,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      query: query ?? this.query,
+      detail: detail ?? this.detail,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AuditEventEntity) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AuditEventEntityBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3942,13 +3564,13 @@ class AuditEventEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3978,7 +3600,7 @@ class AuditEventEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       securityLabel,
       o.securityLabel,
     )) {
@@ -4002,7 +3624,7 @@ class AuditEventEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<AuditEventDetail>(
+    if (!listEquals<AuditEventDetailBuilder>(
       detail,
       o.detail,
     )) {
@@ -4012,47 +3634,43 @@ class AuditEventEntity extends BackboneElement {
   }
 }
 
-/// [AuditEventDetail]
+/// [AuditEventDetailBuilder]
 /// Tagged value pairs for conveying additional information about the
 /// entity.
-class AuditEventDetail extends BackboneElement {
+class AuditEventDetailBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AuditEventDetail]
+  /// [AuditEventDetailBuilder]
 
-  const AuditEventDetail({
+  AuditEventDetailBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-    required this.valueX,
+    this.type,
+    this.valueX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'AuditEvent.entity.detail',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AuditEventDetail.empty() => AuditEventDetail(
-        type: FhirString.empty(),
-        valueX: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory AuditEventDetailBuilder.empty() => AuditEventDetailBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventDetail.fromJson(
+  factory AuditEventDetailBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AuditEvent.entity.detail';
-    return AuditEventDetail(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AuditEventDetailBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4061,8 +3679,8 @@ class AuditEventDetail extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4070,39 +3688,39 @@ class AuditEventDetail extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<FhirString>(
+      type: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'type',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      valueX: JsonParser.parsePolymorphic<ValueXAuditEventDetail>(
+      ),
+      valueX: JsonParser.parsePolymorphic<ValueXAuditEventDetailBuilder>(
         json,
         {
-          'valueString': FhirString.fromJson,
-          'valueBase64Binary': FhirBase64Binary.fromJson,
+          'valueString': FhirStringBuilder.fromJson,
+          'valueBase64Binary': FhirBase64BinaryBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [AuditEventDetail]
+  /// Deserialize [AuditEventDetailBuilder]
   /// from a [String] or [YamlMap] object
-  factory AuditEventDetail.fromYaml(
+  factory AuditEventDetailBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AuditEventDetail.fromJson(
+      return AuditEventDetailBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AuditEventDetail.fromJson(
+      return AuditEventDetailBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AuditEventDetail '
+        'AuditEventDetailBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4110,16 +3728,16 @@ class AuditEventDetail extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AuditEventDetail]
+  /// [AuditEventDetailBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventDetail.fromJsonString(
+  factory AuditEventDetailBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AuditEventDetail.fromJson(json);
+      return AuditEventDetailBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4131,33 +3749,34 @@ class AuditEventDetail extends BackboneElement {
 
   /// [type]
   /// The type of extra detail provided in the value.
-  final FhirString type;
+  FhirStringBuilder? type;
 
   /// [valueX]
   /// The value of the extra detail.
-  final ValueXAuditEventDetail valueX;
+  ValueXAuditEventDetailBuilder? valueX;
 
-  /// Getter for [valueString] as a FhirString
-  FhirString? get valueString => valueX.isAs<FhirString>();
+  /// Getter for [valueString] as a FhirStringBuilder
+  FhirStringBuilder? get valueString => valueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [valueBase64Binary] as a FhirBase64Binary
-  FhirBase64Binary? get valueBase64Binary => valueX.isAs<FhirBase64Binary>();
+  /// Getter for [valueBase64Binary] as a FhirBase64BinaryBuilder
+  FhirBase64BinaryBuilder? get valueBase64Binary =>
+      valueX?.isAs<FhirBase64BinaryBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4166,32 +3785,19 @@ class AuditEventDetail extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    final valueXFhirType = valueX.fhirType;
-    addField(
-      'value${valueXFhirType.capitalize()}',
-      valueX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    if (valueX != null) {
+      final fhirType = valueX!.fhirType;
+      addField('value${fhirType.capitalize()}', valueX);
+    }
 
     return json;
   }
@@ -4211,11 +3817,11 @@ class AuditEventDetail extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4230,18 +3836,24 @@ class AuditEventDetail extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'value':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueString':
-        if (valueX is FhirString) {
-          fields.add(valueX);
+        if (valueX is FhirStringBuilder) {
+          fields.add(valueX!);
         }
       case 'valueBase64Binary':
-        if (valueX is FhirBase64Binary) {
-          fields.add(valueX);
+        if (valueX is FhirBase64BinaryBuilder) {
+          fields.add(valueX!);
         }
       default:
         if (checkValid) {
@@ -4253,7 +3865,7 @@ class AuditEventDetail extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4262,87 +3874,93 @@ class AuditEventDetail extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is FhirString) {
-            return copyWith(type: child);
+          if (child is FhirStringBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXAuditEventDetail) {
-            return copyWith(valueX: child);
+          if (child is ValueXAuditEventDetailBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is FhirString) {
-              return copyWith(valueX: child);
+            if (child is FhirStringBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBase64Binary) {
-              return copyWith(valueX: child);
+            if (child is FhirBase64BinaryBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'valueFhirString':
+      case 'valueString':
         {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
+          if (child is FhirStringBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBase64Binary':
+      case 'valueBase64Binary':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(valueX: child);
+          if (child is FhirBase64BinaryBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4358,71 +3976,61 @@ class AuditEventDetail extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'value':
       case 'valueX':
-        return ['FhirString', 'FhirBase64Binary'];
+        return ['FhirStringBuilder', 'FhirBase64BinaryBuilder'];
       case 'valueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueBase64Binary':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AuditEventDetail]
+  /// Creates a new [AuditEventDetailBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventDetail createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: FhirString.empty(),
-          );
+          type = FhirStringBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueString':
         {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
+          valueX = FhirStringBuilder.empty();
+          return;
         }
       case 'valueBase64Binary':
         {
-          return copyWith(
-            valueX: FhirBase64Binary.empty(),
-          );
+          valueX = FhirBase64BinaryBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4431,29 +4039,29 @@ class AuditEventDetail extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AuditEventDetail clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
+    bool value = false,
   }) {
-    return AuditEventDetail(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      valueX: valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  AuditEventDetail clone() => throw UnimplementedError();
+  AuditEventDetailBuilder clone() => throw UnimplementedError();
   @override
-  AuditEventDetail copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? type,
-    ValueXAuditEventDetail? valueX,
+  AuditEventDetailBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? type,
+    ValueXAuditEventDetailBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4461,42 +4069,36 @@ class AuditEventDetail extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AuditEventDetail(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXAuditEventDetail? ??
-          this.valueX,
+    final newResult = AuditEventDetailBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AuditEventDetail) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AuditEventDetailBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4507,13 +4109,13 @@ class AuditEventDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

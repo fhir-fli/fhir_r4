@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Indicates whether the event succeeded or failed.
-class AuditEventOutcome extends FhirCodeEnum {
+class AuditEventOutcomeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  AuditEventOutcome._({
+  AuditEventOutcomeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class AuditEventOutcome extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory AuditEventOutcome(
+  factory AuditEventOutcomeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return AuditEventOutcome._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return AuditEventOutcomeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class AuditEventOutcome extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [AuditEventOutcome] with element only
-  factory AuditEventOutcome.empty() => AuditEventOutcome._(validatedValue: '');
+  /// Create empty [AuditEventOutcomeBuilder] with element only
+  factory AuditEventOutcomeBuilder.empty() =>
+      AuditEventOutcomeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AuditEventOutcome] from JSON.
-  factory AuditEventOutcome.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AuditEventOutcomeBuilder] from JSON.
+  factory AuditEventOutcomeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventOutcome.elementOnly.withElement(element);
+      return AuditEventOutcomeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AuditEventOutcome cannot be constructed from JSON.',
+        'AuditEventOutcomeBuilder cannot be constructed from JSON.',
       );
     }
-    return AuditEventOutcome._(
+    return AuditEventOutcomeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// value0
-  static final AuditEventOutcome value0 = AuditEventOutcome._(
+  static AuditEventOutcomeBuilder value0 = AuditEventOutcomeBuilder._(
     validatedValue: '0',
-    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Success'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Success'.toFhirStringBuilder,
   );
 
   /// value4
-  static final AuditEventOutcome value4 = AuditEventOutcome._(
+  static AuditEventOutcomeBuilder value4 = AuditEventOutcomeBuilder._(
     validatedValue: '4',
-    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Minor failure'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Minor failure'.toFhirStringBuilder,
   );
 
   /// value8
-  static final AuditEventOutcome value8 = AuditEventOutcome._(
+  static AuditEventOutcomeBuilder value8 = AuditEventOutcomeBuilder._(
     validatedValue: '8',
-    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Serious failure'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Serious failure'.toFhirStringBuilder,
   );
 
   /// value12
-  static final AuditEventOutcome value12 = AuditEventOutcome._(
+  static AuditEventOutcomeBuilder value12 = AuditEventOutcomeBuilder._(
     validatedValue: '12',
-    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Major failure'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Major failure'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final AuditEventOutcome elementOnly =
-      AuditEventOutcome._(validatedValue: '');
+  static AuditEventOutcomeBuilder elementOnly =
+      AuditEventOutcomeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<AuditEventOutcome> values = [
+  static List<AuditEventOutcomeBuilder> values = [
     value0,
     value4,
     value8,
@@ -110,14 +112,15 @@ class AuditEventOutcome extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  AuditEventOutcome clone() => AuditEventOutcome._(
+  AuditEventOutcomeBuilder clone() => AuditEventOutcomeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  AuditEventOutcome withElement(Element? newElement) {
-    return AuditEventOutcome._(validatedValue: value, element: newElement);
+  AuditEventOutcomeBuilder withElement(ElementBuilder? newElement) {
+    return AuditEventOutcomeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +136,11 @@ class AuditEventOutcome extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  AuditEventOutcome copyWith({
+  AuditEventOutcomeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +151,7 @@ class AuditEventOutcome extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return AuditEventOutcome._(
+    return AuditEventOutcomeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +161,7 @@ class AuditEventOutcome extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of relations between entries.
-class CatalogEntryRelationType extends FhirCodeEnum {
+class CatalogEntryRelationTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  CatalogEntryRelationType._({
+  CatalogEntryRelationTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class CatalogEntryRelationType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory CatalogEntryRelationType(
+  factory CatalogEntryRelationTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return CatalogEntryRelationType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return CatalogEntryRelationTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,68 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [CatalogEntryRelationType] with element only
-  factory CatalogEntryRelationType.empty() =>
-      CatalogEntryRelationType._(validatedValue: '');
+  /// Create empty [CatalogEntryRelationTypeBuilder] with element only
+  factory CatalogEntryRelationTypeBuilder.empty() =>
+      CatalogEntryRelationTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CatalogEntryRelationType] from JSON.
-  factory CatalogEntryRelationType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CatalogEntryRelationTypeBuilder] from JSON.
+  factory CatalogEntryRelationTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CatalogEntryRelationType.elementOnly.withElement(element);
+      return CatalogEntryRelationTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CatalogEntryRelationType cannot be constructed from JSON.',
+        'CatalogEntryRelationTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return CatalogEntryRelationType._(
+    return CatalogEntryRelationTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// triggers
-  static final CatalogEntryRelationType triggers = CatalogEntryRelationType._(
+  static CatalogEntryRelationTypeBuilder triggers =
+      CatalogEntryRelationTypeBuilder._(
     validatedValue: 'triggers',
-    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Triggers'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Triggers'.toFhirStringBuilder,
   );
 
   /// is_replaced_by
-  static final CatalogEntryRelationType is_replaced_by =
-      CatalogEntryRelationType._(
+  static CatalogEntryRelationTypeBuilder is_replaced_by =
+      CatalogEntryRelationTypeBuilder._(
     validatedValue: 'is-replaced-by',
-    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaced By'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Replaced By'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final CatalogEntryRelationType elementOnly =
-      CatalogEntryRelationType._(validatedValue: '');
+  static CatalogEntryRelationTypeBuilder elementOnly =
+      CatalogEntryRelationTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<CatalogEntryRelationType> values = [
+  static List<CatalogEntryRelationTypeBuilder> values = [
     triggers,
     is_replaced_by,
   ];
 
   /// Clones the current instance
   @override
-  CatalogEntryRelationType clone() => CatalogEntryRelationType._(
+  CatalogEntryRelationTypeBuilder clone() => CatalogEntryRelationTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  CatalogEntryRelationType withElement(Element? newElement) {
-    return CatalogEntryRelationType._(
-        validatedValue: value, element: newElement,);
+  CatalogEntryRelationTypeBuilder withElement(ElementBuilder? newElement) {
+    return CatalogEntryRelationTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,11 +120,11 @@ class CatalogEntryRelationType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  CatalogEntryRelationType copyWith({
+  CatalogEntryRelationTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -133,7 +135,7 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return CatalogEntryRelationType._(
+    return CatalogEntryRelationTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -143,7 +145,7 @@ class CatalogEntryRelationType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

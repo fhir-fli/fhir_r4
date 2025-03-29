@@ -1,4 +1,4 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// A utility class to parse JSON fields.
 class JsonParser {
@@ -85,10 +85,10 @@ class JsonParser {
   }
 
   /// Add a single primitive or enum field to a JSON map.
-  static void addPrimitive<T extends DataType>(
+  static void addPrimitive<T extends DataTypeBuilder>(
     Map<String, dynamic> json,
     String key,
-    PrimitiveType<dynamic>? field,
+    PrimitiveTypeBuilder<dynamic>? field,
   ) {
     if (field != null) {
       final fieldJson = field.toJson();
@@ -100,10 +100,10 @@ class JsonParser {
   }
 
   /// Add a list of primitives or enums to a JSON map.
-  static void addPrimitiveList<T extends DataType>(
+  static void addPrimitiveList<T extends DataTypeBuilder>(
     Map<String, dynamic> json,
     String key,
-    List<PrimitiveType<dynamic>>? field,
+    List<PrimitiveTypeBuilder<dynamic>>? field,
   ) {
     if (field != null && field.isNotEmpty) {
       final fieldJson = field.map((e) => e.toJson()).toList();
@@ -115,7 +115,7 @@ class JsonParser {
   }
 
   /// Add a single complex object to a JSON map.
-  static void addObject<T extends DataType>(
+  static void addObject<T extends DataTypeBuilder>(
     Map<String, dynamic> json,
     String key,
     T? field,
@@ -126,7 +126,7 @@ class JsonParser {
   }
 
   /// Add a list of complex objects to a JSON map.
-  static void addList<T extends FhirBase>(
+  static void addList<T extends FhirBaseBuilder>(
     Map<String, dynamic> json,
     String key,
     List<T>? field,
@@ -140,7 +140,7 @@ class JsonParser {
   static void addPolymorphic(
     Map<String, dynamic> json,
     String key,
-    FhirBase? field,
+    FhirBaseBuilder? field,
     Map<String, Function> polymorphicTypeMap,
   ) {
     if (field != null) {

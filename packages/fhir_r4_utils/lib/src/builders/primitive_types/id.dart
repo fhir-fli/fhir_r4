@@ -43,7 +43,7 @@ class FhirIdBuilder extends PrimitiveTypeBuilder<String>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Id',
+    String? objectPath = 'Id',
   }) {
     // If [input] is non-null, validate it; else remain null if also no element.
     final validated = input != null ? _validateId(input) : null;
@@ -120,7 +120,7 @@ class FhirIdBuilder extends PrimitiveTypeBuilder<String>
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Boolean checks for the presence of a value only.
   bool get valueOnly => value != null && element == null;

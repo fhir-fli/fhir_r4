@@ -1,34 +1,36 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Age]
+/// [AgeBuilder]
 /// A duration of time during which an organism (or a process) has existed.
-class Age extends Quantity
+class AgeBuilder extends QuantityBuilder
     implements
-        TimingXActivityDefinition,
-        OnsetXAllergyIntolerance,
-        OnsetXCondition,
-        AbatementXCondition,
-        AgeXFamilyMemberHistory,
-        DeceasedXFamilyMemberHistory,
-        OnsetXFamilyMemberHistoryCondition,
-        ValueXParametersParameter,
-        TimingXPlanDefinitionAction,
-        PerformedXProcedure,
-        TimingXRequestGroupAction,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        TimingXActivityDefinitionBuilder,
+        OnsetXAllergyIntoleranceBuilder,
+        OnsetXConditionBuilder,
+        AbatementXConditionBuilder,
+        AgeXFamilyMemberHistoryBuilder,
+        DeceasedXFamilyMemberHistoryBuilder,
+        OnsetXFamilyMemberHistoryConditionBuilder,
+        ValueXParametersParameterBuilder,
+        TimingXPlanDefinitionActionBuilder,
+        PerformedXProcedureBuilder,
+        TimingXRequestGroupActionBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Age]
+  /// [AgeBuilder]
 
-  const Age({
+  AgeBuilder({
     super.id,
     super.extension_,
     super.value,
@@ -37,29 +39,28 @@ class Age extends Quantity
     super.system,
     super.code,
     super.disallowExtensions,
-    super.objectPath = 'Age',
+    super.objectPath = 'AgeBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Age.empty() => const Age();
+  /// For Builder classes, no fields are required
+  factory AgeBuilder.empty() => AgeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Age.fromJson(
+  factory AgeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Age';
-    return Age(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AgeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -67,55 +68,55 @@ class Age extends Quantity
             ),
           )
           .toList(),
-      value: JsonParser.parsePrimitive<FhirDecimal>(
+      value: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'value',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.value',
       ),
-      comparator: JsonParser.parsePrimitive<QuantityComparator>(
+      comparator: JsonParser.parsePrimitive<QuantityComparatorBuilder>(
         json,
         'comparator',
-        QuantityComparator.fromJson,
+        QuantityComparatorBuilder.fromJson,
         '$objectPath.comparator',
       ),
-      unit: JsonParser.parsePrimitive<FhirString>(
+      unit: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'unit',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.unit',
       ),
-      system: JsonParser.parsePrimitive<FhirUri>(
+      system: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'system',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.system',
       ),
-      code: JsonParser.parsePrimitive<FhirCode>(
+      code: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'code',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.code',
       ),
     );
   }
 
-  /// Deserialize [Age]
+  /// Deserialize [AgeBuilder]
   /// from a [String] or [YamlMap] object
-  factory Age.fromYaml(
+  factory AgeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Age.fromJson(
+      return AgeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Age.fromJson(
+      return AgeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Age '
+        'AgeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -123,16 +124,16 @@ class Age extends Quantity
   }
 
   /// Factory constructor for
-  /// [Age]
+  /// [AgeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Age.fromJsonString(
+  factory AgeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Age.fromJson(json);
+      return AgeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -146,18 +147,18 @@ class Age extends Quantity
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -166,39 +167,18 @@ class Age extends Quantity
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'comparator',
-      comparator,
-    );
-    addField(
-      'unit',
-      unit,
-    );
-    addField(
-      'system',
-      system,
-    );
-    addField(
-      'code',
-      code,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('value', value);
+    addField('comparator', comparator);
+    addField('unit', unit);
+    addField('system', system);
+    addField('code', code);
     return json;
   }
 
@@ -219,11 +199,11 @@ class Age extends Quantity
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -263,7 +243,7 @@ class Age extends Quantity
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -272,75 +252,80 @@ class Age extends Quantity
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirDecimal) {
-            return copyWith(value: child);
+          if (child is FhirDecimalBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comparator':
         {
-          if (child is QuantityComparator) {
-            return copyWith(comparator: child);
+          if (child is QuantityComparatorBuilder) {
+            comparator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'unit':
         {
-          if (child is FhirString) {
-            return copyWith(unit: child);
+          if (child is FhirStringBuilder) {
+            unit = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'system':
         {
-          if (child is FhirUri) {
-            return copyWith(system: child);
+          if (child is FhirUriBuilder) {
+            system = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirCode) {
-            return copyWith(code: child);
+          if (child is FhirCodeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -356,74 +341,63 @@ class Age extends Quantity
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'value':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'comparator':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'unit':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'system':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Age]
+  /// Creates a new [AgeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Age createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirDecimal.empty(),
-          );
+          value = FhirDecimalBuilder.empty();
+          return;
         }
       case 'comparator':
         {
-          return copyWith(
-            comparator: QuantityComparator.empty(),
-          );
+          comparator = QuantityComparatorBuilder.empty();
+          return;
         }
       case 'unit':
         {
-          return copyWith(
-            unit: FhirString.empty(),
-          );
+          unit = FhirStringBuilder.empty();
+          return;
         }
       case 'system':
         {
-          return copyWith(
-            system: FhirUri.empty(),
-          );
+          system = FhirUriBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
+          code = FhirCodeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -432,7 +406,7 @@ class Age extends Quantity
 
   /// Clears specific fields in this object
   @override
-  Age clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool value = false,
@@ -441,28 +415,26 @@ class Age extends Quantity
     bool system = false,
     bool code = false,
   }) {
-    return Age(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      value: value ? null : this.value,
-      comparator: comparator ? null : this.comparator,
-      unit: unit ? null : this.unit,
-      system: system ? null : this.system,
-      code: code ? null : this.code,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (value) this.value = null;
+    if (comparator) this.comparator = null;
+    if (unit) this.unit = null;
+    if (system) this.system = null;
+    if (code) this.code = null;
   }
 
   @override
-  Age clone() => throw UnimplementedError();
+  AgeBuilder clone() => throw UnimplementedError();
   @override
-  Age copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirDecimal? value,
-    QuantityComparator? comparator,
-    FhirString? unit,
-    FhirUri? system,
-    FhirCode? code,
+  AgeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirDecimalBuilder? value,
+    QuantityComparatorBuilder? comparator,
+    FhirStringBuilder? unit,
+    FhirUriBuilder? system,
+    FhirCodeBuilder? code,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -470,46 +442,38 @@ class Age extends Quantity
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Age(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      comparator: comparator?.copyWith(
-            objectPath: '$newObjectPath.comparator',
-          ) ??
-          this.comparator,
-      unit: unit?.copyWith(
-            objectPath: '$newObjectPath.unit',
-          ) ??
-          this.unit,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
+    final newResult = AgeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      value: value ?? this.value,
+      comparator: comparator ?? this.comparator,
+      unit: unit ?? this.unit,
+      system: system ?? this.system,
+      code: code ?? this.code,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Age) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AgeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -520,7 +484,7 @@ class Age extends Quantity
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ResearchElementDefinition]
+/// [ResearchElementDefinitionBuilder]
 /// The ResearchElementDefinition resource describes a "PICO" element that
 /// knowledge (evidence, assertion, recommendation) is about.
-class ResearchElementDefinition extends DomainResource {
+class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [ResearchElementDefinition]
+  /// [ResearchElementDefinitionBuilder]
 
-  const ResearchElementDefinition({
+  ResearchElementDefinitionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -25,7 +27,7 @@ class ResearchElementDefinition extends DomainResource {
     this.title,
     this.shortTitle,
     this.subtitle,
-    required this.status,
+    this.status,
     this.experimental,
     this.subjectX,
     this.date,
@@ -48,62 +50,58 @@ class ResearchElementDefinition extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.library_,
-    required this.type,
+    this.type,
     this.variableType,
-    required this.characteristic,
+    this.characteristic,
   }) : super(
           objectPath: 'ResearchElementDefinition',
           resourceType: R4ResourceType.ResearchElementDefinition,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ResearchElementDefinition.empty() => ResearchElementDefinition(
-        status: PublicationStatus.values.first,
-        type: ResearchElementType.values.first,
-        characteristic: <ResearchElementDefinitionCharacteristic>[],
-      );
+  /// For Builder classes, no fields are required
+  factory ResearchElementDefinitionBuilder.empty() =>
+      ResearchElementDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchElementDefinition.fromJson(
+  factory ResearchElementDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ResearchElementDefinition';
-    return ResearchElementDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ResearchElementDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -112,8 +110,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -122,8 +120,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -131,15 +129,15 @@ class ResearchElementDefinition extends DomainResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -147,71 +145,72 @@ class ResearchElementDefinition extends DomainResource {
             ),
           )
           .toList(),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      shortTitle: JsonParser.parsePrimitive<FhirString>(
+      shortTitle: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'shortTitle',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.shortTitle',
       ),
-      subtitle: JsonParser.parsePrimitive<FhirString>(
+      subtitle: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'subtitle',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.subtitle',
       ),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      experimental: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'experimental',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.experimental',
       ),
-      subjectX: JsonParser.parsePolymorphic<SubjectXResearchElementDefinition>(
+      subjectX:
+          JsonParser.parsePolymorphic<SubjectXResearchElementDefinitionBuilder>(
         json,
         {
-          'subjectCodeableConcept': CodeableConcept.fromJson,
-          'subjectReference': Reference.fromJson,
+          'subjectCodeableConcept': CodeableConceptBuilder.fromJson,
+          'subjectReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -219,21 +218,21 @@ class ResearchElementDefinition extends DomainResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
-      comment: JsonParser.parsePrimitiveList<FhirString>(
+      comment: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'comment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.comment',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -242,8 +241,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -251,45 +250,45 @@ class ResearchElementDefinition extends DomainResource {
             ),
           )
           .toList(),
-      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+      purpose: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'purpose',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      usage: JsonParser.parsePrimitive<FhirString>(
+      usage: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'usage',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.usage',
       ),
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
-      approvalDate: JsonParser.parsePrimitive<FhirDate>(
+      approvalDate: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'approvalDate',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.approvalDate',
       ),
-      lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
+      lastReviewDate: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'lastReviewDate',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.lastReviewDate',
       ),
-      effectivePeriod: JsonParser.parseObject<Period>(
+      effectivePeriod: JsonParser.parseObject<PeriodBuilder>(
         json,
         'effectivePeriod',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.effectivePeriod',
       ),
       topic: (json['topic'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.topic',
@@ -298,8 +297,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       author: (json['author'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.author',
@@ -308,8 +307,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.editor',
@@ -318,8 +317,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reviewer',
@@ -328,8 +327,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.endorser',
@@ -338,8 +337,8 @@ class ResearchElementDefinition extends DomainResource {
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
-          ?.map<RelatedArtifact>(
-            (v) => RelatedArtifact.fromJson(
+          ?.map<RelatedArtifactBuilder>(
+            (v) => RelatedArtifactBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatedArtifact',
@@ -347,27 +346,27 @@ class ResearchElementDefinition extends DomainResource {
             ),
           )
           .toList(),
-      library_: JsonParser.parsePrimitiveList<FhirCanonical>(
+      library_: JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'library',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.library',
       ),
-      type: JsonParser.parsePrimitive<ResearchElementType>(
+      type: JsonParser.parsePrimitive<ResearchElementTypeBuilder>(
         json,
         'type',
-        ResearchElementType.fromJson,
+        ResearchElementTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      variableType: JsonParser.parsePrimitive<VariableType>(
+      ),
+      variableType: JsonParser.parsePrimitive<VariableTypeBuilder>(
         json,
         'variableType',
-        VariableType.fromJson,
+        VariableTypeBuilder.fromJson,
         '$objectPath.variableType',
       ),
-      characteristic: (json['characteristic'] as List<dynamic>)
-          .map<ResearchElementDefinitionCharacteristic>(
-            (v) => ResearchElementDefinitionCharacteristic.fromJson(
+      characteristic: (json['characteristic'] as List<dynamic>?)
+          ?.map<ResearchElementDefinitionCharacteristicBuilder>(
+            (v) => ResearchElementDefinitionCharacteristicBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.characteristic',
@@ -378,22 +377,22 @@ class ResearchElementDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ResearchElementDefinition]
+  /// Deserialize [ResearchElementDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory ResearchElementDefinition.fromYaml(
+  factory ResearchElementDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ResearchElementDefinition.fromJson(
+      return ResearchElementDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ResearchElementDefinition.fromJson(
+      return ResearchElementDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ResearchElementDefinition '
+        'ResearchElementDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -401,16 +400,16 @@ class ResearchElementDefinition extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [ResearchElementDefinition]
+  /// [ResearchElementDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchElementDefinition.fromJsonString(
+  factory ResearchElementDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ResearchElementDefinition.fromJson(json);
+      return ResearchElementDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -429,13 +428,13 @@ class ResearchElementDefinition extends DomainResource {
   /// be) published. This URL can be the target of a canonical reference. It
   /// SHALL remain the same when the research element definition is stored on
   /// different servers.
-  final FhirUri? url;
+  FhirUriBuilder? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this research element
   /// definition when it is represented in other formats, or referenced in a
   /// specification, model, design or an instance.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the research
@@ -450,52 +449,52 @@ class ResearchElementDefinition extends DomainResource {
   /// versioning knowledge assets, refer to the Decision Support Service
   /// specification. Note that a version is required for non-experimental
   /// active artifacts.
-  final FhirString? version;
+  FhirStringBuilder? version;
 
   /// [name]
   /// A natural language name identifying the research element definition.
   /// This name should be usable as an identifier for the module by machine
   /// processing applications such as code generation.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the research element
   /// definition.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [shortTitle]
   /// The short title provides an alternate title for use in informal
   /// descriptive contexts where the full, formal title is not necessary.
-  final FhirString? shortTitle;
+  FhirStringBuilder? shortTitle;
 
   /// [subtitle]
   /// An explanatory or alternate title for the ResearchElementDefinition
   /// giving additional information about its content.
-  final FhirString? subtitle;
+  FhirStringBuilder? subtitle;
 
   /// [status]
   /// The status of this research element definition. Enables tracking the
   /// life-cycle of the content.
-  final PublicationStatus status;
+  PublicationStatusBuilder? status;
 
   /// [experimental]
   /// A Boolean value to indicate that this research element definition is
   /// authored for testing purposes (or education/evaluation/marketing) and
   /// is not intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBooleanBuilder? experimental;
 
   /// [subjectX]
   /// The intended subjects for the ResearchElementDefinition. If this
   /// element is not provided, a Patient subject is assumed, but the subject
   /// of the ResearchElementDefinition can be anything.
-  final SubjectXResearchElementDefinition? subjectX;
+  SubjectXResearchElementDefinitionBuilder? subjectX;
 
-  /// Getter for [subjectCodeableConcept] as a CodeableConcept
-  CodeableConcept? get subjectCodeableConcept =>
-      subjectX?.isAs<CodeableConcept>();
+  /// Getter for [subjectCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get subjectCodeableConcept =>
+      subjectX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [subjectReference] as a Reference
-  Reference? get subjectReference => subjectX?.isAs<Reference>();
+  /// Getter for [subjectReference] as a ReferenceBuilder
+  ReferenceBuilder? get subjectReference => subjectX?.isAs<ReferenceBuilder>();
 
   /// [date]
   /// The date (and optionally time) when the research element definition was
@@ -503,27 +502,27 @@ class ResearchElementDefinition extends DomainResource {
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the research element definition
   /// changes.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the research
   /// element definition.
-  final FhirString? publisher;
+  FhirStringBuilder? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetailBuilder>? contact;
 
   /// [description]
   /// A free text natural language description of the research element
   /// definition from a consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdownBuilder? description;
 
   /// [comment]
   /// A human-readable string to clarify or explain concepts about the
   /// resource.
-  final List<FhirString>? comment;
+  List<FhirStringBuilder>? comment;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -531,112 +530,112 @@ class ResearchElementDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate research element definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContextBuilder>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the research element definition
   /// is intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConceptBuilder>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this research element definition is needed and why
   /// it has been designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdownBuilder? purpose;
 
   /// [usage]
   /// A detailed description, from a clinical perspective, of how the
   /// ResearchElementDefinition is used.
-  final FhirString? usage;
+  FhirStringBuilder? usage;
 
   /// [copyright]
   /// A copyright statement relating to the research element definition
   /// and/or its contents. Copyright statements are generally legal
   /// restrictions on the use and publishing of the research element
   /// definition.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDateBuilder? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDateBuilder? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the research element definition content was or
   /// is planned to be in active use.
-  final Period? effectivePeriod;
+  PeriodBuilder? effectivePeriod;
 
   /// [topic]
   /// Descriptive topics related to the content of the
   /// ResearchElementDefinition. Topics provide a high-level categorization
   /// grouping types of ResearchElementDefinitions that can be useful for
   /// filtering and searching.
-  final List<CodeableConcept>? topic;
+  List<CodeableConceptBuilder>? topic;
 
   /// [author]
   /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
-  final List<ContactDetail>? author;
+  List<ContactDetailBuilder>? author;
 
   /// [editor]
   /// An individual or organization primarily responsible for internal
   /// coherence of the content.
-  final List<ContactDetail>? editor;
+  List<ContactDetailBuilder>? editor;
 
   /// [reviewer]
   /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
-  final List<ContactDetail>? reviewer;
+  List<ContactDetailBuilder>? reviewer;
 
   /// [endorser]
   /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
-  final List<ContactDetail>? endorser;
+  List<ContactDetailBuilder>? endorser;
 
   /// [relatedArtifact]
   /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
-  final List<RelatedArtifact>? relatedArtifact;
+  List<RelatedArtifactBuilder>? relatedArtifact;
 
   /// [library_]
   /// A reference to a Library resource containing the formal logic used by
   /// the ResearchElementDefinition.
-  final List<FhirCanonical>? library_;
+  List<FhirCanonicalBuilder>? library_;
 
   /// [type]
   /// The type of research element, a population, an exposure, or an outcome.
-  final ResearchElementType type;
+  ResearchElementTypeBuilder? type;
 
   /// [variableType]
   /// The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).
-  final VariableType? variableType;
+  VariableTypeBuilder? variableType;
 
   /// [characteristic]
   /// A characteristic that defines the members of the research element.
   /// Multiple characteristics are applied with "and" semantics.
-  final List<ResearchElementDefinitionCharacteristic> characteristic;
+  List<ResearchElementDefinitionCharacteristicBuilder>? characteristic;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -645,180 +644,57 @@ class ResearchElementDefinition extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'shortTitle',
-      shortTitle,
-    );
-    addField(
-      'subtitle',
-      subtitle,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('identifier', identifier);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('shortTitle', shortTitle);
+    addField('subtitle', subtitle);
+    addField('status', status);
+    addField('experimental', experimental);
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField(
-        'subject${fhirType.capitalize()}',
-        subjectX,
-      );
+      addField('subject${fhirType.capitalize()}', subjectX);
     }
 
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'comment',
-      comment,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'usage',
-      usage,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
-    addField(
-      'approvalDate',
-      approvalDate,
-    );
-    addField(
-      'lastReviewDate',
-      lastReviewDate,
-    );
-    addField(
-      'effectivePeriod',
-      effectivePeriod,
-    );
-    addField(
-      'topic',
-      topic,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'editor',
-      editor,
-    );
-    addField(
-      'reviewer',
-      reviewer,
-    );
-    addField(
-      'endorser',
-      endorser,
-    );
-    addField(
-      'relatedArtifact',
-      relatedArtifact,
-    );
-    addField(
-      'library',
-      library_,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'variableType',
-      variableType,
-    );
-    addField(
-      'characteristic',
-      characteristic,
-    );
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('comment', comment);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('usage', usage);
+    addField('copyright', copyright);
+    addField('approvalDate', approvalDate);
+    addField('lastReviewDate', lastReviewDate);
+    addField('effectivePeriod', effectivePeriod);
+    addField('topic', topic);
+    addField('author', author);
+    addField('editor', editor);
+    addField('reviewer', reviewer);
+    addField('endorser', endorser);
+    addField('relatedArtifact', relatedArtifact);
+    addField('library', library_);
+    addField('type', type);
+    addField('variableType', variableType);
+    addField('characteristic', characteristic);
     return json;
   }
 
@@ -873,11 +749,11 @@ class ResearchElementDefinition extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -940,21 +816,27 @@ class ResearchElementDefinition extends DomainResource {
           fields.add(subtitle!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'experimental':
         if (experimental != null) {
           fields.add(experimental!);
         }
       case 'subject':
-        fields.add(subjectX!);
+        if (subjectX != null) {
+          fields.add(subjectX!);
+        }
       case 'subjectX':
-        fields.add(subjectX!);
+        if (subjectX != null) {
+          fields.add(subjectX!);
+        }
       case 'subjectCodeableConcept':
-        if (subjectX is CodeableConcept) {
+        if (subjectX is CodeableConceptBuilder) {
           fields.add(subjectX!);
         }
       case 'subjectReference':
-        if (subjectX is Reference) {
+        if (subjectX is ReferenceBuilder) {
           fields.add(subjectX!);
         }
       case 'date':
@@ -1038,13 +920,17 @@ class ResearchElementDefinition extends DomainResource {
           fields.addAll(library_!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'variableType':
         if (variableType != null) {
           fields.add(variableType!);
         }
       case 'characteristic':
-        fields.addAll(characteristic);
+        if (characteristic != null) {
+          fields.addAll(characteristic!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1055,7 +941,7 @@ class ResearchElementDefinition extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1064,459 +950,487 @@ class ResearchElementDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'shortTitle':
         {
-          if (child is FhirString) {
-            return copyWith(shortTitle: child);
+          if (child is FhirStringBuilder) {
+            shortTitle = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subtitle':
         {
-          if (child is FhirString) {
-            return copyWith(subtitle: child);
+          if (child is FhirStringBuilder) {
+            subtitle = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
         {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
+          if (child is FhirBooleanBuilder) {
+            experimental = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectX':
         {
-          if (child is SubjectXResearchElementDefinition) {
-            return copyWith(subjectX: child);
+          if (child is SubjectXResearchElementDefinitionBuilder) {
+            subjectX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(subjectX: child);
+            if (child is CodeableConceptBuilder) {
+              subjectX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(subjectX: child);
+            if (child is ReferenceBuilder) {
+              subjectX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'subjectCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(subjectX: child);
+          if (child is CodeableConceptBuilder) {
+            subjectX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectReference':
         {
-          if (child is Reference) {
-            return copyWith(subjectX: child);
+          if (child is ReferenceBuilder) {
+            subjectX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?comment, ...child];
-            return copyWith(comment: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            comment = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?comment, child];
-            return copyWith(comment: newList);
+            comment = [...(comment ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
+          if (child is FhirMarkdownBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'usage':
         {
-          if (child is FhirString) {
-            return copyWith(usage: child);
+          if (child is FhirStringBuilder) {
+            usage = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'approvalDate':
         {
-          if (child is FhirDate) {
-            return copyWith(approvalDate: child);
+          if (child is FhirDateBuilder) {
+            approvalDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastReviewDate':
         {
-          if (child is FhirDate) {
-            return copyWith(lastReviewDate: child);
+          if (child is FhirDateBuilder) {
+            lastReviewDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectivePeriod':
         {
-          if (child is Period) {
-            return copyWith(effectivePeriod: child);
+          if (child is PeriodBuilder) {
+            effectivePeriod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'topic':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?topic, ...child];
-            return copyWith(topic: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            topic = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?topic, child];
-            return copyWith(topic: newList);
+            topic = [...(topic ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?author, ...child];
-            return copyWith(author: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            author = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?author, child];
-            return copyWith(author: newList);
+            author = [...(author ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'editor':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?editor, ...child];
-            return copyWith(editor: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            editor = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?editor, child];
-            return copyWith(editor: newList);
+            editor = [...(editor ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reviewer':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?reviewer, ...child];
-            return copyWith(reviewer: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            reviewer = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reviewer, child];
-            return copyWith(reviewer: newList);
+            reviewer = [...(reviewer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'endorser':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?endorser, ...child];
-            return copyWith(endorser: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            endorser = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?endorser, child];
-            return copyWith(endorser: newList);
+            endorser = [...(endorser ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatedArtifact':
         {
-          if (child is List<RelatedArtifact>) {
-            // Add all elements from passed list
-            final newList = [...?relatedArtifact, ...child];
-            return copyWith(relatedArtifact: newList);
-          } else if (child is RelatedArtifact) {
+          if (child is List<RelatedArtifactBuilder>) {
+            // Replace or create new list
+            relatedArtifact = child;
+            return;
+          } else if (child is RelatedArtifactBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedArtifact, child];
-            return copyWith(relatedArtifact: newList);
+            relatedArtifact = [...(relatedArtifact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'library':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?library_, ...child];
-            return copyWith(library_: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            library_ = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?library_, child];
-            return copyWith(library_: newList);
+            library_ = [...(library_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is ResearchElementType) {
-            return copyWith(type: child);
+          if (child is ResearchElementTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'variableType':
         {
-          if (child is VariableType) {
-            return copyWith(variableType: child);
+          if (child is VariableTypeBuilder) {
+            variableType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'characteristic':
         {
-          if (child is List<ResearchElementDefinitionCharacteristic>) {
-            // Add all elements from passed list
-            final newList = [...characteristic, ...child];
-            return copyWith(characteristic: newList);
-          } else if (child is ResearchElementDefinitionCharacteristic) {
+          if (child is List<ResearchElementDefinitionCharacteristicBuilder>) {
+            // Replace or create new list
+            characteristic = child;
+            return;
+          } else if (child is ResearchElementDefinitionCharacteristicBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...characteristic, child];
-            return copyWith(characteristic: newList);
+            characteristic = [...(characteristic ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1532,359 +1446,313 @@ class ResearchElementDefinition extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'shortTitle':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'subtitle':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'experimental':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'subject':
       case 'subjectX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'subjectCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subjectReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'comment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'purpose':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'usage':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'approvalDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'lastReviewDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'effectivePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'topic':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'author':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'editor':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'reviewer':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'endorser':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'relatedArtifact':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'library':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'variableType':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'characteristic':
-        return ['ResearchElementDefinitionCharacteristic'];
+        return ['ResearchElementDefinitionCharacteristicBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ResearchElementDefinition]
+  /// Creates a new [ResearchElementDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ResearchElementDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'shortTitle':
         {
-          return copyWith(
-            shortTitle: FhirString.empty(),
-          );
+          shortTitle = FhirStringBuilder.empty();
+          return;
         }
       case 'subtitle':
         {
-          return copyWith(
-            subtitle: FhirString.empty(),
-          );
+          subtitle = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'experimental':
         {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
+          experimental = FhirBooleanBuilder.empty();
+          return;
         }
       case 'subject':
       case 'subjectX':
       case 'subjectCodeableConcept':
         {
-          return copyWith(
-            subjectX: CodeableConcept.empty(),
-          );
+          subjectX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subjectReference':
         {
-          return copyWith(
-            subjectX: Reference.empty(),
-          );
+          subjectX = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: <FhirString>[],
-          );
+          comment = <FhirStringBuilder>[];
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
+          purpose = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'usage':
         {
-          return copyWith(
-            usage: FhirString.empty(),
-          );
+          usage = FhirStringBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'approvalDate':
         {
-          return copyWith(
-            approvalDate: FhirDate.empty(),
-          );
+          approvalDate = FhirDateBuilder.empty();
+          return;
         }
       case 'lastReviewDate':
         {
-          return copyWith(
-            lastReviewDate: FhirDate.empty(),
-          );
+          lastReviewDate = FhirDateBuilder.empty();
+          return;
         }
       case 'effectivePeriod':
         {
-          return copyWith(
-            effectivePeriod: Period.empty(),
-          );
+          effectivePeriod = PeriodBuilder.empty();
+          return;
         }
       case 'topic':
         {
-          return copyWith(
-            topic: <CodeableConcept>[],
-          );
+          topic = <CodeableConceptBuilder>[];
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: <ContactDetail>[],
-          );
+          author = <ContactDetailBuilder>[];
+          return;
         }
       case 'editor':
         {
-          return copyWith(
-            editor: <ContactDetail>[],
-          );
+          editor = <ContactDetailBuilder>[];
+          return;
         }
       case 'reviewer':
         {
-          return copyWith(
-            reviewer: <ContactDetail>[],
-          );
+          reviewer = <ContactDetailBuilder>[];
+          return;
         }
       case 'endorser':
         {
-          return copyWith(
-            endorser: <ContactDetail>[],
-          );
+          endorser = <ContactDetailBuilder>[];
+          return;
         }
       case 'relatedArtifact':
         {
-          return copyWith(
-            relatedArtifact: <RelatedArtifact>[],
-          );
+          relatedArtifact = <RelatedArtifactBuilder>[];
+          return;
         }
       case 'library':
         {
-          return copyWith(
-            library_: <FhirCanonical>[],
-          );
+          library_ = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: ResearchElementType.empty(),
-          );
+          type = ResearchElementTypeBuilder.empty();
+          return;
         }
       case 'variableType':
         {
-          return copyWith(
-            variableType: VariableType.empty(),
-          );
+          variableType = VariableTypeBuilder.empty();
+          return;
         }
       case 'characteristic':
         {
-          return copyWith(
-            characteristic: <ResearchElementDefinitionCharacteristic>[],
-          );
+          characteristic = <ResearchElementDefinitionCharacteristicBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1893,7 +1761,7 @@ class ResearchElementDefinition extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  ResearchElementDefinition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1909,6 +1777,7 @@ class ResearchElementDefinition extends DomainResource {
     bool title = false,
     bool shortTitle = false,
     bool subtitle = false,
+    bool status = false,
     bool experimental = false,
     bool subject = false,
     bool date = false,
@@ -1931,333 +1800,170 @@ class ResearchElementDefinition extends DomainResource {
     bool endorser = false,
     bool relatedArtifact = false,
     bool library_ = false,
+    bool type = false,
     bool variableType = false,
+    bool characteristic = false,
   }) {
-    return ResearchElementDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      shortTitle: shortTitle ? null : this.shortTitle,
-      subtitle: subtitle ? null : this.subtitle,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      subjectX: subject ? null : subjectX,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      comment: comment ? null : this.comment,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      usage: usage ? null : this.usage,
-      copyright: copyright ? null : this.copyright,
-      approvalDate: approvalDate ? null : this.approvalDate,
-      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
-      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
-      topic: topic ? null : this.topic,
-      author: author ? null : this.author,
-      editor: editor ? null : this.editor,
-      reviewer: reviewer ? null : this.reviewer,
-      endorser: endorser ? null : this.endorser,
-      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
-      library_: library_ ? null : this.library_,
-      type: type,
-      variableType: variableType ? null : this.variableType,
-      characteristic: characteristic,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (identifier) this.identifier = null;
+    if (version) this.version = null;
+    if (name) this.name = null;
+    if (title) this.title = null;
+    if (shortTitle) this.shortTitle = null;
+    if (subtitle) this.subtitle = null;
+    if (status) this.status = null;
+    if (experimental) this.experimental = null;
+    if (subject) this.subjectX = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (description) this.description = null;
+    if (comment) this.comment = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (purpose) this.purpose = null;
+    if (usage) this.usage = null;
+    if (copyright) this.copyright = null;
+    if (approvalDate) this.approvalDate = null;
+    if (lastReviewDate) this.lastReviewDate = null;
+    if (effectivePeriod) this.effectivePeriod = null;
+    if (topic) this.topic = null;
+    if (author) this.author = null;
+    if (editor) this.editor = null;
+    if (reviewer) this.reviewer = null;
+    if (endorser) this.endorser = null;
+    if (relatedArtifact) this.relatedArtifact = null;
+    if (library_) this.library_ = null;
+    if (type) this.type = null;
+    if (variableType) this.variableType = null;
+    if (characteristic) this.characteristic = null;
   }
 
   @override
-  ResearchElementDefinition clone() => throw UnimplementedError();
+  ResearchElementDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  ResearchElementDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    FhirString? shortTitle,
-    FhirString? subtitle,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    SubjectXResearchElementDefinition? subjectX,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<FhirString>? comment,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirString? usage,
-    FhirMarkdown? copyright,
-    FhirDate? approvalDate,
-    FhirDate? lastReviewDate,
-    Period? effectivePeriod,
-    List<CodeableConcept>? topic,
-    List<ContactDetail>? author,
-    List<ContactDetail>? editor,
-    List<ContactDetail>? reviewer,
-    List<ContactDetail>? endorser,
-    List<RelatedArtifact>? relatedArtifact,
-    List<FhirCanonical>? library_,
-    ResearchElementType? type,
-    VariableType? variableType,
-    List<ResearchElementDefinitionCharacteristic>? characteristic,
+  ResearchElementDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? url,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? version,
+    FhirStringBuilder? name,
+    FhirStringBuilder? title,
+    FhirStringBuilder? shortTitle,
+    FhirStringBuilder? subtitle,
+    PublicationStatusBuilder? status,
+    FhirBooleanBuilder? experimental,
+    SubjectXResearchElementDefinitionBuilder? subjectX,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirMarkdownBuilder? description,
+    List<FhirStringBuilder>? comment,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirMarkdownBuilder? purpose,
+    FhirStringBuilder? usage,
+    FhirMarkdownBuilder? copyright,
+    FhirDateBuilder? approvalDate,
+    FhirDateBuilder? lastReviewDate,
+    PeriodBuilder? effectivePeriod,
+    List<CodeableConceptBuilder>? topic,
+    List<ContactDetailBuilder>? author,
+    List<ContactDetailBuilder>? editor,
+    List<ContactDetailBuilder>? reviewer,
+    List<ContactDetailBuilder>? endorser,
+    List<RelatedArtifactBuilder>? relatedArtifact,
+    List<FhirCanonicalBuilder>? library_,
+    ResearchElementTypeBuilder? type,
+    VariableTypeBuilder? variableType,
+    List<ResearchElementDefinitionCharacteristicBuilder>? characteristic,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return ResearchElementDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ResearchElementDefinitionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      shortTitle: shortTitle?.copyWith(
-            objectPath: '$newObjectPath.shortTitle',
-          ) ??
-          this.shortTitle,
-      subtitle: subtitle?.copyWith(
-            objectPath: '$newObjectPath.subtitle',
-          ) ??
-          this.subtitle,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      subjectX: subjectX?.copyWith(
-            objectPath: '$newObjectPath.subjectX',
-          ) as SubjectXResearchElementDefinition? ??
-          this.subjectX,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      comment: comment
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.comment',
-                ),
-              )
-              .toList() ??
-          this.comment,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      usage: usage?.copyWith(
-            objectPath: '$newObjectPath.usage',
-          ) ??
-          this.usage,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      approvalDate: approvalDate?.copyWith(
-            objectPath: '$newObjectPath.approvalDate',
-          ) ??
-          this.approvalDate,
-      lastReviewDate: lastReviewDate?.copyWith(
-            objectPath: '$newObjectPath.lastReviewDate',
-          ) ??
-          this.lastReviewDate,
-      effectivePeriod: effectivePeriod?.copyWith(
-            objectPath: '$newObjectPath.effectivePeriod',
-          ) ??
-          this.effectivePeriod,
-      topic: topic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.topic',
-                ),
-              )
-              .toList() ??
-          this.topic,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      editor: editor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.editor',
-                ),
-              )
-              .toList() ??
-          this.editor,
-      reviewer: reviewer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reviewer',
-                ),
-              )
-              .toList() ??
-          this.reviewer,
-      endorser: endorser
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endorser',
-                ),
-              )
-              .toList() ??
-          this.endorser,
-      relatedArtifact: relatedArtifact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatedArtifact',
-                ),
-              )
-              .toList() ??
-          this.relatedArtifact,
-      library_: library_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.library',
-                ),
-              )
-              .toList() ??
-          this.library_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      variableType: variableType?.copyWith(
-            objectPath: '$newObjectPath.variableType',
-          ) ??
-          this.variableType,
-      characteristic: characteristic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.characteristic',
-                ),
-              )
-              .toList() ??
-          this.characteristic,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      identifier: identifier ?? this.identifier,
+      version: version ?? this.version,
+      name: name ?? this.name,
+      title: title ?? this.title,
+      shortTitle: shortTitle ?? this.shortTitle,
+      subtitle: subtitle ?? this.subtitle,
+      status: status ?? this.status,
+      experimental: experimental ?? this.experimental,
+      subjectX: subjectX ?? this.subjectX,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      description: description ?? this.description,
+      comment: comment ?? this.comment,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      purpose: purpose ?? this.purpose,
+      usage: usage ?? this.usage,
+      copyright: copyright ?? this.copyright,
+      approvalDate: approvalDate ?? this.approvalDate,
+      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
+      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
+      topic: topic ?? this.topic,
+      author: author ?? this.author,
+      editor: editor ?? this.editor,
+      reviewer: reviewer ?? this.reviewer,
+      endorser: endorser ?? this.endorser,
+      relatedArtifact: relatedArtifact ?? this.relatedArtifact,
+      library_: library_ ?? this.library_,
+      type: type ?? this.type,
+      variableType: variableType ?? this.variableType,
+      characteristic: characteristic ?? this.characteristic,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ResearchElementDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ResearchElementDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2292,19 +1998,19 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2316,7 +2022,7 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -2382,7 +2088,7 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -2394,19 +2100,19 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       comment,
       o.comment,
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -2448,43 +2154,43 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       topic,
       o.topic,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       author,
       o.author,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       editor,
       o.editor,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       reviewer,
       o.reviewer,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       endorser,
       o.endorser,
     )) {
       return false;
     }
-    if (!listEquals<RelatedArtifact>(
+    if (!listEquals<RelatedArtifactBuilder>(
       relatedArtifact,
       o.relatedArtifact,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       library_,
       o.library_,
     )) {
@@ -2502,7 +2208,7 @@ class ResearchElementDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ResearchElementDefinitionCharacteristic>(
+    if (!listEquals<ResearchElementDefinitionCharacteristicBuilder>(
       characteristic,
       o.characteristic,
     )) {
@@ -2512,18 +2218,19 @@ class ResearchElementDefinition extends DomainResource {
   }
 }
 
-/// [ResearchElementDefinitionCharacteristic]
+/// [ResearchElementDefinitionCharacteristicBuilder]
 /// A characteristic that defines the members of the research element.
 /// Multiple characteristics are applied with "and" semantics.
-class ResearchElementDefinitionCharacteristic extends BackboneElement {
+class ResearchElementDefinitionCharacteristicBuilder
+    extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ResearchElementDefinitionCharacteristic]
+  /// [ResearchElementDefinitionCharacteristicBuilder]
 
-  const ResearchElementDefinitionCharacteristic({
+  ResearchElementDefinitionCharacteristicBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.definitionX,
+    this.definitionX,
     this.usageContext,
     this.exclude,
     this.unitOfMeasure,
@@ -2541,28 +2248,25 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ResearchElementDefinitionCharacteristic.empty() =>
-      ResearchElementDefinitionCharacteristic(
-        definitionX: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ResearchElementDefinitionCharacteristicBuilder.empty() =>
+      ResearchElementDefinitionCharacteristicBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchElementDefinitionCharacteristic.fromJson(
+  factory ResearchElementDefinitionCharacteristicBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ResearchElementDefinition.characteristic';
-    return ResearchElementDefinitionCharacteristic(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ResearchElementDefinitionCharacteristicBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2571,8 +2275,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2581,19 +2285,19 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           )
           .toList(),
       definitionX: JsonParser.parsePolymorphic<
-          DefinitionXResearchElementDefinitionCharacteristic>(
+          DefinitionXResearchElementDefinitionCharacteristicBuilder>(
         json,
         {
-          'definitionCodeableConcept': CodeableConcept.fromJson,
-          'definitionCanonical': FhirCanonical.fromJson,
-          'definitionExpression': FhirExpression.fromJson,
-          'definitionDataRequirement': DataRequirement.fromJson,
+          'definitionCodeableConcept': CodeableConceptBuilder.fromJson,
+          'definitionCanonical': FhirCanonicalBuilder.fromJson,
+          'definitionExpression': FhirExpressionBuilder.fromJson,
+          'definitionDataRequirement': DataRequirementBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
       usageContext: (json['usageContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.usageContext',
@@ -2601,95 +2305,99 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
             ),
           )
           .toList(),
-      exclude: JsonParser.parsePrimitive<FhirBoolean>(
+      exclude: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'exclude',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.exclude',
       ),
-      unitOfMeasure: JsonParser.parseObject<CodeableConcept>(
+      unitOfMeasure: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'unitOfMeasure',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.unitOfMeasure',
       ),
-      studyEffectiveDescription: JsonParser.parsePrimitive<FhirString>(
+      studyEffectiveDescription: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'studyEffectiveDescription',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.studyEffectiveDescription',
       ),
       studyEffectiveX: JsonParser.parsePolymorphic<
-          StudyEffectiveXResearchElementDefinitionCharacteristic>(
+          StudyEffectiveXResearchElementDefinitionCharacteristicBuilder>(
         json,
         {
-          'studyEffectiveDateTime': FhirDateTime.fromJson,
-          'studyEffectivePeriod': Period.fromJson,
-          'studyEffectiveDuration': FhirDuration.fromJson,
-          'studyEffectiveTiming': Timing.fromJson,
+          'studyEffectiveDateTime': FhirDateTimeBuilder.fromJson,
+          'studyEffectivePeriod': PeriodBuilder.fromJson,
+          'studyEffectiveDuration': FhirDurationBuilder.fromJson,
+          'studyEffectiveTiming': TimingBuilder.fromJson,
         },
         objectPath,
       ),
-      studyEffectiveTimeFromStart: JsonParser.parseObject<FhirDuration>(
+      studyEffectiveTimeFromStart: JsonParser.parseObject<FhirDurationBuilder>(
         json,
         'studyEffectiveTimeFromStart',
-        FhirDuration.fromJson,
+        FhirDurationBuilder.fromJson,
         '$objectPath.studyEffectiveTimeFromStart',
       ),
-      studyEffectiveGroupMeasure: JsonParser.parsePrimitive<GroupMeasure>(
+      studyEffectiveGroupMeasure:
+          JsonParser.parsePrimitive<GroupMeasureBuilder>(
         json,
         'studyEffectiveGroupMeasure',
-        GroupMeasure.fromJson,
+        GroupMeasureBuilder.fromJson,
         '$objectPath.studyEffectiveGroupMeasure',
       ),
-      participantEffectiveDescription: JsonParser.parsePrimitive<FhirString>(
+      participantEffectiveDescription:
+          JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'participantEffectiveDescription',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.participantEffectiveDescription',
       ),
       participantEffectiveX: JsonParser.parsePolymorphic<
-          ParticipantEffectiveXResearchElementDefinitionCharacteristic>(
+          ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder>(
         json,
         {
-          'participantEffectiveDateTime': FhirDateTime.fromJson,
-          'participantEffectivePeriod': Period.fromJson,
-          'participantEffectiveDuration': FhirDuration.fromJson,
-          'participantEffectiveTiming': Timing.fromJson,
+          'participantEffectiveDateTime': FhirDateTimeBuilder.fromJson,
+          'participantEffectivePeriod': PeriodBuilder.fromJson,
+          'participantEffectiveDuration': FhirDurationBuilder.fromJson,
+          'participantEffectiveTiming': TimingBuilder.fromJson,
         },
         objectPath,
       ),
-      participantEffectiveTimeFromStart: JsonParser.parseObject<FhirDuration>(
+      participantEffectiveTimeFromStart:
+          JsonParser.parseObject<FhirDurationBuilder>(
         json,
         'participantEffectiveTimeFromStart',
-        FhirDuration.fromJson,
+        FhirDurationBuilder.fromJson,
         '$objectPath.participantEffectiveTimeFromStart',
       ),
-      participantEffectiveGroupMeasure: JsonParser.parsePrimitive<GroupMeasure>(
+      participantEffectiveGroupMeasure:
+          JsonParser.parsePrimitive<GroupMeasureBuilder>(
         json,
         'participantEffectiveGroupMeasure',
-        GroupMeasure.fromJson,
+        GroupMeasureBuilder.fromJson,
         '$objectPath.participantEffectiveGroupMeasure',
       ),
     );
   }
 
-  /// Deserialize [ResearchElementDefinitionCharacteristic]
+  /// Deserialize [ResearchElementDefinitionCharacteristicBuilder]
   /// from a [String] or [YamlMap] object
-  factory ResearchElementDefinitionCharacteristic.fromYaml(
+  factory ResearchElementDefinitionCharacteristicBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ResearchElementDefinitionCharacteristic.fromJson(
+      return ResearchElementDefinitionCharacteristicBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ResearchElementDefinitionCharacteristic.fromJson(
+      return ResearchElementDefinitionCharacteristicBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ResearchElementDefinitionCharacteristic '
+        'ResearchElementDefinitionCharacteristicBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2697,16 +2405,16 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ResearchElementDefinitionCharacteristic]
+  /// [ResearchElementDefinitionCharacteristicBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchElementDefinitionCharacteristic.fromJsonString(
+  factory ResearchElementDefinitionCharacteristicBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ResearchElementDefinitionCharacteristic.fromJson(json);
+      return ResearchElementDefinitionCharacteristicBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2721,117 +2429,121 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
   /// diagnosis onset in the last year).
-  final DefinitionXResearchElementDefinitionCharacteristic definitionX;
+  DefinitionXResearchElementDefinitionCharacteristicBuilder? definitionX;
 
-  /// Getter for [definitionCodeableConcept] as a CodeableConcept
-  CodeableConcept? get definitionCodeableConcept =>
-      definitionX.isAs<CodeableConcept>();
+  /// Getter for [definitionCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get definitionCodeableConcept =>
+      definitionX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [definitionCanonical] as a FhirCanonical
-  FhirCanonical? get definitionCanonical => definitionX.isAs<FhirCanonical>();
+  /// Getter for [definitionCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get definitionCanonical =>
+      definitionX?.isAs<FhirCanonicalBuilder>();
 
-  /// Getter for [definitionExpression] as a FhirExpression
-  FhirExpression? get definitionExpression =>
-      definitionX.isAs<FhirExpression>();
+  /// Getter for [definitionExpression] as a FhirExpressionBuilder
+  FhirExpressionBuilder? get definitionExpression =>
+      definitionX?.isAs<FhirExpressionBuilder>();
 
-  /// Getter for [definitionDataRequirement] as a DataRequirement
-  DataRequirement? get definitionDataRequirement =>
-      definitionX.isAs<DataRequirement>();
+  /// Getter for [definitionDataRequirement] as a DataRequirementBuilder
+  DataRequirementBuilder? get definitionDataRequirement =>
+      definitionX?.isAs<DataRequirementBuilder>();
 
   /// [usageContext]
   /// Use UsageContext to define the members of the population, such as Age
   /// Ranges, Genders, Settings.
-  final List<UsageContext>? usageContext;
+  List<UsageContextBuilder>? usageContext;
 
   /// [exclude]
   /// When true, members with this characteristic are excluded from the
   /// element.
-  final FhirBoolean? exclude;
+  FhirBooleanBuilder? exclude;
 
   /// [unitOfMeasure]
   /// Specifies the UCUM unit for the outcome.
-  final CodeableConcept? unitOfMeasure;
+  CodeableConceptBuilder? unitOfMeasure;
 
   /// [studyEffectiveDescription]
   /// A narrative description of the time period the study covers.
-  final FhirString? studyEffectiveDescription;
+  FhirStringBuilder? studyEffectiveDescription;
 
   /// [studyEffectiveX]
   /// Indicates what effective period the study covers.
-  final StudyEffectiveXResearchElementDefinitionCharacteristic? studyEffectiveX;
+  StudyEffectiveXResearchElementDefinitionCharacteristicBuilder?
+      studyEffectiveX;
 
-  /// Getter for [studyEffectiveDateTime] as a FhirDateTime
-  FhirDateTime? get studyEffectiveDateTime =>
-      studyEffectiveX?.isAs<FhirDateTime>();
+  /// Getter for [studyEffectiveDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get studyEffectiveDateTime =>
+      studyEffectiveX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [studyEffectivePeriod] as a Period
-  Period? get studyEffectivePeriod => studyEffectiveX?.isAs<Period>();
+  /// Getter for [studyEffectivePeriod] as a PeriodBuilder
+  PeriodBuilder? get studyEffectivePeriod =>
+      studyEffectiveX?.isAs<PeriodBuilder>();
 
-  /// Getter for [studyEffectiveDuration] as a FhirDuration
-  FhirDuration? get studyEffectiveDuration =>
-      studyEffectiveX?.isAs<FhirDuration>();
+  /// Getter for [studyEffectiveDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get studyEffectiveDuration =>
+      studyEffectiveX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [studyEffectiveTiming] as a Timing
-  Timing? get studyEffectiveTiming => studyEffectiveX?.isAs<Timing>();
+  /// Getter for [studyEffectiveTiming] as a TimingBuilder
+  TimingBuilder? get studyEffectiveTiming =>
+      studyEffectiveX?.isAs<TimingBuilder>();
 
   /// [studyEffectiveTimeFromStart]
   /// Indicates duration from the study initiation.
-  final FhirDuration? studyEffectiveTimeFromStart;
+  FhirDurationBuilder? studyEffectiveTimeFromStart;
 
   /// [studyEffectiveGroupMeasure]
   /// Indicates how elements are aggregated within the study effective
   /// period.
-  final GroupMeasure? studyEffectiveGroupMeasure;
+  GroupMeasureBuilder? studyEffectiveGroupMeasure;
 
   /// [participantEffectiveDescription]
   /// A narrative description of the time period the study covers.
-  final FhirString? participantEffectiveDescription;
+  FhirStringBuilder? participantEffectiveDescription;
 
   /// [participantEffectiveX]
   /// Indicates what effective period the study covers.
-  final ParticipantEffectiveXResearchElementDefinitionCharacteristic?
+  ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder?
       participantEffectiveX;
 
-  /// Getter for [participantEffectiveDateTime] as a FhirDateTime
-  FhirDateTime? get participantEffectiveDateTime =>
-      participantEffectiveX?.isAs<FhirDateTime>();
+  /// Getter for [participantEffectiveDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get participantEffectiveDateTime =>
+      participantEffectiveX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [participantEffectivePeriod] as a Period
-  Period? get participantEffectivePeriod =>
-      participantEffectiveX?.isAs<Period>();
+  /// Getter for [participantEffectivePeriod] as a PeriodBuilder
+  PeriodBuilder? get participantEffectivePeriod =>
+      participantEffectiveX?.isAs<PeriodBuilder>();
 
-  /// Getter for [participantEffectiveDuration] as a FhirDuration
-  FhirDuration? get participantEffectiveDuration =>
-      participantEffectiveX?.isAs<FhirDuration>();
+  /// Getter for [participantEffectiveDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get participantEffectiveDuration =>
+      participantEffectiveX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [participantEffectiveTiming] as a Timing
-  Timing? get participantEffectiveTiming =>
-      participantEffectiveX?.isAs<Timing>();
+  /// Getter for [participantEffectiveTiming] as a TimingBuilder
+  TimingBuilder? get participantEffectiveTiming =>
+      participantEffectiveX?.isAs<TimingBuilder>();
 
   /// [participantEffectiveTimeFromStart]
   /// Indicates duration from the participant's study entry.
-  final FhirDuration? participantEffectiveTimeFromStart;
+  FhirDurationBuilder? participantEffectiveTimeFromStart;
 
   /// [participantEffectiveGroupMeasure]
   /// Indicates how elements are aggregated within the study effective
   /// period.
-  final GroupMeasure? participantEffectiveGroupMeasure;
+  GroupMeasureBuilder? participantEffectiveGroupMeasure;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2840,81 +2552,42 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    final definitionXFhirType = definitionX.fhirType;
-    addField(
-      'definition${definitionXFhirType.capitalize()}',
-      definitionX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    if (definitionX != null) {
+      final fhirType = definitionX!.fhirType;
+      addField('definition${fhirType.capitalize()}', definitionX);
+    }
 
-    addField(
-      'usageContext',
-      usageContext,
-    );
-    addField(
-      'exclude',
-      exclude,
-    );
-    addField(
-      'unitOfMeasure',
-      unitOfMeasure,
-    );
-    addField(
-      'studyEffectiveDescription',
-      studyEffectiveDescription,
-    );
+    addField('usageContext', usageContext);
+    addField('exclude', exclude);
+    addField('unitOfMeasure', unitOfMeasure);
+    addField('studyEffectiveDescription', studyEffectiveDescription);
     if (studyEffectiveX != null) {
       final fhirType = studyEffectiveX!.fhirType;
-      addField(
-        'studyEffective${fhirType.capitalize()}',
-        studyEffectiveX,
-      );
+      addField('studyEffective${fhirType.capitalize()}', studyEffectiveX);
     }
 
+    addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
+    addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-      'studyEffectiveTimeFromStart',
-      studyEffectiveTimeFromStart,
-    );
-    addField(
-      'studyEffectiveGroupMeasure',
-      studyEffectiveGroupMeasure,
-    );
-    addField(
-      'participantEffectiveDescription',
-      participantEffectiveDescription,
-    );
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField(
-        'participantEffective${fhirType.capitalize()}',
-        participantEffectiveX,
-      );
+      addField('participantEffective${fhirType.capitalize()}',
+          participantEffectiveX);
     }
 
     addField(
-      'participantEffectiveTimeFromStart',
-      participantEffectiveTimeFromStart,
-    );
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-      'participantEffectiveGroupMeasure',
-      participantEffectiveGroupMeasure,
-    );
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 
@@ -2943,11 +2616,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2962,24 +2635,28 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'definition':
-        fields.add(definitionX);
+        if (definitionX != null) {
+          fields.add(definitionX!);
+        }
       case 'definitionX':
-        fields.add(definitionX);
+        if (definitionX != null) {
+          fields.add(definitionX!);
+        }
       case 'definitionCodeableConcept':
-        if (definitionX is CodeableConcept) {
-          fields.add(definitionX);
+        if (definitionX is CodeableConceptBuilder) {
+          fields.add(definitionX!);
         }
       case 'definitionCanonical':
-        if (definitionX is FhirCanonical) {
-          fields.add(definitionX);
+        if (definitionX is FhirCanonicalBuilder) {
+          fields.add(definitionX!);
         }
       case 'definitionExpression':
-        if (definitionX is FhirExpression) {
-          fields.add(definitionX);
+        if (definitionX is FhirExpressionBuilder) {
+          fields.add(definitionX!);
         }
       case 'definitionDataRequirement':
-        if (definitionX is DataRequirement) {
-          fields.add(definitionX);
+        if (definitionX is DataRequirementBuilder) {
+          fields.add(definitionX!);
         }
       case 'usageContext':
         if (usageContext != null) {
@@ -2998,23 +2675,27 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           fields.add(studyEffectiveDescription!);
         }
       case 'studyEffective':
-        fields.add(studyEffectiveX!);
+        if (studyEffectiveX != null) {
+          fields.add(studyEffectiveX!);
+        }
       case 'studyEffectiveX':
-        fields.add(studyEffectiveX!);
+        if (studyEffectiveX != null) {
+          fields.add(studyEffectiveX!);
+        }
       case 'studyEffectiveDateTime':
-        if (studyEffectiveX is FhirDateTime) {
+        if (studyEffectiveX is FhirDateTimeBuilder) {
           fields.add(studyEffectiveX!);
         }
       case 'studyEffectivePeriod':
-        if (studyEffectiveX is Period) {
+        if (studyEffectiveX is PeriodBuilder) {
           fields.add(studyEffectiveX!);
         }
       case 'studyEffectiveDuration':
-        if (studyEffectiveX is FhirDuration) {
+        if (studyEffectiveX is FhirDurationBuilder) {
           fields.add(studyEffectiveX!);
         }
       case 'studyEffectiveTiming':
-        if (studyEffectiveX is Timing) {
+        if (studyEffectiveX is TimingBuilder) {
           fields.add(studyEffectiveX!);
         }
       case 'studyEffectiveTimeFromStart':
@@ -3030,23 +2711,27 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           fields.add(participantEffectiveDescription!);
         }
       case 'participantEffective':
-        fields.add(participantEffectiveX!);
+        if (participantEffectiveX != null) {
+          fields.add(participantEffectiveX!);
+        }
       case 'participantEffectiveX':
-        fields.add(participantEffectiveX!);
+        if (participantEffectiveX != null) {
+          fields.add(participantEffectiveX!);
+        }
       case 'participantEffectiveDateTime':
-        if (participantEffectiveX is FhirDateTime) {
+        if (participantEffectiveX is FhirDateTimeBuilder) {
           fields.add(participantEffectiveX!);
         }
       case 'participantEffectivePeriod':
-        if (participantEffectiveX is Period) {
+        if (participantEffectiveX is PeriodBuilder) {
           fields.add(participantEffectiveX!);
         }
       case 'participantEffectiveDuration':
-        if (participantEffectiveX is FhirDuration) {
+        if (participantEffectiveX is FhirDurationBuilder) {
           fields.add(participantEffectiveX!);
         }
       case 'participantEffectiveTiming':
-        if (participantEffectiveX is Timing) {
+        if (participantEffectiveX is TimingBuilder) {
           fields.add(participantEffectiveX!);
         }
       case 'participantEffectiveTimeFromStart':
@@ -3067,7 +2752,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3076,215 +2761,241 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'definitionX':
         {
-          if (child is DefinitionXResearchElementDefinitionCharacteristic) {
-            return copyWith(definitionX: child);
+          if (child
+              is DefinitionXResearchElementDefinitionCharacteristicBuilder) {
+            definitionX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(definitionX: child);
+            if (child is CodeableConceptBuilder) {
+              definitionX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(definitionX: child);
+            if (child is FhirCanonicalBuilder) {
+              definitionX = child;
+              return;
             }
-            if (child is FhirExpression) {
-              return copyWith(definitionX: child);
+            if (child is FhirExpressionBuilder) {
+              definitionX = child;
+              return;
             }
-            if (child is DataRequirement) {
-              return copyWith(definitionX: child);
+            if (child is DataRequirementBuilder) {
+              definitionX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'definitionCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(definitionX: child);
+          if (child is CodeableConceptBuilder) {
+            definitionX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'definitionFhirCanonical':
+      case 'definitionCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(definitionX: child);
+          if (child is FhirCanonicalBuilder) {
+            definitionX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'definitionFhirExpression':
+      case 'definitionExpression':
         {
-          if (child is FhirExpression) {
-            return copyWith(definitionX: child);
+          if (child is FhirExpressionBuilder) {
+            definitionX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'definitionDataRequirement':
         {
-          if (child is DataRequirement) {
-            return copyWith(definitionX: child);
+          if (child is DataRequirementBuilder) {
+            definitionX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'usageContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?usageContext, ...child];
-            return copyWith(usageContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            usageContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?usageContext, child];
-            return copyWith(usageContext: newList);
+            usageContext = [...(usageContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'exclude':
         {
-          if (child is FhirBoolean) {
-            return copyWith(exclude: child);
+          if (child is FhirBooleanBuilder) {
+            exclude = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'unitOfMeasure':
         {
-          if (child is CodeableConcept) {
-            return copyWith(unitOfMeasure: child);
+          if (child is CodeableConceptBuilder) {
+            unitOfMeasure = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'studyEffectiveDescription':
         {
-          if (child is FhirString) {
-            return copyWith(studyEffectiveDescription: child);
+          if (child is FhirStringBuilder) {
+            studyEffectiveDescription = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'studyEffectiveX':
         {
-          if (child is StudyEffectiveXResearchElementDefinitionCharacteristic) {
-            return copyWith(studyEffectiveX: child);
+          if (child
+              is StudyEffectiveXResearchElementDefinitionCharacteristicBuilder) {
+            studyEffectiveX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(studyEffectiveX: child);
+            if (child is FhirDateTimeBuilder) {
+              studyEffectiveX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(studyEffectiveX: child);
+            if (child is PeriodBuilder) {
+              studyEffectiveX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(studyEffectiveX: child);
+            if (child is FhirDurationBuilder) {
+              studyEffectiveX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(studyEffectiveX: child);
+            if (child is TimingBuilder) {
+              studyEffectiveX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'studyEffectiveFhirDateTime':
+      case 'studyEffectiveDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(studyEffectiveX: child);
+          if (child is FhirDateTimeBuilder) {
+            studyEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'studyEffectivePeriod':
         {
-          if (child is Period) {
-            return copyWith(studyEffectiveX: child);
+          if (child is PeriodBuilder) {
+            studyEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'studyEffectiveFhirDuration':
+      case 'studyEffectiveDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(studyEffectiveX: child);
+          if (child is FhirDurationBuilder) {
+            studyEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'studyEffectiveTiming':
         {
-          if (child is Timing) {
-            return copyWith(studyEffectiveX: child);
+          if (child is TimingBuilder) {
+            studyEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'studyEffectiveTimeFromStart':
         {
-          if (child is FhirDuration) {
-            return copyWith(studyEffectiveTimeFromStart: child);
+          if (child is FhirDurationBuilder) {
+            studyEffectiveTimeFromStart = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'studyEffectiveGroupMeasure':
         {
-          if (child is GroupMeasure) {
-            return copyWith(studyEffectiveGroupMeasure: child);
+          if (child is GroupMeasureBuilder) {
+            studyEffectiveGroupMeasure = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participantEffectiveDescription':
         {
-          if (child is FhirString) {
-            return copyWith(participantEffectiveDescription: child);
+          if (child is FhirStringBuilder) {
+            participantEffectiveDescription = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3292,68 +3003,79 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       case 'participantEffectiveX':
         {
           if (child
-              is ParticipantEffectiveXResearchElementDefinitionCharacteristic) {
-            return copyWith(participantEffectiveX: child);
+              is ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder) {
+            participantEffectiveX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(participantEffectiveX: child);
+            if (child is FhirDateTimeBuilder) {
+              participantEffectiveX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(participantEffectiveX: child);
+            if (child is PeriodBuilder) {
+              participantEffectiveX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(participantEffectiveX: child);
+            if (child is FhirDurationBuilder) {
+              participantEffectiveX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(participantEffectiveX: child);
+            if (child is TimingBuilder) {
+              participantEffectiveX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'participantEffectiveFhirDateTime':
+      case 'participantEffectiveDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(participantEffectiveX: child);
+          if (child is FhirDateTimeBuilder) {
+            participantEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participantEffectivePeriod':
         {
-          if (child is Period) {
-            return copyWith(participantEffectiveX: child);
+          if (child is PeriodBuilder) {
+            participantEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'participantEffectiveFhirDuration':
+      case 'participantEffectiveDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(participantEffectiveX: child);
+          if (child is FhirDurationBuilder) {
+            participantEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participantEffectiveTiming':
         {
-          if (child is Timing) {
-            return copyWith(participantEffectiveX: child);
+          if (child is TimingBuilder) {
+            participantEffectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participantEffectiveTimeFromStart':
         {
-          if (child is FhirDuration) {
-            return copyWith(participantEffectiveTimeFromStart: child);
+          if (child is FhirDurationBuilder) {
+            participantEffectiveTimeFromStart = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participantEffectiveGroupMeasure':
         {
-          if (child is GroupMeasure) {
-            return copyWith(participantEffectiveGroupMeasure: child);
+          if (child is GroupMeasureBuilder) {
+            participantEffectiveGroupMeasure = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3369,230 +3091,212 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'definition':
       case 'definitionX':
         return [
-          'CodeableConcept',
-          'FhirCanonical',
-          'FhirExpression',
-          'DataRequirement',
+          'CodeableConceptBuilder',
+          'FhirCanonicalBuilder',
+          'FhirExpressionBuilder',
+          'DataRequirementBuilder'
         ];
       case 'definitionCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'definitionCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'definitionExpression':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       case 'definitionDataRequirement':
-        return ['DataRequirement'];
+        return ['DataRequirementBuilder'];
       case 'usageContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'exclude':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'unitOfMeasure':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'studyEffectiveDescription':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'studyEffective':
       case 'studyEffectiveX':
-        return ['FhirDateTime', 'Period', 'FhirDuration', 'Timing'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+          'FhirDurationBuilder',
+          'TimingBuilder'
+        ];
       case 'studyEffectiveDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'studyEffectivePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'studyEffectiveDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'studyEffectiveTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'studyEffectiveTimeFromStart':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'studyEffectiveGroupMeasure':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'participantEffectiveDescription':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'participantEffective':
       case 'participantEffectiveX':
-        return ['FhirDateTime', 'Period', 'FhirDuration', 'Timing'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+          'FhirDurationBuilder',
+          'TimingBuilder'
+        ];
       case 'participantEffectiveDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'participantEffectivePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'participantEffectiveDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'participantEffectiveTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'participantEffectiveTimeFromStart':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'participantEffectiveGroupMeasure':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ResearchElementDefinitionCharacteristic]
+  /// Creates a new [ResearchElementDefinitionCharacteristicBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ResearchElementDefinitionCharacteristic createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'definition':
       case 'definitionX':
       case 'definitionCodeableConcept':
         {
-          return copyWith(
-            definitionX: CodeableConcept.empty(),
-          );
+          definitionX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'definitionCanonical':
         {
-          return copyWith(
-            definitionX: FhirCanonical.empty(),
-          );
+          definitionX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'definitionExpression':
         {
-          return copyWith(
-            definitionX: FhirExpression.empty(),
-          );
+          definitionX = FhirExpressionBuilder.empty();
+          return;
         }
       case 'definitionDataRequirement':
         {
-          return copyWith(
-            definitionX: DataRequirement.empty(),
-          );
+          definitionX = DataRequirementBuilder.empty();
+          return;
         }
       case 'usageContext':
         {
-          return copyWith(
-            usageContext: <UsageContext>[],
-          );
+          usageContext = <UsageContextBuilder>[];
+          return;
         }
       case 'exclude':
         {
-          return copyWith(
-            exclude: FhirBoolean.empty(),
-          );
+          exclude = FhirBooleanBuilder.empty();
+          return;
         }
       case 'unitOfMeasure':
         {
-          return copyWith(
-            unitOfMeasure: CodeableConcept.empty(),
-          );
+          unitOfMeasure = CodeableConceptBuilder.empty();
+          return;
         }
       case 'studyEffectiveDescription':
         {
-          return copyWith(
-            studyEffectiveDescription: FhirString.empty(),
-          );
+          studyEffectiveDescription = FhirStringBuilder.empty();
+          return;
         }
       case 'studyEffective':
       case 'studyEffectiveX':
       case 'studyEffectiveDateTime':
         {
-          return copyWith(
-            studyEffectiveX: FhirDateTime.empty(),
-          );
+          studyEffectiveX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'studyEffectivePeriod':
         {
-          return copyWith(
-            studyEffectiveX: Period.empty(),
-          );
+          studyEffectiveX = PeriodBuilder.empty();
+          return;
         }
       case 'studyEffectiveDuration':
         {
-          return copyWith(
-            studyEffectiveX: FhirDuration.empty(),
-          );
+          studyEffectiveX = FhirDurationBuilder.empty();
+          return;
         }
       case 'studyEffectiveTiming':
         {
-          return copyWith(
-            studyEffectiveX: Timing.empty(),
-          );
+          studyEffectiveX = TimingBuilder.empty();
+          return;
         }
       case 'studyEffectiveTimeFromStart':
         {
-          return copyWith(
-            studyEffectiveTimeFromStart: FhirDuration.empty(),
-          );
+          studyEffectiveTimeFromStart = FhirDurationBuilder.empty();
+          return;
         }
       case 'studyEffectiveGroupMeasure':
         {
-          return copyWith(
-            studyEffectiveGroupMeasure: GroupMeasure.empty(),
-          );
+          studyEffectiveGroupMeasure = GroupMeasureBuilder.empty();
+          return;
         }
       case 'participantEffectiveDescription':
         {
-          return copyWith(
-            participantEffectiveDescription: FhirString.empty(),
-          );
+          participantEffectiveDescription = FhirStringBuilder.empty();
+          return;
         }
       case 'participantEffective':
       case 'participantEffectiveX':
       case 'participantEffectiveDateTime':
         {
-          return copyWith(
-            participantEffectiveX: FhirDateTime.empty(),
-          );
+          participantEffectiveX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'participantEffectivePeriod':
         {
-          return copyWith(
-            participantEffectiveX: Period.empty(),
-          );
+          participantEffectiveX = PeriodBuilder.empty();
+          return;
         }
       case 'participantEffectiveDuration':
         {
-          return copyWith(
-            participantEffectiveX: FhirDuration.empty(),
-          );
+          participantEffectiveX = FhirDurationBuilder.empty();
+          return;
         }
       case 'participantEffectiveTiming':
         {
-          return copyWith(
-            participantEffectiveX: Timing.empty(),
-          );
+          participantEffectiveX = TimingBuilder.empty();
+          return;
         }
       case 'participantEffectiveTimeFromStart':
         {
-          return copyWith(
-            participantEffectiveTimeFromStart: FhirDuration.empty(),
-          );
+          participantEffectiveTimeFromStart = FhirDurationBuilder.empty();
+          return;
         }
       case 'participantEffectiveGroupMeasure':
         {
-          return copyWith(
-            participantEffectiveGroupMeasure: GroupMeasure.empty(),
-          );
+          participantEffectiveGroupMeasure = GroupMeasureBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3601,10 +3305,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ResearchElementDefinitionCharacteristic clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool definition = false,
     bool usageContext = false,
     bool exclude = false,
     bool unitOfMeasure = false,
@@ -3617,55 +3322,48 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     bool participantEffectiveTimeFromStart = false,
     bool participantEffectiveGroupMeasure = false,
   }) {
-    return ResearchElementDefinitionCharacteristic(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      definitionX: definitionX,
-      usageContext: usageContext ? null : this.usageContext,
-      exclude: exclude ? null : this.exclude,
-      unitOfMeasure: unitOfMeasure ? null : this.unitOfMeasure,
-      studyEffectiveDescription:
-          studyEffectiveDescription ? null : this.studyEffectiveDescription,
-      studyEffectiveX: studyEffective ? null : studyEffectiveX,
-      studyEffectiveTimeFromStart:
-          studyEffectiveTimeFromStart ? null : this.studyEffectiveTimeFromStart,
-      studyEffectiveGroupMeasure:
-          studyEffectiveGroupMeasure ? null : this.studyEffectiveGroupMeasure,
-      participantEffectiveDescription: participantEffectiveDescription
-          ? null
-          : this.participantEffectiveDescription,
-      participantEffectiveX:
-          participantEffective ? null : participantEffectiveX,
-      participantEffectiveTimeFromStart: participantEffectiveTimeFromStart
-          ? null
-          : this.participantEffectiveTimeFromStart,
-      participantEffectiveGroupMeasure: participantEffectiveGroupMeasure
-          ? null
-          : this.participantEffectiveGroupMeasure,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (definition) this.definitionX = null;
+    if (usageContext) this.usageContext = null;
+    if (exclude) this.exclude = null;
+    if (unitOfMeasure) this.unitOfMeasure = null;
+    if (studyEffectiveDescription) this.studyEffectiveDescription = null;
+    if (studyEffective) this.studyEffectiveX = null;
+    if (studyEffectiveTimeFromStart) this.studyEffectiveTimeFromStart = null;
+    if (studyEffectiveGroupMeasure) this.studyEffectiveGroupMeasure = null;
+    if (participantEffectiveDescription)
+      this.participantEffectiveDescription = null;
+    if (participantEffective) this.participantEffectiveX = null;
+    if (participantEffectiveTimeFromStart)
+      this.participantEffectiveTimeFromStart = null;
+    if (participantEffectiveGroupMeasure)
+      this.participantEffectiveGroupMeasure = null;
   }
 
   @override
-  ResearchElementDefinitionCharacteristic clone() => throw UnimplementedError();
+  ResearchElementDefinitionCharacteristicBuilder clone() =>
+      throw UnimplementedError();
   @override
-  ResearchElementDefinitionCharacteristic copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    DefinitionXResearchElementDefinitionCharacteristic? definitionX,
-    List<UsageContext>? usageContext,
-    FhirBoolean? exclude,
-    CodeableConcept? unitOfMeasure,
-    FhirString? studyEffectiveDescription,
-    StudyEffectiveXResearchElementDefinitionCharacteristic? studyEffectiveX,
-    FhirDuration? studyEffectiveTimeFromStart,
-    GroupMeasure? studyEffectiveGroupMeasure,
-    FhirString? participantEffectiveDescription,
-    ParticipantEffectiveXResearchElementDefinitionCharacteristic?
+  ResearchElementDefinitionCharacteristicBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    DefinitionXResearchElementDefinitionCharacteristicBuilder? definitionX,
+    List<UsageContextBuilder>? usageContext,
+    FhirBooleanBuilder? exclude,
+    CodeableConceptBuilder? unitOfMeasure,
+    FhirStringBuilder? studyEffectiveDescription,
+    StudyEffectiveXResearchElementDefinitionCharacteristicBuilder?
+        studyEffectiveX,
+    FhirDurationBuilder? studyEffectiveTimeFromStart,
+    GroupMeasureBuilder? studyEffectiveGroupMeasure,
+    FhirStringBuilder? participantEffectiveDescription,
+    ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder?
         participantEffectiveX,
-    FhirDuration? participantEffectiveTimeFromStart,
-    GroupMeasure? participantEffectiveGroupMeasure,
+    FhirDurationBuilder? participantEffectiveTimeFromStart,
+    GroupMeasureBuilder? participantEffectiveGroupMeasure,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3673,89 +3371,53 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ResearchElementDefinitionCharacteristic(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      definitionX: definitionX?.copyWith(
-            objectPath: '$newObjectPath.definitionX',
-          ) as DefinitionXResearchElementDefinitionCharacteristic? ??
-          this.definitionX,
-      usageContext: usageContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.usageContext',
-                ),
-              )
-              .toList() ??
-          this.usageContext,
-      exclude: exclude?.copyWith(
-            objectPath: '$newObjectPath.exclude',
-          ) ??
-          this.exclude,
-      unitOfMeasure: unitOfMeasure?.copyWith(
-            objectPath: '$newObjectPath.unitOfMeasure',
-          ) ??
-          this.unitOfMeasure,
-      studyEffectiveDescription: studyEffectiveDescription?.copyWith(
-            objectPath: '$newObjectPath.studyEffectiveDescription',
-          ) ??
-          this.studyEffectiveDescription,
-      studyEffectiveX: studyEffectiveX?.copyWith(
-            objectPath: '$newObjectPath.studyEffectiveX',
-          ) as StudyEffectiveXResearchElementDefinitionCharacteristic? ??
-          this.studyEffectiveX,
-      studyEffectiveTimeFromStart: studyEffectiveTimeFromStart?.copyWith(
-            objectPath: '$newObjectPath.studyEffectiveTimeFromStart',
-          ) ??
-          this.studyEffectiveTimeFromStart,
-      studyEffectiveGroupMeasure: studyEffectiveGroupMeasure?.copyWith(
-            objectPath: '$newObjectPath.studyEffectiveGroupMeasure',
-          ) ??
-          this.studyEffectiveGroupMeasure,
-      participantEffectiveDescription:
-          participantEffectiveDescription?.copyWith(
-                objectPath: '$newObjectPath.participantEffectiveDescription',
-              ) ??
-              this.participantEffectiveDescription,
-      participantEffectiveX: participantEffectiveX?.copyWith(
-            objectPath: '$newObjectPath.participantEffectiveX',
-          ) as ParticipantEffectiveXResearchElementDefinitionCharacteristic? ??
-          this.participantEffectiveX,
-      participantEffectiveTimeFromStart:
-          participantEffectiveTimeFromStart?.copyWith(
-                objectPath: '$newObjectPath.participantEffectiveTimeFromStart',
-              ) ??
-              this.participantEffectiveTimeFromStart,
-      participantEffectiveGroupMeasure:
-          participantEffectiveGroupMeasure?.copyWith(
-                objectPath: '$newObjectPath.participantEffectiveGroupMeasure',
-              ) ??
-              this.participantEffectiveGroupMeasure,
+    final newResult = ResearchElementDefinitionCharacteristicBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      definitionX: definitionX ?? this.definitionX,
+      usageContext: usageContext ?? this.usageContext,
+      exclude: exclude ?? this.exclude,
+      unitOfMeasure: unitOfMeasure ?? this.unitOfMeasure,
+      studyEffectiveDescription:
+          studyEffectiveDescription ?? this.studyEffectiveDescription,
+      studyEffectiveX: studyEffectiveX ?? this.studyEffectiveX,
+      studyEffectiveTimeFromStart:
+          studyEffectiveTimeFromStart ?? this.studyEffectiveTimeFromStart,
+      studyEffectiveGroupMeasure:
+          studyEffectiveGroupMeasure ?? this.studyEffectiveGroupMeasure,
+      participantEffectiveDescription: participantEffectiveDescription ??
+          this.participantEffectiveDescription,
+      participantEffectiveX:
+          participantEffectiveX ?? this.participantEffectiveX,
+      participantEffectiveTimeFromStart: participantEffectiveTimeFromStart ??
+          this.participantEffectiveTimeFromStart,
+      participantEffectiveGroupMeasure: participantEffectiveGroupMeasure ??
+          this.participantEffectiveGroupMeasure,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ResearchElementDefinitionCharacteristic) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ResearchElementDefinitionCharacteristicBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3766,13 +3428,13 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3784,7 +3446,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       usageContext,
       o.usageContext,
     )) {

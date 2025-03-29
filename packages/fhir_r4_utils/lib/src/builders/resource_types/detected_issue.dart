@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [DetectedIssue]
+/// [DetectedIssueBuilder]
 /// Indicates an actual or potential clinical issue with or between one or
 /// more active or proposed clinical actions for a patient; e.g. Drug-drug
 /// interaction, Ineffective treatment frequency, Procedure-condition
 /// conflict, etc.
-class DetectedIssue extends DomainResource {
+class DetectedIssueBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [DetectedIssue]
+  /// [DetectedIssueBuilder]
 
-  const DetectedIssue({
+  DetectedIssueBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,7 +23,7 @@ class DetectedIssue extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
+    this.status,
     this.code,
     this.severity,
     this.patient,
@@ -38,51 +40,48 @@ class DetectedIssue extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DetectedIssue.empty() => DetectedIssue(
-        status: ObservationStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory DetectedIssueBuilder.empty() => DetectedIssueBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DetectedIssue.fromJson(
+  factory DetectedIssueBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DetectedIssue';
-    return DetectedIssue(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DetectedIssueBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -91,8 +90,8 @@ class DetectedIssue extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -101,8 +100,8 @@ class DetectedIssue extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -111,8 +110,8 @@ class DetectedIssue extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -120,47 +119,47 @@ class DetectedIssue extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<ObservationStatus>(
+      status: JsonParser.parsePrimitive<ObservationStatusBuilder>(
         json,
         'status',
-        ObservationStatus.fromJson,
+        ObservationStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      code: JsonParser.parseObject<CodeableConcept>(
+      ),
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      severity: JsonParser.parsePrimitive<DetectedIssueSeverity>(
+      severity: JsonParser.parsePrimitive<DetectedIssueSeverityBuilder>(
         json,
         'severity',
-        DetectedIssueSeverity.fromJson,
+        DetectedIssueSeverityBuilder.fromJson,
         '$objectPath.severity',
       ),
-      patient: JsonParser.parseObject<Reference>(
+      patient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'patient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.patient',
       ),
-      identifiedX: JsonParser.parsePolymorphic<IdentifiedXDetectedIssue>(
+      identifiedX: JsonParser.parsePolymorphic<IdentifiedXDetectedIssueBuilder>(
         json,
         {
-          'identifiedDateTime': FhirDateTime.fromJson,
-          'identifiedPeriod': Period.fromJson,
+          'identifiedDateTime': FhirDateTimeBuilder.fromJson,
+          'identifiedPeriod': PeriodBuilder.fromJson,
         },
         objectPath,
       ),
-      author: JsonParser.parseObject<Reference>(
+      author: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'author',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.author',
       ),
       implicated: (json['implicated'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.implicated',
@@ -169,8 +168,8 @@ class DetectedIssue extends DomainResource {
           )
           .toList(),
       evidence: (json['evidence'] as List<dynamic>?)
-          ?.map<DetectedIssueEvidence>(
-            (v) => DetectedIssueEvidence.fromJson(
+          ?.map<DetectedIssueEvidenceBuilder>(
+            (v) => DetectedIssueEvidenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.evidence',
@@ -178,21 +177,21 @@ class DetectedIssue extends DomainResource {
             ),
           )
           .toList(),
-      detail: JsonParser.parsePrimitive<FhirString>(
+      detail: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'detail',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.detail',
       ),
-      reference: JsonParser.parsePrimitive<FhirUri>(
+      reference: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'reference',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.reference',
       ),
       mitigation: (json['mitigation'] as List<dynamic>?)
-          ?.map<DetectedIssueMitigation>(
-            (v) => DetectedIssueMitigation.fromJson(
+          ?.map<DetectedIssueMitigationBuilder>(
+            (v) => DetectedIssueMitigationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.mitigation',
@@ -203,22 +202,22 @@ class DetectedIssue extends DomainResource {
     );
   }
 
-  /// Deserialize [DetectedIssue]
+  /// Deserialize [DetectedIssueBuilder]
   /// from a [String] or [YamlMap] object
-  factory DetectedIssue.fromYaml(
+  factory DetectedIssueBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DetectedIssue.fromJson(
+      return DetectedIssueBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DetectedIssue.fromJson(
+      return DetectedIssueBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DetectedIssue '
+        'DetectedIssueBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -226,16 +225,16 @@ class DetectedIssue extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [DetectedIssue]
+  /// [DetectedIssueBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DetectedIssue.fromJsonString(
+  factory DetectedIssueBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DetectedIssue.fromJson(json);
+      return DetectedIssueBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -247,84 +246,85 @@ class DetectedIssue extends DomainResource {
 
   /// [identifier]
   /// Business identifier associated with the detected issue record.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// Indicates the status of the detected issue.
-  final ObservationStatus status;
+  ObservationStatusBuilder? status;
 
   /// [code]
   /// Identifies the general type of issue identified.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [severity]
   /// Indicates the degree of importance associated with the identified issue
   /// based on the potential impact on the patient.
-  final DetectedIssueSeverity? severity;
+  DetectedIssueSeverityBuilder? severity;
 
   /// [patient]
   /// Indicates the patient whose record the detected issue is associated
   /// with.
-  final Reference? patient;
+  ReferenceBuilder? patient;
 
   /// [identifiedX]
   /// The date or period when the detected issue was initially identified.
-  final IdentifiedXDetectedIssue? identifiedX;
+  IdentifiedXDetectedIssueBuilder? identifiedX;
 
-  /// Getter for [identifiedDateTime] as a FhirDateTime
-  FhirDateTime? get identifiedDateTime => identifiedX?.isAs<FhirDateTime>();
+  /// Getter for [identifiedDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get identifiedDateTime =>
+      identifiedX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [identifiedPeriod] as a Period
-  Period? get identifiedPeriod => identifiedX?.isAs<Period>();
+  /// Getter for [identifiedPeriod] as a PeriodBuilder
+  PeriodBuilder? get identifiedPeriod => identifiedX?.isAs<PeriodBuilder>();
 
   /// [author]
   /// Individual or device responsible for the issue being raised. For
   /// example, a decision support application or a pharmacist conducting a
   /// medication review.
-  final Reference? author;
+  ReferenceBuilder? author;
 
   /// [implicated]
   /// Indicates the resource representing the current activity or proposed
   /// activity that is potentially problematic.
-  final List<Reference>? implicated;
+  List<ReferenceBuilder>? implicated;
 
   /// [evidence]
   /// Supporting evidence or manifestations that provide the basis for
   /// identifying the detected issue such as a GuidanceResponse or
   /// MeasureReport.
-  final List<DetectedIssueEvidence>? evidence;
+  List<DetectedIssueEvidenceBuilder>? evidence;
 
   /// [detail]
   /// A textual explanation of the detected issue.
-  final FhirString? detail;
+  FhirStringBuilder? detail;
 
   /// [reference]
   /// The literature, knowledge-base or similar reference that describes the
   /// propensity for the detected issue identified.
-  final FhirUri? reference;
+  FhirUriBuilder? reference;
 
   /// [mitigation]
   /// Indicates an action that has been taken or is committed to reduce or
   /// eliminate the likelihood of the risk identified by the detected issue
   /// from manifesting. Can also reflect an observation of known mitigating
   /// factors that may reduce/eliminate the need for any action.
-  final List<DetectedIssueMitigation>? mitigation;
+  List<DetectedIssueMitigationBuilder>? mitigation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -333,96 +333,36 @@ class DetectedIssue extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'severity',
-      severity,
-    );
-    addField(
-      'patient',
-      patient,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('code', code);
+    addField('severity', severity);
+    addField('patient', patient);
     if (identifiedX != null) {
       final fhirType = identifiedX!.fhirType;
-      addField(
-        'identified${fhirType.capitalize()}',
-        identifiedX,
-      );
+      addField('identified${fhirType.capitalize()}', identifiedX);
     }
 
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'implicated',
-      implicated,
-    );
-    addField(
-      'evidence',
-      evidence,
-    );
-    addField(
-      'detail',
-      detail,
-    );
-    addField(
-      'reference',
-      reference,
-    );
-    addField(
-      'mitigation',
-      mitigation,
-    );
+    addField('author', author);
+    addField('implicated', implicated);
+    addField('evidence', evidence);
+    addField('detail', detail);
+    addField('reference', reference);
+    addField('mitigation', mitigation);
     return json;
   }
 
@@ -456,11 +396,11 @@ class DetectedIssue extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -499,7 +439,9 @@ class DetectedIssue extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'code':
         if (code != null) {
           fields.add(code!);
@@ -513,15 +455,19 @@ class DetectedIssue extends DomainResource {
           fields.add(patient!);
         }
       case 'identified':
-        fields.add(identifiedX!);
+        if (identifiedX != null) {
+          fields.add(identifiedX!);
+        }
       case 'identifiedX':
-        fields.add(identifiedX!);
+        if (identifiedX != null) {
+          fields.add(identifiedX!);
+        }
       case 'identifiedDateTime':
-        if (identifiedX is FhirDateTime) {
+        if (identifiedX is FhirDateTimeBuilder) {
           fields.add(identifiedX!);
         }
       case 'identifiedPeriod':
-        if (identifiedX is Period) {
+        if (identifiedX is PeriodBuilder) {
           fields.add(identifiedX!);
         }
       case 'author':
@@ -558,7 +504,7 @@ class DetectedIssue extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -567,237 +513,253 @@ class DetectedIssue extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ObservationStatus) {
-            return copyWith(status: child);
+          if (child is ObservationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
         {
-          if (child is DetectedIssueSeverity) {
-            return copyWith(severity: child);
+          if (child is DetectedIssueSeverityBuilder) {
+            severity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
         {
-          if (child is Reference) {
-            return copyWith(patient: child);
+          if (child is ReferenceBuilder) {
+            patient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifiedX':
         {
-          if (child is IdentifiedXDetectedIssue) {
-            return copyWith(identifiedX: child);
+          if (child is IdentifiedXDetectedIssueBuilder) {
+            identifiedX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(identifiedX: child);
+            if (child is FhirDateTimeBuilder) {
+              identifiedX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(identifiedX: child);
+            if (child is PeriodBuilder) {
+              identifiedX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'identifiedFhirDateTime':
+      case 'identifiedDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(identifiedX: child);
+          if (child is FhirDateTimeBuilder) {
+            identifiedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifiedPeriod':
         {
-          if (child is Period) {
-            return copyWith(identifiedX: child);
+          if (child is PeriodBuilder) {
+            identifiedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is Reference) {
-            return copyWith(author: child);
+          if (child is ReferenceBuilder) {
+            author = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicated':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?implicated, ...child];
-            return copyWith(implicated: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            implicated = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?implicated, child];
-            return copyWith(implicated: newList);
+            implicated = [...(implicated ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'evidence':
         {
-          if (child is List<DetectedIssueEvidence>) {
-            // Add all elements from passed list
-            final newList = [...?evidence, ...child];
-            return copyWith(evidence: newList);
-          } else if (child is DetectedIssueEvidence) {
+          if (child is List<DetectedIssueEvidenceBuilder>) {
+            // Replace or create new list
+            evidence = child;
+            return;
+          } else if (child is DetectedIssueEvidenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?evidence, child];
-            return copyWith(evidence: newList);
+            evidence = [...(evidence ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is FhirString) {
-            return copyWith(detail: child);
+          if (child is FhirStringBuilder) {
+            detail = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is FhirUri) {
-            return copyWith(reference: child);
+          if (child is FhirUriBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mitigation':
         {
-          if (child is List<DetectedIssueMitigation>) {
-            // Add all elements from passed list
-            final newList = [...?mitigation, ...child];
-            return copyWith(mitigation: newList);
-          } else if (child is DetectedIssueMitigation) {
+          if (child is List<DetectedIssueMitigationBuilder>) {
+            // Replace or create new list
+            mitigation = child;
+            return;
+          } else if (child is DetectedIssueMitigationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?mitigation, child];
-            return copyWith(mitigation: newList);
+            mitigation = [...(mitigation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -813,191 +775,166 @@ class DetectedIssue extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'severity':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'patient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'identified':
       case 'identifiedX':
-        return ['FhirDateTime', 'Period'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
       case 'identifiedDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'identifiedPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'implicated':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'evidence':
-        return ['DetectedIssueEvidence'];
+        return ['DetectedIssueEvidenceBuilder'];
       case 'detail':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'reference':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'mitigation':
-        return ['DetectedIssueMitigation'];
+        return ['DetectedIssueMitigationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DetectedIssue]
+  /// Creates a new [DetectedIssueBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DetectedIssue createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ObservationStatus.empty(),
-          );
+          status = ObservationStatusBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'severity':
         {
-          return copyWith(
-            severity: DetectedIssueSeverity.empty(),
-          );
+          severity = DetectedIssueSeverityBuilder.empty();
+          return;
         }
       case 'patient':
         {
-          return copyWith(
-            patient: Reference.empty(),
-          );
+          patient = ReferenceBuilder.empty();
+          return;
         }
       case 'identified':
       case 'identifiedX':
       case 'identifiedDateTime':
         {
-          return copyWith(
-            identifiedX: FhirDateTime.empty(),
-          );
+          identifiedX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'identifiedPeriod':
         {
-          return copyWith(
-            identifiedX: Period.empty(),
-          );
+          identifiedX = PeriodBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: Reference.empty(),
-          );
+          author = ReferenceBuilder.empty();
+          return;
         }
       case 'implicated':
         {
-          return copyWith(
-            implicated: <Reference>[],
-          );
+          implicated = <ReferenceBuilder>[];
+          return;
         }
       case 'evidence':
         {
-          return copyWith(
-            evidence: <DetectedIssueEvidence>[],
-          );
+          evidence = <DetectedIssueEvidenceBuilder>[];
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: FhirString.empty(),
-          );
+          detail = FhirStringBuilder.empty();
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: FhirUri.empty(),
-          );
+          reference = FhirUriBuilder.empty();
+          return;
         }
       case 'mitigation':
         {
-          return copyWith(
-            mitigation: <DetectedIssueMitigation>[],
-          );
+          mitigation = <DetectedIssueMitigationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1006,7 +943,7 @@ class DetectedIssue extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  DetectedIssue clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1016,6 +953,7 @@ class DetectedIssue extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
     bool code = false,
     bool severity = false,
     bool patient = false,
@@ -1027,169 +965,103 @@ class DetectedIssue extends DomainResource {
     bool reference = false,
     bool mitigation = false,
   }) {
-    return DetectedIssue(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      code: code ? null : this.code,
-      severity: severity ? null : this.severity,
-      patient: patient ? null : this.patient,
-      identifiedX: identified ? null : identifiedX,
-      author: author ? null : this.author,
-      implicated: implicated ? null : this.implicated,
-      evidence: evidence ? null : this.evidence,
-      detail: detail ? null : this.detail,
-      reference: reference ? null : this.reference,
-      mitigation: mitigation ? null : this.mitigation,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (code) this.code = null;
+    if (severity) this.severity = null;
+    if (patient) this.patient = null;
+    if (identified) this.identifiedX = null;
+    if (author) this.author = null;
+    if (implicated) this.implicated = null;
+    if (evidence) this.evidence = null;
+    if (detail) this.detail = null;
+    if (reference) this.reference = null;
+    if (mitigation) this.mitigation = null;
   }
 
   @override
-  DetectedIssue clone() => throw UnimplementedError();
+  DetectedIssueBuilder clone() => throw UnimplementedError();
   @override
-  DetectedIssue copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    ObservationStatus? status,
-    CodeableConcept? code,
-    DetectedIssueSeverity? severity,
-    Reference? patient,
-    IdentifiedXDetectedIssue? identifiedX,
-    Reference? author,
-    List<Reference>? implicated,
-    List<DetectedIssueEvidence>? evidence,
-    FhirString? detail,
-    FhirUri? reference,
-    List<DetectedIssueMitigation>? mitigation,
+  DetectedIssueBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    ObservationStatusBuilder? status,
+    CodeableConceptBuilder? code,
+    DetectedIssueSeverityBuilder? severity,
+    ReferenceBuilder? patient,
+    IdentifiedXDetectedIssueBuilder? identifiedX,
+    ReferenceBuilder? author,
+    List<ReferenceBuilder>? implicated,
+    List<DetectedIssueEvidenceBuilder>? evidence,
+    FhirStringBuilder? detail,
+    FhirUriBuilder? reference,
+    List<DetectedIssueMitigationBuilder>? mitigation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return DetectedIssue(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = DetectedIssueBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      severity: severity?.copyWith(
-            objectPath: '$newObjectPath.severity',
-          ) ??
-          this.severity,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      identifiedX: identifiedX?.copyWith(
-            objectPath: '$newObjectPath.identifiedX',
-          ) as IdentifiedXDetectedIssue? ??
-          this.identifiedX,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
-      implicated: implicated
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.implicated',
-                ),
-              )
-              .toList() ??
-          this.implicated,
-      evidence: evidence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.evidence',
-                ),
-              )
-              .toList() ??
-          this.evidence,
-      detail: detail?.copyWith(
-            objectPath: '$newObjectPath.detail',
-          ) ??
-          this.detail,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-      mitigation: mitigation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.mitigation',
-                ),
-              )
-              .toList() ??
-          this.mitigation,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      code: code ?? this.code,
+      severity: severity ?? this.severity,
+      patient: patient ?? this.patient,
+      identifiedX: identifiedX ?? this.identifiedX,
+      author: author ?? this.author,
+      implicated: implicated ?? this.implicated,
+      evidence: evidence ?? this.evidence,
+      detail: detail ?? this.detail,
+      reference: reference ?? this.reference,
+      mitigation: mitigation ?? this.mitigation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DetectedIssue) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DetectedIssueBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1224,25 +1096,25 @@ class DetectedIssue extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1284,13 +1156,13 @@ class DetectedIssue extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       implicated,
       o.implicated,
     )) {
       return false;
     }
-    if (!listEquals<DetectedIssueEvidence>(
+    if (!listEquals<DetectedIssueEvidenceBuilder>(
       evidence,
       o.evidence,
     )) {
@@ -1308,7 +1180,7 @@ class DetectedIssue extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<DetectedIssueMitigation>(
+    if (!listEquals<DetectedIssueMitigationBuilder>(
       mitigation,
       o.mitigation,
     )) {
@@ -1318,15 +1190,15 @@ class DetectedIssue extends DomainResource {
   }
 }
 
-/// [DetectedIssueEvidence]
+/// [DetectedIssueEvidenceBuilder]
 /// Supporting evidence or manifestations that provide the basis for
 /// identifying the detected issue such as a GuidanceResponse or
 /// MeasureReport.
-class DetectedIssueEvidence extends BackboneElement {
+class DetectedIssueEvidenceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DetectedIssueEvidence]
+  /// [DetectedIssueEvidenceBuilder]
 
-  const DetectedIssueEvidence({
+  DetectedIssueEvidenceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1338,25 +1210,25 @@ class DetectedIssueEvidence extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DetectedIssueEvidence.empty() => const DetectedIssueEvidence();
+  /// For Builder classes, no fields are required
+  factory DetectedIssueEvidenceBuilder.empty() =>
+      DetectedIssueEvidenceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DetectedIssueEvidence.fromJson(
+  factory DetectedIssueEvidenceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DetectedIssue.evidence';
-    return DetectedIssueEvidence(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DetectedIssueEvidenceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1365,8 +1237,8 @@ class DetectedIssueEvidence extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1375,8 +1247,8 @@ class DetectedIssueEvidence extends BackboneElement {
           )
           .toList(),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -1385,8 +1257,8 @@ class DetectedIssueEvidence extends BackboneElement {
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.detail',
@@ -1397,22 +1269,22 @@ class DetectedIssueEvidence extends BackboneElement {
     );
   }
 
-  /// Deserialize [DetectedIssueEvidence]
+  /// Deserialize [DetectedIssueEvidenceBuilder]
   /// from a [String] or [YamlMap] object
-  factory DetectedIssueEvidence.fromYaml(
+  factory DetectedIssueEvidenceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DetectedIssueEvidence.fromJson(
+      return DetectedIssueEvidenceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DetectedIssueEvidence.fromJson(
+      return DetectedIssueEvidenceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DetectedIssueEvidence '
+        'DetectedIssueEvidenceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1420,16 +1292,16 @@ class DetectedIssueEvidence extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DetectedIssueEvidence]
+  /// [DetectedIssueEvidenceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DetectedIssueEvidence.fromJsonString(
+  factory DetectedIssueEvidenceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DetectedIssueEvidence.fromJson(json);
+      return DetectedIssueEvidenceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1441,28 +1313,28 @@ class DetectedIssueEvidence extends BackboneElement {
 
   /// [code]
   /// A manifestation that led to the recording of this detected issue.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [detail]
   /// Links to resources that constitute evidence for the detected issue such
   /// as a GuidanceResponse or MeasureReport.
-  final List<Reference>? detail;
+  List<ReferenceBuilder>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1471,31 +1343,16 @@ class DetectedIssueEvidence extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'detail',
-      detail,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('detail', detail);
     return json;
   }
 
@@ -1514,11 +1371,11 @@ class DetectedIssueEvidence extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1550,7 +1407,7 @@ class DetectedIssueEvidence extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1559,77 +1416,77 @@ class DetectedIssueEvidence extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            detail = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?detail, child];
-            return copyWith(detail: newList);
+            detail = [...(detail ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1645,58 +1502,49 @@ class DetectedIssueEvidence extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'detail':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DetectedIssueEvidence]
+  /// Creates a new [DetectedIssueEvidenceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DetectedIssueEvidence createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: <Reference>[],
-          );
+          detail = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1705,31 +1553,29 @@ class DetectedIssueEvidence extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DetectedIssueEvidence clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool code = false,
     bool detail = false,
   }) {
-    return DetectedIssueEvidence(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      detail: detail ? null : this.detail,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (detail) this.detail = null;
   }
 
   @override
-  DetectedIssueEvidence clone() => throw UnimplementedError();
+  DetectedIssueEvidenceBuilder clone() => throw UnimplementedError();
   @override
-  DetectedIssueEvidence copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? code,
-    List<Reference>? detail,
+  DetectedIssueEvidenceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? code,
+    List<ReferenceBuilder>? detail,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1737,50 +1583,36 @@ class DetectedIssueEvidence extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DetectedIssueEvidence(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
+    final newResult = DetectedIssueEvidenceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      detail: detail ?? this.detail,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DetectedIssueEvidence) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DetectedIssueEvidenceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1791,25 +1623,25 @@ class DetectedIssueEvidence extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       detail,
       o.detail,
     )) {
@@ -1819,20 +1651,20 @@ class DetectedIssueEvidence extends BackboneElement {
   }
 }
 
-/// [DetectedIssueMitigation]
+/// [DetectedIssueMitigationBuilder]
 /// Indicates an action that has been taken or is committed to reduce or
 /// eliminate the likelihood of the risk identified by the detected issue
 /// from manifesting. Can also reflect an observation of known mitigating
 /// factors that may reduce/eliminate the need for any action.
-class DetectedIssueMitigation extends BackboneElement {
+class DetectedIssueMitigationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DetectedIssueMitigation]
+  /// [DetectedIssueMitigationBuilder]
 
-  const DetectedIssueMitigation({
+  DetectedIssueMitigationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.action,
+    this.action,
     this.date,
     this.author,
     super.disallowExtensions,
@@ -1841,27 +1673,25 @@ class DetectedIssueMitigation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DetectedIssueMitigation.empty() => DetectedIssueMitigation(
-        action: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DetectedIssueMitigationBuilder.empty() =>
+      DetectedIssueMitigationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DetectedIssueMitigation.fromJson(
+  factory DetectedIssueMitigationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DetectedIssue.mitigation';
-    return DetectedIssueMitigation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DetectedIssueMitigationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1870,8 +1700,8 @@ class DetectedIssueMitigation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1879,43 +1709,43 @@ class DetectedIssueMitigation extends BackboneElement {
             ),
           )
           .toList(),
-      action: JsonParser.parseObject<CodeableConcept>(
+      action: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'action',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.action',
-      )!,
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      author: JsonParser.parseObject<Reference>(
+      author: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'author',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.author',
       ),
     );
   }
 
-  /// Deserialize [DetectedIssueMitigation]
+  /// Deserialize [DetectedIssueMitigationBuilder]
   /// from a [String] or [YamlMap] object
-  factory DetectedIssueMitigation.fromYaml(
+  factory DetectedIssueMitigationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DetectedIssueMitigation.fromJson(
+      return DetectedIssueMitigationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DetectedIssueMitigation.fromJson(
+      return DetectedIssueMitigationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DetectedIssueMitigation '
+        'DetectedIssueMitigationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1923,16 +1753,16 @@ class DetectedIssueMitigation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DetectedIssueMitigation]
+  /// [DetectedIssueMitigationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DetectedIssueMitigation.fromJsonString(
+  factory DetectedIssueMitigationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DetectedIssueMitigation.fromJson(json);
+      return DetectedIssueMitigationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1945,32 +1775,32 @@ class DetectedIssueMitigation extends BackboneElement {
   /// [action]
   /// Describes the action that was taken or the observation that was made
   /// that reduces/eliminates the risk associated with the identified issue.
-  final CodeableConcept action;
+  CodeableConceptBuilder? action;
 
   /// [date]
   /// Indicates when the mitigating action was documented.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [author]
   /// Identifies the practitioner who determined the mitigation and takes
   /// responsibility for the mitigation step occurring.
-  final Reference? author;
+  ReferenceBuilder? author;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1979,35 +1809,17 @@ class DetectedIssueMitigation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'action',
-      action,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'author',
-      author,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('action', action);
+    addField('date', date);
+    addField('author', author);
     return json;
   }
 
@@ -2027,11 +1839,11 @@ class DetectedIssueMitigation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2046,7 +1858,9 @@ class DetectedIssueMitigation extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'action':
-        fields.add(action);
+        if (action != null) {
+          fields.add(action!);
+        }
       case 'date':
         if (date != null) {
           fields.add(date!);
@@ -2065,7 +1879,7 @@ class DetectedIssueMitigation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2074,73 +1888,76 @@ class DetectedIssueMitigation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is CodeableConcept) {
-            return copyWith(action: child);
+          if (child is CodeableConceptBuilder) {
+            action = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is Reference) {
-            return copyWith(author: child);
+          if (child is ReferenceBuilder) {
+            author = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2156,66 +1973,56 @@ class DetectedIssueMitigation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'action':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DetectedIssueMitigation]
+  /// Creates a new [DetectedIssueMitigationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DetectedIssueMitigation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: CodeableConcept.empty(),
-          );
+          action = CodeableConceptBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: Reference.empty(),
-          );
+          author = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2224,33 +2031,32 @@ class DetectedIssueMitigation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DetectedIssueMitigation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool action = false,
     bool date = false,
     bool author = false,
   }) {
-    return DetectedIssueMitigation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      action: action,
-      date: date ? null : this.date,
-      author: author ? null : this.author,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (action) this.action = null;
+    if (date) this.date = null;
+    if (author) this.author = null;
   }
 
   @override
-  DetectedIssueMitigation clone() => throw UnimplementedError();
+  DetectedIssueMitigationBuilder clone() => throw UnimplementedError();
   @override
-  DetectedIssueMitigation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? action,
-    FhirDateTime? date,
-    Reference? author,
+  DetectedIssueMitigationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? action,
+    FhirDateTimeBuilder? date,
+    ReferenceBuilder? author,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2258,46 +2064,37 @@ class DetectedIssueMitigation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DetectedIssueMitigation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      action: action?.copyWith(
-            objectPath: '$newObjectPath.action',
-          ) ??
-          this.action,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
+    final newResult = DetectedIssueMitigationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      action: action ?? this.action,
+      date: date ?? this.date,
+      author: author ?? this.author,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DetectedIssueMitigation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DetectedIssueMitigationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2308,13 +2105,13 @@ class DetectedIssueMitigation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

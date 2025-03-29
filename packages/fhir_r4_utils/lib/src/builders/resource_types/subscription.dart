@@ -1,19 +1,21 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Subscription]
+/// [SubscriptionBuilder]
 /// The subscription resource is used to define a push-based subscription
 /// from a server to another system. Once a subscription is registered with
 /// the server, the server checks every resource that is created or
 /// updated, and if the resource matches the given criteria, it sends a
 /// message on the defined "channel" so that another system can take an
 /// appropriate action.
-class Subscription extends DomainResource {
+class SubscriptionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Subscription]
+  /// [SubscriptionBuilder]
 
-  const Subscription({
+  SubscriptionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -22,67 +24,61 @@ class Subscription extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.status,
+    this.status,
     this.contact,
     this.end,
-    required this.reason,
-    required this.criteria,
+    this.reason,
+    this.criteria,
     this.error,
-    required this.channel,
+    this.channel,
   }) : super(
           objectPath: 'Subscription',
           resourceType: R4ResourceType.Subscription,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Subscription.empty() => Subscription(
-        status: SubscriptionStatusCodes.values.first,
-        reason: FhirString.empty(),
-        criteria: FhirString.empty(),
-        channel: SubscriptionChannel.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SubscriptionBuilder.empty() => SubscriptionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Subscription.fromJson(
+  factory SubscriptionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Subscription';
-    return Subscription(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubscriptionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -91,8 +87,8 @@ class Subscription extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -101,8 +97,8 @@ class Subscription extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -110,15 +106,15 @@ class Subscription extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<SubscriptionStatusCodes>(
+      status: JsonParser.parsePrimitive<SubscriptionStatusCodesBuilder>(
         json,
         'status',
-        SubscriptionStatusCodes.fromJson,
+        SubscriptionStatusCodesBuilder.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -126,55 +122,55 @@ class Subscription extends DomainResource {
             ),
           )
           .toList(),
-      end: JsonParser.parsePrimitive<FhirInstant>(
+      end: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'end',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.end',
       ),
-      reason: JsonParser.parsePrimitive<FhirString>(
+      reason: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'reason',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.reason',
-      )!,
-      criteria: JsonParser.parsePrimitive<FhirString>(
+      ),
+      criteria: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'criteria',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.criteria',
-      )!,
-      error: JsonParser.parsePrimitive<FhirString>(
+      ),
+      error: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'error',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.error',
       ),
-      channel: JsonParser.parseObject<SubscriptionChannel>(
+      channel: JsonParser.parseObject<SubscriptionChannelBuilder>(
         json,
         'channel',
-        SubscriptionChannel.fromJson,
+        SubscriptionChannelBuilder.fromJson,
         '$objectPath.channel',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [Subscription]
+  /// Deserialize [SubscriptionBuilder]
   /// from a [String] or [YamlMap] object
-  factory Subscription.fromYaml(
+  factory SubscriptionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Subscription.fromJson(
+      return SubscriptionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Subscription.fromJson(
+      return SubscriptionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Subscription '
+        'SubscriptionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -182,16 +178,16 @@ class Subscription extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Subscription]
+  /// [SubscriptionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Subscription.fromJsonString(
+  factory SubscriptionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Subscription.fromJson(json);
+      return SubscriptionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -204,51 +200,51 @@ class Subscription extends DomainResource {
   /// [status]
   /// The status of the subscription, which marks the server state for
   /// managing the subscription.
-  final SubscriptionStatusCodes status;
+  SubscriptionStatusCodesBuilder? status;
 
   /// [contact]
   /// Contact details for a human to contact about the subscription. The
   /// primary use of this for system administrator troubleshooting.
-  final List<ContactPoint>? contact;
+  List<ContactPointBuilder>? contact;
 
   /// [end]
   /// The time for the server to turn the subscription off.
-  final FhirInstant? end;
+  FhirInstantBuilder? end;
 
   /// [reason]
   /// A description of why this subscription is defined.
-  final FhirString reason;
+  FhirStringBuilder? reason;
 
   /// [criteria]
   /// The rules that the server should use to determine when to generate
   /// notifications for this subscription.
-  final FhirString criteria;
+  FhirStringBuilder? criteria;
 
   /// [error]
   /// A record of the last error that occurred when the server processed a
   /// notification.
-  final FhirString? error;
+  FhirStringBuilder? error;
 
   /// [channel]
   /// Details where to send notifications when resources are received that
   /// meet the criteria.
-  final SubscriptionChannel channel;
+  SubscriptionChannelBuilder? channel;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -257,72 +253,27 @@ class Subscription extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'end',
-      end,
-    );
-    addField(
-      'reason',
-      reason,
-    );
-    addField(
-      'criteria',
-      criteria,
-    );
-    addField(
-      'error',
-      error,
-    );
-    addField(
-      'channel',
-      channel,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('status', status);
+    addField('contact', contact);
+    addField('end', end);
+    addField('reason', reason);
+    addField('criteria', criteria);
+    addField('error', error);
+    addField('channel', channel);
     return json;
   }
 
@@ -351,11 +302,11 @@ class Subscription extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -390,7 +341,9 @@ class Subscription extends DomainResource {
           fields.addAll(modifierExtension!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'contact':
         if (contact != null) {
           fields.addAll(contact!);
@@ -400,15 +353,21 @@ class Subscription extends DomainResource {
           fields.add(end!);
         }
       case 'reason':
-        fields.add(reason);
+        if (reason != null) {
+          fields.add(reason!);
+        }
       case 'criteria':
-        fields.add(criteria);
+        if (criteria != null) {
+          fields.add(criteria!);
+        }
       case 'error':
         if (error != null) {
           fields.add(error!);
         }
       case 'channel':
-        fields.add(channel);
+        if (channel != null) {
+          fields.add(channel!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -419,7 +378,7 @@ class Subscription extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -428,157 +387,167 @@ class Subscription extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is SubscriptionStatusCodes) {
-            return copyWith(status: child);
+          if (child is SubscriptionStatusCodesBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
         {
-          if (child is FhirInstant) {
-            return copyWith(end: child);
+          if (child is FhirInstantBuilder) {
+            end = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reason':
         {
-          if (child is FhirString) {
-            return copyWith(reason: child);
+          if (child is FhirStringBuilder) {
+            reason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'criteria':
         {
-          if (child is FhirString) {
-            return copyWith(criteria: child);
+          if (child is FhirStringBuilder) {
+            criteria = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'error':
         {
-          if (child is FhirString) {
-            return copyWith(error: child);
+          if (child is FhirStringBuilder) {
+            error = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'channel':
         {
-          if (child is SubscriptionChannel) {
-            return copyWith(channel: child);
+          if (child is SubscriptionChannelBuilder) {
+            channel = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -594,138 +563,119 @@ class Subscription extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'contact':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'end':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'reason':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'criteria':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'error':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'channel':
-        return ['SubscriptionChannel'];
+        return ['SubscriptionChannelBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Subscription]
+  /// Creates a new [SubscriptionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Subscription createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: SubscriptionStatusCodes.empty(),
-          );
+          status = SubscriptionStatusCodesBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactPoint>[],
-          );
+          contact = <ContactPointBuilder>[];
+          return;
         }
       case 'end':
         {
-          return copyWith(
-            end: FhirInstant.empty(),
-          );
+          end = FhirInstantBuilder.empty();
+          return;
         }
       case 'reason':
         {
-          return copyWith(
-            reason: FhirString.empty(),
-          );
+          reason = FhirStringBuilder.empty();
+          return;
         }
       case 'criteria':
         {
-          return copyWith(
-            criteria: FhirString.empty(),
-          );
+          criteria = FhirStringBuilder.empty();
+          return;
         }
       case 'error':
         {
-          return copyWith(
-            error: FhirString.empty(),
-          );
+          error = FhirStringBuilder.empty();
+          return;
         }
       case 'channel':
         {
-          return copyWith(
-            channel: SubscriptionChannel.empty(),
-          );
+          channel = SubscriptionChannelBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -734,7 +684,7 @@ class Subscription extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Subscription clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -743,131 +693,96 @@ class Subscription extends DomainResource {
     bool contained = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool status = false,
     bool contact = false,
     bool end = false,
+    bool reason = false,
+    bool criteria = false,
     bool error = false,
+    bool channel = false,
   }) {
-    return Subscription(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      status: status,
-      contact: contact ? null : this.contact,
-      end: end ? null : this.end,
-      reason: reason,
-      criteria: criteria,
-      error: error ? null : this.error,
-      channel: channel,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (status) this.status = null;
+    if (contact) this.contact = null;
+    if (end) this.end = null;
+    if (reason) this.reason = null;
+    if (criteria) this.criteria = null;
+    if (error) this.error = null;
+    if (channel) this.channel = null;
   }
 
   @override
-  Subscription clone() => throw UnimplementedError();
+  SubscriptionBuilder clone() => throw UnimplementedError();
   @override
-  Subscription copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    SubscriptionStatusCodes? status,
-    List<ContactPoint>? contact,
-    FhirInstant? end,
-    FhirString? reason,
-    FhirString? criteria,
-    FhirString? error,
-    SubscriptionChannel? channel,
+  SubscriptionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    SubscriptionStatusCodesBuilder? status,
+    List<ContactPointBuilder>? contact,
+    FhirInstantBuilder? end,
+    FhirStringBuilder? reason,
+    FhirStringBuilder? criteria,
+    FhirStringBuilder? error,
+    SubscriptionChannelBuilder? channel,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Subscription(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = SubscriptionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      end: end?.copyWith(
-            objectPath: '$newObjectPath.end',
-          ) ??
-          this.end,
-      reason: reason?.copyWith(
-            objectPath: '$newObjectPath.reason',
-          ) ??
-          this.reason,
-      criteria: criteria?.copyWith(
-            objectPath: '$newObjectPath.criteria',
-          ) ??
-          this.criteria,
-      error: error?.copyWith(
-            objectPath: '$newObjectPath.error',
-          ) ??
-          this.error,
-      channel: channel?.copyWith(
-            objectPath: '$newObjectPath.channel',
-          ) ??
-          this.channel,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      status: status ?? this.status,
+      contact: contact ?? this.contact,
+      end: end ?? this.end,
+      reason: reason ?? this.reason,
+      criteria: criteria ?? this.criteria,
+      error: error ?? this.error,
+      channel: channel ?? this.channel,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Subscription) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubscriptionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -902,19 +817,19 @@ class Subscription extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -926,7 +841,7 @@ class Subscription extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       contact,
       o.contact,
     )) {
@@ -966,18 +881,18 @@ class Subscription extends DomainResource {
   }
 }
 
-/// [SubscriptionChannel]
+/// [SubscriptionChannelBuilder]
 /// Details where to send notifications when resources are received that
 /// meet the criteria.
-class SubscriptionChannel extends BackboneElement {
+class SubscriptionChannelBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubscriptionChannel]
+  /// [SubscriptionChannelBuilder]
 
-  const SubscriptionChannel({
+  SubscriptionChannelBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.endpoint,
     this.payload,
     this.header,
@@ -987,27 +902,24 @@ class SubscriptionChannel extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubscriptionChannel.empty() => SubscriptionChannel(
-        type: SubscriptionChannelType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory SubscriptionChannelBuilder.empty() => SubscriptionChannelBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionChannel.fromJson(
+  factory SubscriptionChannelBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Subscription.channel';
-    return SubscriptionChannel(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubscriptionChannelBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1016,8 +928,8 @@ class SubscriptionChannel extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1025,49 +937,49 @@ class SubscriptionChannel extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<SubscriptionChannelType>(
+      type: JsonParser.parsePrimitive<SubscriptionChannelTypeBuilder>(
         json,
         'type',
-        SubscriptionChannelType.fromJson,
+        SubscriptionChannelTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      endpoint: JsonParser.parsePrimitive<FhirUrl>(
+      ),
+      endpoint: JsonParser.parsePrimitive<FhirUrlBuilder>(
         json,
         'endpoint',
-        FhirUrl.fromJson,
+        FhirUrlBuilder.fromJson,
         '$objectPath.endpoint',
       ),
-      payload: JsonParser.parsePrimitive<FhirCode>(
+      payload: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'payload',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.payload',
       ),
-      header: JsonParser.parsePrimitiveList<FhirString>(
+      header: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'header',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.header',
       ),
     );
   }
 
-  /// Deserialize [SubscriptionChannel]
+  /// Deserialize [SubscriptionChannelBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubscriptionChannel.fromYaml(
+  factory SubscriptionChannelBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubscriptionChannel.fromJson(
+      return SubscriptionChannelBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubscriptionChannel.fromJson(
+      return SubscriptionChannelBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubscriptionChannel '
+        'SubscriptionChannelBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1075,16 +987,16 @@ class SubscriptionChannel extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubscriptionChannel]
+  /// [SubscriptionChannelBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionChannel.fromJsonString(
+  factory SubscriptionChannelBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubscriptionChannel.fromJson(json);
+      return SubscriptionChannelBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1096,38 +1008,38 @@ class SubscriptionChannel extends BackboneElement {
 
   /// [type]
   /// The type of channel to send notifications on.
-  final SubscriptionChannelType type;
+  SubscriptionChannelTypeBuilder? type;
 
   /// [endpoint]
   /// The url that describes the actual end-point to send messages to.
-  final FhirUrl? endpoint;
+  FhirUrlBuilder? endpoint;
 
   /// [payload]
   /// The mime type to send the payload in - either application/fhir+xml, or
   /// application/fhir+json. If the payload is not present, then there is no
   /// payload in the notification, just a notification. The mime type
   /// "text/plain" may also be used for Email and SMS subscriptions.
-  final FhirCode? payload;
+  FhirCodeBuilder? payload;
 
   /// [header]
   /// Additional headers / information to send as part of the notification.
-  final List<FhirString>? header;
+  List<FhirStringBuilder>? header;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1136,39 +1048,18 @@ class SubscriptionChannel extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'endpoint',
-      endpoint,
-    );
-    addField(
-      'payload',
-      payload,
-    );
-    addField(
-      'header',
-      header,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('endpoint', endpoint);
+    addField('payload', payload);
+    addField('header', header);
     return json;
   }
 
@@ -1189,11 +1080,11 @@ class SubscriptionChannel extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1208,7 +1099,9 @@ class SubscriptionChannel extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'endpoint':
         if (endpoint != null) {
           fields.add(endpoint!);
@@ -1231,7 +1124,7 @@ class SubscriptionChannel extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1240,87 +1133,90 @@ class SubscriptionChannel extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is SubscriptionChannelType) {
-            return copyWith(type: child);
+          if (child is SubscriptionChannelTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
         {
-          if (child is FhirUrl) {
-            return copyWith(endpoint: child);
+          if (child is FhirUrlBuilder) {
+            endpoint = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'payload':
         {
-          if (child is FhirCode) {
-            return copyWith(payload: child);
+          if (child is FhirCodeBuilder) {
+            payload = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'header':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?header, ...child];
-            return copyWith(header: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            header = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?header, child];
-            return copyWith(header: newList);
+            header = [...(header ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1336,74 +1232,63 @@ class SubscriptionChannel extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'endpoint':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'payload':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'header':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubscriptionChannel]
+  /// Creates a new [SubscriptionChannelBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubscriptionChannel createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: SubscriptionChannelType.empty(),
-          );
+          type = SubscriptionChannelTypeBuilder.empty();
+          return;
         }
       case 'endpoint':
         {
-          return copyWith(
-            endpoint: FhirUrl.empty(),
-          );
+          endpoint = FhirUrlBuilder.empty();
+          return;
         }
       case 'payload':
         {
-          return copyWith(
-            payload: FhirCode.empty(),
-          );
+          payload = FhirCodeBuilder.empty();
+          return;
         }
       case 'header':
         {
-          return copyWith(
-            header: <FhirString>[],
-          );
+          header = <FhirStringBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1412,36 +1297,35 @@ class SubscriptionChannel extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubscriptionChannel clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool endpoint = false,
     bool payload = false,
     bool header = false,
   }) {
-    return SubscriptionChannel(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      endpoint: endpoint ? null : this.endpoint,
-      payload: payload ? null : this.payload,
-      header: header ? null : this.header,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (endpoint) this.endpoint = null;
+    if (payload) this.payload = null;
+    if (header) this.header = null;
   }
 
   @override
-  SubscriptionChannel clone() => throw UnimplementedError();
+  SubscriptionChannelBuilder clone() => throw UnimplementedError();
   @override
-  SubscriptionChannel copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    SubscriptionChannelType? type,
-    FhirUrl? endpoint,
-    FhirCode? payload,
-    List<FhirString>? header,
+  SubscriptionChannelBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    SubscriptionChannelTypeBuilder? type,
+    FhirUrlBuilder? endpoint,
+    FhirCodeBuilder? payload,
+    List<FhirStringBuilder>? header,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1449,54 +1333,38 @@ class SubscriptionChannel extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubscriptionChannel(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      endpoint: endpoint?.copyWith(
-            objectPath: '$newObjectPath.endpoint',
-          ) ??
-          this.endpoint,
-      payload: payload?.copyWith(
-            objectPath: '$newObjectPath.payload',
-          ) ??
-          this.payload,
-      header: header
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.header',
-                ),
-              )
-              .toList() ??
-          this.header,
+    final newResult = SubscriptionChannelBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      endpoint: endpoint ?? this.endpoint,
+      payload: payload ?? this.payload,
+      header: header ?? this.header,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubscriptionChannel) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubscriptionChannelBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1507,13 +1375,13 @@ class SubscriptionChannel extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1537,7 +1405,7 @@ class SubscriptionChannel extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       header,
       o.header,
     )) {

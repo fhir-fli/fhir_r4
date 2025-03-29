@@ -57,7 +57,7 @@ class FhirIntegerBuilder extends FhirNumberBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Integer',
+    String? objectPath = 'Integer',
   }) {
     // 1) Check if rawInput is null or a num
     num? finalNum;
@@ -149,7 +149,7 @@ class FhirIntegerBuilder extends FhirNumberBuilder
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Returns the FHIR type as a string.
   @override

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Distinguishes whether the task is a proposal, plan or full order.
-class TaskIntent extends FhirCodeEnum {
+class TaskIntentBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  TaskIntent._({
+  TaskIntentBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class TaskIntent extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory TaskIntent(
+  factory TaskIntentBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return TaskIntent._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return TaskIntentBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,112 +43,114 @@ class TaskIntent extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [TaskIntent] with element only
-  factory TaskIntent.empty() => TaskIntent._(validatedValue: '');
+  /// Create empty [TaskIntentBuilder] with element only
+  factory TaskIntentBuilder.empty() => TaskIntentBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TaskIntent] from JSON.
-  factory TaskIntent.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TaskIntentBuilder] from JSON.
+  factory TaskIntentBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TaskIntent.elementOnly.withElement(element);
+      return TaskIntentBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TaskIntent cannot be constructed from JSON.',
+        'TaskIntentBuilder cannot be constructed from JSON.',
       );
     }
-    return TaskIntent._(
+    return TaskIntentBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// unknown
-  static final TaskIntent unknown = TaskIntent._(
+  static TaskIntentBuilder unknown = TaskIntentBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// proposal
-  static final TaskIntent proposal = TaskIntent._(
+  static TaskIntentBuilder proposal = TaskIntentBuilder._(
     validatedValue: 'proposal',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposal'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Proposal'.toFhirStringBuilder,
   );
 
   /// plan
-  static final TaskIntent plan = TaskIntent._(
+  static TaskIntentBuilder plan = TaskIntentBuilder._(
     validatedValue: 'plan',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Plan'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Plan'.toFhirStringBuilder,
   );
 
   /// directive
-  static final TaskIntent directive = TaskIntent._(
+  static TaskIntentBuilder directive = TaskIntentBuilder._(
     validatedValue: 'directive',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Directive'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Directive'.toFhirStringBuilder,
   );
 
   /// order
-  static final TaskIntent order = TaskIntent._(
+  static TaskIntentBuilder order = TaskIntentBuilder._(
     validatedValue: 'order',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Order'.toFhirStringBuilder,
   );
 
   /// original_order
-  static final TaskIntent original_order = TaskIntent._(
+  static TaskIntentBuilder original_order = TaskIntentBuilder._(
     validatedValue: 'original-order',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Original Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Original Order'.toFhirStringBuilder,
   );
 
   /// reflex_order
-  static final TaskIntent reflex_order = TaskIntent._(
+  static TaskIntentBuilder reflex_order = TaskIntentBuilder._(
     validatedValue: 'reflex-order',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reflex Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Reflex Order'.toFhirStringBuilder,
   );
 
   /// filler_order
-  static final TaskIntent filler_order = TaskIntent._(
+  static TaskIntentBuilder filler_order = TaskIntentBuilder._(
     validatedValue: 'filler-order',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Filler Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Filler Order'.toFhirStringBuilder,
   );
 
   /// instance_order
-  static final TaskIntent instance_order = TaskIntent._(
+  static TaskIntentBuilder instance_order = TaskIntentBuilder._(
     validatedValue: 'instance-order',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Instance Order'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Instance Order'.toFhirStringBuilder,
   );
 
   /// option
-  static final TaskIntent option = TaskIntent._(
+  static TaskIntentBuilder option = TaskIntentBuilder._(
     validatedValue: 'option',
-    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Option'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Option'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final TaskIntent elementOnly = TaskIntent._(validatedValue: '');
+  static TaskIntentBuilder elementOnly =
+      TaskIntentBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<TaskIntent> values = [
+  static List<TaskIntentBuilder> values = [
     unknown,
     proposal,
     plan,
@@ -163,14 +165,14 @@ class TaskIntent extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  TaskIntent clone() => TaskIntent._(
+  TaskIntentBuilder clone() => TaskIntentBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  TaskIntent withElement(Element? newElement) {
-    return TaskIntent._(validatedValue: value, element: newElement);
+  TaskIntentBuilder withElement(ElementBuilder? newElement) {
+    return TaskIntentBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -186,11 +188,11 @@ class TaskIntent extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  TaskIntent copyWith({
+  TaskIntentBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -201,7 +203,7 @@ class TaskIntent extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return TaskIntent._(
+    return TaskIntentBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -211,7 +213,7 @@ class TaskIntent extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

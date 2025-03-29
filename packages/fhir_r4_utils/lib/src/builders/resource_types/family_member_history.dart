@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [FamilyMemberHistory]
+/// [FamilyMemberHistoryBuilder]
 /// Significant health conditions for a person related to the patient
 /// relevant in the context of care for the patient.
-class FamilyMemberHistory extends DomainResource {
+class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [FamilyMemberHistory]
+  /// [FamilyMemberHistoryBuilder]
 
-  const FamilyMemberHistory({
+  FamilyMemberHistoryBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,12 +23,12 @@ class FamilyMemberHistory extends DomainResource {
     this.identifier,
     this.instantiatesCanonical,
     this.instantiatesUri,
-    required this.status,
+    this.status,
     this.dataAbsentReason,
-    required this.patient,
+    this.patient,
     this.date,
     this.name,
-    required this.relationship,
+    this.relationship,
     this.sex,
     this.bornX,
     this.ageX,
@@ -42,53 +44,48 @@ class FamilyMemberHistory extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FamilyMemberHistory.empty() => FamilyMemberHistory(
-        status: FamilyHistoryStatus.values.first,
-        patient: Reference.empty(),
-        relationship: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory FamilyMemberHistoryBuilder.empty() => FamilyMemberHistoryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FamilyMemberHistory.fromJson(
+  factory FamilyMemberHistoryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'FamilyMemberHistory';
-    return FamilyMemberHistory(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return FamilyMemberHistoryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -97,8 +94,8 @@ class FamilyMemberHistory extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -107,8 +104,8 @@ class FamilyMemberHistory extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -117,8 +114,8 @@ class FamilyMemberHistory extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -126,98 +123,100 @@ class FamilyMemberHistory extends DomainResource {
             ),
           )
           .toList(),
-      instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
+      instantiatesCanonical:
+          JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'instantiatesCanonical',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.instantiatesCanonical',
       ),
-      instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
+      instantiatesUri: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'instantiatesUri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiatesUri',
       ),
-      status: JsonParser.parsePrimitive<FamilyHistoryStatus>(
+      status: JsonParser.parsePrimitive<FamilyHistoryStatusBuilder>(
         json,
         'status',
-        FamilyHistoryStatus.fromJson,
+        FamilyHistoryStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
+      ),
+      dataAbsentReason: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'dataAbsentReason',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.dataAbsentReason',
       ),
-      patient: JsonParser.parseObject<Reference>(
+      patient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'patient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.patient',
-      )!,
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      relationship: JsonParser.parseObject<CodeableConcept>(
+      relationship: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'relationship',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.relationship',
-      )!,
-      sex: JsonParser.parseObject<CodeableConcept>(
+      ),
+      sex: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'sex',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.sex',
       ),
-      bornX: JsonParser.parsePolymorphic<BornXFamilyMemberHistory>(
+      bornX: JsonParser.parsePolymorphic<BornXFamilyMemberHistoryBuilder>(
         json,
         {
-          'bornPeriod': Period.fromJson,
-          'bornDate': FhirDate.fromJson,
-          'bornString': FhirString.fromJson,
+          'bornPeriod': PeriodBuilder.fromJson,
+          'bornDate': FhirDateBuilder.fromJson,
+          'bornString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      ageX: JsonParser.parsePolymorphic<AgeXFamilyMemberHistory>(
+      ageX: JsonParser.parsePolymorphic<AgeXFamilyMemberHistoryBuilder>(
         json,
         {
-          'ageAge': Age.fromJson,
-          'ageRange': Range.fromJson,
-          'ageString': FhirString.fromJson,
+          'ageAge': AgeBuilder.fromJson,
+          'ageRange': RangeBuilder.fromJson,
+          'ageString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      estimatedAge: JsonParser.parsePrimitive<FhirBoolean>(
+      estimatedAge: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'estimatedAge',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.estimatedAge',
       ),
-      deceasedX: JsonParser.parsePolymorphic<DeceasedXFamilyMemberHistory>(
+      deceasedX:
+          JsonParser.parsePolymorphic<DeceasedXFamilyMemberHistoryBuilder>(
         json,
         {
-          'deceasedBoolean': FhirBoolean.fromJson,
-          'deceasedAge': Age.fromJson,
-          'deceasedRange': Range.fromJson,
-          'deceasedDate': FhirDate.fromJson,
-          'deceasedString': FhirString.fromJson,
+          'deceasedBoolean': FhirBooleanBuilder.fromJson,
+          'deceasedAge': AgeBuilder.fromJson,
+          'deceasedRange': RangeBuilder.fromJson,
+          'deceasedDate': FhirDateBuilder.fromJson,
+          'deceasedString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -226,8 +225,8 @@ class FamilyMemberHistory extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -236,8 +235,8 @@ class FamilyMemberHistory extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -246,8 +245,8 @@ class FamilyMemberHistory extends DomainResource {
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
-          ?.map<FamilyMemberHistoryCondition>(
-            (v) => FamilyMemberHistoryCondition.fromJson(
+          ?.map<FamilyMemberHistoryConditionBuilder>(
+            (v) => FamilyMemberHistoryConditionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.condition',
@@ -258,22 +257,22 @@ class FamilyMemberHistory extends DomainResource {
     );
   }
 
-  /// Deserialize [FamilyMemberHistory]
+  /// Deserialize [FamilyMemberHistoryBuilder]
   /// from a [String] or [YamlMap] object
-  factory FamilyMemberHistory.fromYaml(
+  factory FamilyMemberHistoryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return FamilyMemberHistory.fromJson(
+      return FamilyMemberHistoryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return FamilyMemberHistory.fromJson(
+      return FamilyMemberHistoryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'FamilyMemberHistory '
+        'FamilyMemberHistoryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -281,16 +280,16 @@ class FamilyMemberHistory extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [FamilyMemberHistory]
+  /// [FamilyMemberHistoryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FamilyMemberHistory.fromJsonString(
+  factory FamilyMemberHistoryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FamilyMemberHistory.fromJson(json);
+      return FamilyMemberHistoryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -304,141 +303,142 @@ class FamilyMemberHistory extends DomainResource {
   /// Business identifiers assigned to this family member history by the
   /// performer or other systems which remain constant as the resource is
   /// updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this
   /// FamilyMemberHistory.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonicalBuilder>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this FamilyMemberHistory.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUriBuilder>? instantiatesUri;
 
   /// [status]
   /// A code specifying the status of the record of the family history of a
   /// specific family member.
-  final FamilyHistoryStatus status;
+  FamilyHistoryStatusBuilder? status;
 
   /// [dataAbsentReason]
   /// Describes why the family member's history is not available.
-  final CodeableConcept? dataAbsentReason;
+  CodeableConceptBuilder? dataAbsentReason;
 
   /// [patient]
   /// The person who this history concerns.
-  final Reference patient;
+  ReferenceBuilder? patient;
 
   /// [date]
   /// The date (and possibly time) when the family member history was
   /// recorded or last updated.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [name]
   /// This will either be a name or a description; e.g. "Aunt Susan", "my
   /// cousin with the red hair".
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [relationship]
   /// The type of relationship this person has to the patient (father,
   /// mother, brother etc.).
-  final CodeableConcept relationship;
+  CodeableConceptBuilder? relationship;
 
   /// [sex]
   /// The birth sex of the family member.
-  final CodeableConcept? sex;
+  CodeableConceptBuilder? sex;
 
   /// [bornX]
   /// The actual or approximate date of birth of the relative.
-  final BornXFamilyMemberHistory? bornX;
+  BornXFamilyMemberHistoryBuilder? bornX;
 
-  /// Getter for [bornPeriod] as a Period
-  Period? get bornPeriod => bornX?.isAs<Period>();
+  /// Getter for [bornPeriod] as a PeriodBuilder
+  PeriodBuilder? get bornPeriod => bornX?.isAs<PeriodBuilder>();
 
-  /// Getter for [bornDate] as a FhirDate
-  FhirDate? get bornDate => bornX?.isAs<FhirDate>();
+  /// Getter for [bornDate] as a FhirDateBuilder
+  FhirDateBuilder? get bornDate => bornX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [bornString] as a FhirString
-  FhirString? get bornString => bornX?.isAs<FhirString>();
+  /// Getter for [bornString] as a FhirStringBuilder
+  FhirStringBuilder? get bornString => bornX?.isAs<FhirStringBuilder>();
 
   /// [ageX]
   /// The age of the relative at the time the family member history is
   /// recorded.
-  final AgeXFamilyMemberHistory? ageX;
+  AgeXFamilyMemberHistoryBuilder? ageX;
 
-  /// Getter for [ageAge] as a Age
-  Age? get ageAge => ageX?.isAs<Age>();
+  /// Getter for [ageAge] as a AgeBuilder
+  AgeBuilder? get ageAge => ageX?.isAs<AgeBuilder>();
 
-  /// Getter for [ageRange] as a Range
-  Range? get ageRange => ageX?.isAs<Range>();
+  /// Getter for [ageRange] as a RangeBuilder
+  RangeBuilder? get ageRange => ageX?.isAs<RangeBuilder>();
 
-  /// Getter for [ageString] as a FhirString
-  FhirString? get ageString => ageX?.isAs<FhirString>();
+  /// Getter for [ageString] as a FhirStringBuilder
+  FhirStringBuilder? get ageString => ageX?.isAs<FhirStringBuilder>();
 
   /// [estimatedAge]
   /// If true, indicates that the age value specified is an estimated value.
-  final FhirBoolean? estimatedAge;
+  FhirBooleanBuilder? estimatedAge;
 
   /// [deceasedX]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final DeceasedXFamilyMemberHistory? deceasedX;
+  DeceasedXFamilyMemberHistoryBuilder? deceasedX;
 
-  /// Getter for [deceasedBoolean] as a FhirBoolean
-  FhirBoolean? get deceasedBoolean => deceasedX?.isAs<FhirBoolean>();
+  /// Getter for [deceasedBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get deceasedBoolean =>
+      deceasedX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [deceasedAge] as a Age
-  Age? get deceasedAge => deceasedX?.isAs<Age>();
+  /// Getter for [deceasedAge] as a AgeBuilder
+  AgeBuilder? get deceasedAge => deceasedX?.isAs<AgeBuilder>();
 
-  /// Getter for [deceasedRange] as a Range
-  Range? get deceasedRange => deceasedX?.isAs<Range>();
+  /// Getter for [deceasedRange] as a RangeBuilder
+  RangeBuilder? get deceasedRange => deceasedX?.isAs<RangeBuilder>();
 
-  /// Getter for [deceasedDate] as a FhirDate
-  FhirDate? get deceasedDate => deceasedX?.isAs<FhirDate>();
+  /// Getter for [deceasedDate] as a FhirDateBuilder
+  FhirDateBuilder? get deceasedDate => deceasedX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [deceasedString] as a FhirString
-  FhirString? get deceasedString => deceasedX?.isAs<FhirString>();
+  /// Getter for [deceasedString] as a FhirStringBuilder
+  FhirStringBuilder? get deceasedString => deceasedX?.isAs<FhirStringBuilder>();
 
   /// [reasonCode]
   /// Describes why the family member history occurred in coded or textual
   /// form.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Indicates a Condition, Observation, AllergyIntolerance, or
   /// QuestionnaireResponse that justifies this family member history event.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [note]
   /// This property allows a non condition-specific note to the made about
   /// the related person. Ideally, the note would be in the condition
   /// property, but this is not always possible.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [condition]
   /// The significant Conditions (or condition) that the family member had.
   /// This is a repeating section to allow a system to represent more than
   /// one condition per resource, though there is nothing stopping multiple
   /// resources - one per condition.
-  final List<FamilyMemberHistoryCondition>? condition;
+  List<FamilyMemberHistoryConditionBuilder>? condition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -447,128 +447,50 @@ class FamilyMemberHistory extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'instantiatesCanonical',
-      instantiatesCanonical,
-    );
-    addField(
-      'instantiatesUri',
-      instantiatesUri,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'dataAbsentReason',
-      dataAbsentReason,
-    );
-    addField(
-      'patient',
-      patient,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'relationship',
-      relationship,
-    );
-    addField(
-      'sex',
-      sex,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('instantiatesCanonical', instantiatesCanonical);
+    addField('instantiatesUri', instantiatesUri);
+    addField('status', status);
+    addField('dataAbsentReason', dataAbsentReason);
+    addField('patient', patient);
+    addField('date', date);
+    addField('name', name);
+    addField('relationship', relationship);
+    addField('sex', sex);
     if (bornX != null) {
       final fhirType = bornX!.fhirType;
-      addField(
-        'born${fhirType.capitalize()}',
-        bornX,
-      );
+      addField('born${fhirType.capitalize()}', bornX);
     }
 
     if (ageX != null) {
       final fhirType = ageX!.fhirType;
-      addField(
-        'age${fhirType.capitalize()}',
-        ageX,
-      );
+      addField('age${fhirType.capitalize()}', ageX);
     }
 
-    addField(
-      'estimatedAge',
-      estimatedAge,
-    );
+    addField('estimatedAge', estimatedAge);
     if (deceasedX != null) {
       final fhirType = deceasedX!.fhirType;
-      addField(
-        'deceased${fhirType.capitalize()}',
-        deceasedX,
-      );
+      addField('deceased${fhirType.capitalize()}', deceasedX);
     }
 
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'condition',
-      condition,
-    );
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('note', note);
+    addField('condition', condition);
     return json;
   }
 
@@ -608,11 +530,11 @@ class FamilyMemberHistory extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -659,13 +581,17 @@ class FamilyMemberHistory extends DomainResource {
           fields.addAll(instantiatesUri!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'dataAbsentReason':
         if (dataAbsentReason != null) {
           fields.add(dataAbsentReason!);
         }
       case 'patient':
-        fields.add(patient);
+        if (patient != null) {
+          fields.add(patient!);
+        }
       case 'date':
         if (date != null) {
           fields.add(date!);
@@ -675,41 +601,51 @@ class FamilyMemberHistory extends DomainResource {
           fields.add(name!);
         }
       case 'relationship':
-        fields.add(relationship);
+        if (relationship != null) {
+          fields.add(relationship!);
+        }
       case 'sex':
         if (sex != null) {
           fields.add(sex!);
         }
       case 'born':
-        fields.add(bornX!);
+        if (bornX != null) {
+          fields.add(bornX!);
+        }
       case 'bornX':
-        fields.add(bornX!);
+        if (bornX != null) {
+          fields.add(bornX!);
+        }
       case 'bornPeriod':
-        if (bornX is Period) {
+        if (bornX is PeriodBuilder) {
           fields.add(bornX!);
         }
       case 'bornDate':
-        if (bornX is FhirDate) {
+        if (bornX is FhirDateBuilder) {
           fields.add(bornX!);
         }
       case 'bornString':
-        if (bornX is FhirString) {
+        if (bornX is FhirStringBuilder) {
           fields.add(bornX!);
         }
       case 'age':
-        fields.add(ageX!);
+        if (ageX != null) {
+          fields.add(ageX!);
+        }
       case 'ageX':
-        fields.add(ageX!);
+        if (ageX != null) {
+          fields.add(ageX!);
+        }
       case 'ageAge':
-        if (ageX is Age) {
+        if (ageX is AgeBuilder) {
           fields.add(ageX!);
         }
       case 'ageRange':
-        if (ageX is Range) {
+        if (ageX is RangeBuilder) {
           fields.add(ageX!);
         }
       case 'ageString':
-        if (ageX is FhirString) {
+        if (ageX is FhirStringBuilder) {
           fields.add(ageX!);
         }
       case 'estimatedAge':
@@ -717,27 +653,31 @@ class FamilyMemberHistory extends DomainResource {
           fields.add(estimatedAge!);
         }
       case 'deceased':
-        fields.add(deceasedX!);
+        if (deceasedX != null) {
+          fields.add(deceasedX!);
+        }
       case 'deceasedX':
-        fields.add(deceasedX!);
+        if (deceasedX != null) {
+          fields.add(deceasedX!);
+        }
       case 'deceasedBoolean':
-        if (deceasedX is FhirBoolean) {
+        if (deceasedX is FhirBooleanBuilder) {
           fields.add(deceasedX!);
         }
       case 'deceasedAge':
-        if (deceasedX is Age) {
+        if (deceasedX is AgeBuilder) {
           fields.add(deceasedX!);
         }
       case 'deceasedRange':
-        if (deceasedX is Range) {
+        if (deceasedX is RangeBuilder) {
           fields.add(deceasedX!);
         }
       case 'deceasedDate':
-        if (deceasedX is FhirDate) {
+        if (deceasedX is FhirDateBuilder) {
           fields.add(deceasedX!);
         }
       case 'deceasedString':
-        if (deceasedX is FhirString) {
+        if (deceasedX is FhirStringBuilder) {
           fields.add(deceasedX!);
         }
       case 'reasonCode':
@@ -766,7 +706,7 @@ class FamilyMemberHistory extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -775,402 +715,439 @@ class FamilyMemberHistory extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            instantiatesCanonical = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
-            return copyWith(instantiatesCanonical: newList);
+            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            instantiatesUri = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
-            return copyWith(instantiatesUri: newList);
+            instantiatesUri = [...(instantiatesUri ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is FamilyHistoryStatus) {
-            return copyWith(status: child);
+          if (child is FamilyHistoryStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dataAbsentReason':
         {
-          if (child is CodeableConcept) {
-            return copyWith(dataAbsentReason: child);
+          if (child is CodeableConceptBuilder) {
+            dataAbsentReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
         {
-          if (child is Reference) {
-            return copyWith(patient: child);
+          if (child is ReferenceBuilder) {
+            patient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationship':
         {
-          if (child is CodeableConcept) {
-            return copyWith(relationship: child);
+          if (child is CodeableConceptBuilder) {
+            relationship = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sex':
         {
-          if (child is CodeableConcept) {
-            return copyWith(sex: child);
+          if (child is CodeableConceptBuilder) {
+            sex = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'bornX':
         {
-          if (child is BornXFamilyMemberHistory) {
-            return copyWith(bornX: child);
+          if (child is BornXFamilyMemberHistoryBuilder) {
+            bornX = child;
+            return;
           } else {
-            if (child is Period) {
-              return copyWith(bornX: child);
+            if (child is PeriodBuilder) {
+              bornX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(bornX: child);
+            if (child is FhirDateBuilder) {
+              bornX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(bornX: child);
+            if (child is FhirStringBuilder) {
+              bornX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'bornPeriod':
         {
-          if (child is Period) {
-            return copyWith(bornX: child);
+          if (child is PeriodBuilder) {
+            bornX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'bornFhirDate':
+      case 'bornDate':
         {
-          if (child is FhirDate) {
-            return copyWith(bornX: child);
+          if (child is FhirDateBuilder) {
+            bornX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'bornFhirString':
+      case 'bornString':
         {
-          if (child is FhirString) {
-            return copyWith(bornX: child);
+          if (child is FhirStringBuilder) {
+            bornX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'ageX':
         {
-          if (child is AgeXFamilyMemberHistory) {
-            return copyWith(ageX: child);
+          if (child is AgeXFamilyMemberHistoryBuilder) {
+            ageX = child;
+            return;
           } else {
-            if (child is Age) {
-              return copyWith(ageX: child);
+            if (child is AgeBuilder) {
+              ageX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(ageX: child);
+            if (child is RangeBuilder) {
+              ageX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(ageX: child);
+            if (child is FhirStringBuilder) {
+              ageX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'ageAge':
         {
-          if (child is Age) {
-            return copyWith(ageX: child);
+          if (child is AgeBuilder) {
+            ageX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'ageRange':
         {
-          if (child is Range) {
-            return copyWith(ageX: child);
+          if (child is RangeBuilder) {
+            ageX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'ageFhirString':
+      case 'ageString':
         {
-          if (child is FhirString) {
-            return copyWith(ageX: child);
+          if (child is FhirStringBuilder) {
+            ageX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'estimatedAge':
         {
-          if (child is FhirBoolean) {
-            return copyWith(estimatedAge: child);
+          if (child is FhirBooleanBuilder) {
+            estimatedAge = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deceasedX':
         {
-          if (child is DeceasedXFamilyMemberHistory) {
-            return copyWith(deceasedX: child);
+          if (child is DeceasedXFamilyMemberHistoryBuilder) {
+            deceasedX = child;
+            return;
           } else {
-            if (child is FhirBoolean) {
-              return copyWith(deceasedX: child);
+            if (child is FhirBooleanBuilder) {
+              deceasedX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(deceasedX: child);
+            if (child is AgeBuilder) {
+              deceasedX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(deceasedX: child);
+            if (child is RangeBuilder) {
+              deceasedX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(deceasedX: child);
+            if (child is FhirDateBuilder) {
+              deceasedX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(deceasedX: child);
+            if (child is FhirStringBuilder) {
+              deceasedX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'deceasedFhirBoolean':
+      case 'deceasedBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(deceasedX: child);
+          if (child is FhirBooleanBuilder) {
+            deceasedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deceasedAge':
         {
-          if (child is Age) {
-            return copyWith(deceasedX: child);
+          if (child is AgeBuilder) {
+            deceasedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deceasedRange':
         {
-          if (child is Range) {
-            return copyWith(deceasedX: child);
+          if (child is RangeBuilder) {
+            deceasedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'deceasedFhirDate':
+      case 'deceasedDate':
         {
-          if (child is FhirDate) {
-            return copyWith(deceasedX: child);
+          if (child is FhirDateBuilder) {
+            deceasedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'deceasedFhirString':
+      case 'deceasedString':
         {
-          if (child is FhirString) {
-            return copyWith(deceasedX: child);
+          if (child is FhirStringBuilder) {
+            deceasedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is List<FamilyMemberHistoryCondition>) {
-            // Add all elements from passed list
-            final newList = [...?condition, ...child];
-            return copyWith(condition: newList);
-          } else if (child is FamilyMemberHistoryCondition) {
+          if (child is List<FamilyMemberHistoryConditionBuilder>) {
+            // Replace or create new list
+            condition = child;
+            return;
+          } else if (child is FamilyMemberHistoryConditionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?condition, child];
-            return copyWith(condition: newList);
+            condition = [...(condition ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1186,305 +1163,273 @@ class FamilyMemberHistory extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'instantiatesCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'instantiatesUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'dataAbsentReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'patient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'relationship':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'sex':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'born':
       case 'bornX':
-        return ['Period', 'FhirDate', 'FhirString'];
+        return ['PeriodBuilder', 'FhirDateBuilder', 'FhirStringBuilder'];
       case 'bornPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'bornDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'bornString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'age':
       case 'ageX':
-        return ['Age', 'Range', 'FhirString'];
+        return ['AgeBuilder', 'RangeBuilder', 'FhirStringBuilder'];
       case 'ageAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'ageRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'ageString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'estimatedAge':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'deceased':
       case 'deceasedX':
-        return ['FhirBoolean', 'Age', 'Range', 'FhirDate', 'FhirString'];
+        return [
+          'FhirBooleanBuilder',
+          'AgeBuilder',
+          'RangeBuilder',
+          'FhirDateBuilder',
+          'FhirStringBuilder'
+        ];
       case 'deceasedBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'deceasedAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'deceasedRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'deceasedDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'deceasedString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'condition':
-        return ['FamilyMemberHistoryCondition'];
+        return ['FamilyMemberHistoryConditionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [FamilyMemberHistory]
+  /// Creates a new [FamilyMemberHistoryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  FamilyMemberHistory createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
+          instantiatesCanonical = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'instantiatesUri':
         {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
+          instantiatesUri = <FhirUriBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: FamilyHistoryStatus.empty(),
-          );
+          status = FamilyHistoryStatusBuilder.empty();
+          return;
         }
       case 'dataAbsentReason':
         {
-          return copyWith(
-            dataAbsentReason: CodeableConcept.empty(),
-          );
+          dataAbsentReason = CodeableConceptBuilder.empty();
+          return;
         }
       case 'patient':
         {
-          return copyWith(
-            patient: Reference.empty(),
-          );
+          patient = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'relationship':
         {
-          return copyWith(
-            relationship: CodeableConcept.empty(),
-          );
+          relationship = CodeableConceptBuilder.empty();
+          return;
         }
       case 'sex':
         {
-          return copyWith(
-            sex: CodeableConcept.empty(),
-          );
+          sex = CodeableConceptBuilder.empty();
+          return;
         }
       case 'born':
       case 'bornX':
       case 'bornPeriod':
         {
-          return copyWith(
-            bornX: Period.empty(),
-          );
+          bornX = PeriodBuilder.empty();
+          return;
         }
       case 'bornDate':
         {
-          return copyWith(
-            bornX: FhirDate.empty(),
-          );
+          bornX = FhirDateBuilder.empty();
+          return;
         }
       case 'bornString':
         {
-          return copyWith(
-            bornX: FhirString.empty(),
-          );
+          bornX = FhirStringBuilder.empty();
+          return;
         }
       case 'age':
       case 'ageX':
       case 'ageAge':
         {
-          return copyWith(
-            ageX: Age.empty(),
-          );
+          ageX = AgeBuilder.empty();
+          return;
         }
       case 'ageRange':
         {
-          return copyWith(
-            ageX: Range.empty(),
-          );
+          ageX = RangeBuilder.empty();
+          return;
         }
       case 'ageString':
         {
-          return copyWith(
-            ageX: FhirString.empty(),
-          );
+          ageX = FhirStringBuilder.empty();
+          return;
         }
       case 'estimatedAge':
         {
-          return copyWith(
-            estimatedAge: FhirBoolean.empty(),
-          );
+          estimatedAge = FhirBooleanBuilder.empty();
+          return;
         }
       case 'deceased':
       case 'deceasedX':
       case 'deceasedBoolean':
         {
-          return copyWith(
-            deceasedX: FhirBoolean.empty(),
-          );
+          deceasedX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'deceasedAge':
         {
-          return copyWith(
-            deceasedX: Age.empty(),
-          );
+          deceasedX = AgeBuilder.empty();
+          return;
         }
       case 'deceasedRange':
         {
-          return copyWith(
-            deceasedX: Range.empty(),
-          );
+          deceasedX = RangeBuilder.empty();
+          return;
         }
       case 'deceasedDate':
         {
-          return copyWith(
-            deceasedX: FhirDate.empty(),
-          );
+          deceasedX = FhirDateBuilder.empty();
+          return;
         }
       case 'deceasedString':
         {
-          return copyWith(
-            deceasedX: FhirString.empty(),
-          );
+          deceasedX = FhirStringBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: <FamilyMemberHistoryCondition>[],
-          );
+          condition = <FamilyMemberHistoryConditionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1493,7 +1438,7 @@ class FamilyMemberHistory extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  FamilyMemberHistory clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1505,9 +1450,12 @@ class FamilyMemberHistory extends DomainResource {
     bool identifier = false,
     bool instantiatesCanonical = false,
     bool instantiatesUri = false,
+    bool status = false,
     bool dataAbsentReason = false,
+    bool patient = false,
     bool date = false,
     bool name = false,
+    bool relationship = false,
     bool sex = false,
     bool born = false,
     bool age = false,
@@ -1518,218 +1466,122 @@ class FamilyMemberHistory extends DomainResource {
     bool note = false,
     bool condition = false,
   }) {
-    return FamilyMemberHistory(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      status: status,
-      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
-      patient: patient,
-      date: date ? null : this.date,
-      name: name ? null : this.name,
-      relationship: relationship,
-      sex: sex ? null : this.sex,
-      bornX: born ? null : bornX,
-      ageX: age ? null : ageX,
-      estimatedAge: estimatedAge ? null : this.estimatedAge,
-      deceasedX: deceased ? null : deceasedX,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      note: note ? null : this.note,
-      condition: condition ? null : this.condition,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (instantiatesCanonical) this.instantiatesCanonical = null;
+    if (instantiatesUri) this.instantiatesUri = null;
+    if (status) this.status = null;
+    if (dataAbsentReason) this.dataAbsentReason = null;
+    if (patient) this.patient = null;
+    if (date) this.date = null;
+    if (name) this.name = null;
+    if (relationship) this.relationship = null;
+    if (sex) this.sex = null;
+    if (born) this.bornX = null;
+    if (age) this.ageX = null;
+    if (estimatedAge) this.estimatedAge = null;
+    if (deceased) this.deceasedX = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (note) this.note = null;
+    if (condition) this.condition = null;
   }
 
   @override
-  FamilyMemberHistory clone() => throw UnimplementedError();
+  FamilyMemberHistoryBuilder clone() => throw UnimplementedError();
   @override
-  FamilyMemberHistory copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    FamilyHistoryStatus? status,
-    CodeableConcept? dataAbsentReason,
-    Reference? patient,
-    FhirDateTime? date,
-    FhirString? name,
-    CodeableConcept? relationship,
-    CodeableConcept? sex,
-    BornXFamilyMemberHistory? bornX,
-    AgeXFamilyMemberHistory? ageX,
-    FhirBoolean? estimatedAge,
-    DeceasedXFamilyMemberHistory? deceasedX,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Annotation>? note,
-    List<FamilyMemberHistoryCondition>? condition,
+  FamilyMemberHistoryBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<FhirCanonicalBuilder>? instantiatesCanonical,
+    List<FhirUriBuilder>? instantiatesUri,
+    FamilyHistoryStatusBuilder? status,
+    CodeableConceptBuilder? dataAbsentReason,
+    ReferenceBuilder? patient,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? name,
+    CodeableConceptBuilder? relationship,
+    CodeableConceptBuilder? sex,
+    BornXFamilyMemberHistoryBuilder? bornX,
+    AgeXFamilyMemberHistoryBuilder? ageX,
+    FhirBooleanBuilder? estimatedAge,
+    DeceasedXFamilyMemberHistoryBuilder? deceasedX,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<AnnotationBuilder>? note,
+    List<FamilyMemberHistoryConditionBuilder>? condition,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return FamilyMemberHistory(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = FamilyMemberHistoryBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      dataAbsentReason: dataAbsentReason?.copyWith(
-            objectPath: '$newObjectPath.dataAbsentReason',
-          ) ??
-          this.dataAbsentReason,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      relationship: relationship?.copyWith(
-            objectPath: '$newObjectPath.relationship',
-          ) ??
-          this.relationship,
-      sex: sex?.copyWith(
-            objectPath: '$newObjectPath.sex',
-          ) ??
-          this.sex,
-      bornX: bornX?.copyWith(
-            objectPath: '$newObjectPath.bornX',
-          ) as BornXFamilyMemberHistory? ??
-          this.bornX,
-      ageX: ageX?.copyWith(
-            objectPath: '$newObjectPath.ageX',
-          ) as AgeXFamilyMemberHistory? ??
-          this.ageX,
-      estimatedAge: estimatedAge?.copyWith(
-            objectPath: '$newObjectPath.estimatedAge',
-          ) ??
-          this.estimatedAge,
-      deceasedX: deceasedX?.copyWith(
-            objectPath: '$newObjectPath.deceasedX',
-          ) as DeceasedXFamilyMemberHistory? ??
-          this.deceasedX,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      condition: condition
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.condition',
-                ),
-              )
-              .toList() ??
-          this.condition,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ?? this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
+      status: status ?? this.status,
+      dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
+      patient: patient ?? this.patient,
+      date: date ?? this.date,
+      name: name ?? this.name,
+      relationship: relationship ?? this.relationship,
+      sex: sex ?? this.sex,
+      bornX: bornX ?? this.bornX,
+      ageX: ageX ?? this.ageX,
+      estimatedAge: estimatedAge ?? this.estimatedAge,
+      deceasedX: deceasedX ?? this.deceasedX,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      note: note ?? this.note,
+      condition: condition ?? this.condition,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! FamilyMemberHistory) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! FamilyMemberHistoryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1764,37 +1616,37 @@ class FamilyMemberHistory extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       instantiatesCanonical,
       o.instantiatesCanonical,
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       instantiatesUri,
       o.instantiatesUri,
     )) {
@@ -1866,25 +1718,25 @@ class FamilyMemberHistory extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<FamilyMemberHistoryCondition>(
+    if (!listEquals<FamilyMemberHistoryConditionBuilder>(
       condition,
       o.condition,
     )) {
@@ -1894,20 +1746,20 @@ class FamilyMemberHistory extends DomainResource {
   }
 }
 
-/// [FamilyMemberHistoryCondition]
+/// [FamilyMemberHistoryConditionBuilder]
 /// The significant Conditions (or condition) that the family member had.
 /// This is a repeating section to allow a system to represent more than
 /// one condition per resource, though there is nothing stopping multiple
 /// resources - one per condition.
-class FamilyMemberHistoryCondition extends BackboneElement {
+class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [FamilyMemberHistoryCondition]
+  /// [FamilyMemberHistoryConditionBuilder]
 
-  const FamilyMemberHistoryCondition({
+  FamilyMemberHistoryConditionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
+    this.code,
     this.outcome,
     this.contributedToDeath,
     this.onsetX,
@@ -1918,27 +1770,25 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FamilyMemberHistoryCondition.empty() => FamilyMemberHistoryCondition(
-        code: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory FamilyMemberHistoryConditionBuilder.empty() =>
+      FamilyMemberHistoryConditionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FamilyMemberHistoryCondition.fromJson(
+  factory FamilyMemberHistoryConditionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'FamilyMemberHistory.condition';
-    return FamilyMemberHistoryCondition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return FamilyMemberHistoryConditionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1947,8 +1797,8 @@ class FamilyMemberHistoryCondition extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1956,37 +1806,38 @@ class FamilyMemberHistoryCondition extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      outcome: JsonParser.parseObject<CodeableConcept>(
+      ),
+      outcome: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'outcome',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.outcome',
       ),
-      contributedToDeath: JsonParser.parsePrimitive<FhirBoolean>(
+      contributedToDeath: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'contributedToDeath',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.contributedToDeath',
       ),
-      onsetX: JsonParser.parsePolymorphic<OnsetXFamilyMemberHistoryCondition>(
+      onsetX: JsonParser.parsePolymorphic<
+          OnsetXFamilyMemberHistoryConditionBuilder>(
         json,
         {
-          'onsetAge': Age.fromJson,
-          'onsetRange': Range.fromJson,
-          'onsetPeriod': Period.fromJson,
-          'onsetString': FhirString.fromJson,
+          'onsetAge': AgeBuilder.fromJson,
+          'onsetRange': RangeBuilder.fromJson,
+          'onsetPeriod': PeriodBuilder.fromJson,
+          'onsetString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -1997,22 +1848,22 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     );
   }
 
-  /// Deserialize [FamilyMemberHistoryCondition]
+  /// Deserialize [FamilyMemberHistoryConditionBuilder]
   /// from a [String] or [YamlMap] object
-  factory FamilyMemberHistoryCondition.fromYaml(
+  factory FamilyMemberHistoryConditionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return FamilyMemberHistoryCondition.fromJson(
+      return FamilyMemberHistoryConditionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return FamilyMemberHistoryCondition.fromJson(
+      return FamilyMemberHistoryConditionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'FamilyMemberHistoryCondition '
+        'FamilyMemberHistoryConditionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2020,16 +1871,16 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [FamilyMemberHistoryCondition]
+  /// [FamilyMemberHistoryConditionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FamilyMemberHistoryCondition.fromJsonString(
+  factory FamilyMemberHistoryConditionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FamilyMemberHistoryCondition.fromJson(json);
+      return FamilyMemberHistoryConditionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2044,56 +1895,56 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Diabetes) or a less specific string like 'cancer' depending on how much
   /// is known about the condition and the capabilities of the creating
   /// system.
-  final CodeableConcept code;
+  CodeableConceptBuilder? code;
 
   /// [outcome]
   /// Indicates what happened following the condition. If the condition
   /// resulted in death, deceased date is captured on the relation.
-  final CodeableConcept? outcome;
+  CodeableConceptBuilder? outcome;
 
   /// [contributedToDeath]
   /// This condition contributed to the cause of death of the related person.
   /// If contributedToDeath is not populated, then it is unknown.
-  final FhirBoolean? contributedToDeath;
+  FhirBooleanBuilder? contributedToDeath;
 
   /// [onsetX]
   /// Either the age of onset, range of approximate age or descriptive string
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
-  final OnsetXFamilyMemberHistoryCondition? onsetX;
+  OnsetXFamilyMemberHistoryConditionBuilder? onsetX;
 
-  /// Getter for [onsetAge] as a Age
-  Age? get onsetAge => onsetX?.isAs<Age>();
+  /// Getter for [onsetAge] as a AgeBuilder
+  AgeBuilder? get onsetAge => onsetX?.isAs<AgeBuilder>();
 
-  /// Getter for [onsetRange] as a Range
-  Range? get onsetRange => onsetX?.isAs<Range>();
+  /// Getter for [onsetRange] as a RangeBuilder
+  RangeBuilder? get onsetRange => onsetX?.isAs<RangeBuilder>();
 
-  /// Getter for [onsetPeriod] as a Period
-  Period? get onsetPeriod => onsetX?.isAs<Period>();
+  /// Getter for [onsetPeriod] as a PeriodBuilder
+  PeriodBuilder? get onsetPeriod => onsetX?.isAs<PeriodBuilder>();
 
-  /// Getter for [onsetString] as a FhirString
-  FhirString? get onsetString => onsetX?.isAs<FhirString>();
+  /// Getter for [onsetString] as a FhirStringBuilder
+  FhirStringBuilder? get onsetString => onsetX?.isAs<FhirStringBuilder>();
 
   /// [note]
   /// An area where general notes can be placed about this specific
   /// condition.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2102,47 +1953,23 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'outcome',
-      outcome,
-    );
-    addField(
-      'contributedToDeath',
-      contributedToDeath,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('outcome', outcome);
+    addField('contributedToDeath', contributedToDeath);
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField(
-        'onset${fhirType.capitalize()}',
-        onsetX,
-      );
+      addField('onset${fhirType.capitalize()}', onsetX);
     }
 
-    addField(
-      'note',
-      note,
-    );
+    addField('note', note);
     return json;
   }
 
@@ -2164,11 +1991,11 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2183,7 +2010,9 @@ class FamilyMemberHistoryCondition extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'outcome':
         if (outcome != null) {
           fields.add(outcome!);
@@ -2193,23 +2022,27 @@ class FamilyMemberHistoryCondition extends BackboneElement {
           fields.add(contributedToDeath!);
         }
       case 'onset':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetX':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetAge':
-        if (onsetX is Age) {
+        if (onsetX is AgeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetRange':
-        if (onsetX is Range) {
+        if (onsetX is RangeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetPeriod':
-        if (onsetX is Period) {
+        if (onsetX is PeriodBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetString':
-        if (onsetX is FhirString) {
+        if (onsetX is FhirStringBuilder) {
           fields.add(onsetX!);
         }
       case 'note':
@@ -2226,7 +2059,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2235,139 +2068,151 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
         {
-          if (child is CodeableConcept) {
-            return copyWith(outcome: child);
+          if (child is CodeableConceptBuilder) {
+            outcome = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contributedToDeath':
         {
-          if (child is FhirBoolean) {
-            return copyWith(contributedToDeath: child);
+          if (child is FhirBooleanBuilder) {
+            contributedToDeath = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetX':
         {
-          if (child is OnsetXFamilyMemberHistoryCondition) {
-            return copyWith(onsetX: child);
+          if (child is OnsetXFamilyMemberHistoryConditionBuilder) {
+            onsetX = child;
+            return;
           } else {
-            if (child is Age) {
-              return copyWith(onsetX: child);
+            if (child is AgeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(onsetX: child);
+            if (child is RangeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(onsetX: child);
+            if (child is PeriodBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(onsetX: child);
+            if (child is FhirStringBuilder) {
+              onsetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'onsetAge':
         {
-          if (child is Age) {
-            return copyWith(onsetX: child);
+          if (child is AgeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetRange':
         {
-          if (child is Range) {
-            return copyWith(onsetX: child);
+          if (child is RangeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetPeriod':
         {
-          if (child is Period) {
-            return copyWith(onsetX: child);
+          if (child is PeriodBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'onsetFhirString':
+      case 'onsetString':
         {
-          if (child is FhirString) {
-            return copyWith(onsetX: child);
+          if (child is FhirStringBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2383,111 +2228,101 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'outcome':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'contributedToDeath':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'onset':
       case 'onsetX':
-        return ['Age', 'Range', 'Period', 'FhirString'];
+        return [
+          'AgeBuilder',
+          'RangeBuilder',
+          'PeriodBuilder',
+          'FhirStringBuilder'
+        ];
       case 'onsetAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'onsetRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'onsetPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'onsetString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [FamilyMemberHistoryCondition]
+  /// Creates a new [FamilyMemberHistoryConditionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  FamilyMemberHistoryCondition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'outcome':
         {
-          return copyWith(
-            outcome: CodeableConcept.empty(),
-          );
+          outcome = CodeableConceptBuilder.empty();
+          return;
         }
       case 'contributedToDeath':
         {
-          return copyWith(
-            contributedToDeath: FhirBoolean.empty(),
-          );
+          contributedToDeath = FhirBooleanBuilder.empty();
+          return;
         }
       case 'onset':
       case 'onsetX':
       case 'onsetAge':
         {
-          return copyWith(
-            onsetX: Age.empty(),
-          );
+          onsetX = AgeBuilder.empty();
+          return;
         }
       case 'onsetRange':
         {
-          return copyWith(
-            onsetX: Range.empty(),
-          );
+          onsetX = RangeBuilder.empty();
+          return;
         }
       case 'onsetPeriod':
         {
-          return copyWith(
-            onsetX: Period.empty(),
-          );
+          onsetX = PeriodBuilder.empty();
+          return;
         }
       case 'onsetString':
         {
-          return copyWith(
-            onsetX: FhirString.empty(),
-          );
+          onsetX = FhirStringBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2496,39 +2331,38 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  FamilyMemberHistoryCondition clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
     bool outcome = false,
     bool contributedToDeath = false,
     bool onset = false,
     bool note = false,
   }) {
-    return FamilyMemberHistoryCondition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      outcome: outcome ? null : this.outcome,
-      contributedToDeath: contributedToDeath ? null : this.contributedToDeath,
-      onsetX: onset ? null : onsetX,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (outcome) this.outcome = null;
+    if (contributedToDeath) this.contributedToDeath = null;
+    if (onset) this.onsetX = null;
+    if (note) this.note = null;
   }
 
   @override
-  FamilyMemberHistoryCondition clone() => throw UnimplementedError();
+  FamilyMemberHistoryConditionBuilder clone() => throw UnimplementedError();
   @override
-  FamilyMemberHistoryCondition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    CodeableConcept? outcome,
-    FhirBoolean? contributedToDeath,
-    OnsetXFamilyMemberHistoryCondition? onsetX,
-    List<Annotation>? note,
+  FamilyMemberHistoryConditionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    CodeableConceptBuilder? outcome,
+    FhirBooleanBuilder? contributedToDeath,
+    OnsetXFamilyMemberHistoryConditionBuilder? onsetX,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2536,58 +2370,39 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return FamilyMemberHistoryCondition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      contributedToDeath: contributedToDeath?.copyWith(
-            objectPath: '$newObjectPath.contributedToDeath',
-          ) ??
-          this.contributedToDeath,
-      onsetX: onsetX?.copyWith(
-            objectPath: '$newObjectPath.onsetX',
-          ) as OnsetXFamilyMemberHistoryCondition? ??
-          this.onsetX,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+    final newResult = FamilyMemberHistoryConditionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      outcome: outcome ?? this.outcome,
+      contributedToDeath: contributedToDeath ?? this.contributedToDeath,
+      onsetX: onsetX ?? this.onsetX,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! FamilyMemberHistoryCondition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! FamilyMemberHistoryConditionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2598,13 +2413,13 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2634,7 +2449,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {

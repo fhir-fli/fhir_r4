@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The processing mode that applies to this list.
-class ListMode extends FhirCodeEnum {
+class ListModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ListMode._({
+  ListModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ListMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ListMode(
+  factory ListModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ListMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ListModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,56 +43,57 @@ class ListMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ListMode] with element only
-  factory ListMode.empty() => ListMode._(validatedValue: '');
+  /// Create empty [ListModeBuilder] with element only
+  factory ListModeBuilder.empty() => ListModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ListMode] from JSON.
-  factory ListMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ListModeBuilder] from JSON.
+  factory ListModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListMode.elementOnly.withElement(element);
+      return ListModeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ListMode cannot be constructed from JSON.',
+        'ListModeBuilder cannot be constructed from JSON.',
       );
     }
-    return ListMode._(
+    return ListModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// working
-  static final ListMode working = ListMode._(
+  static ListModeBuilder working = ListModeBuilder._(
     validatedValue: 'working',
-    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Working List'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Working List'.toFhirStringBuilder,
   );
 
   /// snapshot
-  static final ListMode snapshot = ListMode._(
+  static ListModeBuilder snapshot = ListModeBuilder._(
     validatedValue: 'snapshot',
-    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Snapshot List'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Snapshot List'.toFhirStringBuilder,
   );
 
   /// changes
-  static final ListMode changes = ListMode._(
+  static ListModeBuilder changes = ListModeBuilder._(
     validatedValue: 'changes',
-    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Change List'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Change List'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ListMode elementOnly = ListMode._(validatedValue: '');
+  static ListModeBuilder elementOnly = ListModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ListMode> values = [
+  static List<ListModeBuilder> values = [
     working,
     snapshot,
     changes,
@@ -100,14 +101,14 @@ class ListMode extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ListMode clone() => ListMode._(
+  ListModeBuilder clone() => ListModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ListMode withElement(Element? newElement) {
-    return ListMode._(validatedValue: value, element: newElement);
+  ListModeBuilder withElement(ElementBuilder? newElement) {
+    return ListModeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,11 +124,11 @@ class ListMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ListMode copyWith({
+  ListModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -138,7 +139,7 @@ class ListMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ListMode._(
+    return ListModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -148,7 +149,7 @@ class ListMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

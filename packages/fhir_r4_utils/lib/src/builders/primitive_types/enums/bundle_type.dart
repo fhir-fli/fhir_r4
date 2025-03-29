@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Indicates the purpose of a bundle - how it is intended to be used.
-class BundleType extends FhirCodeEnum {
+class BundleTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  BundleType._({
+  BundleTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class BundleType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory BundleType(
+  factory BundleTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return BundleType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return BundleTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,104 +43,106 @@ class BundleType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [BundleType] with element only
-  factory BundleType.empty() => BundleType._(validatedValue: '');
+  /// Create empty [BundleTypeBuilder] with element only
+  factory BundleTypeBuilder.empty() => BundleTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [BundleType] from JSON.
-  factory BundleType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [BundleTypeBuilder] from JSON.
+  factory BundleTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BundleType.elementOnly.withElement(element);
+      return BundleTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'BundleType cannot be constructed from JSON.',
+        'BundleTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return BundleType._(
+    return BundleTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// document
-  static final BundleType document = BundleType._(
+  static BundleTypeBuilder document = BundleTypeBuilder._(
     validatedValue: 'document',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Document'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Document'.toFhirStringBuilder,
   );
 
   /// message
-  static final BundleType message = BundleType._(
+  static BundleTypeBuilder message = BundleTypeBuilder._(
     validatedValue: 'message',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Message'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Message'.toFhirStringBuilder,
   );
 
   /// transaction
-  static final BundleType transaction = BundleType._(
+  static BundleTypeBuilder transaction = BundleTypeBuilder._(
     validatedValue: 'transaction',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transaction'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Transaction'.toFhirStringBuilder,
   );
 
   /// transaction_response
-  static final BundleType transaction_response = BundleType._(
+  static BundleTypeBuilder transaction_response = BundleTypeBuilder._(
     validatedValue: 'transaction-response',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transaction Response'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Transaction Response'.toFhirStringBuilder,
   );
 
   /// batch
-  static final BundleType batch = BundleType._(
+  static BundleTypeBuilder batch = BundleTypeBuilder._(
     validatedValue: 'batch',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Batch'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Batch'.toFhirStringBuilder,
   );
 
   /// batch_response
-  static final BundleType batch_response = BundleType._(
+  static BundleTypeBuilder batch_response = BundleTypeBuilder._(
     validatedValue: 'batch-response',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Batch Response'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Batch Response'.toFhirStringBuilder,
   );
 
   /// history
-  static final BundleType history = BundleType._(
+  static BundleTypeBuilder history = BundleTypeBuilder._(
     validatedValue: 'history',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'History List'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'History List'.toFhirStringBuilder,
   );
 
   /// searchset
-  static final BundleType searchset = BundleType._(
+  static BundleTypeBuilder searchset = BundleTypeBuilder._(
     validatedValue: 'searchset',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Search Results'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Search Results'.toFhirStringBuilder,
   );
 
   /// collection
-  static final BundleType collection = BundleType._(
+  static BundleTypeBuilder collection = BundleTypeBuilder._(
     validatedValue: 'collection',
-    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Collection'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Collection'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final BundleType elementOnly = BundleType._(validatedValue: '');
+  static BundleTypeBuilder elementOnly =
+      BundleTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<BundleType> values = [
+  static List<BundleTypeBuilder> values = [
     document,
     message,
     transaction,
@@ -154,14 +156,14 @@ class BundleType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  BundleType clone() => BundleType._(
+  BundleTypeBuilder clone() => BundleTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  BundleType withElement(Element? newElement) {
-    return BundleType._(validatedValue: value, element: newElement);
+  BundleTypeBuilder withElement(ElementBuilder? newElement) {
+    return BundleTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -177,11 +179,11 @@ class BundleType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  BundleType copyWith({
+  BundleTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -192,7 +194,7 @@ class BundleType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return BundleType._(
+    return BundleTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -202,7 +204,7 @@ class BundleType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

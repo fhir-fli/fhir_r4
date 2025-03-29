@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of relationship between reports.
-class ReportRelationshipType extends FhirCodeEnum {
+class ReportRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ReportRelationshipType._({
+  ReportRelationshipTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ReportRelationshipType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ReportRelationshipType(
+  factory ReportRelationshipTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ReportRelationshipType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ReportRelationshipTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,99 +43,114 @@ class ReportRelationshipType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ReportRelationshipType] with element only
-  factory ReportRelationshipType.empty() =>
-      ReportRelationshipType._(validatedValue: '');
+  /// Create empty [ReportRelationshipTypeBuilder] with element only
+  factory ReportRelationshipTypeBuilder.empty() =>
+      ReportRelationshipTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ReportRelationshipType] from JSON.
-  factory ReportRelationshipType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ReportRelationshipTypeBuilder] from JSON.
+  factory ReportRelationshipTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReportRelationshipType.elementOnly.withElement(element);
+      return ReportRelationshipTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ReportRelationshipType cannot be constructed from JSON.',
+        'ReportRelationshipTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return ReportRelationshipType._(
+    return ReportRelationshipTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// replaces
-  static final ReportRelationshipType replaces = ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder replaces =
+      ReportRelationshipTypeBuilder._(
     validatedValue: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaces'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Replaces'.toFhirStringBuilder,
   );
 
   /// amends
-  static final ReportRelationshipType amends = ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder amends = ReportRelationshipTypeBuilder._(
     validatedValue: 'amends',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amends'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Amends'.toFhirStringBuilder,
   );
 
   /// appends
-  static final ReportRelationshipType appends = ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder appends =
+      ReportRelationshipTypeBuilder._(
     validatedValue: 'appends',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appends'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Appends'.toFhirStringBuilder,
   );
 
   /// transforms
-  static final ReportRelationshipType transforms = ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder transforms =
+      ReportRelationshipTypeBuilder._(
     validatedValue: 'transforms',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transforms'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Transforms'.toFhirStringBuilder,
   );
 
   /// replacedWith
-  static final ReportRelationshipType replacedWith = ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder replacedWith =
+      ReportRelationshipTypeBuilder._(
     validatedValue: 'replacedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaced With'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Replaced With'.toFhirStringBuilder,
   );
 
   /// amendedWith
-  static final ReportRelationshipType amendedWith = ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder amendedWith =
+      ReportRelationshipTypeBuilder._(
     validatedValue: 'amendedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended With'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Amended With'.toFhirStringBuilder,
   );
 
   /// appendedWith
-  static final ReportRelationshipType appendedWith = ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder appendedWith =
+      ReportRelationshipTypeBuilder._(
     validatedValue: 'appendedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appended With'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Appended With'.toFhirStringBuilder,
   );
 
   /// transformedWith
-  static final ReportRelationshipType transformedWith =
-      ReportRelationshipType._(
+  static ReportRelationshipTypeBuilder transformedWith =
+      ReportRelationshipTypeBuilder._(
     validatedValue: 'transformedWith',
-    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transformed With'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Transformed With'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ReportRelationshipType elementOnly =
-      ReportRelationshipType._(validatedValue: '');
+  static ReportRelationshipTypeBuilder elementOnly =
+      ReportRelationshipTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ReportRelationshipType> values = [
+  static List<ReportRelationshipTypeBuilder> values = [
     replaces,
     amends,
     appends,
@@ -148,14 +163,15 @@ class ReportRelationshipType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ReportRelationshipType clone() => ReportRelationshipType._(
+  ReportRelationshipTypeBuilder clone() => ReportRelationshipTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ReportRelationshipType withElement(Element? newElement) {
-    return ReportRelationshipType._(validatedValue: value, element: newElement);
+  ReportRelationshipTypeBuilder withElement(ElementBuilder? newElement) {
+    return ReportRelationshipTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -171,11 +187,11 @@ class ReportRelationshipType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ReportRelationshipType copyWith({
+  ReportRelationshipTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -186,7 +202,7 @@ class ReportRelationshipType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ReportRelationshipType._(
+    return ReportRelationshipTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -196,7 +212,7 @@ class ReportRelationshipType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

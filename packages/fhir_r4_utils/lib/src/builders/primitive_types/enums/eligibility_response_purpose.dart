@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// A code specifying the types of information being requested.
-class EligibilityResponsePurpose extends FhirCodeEnum {
+class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  EligibilityResponsePurpose._({
+  EligibilityResponsePurposeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory EligibilityResponsePurpose(
+  factory EligibilityResponsePurposeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return EligibilityResponsePurpose._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return EligibilityResponsePurposeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,74 +43,76 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [EligibilityResponsePurpose] with element only
-  factory EligibilityResponsePurpose.empty() =>
-      EligibilityResponsePurpose._(validatedValue: '');
+  /// Create empty [EligibilityResponsePurposeBuilder] with element only
+  factory EligibilityResponsePurposeBuilder.empty() =>
+      EligibilityResponsePurposeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EligibilityResponsePurpose] from JSON.
-  factory EligibilityResponsePurpose.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EligibilityResponsePurposeBuilder] from JSON.
+  factory EligibilityResponsePurposeBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EligibilityResponsePurpose.elementOnly.withElement(element);
+      return EligibilityResponsePurposeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EligibilityResponsePurpose cannot be constructed from JSON.',
+        'EligibilityResponsePurposeBuilder cannot be constructed from JSON.',
       );
     }
-    return EligibilityResponsePurpose._(
+    return EligibilityResponsePurposeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// auth_requirements
-  static final EligibilityResponsePurpose auth_requirements =
-      EligibilityResponsePurpose._(
+  static EligibilityResponsePurposeBuilder auth_requirements =
+      EligibilityResponsePurposeBuilder._(
     validatedValue: 'auth-requirements',
-    system:
-        'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage auth-requirements'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Coverage auth-requirements'.toFhirStringBuilder,
   );
 
   /// benefits
-  static final EligibilityResponsePurpose benefits =
-      EligibilityResponsePurpose._(
+  static EligibilityResponsePurposeBuilder benefits =
+      EligibilityResponsePurposeBuilder._(
     validatedValue: 'benefits',
-    system:
-        'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage benefits'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Coverage benefits'.toFhirStringBuilder,
   );
 
   /// discovery
-  static final EligibilityResponsePurpose discovery =
-      EligibilityResponsePurpose._(
+  static EligibilityResponsePurposeBuilder discovery =
+      EligibilityResponsePurposeBuilder._(
     validatedValue: 'discovery',
-    system:
-        'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage Discovery'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Coverage Discovery'.toFhirStringBuilder,
   );
 
   /// validation
-  static final EligibilityResponsePurpose validation =
-      EligibilityResponsePurpose._(
+  static EligibilityResponsePurposeBuilder validation =
+      EligibilityResponsePurposeBuilder._(
     validatedValue: 'validation',
-    system:
-        'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage Validation'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityresponse-purpose'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Coverage Validation'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final EligibilityResponsePurpose elementOnly =
-      EligibilityResponsePurpose._(validatedValue: '');
+  static EligibilityResponsePurposeBuilder elementOnly =
+      EligibilityResponsePurposeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<EligibilityResponsePurpose> values = [
+  static List<EligibilityResponsePurposeBuilder> values = [
     auth_requirements,
     benefits,
     discovery,
@@ -119,15 +121,16 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  EligibilityResponsePurpose clone() => EligibilityResponsePurpose._(
+  EligibilityResponsePurposeBuilder clone() =>
+      EligibilityResponsePurposeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  EligibilityResponsePurpose withElement(Element? newElement) {
-    return EligibilityResponsePurpose._(
-        validatedValue: value, element: newElement,);
+  EligibilityResponsePurposeBuilder withElement(ElementBuilder? newElement) {
+    return EligibilityResponsePurposeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,11 +146,11 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  EligibilityResponsePurpose copyWith({
+  EligibilityResponsePurposeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -158,7 +161,7 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return EligibilityResponsePurpose._(
+    return EligibilityResponsePurposeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -168,7 +171,7 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [SearchParameter]
+/// [SearchParameterBuilder]
 /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
-class SearchParameter extends CanonicalResource {
+class SearchParameterBuilder extends CanonicalResourceBuilder {
   /// Primary constructor for
-  /// [SearchParameter]
+  /// [SearchParameterBuilder]
 
-  const SearchParameter({
+  SearchParameterBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -18,22 +20,22 @@ class SearchParameter extends CanonicalResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required super.url,
+    super.url,
     super.version,
-    required this.name,
+    this.name,
     this.derivedFrom,
-    required super.status,
+    super.status,
     super.experimental,
     super.date,
     super.publisher,
     super.contact,
-    required super.description,
+    super.description,
     super.useContext,
     super.jurisdiction,
     this.purpose,
-    required this.code,
-    required this.base,
-    required this.type,
+    this.code,
+    this.base,
+    this.type,
     this.expression,
     this.xpath,
     this.xpathUsage,
@@ -50,57 +52,48 @@ class SearchParameter extends CanonicalResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SearchParameter.empty() => SearchParameter(
-        url: FhirUri.empty(),
-        name: FhirString.empty(),
-        status: PublicationStatus.values.first,
-        description: FhirMarkdown.empty(),
-        code: FhirCode.empty(),
-        base: <FhirCode>[],
-        type: SearchParamType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory SearchParameterBuilder.empty() => SearchParameterBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SearchParameter.fromJson(
+  factory SearchParameterBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SearchParameter';
-    return SearchParameter(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SearchParameterBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -109,8 +102,8 @@ class SearchParameter extends CanonicalResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -119,8 +112,8 @@ class SearchParameter extends CanonicalResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -128,57 +121,57 @@ class SearchParameter extends CanonicalResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      derivedFrom: JsonParser.parsePrimitive<FhirCanonical>(
+      ),
+      derivedFrom: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'derivedFrom',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.derivedFrom',
       ),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+      experimental: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'experimental',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.experimental',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -186,15 +179,15 @@ class SearchParameter extends CanonicalResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -203,8 +196,8 @@ class SearchParameter extends CanonicalResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -212,87 +205,87 @@ class SearchParameter extends CanonicalResource {
             ),
           )
           .toList(),
-      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+      purpose: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'purpose',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      code: JsonParser.parsePrimitive<FhirCode>(
+      code: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'code',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      base: JsonParser.parsePrimitiveList<FhirCode>(
+      ),
+      base: JsonParser.parsePrimitiveList<FhirCodeBuilder>(
         json,
         'base',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.base',
-      )!,
-      type: JsonParser.parsePrimitive<SearchParamType>(
+      ),
+      type: JsonParser.parsePrimitive<SearchParamTypeBuilder>(
         json,
         'type',
-        SearchParamType.fromJson,
+        SearchParamTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      expression: JsonParser.parsePrimitive<FhirString>(
+      ),
+      expression: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'expression',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.expression',
       ),
-      xpath: JsonParser.parsePrimitive<FhirString>(
+      xpath: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'xpath',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.xpath',
       ),
-      xpathUsage: JsonParser.parsePrimitive<XPathUsageType>(
+      xpathUsage: JsonParser.parsePrimitive<XPathUsageTypeBuilder>(
         json,
         'xpathUsage',
-        XPathUsageType.fromJson,
+        XPathUsageTypeBuilder.fromJson,
         '$objectPath.xpathUsage',
       ),
-      target: JsonParser.parsePrimitiveList<FhirCode>(
+      target: JsonParser.parsePrimitiveList<FhirCodeBuilder>(
         json,
         'target',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.target',
       ),
-      multipleOr: JsonParser.parsePrimitive<FhirBoolean>(
+      multipleOr: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'multipleOr',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.multipleOr',
       ),
-      multipleAnd: JsonParser.parsePrimitive<FhirBoolean>(
+      multipleAnd: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'multipleAnd',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.multipleAnd',
       ),
-      comparator: JsonParser.parsePrimitiveList<SearchComparator>(
+      comparator: JsonParser.parsePrimitiveList<SearchComparatorBuilder>(
         json,
         'comparator',
-        SearchComparator.fromJson,
+        SearchComparatorBuilder.fromJson,
         '$objectPath.comparator',
       ),
-      modifier: JsonParser.parsePrimitiveList<SearchModifierCode>(
+      modifier: JsonParser.parsePrimitiveList<SearchModifierCodeBuilder>(
         json,
         'modifier',
-        SearchModifierCode.fromJson,
+        SearchModifierCodeBuilder.fromJson,
         '$objectPath.modifier',
       ),
-      chain: JsonParser.parsePrimitiveList<FhirString>(
+      chain: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'chain',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.chain',
       ),
       component: (json['component'] as List<dynamic>?)
-          ?.map<SearchParameterComponent>(
-            (v) => SearchParameterComponent.fromJson(
+          ?.map<SearchParameterComponentBuilder>(
+            (v) => SearchParameterComponentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.component',
@@ -303,22 +296,22 @@ class SearchParameter extends CanonicalResource {
     );
   }
 
-  /// Deserialize [SearchParameter]
+  /// Deserialize [SearchParameterBuilder]
   /// from a [String] or [YamlMap] object
-  factory SearchParameter.fromYaml(
+  factory SearchParameterBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SearchParameter.fromJson(
+      return SearchParameterBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SearchParameter.fromJson(
+      return SearchParameterBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SearchParameter '
+        'SearchParameterBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -326,16 +319,16 @@ class SearchParameter extends CanonicalResource {
   }
 
   /// Factory constructor for
-  /// [SearchParameter]
+  /// [SearchParameterBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SearchParameter.fromJsonString(
+  factory SearchParameterBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SearchParameter.fromJson(json);
+      return SearchParameterBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -349,7 +342,7 @@ class SearchParameter extends CanonicalResource {
   /// A natural language name identifying the search parameter. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [derivedFrom]
   /// Where this search parameter is originally defined. If a derivedFrom is
@@ -357,65 +350,65 @@ class SearchParameter extends CanonicalResource {
   /// with the definition from which it is defined. i.e. the parameter should
   /// have the same meaning, and (usually) the functionality should be a
   /// proper subset of the underlying search parameter.
-  final FhirCanonical? derivedFrom;
+  FhirCanonicalBuilder? derivedFrom;
 
   /// [purpose]
   /// Explanation of why this search parameter is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdownBuilder? purpose;
 
   /// [code]
   /// The code used in the URL or the parameter name in a parameters resource
   /// for this search parameter.
-  final FhirCode code;
+  FhirCodeBuilder? code;
 
   /// [base]
   /// The base resource type(s) that this search parameter can be used
   /// against.
-  final List<FhirCode> base;
+  List<FhirCodeBuilder>? base;
 
   /// [type]
   /// The type of value that a search parameter may contain, and how the
   /// content is interpreted.
-  final SearchParamType type;
+  SearchParamTypeBuilder? type;
 
   /// [expression]
   /// A FHIRPath expression that returns a set of elements for the search
   /// parameter.
-  final FhirString? expression;
+  FhirStringBuilder? expression;
 
   /// [xpath]
   /// An XPath expression that returns a set of elements for the search
   /// parameter.
-  final FhirString? xpath;
+  FhirStringBuilder? xpath;
 
   /// [xpathUsage]
   /// How the search parameter relates to the set of elements returned by
   /// evaluating the xpath query.
-  final XPathUsageType? xpathUsage;
+  XPathUsageTypeBuilder? xpathUsage;
 
   /// [target]
   /// Types of resource (if a resource is referenced).
-  final List<FhirCode>? target;
+  List<FhirCodeBuilder>? target;
 
   /// [multipleOr]
   /// Whether multiple values are allowed for each time the parameter exists.
   /// Values are separated by commas, and the parameter matches if any of the
   /// values match.
-  final FhirBoolean? multipleOr;
+  FhirBooleanBuilder? multipleOr;
 
   /// [multipleAnd]
   /// Whether multiple parameters are allowed - e.g. more than one parameter
   /// with the same name. The search matches if all the parameters match.
-  final FhirBoolean? multipleAnd;
+  FhirBooleanBuilder? multipleAnd;
 
   /// [comparator]
   /// Comparators supported for the search parameter.
-  final List<SearchComparator>? comparator;
+  List<SearchComparatorBuilder>? comparator;
 
   /// [modifier]
   /// A modifier supported for the search parameter.
-  final List<SearchModifierCode>? modifier;
+  List<SearchModifierCodeBuilder>? modifier;
 
   /// [chain]
   /// Contains the names of any search parameters which may be chained to the
@@ -424,27 +417,27 @@ class SearchParameter extends CanonicalResource {
   /// returned if they contain a reference to a resource which matches the
   /// chained parameter value. Values for this field should be drawn from
   /// SearchParameter.code for a parameter on the target resource type.
-  final List<FhirString>? chain;
+  List<FhirStringBuilder>? chain;
 
   /// [component]
   /// Used to define the parts of a composite search parameter.
-  final List<SearchParameterComponent>? component;
+  List<SearchParameterComponentBuilder>? component;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -453,148 +446,46 @@ class SearchParameter extends CanonicalResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'derivedFrom',
-      derivedFrom,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'base',
-      base,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'expression',
-      expression,
-    );
-    addField(
-      'xpath',
-      xpath,
-    );
-    addField(
-      'xpathUsage',
-      xpathUsage,
-    );
-    addField(
-      'target',
-      target,
-    );
-    addField(
-      'multipleOr',
-      multipleOr,
-    );
-    addField(
-      'multipleAnd',
-      multipleAnd,
-    );
-    addField(
-      'comparator',
-      comparator,
-    );
-    addField(
-      'modifier',
-      modifier,
-    );
-    addField(
-      'chain',
-      chain,
-    );
-    addField(
-      'component',
-      component,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('version', version);
+    addField('name', name);
+    addField('derivedFrom', derivedFrom);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('code', code);
+    addField('base', base);
+    addField('type', type);
+    addField('expression', expression);
+    addField('xpath', xpath);
+    addField('xpathUsage', xpathUsage);
+    addField('target', target);
+    addField('multipleOr', multipleOr);
+    addField('multipleAnd', multipleAnd);
+    addField('comparator', comparator);
+    addField('modifier', modifier);
+    addField('chain', chain);
+    addField('component', component);
     return json;
   }
 
@@ -642,11 +533,11 @@ class SearchParameter extends CanonicalResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -689,7 +580,9 @@ class SearchParameter extends CanonicalResource {
           fields.add(version!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'derivedFrom':
         if (derivedFrom != null) {
           fields.add(derivedFrom!);
@@ -731,11 +624,17 @@ class SearchParameter extends CanonicalResource {
           fields.add(purpose!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'base':
-        fields.addAll(base);
+        if (base != null) {
+          fields.addAll(base!);
+        }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'expression':
         if (expression != null) {
           fields.add(expression!);
@@ -786,7 +685,7 @@ class SearchParameter extends CanonicalResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -795,357 +694,378 @@ class SearchParameter extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'derivedFrom':
         {
-          if (child is FhirCanonical) {
-            return copyWith(derivedFrom: child);
+          if (child is FhirCanonicalBuilder) {
+            derivedFrom = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
         {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
+          if (child is FhirBooleanBuilder) {
+            experimental = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
+          if (child is FhirMarkdownBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirCode) {
-            return copyWith(code: child);
+          if (child is FhirCodeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'base':
         {
-          if (child is List<FhirCode>) {
-            // Add all elements from passed list
-            final newList = [...base, ...child];
-            return copyWith(base: newList);
-          } else if (child is FhirCode) {
+          if (child is List<FhirCodeBuilder>) {
+            // Replace or create new list
+            base = child;
+            return;
+          } else if (child is FhirCodeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...base, child];
-            return copyWith(base: newList);
+            base = [...(base ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is SearchParamType) {
-            return copyWith(type: child);
+          if (child is SearchParamTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
         {
-          if (child is FhirString) {
-            return copyWith(expression: child);
+          if (child is FhirStringBuilder) {
+            expression = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'xpath':
         {
-          if (child is FhirString) {
-            return copyWith(xpath: child);
+          if (child is FhirStringBuilder) {
+            xpath = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'xpathUsage':
         {
-          if (child is XPathUsageType) {
-            return copyWith(xpathUsage: child);
+          if (child is XPathUsageTypeBuilder) {
+            xpathUsage = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is List<FhirCode>) {
-            // Add all elements from passed list
-            final newList = [...?target, ...child];
-            return copyWith(target: newList);
-          } else if (child is FhirCode) {
+          if (child is List<FhirCodeBuilder>) {
+            // Replace or create new list
+            target = child;
+            return;
+          } else if (child is FhirCodeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
-            return copyWith(target: newList);
+            target = [...(target ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'multipleOr':
         {
-          if (child is FhirBoolean) {
-            return copyWith(multipleOr: child);
+          if (child is FhirBooleanBuilder) {
+            multipleOr = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'multipleAnd':
         {
-          if (child is FhirBoolean) {
-            return copyWith(multipleAnd: child);
+          if (child is FhirBooleanBuilder) {
+            multipleAnd = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comparator':
         {
-          if (child is List<SearchComparator>) {
-            // Add all elements from passed list
-            final newList = [...?comparator, ...child];
-            return copyWith(comparator: newList);
-          } else if (child is SearchComparator) {
+          if (child is List<SearchComparatorBuilder>) {
+            // Replace or create new list
+            comparator = child;
+            return;
+          } else if (child is SearchComparatorBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?comparator, child];
-            return copyWith(comparator: newList);
+            comparator = [...(comparator ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifier':
         {
-          if (child is List<SearchModifierCode>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is SearchModifierCode) {
+          if (child is List<SearchModifierCodeBuilder>) {
+            // Replace or create new list
+            modifier = child;
+            return;
+          } else if (child is SearchModifierCodeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifier, child];
-            return copyWith(modifier: newList);
+            modifier = [...(modifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'chain':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?chain, ...child];
-            return copyWith(chain: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            chain = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?chain, child];
-            return copyWith(chain: newList);
+            chain = [...(chain ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'component':
         {
-          if (child is List<SearchParameterComponent>) {
-            // Add all elements from passed list
-            final newList = [...?component, ...child];
-            return copyWith(component: newList);
-          } else if (child is SearchParameterComponent) {
+          if (child is List<SearchParameterComponentBuilder>) {
+            // Replace or create new list
+            component = child;
+            return;
+          } else if (child is SearchParameterComponentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?component, child];
-            return copyWith(component: newList);
+            component = [...(component ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1161,290 +1081,252 @@ class SearchParameter extends CanonicalResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'derivedFrom':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'experimental':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'purpose':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'base':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'expression':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'xpath':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'xpathUsage':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'target':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'multipleOr':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'multipleAnd':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'comparator':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'modifier':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'chain':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'component':
-        return ['SearchParameterComponent'];
+        return ['SearchParameterComponentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SearchParameter]
+  /// Creates a new [SearchParameterBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SearchParameter createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'derivedFrom':
         {
-          return copyWith(
-            derivedFrom: FhirCanonical.empty(),
-          );
+          derivedFrom = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'experimental':
         {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
+          experimental = FhirBooleanBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
+          purpose = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
+          code = FhirCodeBuilder.empty();
+          return;
         }
       case 'base':
         {
-          return copyWith(
-            base: <FhirCode>[],
-          );
+          base = <FhirCodeBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: SearchParamType.empty(),
-          );
+          type = SearchParamTypeBuilder.empty();
+          return;
         }
       case 'expression':
         {
-          return copyWith(
-            expression: FhirString.empty(),
-          );
+          expression = FhirStringBuilder.empty();
+          return;
         }
       case 'xpath':
         {
-          return copyWith(
-            xpath: FhirString.empty(),
-          );
+          xpath = FhirStringBuilder.empty();
+          return;
         }
       case 'xpathUsage':
         {
-          return copyWith(
-            xpathUsage: XPathUsageType.empty(),
-          );
+          xpathUsage = XPathUsageTypeBuilder.empty();
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: <FhirCode>[],
-          );
+          target = <FhirCodeBuilder>[];
+          return;
         }
       case 'multipleOr':
         {
-          return copyWith(
-            multipleOr: FhirBoolean.empty(),
-          );
+          multipleOr = FhirBooleanBuilder.empty();
+          return;
         }
       case 'multipleAnd':
         {
-          return copyWith(
-            multipleAnd: FhirBoolean.empty(),
-          );
+          multipleAnd = FhirBooleanBuilder.empty();
+          return;
         }
       case 'comparator':
         {
-          return copyWith(
-            comparator: <SearchComparator>[],
-          );
+          comparator = <SearchComparatorBuilder>[];
+          return;
         }
       case 'modifier':
         {
-          return copyWith(
-            modifier: <SearchModifierCode>[],
-          );
+          modifier = <SearchModifierCodeBuilder>[];
+          return;
         }
       case 'chain':
         {
-          return copyWith(
-            chain: <FhirString>[],
-          );
+          chain = <FhirStringBuilder>[];
+          return;
         }
       case 'component':
         {
-          return copyWith(
-            component: <SearchParameterComponent>[],
-          );
+          component = <SearchParameterComponentBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1453,7 +1335,7 @@ class SearchParameter extends CanonicalResource {
 
   /// Clears specific fields in this object
   @override
-  SearchParameter clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1462,15 +1344,22 @@ class SearchParameter extends CanonicalResource {
     bool contained = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool url = false,
     bool version = false,
+    bool name = false,
     bool derivedFrom = false,
+    bool status = false,
     bool experimental = false,
     bool date = false,
     bool publisher = false,
     bool contact = false,
+    bool description = false,
     bool useContext = false,
     bool jurisdiction = false,
     bool purpose = false,
+    bool code = false,
+    bool base = false,
+    bool type = false,
     bool expression = false,
     bool xpath = false,
     bool xpathUsage = false,
@@ -1482,273 +1371,145 @@ class SearchParameter extends CanonicalResource {
     bool chain = false,
     bool component = false,
   }) {
-    return SearchParameter(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url,
-      version: version ? null : this.version,
-      name: name,
-      derivedFrom: derivedFrom ? null : this.derivedFrom,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      code: code,
-      base: base,
-      type: type,
-      expression: expression ? null : this.expression,
-      xpath: xpath ? null : this.xpath,
-      xpathUsage: xpathUsage ? null : this.xpathUsage,
-      target: target ? null : this.target,
-      multipleOr: multipleOr ? null : this.multipleOr,
-      multipleAnd: multipleAnd ? null : this.multipleAnd,
-      comparator: comparator ? null : this.comparator,
-      modifier: modifier ? null : this.modifier,
-      chain: chain ? null : this.chain,
-      component: component ? null : this.component,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (version) this.version = null;
+    if (name) this.name = null;
+    if (derivedFrom) this.derivedFrom = null;
+    if (status) this.status = null;
+    if (experimental) this.experimental = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (description) this.description = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (purpose) this.purpose = null;
+    if (code) this.code = null;
+    if (base) this.base = null;
+    if (type) this.type = null;
+    if (expression) this.expression = null;
+    if (xpath) this.xpath = null;
+    if (xpathUsage) this.xpathUsage = null;
+    if (target) this.target = null;
+    if (multipleOr) this.multipleOr = null;
+    if (multipleAnd) this.multipleAnd = null;
+    if (comparator) this.comparator = null;
+    if (modifier) this.modifier = null;
+    if (chain) this.chain = null;
+    if (component) this.component = null;
   }
 
   @override
-  SearchParameter clone() => throw UnimplementedError();
+  SearchParameterBuilder clone() => throw UnimplementedError();
   @override
-  SearchParameter copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    FhirString? version,
-    FhirString? name,
-    FhirCanonical? derivedFrom,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirCode? code,
-    List<FhirCode>? base,
-    SearchParamType? type,
-    FhirString? expression,
-    FhirString? xpath,
-    XPathUsageType? xpathUsage,
-    List<FhirCode>? target,
-    FhirBoolean? multipleOr,
-    FhirBoolean? multipleAnd,
-    List<SearchComparator>? comparator,
-    List<SearchModifierCode>? modifier,
-    List<FhirString>? chain,
-    List<SearchParameterComponent>? component,
+  SearchParameterBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? url,
+    FhirStringBuilder? version,
+    FhirStringBuilder? name,
+    FhirCanonicalBuilder? derivedFrom,
+    PublicationStatusBuilder? status,
+    FhirBooleanBuilder? experimental,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirMarkdownBuilder? description,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirMarkdownBuilder? purpose,
+    FhirCodeBuilder? code,
+    List<FhirCodeBuilder>? base,
+    SearchParamTypeBuilder? type,
+    FhirStringBuilder? expression,
+    FhirStringBuilder? xpath,
+    XPathUsageTypeBuilder? xpathUsage,
+    List<FhirCodeBuilder>? target,
+    FhirBooleanBuilder? multipleOr,
+    FhirBooleanBuilder? multipleAnd,
+    List<SearchComparatorBuilder>? comparator,
+    List<SearchModifierCodeBuilder>? modifier,
+    List<FhirStringBuilder>? chain,
+    List<SearchParameterComponentBuilder>? component,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return SearchParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = SearchParameterBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      derivedFrom: derivedFrom?.copyWith(
-            objectPath: '$newObjectPath.derivedFrom',
-          ) ??
-          this.derivedFrom,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      base: base
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.base',
-                ),
-              )
-              .toList() ??
-          this.base,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      expression: expression?.copyWith(
-            objectPath: '$newObjectPath.expression',
-          ) ??
-          this.expression,
-      xpath: xpath?.copyWith(
-            objectPath: '$newObjectPath.xpath',
-          ) ??
-          this.xpath,
-      xpathUsage: xpathUsage?.copyWith(
-            objectPath: '$newObjectPath.xpathUsage',
-          ) ??
-          this.xpathUsage,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
-      multipleOr: multipleOr?.copyWith(
-            objectPath: '$newObjectPath.multipleOr',
-          ) ??
-          this.multipleOr,
-      multipleAnd: multipleAnd?.copyWith(
-            objectPath: '$newObjectPath.multipleAnd',
-          ) ??
-          this.multipleAnd,
-      comparator: comparator
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.comparator',
-                ),
-              )
-              .toList() ??
-          this.comparator,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      chain: chain
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.chain',
-                ),
-              )
-              .toList() ??
-          this.chain,
-      component: component
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.component',
-                ),
-              )
-              .toList() ??
-          this.component,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      version: version ?? this.version,
+      name: name ?? this.name,
+      derivedFrom: derivedFrom ?? this.derivedFrom,
+      status: status ?? this.status,
+      experimental: experimental ?? this.experimental,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      description: description ?? this.description,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      purpose: purpose ?? this.purpose,
+      code: code ?? this.code,
+      base: base ?? this.base,
+      type: type ?? this.type,
+      expression: expression ?? this.expression,
+      xpath: xpath ?? this.xpath,
+      xpathUsage: xpathUsage ?? this.xpathUsage,
+      target: target ?? this.target,
+      multipleOr: multipleOr ?? this.multipleOr,
+      multipleAnd: multipleAnd ?? this.multipleAnd,
+      comparator: comparator ?? this.comparator,
+      modifier: modifier ?? this.modifier,
+      chain: chain ?? this.chain,
+      component: component ?? this.component,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SearchParameter) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SearchParameterBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1783,19 +1544,19 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1849,7 +1610,7 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -1861,13 +1622,13 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -1885,7 +1646,7 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<FhirCode>(
+    if (!listEquals<FhirCodeBuilder>(
       base,
       o.base,
     )) {
@@ -1915,7 +1676,7 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<FhirCode>(
+    if (!listEquals<FhirCodeBuilder>(
       target,
       o.target,
     )) {
@@ -1933,25 +1694,25 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<SearchComparator>(
+    if (!listEquals<SearchComparatorBuilder>(
       comparator,
       o.comparator,
     )) {
       return false;
     }
-    if (!listEquals<SearchModifierCode>(
+    if (!listEquals<SearchModifierCodeBuilder>(
       modifier,
       o.modifier,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       chain,
       o.chain,
     )) {
       return false;
     }
-    if (!listEquals<SearchParameterComponent>(
+    if (!listEquals<SearchParameterComponentBuilder>(
       component,
       o.component,
     )) {
@@ -1961,46 +1722,43 @@ class SearchParameter extends CanonicalResource {
   }
 }
 
-/// [SearchParameterComponent]
+/// [SearchParameterComponentBuilder]
 /// Used to define the parts of a composite search parameter.
-class SearchParameterComponent extends BackboneElement {
+class SearchParameterComponentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SearchParameterComponent]
+  /// [SearchParameterComponentBuilder]
 
-  const SearchParameterComponent({
+  SearchParameterComponentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.definition,
-    required this.expression,
+    this.definition,
+    this.expression,
     super.disallowExtensions,
   }) : super(
           objectPath: 'SearchParameter.component',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SearchParameterComponent.empty() => SearchParameterComponent(
-        definition: FhirCanonical.empty(),
-        expression: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SearchParameterComponentBuilder.empty() =>
+      SearchParameterComponentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SearchParameterComponent.fromJson(
+  factory SearchParameterComponentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SearchParameter.component';
-    return SearchParameterComponent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SearchParameterComponentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2009,8 +1767,8 @@ class SearchParameterComponent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2018,37 +1776,37 @@ class SearchParameterComponent extends BackboneElement {
             ),
           )
           .toList(),
-      definition: JsonParser.parsePrimitive<FhirCanonical>(
+      definition: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'definition',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.definition',
-      )!,
-      expression: JsonParser.parsePrimitive<FhirString>(
+      ),
+      expression: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'expression',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.expression',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [SearchParameterComponent]
+  /// Deserialize [SearchParameterComponentBuilder]
   /// from a [String] or [YamlMap] object
-  factory SearchParameterComponent.fromYaml(
+  factory SearchParameterComponentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SearchParameterComponent.fromJson(
+      return SearchParameterComponentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SearchParameterComponent.fromJson(
+      return SearchParameterComponentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SearchParameterComponent '
+        'SearchParameterComponentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2056,16 +1814,16 @@ class SearchParameterComponent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SearchParameterComponent]
+  /// [SearchParameterComponentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SearchParameterComponent.fromJsonString(
+  factory SearchParameterComponentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SearchParameterComponent.fromJson(json);
+      return SearchParameterComponentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2077,28 +1835,28 @@ class SearchParameterComponent extends BackboneElement {
 
   /// [definition]
   /// The definition of the search parameter that describes this part.
-  final FhirCanonical definition;
+  FhirCanonicalBuilder? definition;
 
   /// [expression]
   /// A sub-expression that defines how to extract values for this component
   /// from the output of the main SearchParameter.expression.
-  final FhirString expression;
+  FhirStringBuilder? expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2107,31 +1865,16 @@ class SearchParameterComponent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'definition',
-      definition,
-    );
-    addField(
-      'expression',
-      expression,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('definition', definition);
+    addField('expression', expression);
     return json;
   }
 
@@ -2150,11 +1893,11 @@ class SearchParameterComponent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2169,9 +1912,13 @@ class SearchParameterComponent extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'definition':
-        fields.add(definition);
+        if (definition != null) {
+          fields.add(definition!);
+        }
       case 'expression':
-        fields.add(expression);
+        if (expression != null) {
+          fields.add(expression!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2182,7 +1929,7 @@ class SearchParameterComponent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2191,65 +1938,67 @@ class SearchParameterComponent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'definition':
         {
-          if (child is FhirCanonical) {
-            return copyWith(definition: child);
+          if (child is FhirCanonicalBuilder) {
+            definition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
         {
-          if (child is FhirString) {
-            return copyWith(expression: child);
+          if (child is FhirStringBuilder) {
+            expression = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2265,58 +2014,49 @@ class SearchParameterComponent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'definition':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'expression':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SearchParameterComponent]
+  /// Creates a new [SearchParameterComponentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SearchParameterComponent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'definition':
         {
-          return copyWith(
-            definition: FhirCanonical.empty(),
-          );
+          definition = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'expression':
         {
-          return copyWith(
-            expression: FhirString.empty(),
-          );
+          expression = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2325,29 +2065,29 @@ class SearchParameterComponent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SearchParameterComponent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool definition = false,
+    bool expression = false,
   }) {
-    return SearchParameterComponent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      definition: definition,
-      expression: expression,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (definition) this.definition = null;
+    if (expression) this.expression = null;
   }
 
   @override
-  SearchParameterComponent clone() => throw UnimplementedError();
+  SearchParameterComponentBuilder clone() => throw UnimplementedError();
   @override
-  SearchParameterComponent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCanonical? definition,
-    FhirString? expression,
+  SearchParameterComponentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirCanonicalBuilder? definition,
+    FhirStringBuilder? expression,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2355,42 +2095,36 @@ class SearchParameterComponent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SearchParameterComponent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      definition: definition?.copyWith(
-            objectPath: '$newObjectPath.definition',
-          ) ??
-          this.definition,
-      expression: expression?.copyWith(
-            objectPath: '$newObjectPath.expression',
-          ) ??
-          this.expression,
+    final newResult = SearchParameterComponentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      definition: definition ?? this.definition,
+      expression: expression ?? this.expression,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SearchParameterComponent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SearchParameterComponentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2401,13 +2135,13 @@ class SearchParameterComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

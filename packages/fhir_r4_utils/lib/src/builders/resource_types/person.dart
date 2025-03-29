@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Person]
+/// [PersonBuilder]
 /// Demographics and administrative information about a person independent
 /// of a specific health-related context.
-class Person extends DomainResource {
+class PersonBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Person]
+  /// [PersonBuilder]
 
-  const Person({
+  PersonBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -34,49 +36,48 @@ class Person extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Person.empty() => const Person();
+  /// For Builder classes, no fields are required
+  factory PersonBuilder.empty() => PersonBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Person.fromJson(
+  factory PersonBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Person';
-    return Person(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PersonBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -85,8 +86,8 @@ class Person extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -95,8 +96,8 @@ class Person extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -105,8 +106,8 @@ class Person extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -115,8 +116,8 @@ class Person extends DomainResource {
           )
           .toList(),
       name: (json['name'] as List<dynamic>?)
-          ?.map<HumanName>(
-            (v) => HumanName.fromJson(
+          ?.map<HumanNameBuilder>(
+            (v) => HumanNameBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.name',
@@ -125,8 +126,8 @@ class Person extends DomainResource {
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -134,21 +135,21 @@ class Person extends DomainResource {
             ),
           )
           .toList(),
-      gender: JsonParser.parsePrimitive<AdministrativeGender>(
+      gender: JsonParser.parsePrimitive<AdministrativeGenderBuilder>(
         json,
         'gender',
-        AdministrativeGender.fromJson,
+        AdministrativeGenderBuilder.fromJson,
         '$objectPath.gender',
       ),
-      birthDate: JsonParser.parsePrimitive<FhirDate>(
+      birthDate: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'birthDate',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.birthDate',
       ),
       address: (json['address'] as List<dynamic>?)
-          ?.map<Address>(
-            (v) => Address.fromJson(
+          ?.map<AddressBuilder>(
+            (v) => AddressBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.address',
@@ -156,27 +157,27 @@ class Person extends DomainResource {
             ),
           )
           .toList(),
-      photo: JsonParser.parseObject<Attachment>(
+      photo: JsonParser.parseObject<AttachmentBuilder>(
         json,
         'photo',
-        Attachment.fromJson,
+        AttachmentBuilder.fromJson,
         '$objectPath.photo',
       ),
-      managingOrganization: JsonParser.parseObject<Reference>(
+      managingOrganization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'managingOrganization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.managingOrganization',
       ),
-      active: JsonParser.parsePrimitive<FhirBoolean>(
+      active: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'active',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.active',
       ),
       link: (json['link'] as List<dynamic>?)
-          ?.map<PersonLink>(
-            (v) => PersonLink.fromJson(
+          ?.map<PersonLinkBuilder>(
+            (v) => PersonLinkBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.link',
@@ -187,22 +188,22 @@ class Person extends DomainResource {
     );
   }
 
-  /// Deserialize [Person]
+  /// Deserialize [PersonBuilder]
   /// from a [String] or [YamlMap] object
-  factory Person.fromYaml(
+  factory PersonBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Person.fromJson(
+      return PersonBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Person.fromJson(
+      return PersonBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Person '
+        'PersonBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -210,16 +211,16 @@ class Person extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Person]
+  /// [PersonBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Person.fromJsonString(
+  factory PersonBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Person.fromJson(json);
+      return PersonBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -231,61 +232,61 @@ class Person extends DomainResource {
 
   /// [identifier]
   /// Identifier for a person within a particular scope.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [name]
   /// A name associated with the person.
-  final List<HumanName>? name;
+  List<HumanNameBuilder>? name;
 
   /// [telecom]
   /// A contact detail for the person, e.g. a telephone number or an email
   /// address.
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [gender]
   /// Administrative Gender.
-  final AdministrativeGender? gender;
+  AdministrativeGenderBuilder? gender;
 
   /// [birthDate]
   /// The birth date for the person.
-  final FhirDate? birthDate;
+  FhirDateBuilder? birthDate;
 
   /// [address]
   /// One or more addresses for the person.
-  final List<Address>? address;
+  List<AddressBuilder>? address;
 
   /// [photo]
   /// An image that can be displayed as a thumbnail of the person to enhance
   /// the identification of the individual.
-  final Attachment? photo;
+  AttachmentBuilder? photo;
 
   /// [managingOrganization]
   /// The organization that is the custodian of the person record.
-  final Reference? managingOrganization;
+  ReferenceBuilder? managingOrganization;
 
   /// [active]
   /// Whether this person's record is in active use.
-  final FhirBoolean? active;
+  FhirBooleanBuilder? active;
 
   /// [link]
   /// Link to a resource that concerns the same actual person.
-  final List<PersonLink>? link;
+  List<PersonLinkBuilder>? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -294,84 +295,30 @@ class Person extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'gender',
-      gender,
-    );
-    addField(
-      'birthDate',
-      birthDate,
-    );
-    addField(
-      'address',
-      address,
-    );
-    addField(
-      'photo',
-      photo,
-    );
-    addField(
-      'managingOrganization',
-      managingOrganization,
-    );
-    addField(
-      'active',
-      active,
-    );
-    addField(
-      'link',
-      link,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('name', name);
+    addField('telecom', telecom);
+    addField('gender', gender);
+    addField('birthDate', birthDate);
+    addField('address', address);
+    addField('photo', photo);
+    addField('managingOrganization', managingOrganization);
+    addField('active', active);
+    addField('link', link);
     return json;
   }
 
@@ -403,11 +350,11 @@ class Person extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -491,7 +438,7 @@ class Person extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -500,205 +447,214 @@ class Person extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is List<HumanName>) {
-            // Add all elements from passed list
-            final newList = [...?name, ...child];
-            return copyWith(name: newList);
-          } else if (child is HumanName) {
+          if (child is List<HumanNameBuilder>) {
+            // Replace or create new list
+            name = child;
+            return;
+          } else if (child is HumanNameBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?name, child];
-            return copyWith(name: newList);
+            name = [...(name ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'gender':
         {
-          if (child is AdministrativeGender) {
-            return copyWith(gender: child);
+          if (child is AdministrativeGenderBuilder) {
+            gender = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'birthDate':
         {
-          if (child is FhirDate) {
-            return copyWith(birthDate: child);
+          if (child is FhirDateBuilder) {
+            birthDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
         {
-          if (child is List<Address>) {
-            // Add all elements from passed list
-            final newList = [...?address, ...child];
-            return copyWith(address: newList);
-          } else if (child is Address) {
+          if (child is List<AddressBuilder>) {
+            // Replace or create new list
+            address = child;
+            return;
+          } else if (child is AddressBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?address, child];
-            return copyWith(address: newList);
+            address = [...(address ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'photo':
         {
-          if (child is Attachment) {
-            return copyWith(photo: child);
+          if (child is AttachmentBuilder) {
+            photo = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'managingOrganization':
         {
-          if (child is Reference) {
-            return copyWith(managingOrganization: child);
+          if (child is ReferenceBuilder) {
+            managingOrganization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'active':
         {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
+          if (child is FhirBooleanBuilder) {
+            active = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
-          if (child is List<PersonLink>) {
-            // Add all elements from passed list
-            final newList = [...?link, ...child];
-            return copyWith(link: newList);
-          } else if (child is PersonLink) {
+          if (child is List<PersonLinkBuilder>) {
+            // Replace or create new list
+            link = child;
+            return;
+          } else if (child is PersonLinkBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
-            return copyWith(link: newList);
+            link = [...(link ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -714,162 +670,140 @@ class Person extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'name':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'gender':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'birthDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'address':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'photo':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'managingOrganization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'active':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'link':
-        return ['PersonLink'];
+        return ['PersonLinkBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Person]
+  /// Creates a new [PersonBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Person createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: <HumanName>[],
-          );
+          name = <HumanNameBuilder>[];
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'gender':
         {
-          return copyWith(
-            gender: AdministrativeGender.empty(),
-          );
+          gender = AdministrativeGenderBuilder.empty();
+          return;
         }
       case 'birthDate':
         {
-          return copyWith(
-            birthDate: FhirDate.empty(),
-          );
+          birthDate = FhirDateBuilder.empty();
+          return;
         }
       case 'address':
         {
-          return copyWith(
-            address: <Address>[],
-          );
+          address = <AddressBuilder>[];
+          return;
         }
       case 'photo':
         {
-          return copyWith(
-            photo: Attachment.empty(),
-          );
+          photo = AttachmentBuilder.empty();
+          return;
         }
       case 'managingOrganization':
         {
-          return copyWith(
-            managingOrganization: Reference.empty(),
-          );
+          managingOrganization = ReferenceBuilder.empty();
+          return;
         }
       case 'active':
         {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
+          active = FhirBooleanBuilder.empty();
+          return;
         }
       case 'link':
         {
-          return copyWith(
-            link: <PersonLink>[],
-          );
+          link = <PersonLinkBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -878,7 +812,7 @@ class Person extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Person clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -898,162 +832,97 @@ class Person extends DomainResource {
     bool active = false,
     bool link = false,
   }) {
-    return Person(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      name: name ? null : this.name,
-      telecom: telecom ? null : this.telecom,
-      gender: gender ? null : this.gender,
-      birthDate: birthDate ? null : this.birthDate,
-      address: address ? null : this.address,
-      photo: photo ? null : this.photo,
-      managingOrganization:
-          managingOrganization ? null : this.managingOrganization,
-      active: active ? null : this.active,
-      link: link ? null : this.link,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (name) this.name = null;
+    if (telecom) this.telecom = null;
+    if (gender) this.gender = null;
+    if (birthDate) this.birthDate = null;
+    if (address) this.address = null;
+    if (photo) this.photo = null;
+    if (managingOrganization) this.managingOrganization = null;
+    if (active) this.active = null;
+    if (link) this.link = null;
   }
 
   @override
-  Person clone() => throw UnimplementedError();
+  PersonBuilder clone() => throw UnimplementedError();
   @override
-  Person copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<HumanName>? name,
-    List<ContactPoint>? telecom,
-    AdministrativeGender? gender,
-    FhirDate? birthDate,
-    List<Address>? address,
-    Attachment? photo,
-    Reference? managingOrganization,
-    FhirBoolean? active,
-    List<PersonLink>? link,
+  PersonBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<HumanNameBuilder>? name,
+    List<ContactPointBuilder>? telecom,
+    AdministrativeGenderBuilder? gender,
+    FhirDateBuilder? birthDate,
+    List<AddressBuilder>? address,
+    AttachmentBuilder? photo,
+    ReferenceBuilder? managingOrganization,
+    FhirBooleanBuilder? active,
+    List<PersonLinkBuilder>? link,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Person(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = PersonBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      name: name
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.name',
-                ),
-              )
-              .toList() ??
-          this.name,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      gender: gender?.copyWith(
-            objectPath: '$newObjectPath.gender',
-          ) ??
-          this.gender,
-      birthDate: birthDate?.copyWith(
-            objectPath: '$newObjectPath.birthDate',
-          ) ??
-          this.birthDate,
-      address: address
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.address',
-                ),
-              )
-              .toList() ??
-          this.address,
-      photo: photo?.copyWith(
-            objectPath: '$newObjectPath.photo',
-          ) ??
-          this.photo,
-      managingOrganization: managingOrganization?.copyWith(
-            objectPath: '$newObjectPath.managingOrganization',
-          ) ??
-          this.managingOrganization,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      link: link
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.link',
-                ),
-              )
-              .toList() ??
-          this.link,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      name: name ?? this.name,
+      telecom: telecom ?? this.telecom,
+      gender: gender ?? this.gender,
+      birthDate: birthDate ?? this.birthDate,
+      address: address ?? this.address,
+      photo: photo ?? this.photo,
+      managingOrganization: managingOrganization ?? this.managingOrganization,
+      active: active ?? this.active,
+      link: link ?? this.link,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Person) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PersonBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1088,37 +957,37 @@ class Person extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<HumanName>(
+    if (!listEquals<HumanNameBuilder>(
       name,
       o.name,
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {
@@ -1136,7 +1005,7 @@ class Person extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Address>(
+    if (!listEquals<AddressBuilder>(
       address,
       o.address,
     )) {
@@ -1160,7 +1029,7 @@ class Person extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<PersonLink>(
+    if (!listEquals<PersonLinkBuilder>(
       link,
       o.link,
     )) {
@@ -1170,17 +1039,17 @@ class Person extends DomainResource {
   }
 }
 
-/// [PersonLink]
+/// [PersonLinkBuilder]
 /// Link to a resource that concerns the same actual person.
-class PersonLink extends BackboneElement {
+class PersonLinkBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PersonLink]
+  /// [PersonLinkBuilder]
 
-  const PersonLink({
+  PersonLinkBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.target,
+    this.target,
     this.assurance,
     super.disallowExtensions,
   }) : super(
@@ -1188,27 +1057,24 @@ class PersonLink extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PersonLink.empty() => PersonLink(
-        target: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory PersonLinkBuilder.empty() => PersonLinkBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PersonLink.fromJson(
+  factory PersonLinkBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Person.link';
-    return PersonLink(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PersonLinkBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1217,8 +1083,8 @@ class PersonLink extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1226,37 +1092,37 @@ class PersonLink extends BackboneElement {
             ),
           )
           .toList(),
-      target: JsonParser.parseObject<Reference>(
+      target: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'target',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.target',
-      )!,
-      assurance: JsonParser.parsePrimitive<IdentityAssuranceLevel>(
+      ),
+      assurance: JsonParser.parsePrimitive<IdentityAssuranceLevelBuilder>(
         json,
         'assurance',
-        IdentityAssuranceLevel.fromJson,
+        IdentityAssuranceLevelBuilder.fromJson,
         '$objectPath.assurance',
       ),
     );
   }
 
-  /// Deserialize [PersonLink]
+  /// Deserialize [PersonLinkBuilder]
   /// from a [String] or [YamlMap] object
-  factory PersonLink.fromYaml(
+  factory PersonLinkBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PersonLink.fromJson(
+      return PersonLinkBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PersonLink.fromJson(
+      return PersonLinkBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PersonLink '
+        'PersonLinkBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1264,16 +1130,16 @@ class PersonLink extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PersonLink]
+  /// [PersonLinkBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PersonLink.fromJsonString(
+  factory PersonLinkBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PersonLink.fromJson(json);
+      return PersonLinkBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1285,28 +1151,28 @@ class PersonLink extends BackboneElement {
 
   /// [target]
   /// The resource to which this actual person is associated.
-  final Reference target;
+  ReferenceBuilder? target;
 
   /// [assurance]
   /// Level of assurance that this link is associated with the target
   /// resource.
-  final IdentityAssuranceLevel? assurance;
+  IdentityAssuranceLevelBuilder? assurance;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1315,31 +1181,16 @@ class PersonLink extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'target',
-      target,
-    );
-    addField(
-      'assurance',
-      assurance,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('target', target);
+    addField('assurance', assurance);
     return json;
   }
 
@@ -1358,11 +1209,11 @@ class PersonLink extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1377,7 +1228,9 @@ class PersonLink extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'target':
-        fields.add(target);
+        if (target != null) {
+          fields.add(target!);
+        }
       case 'assurance':
         if (assurance != null) {
           fields.add(assurance!);
@@ -1392,7 +1245,7 @@ class PersonLink extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1401,65 +1254,67 @@ class PersonLink extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is Reference) {
-            return copyWith(target: child);
+          if (child is ReferenceBuilder) {
+            target = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'assurance':
         {
-          if (child is IdentityAssuranceLevel) {
-            return copyWith(assurance: child);
+          if (child is IdentityAssuranceLevelBuilder) {
+            assurance = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1475,58 +1330,49 @@ class PersonLink extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'target':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'assurance':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PersonLink]
+  /// Creates a new [PersonLinkBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PersonLink createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: Reference.empty(),
-          );
+          target = ReferenceBuilder.empty();
+          return;
         }
       case 'assurance':
         {
-          return copyWith(
-            assurance: IdentityAssuranceLevel.empty(),
-          );
+          assurance = IdentityAssuranceLevelBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1535,30 +1381,29 @@ class PersonLink extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PersonLink clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool target = false,
     bool assurance = false,
   }) {
-    return PersonLink(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      target: target,
-      assurance: assurance ? null : this.assurance,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (target) this.target = null;
+    if (assurance) this.assurance = null;
   }
 
   @override
-  PersonLink clone() => throw UnimplementedError();
+  PersonLinkBuilder clone() => throw UnimplementedError();
   @override
-  PersonLink copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? target,
-    IdentityAssuranceLevel? assurance,
+  PersonLinkBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? target,
+    IdentityAssuranceLevelBuilder? assurance,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1566,42 +1411,36 @@ class PersonLink extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PersonLink(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      target: target?.copyWith(
-            objectPath: '$newObjectPath.target',
-          ) ??
-          this.target,
-      assurance: assurance?.copyWith(
-            objectPath: '$newObjectPath.assurance',
-          ) ??
-          this.assurance,
+    final newResult = PersonLinkBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      target: target ?? this.target,
+      assurance: assurance ?? this.assurance,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PersonLink) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PersonLinkBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1612,13 +1451,13 @@ class PersonLink extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

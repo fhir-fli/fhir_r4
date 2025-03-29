@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [TestReport]
+/// [TestReportBuilder]
 /// A summary of information based on the results of executing a
 /// TestScript.
-class TestReport extends DomainResource {
+class TestReportBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [TestReport]
+  /// [TestReportBuilder]
 
-  const TestReport({
+  TestReportBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -20,9 +22,9 @@ class TestReport extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.name,
-    required this.status,
-    required this.testScript,
-    required this.result,
+    this.status,
+    this.testScript,
+    this.result,
     this.score,
     this.tester,
     this.issued,
@@ -36,53 +38,48 @@ class TestReport extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReport.empty() => TestReport(
-        status: TestReportStatus.values.first,
-        testScript: Reference.empty(),
-        result: TestReportResult.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportBuilder.empty() => TestReportBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReport.fromJson(
+  factory TestReportBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport';
-    return TestReport(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -91,8 +88,8 @@ class TestReport extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -101,8 +98,8 @@ class TestReport extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -110,57 +107,57 @@ class TestReport extends DomainResource {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      status: JsonParser.parsePrimitive<TestReportStatus>(
+      status: JsonParser.parsePrimitive<TestReportStatusBuilder>(
         json,
         'status',
-        TestReportStatus.fromJson,
+        TestReportStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      testScript: JsonParser.parseObject<Reference>(
+      ),
+      testScript: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'testScript',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.testScript',
-      )!,
-      result: JsonParser.parsePrimitive<TestReportResult>(
+      ),
+      result: JsonParser.parsePrimitive<TestReportResultBuilder>(
         json,
         'result',
-        TestReportResult.fromJson,
+        TestReportResultBuilder.fromJson,
         '$objectPath.result',
-      )!,
-      score: JsonParser.parsePrimitive<FhirDecimal>(
+      ),
+      score: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'score',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.score',
       ),
-      tester: JsonParser.parsePrimitive<FhirString>(
+      tester: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'tester',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.tester',
       ),
-      issued: JsonParser.parsePrimitive<FhirDateTime>(
+      issued: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'issued',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.issued',
       ),
       participant: (json['participant'] as List<dynamic>?)
-          ?.map<TestReportParticipant>(
-            (v) => TestReportParticipant.fromJson(
+          ?.map<TestReportParticipantBuilder>(
+            (v) => TestReportParticipantBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.participant',
@@ -168,15 +165,15 @@ class TestReport extends DomainResource {
             ),
           )
           .toList(),
-      setup: JsonParser.parseObject<TestReportSetup>(
+      setup: JsonParser.parseObject<TestReportSetupBuilder>(
         json,
         'setup',
-        TestReportSetup.fromJson,
+        TestReportSetupBuilder.fromJson,
         '$objectPath.setup',
       ),
       test: (json['test'] as List<dynamic>?)
-          ?.map<TestReportTest>(
-            (v) => TestReportTest.fromJson(
+          ?.map<TestReportTestBuilder>(
+            (v) => TestReportTestBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.test',
@@ -184,31 +181,31 @@ class TestReport extends DomainResource {
             ),
           )
           .toList(),
-      teardown: JsonParser.parseObject<TestReportTeardown>(
+      teardown: JsonParser.parseObject<TestReportTeardownBuilder>(
         json,
         'teardown',
-        TestReportTeardown.fromJson,
+        TestReportTeardownBuilder.fromJson,
         '$objectPath.teardown',
       ),
     );
   }
 
-  /// Deserialize [TestReport]
+  /// Deserialize [TestReportBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReport.fromYaml(
+  factory TestReportBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReport.fromJson(
+      return TestReportBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReport.fromJson(
+      return TestReportBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReport '
+        'TestReportBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -216,16 +213,16 @@ class TestReport extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [TestReport]
+  /// [TestReportBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReport.fromJsonString(
+  factory TestReportBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReport.fromJson(json);
+      return TestReportBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -238,73 +235,73 @@ class TestReport extends DomainResource {
   /// [identifier]
   /// Identifier for the TestScript assigned for external purposes outside
   /// the context of FHIR.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [name]
   /// A free text natural language name identifying the executed TestScript.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [status]
   /// The current state of this test report.
-  final TestReportStatus status;
+  TestReportStatusBuilder? status;
 
   /// [testScript]
   /// Ideally this is an absolute URL that is used to identify the
   /// version-specific TestScript that was executed, matching the
   /// `TestScript.url`.
-  final Reference testScript;
+  ReferenceBuilder? testScript;
 
   /// [result]
   /// The overall result from the execution of the TestScript.
-  final TestReportResult result;
+  TestReportResultBuilder? result;
 
   /// [score]
   /// The final score (percentage of tests passed) resulting from the
   /// execution of the TestScript.
-  final FhirDecimal? score;
+  FhirDecimalBuilder? score;
 
   /// [tester]
   /// Name of the tester producing this report (Organization or individual).
-  final FhirString? tester;
+  FhirStringBuilder? tester;
 
   /// [issued]
   /// When the TestScript was executed and this TestReport was generated.
-  final FhirDateTime? issued;
+  FhirDateTimeBuilder? issued;
 
   /// [participant]
   /// A participant in the test execution, either the execution engine, a
   /// client, or a server.
-  final List<TestReportParticipant>? participant;
+  List<TestReportParticipantBuilder>? participant;
 
   /// [setup]
   /// The results of the series of required setup operations before the tests
   /// were executed.
-  final TestReportSetup? setup;
+  TestReportSetupBuilder? setup;
 
   /// [test]
   /// A test executed from the test script.
-  final List<TestReportTest>? test;
+  List<TestReportTestBuilder>? test;
 
   /// [teardown]
   /// The results of the series of operations required to clean up after all
   /// the tests were executed (successfully or otherwise).
-  final TestReportTeardown? teardown;
+  TestReportTeardownBuilder? teardown;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -313,92 +310,32 @@ class TestReport extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'testScript',
-      testScript,
-    );
-    addField(
-      'result',
-      result,
-    );
-    addField(
-      'score',
-      score,
-    );
-    addField(
-      'tester',
-      tester,
-    );
-    addField(
-      'issued',
-      issued,
-    );
-    addField(
-      'participant',
-      participant,
-    );
-    addField(
-      'setup',
-      setup,
-    );
-    addField(
-      'test',
-      test,
-    );
-    addField(
-      'teardown',
-      teardown,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('name', name);
+    addField('status', status);
+    addField('testScript', testScript);
+    addField('result', result);
+    addField('score', score);
+    addField('tester', tester);
+    addField('issued', issued);
+    addField('participant', participant);
+    addField('setup', setup);
+    addField('test', test);
+    addField('teardown', teardown);
     return json;
   }
 
@@ -432,11 +369,11 @@ class TestReport extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -479,11 +416,17 @@ class TestReport extends DomainResource {
           fields.add(name!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'testScript':
-        fields.add(testScript);
+        if (testScript != null) {
+          fields.add(testScript!);
+        }
       case 'result':
-        fields.add(result);
+        if (result != null) {
+          fields.add(result!);
+        }
       case 'score':
         if (score != null) {
           fields.add(score!);
@@ -522,7 +465,7 @@ class TestReport extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -531,203 +474,217 @@ class TestReport extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is TestReportStatus) {
-            return copyWith(status: child);
+          if (child is TestReportStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'testScript':
         {
-          if (child is Reference) {
-            return copyWith(testScript: child);
+          if (child is ReferenceBuilder) {
+            testScript = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'result':
         {
-          if (child is TestReportResult) {
-            return copyWith(result: child);
+          if (child is TestReportResultBuilder) {
+            result = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'score':
         {
-          if (child is FhirDecimal) {
-            return copyWith(score: child);
+          if (child is FhirDecimalBuilder) {
+            score = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'tester':
         {
-          if (child is FhirString) {
-            return copyWith(tester: child);
+          if (child is FhirStringBuilder) {
+            tester = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issued':
         {
-          if (child is FhirDateTime) {
-            return copyWith(issued: child);
+          if (child is FhirDateTimeBuilder) {
+            issued = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participant':
         {
-          if (child is List<TestReportParticipant>) {
-            // Add all elements from passed list
-            final newList = [...?participant, ...child];
-            return copyWith(participant: newList);
-          } else if (child is TestReportParticipant) {
+          if (child is List<TestReportParticipantBuilder>) {
+            // Replace or create new list
+            participant = child;
+            return;
+          } else if (child is TestReportParticipantBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?participant, child];
-            return copyWith(participant: newList);
+            participant = [...(participant ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'setup':
         {
-          if (child is TestReportSetup) {
-            return copyWith(setup: child);
+          if (child is TestReportSetupBuilder) {
+            setup = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'test':
         {
-          if (child is List<TestReportTest>) {
-            // Add all elements from passed list
-            final newList = [...?test, ...child];
-            return copyWith(test: newList);
-          } else if (child is TestReportTest) {
+          if (child is List<TestReportTestBuilder>) {
+            // Replace or create new list
+            test = child;
+            return;
+          } else if (child is TestReportTestBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?test, child];
-            return copyWith(test: newList);
+            test = [...(test ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'teardown':
         {
-          if (child is TestReportTeardown) {
-            return copyWith(teardown: child);
+          if (child is TestReportTeardownBuilder) {
+            teardown = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -743,178 +700,154 @@ class TestReport extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'testScript':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'result':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'score':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'tester':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'issued':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'participant':
-        return ['TestReportParticipant'];
+        return ['TestReportParticipantBuilder'];
       case 'setup':
-        return ['TestReportSetup'];
+        return ['TestReportSetupBuilder'];
       case 'test':
-        return ['TestReportTest'];
+        return ['TestReportTestBuilder'];
       case 'teardown':
-        return ['TestReportTeardown'];
+        return ['TestReportTeardownBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReport]
+  /// Creates a new [TestReportBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReport createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: TestReportStatus.empty(),
-          );
+          status = TestReportStatusBuilder.empty();
+          return;
         }
       case 'testScript':
         {
-          return copyWith(
-            testScript: Reference.empty(),
-          );
+          testScript = ReferenceBuilder.empty();
+          return;
         }
       case 'result':
         {
-          return copyWith(
-            result: TestReportResult.empty(),
-          );
+          result = TestReportResultBuilder.empty();
+          return;
         }
       case 'score':
         {
-          return copyWith(
-            score: FhirDecimal.empty(),
-          );
+          score = FhirDecimalBuilder.empty();
+          return;
         }
       case 'tester':
         {
-          return copyWith(
-            tester: FhirString.empty(),
-          );
+          tester = FhirStringBuilder.empty();
+          return;
         }
       case 'issued':
         {
-          return copyWith(
-            issued: FhirDateTime.empty(),
-          );
+          issued = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'participant':
         {
-          return copyWith(
-            participant: <TestReportParticipant>[],
-          );
+          participant = <TestReportParticipantBuilder>[];
+          return;
         }
       case 'setup':
         {
-          return copyWith(
-            setup: TestReportSetup.empty(),
-          );
+          setup = TestReportSetupBuilder.empty();
+          return;
         }
       case 'test':
         {
-          return copyWith(
-            test: <TestReportTest>[],
-          );
+          test = <TestReportTestBuilder>[];
+          return;
         }
       case 'teardown':
         {
-          return copyWith(
-            teardown: TestReportTeardown.empty(),
-          );
+          teardown = TestReportTeardownBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -923,7 +856,7 @@ class TestReport extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  TestReport clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -934,6 +867,9 @@ class TestReport extends DomainResource {
     bool modifierExtension = false,
     bool identifier = false,
     bool name = false,
+    bool status = false,
+    bool testScript = false,
+    bool result = false,
     bool score = false,
     bool tester = false,
     bool issued = false,
@@ -942,161 +878,103 @@ class TestReport extends DomainResource {
     bool test = false,
     bool teardown = false,
   }) {
-    return TestReport(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      name: name ? null : this.name,
-      status: status,
-      testScript: testScript,
-      result: result,
-      score: score ? null : this.score,
-      tester: tester ? null : this.tester,
-      issued: issued ? null : this.issued,
-      participant: participant ? null : this.participant,
-      setup: setup ? null : this.setup,
-      test: test ? null : this.test,
-      teardown: teardown ? null : this.teardown,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (name) this.name = null;
+    if (status) this.status = null;
+    if (testScript) this.testScript = null;
+    if (result) this.result = null;
+    if (score) this.score = null;
+    if (tester) this.tester = null;
+    if (issued) this.issued = null;
+    if (participant) this.participant = null;
+    if (setup) this.setup = null;
+    if (test) this.test = null;
+    if (teardown) this.teardown = null;
   }
 
   @override
-  TestReport clone() => throw UnimplementedError();
+  TestReportBuilder clone() => throw UnimplementedError();
   @override
-  TestReport copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    FhirString? name,
-    TestReportStatus? status,
-    Reference? testScript,
-    TestReportResult? result,
-    FhirDecimal? score,
-    FhirString? tester,
-    FhirDateTime? issued,
-    List<TestReportParticipant>? participant,
-    TestReportSetup? setup,
-    List<TestReportTest>? test,
-    TestReportTeardown? teardown,
+  TestReportBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    FhirStringBuilder? name,
+    TestReportStatusBuilder? status,
+    ReferenceBuilder? testScript,
+    TestReportResultBuilder? result,
+    FhirDecimalBuilder? score,
+    FhirStringBuilder? tester,
+    FhirDateTimeBuilder? issued,
+    List<TestReportParticipantBuilder>? participant,
+    TestReportSetupBuilder? setup,
+    List<TestReportTestBuilder>? test,
+    TestReportTeardownBuilder? teardown,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return TestReport(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = TestReportBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      testScript: testScript?.copyWith(
-            objectPath: '$newObjectPath.testScript',
-          ) ??
-          this.testScript,
-      result: result?.copyWith(
-            objectPath: '$newObjectPath.result',
-          ) ??
-          this.result,
-      score: score?.copyWith(
-            objectPath: '$newObjectPath.score',
-          ) ??
-          this.score,
-      tester: tester?.copyWith(
-            objectPath: '$newObjectPath.tester',
-          ) ??
-          this.tester,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      participant: participant
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.participant',
-                ),
-              )
-              .toList() ??
-          this.participant,
-      setup: setup?.copyWith(
-            objectPath: '$newObjectPath.setup',
-          ) ??
-          this.setup,
-      test: test
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.test',
-                ),
-              )
-              .toList() ??
-          this.test,
-      teardown: teardown?.copyWith(
-            objectPath: '$newObjectPath.teardown',
-          ) ??
-          this.teardown,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      name: name ?? this.name,
+      status: status ?? this.status,
+      testScript: testScript ?? this.testScript,
+      result: result ?? this.result,
+      score: score ?? this.score,
+      tester: tester ?? this.tester,
+      issued: issued ?? this.issued,
+      participant: participant ?? this.participant,
+      setup: setup ?? this.setup,
+      test: test ?? this.test,
+      teardown: teardown ?? this.teardown,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReport) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1131,19 +1009,19 @@ class TestReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1197,7 +1075,7 @@ class TestReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<TestReportParticipant>(
+    if (!listEquals<TestReportParticipantBuilder>(
       participant,
       o.participant,
     )) {
@@ -1209,7 +1087,7 @@ class TestReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<TestReportTest>(
+    if (!listEquals<TestReportTestBuilder>(
       test,
       o.test,
     )) {
@@ -1225,19 +1103,19 @@ class TestReport extends DomainResource {
   }
 }
 
-/// [TestReportParticipant]
+/// [TestReportParticipantBuilder]
 /// A participant in the test execution, either the execution engine, a
 /// client, or a server.
-class TestReportParticipant extends BackboneElement {
+class TestReportParticipantBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportParticipant]
+  /// [TestReportParticipantBuilder]
 
-  const TestReportParticipant({
+  TestReportParticipantBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-    required this.uri,
+    this.type,
+    this.uri,
     this.display,
     super.disallowExtensions,
   }) : super(
@@ -1245,28 +1123,25 @@ class TestReportParticipant extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportParticipant.empty() => TestReportParticipant(
-        type: TestReportParticipantType.values.first,
-        uri: FhirUri.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportParticipantBuilder.empty() =>
+      TestReportParticipantBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportParticipant.fromJson(
+  factory TestReportParticipantBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.participant';
-    return TestReportParticipant(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportParticipantBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1275,8 +1150,8 @@ class TestReportParticipant extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1284,43 +1159,43 @@ class TestReportParticipant extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<TestReportParticipantType>(
+      type: JsonParser.parsePrimitive<TestReportParticipantTypeBuilder>(
         json,
         'type',
-        TestReportParticipantType.fromJson,
+        TestReportParticipantTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      uri: JsonParser.parsePrimitive<FhirUri>(
+      ),
+      uri: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'uri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.uri',
-      )!,
-      display: JsonParser.parsePrimitive<FhirString>(
+      ),
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
     );
   }
 
-  /// Deserialize [TestReportParticipant]
+  /// Deserialize [TestReportParticipantBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReportParticipant.fromYaml(
+  factory TestReportParticipantBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportParticipant.fromJson(
+      return TestReportParticipantBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportParticipant.fromJson(
+      return TestReportParticipantBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportParticipant '
+        'TestReportParticipantBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1328,16 +1203,16 @@ class TestReportParticipant extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportParticipant]
+  /// [TestReportParticipantBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportParticipant.fromJsonString(
+  factory TestReportParticipantBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportParticipant.fromJson(json);
+      return TestReportParticipantBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1349,31 +1224,31 @@ class TestReportParticipant extends BackboneElement {
 
   /// [type]
   /// The type of participant.
-  final TestReportParticipantType type;
+  TestReportParticipantTypeBuilder? type;
 
   /// [uri]
   /// The uri of the participant. An absolute URL is preferred.
-  final FhirUri uri;
+  FhirUriBuilder? uri;
 
   /// [display]
   /// The display name of the participant.
-  final FhirString? display;
+  FhirStringBuilder? display;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1382,35 +1257,17 @@ class TestReportParticipant extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'uri',
-      uri,
-    );
-    addField(
-      'display',
-      display,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('uri', uri);
+    addField('display', display);
     return json;
   }
 
@@ -1430,11 +1287,11 @@ class TestReportParticipant extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1449,9 +1306,13 @@ class TestReportParticipant extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'uri':
-        fields.add(uri);
+        if (uri != null) {
+          fields.add(uri!);
+        }
       case 'display':
         if (display != null) {
           fields.add(display!);
@@ -1466,7 +1327,7 @@ class TestReportParticipant extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1475,73 +1336,76 @@ class TestReportParticipant extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is TestReportParticipantType) {
-            return copyWith(type: child);
+          if (child is TestReportParticipantTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'uri':
         {
-          if (child is FhirUri) {
-            return copyWith(uri: child);
+          if (child is FhirUriBuilder) {
+            uri = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1557,66 +1421,56 @@ class TestReportParticipant extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'uri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportParticipant]
+  /// Creates a new [TestReportParticipantBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportParticipant createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: TestReportParticipantType.empty(),
-          );
+          type = TestReportParticipantTypeBuilder.empty();
+          return;
         }
       case 'uri':
         {
-          return copyWith(
-            uri: FhirUri.empty(),
-          );
+          uri = FhirUriBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1625,32 +1479,32 @@ class TestReportParticipant extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportParticipant clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
+    bool uri = false,
     bool display = false,
   }) {
-    return TestReportParticipant(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      uri: uri,
-      display: display ? null : this.display,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (uri) this.uri = null;
+    if (display) this.display = null;
   }
 
   @override
-  TestReportParticipant clone() => throw UnimplementedError();
+  TestReportParticipantBuilder clone() => throw UnimplementedError();
   @override
-  TestReportParticipant copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    TestReportParticipantType? type,
-    FhirUri? uri,
-    FhirString? display,
+  TestReportParticipantBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    TestReportParticipantTypeBuilder? type,
+    FhirUriBuilder? uri,
+    FhirStringBuilder? display,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1658,46 +1512,37 @@ class TestReportParticipant extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportParticipant(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      uri: uri?.copyWith(
-            objectPath: '$newObjectPath.uri',
-          ) ??
-          this.uri,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
+    final newResult = TestReportParticipantBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      uri: uri ?? this.uri,
+      display: display ?? this.display,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportParticipant) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportParticipantBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1708,13 +1553,13 @@ class TestReportParticipant extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1742,45 +1587,42 @@ class TestReportParticipant extends BackboneElement {
   }
 }
 
-/// [TestReportSetup]
+/// [TestReportSetupBuilder]
 /// The results of the series of required setup operations before the tests
 /// were executed.
-class TestReportSetup extends BackboneElement {
+class TestReportSetupBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportSetup]
+  /// [TestReportSetupBuilder]
 
-  const TestReportSetup({
+  TestReportSetupBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.action,
+    this.action,
     super.disallowExtensions,
   }) : super(
           objectPath: 'TestReport.setup',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportSetup.empty() => const TestReportSetup(
-        action: <TestReportAction>[],
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportSetupBuilder.empty() => TestReportSetupBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportSetup.fromJson(
+  factory TestReportSetupBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.setup';
-    return TestReportSetup(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportSetupBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1789,8 +1631,8 @@ class TestReportSetup extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1798,9 +1640,9 @@ class TestReportSetup extends BackboneElement {
             ),
           )
           .toList(),
-      action: (json['action'] as List<dynamic>)
-          .map<TestReportAction>(
-            (v) => TestReportAction.fromJson(
+      action: (json['action'] as List<dynamic>?)
+          ?.map<TestReportActionBuilder>(
+            (v) => TestReportActionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.action',
@@ -1811,22 +1653,22 @@ class TestReportSetup extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportSetup]
+  /// Deserialize [TestReportSetupBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReportSetup.fromYaml(
+  factory TestReportSetupBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportSetup.fromJson(
+      return TestReportSetupBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportSetup.fromJson(
+      return TestReportSetupBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportSetup '
+        'TestReportSetupBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1834,16 +1676,16 @@ class TestReportSetup extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportSetup]
+  /// [TestReportSetupBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportSetup.fromJsonString(
+  factory TestReportSetupBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportSetup.fromJson(json);
+      return TestReportSetupBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1855,23 +1697,23 @@ class TestReportSetup extends BackboneElement {
 
   /// [action]
   /// Action would contain either an operation or an assertion.
-  final List<TestReportAction> action;
+  List<TestReportActionBuilder>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1880,27 +1722,15 @@ class TestReportSetup extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'action',
-      action,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('action', action);
     return json;
   }
 
@@ -1918,11 +1748,11 @@ class TestReportSetup extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1937,7 +1767,9 @@ class TestReportSetup extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'action':
-        fields.addAll(action);
+        if (action != null) {
+          fields.addAll(action!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1948,7 +1780,7 @@ class TestReportSetup extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1957,63 +1789,63 @@ class TestReportSetup extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is List<TestReportAction>) {
-            // Add all elements from passed list
-            final newList = [...action, ...child];
-            return copyWith(action: newList);
-          } else if (child is TestReportAction) {
+          if (child is List<TestReportActionBuilder>) {
+            // Replace or create new list
+            action = child;
+            return;
+          } else if (child is TestReportActionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...action, child];
-            return copyWith(action: newList);
+            action = [...(action ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2029,50 +1861,42 @@ class TestReportSetup extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'action':
-        return ['TestReportAction'];
+        return ['TestReportActionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportSetup]
+  /// Creates a new [TestReportSetupBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportSetup createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: <TestReportAction>[],
-          );
+          action = <TestReportActionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2081,27 +1905,26 @@ class TestReportSetup extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportSetup clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool action = false,
   }) {
-    return TestReportSetup(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      action: action,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (action) this.action = null;
   }
 
   @override
-  TestReportSetup clone() => throw UnimplementedError();
+  TestReportSetupBuilder clone() => throw UnimplementedError();
   @override
-  TestReportSetup copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<TestReportAction>? action,
+  TestReportSetupBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<TestReportActionBuilder>? action,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2109,42 +1932,35 @@ class TestReportSetup extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportSetup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      action: action
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.action',
-                ),
-              )
-              .toList() ??
-          this.action,
+    final newResult = TestReportSetupBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      action: action ?? this.action,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportSetup) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportSetupBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2155,19 +1971,19 @@ class TestReportSetup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<TestReportAction>(
+    if (!listEquals<TestReportActionBuilder>(
       action,
       o.action,
     )) {
@@ -2177,13 +1993,13 @@ class TestReportSetup extends BackboneElement {
   }
 }
 
-/// [TestReportAction]
+/// [TestReportActionBuilder]
 /// Action would contain either an operation or an assertion.
-class TestReportAction extends BackboneElement {
+class TestReportActionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportAction]
+  /// [TestReportActionBuilder]
 
-  const TestReportAction({
+  TestReportActionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2195,25 +2011,24 @@ class TestReportAction extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportAction.empty() => const TestReportAction();
+  /// For Builder classes, no fields are required
+  factory TestReportActionBuilder.empty() => TestReportActionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportAction.fromJson(
+  factory TestReportActionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.setup.action';
-    return TestReportAction(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportActionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2222,8 +2037,8 @@ class TestReportAction extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2231,37 +2046,37 @@ class TestReportAction extends BackboneElement {
             ),
           )
           .toList(),
-      operation: JsonParser.parseObject<TestReportOperation>(
+      operation: JsonParser.parseObject<TestReportOperationBuilder>(
         json,
         'operation',
-        TestReportOperation.fromJson,
+        TestReportOperationBuilder.fromJson,
         '$objectPath.operation',
       ),
-      assert_: JsonParser.parseObject<TestReportAssert>(
+      assert_: JsonParser.parseObject<TestReportAssertBuilder>(
         json,
         'assert',
-        TestReportAssert.fromJson,
+        TestReportAssertBuilder.fromJson,
         '$objectPath.assert',
       ),
     );
   }
 
-  /// Deserialize [TestReportAction]
+  /// Deserialize [TestReportActionBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReportAction.fromYaml(
+  factory TestReportActionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportAction.fromJson(
+      return TestReportActionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportAction.fromJson(
+      return TestReportActionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportAction '
+        'TestReportActionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2269,16 +2084,16 @@ class TestReportAction extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportAction]
+  /// [TestReportActionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAction.fromJsonString(
+  factory TestReportActionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportAction.fromJson(json);
+      return TestReportActionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2290,27 +2105,27 @@ class TestReportAction extends BackboneElement {
 
   /// [operation]
   /// The operation performed.
-  final TestReportOperation? operation;
+  TestReportOperationBuilder? operation;
 
   /// [assert_]
   /// The results of the assertion performed on the previous operations.
-  final TestReportAssert? assert_;
+  TestReportAssertBuilder? assert_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2319,31 +2134,16 @@ class TestReportAction extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'operation',
-      operation,
-    );
-    addField(
-      'assert',
-      assert_,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('operation', operation);
+    addField('assert', assert_);
     return json;
   }
 
@@ -2362,11 +2162,11 @@ class TestReportAction extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2398,7 +2198,7 @@ class TestReportAction extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2407,65 +2207,67 @@ class TestReportAction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'operation':
         {
-          if (child is TestReportOperation) {
-            return copyWith(operation: child);
+          if (child is TestReportOperationBuilder) {
+            operation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'assert':
         {
-          if (child is TestReportAssert) {
-            return copyWith(assert_: child);
+          if (child is TestReportAssertBuilder) {
+            assert_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2481,58 +2283,49 @@ class TestReportAction extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'operation':
-        return ['TestReportOperation'];
+        return ['TestReportOperationBuilder'];
       case 'assert':
-        return ['TestReportAssert'];
+        return ['TestReportAssertBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportAction]
+  /// Creates a new [TestReportActionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportAction createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'operation':
         {
-          return copyWith(
-            operation: TestReportOperation.empty(),
-          );
+          operation = TestReportOperationBuilder.empty();
+          return;
         }
       case 'assert':
         {
-          return copyWith(
-            assert_: TestReportAssert.empty(),
-          );
+          assert_ = TestReportAssertBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2541,31 +2334,29 @@ class TestReportAction extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportAction clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool operation = false,
     bool assert_ = false,
   }) {
-    return TestReportAction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      operation: operation ? null : this.operation,
-      assert_: assert_ ? null : this.assert_,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (operation) this.operation = null;
+    if (assert_) this.assert_ = null;
   }
 
   @override
-  TestReportAction clone() => throw UnimplementedError();
+  TestReportActionBuilder clone() => throw UnimplementedError();
   @override
-  TestReportAction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    TestReportOperation? operation,
-    TestReportAssert? assert_,
+  TestReportActionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    TestReportOperationBuilder? operation,
+    TestReportAssertBuilder? assert_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2573,42 +2364,36 @@ class TestReportAction extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportAction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      operation: operation?.copyWith(
-            objectPath: '$newObjectPath.operation',
-          ) ??
-          this.operation,
-      assert_: assert_?.copyWith(
-            objectPath: '$newObjectPath.assert',
-          ) ??
-          this.assert_,
+    final newResult = TestReportActionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      operation: operation ?? this.operation,
+      assert_: assert_ ?? this.assert_,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportAction) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportActionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2619,13 +2404,13 @@ class TestReportAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2647,17 +2432,17 @@ class TestReportAction extends BackboneElement {
   }
 }
 
-/// [TestReportOperation]
+/// [TestReportOperationBuilder]
 /// The operation performed.
-class TestReportOperation extends BackboneElement {
+class TestReportOperationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportOperation]
+  /// [TestReportOperationBuilder]
 
-  const TestReportOperation({
+  TestReportOperationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.result,
+    this.result,
     this.message,
     this.detail,
     super.disallowExtensions,
@@ -2666,27 +2451,24 @@ class TestReportOperation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportOperation.empty() => TestReportOperation(
-        result: TestReportActionResult.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportOperationBuilder.empty() => TestReportOperationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportOperation.fromJson(
+  factory TestReportOperationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.setup.action.operation';
-    return TestReportOperation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportOperationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2695,8 +2477,8 @@ class TestReportOperation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2704,43 +2486,43 @@ class TestReportOperation extends BackboneElement {
             ),
           )
           .toList(),
-      result: JsonParser.parsePrimitive<TestReportActionResult>(
+      result: JsonParser.parsePrimitive<TestReportActionResultBuilder>(
         json,
         'result',
-        TestReportActionResult.fromJson,
+        TestReportActionResultBuilder.fromJson,
         '$objectPath.result',
-      )!,
-      message: JsonParser.parsePrimitive<FhirMarkdown>(
+      ),
+      message: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'message',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.message',
       ),
-      detail: JsonParser.parsePrimitive<FhirUri>(
+      detail: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'detail',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.detail',
       ),
     );
   }
 
-  /// Deserialize [TestReportOperation]
+  /// Deserialize [TestReportOperationBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReportOperation.fromYaml(
+  factory TestReportOperationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportOperation.fromJson(
+      return TestReportOperationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportOperation.fromJson(
+      return TestReportOperationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportOperation '
+        'TestReportOperationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2748,16 +2530,16 @@ class TestReportOperation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportOperation]
+  /// [TestReportOperationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportOperation.fromJsonString(
+  factory TestReportOperationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportOperation.fromJson(json);
+      return TestReportOperationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2769,31 +2551,31 @@ class TestReportOperation extends BackboneElement {
 
   /// [result]
   /// The result of this operation.
-  final TestReportActionResult result;
+  TestReportActionResultBuilder? result;
 
   /// [message]
   /// An explanatory message associated with the result.
-  final FhirMarkdown? message;
+  FhirMarkdownBuilder? message;
 
   /// [detail]
   /// A link to further details on the result.
-  final FhirUri? detail;
+  FhirUriBuilder? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2802,35 +2584,17 @@ class TestReportOperation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'result',
-      result,
-    );
-    addField(
-      'message',
-      message,
-    );
-    addField(
-      'detail',
-      detail,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('result', result);
+    addField('message', message);
+    addField('detail', detail);
     return json;
   }
 
@@ -2850,11 +2614,11 @@ class TestReportOperation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2869,7 +2633,9 @@ class TestReportOperation extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'result':
-        fields.add(result);
+        if (result != null) {
+          fields.add(result!);
+        }
       case 'message':
         if (message != null) {
           fields.add(message!);
@@ -2888,7 +2654,7 @@ class TestReportOperation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2897,73 +2663,76 @@ class TestReportOperation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'result':
         {
-          if (child is TestReportActionResult) {
-            return copyWith(result: child);
+          if (child is TestReportActionResultBuilder) {
+            result = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'message':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(message: child);
+          if (child is FhirMarkdownBuilder) {
+            message = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is FhirUri) {
-            return copyWith(detail: child);
+          if (child is FhirUriBuilder) {
+            detail = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2979,66 +2748,56 @@ class TestReportOperation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'result':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'message':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'detail':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportOperation]
+  /// Creates a new [TestReportOperationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportOperation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'result':
         {
-          return copyWith(
-            result: TestReportActionResult.empty(),
-          );
+          result = TestReportActionResultBuilder.empty();
+          return;
         }
       case 'message':
         {
-          return copyWith(
-            message: FhirMarkdown.empty(),
-          );
+          message = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: FhirUri.empty(),
-          );
+          detail = FhirUriBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3047,33 +2806,32 @@ class TestReportOperation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportOperation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool result = false,
     bool message = false,
     bool detail = false,
   }) {
-    return TestReportOperation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      result: result,
-      message: message ? null : this.message,
-      detail: detail ? null : this.detail,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (result) this.result = null;
+    if (message) this.message = null;
+    if (detail) this.detail = null;
   }
 
   @override
-  TestReportOperation clone() => throw UnimplementedError();
+  TestReportOperationBuilder clone() => throw UnimplementedError();
   @override
-  TestReportOperation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    TestReportActionResult? result,
-    FhirMarkdown? message,
-    FhirUri? detail,
+  TestReportOperationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    TestReportActionResultBuilder? result,
+    FhirMarkdownBuilder? message,
+    FhirUriBuilder? detail,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3081,46 +2839,37 @@ class TestReportOperation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportOperation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      result: result?.copyWith(
-            objectPath: '$newObjectPath.result',
-          ) ??
-          this.result,
-      message: message?.copyWith(
-            objectPath: '$newObjectPath.message',
-          ) ??
-          this.message,
-      detail: detail?.copyWith(
-            objectPath: '$newObjectPath.detail',
-          ) ??
-          this.detail,
+    final newResult = TestReportOperationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      result: result ?? this.result,
+      message: message ?? this.message,
+      detail: detail ?? this.detail,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportOperation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportOperationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3131,13 +2880,13 @@ class TestReportOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3165,17 +2914,17 @@ class TestReportOperation extends BackboneElement {
   }
 }
 
-/// [TestReportAssert]
+/// [TestReportAssertBuilder]
 /// The results of the assertion performed on the previous operations.
-class TestReportAssert extends BackboneElement {
+class TestReportAssertBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportAssert]
+  /// [TestReportAssertBuilder]
 
-  const TestReportAssert({
+  TestReportAssertBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.result,
+    this.result,
     this.message,
     this.detail,
     super.disallowExtensions,
@@ -3184,27 +2933,24 @@ class TestReportAssert extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportAssert.empty() => TestReportAssert(
-        result: TestReportActionResult.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportAssertBuilder.empty() => TestReportAssertBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportAssert.fromJson(
+  factory TestReportAssertBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.setup.action.assert';
-    return TestReportAssert(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportAssertBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3213,8 +2959,8 @@ class TestReportAssert extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3222,43 +2968,43 @@ class TestReportAssert extends BackboneElement {
             ),
           )
           .toList(),
-      result: JsonParser.parsePrimitive<TestReportActionResult>(
+      result: JsonParser.parsePrimitive<TestReportActionResultBuilder>(
         json,
         'result',
-        TestReportActionResult.fromJson,
+        TestReportActionResultBuilder.fromJson,
         '$objectPath.result',
-      )!,
-      message: JsonParser.parsePrimitive<FhirMarkdown>(
+      ),
+      message: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'message',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.message',
       ),
-      detail: JsonParser.parsePrimitive<FhirString>(
+      detail: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'detail',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.detail',
       ),
     );
   }
 
-  /// Deserialize [TestReportAssert]
+  /// Deserialize [TestReportAssertBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReportAssert.fromYaml(
+  factory TestReportAssertBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportAssert.fromJson(
+      return TestReportAssertBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportAssert.fromJson(
+      return TestReportAssertBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportAssert '
+        'TestReportAssertBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3266,16 +3012,16 @@ class TestReportAssert extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportAssert]
+  /// [TestReportAssertBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAssert.fromJsonString(
+  factory TestReportAssertBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportAssert.fromJson(json);
+      return TestReportAssertBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3287,31 +3033,31 @@ class TestReportAssert extends BackboneElement {
 
   /// [result]
   /// The result of this assertion.
-  final TestReportActionResult result;
+  TestReportActionResultBuilder? result;
 
   /// [message]
   /// An explanatory message associated with the result.
-  final FhirMarkdown? message;
+  FhirMarkdownBuilder? message;
 
   /// [detail]
   /// A link to further details on the result.
-  final FhirString? detail;
+  FhirStringBuilder? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3320,35 +3066,17 @@ class TestReportAssert extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'result',
-      result,
-    );
-    addField(
-      'message',
-      message,
-    );
-    addField(
-      'detail',
-      detail,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('result', result);
+    addField('message', message);
+    addField('detail', detail);
     return json;
   }
 
@@ -3368,11 +3096,11 @@ class TestReportAssert extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3387,7 +3115,9 @@ class TestReportAssert extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'result':
-        fields.add(result);
+        if (result != null) {
+          fields.add(result!);
+        }
       case 'message':
         if (message != null) {
           fields.add(message!);
@@ -3406,7 +3136,7 @@ class TestReportAssert extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3415,73 +3145,76 @@ class TestReportAssert extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'result':
         {
-          if (child is TestReportActionResult) {
-            return copyWith(result: child);
+          if (child is TestReportActionResultBuilder) {
+            result = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'message':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(message: child);
+          if (child is FhirMarkdownBuilder) {
+            message = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
-          if (child is FhirString) {
-            return copyWith(detail: child);
+          if (child is FhirStringBuilder) {
+            detail = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3497,66 +3230,56 @@ class TestReportAssert extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'result':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'message':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'detail':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportAssert]
+  /// Creates a new [TestReportAssertBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportAssert createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'result':
         {
-          return copyWith(
-            result: TestReportActionResult.empty(),
-          );
+          result = TestReportActionResultBuilder.empty();
+          return;
         }
       case 'message':
         {
-          return copyWith(
-            message: FhirMarkdown.empty(),
-          );
+          message = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'detail':
         {
-          return copyWith(
-            detail: FhirString.empty(),
-          );
+          detail = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3565,33 +3288,32 @@ class TestReportAssert extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportAssert clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool result = false,
     bool message = false,
     bool detail = false,
   }) {
-    return TestReportAssert(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      result: result,
-      message: message ? null : this.message,
-      detail: detail ? null : this.detail,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (result) this.result = null;
+    if (message) this.message = null;
+    if (detail) this.detail = null;
   }
 
   @override
-  TestReportAssert clone() => throw UnimplementedError();
+  TestReportAssertBuilder clone() => throw UnimplementedError();
   @override
-  TestReportAssert copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    TestReportActionResult? result,
-    FhirMarkdown? message,
-    FhirString? detail,
+  TestReportAssertBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    TestReportActionResultBuilder? result,
+    FhirMarkdownBuilder? message,
+    FhirStringBuilder? detail,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3599,46 +3321,37 @@ class TestReportAssert extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportAssert(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      result: result?.copyWith(
-            objectPath: '$newObjectPath.result',
-          ) ??
-          this.result,
-      message: message?.copyWith(
-            objectPath: '$newObjectPath.message',
-          ) ??
-          this.message,
-      detail: detail?.copyWith(
-            objectPath: '$newObjectPath.detail',
-          ) ??
-          this.detail,
+    final newResult = TestReportAssertBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      result: result ?? this.result,
+      message: message ?? this.message,
+      detail: detail ?? this.detail,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportAssert) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportAssertBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3649,13 +3362,13 @@ class TestReportAssert extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3683,46 +3396,43 @@ class TestReportAssert extends BackboneElement {
   }
 }
 
-/// [TestReportTest]
+/// [TestReportTestBuilder]
 /// A test executed from the test script.
-class TestReportTest extends BackboneElement {
+class TestReportTestBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportTest]
+  /// [TestReportTestBuilder]
 
-  const TestReportTest({
+  TestReportTestBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.name,
     this.description,
-    required this.action,
+    this.action,
     super.disallowExtensions,
   }) : super(
           objectPath: 'TestReport.test',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportTest.empty() => const TestReportTest(
-        action: <TestReportAction>[],
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportTestBuilder.empty() => TestReportTestBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportTest.fromJson(
+  factory TestReportTestBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.test';
-    return TestReportTest(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportTestBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3731,8 +3441,8 @@ class TestReportTest extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3740,21 +3450,21 @@ class TestReportTest extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      action: (json['action'] as List<dynamic>)
-          .map<TestReportAction>(
-            (v) => TestReportAction.fromJson(
+      action: (json['action'] as List<dynamic>?)
+          ?.map<TestReportActionBuilder>(
+            (v) => TestReportActionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.action',
@@ -3765,22 +3475,22 @@ class TestReportTest extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportTest]
+  /// Deserialize [TestReportTestBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReportTest.fromYaml(
+  factory TestReportTestBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportTest.fromJson(
+      return TestReportTestBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportTest.fromJson(
+      return TestReportTestBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportTest '
+        'TestReportTestBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3788,16 +3498,16 @@ class TestReportTest extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportTest]
+  /// [TestReportTestBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportTest.fromJsonString(
+  factory TestReportTestBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportTest.fromJson(json);
+      return TestReportTestBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3810,32 +3520,32 @@ class TestReportTest extends BackboneElement {
   /// [name]
   /// The name of this test used for tracking/logging purposes by test
   /// engines.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [description]
   /// A short description of the test used by test engines for tracking and
   /// reporting purposes.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
-  final List<TestReportAction> action;
+  List<TestReportActionBuilder>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3844,35 +3554,17 @@ class TestReportTest extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'action',
-      action,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('description', description);
+    addField('action', action);
     return json;
   }
 
@@ -3892,11 +3584,11 @@ class TestReportTest extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3919,7 +3611,9 @@ class TestReportTest extends BackboneElement {
           fields.add(description!);
         }
       case 'action':
-        fields.addAll(action);
+        if (action != null) {
+          fields.addAll(action!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -3930,7 +3624,7 @@ class TestReportTest extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3939,79 +3633,81 @@ class TestReportTest extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is List<TestReportAction>) {
-            // Add all elements from passed list
-            final newList = [...action, ...child];
-            return copyWith(action: newList);
-          } else if (child is TestReportAction) {
+          if (child is List<TestReportActionBuilder>) {
+            // Replace or create new list
+            action = child;
+            return;
+          } else if (child is TestReportActionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...action, child];
-            return copyWith(action: newList);
+            action = [...(action ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4027,66 +3723,56 @@ class TestReportTest extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'action':
-        return ['TestReportAction'];
+        return ['TestReportActionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportTest]
+  /// Creates a new [TestReportTestBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportTest createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: <TestReportAction>[],
-          );
+          action = <TestReportActionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4095,33 +3781,32 @@ class TestReportTest extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportTest clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool name = false,
     bool description = false,
+    bool action = false,
   }) {
-    return TestReportTest(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name ? null : this.name,
-      description: description ? null : this.description,
-      action: action,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (description) this.description = null;
+    if (action) this.action = null;
   }
 
   @override
-  TestReportTest clone() => throw UnimplementedError();
+  TestReportTestBuilder clone() => throw UnimplementedError();
   @override
-  TestReportTest copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    FhirString? description,
-    List<TestReportAction>? action,
+  TestReportTestBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? name,
+    FhirStringBuilder? description,
+    List<TestReportActionBuilder>? action,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4129,50 +3814,37 @@ class TestReportTest extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportTest(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      action: action
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.action',
-                ),
-              )
-              .toList() ??
-          this.action,
+    final newResult = TestReportTestBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      action: action ?? this.action,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportTest) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportTestBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4183,13 +3855,13 @@ class TestReportTest extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4207,7 +3879,7 @@ class TestReportTest extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<TestReportAction>(
+    if (!listEquals<TestReportActionBuilder>(
       action,
       o.action,
     )) {
@@ -4217,13 +3889,13 @@ class TestReportTest extends BackboneElement {
   }
 }
 
-/// [TestReportAction1]
+/// [TestReportAction1Builder]
 /// Action would contain either an operation or an assertion.
-class TestReportAction1 extends BackboneElement {
+class TestReportAction1Builder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportAction1]
+  /// [TestReportAction1Builder]
 
-  const TestReportAction1({
+  TestReportAction1Builder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4235,25 +3907,24 @@ class TestReportAction1 extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportAction1.empty() => const TestReportAction1();
+  /// For Builder classes, no fields are required
+  factory TestReportAction1Builder.empty() => TestReportAction1Builder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportAction1.fromJson(
+  factory TestReportAction1Builder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.test.action';
-    return TestReportAction1(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportAction1Builder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4262,8 +3933,8 @@ class TestReportAction1 extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4271,37 +3942,37 @@ class TestReportAction1 extends BackboneElement {
             ),
           )
           .toList(),
-      operation: JsonParser.parseObject<TestReportOperation>(
+      operation: JsonParser.parseObject<TestReportOperationBuilder>(
         json,
         'operation',
-        TestReportOperation.fromJson,
+        TestReportOperationBuilder.fromJson,
         '$objectPath.operation',
       ),
-      assert_: JsonParser.parseObject<TestReportAssert>(
+      assert_: JsonParser.parseObject<TestReportAssertBuilder>(
         json,
         'assert',
-        TestReportAssert.fromJson,
+        TestReportAssertBuilder.fromJson,
         '$objectPath.assert',
       ),
     );
   }
 
-  /// Deserialize [TestReportAction1]
+  /// Deserialize [TestReportAction1Builder]
   /// from a [String] or [YamlMap] object
-  factory TestReportAction1.fromYaml(
+  factory TestReportAction1Builder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportAction1.fromJson(
+      return TestReportAction1Builder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportAction1.fromJson(
+      return TestReportAction1Builder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportAction1 '
+        'TestReportAction1Builder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4309,16 +3980,16 @@ class TestReportAction1 extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportAction1]
+  /// [TestReportAction1Builder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAction1.fromJsonString(
+  factory TestReportAction1Builder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportAction1.fromJson(json);
+      return TestReportAction1Builder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4330,27 +4001,27 @@ class TestReportAction1 extends BackboneElement {
 
   /// [operation]
   /// An operation would involve a REST request to a server.
-  final TestReportOperation? operation;
+  TestReportOperationBuilder? operation;
 
   /// [assert_]
   /// The results of the assertion performed on the previous operations.
-  final TestReportAssert? assert_;
+  TestReportAssertBuilder? assert_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4359,31 +4030,16 @@ class TestReportAction1 extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'operation',
-      operation,
-    );
-    addField(
-      'assert',
-      assert_,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('operation', operation);
+    addField('assert', assert_);
     return json;
   }
 
@@ -4402,11 +4058,11 @@ class TestReportAction1 extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4438,7 +4094,7 @@ class TestReportAction1 extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4447,65 +4103,67 @@ class TestReportAction1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'operation':
         {
-          if (child is TestReportOperation) {
-            return copyWith(operation: child);
+          if (child is TestReportOperationBuilder) {
+            operation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'assert':
         {
-          if (child is TestReportAssert) {
-            return copyWith(assert_: child);
+          if (child is TestReportAssertBuilder) {
+            assert_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4521,58 +4179,49 @@ class TestReportAction1 extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'operation':
-        return ['TestReportOperation'];
+        return ['TestReportOperationBuilder'];
       case 'assert':
-        return ['TestReportAssert'];
+        return ['TestReportAssertBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportAction1]
+  /// Creates a new [TestReportAction1Builder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportAction1 createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'operation':
         {
-          return copyWith(
-            operation: TestReportOperation.empty(),
-          );
+          operation = TestReportOperationBuilder.empty();
+          return;
         }
       case 'assert':
         {
-          return copyWith(
-            assert_: TestReportAssert.empty(),
-          );
+          assert_ = TestReportAssertBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4581,31 +4230,29 @@ class TestReportAction1 extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportAction1 clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool operation = false,
     bool assert_ = false,
   }) {
-    return TestReportAction1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      operation: operation ? null : this.operation,
-      assert_: assert_ ? null : this.assert_,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (operation) this.operation = null;
+    if (assert_) this.assert_ = null;
   }
 
   @override
-  TestReportAction1 clone() => throw UnimplementedError();
+  TestReportAction1Builder clone() => throw UnimplementedError();
   @override
-  TestReportAction1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    TestReportOperation? operation,
-    TestReportAssert? assert_,
+  TestReportAction1Builder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    TestReportOperationBuilder? operation,
+    TestReportAssertBuilder? assert_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4613,42 +4260,36 @@ class TestReportAction1 extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportAction1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      operation: operation?.copyWith(
-            objectPath: '$newObjectPath.operation',
-          ) ??
-          this.operation,
-      assert_: assert_?.copyWith(
-            objectPath: '$newObjectPath.assert',
-          ) ??
-          this.assert_,
+    final newResult = TestReportAction1Builder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      operation: operation ?? this.operation,
+      assert_: assert_ ?? this.assert_,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportAction1) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportAction1Builder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4659,13 +4300,13 @@ class TestReportAction1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4687,45 +4328,42 @@ class TestReportAction1 extends BackboneElement {
   }
 }
 
-/// [TestReportTeardown]
+/// [TestReportTeardownBuilder]
 /// The results of the series of operations required to clean up after all
 /// the tests were executed (successfully or otherwise).
-class TestReportTeardown extends BackboneElement {
+class TestReportTeardownBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportTeardown]
+  /// [TestReportTeardownBuilder]
 
-  const TestReportTeardown({
+  TestReportTeardownBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.action,
+    this.action,
     super.disallowExtensions,
   }) : super(
           objectPath: 'TestReport.teardown',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportTeardown.empty() => const TestReportTeardown(
-        action: <TestReportAction>[],
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportTeardownBuilder.empty() => TestReportTeardownBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportTeardown.fromJson(
+  factory TestReportTeardownBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.teardown';
-    return TestReportTeardown(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportTeardownBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4734,8 +4372,8 @@ class TestReportTeardown extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4743,9 +4381,9 @@ class TestReportTeardown extends BackboneElement {
             ),
           )
           .toList(),
-      action: (json['action'] as List<dynamic>)
-          .map<TestReportAction>(
-            (v) => TestReportAction.fromJson(
+      action: (json['action'] as List<dynamic>?)
+          ?.map<TestReportActionBuilder>(
+            (v) => TestReportActionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.action',
@@ -4756,22 +4394,22 @@ class TestReportTeardown extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportTeardown]
+  /// Deserialize [TestReportTeardownBuilder]
   /// from a [String] or [YamlMap] object
-  factory TestReportTeardown.fromYaml(
+  factory TestReportTeardownBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportTeardown.fromJson(
+      return TestReportTeardownBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportTeardown.fromJson(
+      return TestReportTeardownBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportTeardown '
+        'TestReportTeardownBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4779,16 +4417,16 @@ class TestReportTeardown extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportTeardown]
+  /// [TestReportTeardownBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportTeardown.fromJsonString(
+  factory TestReportTeardownBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportTeardown.fromJson(json);
+      return TestReportTeardownBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4800,23 +4438,23 @@ class TestReportTeardown extends BackboneElement {
 
   /// [action]
   /// The teardown action will only contain an operation.
-  final List<TestReportAction> action;
+  List<TestReportActionBuilder>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4825,27 +4463,15 @@ class TestReportTeardown extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'action',
-      action,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('action', action);
     return json;
   }
 
@@ -4863,11 +4489,11 @@ class TestReportTeardown extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4882,7 +4508,9 @@ class TestReportTeardown extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'action':
-        fields.addAll(action);
+        if (action != null) {
+          fields.addAll(action!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -4893,7 +4521,7 @@ class TestReportTeardown extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4902,63 +4530,63 @@ class TestReportTeardown extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is List<TestReportAction>) {
-            // Add all elements from passed list
-            final newList = [...action, ...child];
-            return copyWith(action: newList);
-          } else if (child is TestReportAction) {
+          if (child is List<TestReportActionBuilder>) {
+            // Replace or create new list
+            action = child;
+            return;
+          } else if (child is TestReportActionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...action, child];
-            return copyWith(action: newList);
+            action = [...(action ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4974,50 +4602,42 @@ class TestReportTeardown extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'action':
-        return ['TestReportAction'];
+        return ['TestReportActionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportTeardown]
+  /// Creates a new [TestReportTeardownBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportTeardown createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: <TestReportAction>[],
-          );
+          action = <TestReportActionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5026,27 +4646,26 @@ class TestReportTeardown extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportTeardown clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool action = false,
   }) {
-    return TestReportTeardown(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      action: action,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (action) this.action = null;
   }
 
   @override
-  TestReportTeardown clone() => throw UnimplementedError();
+  TestReportTeardownBuilder clone() => throw UnimplementedError();
   @override
-  TestReportTeardown copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<TestReportAction>? action,
+  TestReportTeardownBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<TestReportActionBuilder>? action,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5054,42 +4673,35 @@ class TestReportTeardown extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportTeardown(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      action: action
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.action',
-                ),
-              )
-              .toList() ??
-          this.action,
+    final newResult = TestReportTeardownBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      action: action ?? this.action,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportTeardown) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportTeardownBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5100,19 +4712,19 @@ class TestReportTeardown extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<TestReportAction>(
+    if (!listEquals<TestReportActionBuilder>(
       action,
       o.action,
     )) {
@@ -5122,44 +4734,41 @@ class TestReportTeardown extends BackboneElement {
   }
 }
 
-/// [TestReportAction2]
+/// [TestReportAction2Builder]
 /// The teardown action will only contain an operation.
-class TestReportAction2 extends BackboneElement {
+class TestReportAction2Builder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [TestReportAction2]
+  /// [TestReportAction2Builder]
 
-  const TestReportAction2({
+  TestReportAction2Builder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.operation,
+    this.operation,
     super.disallowExtensions,
   }) : super(
           objectPath: 'TestReport.teardown.action',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TestReportAction2.empty() => TestReportAction2(
-        operation: TestReportOperation.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory TestReportAction2Builder.empty() => TestReportAction2Builder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestReportAction2.fromJson(
+  factory TestReportAction2Builder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'TestReport.teardown.action';
-    return TestReportAction2(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TestReportAction2Builder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5168,8 +4777,8 @@ class TestReportAction2 extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5177,31 +4786,31 @@ class TestReportAction2 extends BackboneElement {
             ),
           )
           .toList(),
-      operation: JsonParser.parseObject<TestReportOperation>(
+      operation: JsonParser.parseObject<TestReportOperationBuilder>(
         json,
         'operation',
-        TestReportOperation.fromJson,
+        TestReportOperationBuilder.fromJson,
         '$objectPath.operation',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [TestReportAction2]
+  /// Deserialize [TestReportAction2Builder]
   /// from a [String] or [YamlMap] object
-  factory TestReportAction2.fromYaml(
+  factory TestReportAction2Builder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TestReportAction2.fromJson(
+      return TestReportAction2Builder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TestReportAction2.fromJson(
+      return TestReportAction2Builder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TestReportAction2 '
+        'TestReportAction2Builder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5209,16 +4818,16 @@ class TestReportAction2 extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [TestReportAction2]
+  /// [TestReportAction2Builder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAction2.fromJsonString(
+  factory TestReportAction2Builder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TestReportAction2.fromJson(json);
+      return TestReportAction2Builder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5230,23 +4839,23 @@ class TestReportAction2 extends BackboneElement {
 
   /// [operation]
   /// An operation would involve a REST request to a server.
-  final TestReportOperation operation;
+  TestReportOperationBuilder? operation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -5255,27 +4864,15 @@ class TestReportAction2 extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'operation',
-      operation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('operation', operation);
     return json;
   }
 
@@ -5293,11 +4890,11 @@ class TestReportAction2 extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -5312,7 +4909,9 @@ class TestReportAction2 extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'operation':
-        fields.add(operation);
+        if (operation != null) {
+          fields.add(operation!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -5323,7 +4922,7 @@ class TestReportAction2 extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -5332,57 +4931,58 @@ class TestReportAction2 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'operation':
         {
-          if (child is TestReportOperation) {
-            return copyWith(operation: child);
+          if (child is TestReportOperationBuilder) {
+            operation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5398,50 +4998,42 @@ class TestReportAction2 extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'operation':
-        return ['TestReportOperation'];
+        return ['TestReportOperationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TestReportAction2]
+  /// Creates a new [TestReportAction2Builder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TestReportAction2 createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'operation':
         {
-          return copyWith(
-            operation: TestReportOperation.empty(),
-          );
+          operation = TestReportOperationBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5450,27 +5042,26 @@ class TestReportAction2 extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  TestReportAction2 clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool operation = false,
   }) {
-    return TestReportAction2(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      operation: operation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (operation) this.operation = null;
   }
 
   @override
-  TestReportAction2 clone() => throw UnimplementedError();
+  TestReportAction2Builder clone() => throw UnimplementedError();
   @override
-  TestReportAction2 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    TestReportOperation? operation,
+  TestReportAction2Builder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    TestReportOperationBuilder? operation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5478,38 +5069,35 @@ class TestReportAction2 extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return TestReportAction2(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      operation: operation?.copyWith(
-            objectPath: '$newObjectPath.operation',
-          ) ??
-          this.operation,
+    final newResult = TestReportAction2Builder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      operation: operation ?? this.operation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TestReportAction2) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TestReportAction2Builder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5520,13 +5108,13 @@ class TestReportAction2 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

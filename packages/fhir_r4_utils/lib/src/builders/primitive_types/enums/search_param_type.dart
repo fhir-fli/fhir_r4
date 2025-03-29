@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Data types allowed to be used for search parameters.
-class SearchParamType extends FhirCodeEnum {
+class SearchParamTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  SearchParamType._({
+  SearchParamTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class SearchParamType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory SearchParamType(
+  factory SearchParamTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return SearchParamType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return SearchParamTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,105 +43,107 @@ class SearchParamType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [SearchParamType] with element only
-  factory SearchParamType.empty() => SearchParamType._(validatedValue: '');
+  /// Create empty [SearchParamTypeBuilder] with element only
+  factory SearchParamTypeBuilder.empty() =>
+      SearchParamTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SearchParamType] from JSON.
-  factory SearchParamType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SearchParamTypeBuilder] from JSON.
+  factory SearchParamTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchParamType.elementOnly.withElement(element);
+      return SearchParamTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SearchParamType cannot be constructed from JSON.',
+        'SearchParamTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return SearchParamType._(
+    return SearchParamTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// number
-  static final SearchParamType number = SearchParamType._(
+  static SearchParamTypeBuilder number = SearchParamTypeBuilder._(
     validatedValue: 'number',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Number'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Number'.toFhirStringBuilder,
   );
 
   /// date
-  static final SearchParamType date = SearchParamType._(
+  static SearchParamTypeBuilder date = SearchParamTypeBuilder._(
     validatedValue: 'date',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Date/DateTime'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Date/DateTime'.toFhirStringBuilder,
   );
 
   /// string
-  static final SearchParamType string = SearchParamType._(
+  static SearchParamTypeBuilder string = SearchParamTypeBuilder._(
     validatedValue: 'string',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'String'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'String'.toFhirStringBuilder,
   );
 
   /// token
-  static final SearchParamType token = SearchParamType._(
+  static SearchParamTypeBuilder token = SearchParamTypeBuilder._(
     validatedValue: 'token',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Token'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Token'.toFhirStringBuilder,
   );
 
   /// reference
-  static final SearchParamType reference = SearchParamType._(
+  static SearchParamTypeBuilder reference = SearchParamTypeBuilder._(
     validatedValue: 'reference',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reference'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Reference'.toFhirStringBuilder,
   );
 
   /// composite
-  static final SearchParamType composite = SearchParamType._(
+  static SearchParamTypeBuilder composite = SearchParamTypeBuilder._(
     validatedValue: 'composite',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Composite'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Composite'.toFhirStringBuilder,
   );
 
   /// quantity
-  static final SearchParamType quantity = SearchParamType._(
+  static SearchParamTypeBuilder quantity = SearchParamTypeBuilder._(
     validatedValue: 'quantity',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Quantity'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Quantity'.toFhirStringBuilder,
   );
 
   /// uri
-  static final SearchParamType uri = SearchParamType._(
+  static SearchParamTypeBuilder uri = SearchParamTypeBuilder._(
     validatedValue: 'uri',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'URI'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'URI'.toFhirStringBuilder,
   );
 
   /// special
-  static final SearchParamType special = SearchParamType._(
+  static SearchParamTypeBuilder special = SearchParamTypeBuilder._(
     validatedValue: 'special',
-    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Special'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/search-param-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Special'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final SearchParamType elementOnly =
-      SearchParamType._(validatedValue: '');
+  static SearchParamTypeBuilder elementOnly =
+      SearchParamTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<SearchParamType> values = [
+  static List<SearchParamTypeBuilder> values = [
     number,
     date,
     string,
@@ -155,14 +157,14 @@ class SearchParamType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  SearchParamType clone() => SearchParamType._(
+  SearchParamTypeBuilder clone() => SearchParamTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  SearchParamType withElement(Element? newElement) {
-    return SearchParamType._(validatedValue: value, element: newElement);
+  SearchParamTypeBuilder withElement(ElementBuilder? newElement) {
+    return SearchParamTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -178,11 +180,11 @@ class SearchParamType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  SearchParamType copyWith({
+  SearchParamTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -193,7 +195,7 @@ class SearchParamType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return SearchParamType._(
+    return SearchParamTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -203,7 +205,7 @@ class SearchParamType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

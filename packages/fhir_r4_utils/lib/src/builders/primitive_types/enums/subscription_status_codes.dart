@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The status of a subscription.
-class SubscriptionStatusCodes extends FhirCodeEnum {
+class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  SubscriptionStatusCodes._({
+  SubscriptionStatusCodesBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory SubscriptionStatusCodes(
+  factory SubscriptionStatusCodesBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return SubscriptionStatusCodes._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return SubscriptionStatusCodesBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,70 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [SubscriptionStatusCodes] with element only
-  factory SubscriptionStatusCodes.empty() =>
-      SubscriptionStatusCodes._(validatedValue: '');
+  /// Create empty [SubscriptionStatusCodesBuilder] with element only
+  factory SubscriptionStatusCodesBuilder.empty() =>
+      SubscriptionStatusCodesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SubscriptionStatusCodes] from JSON.
-  factory SubscriptionStatusCodes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionStatusCodesBuilder] from JSON.
+  factory SubscriptionStatusCodesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionStatusCodes.elementOnly.withElement(element);
+      return SubscriptionStatusCodesBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SubscriptionStatusCodes cannot be constructed from JSON.',
+        'SubscriptionStatusCodesBuilder cannot be constructed from JSON.',
       );
     }
-    return SubscriptionStatusCodes._(
+    return SubscriptionStatusCodesBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// requested
-  static final SubscriptionStatusCodes requested = SubscriptionStatusCodes._(
+  static SubscriptionStatusCodesBuilder requested =
+      SubscriptionStatusCodesBuilder._(
     validatedValue: 'requested',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Requested'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Requested'.toFhirStringBuilder,
   );
 
   /// active
-  static final SubscriptionStatusCodes active = SubscriptionStatusCodes._(
+  static SubscriptionStatusCodesBuilder active =
+      SubscriptionStatusCodesBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// error
-  static final SubscriptionStatusCodes error = SubscriptionStatusCodes._(
+  static SubscriptionStatusCodesBuilder error =
+      SubscriptionStatusCodesBuilder._(
     validatedValue: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Error'.toFhirStringBuilder,
   );
 
   /// off
-  static final SubscriptionStatusCodes off = SubscriptionStatusCodes._(
+  static SubscriptionStatusCodesBuilder off = SubscriptionStatusCodesBuilder._(
     validatedValue: 'off',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Off'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Off'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final SubscriptionStatusCodes elementOnly =
-      SubscriptionStatusCodes._(validatedValue: '');
+  static SubscriptionStatusCodesBuilder elementOnly =
+      SubscriptionStatusCodesBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<SubscriptionStatusCodes> values = [
+  static List<SubscriptionStatusCodesBuilder> values = [
     requested,
     active,
     error,
@@ -111,15 +115,15 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  SubscriptionStatusCodes clone() => SubscriptionStatusCodes._(
+  SubscriptionStatusCodesBuilder clone() => SubscriptionStatusCodesBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  SubscriptionStatusCodes withElement(Element? newElement) {
-    return SubscriptionStatusCodes._(
-        validatedValue: value, element: newElement,);
+  SubscriptionStatusCodesBuilder withElement(ElementBuilder? newElement) {
+    return SubscriptionStatusCodesBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,11 +139,11 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  SubscriptionStatusCodes copyWith({
+  SubscriptionStatusCodesBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -150,7 +154,7 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return SubscriptionStatusCodes._(
+    return SubscriptionStatusCodesBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -160,7 +164,7 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

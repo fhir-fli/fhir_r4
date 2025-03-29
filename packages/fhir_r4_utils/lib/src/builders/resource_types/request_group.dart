@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [RequestGroup]
+/// [RequestGroupBuilder]
 /// A group of related requests that can be used to capture intended
 /// activities that have inter-dependencies such as "give this medication
 /// after that one".
-class RequestGroup extends DomainResource {
+class RequestGroupBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [RequestGroup]
+  /// [RequestGroupBuilder]
 
-  const RequestGroup({
+  RequestGroupBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -25,8 +27,8 @@ class RequestGroup extends DomainResource {
     this.basedOn,
     this.replaces,
     this.groupIdentifier,
-    required this.status,
-    required this.intent,
+    this.status,
+    this.intent,
     this.priority,
     this.code,
     this.subject,
@@ -43,52 +45,48 @@ class RequestGroup extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RequestGroup.empty() => RequestGroup(
-        status: RequestStatus.values.first,
-        intent: RequestIntent.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory RequestGroupBuilder.empty() => RequestGroupBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroup.fromJson(
+  factory RequestGroupBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RequestGroup';
-    return RequestGroup(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RequestGroupBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -97,8 +95,8 @@ class RequestGroup extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -107,8 +105,8 @@ class RequestGroup extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -117,8 +115,8 @@ class RequestGroup extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -126,21 +124,22 @@ class RequestGroup extends DomainResource {
             ),
           )
           .toList(),
-      instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
+      instantiatesCanonical:
+          JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'instantiatesCanonical',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.instantiatesCanonical',
       ),
-      instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
+      instantiatesUri: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'instantiatesUri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -149,8 +148,8 @@ class RequestGroup extends DomainResource {
           )
           .toList(),
       replaces: (json['replaces'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.replaces',
@@ -158,63 +157,63 @@ class RequestGroup extends DomainResource {
             ),
           )
           .toList(),
-      groupIdentifier: JsonParser.parseObject<Identifier>(
+      groupIdentifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'groupIdentifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.groupIdentifier',
       ),
-      status: JsonParser.parsePrimitive<RequestStatus>(
+      status: JsonParser.parsePrimitive<RequestStatusBuilder>(
         json,
         'status',
-        RequestStatus.fromJson,
+        RequestStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      intent: JsonParser.parsePrimitive<RequestIntent>(
+      ),
+      intent: JsonParser.parsePrimitive<RequestIntentBuilder>(
         json,
         'intent',
-        RequestIntent.fromJson,
+        RequestIntentBuilder.fromJson,
         '$objectPath.intent',
-      )!,
-      priority: JsonParser.parsePrimitive<RequestPriority>(
+      ),
+      priority: JsonParser.parsePrimitive<RequestPriorityBuilder>(
         json,
         'priority',
-        RequestPriority.fromJson,
+        RequestPriorityBuilder.fromJson,
         '$objectPath.priority',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      encounter: JsonParser.parseObject<Reference>(
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
+      authoredOn: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'authoredOn',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.authoredOn',
       ),
-      author: JsonParser.parseObject<Reference>(
+      author: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'author',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.author',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -223,8 +222,8 @@ class RequestGroup extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -233,8 +232,8 @@ class RequestGroup extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -243,8 +242,8 @@ class RequestGroup extends DomainResource {
           )
           .toList(),
       action: (json['action'] as List<dynamic>?)
-          ?.map<RequestGroupAction>(
-            (v) => RequestGroupAction.fromJson(
+          ?.map<RequestGroupActionBuilder>(
+            (v) => RequestGroupActionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.action',
@@ -255,22 +254,22 @@ class RequestGroup extends DomainResource {
     );
   }
 
-  /// Deserialize [RequestGroup]
+  /// Deserialize [RequestGroupBuilder]
   /// from a [String] or [YamlMap] object
-  factory RequestGroup.fromYaml(
+  factory RequestGroupBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RequestGroup.fromJson(
+      return RequestGroupBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RequestGroup.fromJson(
+      return RequestGroupBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RequestGroup '
+        'RequestGroupBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -278,16 +277,16 @@ class RequestGroup extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [RequestGroup]
+  /// [RequestGroupBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroup.fromJsonString(
+  factory RequestGroupBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RequestGroup.fromJson(json);
+      return RequestGroupBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -300,104 +299,104 @@ class RequestGroup extends DomainResource {
   /// [identifier]
   /// Allows a service to provide a unique, business identifier for the
   /// request.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [instantiatesCanonical]
   /// A canonical URL referencing a FHIR-defined protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this request.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonicalBuilder>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// A URL referencing an externally defined protocol, guideline, orderset
   /// or other definition that is adhered to in whole or in part by this
   /// request.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUriBuilder>? instantiatesUri;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// request.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [replaces]
   /// Completed or terminated request(s) whose function is taken by this new
   /// request.
-  final List<Reference>? replaces;
+  List<ReferenceBuilder>? replaces;
 
   /// [groupIdentifier]
   /// A shared identifier common to all requests that were authorized more or
   /// less simultaneously by a single author, representing the identifier of
   /// the requisition, prescription or similar form.
-  final Identifier? groupIdentifier;
+  IdentifierBuilder? groupIdentifier;
 
   /// [status]
   /// The current state of the request. For request groups, the status
   /// reflects the status of all the requests in the group.
-  final RequestStatus status;
+  RequestStatusBuilder? status;
 
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// request and where the request fits into the workflow chain.
-  final RequestIntent intent;
+  RequestIntentBuilder? intent;
 
   /// [priority]
   /// Indicates how quickly the request should be addressed with respect to
   /// other requests.
-  final RequestPriority? priority;
+  RequestPriorityBuilder? priority;
 
   /// [code]
   /// A code that identifies what the overall request group is.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [subject]
   /// The subject for which the request group was created.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// Describes the context of the request group, if any.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [authoredOn]
   /// Indicates when the request group was created.
-  final FhirDateTime? authoredOn;
+  FhirDateTimeBuilder? authoredOn;
 
   /// [author]
   /// Provides a reference to the author of the request group.
-  final Reference? author;
+  ReferenceBuilder? author;
 
   /// [reasonCode]
   /// Describes the reason for the request group in coded or textual form.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource whose existence justifies this request
   /// group.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [note]
   /// Provides a mechanism to communicate additional information about the
   /// response.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [action]
   /// The actions, if any, produced by the evaluation of the artifact.
-  final List<RequestGroupAction>? action;
+  List<RequestGroupActionBuilder>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -406,116 +405,38 @@ class RequestGroup extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'instantiatesCanonical',
-      instantiatesCanonical,
-    );
-    addField(
-      'instantiatesUri',
-      instantiatesUri,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'replaces',
-      replaces,
-    );
-    addField(
-      'groupIdentifier',
-      groupIdentifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'intent',
-      intent,
-    );
-    addField(
-      'priority',
-      priority,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'authoredOn',
-      authoredOn,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'action',
-      action,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('instantiatesCanonical', instantiatesCanonical);
+    addField('instantiatesUri', instantiatesUri);
+    addField('basedOn', basedOn);
+    addField('replaces', replaces);
+    addField('groupIdentifier', groupIdentifier);
+    addField('status', status);
+    addField('intent', intent);
+    addField('priority', priority);
+    addField('code', code);
+    addField('subject', subject);
+    addField('encounter', encounter);
+    addField('authoredOn', authoredOn);
+    addField('author', author);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('note', note);
+    addField('action', action);
     return json;
   }
 
@@ -555,11 +476,11 @@ class RequestGroup extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -618,9 +539,13 @@ class RequestGroup extends DomainResource {
           fields.add(groupIdentifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'intent':
-        fields.add(intent);
+        if (intent != null) {
+          fields.add(intent!);
+        }
       case 'priority':
         if (priority != null) {
           fields.add(priority!);
@@ -671,7 +596,7 @@ class RequestGroup extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -680,293 +605,306 @@ class RequestGroup extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            instantiatesCanonical = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
-            return copyWith(instantiatesCanonical: newList);
+            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            instantiatesUri = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
-            return copyWith(instantiatesUri: newList);
+            instantiatesUri = [...(instantiatesUri ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'replaces':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?replaces, ...child];
-            return copyWith(replaces: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            replaces = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?replaces, child];
-            return copyWith(replaces: newList);
+            replaces = [...(replaces ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'groupIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(groupIdentifier: child);
+          if (child is IdentifierBuilder) {
+            groupIdentifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is RequestStatus) {
-            return copyWith(status: child);
+          if (child is RequestStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'intent':
         {
-          if (child is RequestIntent) {
-            return copyWith(intent: child);
+          if (child is RequestIntentBuilder) {
+            intent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'priority':
         {
-          if (child is RequestPriority) {
-            return copyWith(priority: child);
+          if (child is RequestPriorityBuilder) {
+            priority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authoredOn':
         {
-          if (child is FhirDateTime) {
-            return copyWith(authoredOn: child);
+          if (child is FhirDateTimeBuilder) {
+            authoredOn = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is Reference) {
-            return copyWith(author: child);
+          if (child is ReferenceBuilder) {
+            author = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is List<RequestGroupAction>) {
-            // Add all elements from passed list
-            final newList = [...?action, ...child];
-            return copyWith(action: newList);
-          } else if (child is RequestGroupAction) {
+          if (child is List<RequestGroupActionBuilder>) {
+            // Replace or create new list
+            action = child;
+            return;
+          } else if (child is RequestGroupActionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?action, child];
-            return copyWith(action: newList);
+            action = [...(action ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -982,226 +920,196 @@ class RequestGroup extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'instantiatesCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'instantiatesUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'replaces':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'groupIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'intent':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'priority':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'authoredOn':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'action':
-        return ['RequestGroupAction'];
+        return ['RequestGroupActionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RequestGroup]
+  /// Creates a new [RequestGroupBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RequestGroup createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
+          instantiatesCanonical = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'instantiatesUri':
         {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
+          instantiatesUri = <FhirUriBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'replaces':
         {
-          return copyWith(
-            replaces: <Reference>[],
-          );
+          replaces = <ReferenceBuilder>[];
+          return;
         }
       case 'groupIdentifier':
         {
-          return copyWith(
-            groupIdentifier: Identifier.empty(),
-          );
+          groupIdentifier = IdentifierBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: RequestStatus.empty(),
-          );
+          status = RequestStatusBuilder.empty();
+          return;
         }
       case 'intent':
         {
-          return copyWith(
-            intent: RequestIntent.empty(),
-          );
+          intent = RequestIntentBuilder.empty();
+          return;
         }
       case 'priority':
         {
-          return copyWith(
-            priority: RequestPriority.empty(),
-          );
+          priority = RequestPriorityBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'authoredOn':
         {
-          return copyWith(
-            authoredOn: FhirDateTime.empty(),
-          );
+          authoredOn = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: Reference.empty(),
-          );
+          author = ReferenceBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: <RequestGroupAction>[],
-          );
+          action = <RequestGroupActionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1210,7 +1118,7 @@ class RequestGroup extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  RequestGroup clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1225,6 +1133,8 @@ class RequestGroup extends DomainResource {
     bool basedOn = false,
     bool replaces = false,
     bool groupIdentifier = false,
+    bool status = false,
+    bool intent = false,
     bool priority = false,
     bool code = false,
     bool subject = false,
@@ -1236,226 +1146,122 @@ class RequestGroup extends DomainResource {
     bool note = false,
     bool action = false,
   }) {
-    return RequestGroup(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      basedOn: basedOn ? null : this.basedOn,
-      replaces: replaces ? null : this.replaces,
-      groupIdentifier: groupIdentifier ? null : this.groupIdentifier,
-      status: status,
-      intent: intent,
-      priority: priority ? null : this.priority,
-      code: code ? null : this.code,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      authoredOn: authoredOn ? null : this.authoredOn,
-      author: author ? null : this.author,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      note: note ? null : this.note,
-      action: action ? null : this.action,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (instantiatesCanonical) this.instantiatesCanonical = null;
+    if (instantiatesUri) this.instantiatesUri = null;
+    if (basedOn) this.basedOn = null;
+    if (replaces) this.replaces = null;
+    if (groupIdentifier) this.groupIdentifier = null;
+    if (status) this.status = null;
+    if (intent) this.intent = null;
+    if (priority) this.priority = null;
+    if (code) this.code = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (authoredOn) this.authoredOn = null;
+    if (author) this.author = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (note) this.note = null;
+    if (action) this.action = null;
   }
 
   @override
-  RequestGroup clone() => throw UnimplementedError();
+  RequestGroupBuilder clone() => throw UnimplementedError();
   @override
-  RequestGroup copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    List<Reference>? basedOn,
-    List<Reference>? replaces,
-    Identifier? groupIdentifier,
-    RequestStatus? status,
-    RequestIntent? intent,
-    RequestPriority? priority,
-    CodeableConcept? code,
-    Reference? subject,
-    Reference? encounter,
-    FhirDateTime? authoredOn,
-    Reference? author,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Annotation>? note,
-    List<RequestGroupAction>? action,
+  RequestGroupBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<FhirCanonicalBuilder>? instantiatesCanonical,
+    List<FhirUriBuilder>? instantiatesUri,
+    List<ReferenceBuilder>? basedOn,
+    List<ReferenceBuilder>? replaces,
+    IdentifierBuilder? groupIdentifier,
+    RequestStatusBuilder? status,
+    RequestIntentBuilder? intent,
+    RequestPriorityBuilder? priority,
+    CodeableConceptBuilder? code,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    FhirDateTimeBuilder? authoredOn,
+    ReferenceBuilder? author,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<AnnotationBuilder>? note,
+    List<RequestGroupActionBuilder>? action,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return RequestGroup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = RequestGroupBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      replaces: replaces
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.replaces',
-                ),
-              )
-              .toList() ??
-          this.replaces,
-      groupIdentifier: groupIdentifier?.copyWith(
-            objectPath: '$newObjectPath.groupIdentifier',
-          ) ??
-          this.groupIdentifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      intent: intent?.copyWith(
-            objectPath: '$newObjectPath.intent',
-          ) ??
-          this.intent,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      authoredOn: authoredOn?.copyWith(
-            objectPath: '$newObjectPath.authoredOn',
-          ) ??
-          this.authoredOn,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      action: action
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.action',
-                ),
-              )
-              .toList() ??
-          this.action,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ?? this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
+      basedOn: basedOn ?? this.basedOn,
+      replaces: replaces ?? this.replaces,
+      groupIdentifier: groupIdentifier ?? this.groupIdentifier,
+      status: status ?? this.status,
+      intent: intent ?? this.intent,
+      priority: priority ?? this.priority,
+      code: code ?? this.code,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      authoredOn: authoredOn ?? this.authoredOn,
+      author: author ?? this.author,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      note: note ?? this.note,
+      action: action ?? this.action,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RequestGroup) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RequestGroupBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1490,49 +1296,49 @@ class RequestGroup extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       instantiatesCanonical,
       o.instantiatesCanonical,
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       instantiatesUri,
       o.instantiatesUri,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       replaces,
       o.replaces,
     )) {
@@ -1592,25 +1398,25 @@ class RequestGroup extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<RequestGroupAction>(
+    if (!listEquals<RequestGroupActionBuilder>(
       action,
       o.action,
     )) {
@@ -1620,13 +1426,13 @@ class RequestGroup extends DomainResource {
   }
 }
 
-/// [RequestGroupAction]
+/// [RequestGroupActionBuilder]
 /// The actions, if any, produced by the evaluation of the artifact.
-class RequestGroupAction extends BackboneElement {
+class RequestGroupActionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [RequestGroupAction]
+  /// [RequestGroupActionBuilder]
 
-  const RequestGroupAction({
+  RequestGroupActionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1655,25 +1461,24 @@ class RequestGroupAction extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RequestGroupAction.empty() => const RequestGroupAction();
+  /// For Builder classes, no fields are required
+  factory RequestGroupActionBuilder.empty() => RequestGroupActionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroupAction.fromJson(
+  factory RequestGroupActionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RequestGroup.action';
-    return RequestGroupAction(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RequestGroupActionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1682,8 +1487,8 @@ class RequestGroupAction extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1691,39 +1496,39 @@ class RequestGroupAction extends BackboneElement {
             ),
           )
           .toList(),
-      prefix: JsonParser.parsePrimitive<FhirString>(
+      prefix: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'prefix',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.prefix',
       ),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      textEquivalent: JsonParser.parsePrimitive<FhirString>(
+      textEquivalent: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'textEquivalent',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.textEquivalent',
       ),
-      priority: JsonParser.parsePrimitive<RequestPriority>(
+      priority: JsonParser.parsePrimitive<RequestPriorityBuilder>(
         json,
         'priority',
-        RequestPriority.fromJson,
+        RequestPriorityBuilder.fromJson,
         '$objectPath.priority',
       ),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -1732,8 +1537,8 @@ class RequestGroupAction extends BackboneElement {
           )
           .toList(),
       documentation: (json['documentation'] as List<dynamic>?)
-          ?.map<RelatedArtifact>(
-            (v) => RelatedArtifact.fromJson(
+          ?.map<RelatedArtifactBuilder>(
+            (v) => RelatedArtifactBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.documentation',
@@ -1742,8 +1547,8 @@ class RequestGroupAction extends BackboneElement {
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
-          ?.map<RequestGroupCondition>(
-            (v) => RequestGroupCondition.fromJson(
+          ?.map<RequestGroupConditionBuilder>(
+            (v) => RequestGroupConditionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.condition',
@@ -1752,8 +1557,8 @@ class RequestGroupAction extends BackboneElement {
           )
           .toList(),
       relatedAction: (json['relatedAction'] as List<dynamic>?)
-          ?.map<RequestGroupRelatedAction>(
-            (v) => RequestGroupRelatedAction.fromJson(
+          ?.map<RequestGroupRelatedActionBuilder>(
+            (v) => RequestGroupRelatedActionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatedAction',
@@ -1761,21 +1566,21 @@ class RequestGroupAction extends BackboneElement {
             ),
           )
           .toList(),
-      timingX: JsonParser.parsePolymorphic<TimingXRequestGroupAction>(
+      timingX: JsonParser.parsePolymorphic<TimingXRequestGroupActionBuilder>(
         json,
         {
-          'timingDateTime': FhirDateTime.fromJson,
-          'timingAge': Age.fromJson,
-          'timingPeriod': Period.fromJson,
-          'timingDuration': FhirDuration.fromJson,
-          'timingRange': Range.fromJson,
-          'timingTiming': Timing.fromJson,
+          'timingDateTime': FhirDateTimeBuilder.fromJson,
+          'timingAge': AgeBuilder.fromJson,
+          'timingPeriod': PeriodBuilder.fromJson,
+          'timingDuration': FhirDurationBuilder.fromJson,
+          'timingRange': RangeBuilder.fromJson,
+          'timingTiming': TimingBuilder.fromJson,
         },
         objectPath,
       ),
       participant: (json['participant'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.participant',
@@ -1783,51 +1588,56 @@ class RequestGroupAction extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      groupingBehavior: JsonParser.parsePrimitive<ActionGroupingBehavior>(
+      groupingBehavior:
+          JsonParser.parsePrimitive<ActionGroupingBehaviorBuilder>(
         json,
         'groupingBehavior',
-        ActionGroupingBehavior.fromJson,
+        ActionGroupingBehaviorBuilder.fromJson,
         '$objectPath.groupingBehavior',
       ),
-      selectionBehavior: JsonParser.parsePrimitive<ActionSelectionBehavior>(
+      selectionBehavior:
+          JsonParser.parsePrimitive<ActionSelectionBehaviorBuilder>(
         json,
         'selectionBehavior',
-        ActionSelectionBehavior.fromJson,
+        ActionSelectionBehaviorBuilder.fromJson,
         '$objectPath.selectionBehavior',
       ),
-      requiredBehavior: JsonParser.parsePrimitive<ActionRequiredBehavior>(
+      requiredBehavior:
+          JsonParser.parsePrimitive<ActionRequiredBehaviorBuilder>(
         json,
         'requiredBehavior',
-        ActionRequiredBehavior.fromJson,
+        ActionRequiredBehaviorBuilder.fromJson,
         '$objectPath.requiredBehavior',
       ),
-      precheckBehavior: JsonParser.parsePrimitive<ActionPrecheckBehavior>(
+      precheckBehavior:
+          JsonParser.parsePrimitive<ActionPrecheckBehaviorBuilder>(
         json,
         'precheckBehavior',
-        ActionPrecheckBehavior.fromJson,
+        ActionPrecheckBehaviorBuilder.fromJson,
         '$objectPath.precheckBehavior',
       ),
-      cardinalityBehavior: JsonParser.parsePrimitive<ActionCardinalityBehavior>(
+      cardinalityBehavior:
+          JsonParser.parsePrimitive<ActionCardinalityBehaviorBuilder>(
         json,
         'cardinalityBehavior',
-        ActionCardinalityBehavior.fromJson,
+        ActionCardinalityBehaviorBuilder.fromJson,
         '$objectPath.cardinalityBehavior',
       ),
-      resource: JsonParser.parseObject<Reference>(
+      resource: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'resource',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.resource',
       ),
       action: (json['action'] as List<dynamic>?)
-          ?.map<RequestGroupAction>(
-            (v) => RequestGroupAction.fromJson(
+          ?.map<RequestGroupActionBuilder>(
+            (v) => RequestGroupActionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.action',
@@ -1838,22 +1648,22 @@ class RequestGroupAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [RequestGroupAction]
+  /// Deserialize [RequestGroupActionBuilder]
   /// from a [String] or [YamlMap] object
-  factory RequestGroupAction.fromYaml(
+  factory RequestGroupActionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RequestGroupAction.fromJson(
+      return RequestGroupActionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RequestGroupAction.fromJson(
+      return RequestGroupActionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RequestGroupAction '
+        'RequestGroupActionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1861,16 +1671,16 @@ class RequestGroupAction extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [RequestGroupAction]
+  /// [RequestGroupActionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroupAction.fromJsonString(
+  factory RequestGroupActionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RequestGroupAction.fromJson(json);
+      return RequestGroupActionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1882,125 +1692,127 @@ class RequestGroupAction extends BackboneElement {
 
   /// [prefix]
   /// A user-visible prefix for the action.
-  final FhirString? prefix;
+  FhirStringBuilder? prefix;
 
   /// [title]
   /// The title of the action displayed to a user.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [description]
   /// A short description of the action used to provide a summary to display
   /// to the user.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [textEquivalent]
   /// A text equivalent of the action to be performed. This provides a
   /// human-interpretable description of the action when the definition is
   /// consumed by a system that might not be capable of interpreting it
   /// dynamically.
-  final FhirString? textEquivalent;
+  FhirStringBuilder? textEquivalent;
 
   /// [priority]
   /// Indicates how quickly the action should be addressed with respect to
   /// other actions.
-  final RequestPriority? priority;
+  RequestPriorityBuilder? priority;
 
   /// [code]
   /// A code that provides meaning for the action or action group. For
   /// example, a section may have a LOINC code for a section of a
   /// documentation template.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [documentation]
   /// Didactic or other informational resources associated with the action
   /// that can be provided to the CDS recipient. Information resources can
   /// include inline text commentary and links to web resources.
-  final List<RelatedArtifact>? documentation;
+  List<RelatedArtifactBuilder>? documentation;
 
   /// [condition]
   /// An expression that describes applicability criteria, or start/stop
   /// conditions for the action.
-  final List<RequestGroupCondition>? condition;
+  List<RequestGroupConditionBuilder>? condition;
 
   /// [relatedAction]
   /// A relationship to another action such as "before" or "30-60 minutes
   /// after start of".
-  final List<RequestGroupRelatedAction>? relatedAction;
+  List<RequestGroupRelatedActionBuilder>? relatedAction;
 
   /// [timingX]
   /// An optional value describing when the action should be performed.
-  final TimingXRequestGroupAction? timingX;
+  TimingXRequestGroupActionBuilder? timingX;
 
-  /// Getter for [timingDateTime] as a FhirDateTime
-  FhirDateTime? get timingDateTime => timingX?.isAs<FhirDateTime>();
+  /// Getter for [timingDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get timingDateTime =>
+      timingX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [timingAge] as a Age
-  Age? get timingAge => timingX?.isAs<Age>();
+  /// Getter for [timingAge] as a AgeBuilder
+  AgeBuilder? get timingAge => timingX?.isAs<AgeBuilder>();
 
-  /// Getter for [timingPeriod] as a Period
-  Period? get timingPeriod => timingX?.isAs<Period>();
+  /// Getter for [timingPeriod] as a PeriodBuilder
+  PeriodBuilder? get timingPeriod => timingX?.isAs<PeriodBuilder>();
 
-  /// Getter for [timingDuration] as a FhirDuration
-  FhirDuration? get timingDuration => timingX?.isAs<FhirDuration>();
+  /// Getter for [timingDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get timingDuration =>
+      timingX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [timingRange] as a Range
-  Range? get timingRange => timingX?.isAs<Range>();
+  /// Getter for [timingRange] as a RangeBuilder
+  RangeBuilder? get timingRange => timingX?.isAs<RangeBuilder>();
 
-  /// Getter for [timingTiming] as a Timing
-  Timing? get timingTiming => timingX?.isAs<Timing>();
+  /// Getter for [timingTiming] as a TimingBuilder
+  TimingBuilder? get timingTiming => timingX?.isAs<TimingBuilder>();
 
   /// [participant]
   /// The participant that should perform or be responsible for this action.
-  final List<Reference>? participant;
+  List<ReferenceBuilder>? participant;
 
   /// [type]
   /// The type of action to perform (create, update, remove).
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [groupingBehavior]
   /// Defines the grouping behavior for the action and its children.
-  final ActionGroupingBehavior? groupingBehavior;
+  ActionGroupingBehaviorBuilder? groupingBehavior;
 
   /// [selectionBehavior]
   /// Defines the selection behavior for the action and its children.
-  final ActionSelectionBehavior? selectionBehavior;
+  ActionSelectionBehaviorBuilder? selectionBehavior;
 
   /// [requiredBehavior]
   /// Defines expectations around whether an action is required.
-  final ActionRequiredBehavior? requiredBehavior;
+  ActionRequiredBehaviorBuilder? requiredBehavior;
 
   /// [precheckBehavior]
   /// Defines whether the action should usually be preselected.
-  final ActionPrecheckBehavior? precheckBehavior;
+  ActionPrecheckBehaviorBuilder? precheckBehavior;
 
   /// [cardinalityBehavior]
   /// Defines whether the action can be selected multiple times.
-  final ActionCardinalityBehavior? cardinalityBehavior;
+  ActionCardinalityBehaviorBuilder? cardinalityBehavior;
 
   /// [resource]
   /// The resource that is the target of the action (e.g.
   /// CommunicationRequest).
-  final Reference? resource;
+  ReferenceBuilder? resource;
 
   /// [action]
   /// Sub actions.
-  final List<RequestGroupAction>? action;
+  List<RequestGroupActionBuilder>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2009,103 +1821,37 @@ class RequestGroupAction extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'prefix',
-      prefix,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'textEquivalent',
-      textEquivalent,
-    );
-    addField(
-      'priority',
-      priority,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'documentation',
-      documentation,
-    );
-    addField(
-      'condition',
-      condition,
-    );
-    addField(
-      'relatedAction',
-      relatedAction,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('prefix', prefix);
+    addField('title', title);
+    addField('description', description);
+    addField('textEquivalent', textEquivalent);
+    addField('priority', priority);
+    addField('code', code);
+    addField('documentation', documentation);
+    addField('condition', condition);
+    addField('relatedAction', relatedAction);
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField(
-        'timing${fhirType.capitalize()}',
-        timingX,
-      );
+      addField('timing${fhirType.capitalize()}', timingX);
     }
 
-    addField(
-      'participant',
-      participant,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'groupingBehavior',
-      groupingBehavior,
-    );
-    addField(
-      'selectionBehavior',
-      selectionBehavior,
-    );
-    addField(
-      'requiredBehavior',
-      requiredBehavior,
-    );
-    addField(
-      'precheckBehavior',
-      precheckBehavior,
-    );
-    addField(
-      'cardinalityBehavior',
-      cardinalityBehavior,
-    );
-    addField(
-      'resource',
-      resource,
-    );
-    addField(
-      'action',
-      action,
-    );
+    addField('participant', participant);
+    addField('type', type);
+    addField('groupingBehavior', groupingBehavior);
+    addField('selectionBehavior', selectionBehavior);
+    addField('requiredBehavior', requiredBehavior);
+    addField('precheckBehavior', precheckBehavior);
+    addField('cardinalityBehavior', cardinalityBehavior);
+    addField('resource', resource);
+    addField('action', action);
     return json;
   }
 
@@ -2141,11 +1887,11 @@ class RequestGroupAction extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2196,31 +1942,35 @@ class RequestGroupAction extends BackboneElement {
           fields.addAll(relatedAction!);
         }
       case 'timing':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingX':
-        fields.add(timingX!);
+        if (timingX != null) {
+          fields.add(timingX!);
+        }
       case 'timingDateTime':
-        if (timingX is FhirDateTime) {
+        if (timingX is FhirDateTimeBuilder) {
           fields.add(timingX!);
         }
       case 'timingAge':
-        if (timingX is Age) {
+        if (timingX is AgeBuilder) {
           fields.add(timingX!);
         }
       case 'timingPeriod':
-        if (timingX is Period) {
+        if (timingX is PeriodBuilder) {
           fields.add(timingX!);
         }
       case 'timingDuration':
-        if (timingX is FhirDuration) {
+        if (timingX is FhirDurationBuilder) {
           fields.add(timingX!);
         }
       case 'timingRange':
-        if (timingX is Range) {
+        if (timingX is RangeBuilder) {
           fields.add(timingX!);
         }
       case 'timingTiming':
-        if (timingX is Timing) {
+        if (timingX is TimingBuilder) {
           fields.add(timingX!);
         }
       case 'participant':
@@ -2269,7 +2019,7 @@ class RequestGroupAction extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2278,303 +2028,328 @@ class RequestGroupAction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'prefix':
         {
-          if (child is FhirString) {
-            return copyWith(prefix: child);
+          if (child is FhirStringBuilder) {
+            prefix = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'textEquivalent':
         {
-          if (child is FhirString) {
-            return copyWith(textEquivalent: child);
+          if (child is FhirStringBuilder) {
+            textEquivalent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'priority':
         {
-          if (child is RequestPriority) {
-            return copyWith(priority: child);
+          if (child is RequestPriorityBuilder) {
+            priority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
         {
-          if (child is List<RelatedArtifact>) {
-            // Add all elements from passed list
-            final newList = [...?documentation, ...child];
-            return copyWith(documentation: newList);
-          } else if (child is RelatedArtifact) {
+          if (child is List<RelatedArtifactBuilder>) {
+            // Replace or create new list
+            documentation = child;
+            return;
+          } else if (child is RelatedArtifactBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?documentation, child];
-            return copyWith(documentation: newList);
+            documentation = [...(documentation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is List<RequestGroupCondition>) {
-            // Add all elements from passed list
-            final newList = [...?condition, ...child];
-            return copyWith(condition: newList);
-          } else if (child is RequestGroupCondition) {
+          if (child is List<RequestGroupConditionBuilder>) {
+            // Replace or create new list
+            condition = child;
+            return;
+          } else if (child is RequestGroupConditionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?condition, child];
-            return copyWith(condition: newList);
+            condition = [...(condition ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatedAction':
         {
-          if (child is List<RequestGroupRelatedAction>) {
-            // Add all elements from passed list
-            final newList = [...?relatedAction, ...child];
-            return copyWith(relatedAction: newList);
-          } else if (child is RequestGroupRelatedAction) {
+          if (child is List<RequestGroupRelatedActionBuilder>) {
+            // Replace or create new list
+            relatedAction = child;
+            return;
+          } else if (child is RequestGroupRelatedActionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedAction, child];
-            return copyWith(relatedAction: newList);
+            relatedAction = [...(relatedAction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingX':
         {
-          if (child is TimingXRequestGroupAction) {
-            return copyWith(timingX: child);
+          if (child is TimingXRequestGroupActionBuilder) {
+            timingX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(timingX: child);
+            if (child is FhirDateTimeBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(timingX: child);
+            if (child is AgeBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(timingX: child);
+            if (child is PeriodBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(timingX: child);
+            if (child is FhirDurationBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(timingX: child);
+            if (child is RangeBuilder) {
+              timingX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(timingX: child);
+            if (child is TimingBuilder) {
+              timingX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'timingFhirDateTime':
+      case 'timingDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(timingX: child);
+          if (child is FhirDateTimeBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingAge':
         {
-          if (child is Age) {
-            return copyWith(timingX: child);
+          if (child is AgeBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingPeriod':
         {
-          if (child is Period) {
-            return copyWith(timingX: child);
+          if (child is PeriodBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'timingFhirDuration':
+      case 'timingDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(timingX: child);
+          if (child is FhirDurationBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingRange':
         {
-          if (child is Range) {
-            return copyWith(timingX: child);
+          if (child is RangeBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingTiming':
         {
-          if (child is Timing) {
-            return copyWith(timingX: child);
+          if (child is TimingBuilder) {
+            timingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participant':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?participant, ...child];
-            return copyWith(participant: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            participant = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?participant, child];
-            return copyWith(participant: newList);
+            participant = [...(participant ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'groupingBehavior':
         {
-          if (child is ActionGroupingBehavior) {
-            return copyWith(groupingBehavior: child);
+          if (child is ActionGroupingBehaviorBuilder) {
+            groupingBehavior = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'selectionBehavior':
         {
-          if (child is ActionSelectionBehavior) {
-            return copyWith(selectionBehavior: child);
+          if (child is ActionSelectionBehaviorBuilder) {
+            selectionBehavior = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requiredBehavior':
         {
-          if (child is ActionRequiredBehavior) {
-            return copyWith(requiredBehavior: child);
+          if (child is ActionRequiredBehaviorBuilder) {
+            requiredBehavior = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'precheckBehavior':
         {
-          if (child is ActionPrecheckBehavior) {
-            return copyWith(precheckBehavior: child);
+          if (child is ActionPrecheckBehaviorBuilder) {
+            precheckBehavior = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'cardinalityBehavior':
         {
-          if (child is ActionCardinalityBehavior) {
-            return copyWith(cardinalityBehavior: child);
+          if (child is ActionCardinalityBehaviorBuilder) {
+            cardinalityBehavior = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'resource':
         {
-          if (child is Reference) {
-            return copyWith(resource: child);
+          if (child is ReferenceBuilder) {
+            resource = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is List<RequestGroupAction>) {
-            // Add all elements from passed list
-            final newList = [...?action, ...child];
-            return copyWith(action: newList);
-          } else if (child is RequestGroupAction) {
+          if (child is List<RequestGroupActionBuilder>) {
+            // Replace or create new list
+            action = child;
+            return;
+          } else if (child is RequestGroupActionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?action, child];
-            return copyWith(action: newList);
+            action = [...(action ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2590,246 +2365,215 @@ class RequestGroupAction extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'prefix':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'textEquivalent':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'priority':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'documentation':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'condition':
-        return ['RequestGroupCondition'];
+        return ['RequestGroupConditionBuilder'];
       case 'relatedAction':
-        return ['RequestGroupRelatedAction'];
+        return ['RequestGroupRelatedActionBuilder'];
       case 'timing':
       case 'timingX':
         return [
-          'FhirDateTime',
-          'Age',
-          'Period',
-          'FhirDuration',
-          'Range',
-          'Timing',
+          'FhirDateTimeBuilder',
+          'AgeBuilder',
+          'PeriodBuilder',
+          'FhirDurationBuilder',
+          'RangeBuilder',
+          'TimingBuilder'
         ];
       case 'timingDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'timingAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'timingPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'timingDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'timingRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'timingTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'participant':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'groupingBehavior':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'selectionBehavior':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'requiredBehavior':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'precheckBehavior':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'cardinalityBehavior':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'resource':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'action':
-        return ['RequestGroupAction'];
+        return ['RequestGroupActionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RequestGroupAction]
+  /// Creates a new [RequestGroupActionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RequestGroupAction createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'prefix':
         {
-          return copyWith(
-            prefix: FhirString.empty(),
-          );
+          prefix = FhirStringBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'textEquivalent':
         {
-          return copyWith(
-            textEquivalent: FhirString.empty(),
-          );
+          textEquivalent = FhirStringBuilder.empty();
+          return;
         }
       case 'priority':
         {
-          return copyWith(
-            priority: RequestPriority.empty(),
-          );
+          priority = RequestPriorityBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'documentation':
         {
-          return copyWith(
-            documentation: <RelatedArtifact>[],
-          );
+          documentation = <RelatedArtifactBuilder>[];
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: <RequestGroupCondition>[],
-          );
+          condition = <RequestGroupConditionBuilder>[];
+          return;
         }
       case 'relatedAction':
         {
-          return copyWith(
-            relatedAction: <RequestGroupRelatedAction>[],
-          );
+          relatedAction = <RequestGroupRelatedActionBuilder>[];
+          return;
         }
       case 'timing':
       case 'timingX':
       case 'timingDateTime':
         {
-          return copyWith(
-            timingX: FhirDateTime.empty(),
-          );
+          timingX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'timingAge':
         {
-          return copyWith(
-            timingX: Age.empty(),
-          );
+          timingX = AgeBuilder.empty();
+          return;
         }
       case 'timingPeriod':
         {
-          return copyWith(
-            timingX: Period.empty(),
-          );
+          timingX = PeriodBuilder.empty();
+          return;
         }
       case 'timingDuration':
         {
-          return copyWith(
-            timingX: FhirDuration.empty(),
-          );
+          timingX = FhirDurationBuilder.empty();
+          return;
         }
       case 'timingRange':
         {
-          return copyWith(
-            timingX: Range.empty(),
-          );
+          timingX = RangeBuilder.empty();
+          return;
         }
       case 'timingTiming':
         {
-          return copyWith(
-            timingX: Timing.empty(),
-          );
+          timingX = TimingBuilder.empty();
+          return;
         }
       case 'participant':
         {
-          return copyWith(
-            participant: <Reference>[],
-          );
+          participant = <ReferenceBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'groupingBehavior':
         {
-          return copyWith(
-            groupingBehavior: ActionGroupingBehavior.empty(),
-          );
+          groupingBehavior = ActionGroupingBehaviorBuilder.empty();
+          return;
         }
       case 'selectionBehavior':
         {
-          return copyWith(
-            selectionBehavior: ActionSelectionBehavior.empty(),
-          );
+          selectionBehavior = ActionSelectionBehaviorBuilder.empty();
+          return;
         }
       case 'requiredBehavior':
         {
-          return copyWith(
-            requiredBehavior: ActionRequiredBehavior.empty(),
-          );
+          requiredBehavior = ActionRequiredBehaviorBuilder.empty();
+          return;
         }
       case 'precheckBehavior':
         {
-          return copyWith(
-            precheckBehavior: ActionPrecheckBehavior.empty(),
-          );
+          precheckBehavior = ActionPrecheckBehaviorBuilder.empty();
+          return;
         }
       case 'cardinalityBehavior':
         {
-          return copyWith(
-            cardinalityBehavior: ActionCardinalityBehavior.empty(),
-          );
+          cardinalityBehavior = ActionCardinalityBehaviorBuilder.empty();
+          return;
         }
       case 'resource':
         {
-          return copyWith(
-            resource: Reference.empty(),
-          );
+          resource = ReferenceBuilder.empty();
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: <RequestGroupAction>[],
-          );
+          action = <RequestGroupActionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2838,7 +2582,7 @@ class RequestGroupAction extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  RequestGroupAction clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2862,59 +2606,56 @@ class RequestGroupAction extends BackboneElement {
     bool resource = false,
     bool action = false,
   }) {
-    return RequestGroupAction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      prefix: prefix ? null : this.prefix,
-      title: title ? null : this.title,
-      description: description ? null : this.description,
-      textEquivalent: textEquivalent ? null : this.textEquivalent,
-      priority: priority ? null : this.priority,
-      code: code ? null : this.code,
-      documentation: documentation ? null : this.documentation,
-      condition: condition ? null : this.condition,
-      relatedAction: relatedAction ? null : this.relatedAction,
-      timingX: timing ? null : timingX,
-      participant: participant ? null : this.participant,
-      type: type ? null : this.type,
-      groupingBehavior: groupingBehavior ? null : this.groupingBehavior,
-      selectionBehavior: selectionBehavior ? null : this.selectionBehavior,
-      requiredBehavior: requiredBehavior ? null : this.requiredBehavior,
-      precheckBehavior: precheckBehavior ? null : this.precheckBehavior,
-      cardinalityBehavior:
-          cardinalityBehavior ? null : this.cardinalityBehavior,
-      resource: resource ? null : this.resource,
-      action: action ? null : this.action,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (prefix) this.prefix = null;
+    if (title) this.title = null;
+    if (description) this.description = null;
+    if (textEquivalent) this.textEquivalent = null;
+    if (priority) this.priority = null;
+    if (code) this.code = null;
+    if (documentation) this.documentation = null;
+    if (condition) this.condition = null;
+    if (relatedAction) this.relatedAction = null;
+    if (timing) this.timingX = null;
+    if (participant) this.participant = null;
+    if (type) this.type = null;
+    if (groupingBehavior) this.groupingBehavior = null;
+    if (selectionBehavior) this.selectionBehavior = null;
+    if (requiredBehavior) this.requiredBehavior = null;
+    if (precheckBehavior) this.precheckBehavior = null;
+    if (cardinalityBehavior) this.cardinalityBehavior = null;
+    if (resource) this.resource = null;
+    if (action) this.action = null;
   }
 
   @override
-  RequestGroupAction clone() => throw UnimplementedError();
+  RequestGroupActionBuilder clone() => throw UnimplementedError();
   @override
-  RequestGroupAction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? prefix,
-    FhirString? title,
-    FhirString? description,
-    FhirString? textEquivalent,
-    RequestPriority? priority,
-    List<CodeableConcept>? code,
-    List<RelatedArtifact>? documentation,
-    List<RequestGroupCondition>? condition,
-    List<RequestGroupRelatedAction>? relatedAction,
-    TimingXRequestGroupAction? timingX,
-    List<Reference>? participant,
-    CodeableConcept? type,
-    ActionGroupingBehavior? groupingBehavior,
-    ActionSelectionBehavior? selectionBehavior,
-    ActionRequiredBehavior? requiredBehavior,
-    ActionPrecheckBehavior? precheckBehavior,
-    ActionCardinalityBehavior? cardinalityBehavior,
-    Reference? resource,
-    List<RequestGroupAction>? action,
+  RequestGroupActionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? prefix,
+    FhirStringBuilder? title,
+    FhirStringBuilder? description,
+    FhirStringBuilder? textEquivalent,
+    RequestPriorityBuilder? priority,
+    List<CodeableConceptBuilder>? code,
+    List<RelatedArtifactBuilder>? documentation,
+    List<RequestGroupConditionBuilder>? condition,
+    List<RequestGroupRelatedActionBuilder>? relatedAction,
+    TimingXRequestGroupActionBuilder? timingX,
+    List<ReferenceBuilder>? participant,
+    CodeableConceptBuilder? type,
+    ActionGroupingBehaviorBuilder? groupingBehavior,
+    ActionSelectionBehaviorBuilder? selectionBehavior,
+    ActionRequiredBehaviorBuilder? requiredBehavior,
+    ActionPrecheckBehaviorBuilder? precheckBehavior,
+    ActionCardinalityBehaviorBuilder? cardinalityBehavior,
+    ReferenceBuilder? resource,
+    List<RequestGroupActionBuilder>? action,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2922,134 +2663,53 @@ class RequestGroupAction extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return RequestGroupAction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      prefix: prefix?.copyWith(
-            objectPath: '$newObjectPath.prefix',
-          ) ??
-          this.prefix,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      textEquivalent: textEquivalent?.copyWith(
-            objectPath: '$newObjectPath.textEquivalent',
-          ) ??
-          this.textEquivalent,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      documentation: documentation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.documentation',
-                ),
-              )
-              .toList() ??
-          this.documentation,
-      condition: condition
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.condition',
-                ),
-              )
-              .toList() ??
-          this.condition,
-      relatedAction: relatedAction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatedAction',
-                ),
-              )
-              .toList() ??
-          this.relatedAction,
-      timingX: timingX?.copyWith(
-            objectPath: '$newObjectPath.timingX',
-          ) as TimingXRequestGroupAction? ??
-          this.timingX,
-      participant: participant
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.participant',
-                ),
-              )
-              .toList() ??
-          this.participant,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      groupingBehavior: groupingBehavior?.copyWith(
-            objectPath: '$newObjectPath.groupingBehavior',
-          ) ??
-          this.groupingBehavior,
-      selectionBehavior: selectionBehavior?.copyWith(
-            objectPath: '$newObjectPath.selectionBehavior',
-          ) ??
-          this.selectionBehavior,
-      requiredBehavior: requiredBehavior?.copyWith(
-            objectPath: '$newObjectPath.requiredBehavior',
-          ) ??
-          this.requiredBehavior,
-      precheckBehavior: precheckBehavior?.copyWith(
-            objectPath: '$newObjectPath.precheckBehavior',
-          ) ??
-          this.precheckBehavior,
-      cardinalityBehavior: cardinalityBehavior?.copyWith(
-            objectPath: '$newObjectPath.cardinalityBehavior',
-          ) ??
-          this.cardinalityBehavior,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
-      action: action
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.action',
-                ),
-              )
-              .toList() ??
-          this.action,
+    final newResult = RequestGroupActionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      prefix: prefix ?? this.prefix,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      textEquivalent: textEquivalent ?? this.textEquivalent,
+      priority: priority ?? this.priority,
+      code: code ?? this.code,
+      documentation: documentation ?? this.documentation,
+      condition: condition ?? this.condition,
+      relatedAction: relatedAction ?? this.relatedAction,
+      timingX: timingX ?? this.timingX,
+      participant: participant ?? this.participant,
+      type: type ?? this.type,
+      groupingBehavior: groupingBehavior ?? this.groupingBehavior,
+      selectionBehavior: selectionBehavior ?? this.selectionBehavior,
+      requiredBehavior: requiredBehavior ?? this.requiredBehavior,
+      precheckBehavior: precheckBehavior ?? this.precheckBehavior,
+      cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
+      resource: resource ?? this.resource,
+      action: action ?? this.action,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RequestGroupAction) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RequestGroupActionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3060,13 +2720,13 @@ class RequestGroupAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3102,25 +2762,25 @@ class RequestGroupAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
       return false;
     }
-    if (!listEquals<RelatedArtifact>(
+    if (!listEquals<RelatedArtifactBuilder>(
       documentation,
       o.documentation,
     )) {
       return false;
     }
-    if (!listEquals<RequestGroupCondition>(
+    if (!listEquals<RequestGroupConditionBuilder>(
       condition,
       o.condition,
     )) {
       return false;
     }
-    if (!listEquals<RequestGroupRelatedAction>(
+    if (!listEquals<RequestGroupRelatedActionBuilder>(
       relatedAction,
       o.relatedAction,
     )) {
@@ -3132,7 +2792,7 @@ class RequestGroupAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       participant,
       o.participant,
     )) {
@@ -3180,7 +2840,7 @@ class RequestGroupAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<RequestGroupAction>(
+    if (!listEquals<RequestGroupActionBuilder>(
       action,
       o.action,
     )) {
@@ -3190,18 +2850,18 @@ class RequestGroupAction extends BackboneElement {
   }
 }
 
-/// [RequestGroupCondition]
+/// [RequestGroupConditionBuilder]
 /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
-class RequestGroupCondition extends BackboneElement {
+class RequestGroupConditionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [RequestGroupCondition]
+  /// [RequestGroupConditionBuilder]
 
-  const RequestGroupCondition({
+  RequestGroupConditionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.kind,
+    this.kind,
     this.expression,
     super.disallowExtensions,
   }) : super(
@@ -3209,27 +2869,25 @@ class RequestGroupCondition extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RequestGroupCondition.empty() => RequestGroupCondition(
-        kind: ActionConditionKind.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory RequestGroupConditionBuilder.empty() =>
+      RequestGroupConditionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroupCondition.fromJson(
+  factory RequestGroupConditionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RequestGroup.action.condition';
-    return RequestGroupCondition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RequestGroupConditionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3238,8 +2896,8 @@ class RequestGroupCondition extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3247,37 +2905,37 @@ class RequestGroupCondition extends BackboneElement {
             ),
           )
           .toList(),
-      kind: JsonParser.parsePrimitive<ActionConditionKind>(
+      kind: JsonParser.parsePrimitive<ActionConditionKindBuilder>(
         json,
         'kind',
-        ActionConditionKind.fromJson,
+        ActionConditionKindBuilder.fromJson,
         '$objectPath.kind',
-      )!,
-      expression: JsonParser.parseObject<FhirExpression>(
+      ),
+      expression: JsonParser.parseObject<FhirExpressionBuilder>(
         json,
         'expression',
-        FhirExpression.fromJson,
+        FhirExpressionBuilder.fromJson,
         '$objectPath.expression',
       ),
     );
   }
 
-  /// Deserialize [RequestGroupCondition]
+  /// Deserialize [RequestGroupConditionBuilder]
   /// from a [String] or [YamlMap] object
-  factory RequestGroupCondition.fromYaml(
+  factory RequestGroupConditionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RequestGroupCondition.fromJson(
+      return RequestGroupConditionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RequestGroupCondition.fromJson(
+      return RequestGroupConditionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RequestGroupCondition '
+        'RequestGroupConditionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3285,16 +2943,16 @@ class RequestGroupCondition extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [RequestGroupCondition]
+  /// [RequestGroupConditionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroupCondition.fromJsonString(
+  factory RequestGroupConditionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RequestGroupCondition.fromJson(json);
+      return RequestGroupConditionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3306,28 +2964,28 @@ class RequestGroupCondition extends BackboneElement {
 
   /// [kind]
   /// The kind of condition.
-  final ActionConditionKind kind;
+  ActionConditionKindBuilder? kind;
 
   /// [expression]
   /// An expression that returns true or false, indicating whether or not the
   /// condition is satisfied.
-  final FhirExpression? expression;
+  FhirExpressionBuilder? expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3336,31 +2994,16 @@ class RequestGroupCondition extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'kind',
-      kind,
-    );
-    addField(
-      'expression',
-      expression,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('kind', kind);
+    addField('expression', expression);
     return json;
   }
 
@@ -3379,11 +3022,11 @@ class RequestGroupCondition extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3398,7 +3041,9 @@ class RequestGroupCondition extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'kind':
-        fields.add(kind);
+        if (kind != null) {
+          fields.add(kind!);
+        }
       case 'expression':
         if (expression != null) {
           fields.add(expression!);
@@ -3413,7 +3058,7 @@ class RequestGroupCondition extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3422,65 +3067,67 @@ class RequestGroupCondition extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'kind':
         {
-          if (child is ActionConditionKind) {
-            return copyWith(kind: child);
+          if (child is ActionConditionKindBuilder) {
+            kind = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
         {
-          if (child is FhirExpression) {
-            return copyWith(expression: child);
+          if (child is FhirExpressionBuilder) {
+            expression = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3496,58 +3143,49 @@ class RequestGroupCondition extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'kind':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'expression':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RequestGroupCondition]
+  /// Creates a new [RequestGroupConditionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RequestGroupCondition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'kind':
         {
-          return copyWith(
-            kind: ActionConditionKind.empty(),
-          );
+          kind = ActionConditionKindBuilder.empty();
+          return;
         }
       case 'expression':
         {
-          return copyWith(
-            expression: FhirExpression.empty(),
-          );
+          expression = FhirExpressionBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3556,30 +3194,29 @@ class RequestGroupCondition extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  RequestGroupCondition clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool kind = false,
     bool expression = false,
   }) {
-    return RequestGroupCondition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      kind: kind,
-      expression: expression ? null : this.expression,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (kind) this.kind = null;
+    if (expression) this.expression = null;
   }
 
   @override
-  RequestGroupCondition clone() => throw UnimplementedError();
+  RequestGroupConditionBuilder clone() => throw UnimplementedError();
   @override
-  RequestGroupCondition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ActionConditionKind? kind,
-    FhirExpression? expression,
+  RequestGroupConditionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ActionConditionKindBuilder? kind,
+    FhirExpressionBuilder? expression,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3587,42 +3224,36 @@ class RequestGroupCondition extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return RequestGroupCondition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      kind: kind?.copyWith(
-            objectPath: '$newObjectPath.kind',
-          ) ??
-          this.kind,
-      expression: expression?.copyWith(
-            objectPath: '$newObjectPath.expression',
-          ) ??
-          this.expression,
+    final newResult = RequestGroupConditionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      kind: kind ?? this.kind,
+      expression: expression ?? this.expression,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RequestGroupCondition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RequestGroupConditionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3633,13 +3264,13 @@ class RequestGroupCondition extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3661,19 +3292,19 @@ class RequestGroupCondition extends BackboneElement {
   }
 }
 
-/// [RequestGroupRelatedAction]
+/// [RequestGroupRelatedActionBuilder]
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
-class RequestGroupRelatedAction extends BackboneElement {
+class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [RequestGroupRelatedAction]
+  /// [RequestGroupRelatedActionBuilder]
 
-  const RequestGroupRelatedAction({
+  RequestGroupRelatedActionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.actionId,
-    required this.relationship,
+    this.actionId,
+    this.relationship,
     this.offsetX,
     super.disallowExtensions,
   }) : super(
@@ -3681,28 +3312,25 @@ class RequestGroupRelatedAction extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RequestGroupRelatedAction.empty() => RequestGroupRelatedAction(
-        actionId: FhirId.empty(),
-        relationship: ActionRelationshipType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory RequestGroupRelatedActionBuilder.empty() =>
+      RequestGroupRelatedActionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroupRelatedAction.fromJson(
+  factory RequestGroupRelatedActionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RequestGroup.action.relatedAction';
-    return RequestGroupRelatedAction(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RequestGroupRelatedActionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3711,8 +3339,8 @@ class RequestGroupRelatedAction extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3720,45 +3348,46 @@ class RequestGroupRelatedAction extends BackboneElement {
             ),
           )
           .toList(),
-      actionId: JsonParser.parsePrimitive<FhirId>(
+      actionId: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'actionId',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.actionId',
-      )!,
-      relationship: JsonParser.parsePrimitive<ActionRelationshipType>(
+      ),
+      relationship: JsonParser.parsePrimitive<ActionRelationshipTypeBuilder>(
         json,
         'relationship',
-        ActionRelationshipType.fromJson,
+        ActionRelationshipTypeBuilder.fromJson,
         '$objectPath.relationship',
-      )!,
-      offsetX: JsonParser.parsePolymorphic<OffsetXRequestGroupRelatedAction>(
+      ),
+      offsetX:
+          JsonParser.parsePolymorphic<OffsetXRequestGroupRelatedActionBuilder>(
         json,
         {
-          'offsetDuration': FhirDuration.fromJson,
-          'offsetRange': Range.fromJson,
+          'offsetDuration': FhirDurationBuilder.fromJson,
+          'offsetRange': RangeBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [RequestGroupRelatedAction]
+  /// Deserialize [RequestGroupRelatedActionBuilder]
   /// from a [String] or [YamlMap] object
-  factory RequestGroupRelatedAction.fromYaml(
+  factory RequestGroupRelatedActionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RequestGroupRelatedAction.fromJson(
+      return RequestGroupRelatedActionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RequestGroupRelatedAction.fromJson(
+      return RequestGroupRelatedActionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RequestGroupRelatedAction '
+        'RequestGroupRelatedActionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3766,16 +3395,16 @@ class RequestGroupRelatedAction extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [RequestGroupRelatedAction]
+  /// [RequestGroupRelatedActionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroupRelatedAction.fromJsonString(
+  factory RequestGroupRelatedActionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RequestGroupRelatedAction.fromJson(json);
+      return RequestGroupRelatedActionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3787,38 +3416,39 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   /// [actionId]
   /// The element id of the action this is related to.
-  final FhirId actionId;
+  FhirIdBuilder? actionId;
 
   /// [relationship]
   /// The relationship of this action to the related action.
-  final ActionRelationshipType relationship;
+  ActionRelationshipTypeBuilder? relationship;
 
   /// [offsetX]
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
-  final OffsetXRequestGroupRelatedAction? offsetX;
+  OffsetXRequestGroupRelatedActionBuilder? offsetX;
 
-  /// Getter for [offsetDuration] as a FhirDuration
-  FhirDuration? get offsetDuration => offsetX?.isAs<FhirDuration>();
+  /// Getter for [offsetDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get offsetDuration =>
+      offsetX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [offsetRange] as a Range
-  Range? get offsetRange => offsetX?.isAs<Range>();
+  /// Getter for [offsetRange] as a RangeBuilder
+  RangeBuilder? get offsetRange => offsetX?.isAs<RangeBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3827,37 +3457,19 @@ class RequestGroupRelatedAction extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'actionId',
-      actionId,
-    );
-    addField(
-      'relationship',
-      relationship,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('actionId', actionId);
+    addField('relationship', relationship);
     if (offsetX != null) {
       final fhirType = offsetX!.fhirType;
-      addField(
-        'offset${fhirType.capitalize()}',
-        offsetX,
-      );
+      addField('offset${fhirType.capitalize()}', offsetX);
     }
 
     return json;
@@ -3879,11 +3491,11 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3898,19 +3510,27 @@ class RequestGroupRelatedAction extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'actionId':
-        fields.add(actionId);
+        if (actionId != null) {
+          fields.add(actionId!);
+        }
       case 'relationship':
-        fields.add(relationship);
+        if (relationship != null) {
+          fields.add(relationship!);
+        }
       case 'offset':
-        fields.add(offsetX!);
+        if (offsetX != null) {
+          fields.add(offsetX!);
+        }
       case 'offsetX':
-        fields.add(offsetX!);
+        if (offsetX != null) {
+          fields.add(offsetX!);
+        }
       case 'offsetDuration':
-        if (offsetX is FhirDuration) {
+        if (offsetX is FhirDurationBuilder) {
           fields.add(offsetX!);
         }
       case 'offsetRange':
-        if (offsetX is Range) {
+        if (offsetX is RangeBuilder) {
           fields.add(offsetX!);
         }
       default:
@@ -3923,7 +3543,7 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3932,95 +3552,102 @@ class RequestGroupRelatedAction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actionId':
         {
-          if (child is FhirId) {
-            return copyWith(actionId: child);
+          if (child is FhirIdBuilder) {
+            actionId = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationship':
         {
-          if (child is ActionRelationshipType) {
-            return copyWith(relationship: child);
+          if (child is ActionRelationshipTypeBuilder) {
+            relationship = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'offsetX':
         {
-          if (child is OffsetXRequestGroupRelatedAction) {
-            return copyWith(offsetX: child);
+          if (child is OffsetXRequestGroupRelatedActionBuilder) {
+            offsetX = child;
+            return;
           } else {
-            if (child is FhirDuration) {
-              return copyWith(offsetX: child);
+            if (child is FhirDurationBuilder) {
+              offsetX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(offsetX: child);
+            if (child is RangeBuilder) {
+              offsetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'offsetFhirDuration':
+      case 'offsetDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(offsetX: child);
+          if (child is FhirDurationBuilder) {
+            offsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'offsetRange':
         {
-          if (child is Range) {
-            return copyWith(offsetX: child);
+          if (child is RangeBuilder) {
+            offsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4036,79 +3663,68 @@ class RequestGroupRelatedAction extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'actionId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'relationship':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'offset':
       case 'offsetX':
-        return ['FhirDuration', 'Range'];
+        return ['FhirDurationBuilder', 'RangeBuilder'];
       case 'offsetDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'offsetRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RequestGroupRelatedAction]
+  /// Creates a new [RequestGroupRelatedActionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RequestGroupRelatedAction createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'actionId':
         {
-          return copyWith(
-            actionId: FhirId.empty(),
-          );
+          actionId = FhirIdBuilder.empty();
+          return;
         }
       case 'relationship':
         {
-          return copyWith(
-            relationship: ActionRelationshipType.empty(),
-          );
+          relationship = ActionRelationshipTypeBuilder.empty();
+          return;
         }
       case 'offset':
       case 'offsetX':
       case 'offsetDuration':
         {
-          return copyWith(
-            offsetX: FhirDuration.empty(),
-          );
+          offsetX = FhirDurationBuilder.empty();
+          return;
         }
       case 'offsetRange':
         {
-          return copyWith(
-            offsetX: Range.empty(),
-          );
+          offsetX = RangeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4117,32 +3733,32 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  RequestGroupRelatedAction clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool actionId = false,
+    bool relationship = false,
     bool offset = false,
   }) {
-    return RequestGroupRelatedAction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      actionId: actionId,
-      relationship: relationship,
-      offsetX: offset ? null : offsetX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (actionId) this.actionId = null;
+    if (relationship) this.relationship = null;
+    if (offset) this.offsetX = null;
   }
 
   @override
-  RequestGroupRelatedAction clone() => throw UnimplementedError();
+  RequestGroupRelatedActionBuilder clone() => throw UnimplementedError();
   @override
-  RequestGroupRelatedAction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? actionId,
-    ActionRelationshipType? relationship,
-    OffsetXRequestGroupRelatedAction? offsetX,
+  RequestGroupRelatedActionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIdBuilder? actionId,
+    ActionRelationshipTypeBuilder? relationship,
+    OffsetXRequestGroupRelatedActionBuilder? offsetX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4150,46 +3766,37 @@ class RequestGroupRelatedAction extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return RequestGroupRelatedAction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      actionId: actionId?.copyWith(
-            objectPath: '$newObjectPath.actionId',
-          ) ??
-          this.actionId,
-      relationship: relationship?.copyWith(
-            objectPath: '$newObjectPath.relationship',
-          ) ??
-          this.relationship,
-      offsetX: offsetX?.copyWith(
-            objectPath: '$newObjectPath.offsetX',
-          ) as OffsetXRequestGroupRelatedAction? ??
-          this.offsetX,
+    final newResult = RequestGroupRelatedActionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      actionId: actionId ?? this.actionId,
+      relationship: relationship ?? this.relationship,
+      offsetX: offsetX ?? this.offsetX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RequestGroupRelatedAction) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RequestGroupRelatedActionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4200,13 +3807,13 @@ class RequestGroupRelatedAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

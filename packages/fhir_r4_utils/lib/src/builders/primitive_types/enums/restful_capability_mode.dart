@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The mode of a RESTful capability statement.
-class RestfulCapabilityMode extends FhirCodeEnum {
+class RestfulCapabilityModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  RestfulCapabilityMode._({
+  RestfulCapabilityModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class RestfulCapabilityMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory RestfulCapabilityMode(
+  factory RestfulCapabilityModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return RestfulCapabilityMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return RestfulCapabilityModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,64 +43,68 @@ class RestfulCapabilityMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [RestfulCapabilityMode] with element only
-  factory RestfulCapabilityMode.empty() =>
-      RestfulCapabilityMode._(validatedValue: '');
+  /// Create empty [RestfulCapabilityModeBuilder] with element only
+  factory RestfulCapabilityModeBuilder.empty() =>
+      RestfulCapabilityModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RestfulCapabilityMode] from JSON.
-  factory RestfulCapabilityMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RestfulCapabilityModeBuilder] from JSON.
+  factory RestfulCapabilityModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RestfulCapabilityMode.elementOnly.withElement(element);
+      return RestfulCapabilityModeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'RestfulCapabilityMode cannot be constructed from JSON.',
+        'RestfulCapabilityModeBuilder cannot be constructed from JSON.',
       );
     }
-    return RestfulCapabilityMode._(
+    return RestfulCapabilityModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// client
-  static final RestfulCapabilityMode client = RestfulCapabilityMode._(
+  static RestfulCapabilityModeBuilder client = RestfulCapabilityModeBuilder._(
     validatedValue: 'client',
-    system: 'http://hl7.org/fhir/ValueSet/restful-capability-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Client'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/restful-capability-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Client'.toFhirStringBuilder,
   );
 
   /// server
-  static final RestfulCapabilityMode server = RestfulCapabilityMode._(
+  static RestfulCapabilityModeBuilder server = RestfulCapabilityModeBuilder._(
     validatedValue: 'server',
-    system: 'http://hl7.org/fhir/ValueSet/restful-capability-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Server'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/restful-capability-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Server'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final RestfulCapabilityMode elementOnly =
-      RestfulCapabilityMode._(validatedValue: '');
+  static RestfulCapabilityModeBuilder elementOnly =
+      RestfulCapabilityModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<RestfulCapabilityMode> values = [
+  static List<RestfulCapabilityModeBuilder> values = [
     client,
     server,
   ];
 
   /// Clones the current instance
   @override
-  RestfulCapabilityMode clone() => RestfulCapabilityMode._(
+  RestfulCapabilityModeBuilder clone() => RestfulCapabilityModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  RestfulCapabilityMode withElement(Element? newElement) {
-    return RestfulCapabilityMode._(validatedValue: value, element: newElement);
+  RestfulCapabilityModeBuilder withElement(ElementBuilder? newElement) {
+    return RestfulCapabilityModeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,11 +120,11 @@ class RestfulCapabilityMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  RestfulCapabilityMode copyWith({
+  RestfulCapabilityModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -131,7 +135,7 @@ class RestfulCapabilityMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return RestfulCapabilityMode._(
+    return RestfulCapabilityModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -141,7 +145,7 @@ class RestfulCapabilityMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

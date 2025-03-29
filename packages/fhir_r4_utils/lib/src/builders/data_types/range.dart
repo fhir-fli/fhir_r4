@@ -1,82 +1,83 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Range]
+/// [RangeBuilder]
 /// A set of ordered Quantities defined by a low and high limit.
-class Range extends DataType
+class RangeBuilder extends DataTypeBuilder
     implements
-        TimingXActivityDefinition,
-        OnsetXAllergyIntolerance,
-        DurationXClinicalUseDefinitionIndication,
-        OnsetXCondition,
-        AbatementXCondition,
-        ValueXDeviceRequestParameter,
-        ValueXEvidenceReportCharacteristic,
-        ValueXEvidenceVariableCategory,
-        AgeXFamilyMemberHistory,
-        DeceasedXFamilyMemberHistory,
-        OnsetXFamilyMemberHistoryCondition,
-        DetailXGoalTarget,
-        ValueXGroupCharacteristic,
-        ValueXObservation,
-        ValueXObservationComponent,
-        ValueXParametersParameter,
-        DetailXPlanDefinitionTarget,
-        TimingXPlanDefinitionAction,
-        OffsetXPlanDefinitionRelatedAction,
-        PerformedXProcedure,
-        TimingXRequestGroupAction,
-        OffsetXRequestGroupRelatedAction,
-        ProbabilityXRiskAssessmentPrediction,
-        WhenXRiskAssessmentPrediction,
-        QuantityXServiceRequest,
-        DefaultValueXStructureMapSource,
-        ValueXSupplyRequestParameter,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DoseXDosageDoseAndRate,
-        RateXDosageDoseAndRate,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension,
-        AgeXPopulation,
-        BoundsXTimingRepeat,
-        ValueXUsageContext {
+        TimingXActivityDefinitionBuilder,
+        OnsetXAllergyIntoleranceBuilder,
+        DurationXClinicalUseDefinitionIndicationBuilder,
+        OnsetXConditionBuilder,
+        AbatementXConditionBuilder,
+        ValueXDeviceRequestParameterBuilder,
+        ValueXEvidenceReportCharacteristicBuilder,
+        ValueXEvidenceVariableCategoryBuilder,
+        AgeXFamilyMemberHistoryBuilder,
+        DeceasedXFamilyMemberHistoryBuilder,
+        OnsetXFamilyMemberHistoryConditionBuilder,
+        DetailXGoalTargetBuilder,
+        ValueXGroupCharacteristicBuilder,
+        ValueXObservationBuilder,
+        ValueXObservationComponentBuilder,
+        ValueXParametersParameterBuilder,
+        DetailXPlanDefinitionTargetBuilder,
+        TimingXPlanDefinitionActionBuilder,
+        OffsetXPlanDefinitionRelatedActionBuilder,
+        PerformedXProcedureBuilder,
+        TimingXRequestGroupActionBuilder,
+        OffsetXRequestGroupRelatedActionBuilder,
+        ProbabilityXRiskAssessmentPredictionBuilder,
+        WhenXRiskAssessmentPredictionBuilder,
+        QuantityXServiceRequestBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXSupplyRequestParameterBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DoseXDosageDoseAndRateBuilder,
+        RateXDosageDoseAndRateBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder,
+        AgeXPopulationBuilder,
+        BoundsXTimingRepeatBuilder,
+        ValueXUsageContextBuilder {
   /// Primary constructor for
-  /// [Range]
+  /// [RangeBuilder]
 
-  const Range({
+  RangeBuilder({
     super.id,
     super.extension_,
     this.low,
     this.high,
     super.disallowExtensions,
-    super.objectPath = 'Range',
+    super.objectPath = 'RangeBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Range.empty() => const Range();
+  /// For Builder classes, no fields are required
+  factory RangeBuilder.empty() => RangeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Range.fromJson(
+  factory RangeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Range';
-    return Range(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RangeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -84,37 +85,37 @@ class Range extends DataType
             ),
           )
           .toList(),
-      low: JsonParser.parseObject<Quantity>(
+      low: JsonParser.parseObject<QuantityBuilder>(
         json,
         'low',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.low',
       ),
-      high: JsonParser.parseObject<Quantity>(
+      high: JsonParser.parseObject<QuantityBuilder>(
         json,
         'high',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.high',
       ),
     );
   }
 
-  /// Deserialize [Range]
+  /// Deserialize [RangeBuilder]
   /// from a [String] or [YamlMap] object
-  factory Range.fromYaml(
+  factory RangeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Range.fromJson(
+      return RangeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Range.fromJson(
+      return RangeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Range '
+        'RangeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -122,16 +123,16 @@ class Range extends DataType
   }
 
   /// Factory constructor for
-  /// [Range]
+  /// [RangeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Range.fromJsonString(
+  factory RangeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Range.fromJson(json);
+      return RangeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -143,27 +144,27 @@ class Range extends DataType
 
   /// [low]
   /// The low limit. The boundary is inclusive.
-  final Quantity? low;
+  QuantityBuilder? low;
 
   /// [high]
   /// The high limit. The boundary is inclusive.
-  final Quantity? high;
+  QuantityBuilder? high;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -172,27 +173,15 @@ class Range extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'low',
-      low,
-    );
-    addField(
-      'high',
-      high,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('low', low);
+    addField('high', high);
     return json;
   }
 
@@ -210,11 +199,11 @@ class Range extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -242,7 +231,7 @@ class Range extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -251,51 +240,53 @@ class Range extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'low':
         {
-          if (child is Quantity) {
-            return copyWith(low: child);
+          if (child is QuantityBuilder) {
+            low = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'high':
         {
-          if (child is Quantity) {
-            return copyWith(high: child);
+          if (child is QuantityBuilder) {
+            high = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -311,50 +302,42 @@ class Range extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'low':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'high':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Range]
+  /// Creates a new [RangeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Range createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'low':
         {
-          return copyWith(
-            low: Quantity.empty(),
-          );
+          low = QuantityBuilder.empty();
+          return;
         }
       case 'high':
         {
-          return copyWith(
-            high: Quantity.empty(),
-          );
+          high = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -363,28 +346,26 @@ class Range extends DataType
 
   /// Clears specific fields in this object
   @override
-  Range clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool low = false,
     bool high = false,
   }) {
-    return Range(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      low: low ? null : this.low,
-      high: high ? null : this.high,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (low) this.low = null;
+    if (high) this.high = null;
   }
 
   @override
-  Range clone() => throw UnimplementedError();
+  RangeBuilder clone() => throw UnimplementedError();
   @override
-  Range copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Quantity? low,
-    Quantity? high,
+  RangeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    QuantityBuilder? low,
+    QuantityBuilder? high,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -392,34 +373,35 @@ class Range extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Range(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      low: low?.copyWith(
-            objectPath: '$newObjectPath.low',
-          ) ??
-          this.low,
-      high: high?.copyWith(
-            objectPath: '$newObjectPath.high',
-          ) ??
-          this.high,
+    final newResult = RangeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      low: low ?? this.low,
+      high: high ?? this.high,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Range) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RangeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -430,7 +412,7 @@ class Range extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

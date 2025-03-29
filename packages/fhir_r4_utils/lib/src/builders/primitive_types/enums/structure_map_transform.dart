@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How data is copied/created.
-class StructureMapTransform extends FhirCodeEnum {
+class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  StructureMapTransform._({
+  StructureMapTransformBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class StructureMapTransform extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory StructureMapTransform(
+  factory StructureMapTransformBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return StructureMapTransform._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return StructureMapTransformBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,170 +43,173 @@ class StructureMapTransform extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [StructureMapTransform] with element only
-  factory StructureMapTransform.empty() =>
-      StructureMapTransform._(validatedValue: '');
+  /// Create empty [StructureMapTransformBuilder] with element only
+  factory StructureMapTransformBuilder.empty() =>
+      StructureMapTransformBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureMapTransform] from JSON.
-  factory StructureMapTransform.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapTransformBuilder] from JSON.
+  factory StructureMapTransformBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapTransform.elementOnly.withElement(element);
+      return StructureMapTransformBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureMapTransform cannot be constructed from JSON.',
+        'StructureMapTransformBuilder cannot be constructed from JSON.',
       );
     }
-    return StructureMapTransform._(
+    return StructureMapTransformBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// create
-  static final StructureMapTransform create = StructureMapTransform._(
+  static StructureMapTransformBuilder create = StructureMapTransformBuilder._(
     validatedValue: 'create',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'create'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'create'.toFhirStringBuilder,
   );
 
   /// copy
-  static final StructureMapTransform copy_ = StructureMapTransform._(
+  static StructureMapTransformBuilder copy_ = StructureMapTransformBuilder._(
     validatedValue: 'copy',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'copy'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'copy'.toFhirStringBuilder,
   );
 
   /// truncate
-  static final StructureMapTransform truncate = StructureMapTransform._(
+  static StructureMapTransformBuilder truncate = StructureMapTransformBuilder._(
     validatedValue: 'truncate',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'truncate'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'truncate'.toFhirStringBuilder,
   );
 
   /// escape
-  static final StructureMapTransform escape = StructureMapTransform._(
+  static StructureMapTransformBuilder escape = StructureMapTransformBuilder._(
     validatedValue: 'escape',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'escape'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'escape'.toFhirStringBuilder,
   );
 
   /// cast
-  static final StructureMapTransform cast = StructureMapTransform._(
+  static StructureMapTransformBuilder cast = StructureMapTransformBuilder._(
     validatedValue: 'cast',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cast'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'cast'.toFhirStringBuilder,
   );
 
   /// append
-  static final StructureMapTransform append = StructureMapTransform._(
+  static StructureMapTransformBuilder append = StructureMapTransformBuilder._(
     validatedValue: 'append',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'append'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'append'.toFhirStringBuilder,
   );
 
   /// translate
-  static final StructureMapTransform translate = StructureMapTransform._(
+  static StructureMapTransformBuilder translate =
+      StructureMapTransformBuilder._(
     validatedValue: 'translate',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'translate'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'translate'.toFhirStringBuilder,
   );
 
   /// reference
-  static final StructureMapTransform reference = StructureMapTransform._(
+  static StructureMapTransformBuilder reference =
+      StructureMapTransformBuilder._(
     validatedValue: 'reference',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'reference'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'reference'.toFhirStringBuilder,
   );
 
   /// dateOp
-  static final StructureMapTransform dateOp = StructureMapTransform._(
+  static StructureMapTransformBuilder dateOp = StructureMapTransformBuilder._(
     validatedValue: 'dateOp',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'dateOp'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'dateOp'.toFhirStringBuilder,
   );
 
   /// uuid
-  static final StructureMapTransform uuid = StructureMapTransform._(
+  static StructureMapTransformBuilder uuid = StructureMapTransformBuilder._(
     validatedValue: 'uuid',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'uuid'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'uuid'.toFhirStringBuilder,
   );
 
   /// pointer
-  static final StructureMapTransform pointer = StructureMapTransform._(
+  static StructureMapTransformBuilder pointer = StructureMapTransformBuilder._(
     validatedValue: 'pointer',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'pointer'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'pointer'.toFhirStringBuilder,
   );
 
   /// evaluate
-  static final StructureMapTransform evaluate = StructureMapTransform._(
+  static StructureMapTransformBuilder evaluate = StructureMapTransformBuilder._(
     validatedValue: 'evaluate',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'evaluate'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'evaluate'.toFhirStringBuilder,
   );
 
   /// cc
-  static final StructureMapTransform cc = StructureMapTransform._(
+  static StructureMapTransformBuilder cc = StructureMapTransformBuilder._(
     validatedValue: 'cc',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cc'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'cc'.toFhirStringBuilder,
   );
 
   /// c
-  static final StructureMapTransform c = StructureMapTransform._(
+  static StructureMapTransformBuilder c = StructureMapTransformBuilder._(
     validatedValue: 'c',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'c'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'c'.toFhirStringBuilder,
   );
 
   /// qty
-  static final StructureMapTransform qty = StructureMapTransform._(
+  static StructureMapTransformBuilder qty = StructureMapTransformBuilder._(
     validatedValue: 'qty',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'qty'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'qty'.toFhirStringBuilder,
   );
 
   /// id
-  static final StructureMapTransform id_ = StructureMapTransform._(
+  static StructureMapTransformBuilder id_ = StructureMapTransformBuilder._(
     validatedValue: 'id',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'id'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'id'.toFhirStringBuilder,
   );
 
   /// cp
-  static final StructureMapTransform cp = StructureMapTransform._(
+  static StructureMapTransformBuilder cp = StructureMapTransformBuilder._(
     validatedValue: 'cp',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cp'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'cp'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final StructureMapTransform elementOnly =
-      StructureMapTransform._(validatedValue: '');
+  static StructureMapTransformBuilder elementOnly =
+      StructureMapTransformBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<StructureMapTransform> values = [
+  static List<StructureMapTransformBuilder> values = [
     create,
     copy_,
     truncate,
@@ -228,14 +231,15 @@ class StructureMapTransform extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  StructureMapTransform clone() => StructureMapTransform._(
+  StructureMapTransformBuilder clone() => StructureMapTransformBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  StructureMapTransform withElement(Element? newElement) {
-    return StructureMapTransform._(validatedValue: value, element: newElement);
+  StructureMapTransformBuilder withElement(ElementBuilder? newElement) {
+    return StructureMapTransformBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -251,11 +255,11 @@ class StructureMapTransform extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  StructureMapTransform copyWith({
+  StructureMapTransformBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -266,7 +270,7 @@ class StructureMapTransform extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return StructureMapTransform._(
+    return StructureMapTransformBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -276,7 +280,7 @@ class StructureMapTransform extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

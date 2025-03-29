@@ -1,2573 +1,2722 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// This function accepts a String path and a dynamic value
 /// and attempts to create a FhirType from that value
-FhirBase? fromPath(String? path, dynamic value) {
+FhirBaseBuilder? fromPath(String? path, dynamic value) {
   if (path == null || value == null) return null;
   final lowercasePath = path.toLowerCase();
   switch (lowercasePath) {
     case 'account':
-      return value is! Map<String, dynamic> ? null : Account.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : AccountBuilder.fromJson(value);
     case 'account.coverage':
       return value is! Map<String, dynamic>
           ? null
-          : AccountCoverage.fromJson(value);
+          : AccountCoverageBuilder.fromJson(value);
     case 'account.guarantor':
       return value is! Map<String, dynamic>
           ? null
-          : AccountGuarantor.fromJson(value);
+          : AccountGuarantorBuilder.fromJson(value);
     case 'activitydefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ActivityDefinition.fromJson(value);
+          : ActivityDefinitionBuilder.fromJson(value);
     case 'activitydefinition.participant':
       return value is! Map<String, dynamic>
           ? null
-          : ActivityDefinitionParticipant.fromJson(value);
+          : ActivityDefinitionParticipantBuilder.fromJson(value);
     case 'activitydefinition.dynamicvalue':
       return value is! Map<String, dynamic>
           ? null
-          : ActivityDefinitionDynamicValue.fromJson(value);
+          : ActivityDefinitionDynamicValueBuilder.fromJson(value);
     case 'administrableproductdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : AdministrableProductDefinition.fromJson(value);
+          : AdministrableProductDefinitionBuilder.fromJson(value);
     case 'administrableproductdefinition.property':
       return value is! Map<String, dynamic>
           ? null
-          : AdministrableProductDefinitionProperty.fromJson(value);
+          : AdministrableProductDefinitionPropertyBuilder.fromJson(value);
     case 'administrableproductdefinition.routeofadministration':
       return value is! Map<String, dynamic>
           ? null
-          : AdministrableProductDefinitionRouteOfAdministration.fromJson(value);
+          : AdministrableProductDefinitionRouteOfAdministrationBuilder.fromJson(
+              value);
     case 'administrableproductdefinition.routeofadministration.targetspecies':
       return value is! Map<String, dynamic>
           ? null
-          : AdministrableProductDefinitionTargetSpecies.fromJson(value);
+          : AdministrableProductDefinitionTargetSpeciesBuilder.fromJson(value);
     case 'administrableproductdefinition.routeofadministration.targetspecies.withdrawalperiod':
       return value is! Map<String, dynamic>
           ? null
-          : AdministrableProductDefinitionWithdrawalPeriod.fromJson(value);
+          : AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(
+              value);
     case 'adverseevent':
       return value is! Map<String, dynamic>
           ? null
-          : AdverseEvent.fromJson(value);
+          : AdverseEventBuilder.fromJson(value);
     case 'adverseevent.suspectentity':
       return value is! Map<String, dynamic>
           ? null
-          : AdverseEventSuspectEntity.fromJson(value);
+          : AdverseEventSuspectEntityBuilder.fromJson(value);
     case 'adverseevent.suspectentity.causality':
       return value is! Map<String, dynamic>
           ? null
-          : AdverseEventCausality.fromJson(value);
+          : AdverseEventCausalityBuilder.fromJson(value);
     case 'allergyintolerance':
       return value is! Map<String, dynamic>
           ? null
-          : AllergyIntolerance.fromJson(value);
+          : AllergyIntoleranceBuilder.fromJson(value);
     case 'allergyintolerance.reaction':
       return value is! Map<String, dynamic>
           ? null
-          : AllergyIntoleranceReaction.fromJson(value);
+          : AllergyIntoleranceReactionBuilder.fromJson(value);
     case 'appointment':
       return value is! Map<String, dynamic>
           ? null
-          : Appointment.fromJson(value);
+          : AppointmentBuilder.fromJson(value);
     case 'appointment.participant':
       return value is! Map<String, dynamic>
           ? null
-          : AppointmentParticipant.fromJson(value);
+          : AppointmentParticipantBuilder.fromJson(value);
     case 'appointmentresponse':
       return value is! Map<String, dynamic>
           ? null
-          : AppointmentResponse.fromJson(value);
+          : AppointmentResponseBuilder.fromJson(value);
     case 'auditevent':
-      return value is! Map<String, dynamic> ? null : AuditEvent.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : AuditEventBuilder.fromJson(value);
     case 'auditevent.agent':
       return value is! Map<String, dynamic>
           ? null
-          : AuditEventAgent.fromJson(value);
+          : AuditEventAgentBuilder.fromJson(value);
     case 'auditevent.agent.network':
       return value is! Map<String, dynamic>
           ? null
-          : AuditEventNetwork.fromJson(value);
+          : AuditEventNetworkBuilder.fromJson(value);
     case 'auditevent.source':
       return value is! Map<String, dynamic>
           ? null
-          : AuditEventSource.fromJson(value);
+          : AuditEventSourceBuilder.fromJson(value);
     case 'auditevent.entity':
       return value is! Map<String, dynamic>
           ? null
-          : AuditEventEntity.fromJson(value);
+          : AuditEventEntityBuilder.fromJson(value);
     case 'auditevent.entity.detail':
       return value is! Map<String, dynamic>
           ? null
-          : AuditEventDetail.fromJson(value);
+          : AuditEventDetailBuilder.fromJson(value);
     case 'basic':
-      return value is! Map<String, dynamic> ? null : Basic.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : BasicBuilder.fromJson(value);
     case 'binary':
-      return value is! Map<String, dynamic> ? null : Binary.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : BinaryBuilder.fromJson(value);
     case 'biologicallyderivedproduct':
       return value is! Map<String, dynamic>
           ? null
-          : BiologicallyDerivedProduct.fromJson(value);
+          : BiologicallyDerivedProductBuilder.fromJson(value);
     case 'biologicallyderivedproduct.collection':
       return value is! Map<String, dynamic>
           ? null
-          : BiologicallyDerivedProductCollection.fromJson(value);
+          : BiologicallyDerivedProductCollectionBuilder.fromJson(value);
     case 'biologicallyderivedproduct.processing':
       return value is! Map<String, dynamic>
           ? null
-          : BiologicallyDerivedProductProcessing.fromJson(value);
+          : BiologicallyDerivedProductProcessingBuilder.fromJson(value);
     case 'biologicallyderivedproduct.manipulation':
       return value is! Map<String, dynamic>
           ? null
-          : BiologicallyDerivedProductManipulation.fromJson(value);
+          : BiologicallyDerivedProductManipulationBuilder.fromJson(value);
     case 'biologicallyderivedproduct.storage':
       return value is! Map<String, dynamic>
           ? null
-          : BiologicallyDerivedProductStorage.fromJson(value);
+          : BiologicallyDerivedProductStorageBuilder.fromJson(value);
     case 'bodystructure':
       return value is! Map<String, dynamic>
           ? null
-          : BodyStructure.fromJson(value);
+          : BodyStructureBuilder.fromJson(value);
     case 'bundle':
-      return value is! Map<String, dynamic> ? null : Bundle.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : BundleBuilder.fromJson(value);
     case 'bundle.link':
-      return value is! Map<String, dynamic> ? null : BundleLink.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : BundleLinkBuilder.fromJson(value);
     case 'bundle.entry':
       return value is! Map<String, dynamic>
           ? null
-          : BundleEntry.fromJson(value);
+          : BundleEntryBuilder.fromJson(value);
     case 'bundle.entry.search':
       return value is! Map<String, dynamic>
           ? null
-          : BundleSearch.fromJson(value);
+          : BundleSearchBuilder.fromJson(value);
     case 'bundle.entry.request':
       return value is! Map<String, dynamic>
           ? null
-          : BundleRequest.fromJson(value);
+          : BundleRequestBuilder.fromJson(value);
     case 'bundle.entry.response':
       return value is! Map<String, dynamic>
           ? null
-          : BundleResponse.fromJson(value);
+          : BundleResponseBuilder.fromJson(value);
     case 'capabilitystatement':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatement.fromJson(value);
+          : CapabilityStatementBuilder.fromJson(value);
     case 'capabilitystatement.software':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementSoftware.fromJson(value);
+          : CapabilityStatementSoftwareBuilder.fromJson(value);
     case 'capabilitystatement.implementation':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementImplementation.fromJson(value);
+          : CapabilityStatementImplementationBuilder.fromJson(value);
     case 'capabilitystatement.rest':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementRest.fromJson(value);
+          : CapabilityStatementRestBuilder.fromJson(value);
     case 'capabilitystatement.rest.security':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementSecurity.fromJson(value);
+          : CapabilityStatementSecurityBuilder.fromJson(value);
     case 'capabilitystatement.rest.resource':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementResource.fromJson(value);
+          : CapabilityStatementResourceBuilder.fromJson(value);
     case 'capabilitystatement.rest.resource.interaction':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementInteraction.fromJson(value);
+          : CapabilityStatementInteractionBuilder.fromJson(value);
     case 'capabilitystatement.rest.resource.searchparam':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementSearchParam.fromJson(value);
+          : CapabilityStatementSearchParamBuilder.fromJson(value);
     case 'capabilitystatement.rest.resource.operation':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementOperation.fromJson(value);
+          : CapabilityStatementOperationBuilder.fromJson(value);
     case 'capabilitystatement.rest.interaction':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementInteraction1.fromJson(value);
+          : CapabilityStatementInteraction1Builder.fromJson(value);
     case 'capabilitystatement.messaging':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementMessaging.fromJson(value);
+          : CapabilityStatementMessagingBuilder.fromJson(value);
     case 'capabilitystatement.messaging.endpoint':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementEndpoint.fromJson(value);
+          : CapabilityStatementEndpointBuilder.fromJson(value);
     case 'capabilitystatement.messaging.supportedmessage':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementSupportedMessage.fromJson(value);
+          : CapabilityStatementSupportedMessageBuilder.fromJson(value);
     case 'capabilitystatement.document':
       return value is! Map<String, dynamic>
           ? null
-          : CapabilityStatementDocument.fromJson(value);
+          : CapabilityStatementDocumentBuilder.fromJson(value);
     case 'careplan':
-      return value is! Map<String, dynamic> ? null : CarePlan.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : CarePlanBuilder.fromJson(value);
     case 'careplan.activity':
       return value is! Map<String, dynamic>
           ? null
-          : CarePlanActivity.fromJson(value);
+          : CarePlanActivityBuilder.fromJson(value);
     case 'careplan.activity.detail':
       return value is! Map<String, dynamic>
           ? null
-          : CarePlanDetail.fromJson(value);
+          : CarePlanDetailBuilder.fromJson(value);
     case 'careteam':
-      return value is! Map<String, dynamic> ? null : CareTeam.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : CareTeamBuilder.fromJson(value);
     case 'careteam.participant':
       return value is! Map<String, dynamic>
           ? null
-          : CareTeamParticipant.fromJson(value);
+          : CareTeamParticipantBuilder.fromJson(value);
     case 'catalogentry':
       return value is! Map<String, dynamic>
           ? null
-          : CatalogEntry.fromJson(value);
+          : CatalogEntryBuilder.fromJson(value);
     case 'catalogentry.relatedentry':
       return value is! Map<String, dynamic>
           ? null
-          : CatalogEntryRelatedEntry.fromJson(value);
+          : CatalogEntryRelatedEntryBuilder.fromJson(value);
     case 'chargeitem':
-      return value is! Map<String, dynamic> ? null : ChargeItem.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ChargeItemBuilder.fromJson(value);
     case 'chargeitem.performer':
       return value is! Map<String, dynamic>
           ? null
-          : ChargeItemPerformer.fromJson(value);
+          : ChargeItemPerformerBuilder.fromJson(value);
     case 'chargeitemdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ChargeItemDefinition.fromJson(value);
+          : ChargeItemDefinitionBuilder.fromJson(value);
     case 'chargeitemdefinition.applicability':
       return value is! Map<String, dynamic>
           ? null
-          : ChargeItemDefinitionApplicability.fromJson(value);
+          : ChargeItemDefinitionApplicabilityBuilder.fromJson(value);
     case 'chargeitemdefinition.propertygroup':
       return value is! Map<String, dynamic>
           ? null
-          : ChargeItemDefinitionPropertyGroup.fromJson(value);
+          : ChargeItemDefinitionPropertyGroupBuilder.fromJson(value);
     case 'chargeitemdefinition.propertygroup.pricecomponent':
       return value is! Map<String, dynamic>
           ? null
-          : ChargeItemDefinitionPriceComponent.fromJson(value);
+          : ChargeItemDefinitionPriceComponentBuilder.fromJson(value);
     case 'citation':
-      return value is! Map<String, dynamic> ? null : Citation.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : CitationBuilder.fromJson(value);
     case 'citation.summary':
       return value is! Map<String, dynamic>
           ? null
-          : CitationSummary.fromJson(value);
+          : CitationSummaryBuilder.fromJson(value);
     case 'citation.classification':
       return value is! Map<String, dynamic>
           ? null
-          : CitationClassification.fromJson(value);
+          : CitationClassificationBuilder.fromJson(value);
     case 'citation.statusdate':
       return value is! Map<String, dynamic>
           ? null
-          : CitationStatusDate.fromJson(value);
+          : CitationStatusDateBuilder.fromJson(value);
     case 'citation.relatesto':
       return value is! Map<String, dynamic>
           ? null
-          : CitationRelatesTo.fromJson(value);
+          : CitationRelatesToBuilder.fromJson(value);
     case 'citation.citedartifact':
       return value is! Map<String, dynamic>
           ? null
-          : CitationCitedArtifact.fromJson(value);
+          : CitationCitedArtifactBuilder.fromJson(value);
     case 'citation.citedartifact.version':
       return value is! Map<String, dynamic>
           ? null
-          : CitationVersion.fromJson(value);
+          : CitationVersionBuilder.fromJson(value);
     case 'citation.citedartifact.statusdate':
       return value is! Map<String, dynamic>
           ? null
-          : CitationStatusDate1.fromJson(value);
+          : CitationStatusDate1Builder.fromJson(value);
     case 'citation.citedartifact.title':
       return value is! Map<String, dynamic>
           ? null
-          : CitationTitle.fromJson(value);
+          : CitationTitleBuilder.fromJson(value);
     case 'citation.citedartifact.abstract':
       return value is! Map<String, dynamic>
           ? null
-          : CitationAbstract.fromJson(value);
+          : CitationAbstractBuilder.fromJson(value);
     case 'citation.citedartifact.part':
       return value is! Map<String, dynamic>
           ? null
-          : CitationPart.fromJson(value);
+          : CitationPartBuilder.fromJson(value);
     case 'citation.citedartifact.relatesto':
       return value is! Map<String, dynamic>
           ? null
-          : CitationRelatesTo1.fromJson(value);
+          : CitationRelatesTo1Builder.fromJson(value);
     case 'citation.citedartifact.publicationform':
       return value is! Map<String, dynamic>
           ? null
-          : CitationPublicationForm.fromJson(value);
+          : CitationPublicationFormBuilder.fromJson(value);
     case 'citation.citedartifact.publicationform.publishedin':
       return value is! Map<String, dynamic>
           ? null
-          : CitationPublishedIn.fromJson(value);
+          : CitationPublishedInBuilder.fromJson(value);
     case 'citation.citedartifact.publicationform.periodicrelease':
       return value is! Map<String, dynamic>
           ? null
-          : CitationPeriodicRelease.fromJson(value);
+          : CitationPeriodicReleaseBuilder.fromJson(value);
     case 'citation.citedartifact.publicationform.periodicrelease.dateofpublication':
       return value is! Map<String, dynamic>
           ? null
-          : CitationDateOfPublication.fromJson(value);
+          : CitationDateOfPublicationBuilder.fromJson(value);
     case 'citation.citedartifact.weblocation':
       return value is! Map<String, dynamic>
           ? null
-          : CitationWebLocation.fromJson(value);
+          : CitationWebLocationBuilder.fromJson(value);
     case 'citation.citedartifact.classification':
       return value is! Map<String, dynamic>
           ? null
-          : CitationClassification1.fromJson(value);
+          : CitationClassification1Builder.fromJson(value);
     case 'citation.citedartifact.classification.whoclassified':
       return value is! Map<String, dynamic>
           ? null
-          : CitationWhoClassified.fromJson(value);
+          : CitationWhoClassifiedBuilder.fromJson(value);
     case 'citation.citedartifact.contributorship':
       return value is! Map<String, dynamic>
           ? null
-          : CitationContributorship.fromJson(value);
+          : CitationContributorshipBuilder.fromJson(value);
     case 'citation.citedartifact.contributorship.entry':
       return value is! Map<String, dynamic>
           ? null
-          : CitationEntry.fromJson(value);
+          : CitationEntryBuilder.fromJson(value);
     case 'citation.citedartifact.contributorship.entry.affiliationinfo':
       return value is! Map<String, dynamic>
           ? null
-          : CitationAffiliationInfo.fromJson(value);
+          : CitationAffiliationInfoBuilder.fromJson(value);
     case 'citation.citedartifact.contributorship.entry.contributioninstance':
       return value is! Map<String, dynamic>
           ? null
-          : CitationContributionInstance.fromJson(value);
+          : CitationContributionInstanceBuilder.fromJson(value);
     case 'citation.citedartifact.contributorship.summary':
       return value is! Map<String, dynamic>
           ? null
-          : CitationSummary1.fromJson(value);
+          : CitationSummary1Builder.fromJson(value);
     case 'claim':
-      return value is! Map<String, dynamic> ? null : Claim.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ClaimBuilder.fromJson(value);
     case 'claim.related':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimRelated.fromJson(value);
+          : ClaimRelatedBuilder.fromJson(value);
     case 'claim.payee':
-      return value is! Map<String, dynamic> ? null : ClaimPayee.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ClaimPayeeBuilder.fromJson(value);
     case 'claim.careteam':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimCareTeam.fromJson(value);
+          : ClaimCareTeamBuilder.fromJson(value);
     case 'claim.supportinginfo':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimSupportingInfo.fromJson(value);
+          : ClaimSupportingInfoBuilder.fromJson(value);
     case 'claim.diagnosis':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimDiagnosis.fromJson(value);
+          : ClaimDiagnosisBuilder.fromJson(value);
     case 'claim.procedure':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimProcedure.fromJson(value);
+          : ClaimProcedureBuilder.fromJson(value);
     case 'claim.insurance':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimInsurance.fromJson(value);
+          : ClaimInsuranceBuilder.fromJson(value);
     case 'claim.accident':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimAccident.fromJson(value);
+          : ClaimAccidentBuilder.fromJson(value);
     case 'claim.item':
-      return value is! Map<String, dynamic> ? null : ClaimItem.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ClaimItemBuilder.fromJson(value);
     case 'claim.item.detail':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimDetail.fromJson(value);
+          : ClaimDetailBuilder.fromJson(value);
     case 'claim.item.detail.subdetail':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimSubDetail.fromJson(value);
+          : ClaimSubDetailBuilder.fromJson(value);
     case 'claimresponse':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponse.fromJson(value);
+          : ClaimResponseBuilder.fromJson(value);
     case 'claimresponse.item':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseItem.fromJson(value);
+          : ClaimResponseItemBuilder.fromJson(value);
     case 'claimresponse.item.adjudication':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseAdjudication.fromJson(value);
+          : ClaimResponseAdjudicationBuilder.fromJson(value);
     case 'claimresponse.item.detail':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseDetail.fromJson(value);
+          : ClaimResponseDetailBuilder.fromJson(value);
     case 'claimresponse.item.detail.subdetail':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseSubDetail.fromJson(value);
+          : ClaimResponseSubDetailBuilder.fromJson(value);
     case 'claimresponse.additem':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseAddItem.fromJson(value);
+          : ClaimResponseAddItemBuilder.fromJson(value);
     case 'claimresponse.additem.detail':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseDetail1.fromJson(value);
+          : ClaimResponseDetail1Builder.fromJson(value);
     case 'claimresponse.additem.detail.subdetail':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseSubDetail1.fromJson(value);
+          : ClaimResponseSubDetail1Builder.fromJson(value);
     case 'claimresponse.total':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseTotal.fromJson(value);
+          : ClaimResponseTotalBuilder.fromJson(value);
     case 'claimresponse.payment':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponsePayment.fromJson(value);
+          : ClaimResponsePaymentBuilder.fromJson(value);
     case 'claimresponse.processnote':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseProcessNote.fromJson(value);
+          : ClaimResponseProcessNoteBuilder.fromJson(value);
     case 'claimresponse.insurance':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseInsurance.fromJson(value);
+          : ClaimResponseInsuranceBuilder.fromJson(value);
     case 'claimresponse.error':
       return value is! Map<String, dynamic>
           ? null
-          : ClaimResponseError.fromJson(value);
+          : ClaimResponseErrorBuilder.fromJson(value);
     case 'clinicalimpression':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalImpression.fromJson(value);
+          : ClinicalImpressionBuilder.fromJson(value);
     case 'clinicalimpression.investigation':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalImpressionInvestigation.fromJson(value);
+          : ClinicalImpressionInvestigationBuilder.fromJson(value);
     case 'clinicalimpression.finding':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalImpressionFinding.fromJson(value);
+          : ClinicalImpressionFindingBuilder.fromJson(value);
     case 'clinicalusedefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinition.fromJson(value);
+          : ClinicalUseDefinitionBuilder.fromJson(value);
     case 'clinicalusedefinition.contraindication':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinitionContraindication.fromJson(value);
+          : ClinicalUseDefinitionContraindicationBuilder.fromJson(value);
     case 'clinicalusedefinition.contraindication.othertherapy':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinitionOtherTherapy.fromJson(value);
+          : ClinicalUseDefinitionOtherTherapyBuilder.fromJson(value);
     case 'clinicalusedefinition.indication':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinitionIndication.fromJson(value);
+          : ClinicalUseDefinitionIndicationBuilder.fromJson(value);
     case 'clinicalusedefinition.interaction':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinitionInteraction.fromJson(value);
+          : ClinicalUseDefinitionInteractionBuilder.fromJson(value);
     case 'clinicalusedefinition.interaction.interactant':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinitionInteractant.fromJson(value);
+          : ClinicalUseDefinitionInteractantBuilder.fromJson(value);
     case 'clinicalusedefinition.undesirableeffect':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinitionUndesirableEffect.fromJson(value);
+          : ClinicalUseDefinitionUndesirableEffectBuilder.fromJson(value);
     case 'clinicalusedefinition.warning':
       return value is! Map<String, dynamic>
           ? null
-          : ClinicalUseDefinitionWarning.fromJson(value);
+          : ClinicalUseDefinitionWarningBuilder.fromJson(value);
     case 'codesystem':
-      return value is! Map<String, dynamic> ? null : CodeSystem.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : CodeSystemBuilder.fromJson(value);
     case 'codesystem.filter':
       return value is! Map<String, dynamic>
           ? null
-          : CodeSystemFilter.fromJson(value);
+          : CodeSystemFilterBuilder.fromJson(value);
     case 'codesystem.property':
       return value is! Map<String, dynamic>
           ? null
-          : CodeSystemProperty.fromJson(value);
+          : CodeSystemPropertyBuilder.fromJson(value);
     case 'codesystem.concept':
       return value is! Map<String, dynamic>
           ? null
-          : CodeSystemConcept.fromJson(value);
+          : CodeSystemConceptBuilder.fromJson(value);
     case 'codesystem.concept.designation':
       return value is! Map<String, dynamic>
           ? null
-          : CodeSystemDesignation.fromJson(value);
+          : CodeSystemDesignationBuilder.fromJson(value);
     case 'codesystem.concept.property':
       return value is! Map<String, dynamic>
           ? null
-          : CodeSystemProperty1.fromJson(value);
+          : CodeSystemProperty1Builder.fromJson(value);
     case 'communication':
       return value is! Map<String, dynamic>
           ? null
-          : Communication.fromJson(value);
+          : CommunicationBuilder.fromJson(value);
     case 'communication.payload':
       return value is! Map<String, dynamic>
           ? null
-          : CommunicationPayload.fromJson(value);
+          : CommunicationPayloadBuilder.fromJson(value);
     case 'communicationrequest':
       return value is! Map<String, dynamic>
           ? null
-          : CommunicationRequest.fromJson(value);
+          : CommunicationRequestBuilder.fromJson(value);
     case 'communicationrequest.payload':
       return value is! Map<String, dynamic>
           ? null
-          : CommunicationRequestPayload.fromJson(value);
+          : CommunicationRequestPayloadBuilder.fromJson(value);
     case 'compartmentdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : CompartmentDefinition.fromJson(value);
+          : CompartmentDefinitionBuilder.fromJson(value);
     case 'compartmentdefinition.resource':
       return value is! Map<String, dynamic>
           ? null
-          : CompartmentDefinitionResource.fromJson(value);
+          : CompartmentDefinitionResourceBuilder.fromJson(value);
     case 'composition':
       return value is! Map<String, dynamic>
           ? null
-          : Composition.fromJson(value);
+          : CompositionBuilder.fromJson(value);
     case 'composition.attester':
       return value is! Map<String, dynamic>
           ? null
-          : CompositionAttester.fromJson(value);
+          : CompositionAttesterBuilder.fromJson(value);
     case 'composition.relatesto':
       return value is! Map<String, dynamic>
           ? null
-          : CompositionRelatesTo.fromJson(value);
+          : CompositionRelatesToBuilder.fromJson(value);
     case 'composition.event':
       return value is! Map<String, dynamic>
           ? null
-          : CompositionEvent.fromJson(value);
+          : CompositionEventBuilder.fromJson(value);
     case 'composition.section':
       return value is! Map<String, dynamic>
           ? null
-          : CompositionSection.fromJson(value);
+          : CompositionSectionBuilder.fromJson(value);
     case 'conceptmap':
-      return value is! Map<String, dynamic> ? null : ConceptMap.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ConceptMapBuilder.fromJson(value);
     case 'conceptmap.group':
       return value is! Map<String, dynamic>
           ? null
-          : ConceptMapGroup.fromJson(value);
+          : ConceptMapGroupBuilder.fromJson(value);
     case 'conceptmap.group.element':
       return value is! Map<String, dynamic>
           ? null
-          : ConceptMapElement.fromJson(value);
+          : ConceptMapElementBuilder.fromJson(value);
     case 'conceptmap.group.element.target':
       return value is! Map<String, dynamic>
           ? null
-          : ConceptMapTarget.fromJson(value);
+          : ConceptMapTargetBuilder.fromJson(value);
     case 'conceptmap.group.element.target.dependson':
       return value is! Map<String, dynamic>
           ? null
-          : ConceptMapDependsOn.fromJson(value);
+          : ConceptMapDependsOnBuilder.fromJson(value);
     case 'conceptmap.group.unmapped':
       return value is! Map<String, dynamic>
           ? null
-          : ConceptMapUnmapped.fromJson(value);
+          : ConceptMapUnmappedBuilder.fromJson(value);
     case 'condition':
-      return value is! Map<String, dynamic> ? null : Condition.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ConditionBuilder.fromJson(value);
     case 'condition.stage':
       return value is! Map<String, dynamic>
           ? null
-          : ConditionStage.fromJson(value);
+          : ConditionStageBuilder.fromJson(value);
     case 'condition.evidence':
       return value is! Map<String, dynamic>
           ? null
-          : ConditionEvidence.fromJson(value);
+          : ConditionEvidenceBuilder.fromJson(value);
     case 'consent':
-      return value is! Map<String, dynamic> ? null : Consent.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ConsentBuilder.fromJson(value);
     case 'consent.policy':
       return value is! Map<String, dynamic>
           ? null
-          : ConsentPolicy.fromJson(value);
+          : ConsentPolicyBuilder.fromJson(value);
     case 'consent.verification':
       return value is! Map<String, dynamic>
           ? null
-          : ConsentVerification.fromJson(value);
+          : ConsentVerificationBuilder.fromJson(value);
     case 'consent.provision':
       return value is! Map<String, dynamic>
           ? null
-          : ConsentProvision.fromJson(value);
+          : ConsentProvisionBuilder.fromJson(value);
     case 'consent.provision.actor':
       return value is! Map<String, dynamic>
           ? null
-          : ConsentActor.fromJson(value);
+          : ConsentActorBuilder.fromJson(value);
     case 'consent.provision.data':
       return value is! Map<String, dynamic>
           ? null
-          : ConsentData.fromJson(value);
+          : ConsentDataBuilder.fromJson(value);
     case 'contract':
-      return value is! Map<String, dynamic> ? null : Contract.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ContractBuilder.fromJson(value);
     case 'contract.contentdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ContractContentDefinition.fromJson(value);
+          : ContractContentDefinitionBuilder.fromJson(value);
     case 'contract.term':
       return value is! Map<String, dynamic>
           ? null
-          : ContractTerm.fromJson(value);
+          : ContractTermBuilder.fromJson(value);
     case 'contract.term.securitylabel':
       return value is! Map<String, dynamic>
           ? null
-          : ContractSecurityLabel.fromJson(value);
+          : ContractSecurityLabelBuilder.fromJson(value);
     case 'contract.term.offer':
       return value is! Map<String, dynamic>
           ? null
-          : ContractOffer.fromJson(value);
+          : ContractOfferBuilder.fromJson(value);
     case 'contract.term.offer.party':
       return value is! Map<String, dynamic>
           ? null
-          : ContractParty.fromJson(value);
+          : ContractPartyBuilder.fromJson(value);
     case 'contract.term.offer.answer':
       return value is! Map<String, dynamic>
           ? null
-          : ContractAnswer.fromJson(value);
+          : ContractAnswerBuilder.fromJson(value);
     case 'contract.term.asset':
       return value is! Map<String, dynamic>
           ? null
-          : ContractAsset.fromJson(value);
+          : ContractAssetBuilder.fromJson(value);
     case 'contract.term.asset.context':
       return value is! Map<String, dynamic>
           ? null
-          : ContractContext.fromJson(value);
+          : ContractContextBuilder.fromJson(value);
     case 'contract.term.asset.valueditem':
       return value is! Map<String, dynamic>
           ? null
-          : ContractValuedItem.fromJson(value);
+          : ContractValuedItemBuilder.fromJson(value);
     case 'contract.term.action':
       return value is! Map<String, dynamic>
           ? null
-          : ContractAction.fromJson(value);
+          : ContractActionBuilder.fromJson(value);
     case 'contract.term.action.subject':
       return value is! Map<String, dynamic>
           ? null
-          : ContractSubject.fromJson(value);
+          : ContractSubjectBuilder.fromJson(value);
     case 'contract.signer':
       return value is! Map<String, dynamic>
           ? null
-          : ContractSigner.fromJson(value);
+          : ContractSignerBuilder.fromJson(value);
     case 'contract.friendly':
       return value is! Map<String, dynamic>
           ? null
-          : ContractFriendly.fromJson(value);
+          : ContractFriendlyBuilder.fromJson(value);
     case 'contract.legal':
       return value is! Map<String, dynamic>
           ? null
-          : ContractLegal.fromJson(value);
+          : ContractLegalBuilder.fromJson(value);
     case 'contract.rule':
       return value is! Map<String, dynamic>
           ? null
-          : ContractRule.fromJson(value);
+          : ContractRuleBuilder.fromJson(value);
     case 'coverage':
-      return value is! Map<String, dynamic> ? null : Coverage.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : CoverageBuilder.fromJson(value);
     case 'coverage.class':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageClass.fromJson(value);
+          : CoverageClassBuilder.fromJson(value);
     case 'coverage.costtobeneficiary':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageCostToBeneficiary.fromJson(value);
+          : CoverageCostToBeneficiaryBuilder.fromJson(value);
     case 'coverage.costtobeneficiary.exception':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageException.fromJson(value);
+          : CoverageExceptionBuilder.fromJson(value);
     case 'coverageeligibilityrequest':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityRequest.fromJson(value);
+          : CoverageEligibilityRequestBuilder.fromJson(value);
     case 'coverageeligibilityrequest.supportinginfo':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityRequestSupportingInfo.fromJson(value);
+          : CoverageEligibilityRequestSupportingInfoBuilder.fromJson(value);
     case 'coverageeligibilityrequest.insurance':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityRequestInsurance.fromJson(value);
+          : CoverageEligibilityRequestInsuranceBuilder.fromJson(value);
     case 'coverageeligibilityrequest.item':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityRequestItem.fromJson(value);
+          : CoverageEligibilityRequestItemBuilder.fromJson(value);
     case 'coverageeligibilityrequest.item.diagnosis':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityRequestDiagnosis.fromJson(value);
+          : CoverageEligibilityRequestDiagnosisBuilder.fromJson(value);
     case 'coverageeligibilityresponse':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityResponse.fromJson(value);
+          : CoverageEligibilityResponseBuilder.fromJson(value);
     case 'coverageeligibilityresponse.insurance':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityResponseInsurance.fromJson(value);
+          : CoverageEligibilityResponseInsuranceBuilder.fromJson(value);
     case 'coverageeligibilityresponse.insurance.item':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityResponseItem.fromJson(value);
+          : CoverageEligibilityResponseItemBuilder.fromJson(value);
     case 'coverageeligibilityresponse.insurance.item.benefit':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityResponseBenefit.fromJson(value);
+          : CoverageEligibilityResponseBenefitBuilder.fromJson(value);
     case 'coverageeligibilityresponse.error':
       return value is! Map<String, dynamic>
           ? null
-          : CoverageEligibilityResponseError.fromJson(value);
+          : CoverageEligibilityResponseErrorBuilder.fromJson(value);
     case 'detectedissue':
       return value is! Map<String, dynamic>
           ? null
-          : DetectedIssue.fromJson(value);
+          : DetectedIssueBuilder.fromJson(value);
     case 'detectedissue.evidence':
       return value is! Map<String, dynamic>
           ? null
-          : DetectedIssueEvidence.fromJson(value);
+          : DetectedIssueEvidenceBuilder.fromJson(value);
     case 'detectedissue.mitigation':
       return value is! Map<String, dynamic>
           ? null
-          : DetectedIssueMitigation.fromJson(value);
+          : DetectedIssueMitigationBuilder.fromJson(value);
     case 'device':
-      return value is! Map<String, dynamic> ? null : Device.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : DeviceBuilder.fromJson(value);
     case 'device.udicarrier':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceUdiCarrier.fromJson(value);
+          : DeviceUdiCarrierBuilder.fromJson(value);
     case 'device.devicename':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDeviceName.fromJson(value);
+          : DeviceDeviceNameBuilder.fromJson(value);
     case 'device.specialization':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceSpecialization.fromJson(value);
+          : DeviceSpecializationBuilder.fromJson(value);
     case 'device.version':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceVersion.fromJson(value);
+          : DeviceVersionBuilder.fromJson(value);
     case 'device.property':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceProperty.fromJson(value);
+          : DevicePropertyBuilder.fromJson(value);
     case 'devicedefinition':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDefinition.fromJson(value);
+          : DeviceDefinitionBuilder.fromJson(value);
     case 'devicedefinition.udideviceidentifier':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDefinitionUdiDeviceIdentifier.fromJson(value);
+          : DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(value);
     case 'devicedefinition.devicename':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDefinitionDeviceName.fromJson(value);
+          : DeviceDefinitionDeviceNameBuilder.fromJson(value);
     case 'devicedefinition.specialization':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDefinitionSpecialization.fromJson(value);
+          : DeviceDefinitionSpecializationBuilder.fromJson(value);
     case 'devicedefinition.capability':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDefinitionCapability.fromJson(value);
+          : DeviceDefinitionCapabilityBuilder.fromJson(value);
     case 'devicedefinition.property':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDefinitionProperty.fromJson(value);
+          : DeviceDefinitionPropertyBuilder.fromJson(value);
     case 'devicedefinition.material':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceDefinitionMaterial.fromJson(value);
+          : DeviceDefinitionMaterialBuilder.fromJson(value);
     case 'devicemetric':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceMetric.fromJson(value);
+          : DeviceMetricBuilder.fromJson(value);
     case 'devicemetric.calibration':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceMetricCalibration.fromJson(value);
+          : DeviceMetricCalibrationBuilder.fromJson(value);
     case 'devicerequest':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceRequest.fromJson(value);
+          : DeviceRequestBuilder.fromJson(value);
     case 'devicerequest.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceRequestParameter.fromJson(value);
+          : DeviceRequestParameterBuilder.fromJson(value);
     case 'deviceusestatement':
       return value is! Map<String, dynamic>
           ? null
-          : DeviceUseStatement.fromJson(value);
+          : DeviceUseStatementBuilder.fromJson(value);
     case 'diagnosticreport':
       return value is! Map<String, dynamic>
           ? null
-          : DiagnosticReport.fromJson(value);
+          : DiagnosticReportBuilder.fromJson(value);
     case 'diagnosticreport.media':
       return value is! Map<String, dynamic>
           ? null
-          : DiagnosticReportMedia.fromJson(value);
+          : DiagnosticReportMediaBuilder.fromJson(value);
     case 'documentmanifest':
       return value is! Map<String, dynamic>
           ? null
-          : DocumentManifest.fromJson(value);
+          : DocumentManifestBuilder.fromJson(value);
     case 'documentmanifest.related':
       return value is! Map<String, dynamic>
           ? null
-          : DocumentManifestRelated.fromJson(value);
+          : DocumentManifestRelatedBuilder.fromJson(value);
     case 'documentreference':
       return value is! Map<String, dynamic>
           ? null
-          : DocumentReference.fromJson(value);
+          : DocumentReferenceBuilder.fromJson(value);
     case 'documentreference.relatesto':
       return value is! Map<String, dynamic>
           ? null
-          : DocumentReferenceRelatesTo.fromJson(value);
+          : DocumentReferenceRelatesToBuilder.fromJson(value);
     case 'documentreference.content':
       return value is! Map<String, dynamic>
           ? null
-          : DocumentReferenceContent.fromJson(value);
+          : DocumentReferenceContentBuilder.fromJson(value);
     case 'documentreference.context':
       return value is! Map<String, dynamic>
           ? null
-          : DocumentReferenceContext.fromJson(value);
+          : DocumentReferenceContextBuilder.fromJson(value);
     case 'encounter':
-      return value is! Map<String, dynamic> ? null : Encounter.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : EncounterBuilder.fromJson(value);
     case 'encounter.statushistory':
       return value is! Map<String, dynamic>
           ? null
-          : EncounterStatusHistory.fromJson(value);
+          : EncounterStatusHistoryBuilder.fromJson(value);
     case 'encounter.classhistory':
       return value is! Map<String, dynamic>
           ? null
-          : EncounterClassHistory.fromJson(value);
+          : EncounterClassHistoryBuilder.fromJson(value);
     case 'encounter.participant':
       return value is! Map<String, dynamic>
           ? null
-          : EncounterParticipant.fromJson(value);
+          : EncounterParticipantBuilder.fromJson(value);
     case 'encounter.diagnosis':
       return value is! Map<String, dynamic>
           ? null
-          : EncounterDiagnosis.fromJson(value);
+          : EncounterDiagnosisBuilder.fromJson(value);
     case 'encounter.hospitalization':
       return value is! Map<String, dynamic>
           ? null
-          : EncounterHospitalization.fromJson(value);
+          : EncounterHospitalizationBuilder.fromJson(value);
     case 'encounter.location':
       return value is! Map<String, dynamic>
           ? null
-          : EncounterLocation.fromJson(value);
+          : EncounterLocationBuilder.fromJson(value);
     case 'endpoint':
       return value is! Map<String, dynamic>
           ? null
-          : FhirEndpoint.fromJson(value);
+          : FhirEndpointBuilder.fromJson(value);
     case 'enrollmentrequest':
       return value is! Map<String, dynamic>
           ? null
-          : EnrollmentRequest.fromJson(value);
+          : EnrollmentRequestBuilder.fromJson(value);
     case 'enrollmentresponse':
       return value is! Map<String, dynamic>
           ? null
-          : EnrollmentResponse.fromJson(value);
+          : EnrollmentResponseBuilder.fromJson(value);
     case 'episodeofcare':
       return value is! Map<String, dynamic>
           ? null
-          : EpisodeOfCare.fromJson(value);
+          : EpisodeOfCareBuilder.fromJson(value);
     case 'episodeofcare.statushistory':
       return value is! Map<String, dynamic>
           ? null
-          : EpisodeOfCareStatusHistory.fromJson(value);
+          : EpisodeOfCareStatusHistoryBuilder.fromJson(value);
     case 'episodeofcare.diagnosis':
       return value is! Map<String, dynamic>
           ? null
-          : EpisodeOfCareDiagnosis.fromJson(value);
+          : EpisodeOfCareDiagnosisBuilder.fromJson(value);
     case 'eventdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : EventDefinition.fromJson(value);
+          : EventDefinitionBuilder.fromJson(value);
     case 'evidence':
-      return value is! Map<String, dynamic> ? null : Evidence.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : EvidenceBuilder.fromJson(value);
     case 'evidence.variabledefinition':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceVariableDefinition.fromJson(value);
+          : EvidenceVariableDefinitionBuilder.fromJson(value);
     case 'evidence.statistic':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceStatistic.fromJson(value);
+          : EvidenceStatisticBuilder.fromJson(value);
     case 'evidence.statistic.samplesize':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceSampleSize.fromJson(value);
+          : EvidenceSampleSizeBuilder.fromJson(value);
     case 'evidence.statistic.attributeestimate':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceAttributeEstimate.fromJson(value);
+          : EvidenceAttributeEstimateBuilder.fromJson(value);
     case 'evidence.statistic.modelcharacteristic':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceModelCharacteristic.fromJson(value);
+          : EvidenceModelCharacteristicBuilder.fromJson(value);
     case 'evidence.statistic.modelcharacteristic.variable':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceModelCharacteristicVariable.fromJson(value);
+          : EvidenceModelCharacteristicVariableBuilder.fromJson(value);
     case 'evidence.certainty':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceCertainty.fromJson(value);
+          : EvidenceCertaintyBuilder.fromJson(value);
     case 'evidencereport':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceReport.fromJson(value);
+          : EvidenceReportBuilder.fromJson(value);
     case 'evidencereport.subject':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceReportSubject.fromJson(value);
+          : EvidenceReportSubjectBuilder.fromJson(value);
     case 'evidencereport.subject.characteristic':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceReportCharacteristic.fromJson(value);
+          : EvidenceReportCharacteristicBuilder.fromJson(value);
     case 'evidencereport.relatesto':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceReportRelatesTo.fromJson(value);
+          : EvidenceReportRelatesToBuilder.fromJson(value);
     case 'evidencereport.section':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceReportSection.fromJson(value);
+          : EvidenceReportSectionBuilder.fromJson(value);
     case 'evidencevariable':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceVariable.fromJson(value);
+          : EvidenceVariableBuilder.fromJson(value);
     case 'evidencevariable.characteristic':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceVariableCharacteristic.fromJson(value);
+          : EvidenceVariableCharacteristicBuilder.fromJson(value);
     case 'evidencevariable.characteristic.timefromstart':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceVariableTimeFromStart.fromJson(value);
+          : EvidenceVariableTimeFromStartBuilder.fromJson(value);
     case 'evidencevariable.category':
       return value is! Map<String, dynamic>
           ? null
-          : EvidenceVariableCategory.fromJson(value);
+          : EvidenceVariableCategoryBuilder.fromJson(value);
     case 'examplescenario':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenario.fromJson(value);
+          : ExampleScenarioBuilder.fromJson(value);
     case 'examplescenario.actor':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioActor.fromJson(value);
+          : ExampleScenarioActorBuilder.fromJson(value);
     case 'examplescenario.instance':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioInstance.fromJson(value);
+          : ExampleScenarioInstanceBuilder.fromJson(value);
     case 'examplescenario.instance.version':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioVersion.fromJson(value);
+          : ExampleScenarioVersionBuilder.fromJson(value);
     case 'examplescenario.instance.containedinstance':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioContainedInstance.fromJson(value);
+          : ExampleScenarioContainedInstanceBuilder.fromJson(value);
     case 'examplescenario.process':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioProcess.fromJson(value);
+          : ExampleScenarioProcessBuilder.fromJson(value);
     case 'examplescenario.process.step':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioStep.fromJson(value);
+          : ExampleScenarioStepBuilder.fromJson(value);
     case 'examplescenario.process.step.operation':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioOperation.fromJson(value);
+          : ExampleScenarioOperationBuilder.fromJson(value);
     case 'examplescenario.process.step.alternative':
       return value is! Map<String, dynamic>
           ? null
-          : ExampleScenarioAlternative.fromJson(value);
+          : ExampleScenarioAlternativeBuilder.fromJson(value);
     case 'explanationofbenefit':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefit.fromJson(value);
+          : ExplanationOfBenefitBuilder.fromJson(value);
     case 'explanationofbenefit.related':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitRelated.fromJson(value);
+          : ExplanationOfBenefitRelatedBuilder.fromJson(value);
     case 'explanationofbenefit.payee':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitPayee.fromJson(value);
+          : ExplanationOfBenefitPayeeBuilder.fromJson(value);
     case 'explanationofbenefit.careteam':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitCareTeam.fromJson(value);
+          : ExplanationOfBenefitCareTeamBuilder.fromJson(value);
     case 'explanationofbenefit.supportinginfo':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitSupportingInfo.fromJson(value);
+          : ExplanationOfBenefitSupportingInfoBuilder.fromJson(value);
     case 'explanationofbenefit.diagnosis':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitDiagnosis.fromJson(value);
+          : ExplanationOfBenefitDiagnosisBuilder.fromJson(value);
     case 'explanationofbenefit.procedure':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitProcedure.fromJson(value);
+          : ExplanationOfBenefitProcedureBuilder.fromJson(value);
     case 'explanationofbenefit.insurance':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitInsurance.fromJson(value);
+          : ExplanationOfBenefitInsuranceBuilder.fromJson(value);
     case 'explanationofbenefit.accident':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitAccident.fromJson(value);
+          : ExplanationOfBenefitAccidentBuilder.fromJson(value);
     case 'explanationofbenefit.item':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitItem.fromJson(value);
+          : ExplanationOfBenefitItemBuilder.fromJson(value);
     case 'explanationofbenefit.item.adjudication':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitAdjudication.fromJson(value);
+          : ExplanationOfBenefitAdjudicationBuilder.fromJson(value);
     case 'explanationofbenefit.item.detail':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitDetail.fromJson(value);
+          : ExplanationOfBenefitDetailBuilder.fromJson(value);
     case 'explanationofbenefit.item.detail.subdetail':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitSubDetail.fromJson(value);
+          : ExplanationOfBenefitSubDetailBuilder.fromJson(value);
     case 'explanationofbenefit.additem':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitAddItem.fromJson(value);
+          : ExplanationOfBenefitAddItemBuilder.fromJson(value);
     case 'explanationofbenefit.additem.detail':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitDetail1.fromJson(value);
+          : ExplanationOfBenefitDetail1Builder.fromJson(value);
     case 'explanationofbenefit.additem.detail.subdetail':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitSubDetail1.fromJson(value);
+          : ExplanationOfBenefitSubDetail1Builder.fromJson(value);
     case 'explanationofbenefit.total':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitTotal.fromJson(value);
+          : ExplanationOfBenefitTotalBuilder.fromJson(value);
     case 'explanationofbenefit.payment':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitPayment.fromJson(value);
+          : ExplanationOfBenefitPaymentBuilder.fromJson(value);
     case 'explanationofbenefit.processnote':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitProcessNote.fromJson(value);
+          : ExplanationOfBenefitProcessNoteBuilder.fromJson(value);
     case 'explanationofbenefit.benefitbalance':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitBenefitBalance.fromJson(value);
+          : ExplanationOfBenefitBenefitBalanceBuilder.fromJson(value);
     case 'explanationofbenefit.benefitbalance.financial':
       return value is! Map<String, dynamic>
           ? null
-          : ExplanationOfBenefitFinancial.fromJson(value);
+          : ExplanationOfBenefitFinancialBuilder.fromJson(value);
     case 'familymemberhistory':
       return value is! Map<String, dynamic>
           ? null
-          : FamilyMemberHistory.fromJson(value);
+          : FamilyMemberHistoryBuilder.fromJson(value);
     case 'familymemberhistory.condition':
       return value is! Map<String, dynamic>
           ? null
-          : FamilyMemberHistoryCondition.fromJson(value);
+          : FamilyMemberHistoryConditionBuilder.fromJson(value);
     case 'flag':
-      return value is! Map<String, dynamic> ? null : Flag.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FlagBuilder.fromJson(value);
     case 'goal':
-      return value is! Map<String, dynamic> ? null : Goal.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : GoalBuilder.fromJson(value);
     case 'goal.target':
-      return value is! Map<String, dynamic> ? null : GoalTarget.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : GoalTargetBuilder.fromJson(value);
     case 'graphdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : GraphDefinition.fromJson(value);
+          : GraphDefinitionBuilder.fromJson(value);
     case 'graphdefinition.link':
       return value is! Map<String, dynamic>
           ? null
-          : GraphDefinitionLink.fromJson(value);
+          : GraphDefinitionLinkBuilder.fromJson(value);
     case 'graphdefinition.link.target':
       return value is! Map<String, dynamic>
           ? null
-          : GraphDefinitionTarget.fromJson(value);
+          : GraphDefinitionTargetBuilder.fromJson(value);
     case 'graphdefinition.link.target.compartment':
       return value is! Map<String, dynamic>
           ? null
-          : GraphDefinitionCompartment.fromJson(value);
+          : GraphDefinitionCompartmentBuilder.fromJson(value);
     case 'group':
-      return value is! Map<String, dynamic> ? null : FhirGroup.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirGroupBuilder.fromJson(value);
     case 'group.characteristic':
       return value is! Map<String, dynamic>
           ? null
-          : GroupCharacteristic.fromJson(value);
+          : GroupCharacteristicBuilder.fromJson(value);
     case 'group.member':
       return value is! Map<String, dynamic>
           ? null
-          : GroupMember.fromJson(value);
+          : GroupMemberBuilder.fromJson(value);
     case 'guidanceresponse':
       return value is! Map<String, dynamic>
           ? null
-          : GuidanceResponse.fromJson(value);
+          : GuidanceResponseBuilder.fromJson(value);
     case 'healthcareservice':
       return value is! Map<String, dynamic>
           ? null
-          : HealthcareService.fromJson(value);
+          : HealthcareServiceBuilder.fromJson(value);
     case 'healthcareservice.eligibility':
       return value is! Map<String, dynamic>
           ? null
-          : HealthcareServiceEligibility.fromJson(value);
+          : HealthcareServiceEligibilityBuilder.fromJson(value);
     case 'healthcareservice.availabletime':
       return value is! Map<String, dynamic>
           ? null
-          : HealthcareServiceAvailableTime.fromJson(value);
+          : HealthcareServiceAvailableTimeBuilder.fromJson(value);
     case 'healthcareservice.notavailable':
       return value is! Map<String, dynamic>
           ? null
-          : HealthcareServiceNotAvailable.fromJson(value);
+          : HealthcareServiceNotAvailableBuilder.fromJson(value);
     case 'imagingstudy':
       return value is! Map<String, dynamic>
           ? null
-          : ImagingStudy.fromJson(value);
+          : ImagingStudyBuilder.fromJson(value);
     case 'imagingstudy.series':
       return value is! Map<String, dynamic>
           ? null
-          : ImagingStudySeries.fromJson(value);
+          : ImagingStudySeriesBuilder.fromJson(value);
     case 'imagingstudy.series.performer':
       return value is! Map<String, dynamic>
           ? null
-          : ImagingStudyPerformer.fromJson(value);
+          : ImagingStudyPerformerBuilder.fromJson(value);
     case 'imagingstudy.series.instance':
       return value is! Map<String, dynamic>
           ? null
-          : ImagingStudyInstance.fromJson(value);
+          : ImagingStudyInstanceBuilder.fromJson(value);
     case 'immunization':
       return value is! Map<String, dynamic>
           ? null
-          : Immunization.fromJson(value);
+          : ImmunizationBuilder.fromJson(value);
     case 'immunization.performer':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationPerformer.fromJson(value);
+          : ImmunizationPerformerBuilder.fromJson(value);
     case 'immunization.education':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationEducation.fromJson(value);
+          : ImmunizationEducationBuilder.fromJson(value);
     case 'immunization.reaction':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationReaction.fromJson(value);
+          : ImmunizationReactionBuilder.fromJson(value);
     case 'immunization.protocolapplied':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationProtocolApplied.fromJson(value);
+          : ImmunizationProtocolAppliedBuilder.fromJson(value);
     case 'immunizationevaluation':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationEvaluation.fromJson(value);
+          : ImmunizationEvaluationBuilder.fromJson(value);
     case 'immunizationrecommendation':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationRecommendation.fromJson(value);
+          : ImmunizationRecommendationBuilder.fromJson(value);
     case 'immunizationrecommendation.recommendation':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationRecommendationRecommendation.fromJson(value);
+          : ImmunizationRecommendationRecommendationBuilder.fromJson(value);
     case 'immunizationrecommendation.recommendation.datecriterion':
       return value is! Map<String, dynamic>
           ? null
-          : ImmunizationRecommendationDateCriterion.fromJson(value);
+          : ImmunizationRecommendationDateCriterionBuilder.fromJson(value);
     case 'implementationguide':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuide.fromJson(value);
+          : ImplementationGuideBuilder.fromJson(value);
     case 'implementationguide.dependson':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideDependsOn.fromJson(value);
+          : ImplementationGuideDependsOnBuilder.fromJson(value);
     case 'implementationguide.global':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideGlobal.fromJson(value);
+          : ImplementationGuideGlobalBuilder.fromJson(value);
     case 'implementationguide.definition':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideDefinition.fromJson(value);
+          : ImplementationGuideDefinitionBuilder.fromJson(value);
     case 'implementationguide.definition.grouping':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideGrouping.fromJson(value);
+          : ImplementationGuideGroupingBuilder.fromJson(value);
     case 'implementationguide.definition.resource':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideResource.fromJson(value);
+          : ImplementationGuideResourceBuilder.fromJson(value);
     case 'implementationguide.definition.page':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuidePage.fromJson(value);
+          : ImplementationGuidePageBuilder.fromJson(value);
     case 'implementationguide.definition.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideParameter.fromJson(value);
+          : ImplementationGuideParameterBuilder.fromJson(value);
     case 'implementationguide.definition.template':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideTemplate.fromJson(value);
+          : ImplementationGuideTemplateBuilder.fromJson(value);
     case 'implementationguide.manifest':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideManifest.fromJson(value);
+          : ImplementationGuideManifestBuilder.fromJson(value);
     case 'implementationguide.manifest.resource':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuideResource1.fromJson(value);
+          : ImplementationGuideResource1Builder.fromJson(value);
     case 'implementationguide.manifest.page':
       return value is! Map<String, dynamic>
           ? null
-          : ImplementationGuidePage1.fromJson(value);
+          : ImplementationGuidePage1Builder.fromJson(value);
     case 'ingredient':
-      return value is! Map<String, dynamic> ? null : Ingredient.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : IngredientBuilder.fromJson(value);
     case 'ingredient.manufacturer':
       return value is! Map<String, dynamic>
           ? null
-          : IngredientManufacturer.fromJson(value);
+          : IngredientManufacturerBuilder.fromJson(value);
     case 'ingredient.substance':
       return value is! Map<String, dynamic>
           ? null
-          : IngredientSubstance.fromJson(value);
+          : IngredientSubstanceBuilder.fromJson(value);
     case 'ingredient.substance.strength':
       return value is! Map<String, dynamic>
           ? null
-          : IngredientStrength.fromJson(value);
+          : IngredientStrengthBuilder.fromJson(value);
     case 'ingredient.substance.strength.referencestrength':
       return value is! Map<String, dynamic>
           ? null
-          : IngredientReferenceStrength.fromJson(value);
+          : IngredientReferenceStrengthBuilder.fromJson(value);
     case 'insuranceplan':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlan.fromJson(value);
+          : InsurancePlanBuilder.fromJson(value);
     case 'insuranceplan.contact':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanContact.fromJson(value);
+          : InsurancePlanContactBuilder.fromJson(value);
     case 'insuranceplan.coverage':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanCoverage.fromJson(value);
+          : InsurancePlanCoverageBuilder.fromJson(value);
     case 'insuranceplan.coverage.benefit':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanBenefit.fromJson(value);
+          : InsurancePlanBenefitBuilder.fromJson(value);
     case 'insuranceplan.coverage.benefit.limit':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanLimit.fromJson(value);
+          : InsurancePlanLimitBuilder.fromJson(value);
     case 'insuranceplan.plan':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanPlan.fromJson(value);
+          : InsurancePlanPlanBuilder.fromJson(value);
     case 'insuranceplan.plan.generalcost':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanGeneralCost.fromJson(value);
+          : InsurancePlanGeneralCostBuilder.fromJson(value);
     case 'insuranceplan.plan.specificcost':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanSpecificCost.fromJson(value);
+          : InsurancePlanSpecificCostBuilder.fromJson(value);
     case 'insuranceplan.plan.specificcost.benefit':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanBenefit1.fromJson(value);
+          : InsurancePlanBenefit1Builder.fromJson(value);
     case 'insuranceplan.plan.specificcost.benefit.cost':
       return value is! Map<String, dynamic>
           ? null
-          : InsurancePlanCost.fromJson(value);
+          : InsurancePlanCostBuilder.fromJson(value);
     case 'invoice':
-      return value is! Map<String, dynamic> ? null : Invoice.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : InvoiceBuilder.fromJson(value);
     case 'invoice.participant':
       return value is! Map<String, dynamic>
           ? null
-          : InvoiceParticipant.fromJson(value);
+          : InvoiceParticipantBuilder.fromJson(value);
     case 'invoice.lineitem':
       return value is! Map<String, dynamic>
           ? null
-          : InvoiceLineItem.fromJson(value);
+          : InvoiceLineItemBuilder.fromJson(value);
     case 'invoice.lineitem.pricecomponent':
       return value is! Map<String, dynamic>
           ? null
-          : InvoicePriceComponent.fromJson(value);
+          : InvoicePriceComponentBuilder.fromJson(value);
     case 'library':
-      return value is! Map<String, dynamic> ? null : Library.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : LibraryBuilder.fromJson(value);
     case 'linkage':
-      return value is! Map<String, dynamic> ? null : Linkage.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : LinkageBuilder.fromJson(value);
     case 'linkage.item':
       return value is! Map<String, dynamic>
           ? null
-          : LinkageItem.fromJson(value);
+          : LinkageItemBuilder.fromJson(value);
     case 'list':
-      return value is! Map<String, dynamic> ? null : FhirList.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirListBuilder.fromJson(value);
     case 'list.entry':
-      return value is! Map<String, dynamic> ? null : ListEntry.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ListEntryBuilder.fromJson(value);
     case 'location':
-      return value is! Map<String, dynamic> ? null : Location.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : LocationBuilder.fromJson(value);
     case 'location.position':
       return value is! Map<String, dynamic>
           ? null
-          : LocationPosition.fromJson(value);
+          : LocationPositionBuilder.fromJson(value);
     case 'location.hoursofoperation':
       return value is! Map<String, dynamic>
           ? null
-          : LocationHoursOfOperation.fromJson(value);
+          : LocationHoursOfOperationBuilder.fromJson(value);
     case 'manufactureditemdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ManufacturedItemDefinition.fromJson(value);
+          : ManufacturedItemDefinitionBuilder.fromJson(value);
     case 'manufactureditemdefinition.property':
       return value is! Map<String, dynamic>
           ? null
-          : ManufacturedItemDefinitionProperty.fromJson(value);
+          : ManufacturedItemDefinitionPropertyBuilder.fromJson(value);
     case 'measure':
-      return value is! Map<String, dynamic> ? null : Measure.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : MeasureBuilder.fromJson(value);
     case 'measure.group':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureGroup.fromJson(value);
+          : MeasureGroupBuilder.fromJson(value);
     case 'measure.group.population':
       return value is! Map<String, dynamic>
           ? null
-          : MeasurePopulation.fromJson(value);
+          : MeasurePopulationBuilder.fromJson(value);
     case 'measure.group.stratifier':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureStratifier.fromJson(value);
+          : MeasureStratifierBuilder.fromJson(value);
     case 'measure.group.stratifier.component':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureComponent.fromJson(value);
+          : MeasureComponentBuilder.fromJson(value);
     case 'measure.supplementaldata':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureSupplementalData.fromJson(value);
+          : MeasureSupplementalDataBuilder.fromJson(value);
     case 'measurereport':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureReport.fromJson(value);
+          : MeasureReportBuilder.fromJson(value);
     case 'measurereport.group':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureReportGroup.fromJson(value);
+          : MeasureReportGroupBuilder.fromJson(value);
     case 'measurereport.group.population':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureReportPopulation.fromJson(value);
+          : MeasureReportPopulationBuilder.fromJson(value);
     case 'measurereport.group.stratifier':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureReportStratifier.fromJson(value);
+          : MeasureReportStratifierBuilder.fromJson(value);
     case 'measurereport.group.stratifier.stratum':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureReportStratum.fromJson(value);
+          : MeasureReportStratumBuilder.fromJson(value);
     case 'measurereport.group.stratifier.stratum.component':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureReportComponent.fromJson(value);
+          : MeasureReportComponentBuilder.fromJson(value);
     case 'measurereport.group.stratifier.stratum.population':
       return value is! Map<String, dynamic>
           ? null
-          : MeasureReportPopulation1.fromJson(value);
+          : MeasureReportPopulation1Builder.fromJson(value);
     case 'media':
-      return value is! Map<String, dynamic> ? null : Media.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : MediaBuilder.fromJson(value);
     case 'medication':
-      return value is! Map<String, dynamic> ? null : Medication.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : MedicationBuilder.fromJson(value);
     case 'medication.ingredient':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationIngredient.fromJson(value);
+          : MedicationIngredientBuilder.fromJson(value);
     case 'medication.batch':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationBatch.fromJson(value);
+          : MedicationBatchBuilder.fromJson(value);
     case 'medicationadministration':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationAdministration.fromJson(value);
+          : MedicationAdministrationBuilder.fromJson(value);
     case 'medicationadministration.performer':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationAdministrationPerformer.fromJson(value);
+          : MedicationAdministrationPerformerBuilder.fromJson(value);
     case 'medicationadministration.dosage':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationAdministrationDosage.fromJson(value);
+          : MedicationAdministrationDosageBuilder.fromJson(value);
     case 'medicationdispense':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationDispense.fromJson(value);
+          : MedicationDispenseBuilder.fromJson(value);
     case 'medicationdispense.performer':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationDispensePerformer.fromJson(value);
+          : MedicationDispensePerformerBuilder.fromJson(value);
     case 'medicationdispense.substitution':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationDispenseSubstitution.fromJson(value);
+          : MedicationDispenseSubstitutionBuilder.fromJson(value);
     case 'medicationknowledge':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledge.fromJson(value);
+          : MedicationKnowledgeBuilder.fromJson(value);
     case 'medicationknowledge.relatedmedicationknowledge':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeRelatedMedicationKnowledge.fromJson(value);
+          : MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
+              value);
     case 'medicationknowledge.monograph':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeMonograph.fromJson(value);
+          : MedicationKnowledgeMonographBuilder.fromJson(value);
     case 'medicationknowledge.ingredient':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeIngredient.fromJson(value);
+          : MedicationKnowledgeIngredientBuilder.fromJson(value);
     case 'medicationknowledge.cost':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeCost.fromJson(value);
+          : MedicationKnowledgeCostBuilder.fromJson(value);
     case 'medicationknowledge.monitoringprogram':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeMonitoringProgram.fromJson(value);
+          : MedicationKnowledgeMonitoringProgramBuilder.fromJson(value);
     case 'medicationknowledge.administrationguidelines':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeAdministrationGuidelines.fromJson(value);
+          : MedicationKnowledgeAdministrationGuidelinesBuilder.fromJson(value);
     case 'medicationknowledge.administrationguidelines.dosage':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeDosage.fromJson(value);
+          : MedicationKnowledgeDosageBuilder.fromJson(value);
     case 'medicationknowledge.administrationguidelines.patientcharacteristics':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgePatientCharacteristics.fromJson(value);
+          : MedicationKnowledgePatientCharacteristicsBuilder.fromJson(value);
     case 'medicationknowledge.medicineclassification':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeMedicineClassification.fromJson(value);
+          : MedicationKnowledgeMedicineClassificationBuilder.fromJson(value);
     case 'medicationknowledge.packaging':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgePackaging.fromJson(value);
+          : MedicationKnowledgePackagingBuilder.fromJson(value);
     case 'medicationknowledge.drugcharacteristic':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeDrugCharacteristic.fromJson(value);
+          : MedicationKnowledgeDrugCharacteristicBuilder.fromJson(value);
     case 'medicationknowledge.regulatory':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeRegulatory.fromJson(value);
+          : MedicationKnowledgeRegulatoryBuilder.fromJson(value);
     case 'medicationknowledge.regulatory.substitution':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeSubstitution.fromJson(value);
+          : MedicationKnowledgeSubstitutionBuilder.fromJson(value);
     case 'medicationknowledge.regulatory.schedule':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeSchedule.fromJson(value);
+          : MedicationKnowledgeScheduleBuilder.fromJson(value);
     case 'medicationknowledge.regulatory.maxdispense':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeMaxDispense.fromJson(value);
+          : MedicationKnowledgeMaxDispenseBuilder.fromJson(value);
     case 'medicationknowledge.kinetics':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationKnowledgeKinetics.fromJson(value);
+          : MedicationKnowledgeKineticsBuilder.fromJson(value);
     case 'medicationrequest':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationRequest.fromJson(value);
+          : MedicationRequestBuilder.fromJson(value);
     case 'medicationrequest.dispenserequest':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationRequestDispenseRequest.fromJson(value);
+          : MedicationRequestDispenseRequestBuilder.fromJson(value);
     case 'medicationrequest.dispenserequest.initialfill':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationRequestInitialFill.fromJson(value);
+          : MedicationRequestInitialFillBuilder.fromJson(value);
     case 'medicationrequest.substitution':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationRequestSubstitution.fromJson(value);
+          : MedicationRequestSubstitutionBuilder.fromJson(value);
     case 'medicationstatement':
       return value is! Map<String, dynamic>
           ? null
-          : MedicationStatement.fromJson(value);
+          : MedicationStatementBuilder.fromJson(value);
     case 'medicinalproductdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinition.fromJson(value);
+          : MedicinalProductDefinitionBuilder.fromJson(value);
     case 'medicinalproductdefinition.contact':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinitionContact.fromJson(value);
+          : MedicinalProductDefinitionContactBuilder.fromJson(value);
     case 'medicinalproductdefinition.name':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinitionName.fromJson(value);
+          : MedicinalProductDefinitionNameBuilder.fromJson(value);
     case 'medicinalproductdefinition.name.namepart':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinitionNamePart.fromJson(value);
+          : MedicinalProductDefinitionNamePartBuilder.fromJson(value);
     case 'medicinalproductdefinition.name.countrylanguage':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinitionCountryLanguage.fromJson(value);
+          : MedicinalProductDefinitionCountryLanguageBuilder.fromJson(value);
     case 'medicinalproductdefinition.crossreference':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinitionCrossReference.fromJson(value);
+          : MedicinalProductDefinitionCrossReferenceBuilder.fromJson(value);
     case 'medicinalproductdefinition.operation':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinitionOperation.fromJson(value);
+          : MedicinalProductDefinitionOperationBuilder.fromJson(value);
     case 'medicinalproductdefinition.characteristic':
       return value is! Map<String, dynamic>
           ? null
-          : MedicinalProductDefinitionCharacteristic.fromJson(value);
+          : MedicinalProductDefinitionCharacteristicBuilder.fromJson(value);
     case 'messagedefinition':
       return value is! Map<String, dynamic>
           ? null
-          : MessageDefinition.fromJson(value);
+          : MessageDefinitionBuilder.fromJson(value);
     case 'messagedefinition.focus':
       return value is! Map<String, dynamic>
           ? null
-          : MessageDefinitionFocus.fromJson(value);
+          : MessageDefinitionFocusBuilder.fromJson(value);
     case 'messagedefinition.allowedresponse':
       return value is! Map<String, dynamic>
           ? null
-          : MessageDefinitionAllowedResponse.fromJson(value);
+          : MessageDefinitionAllowedResponseBuilder.fromJson(value);
     case 'messageheader':
       return value is! Map<String, dynamic>
           ? null
-          : MessageHeader.fromJson(value);
+          : MessageHeaderBuilder.fromJson(value);
     case 'messageheader.destination':
       return value is! Map<String, dynamic>
           ? null
-          : MessageHeaderDestination.fromJson(value);
+          : MessageHeaderDestinationBuilder.fromJson(value);
     case 'messageheader.source':
       return value is! Map<String, dynamic>
           ? null
-          : MessageHeaderSource.fromJson(value);
+          : MessageHeaderSourceBuilder.fromJson(value);
     case 'messageheader.response':
       return value is! Map<String, dynamic>
           ? null
-          : MessageHeaderResponse.fromJson(value);
+          : MessageHeaderResponseBuilder.fromJson(value);
     case 'molecularsequence':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequence.fromJson(value);
+          : MolecularSequenceBuilder.fromJson(value);
     case 'molecularsequence.referenceseq':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceReferenceSeq.fromJson(value);
+          : MolecularSequenceReferenceSeqBuilder.fromJson(value);
     case 'molecularsequence.variant':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceVariant.fromJson(value);
+          : MolecularSequenceVariantBuilder.fromJson(value);
     case 'molecularsequence.quality':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceQuality.fromJson(value);
+          : MolecularSequenceQualityBuilder.fromJson(value);
     case 'molecularsequence.quality.roc':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceRoc.fromJson(value);
+          : MolecularSequenceRocBuilder.fromJson(value);
     case 'molecularsequence.repository':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceRepository.fromJson(value);
+          : MolecularSequenceRepositoryBuilder.fromJson(value);
     case 'molecularsequence.structurevariant':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceStructureVariant.fromJson(value);
+          : MolecularSequenceStructureVariantBuilder.fromJson(value);
     case 'molecularsequence.structurevariant.outer':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceOuter.fromJson(value);
+          : MolecularSequenceOuterBuilder.fromJson(value);
     case 'molecularsequence.structurevariant.inner':
       return value is! Map<String, dynamic>
           ? null
-          : MolecularSequenceInner.fromJson(value);
+          : MolecularSequenceInnerBuilder.fromJson(value);
     case 'namingsystem':
       return value is! Map<String, dynamic>
           ? null
-          : NamingSystem.fromJson(value);
+          : NamingSystemBuilder.fromJson(value);
     case 'namingsystem.uniqueid':
       return value is! Map<String, dynamic>
           ? null
-          : NamingSystemUniqueId.fromJson(value);
+          : NamingSystemUniqueIdBuilder.fromJson(value);
     case 'nutritionorder':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionOrder.fromJson(value);
+          : NutritionOrderBuilder.fromJson(value);
     case 'nutritionorder.oraldiet':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionOrderOralDiet.fromJson(value);
+          : NutritionOrderOralDietBuilder.fromJson(value);
     case 'nutritionorder.oraldiet.nutrient':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionOrderNutrient.fromJson(value);
+          : NutritionOrderNutrientBuilder.fromJson(value);
     case 'nutritionorder.oraldiet.texture':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionOrderTexture.fromJson(value);
+          : NutritionOrderTextureBuilder.fromJson(value);
     case 'nutritionorder.supplement':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionOrderSupplement.fromJson(value);
+          : NutritionOrderSupplementBuilder.fromJson(value);
     case 'nutritionorder.enteralformula':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionOrderEnteralFormula.fromJson(value);
+          : NutritionOrderEnteralFormulaBuilder.fromJson(value);
     case 'nutritionorder.enteralformula.administration':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionOrderAdministration.fromJson(value);
+          : NutritionOrderAdministrationBuilder.fromJson(value);
     case 'nutritionproduct':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionProduct.fromJson(value);
+          : NutritionProductBuilder.fromJson(value);
     case 'nutritionproduct.nutrient':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionProductNutrient.fromJson(value);
+          : NutritionProductNutrientBuilder.fromJson(value);
     case 'nutritionproduct.ingredient':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionProductIngredient.fromJson(value);
+          : NutritionProductIngredientBuilder.fromJson(value);
     case 'nutritionproduct.productcharacteristic':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionProductProductCharacteristic.fromJson(value);
+          : NutritionProductProductCharacteristicBuilder.fromJson(value);
     case 'nutritionproduct.instance':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionProductInstance.fromJson(value);
+          : NutritionProductInstanceBuilder.fromJson(value);
     case 'observation':
       return value is! Map<String, dynamic>
           ? null
-          : Observation.fromJson(value);
+          : ObservationBuilder.fromJson(value);
     case 'observation.referencerange':
       return value is! Map<String, dynamic>
           ? null
-          : ObservationReferenceRange.fromJson(value);
+          : ObservationReferenceRangeBuilder.fromJson(value);
     case 'observation.component':
       return value is! Map<String, dynamic>
           ? null
-          : ObservationComponent.fromJson(value);
+          : ObservationComponentBuilder.fromJson(value);
     case 'observationdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ObservationDefinition.fromJson(value);
+          : ObservationDefinitionBuilder.fromJson(value);
     case 'observationdefinition.quantitativedetails':
       return value is! Map<String, dynamic>
           ? null
-          : ObservationDefinitionQuantitativeDetails.fromJson(value);
+          : ObservationDefinitionQuantitativeDetailsBuilder.fromJson(value);
     case 'observationdefinition.qualifiedinterval':
       return value is! Map<String, dynamic>
           ? null
-          : ObservationDefinitionQualifiedInterval.fromJson(value);
+          : ObservationDefinitionQualifiedIntervalBuilder.fromJson(value);
     case 'operationdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : OperationDefinition.fromJson(value);
+          : OperationDefinitionBuilder.fromJson(value);
     case 'operationdefinition.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : OperationDefinitionParameter.fromJson(value);
+          : OperationDefinitionParameterBuilder.fromJson(value);
     case 'operationdefinition.parameter.binding':
       return value is! Map<String, dynamic>
           ? null
-          : OperationDefinitionBinding.fromJson(value);
+          : OperationDefinitionBindingBuilder.fromJson(value);
     case 'operationdefinition.parameter.referencedfrom':
       return value is! Map<String, dynamic>
           ? null
-          : OperationDefinitionReferencedFrom.fromJson(value);
+          : OperationDefinitionReferencedFromBuilder.fromJson(value);
     case 'operationdefinition.overload':
       return value is! Map<String, dynamic>
           ? null
-          : OperationDefinitionOverload.fromJson(value);
+          : OperationDefinitionOverloadBuilder.fromJson(value);
     case 'operationoutcome':
       return value is! Map<String, dynamic>
           ? null
-          : OperationOutcome.fromJson(value);
+          : OperationOutcomeBuilder.fromJson(value);
     case 'operationoutcome.issue':
       return value is! Map<String, dynamic>
           ? null
-          : OperationOutcomeIssue.fromJson(value);
+          : OperationOutcomeIssueBuilder.fromJson(value);
     case 'organization':
       return value is! Map<String, dynamic>
           ? null
-          : Organization.fromJson(value);
+          : OrganizationBuilder.fromJson(value);
     case 'organization.contact':
       return value is! Map<String, dynamic>
           ? null
-          : OrganizationContact.fromJson(value);
+          : OrganizationContactBuilder.fromJson(value);
     case 'organizationaffiliation':
       return value is! Map<String, dynamic>
           ? null
-          : OrganizationAffiliation.fromJson(value);
+          : OrganizationAffiliationBuilder.fromJson(value);
     case 'packagedproductdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : PackagedProductDefinition.fromJson(value);
+          : PackagedProductDefinitionBuilder.fromJson(value);
     case 'packagedproductdefinition.legalstatusofsupply':
       return value is! Map<String, dynamic>
           ? null
-          : PackagedProductDefinitionLegalStatusOfSupply.fromJson(value);
+          : PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(value);
     case 'packagedproductdefinition.package':
       return value is! Map<String, dynamic>
           ? null
-          : PackagedProductDefinitionPackage.fromJson(value);
+          : PackagedProductDefinitionPackageBuilder.fromJson(value);
     case 'packagedproductdefinition.package.shelflifestorage':
       return value is! Map<String, dynamic>
           ? null
-          : PackagedProductDefinitionShelfLifeStorage.fromJson(value);
+          : PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(value);
     case 'packagedproductdefinition.package.property':
       return value is! Map<String, dynamic>
           ? null
-          : PackagedProductDefinitionProperty.fromJson(value);
+          : PackagedProductDefinitionPropertyBuilder.fromJson(value);
     case 'packagedproductdefinition.package.containeditem':
       return value is! Map<String, dynamic>
           ? null
-          : PackagedProductDefinitionContainedItem.fromJson(value);
+          : PackagedProductDefinitionContainedItemBuilder.fromJson(value);
     case 'parameters':
-      return value is! Map<String, dynamic> ? null : Parameters.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ParametersBuilder.fromJson(value);
     case 'parameters.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : ParametersParameter.fromJson(value);
+          : ParametersParameterBuilder.fromJson(value);
     case 'patient':
-      return value is! Map<String, dynamic> ? null : Patient.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : PatientBuilder.fromJson(value);
     case 'patient.contact':
       return value is! Map<String, dynamic>
           ? null
-          : PatientContact.fromJson(value);
+          : PatientContactBuilder.fromJson(value);
     case 'patient.communication':
       return value is! Map<String, dynamic>
           ? null
-          : PatientCommunication.fromJson(value);
+          : PatientCommunicationBuilder.fromJson(value);
     case 'patient.link':
       return value is! Map<String, dynamic>
           ? null
-          : PatientLink.fromJson(value);
+          : PatientLinkBuilder.fromJson(value);
     case 'paymentnotice':
       return value is! Map<String, dynamic>
           ? null
-          : PaymentNotice.fromJson(value);
+          : PaymentNoticeBuilder.fromJson(value);
     case 'paymentreconciliation':
       return value is! Map<String, dynamic>
           ? null
-          : PaymentReconciliation.fromJson(value);
+          : PaymentReconciliationBuilder.fromJson(value);
     case 'paymentreconciliation.detail':
       return value is! Map<String, dynamic>
           ? null
-          : PaymentReconciliationDetail.fromJson(value);
+          : PaymentReconciliationDetailBuilder.fromJson(value);
     case 'paymentreconciliation.processnote':
       return value is! Map<String, dynamic>
           ? null
-          : PaymentReconciliationProcessNote.fromJson(value);
+          : PaymentReconciliationProcessNoteBuilder.fromJson(value);
     case 'person':
-      return value is! Map<String, dynamic> ? null : Person.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : PersonBuilder.fromJson(value);
     case 'person.link':
-      return value is! Map<String, dynamic> ? null : PersonLink.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : PersonLinkBuilder.fromJson(value);
     case 'plandefinition':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinition.fromJson(value);
+          : PlanDefinitionBuilder.fromJson(value);
     case 'plandefinition.goal':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinitionGoal.fromJson(value);
+          : PlanDefinitionGoalBuilder.fromJson(value);
     case 'plandefinition.goal.target':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinitionTarget.fromJson(value);
+          : PlanDefinitionTargetBuilder.fromJson(value);
     case 'plandefinition.action':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinitionAction.fromJson(value);
+          : PlanDefinitionActionBuilder.fromJson(value);
     case 'plandefinition.action.condition':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinitionCondition.fromJson(value);
+          : PlanDefinitionConditionBuilder.fromJson(value);
     case 'plandefinition.action.relatedaction':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinitionRelatedAction.fromJson(value);
+          : PlanDefinitionRelatedActionBuilder.fromJson(value);
     case 'plandefinition.action.participant':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinitionParticipant.fromJson(value);
+          : PlanDefinitionParticipantBuilder.fromJson(value);
     case 'plandefinition.action.dynamicvalue':
       return value is! Map<String, dynamic>
           ? null
-          : PlanDefinitionDynamicValue.fromJson(value);
+          : PlanDefinitionDynamicValueBuilder.fromJson(value);
     case 'practitioner':
       return value is! Map<String, dynamic>
           ? null
-          : Practitioner.fromJson(value);
+          : PractitionerBuilder.fromJson(value);
     case 'practitioner.qualification':
       return value is! Map<String, dynamic>
           ? null
-          : PractitionerQualification.fromJson(value);
+          : PractitionerQualificationBuilder.fromJson(value);
     case 'practitionerrole':
       return value is! Map<String, dynamic>
           ? null
-          : PractitionerRole.fromJson(value);
+          : PractitionerRoleBuilder.fromJson(value);
     case 'practitionerrole.availabletime':
       return value is! Map<String, dynamic>
           ? null
-          : PractitionerRoleAvailableTime.fromJson(value);
+          : PractitionerRoleAvailableTimeBuilder.fromJson(value);
     case 'practitionerrole.notavailable':
       return value is! Map<String, dynamic>
           ? null
-          : PractitionerRoleNotAvailable.fromJson(value);
+          : PractitionerRoleNotAvailableBuilder.fromJson(value);
     case 'procedure':
-      return value is! Map<String, dynamic> ? null : Procedure.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ProcedureBuilder.fromJson(value);
     case 'procedure.performer':
       return value is! Map<String, dynamic>
           ? null
-          : ProcedurePerformer.fromJson(value);
+          : ProcedurePerformerBuilder.fromJson(value);
     case 'procedure.focaldevice':
       return value is! Map<String, dynamic>
           ? null
-          : ProcedureFocalDevice.fromJson(value);
+          : ProcedureFocalDeviceBuilder.fromJson(value);
     case 'provenance':
-      return value is! Map<String, dynamic> ? null : Provenance.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ProvenanceBuilder.fromJson(value);
     case 'provenance.agent':
       return value is! Map<String, dynamic>
           ? null
-          : ProvenanceAgent.fromJson(value);
+          : ProvenanceAgentBuilder.fromJson(value);
     case 'provenance.entity':
       return value is! Map<String, dynamic>
           ? null
-          : ProvenanceEntity.fromJson(value);
+          : ProvenanceEntityBuilder.fromJson(value);
     case 'questionnaire':
       return value is! Map<String, dynamic>
           ? null
-          : Questionnaire.fromJson(value);
+          : QuestionnaireBuilder.fromJson(value);
     case 'questionnaire.item':
       return value is! Map<String, dynamic>
           ? null
-          : QuestionnaireItem.fromJson(value);
+          : QuestionnaireItemBuilder.fromJson(value);
     case 'questionnaire.item.enablewhen':
       return value is! Map<String, dynamic>
           ? null
-          : QuestionnaireEnableWhen.fromJson(value);
+          : QuestionnaireEnableWhenBuilder.fromJson(value);
     case 'questionnaire.item.answeroption':
       return value is! Map<String, dynamic>
           ? null
-          : QuestionnaireAnswerOption.fromJson(value);
+          : QuestionnaireAnswerOptionBuilder.fromJson(value);
     case 'questionnaire.item.initial':
       return value is! Map<String, dynamic>
           ? null
-          : QuestionnaireInitial.fromJson(value);
+          : QuestionnaireInitialBuilder.fromJson(value);
     case 'questionnaireresponse':
       return value is! Map<String, dynamic>
           ? null
-          : QuestionnaireResponse.fromJson(value);
+          : QuestionnaireResponseBuilder.fromJson(value);
     case 'questionnaireresponse.item':
       return value is! Map<String, dynamic>
           ? null
-          : QuestionnaireResponseItem.fromJson(value);
+          : QuestionnaireResponseItemBuilder.fromJson(value);
     case 'questionnaireresponse.item.answer':
       return value is! Map<String, dynamic>
           ? null
-          : QuestionnaireResponseAnswer.fromJson(value);
+          : QuestionnaireResponseAnswerBuilder.fromJson(value);
     case 'regulatedauthorization':
       return value is! Map<String, dynamic>
           ? null
-          : RegulatedAuthorization.fromJson(value);
+          : RegulatedAuthorizationBuilder.fromJson(value);
     case 'regulatedauthorization.case':
       return value is! Map<String, dynamic>
           ? null
-          : RegulatedAuthorizationCase.fromJson(value);
+          : RegulatedAuthorizationCaseBuilder.fromJson(value);
     case 'relatedperson':
       return value is! Map<String, dynamic>
           ? null
-          : RelatedPerson.fromJson(value);
+          : RelatedPersonBuilder.fromJson(value);
     case 'relatedperson.communication':
       return value is! Map<String, dynamic>
           ? null
-          : RelatedPersonCommunication.fromJson(value);
+          : RelatedPersonCommunicationBuilder.fromJson(value);
     case 'requestgroup':
       return value is! Map<String, dynamic>
           ? null
-          : RequestGroup.fromJson(value);
+          : RequestGroupBuilder.fromJson(value);
     case 'requestgroup.action':
       return value is! Map<String, dynamic>
           ? null
-          : RequestGroupAction.fromJson(value);
+          : RequestGroupActionBuilder.fromJson(value);
     case 'requestgroup.action.condition':
       return value is! Map<String, dynamic>
           ? null
-          : RequestGroupCondition.fromJson(value);
+          : RequestGroupConditionBuilder.fromJson(value);
     case 'requestgroup.action.relatedaction':
       return value is! Map<String, dynamic>
           ? null
-          : RequestGroupRelatedAction.fromJson(value);
+          : RequestGroupRelatedActionBuilder.fromJson(value);
     case 'researchdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ResearchDefinition.fromJson(value);
+          : ResearchDefinitionBuilder.fromJson(value);
     case 'researchelementdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ResearchElementDefinition.fromJson(value);
+          : ResearchElementDefinitionBuilder.fromJson(value);
     case 'researchelementdefinition.characteristic':
       return value is! Map<String, dynamic>
           ? null
-          : ResearchElementDefinitionCharacteristic.fromJson(value);
+          : ResearchElementDefinitionCharacteristicBuilder.fromJson(value);
     case 'researchstudy':
       return value is! Map<String, dynamic>
           ? null
-          : ResearchStudy.fromJson(value);
+          : ResearchStudyBuilder.fromJson(value);
     case 'researchstudy.arm':
       return value is! Map<String, dynamic>
           ? null
-          : ResearchStudyArm.fromJson(value);
+          : ResearchStudyArmBuilder.fromJson(value);
     case 'researchstudy.objective':
       return value is! Map<String, dynamic>
           ? null
-          : ResearchStudyObjective.fromJson(value);
+          : ResearchStudyObjectiveBuilder.fromJson(value);
     case 'researchsubject':
       return value is! Map<String, dynamic>
           ? null
-          : ResearchSubject.fromJson(value);
+          : ResearchSubjectBuilder.fromJson(value);
     case 'riskassessment':
       return value is! Map<String, dynamic>
           ? null
-          : RiskAssessment.fromJson(value);
+          : RiskAssessmentBuilder.fromJson(value);
     case 'riskassessment.prediction':
       return value is! Map<String, dynamic>
           ? null
-          : RiskAssessmentPrediction.fromJson(value);
+          : RiskAssessmentPredictionBuilder.fromJson(value);
     case 'schedule':
-      return value is! Map<String, dynamic> ? null : Schedule.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ScheduleBuilder.fromJson(value);
     case 'searchparameter':
       return value is! Map<String, dynamic>
           ? null
-          : SearchParameter.fromJson(value);
+          : SearchParameterBuilder.fromJson(value);
     case 'searchparameter.component':
       return value is! Map<String, dynamic>
           ? null
-          : SearchParameterComponent.fromJson(value);
+          : SearchParameterComponentBuilder.fromJson(value);
     case 'servicerequest':
       return value is! Map<String, dynamic>
           ? null
-          : ServiceRequest.fromJson(value);
+          : ServiceRequestBuilder.fromJson(value);
     case 'slot':
-      return value is! Map<String, dynamic> ? null : Slot.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : SlotBuilder.fromJson(value);
     case 'specimen':
-      return value is! Map<String, dynamic> ? null : Specimen.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : SpecimenBuilder.fromJson(value);
     case 'specimen.collection':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenCollection.fromJson(value);
+          : SpecimenCollectionBuilder.fromJson(value);
     case 'specimen.processing':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenProcessing.fromJson(value);
+          : SpecimenProcessingBuilder.fromJson(value);
     case 'specimen.container':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenContainer.fromJson(value);
+          : SpecimenContainerBuilder.fromJson(value);
     case 'specimendefinition':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenDefinition.fromJson(value);
+          : SpecimenDefinitionBuilder.fromJson(value);
     case 'specimendefinition.typetested':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenDefinitionTypeTested.fromJson(value);
+          : SpecimenDefinitionTypeTestedBuilder.fromJson(value);
     case 'specimendefinition.typetested.container':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenDefinitionContainer.fromJson(value);
+          : SpecimenDefinitionContainerBuilder.fromJson(value);
     case 'specimendefinition.typetested.container.additive':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenDefinitionAdditive.fromJson(value);
+          : SpecimenDefinitionAdditiveBuilder.fromJson(value);
     case 'specimendefinition.typetested.handling':
       return value is! Map<String, dynamic>
           ? null
-          : SpecimenDefinitionHandling.fromJson(value);
+          : SpecimenDefinitionHandlingBuilder.fromJson(value);
     case 'structuredefinition':
       return value is! Map<String, dynamic>
           ? null
-          : StructureDefinition.fromJson(value);
+          : StructureDefinitionBuilder.fromJson(value);
     case 'structuredefinition.mapping':
       return value is! Map<String, dynamic>
           ? null
-          : StructureDefinitionMapping.fromJson(value);
+          : StructureDefinitionMappingBuilder.fromJson(value);
     case 'structuredefinition.context':
       return value is! Map<String, dynamic>
           ? null
-          : StructureDefinitionContext.fromJson(value);
+          : StructureDefinitionContextBuilder.fromJson(value);
     case 'structuredefinition.snapshot':
       return value is! Map<String, dynamic>
           ? null
-          : StructureDefinitionSnapshot.fromJson(value);
+          : StructureDefinitionSnapshotBuilder.fromJson(value);
     case 'structuredefinition.differential':
       return value is! Map<String, dynamic>
           ? null
-          : StructureDefinitionDifferential.fromJson(value);
+          : StructureDefinitionDifferentialBuilder.fromJson(value);
     case 'structuremap':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMap.fromJson(value);
+          : StructureMapBuilder.fromJson(value);
     case 'structuremap.structure':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapStructure.fromJson(value);
+          : StructureMapStructureBuilder.fromJson(value);
     case 'structuremap.group':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapGroup.fromJson(value);
+          : StructureMapGroupBuilder.fromJson(value);
     case 'structuremap.group.input':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapInput.fromJson(value);
+          : StructureMapInputBuilder.fromJson(value);
     case 'structuremap.group.rule':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapRule.fromJson(value);
+          : StructureMapRuleBuilder.fromJson(value);
     case 'structuremap.group.rule.source':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapSource.fromJson(value);
+          : StructureMapSourceBuilder.fromJson(value);
     case 'structuremap.group.rule.target':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapTarget.fromJson(value);
+          : StructureMapTargetBuilder.fromJson(value);
     case 'structuremap.group.rule.target.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapParameter.fromJson(value);
+          : StructureMapParameterBuilder.fromJson(value);
     case 'structuremap.group.rule.dependent':
       return value is! Map<String, dynamic>
           ? null
-          : StructureMapDependent.fromJson(value);
+          : StructureMapDependentBuilder.fromJson(value);
     case 'subscription':
       return value is! Map<String, dynamic>
           ? null
-          : Subscription.fromJson(value);
+          : SubscriptionBuilder.fromJson(value);
     case 'subscription.channel':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionChannel.fromJson(value);
+          : SubscriptionChannelBuilder.fromJson(value);
     case 'subscriptionstatus':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionStatus.fromJson(value);
+          : SubscriptionStatusBuilder.fromJson(value);
     case 'subscriptionstatus.notificationevent':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionStatusNotificationEvent.fromJson(value);
+          : SubscriptionStatusNotificationEventBuilder.fromJson(value);
     case 'subscriptiontopic':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionTopic.fromJson(value);
+          : SubscriptionTopicBuilder.fromJson(value);
     case 'subscriptiontopic.resourcetrigger':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionTopicResourceTrigger.fromJson(value);
+          : SubscriptionTopicResourceTriggerBuilder.fromJson(value);
     case 'subscriptiontopic.resourcetrigger.querycriteria':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionTopicQueryCriteria.fromJson(value);
+          : SubscriptionTopicQueryCriteriaBuilder.fromJson(value);
     case 'subscriptiontopic.eventtrigger':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionTopicEventTrigger.fromJson(value);
+          : SubscriptionTopicEventTriggerBuilder.fromJson(value);
     case 'subscriptiontopic.canfilterby':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionTopicCanFilterBy.fromJson(value);
+          : SubscriptionTopicCanFilterByBuilder.fromJson(value);
     case 'subscriptiontopic.notificationshape':
       return value is! Map<String, dynamic>
           ? null
-          : SubscriptionTopicNotificationShape.fromJson(value);
+          : SubscriptionTopicNotificationShapeBuilder.fromJson(value);
     case 'substance':
-      return value is! Map<String, dynamic> ? null : Substance.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : SubstanceBuilder.fromJson(value);
     case 'substance.instance':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceInstance.fromJson(value);
+          : SubstanceInstanceBuilder.fromJson(value);
     case 'substance.ingredient':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceIngredient.fromJson(value);
+          : SubstanceIngredientBuilder.fromJson(value);
     case 'substancedefinition':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinition.fromJson(value);
+          : SubstanceDefinitionBuilder.fromJson(value);
     case 'substancedefinition.moiety':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionMoiety.fromJson(value);
+          : SubstanceDefinitionMoietyBuilder.fromJson(value);
     case 'substancedefinition.property':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionProperty.fromJson(value);
+          : SubstanceDefinitionPropertyBuilder.fromJson(value);
     case 'substancedefinition.molecularweight':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionMolecularWeight.fromJson(value);
+          : SubstanceDefinitionMolecularWeightBuilder.fromJson(value);
     case 'substancedefinition.structure':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionStructure.fromJson(value);
+          : SubstanceDefinitionStructureBuilder.fromJson(value);
     case 'substancedefinition.structure.representation':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionRepresentation.fromJson(value);
+          : SubstanceDefinitionRepresentationBuilder.fromJson(value);
     case 'substancedefinition.code':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionCode.fromJson(value);
+          : SubstanceDefinitionCodeBuilder.fromJson(value);
     case 'substancedefinition.name':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionName.fromJson(value);
+          : SubstanceDefinitionNameBuilder.fromJson(value);
     case 'substancedefinition.name.official':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionOfficial.fromJson(value);
+          : SubstanceDefinitionOfficialBuilder.fromJson(value);
     case 'substancedefinition.relationship':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionRelationship.fromJson(value);
+          : SubstanceDefinitionRelationshipBuilder.fromJson(value);
     case 'substancedefinition.sourcematerial':
       return value is! Map<String, dynamic>
           ? null
-          : SubstanceDefinitionSourceMaterial.fromJson(value);
+          : SubstanceDefinitionSourceMaterialBuilder.fromJson(value);
     case 'supplydelivery':
       return value is! Map<String, dynamic>
           ? null
-          : SupplyDelivery.fromJson(value);
+          : SupplyDeliveryBuilder.fromJson(value);
     case 'supplydelivery.supplieditem':
       return value is! Map<String, dynamic>
           ? null
-          : SupplyDeliverySuppliedItem.fromJson(value);
+          : SupplyDeliverySuppliedItemBuilder.fromJson(value);
     case 'supplyrequest':
       return value is! Map<String, dynamic>
           ? null
-          : SupplyRequest.fromJson(value);
+          : SupplyRequestBuilder.fromJson(value);
     case 'supplyrequest.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : SupplyRequestParameter.fromJson(value);
+          : SupplyRequestParameterBuilder.fromJson(value);
     case 'task':
-      return value is! Map<String, dynamic> ? null : Task.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : TaskBuilder.fromJson(value);
     case 'task.restriction':
       return value is! Map<String, dynamic>
           ? null
-          : TaskRestriction.fromJson(value);
+          : TaskRestrictionBuilder.fromJson(value);
     case 'task.input':
-      return value is! Map<String, dynamic> ? null : TaskInput.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : TaskInputBuilder.fromJson(value);
     case 'task.output':
-      return value is! Map<String, dynamic> ? null : TaskOutput.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : TaskOutputBuilder.fromJson(value);
     case 'terminologycapabilities':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilities.fromJson(value);
+          : TerminologyCapabilitiesBuilder.fromJson(value);
     case 'terminologycapabilities.software':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesSoftware.fromJson(value);
+          : TerminologyCapabilitiesSoftwareBuilder.fromJson(value);
     case 'terminologycapabilities.implementation':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesImplementation.fromJson(value);
+          : TerminologyCapabilitiesImplementationBuilder.fromJson(value);
     case 'terminologycapabilities.codesystem':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesCodeSystem.fromJson(value);
+          : TerminologyCapabilitiesCodeSystemBuilder.fromJson(value);
     case 'terminologycapabilities.codesystem.version':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesVersion.fromJson(value);
+          : TerminologyCapabilitiesVersionBuilder.fromJson(value);
     case 'terminologycapabilities.codesystem.version.filter':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesFilter.fromJson(value);
+          : TerminologyCapabilitiesFilterBuilder.fromJson(value);
     case 'terminologycapabilities.expansion':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesExpansion.fromJson(value);
+          : TerminologyCapabilitiesExpansionBuilder.fromJson(value);
     case 'terminologycapabilities.expansion.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesParameter.fromJson(value);
+          : TerminologyCapabilitiesParameterBuilder.fromJson(value);
     case 'terminologycapabilities.validatecode':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesValidateCode.fromJson(value);
+          : TerminologyCapabilitiesValidateCodeBuilder.fromJson(value);
     case 'terminologycapabilities.translation':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesTranslation.fromJson(value);
+          : TerminologyCapabilitiesTranslationBuilder.fromJson(value);
     case 'terminologycapabilities.closure':
       return value is! Map<String, dynamic>
           ? null
-          : TerminologyCapabilitiesClosure.fromJson(value);
+          : TerminologyCapabilitiesClosureBuilder.fromJson(value);
     case 'testreport':
-      return value is! Map<String, dynamic> ? null : TestReport.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : TestReportBuilder.fromJson(value);
     case 'testreport.participant':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportParticipant.fromJson(value);
+          : TestReportParticipantBuilder.fromJson(value);
     case 'testreport.setup':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportSetup.fromJson(value);
+          : TestReportSetupBuilder.fromJson(value);
     case 'testreport.setup.action':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportAction.fromJson(value);
+          : TestReportActionBuilder.fromJson(value);
     case 'testreport.setup.action.operation':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportOperation.fromJson(value);
+          : TestReportOperationBuilder.fromJson(value);
     case 'testreport.setup.action.assert':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportAssert.fromJson(value);
+          : TestReportAssertBuilder.fromJson(value);
     case 'testreport.test':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportTest.fromJson(value);
+          : TestReportTestBuilder.fromJson(value);
     case 'testreport.test.action':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportAction1.fromJson(value);
+          : TestReportAction1Builder.fromJson(value);
     case 'testreport.teardown':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportTeardown.fromJson(value);
+          : TestReportTeardownBuilder.fromJson(value);
     case 'testreport.teardown.action':
       return value is! Map<String, dynamic>
           ? null
-          : TestReportAction2.fromJson(value);
+          : TestReportAction2Builder.fromJson(value);
     case 'testscript':
-      return value is! Map<String, dynamic> ? null : TestScript.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : TestScriptBuilder.fromJson(value);
     case 'testscript.origin':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptOrigin.fromJson(value);
+          : TestScriptOriginBuilder.fromJson(value);
     case 'testscript.destination':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptDestination.fromJson(value);
+          : TestScriptDestinationBuilder.fromJson(value);
     case 'testscript.metadata':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptMetadata.fromJson(value);
+          : TestScriptMetadataBuilder.fromJson(value);
     case 'testscript.metadata.link':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptLink.fromJson(value);
+          : TestScriptLinkBuilder.fromJson(value);
     case 'testscript.metadata.capability':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptCapability.fromJson(value);
+          : TestScriptCapabilityBuilder.fromJson(value);
     case 'testscript.fixture':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptFixture.fromJson(value);
+          : TestScriptFixtureBuilder.fromJson(value);
     case 'testscript.variable':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptVariable.fromJson(value);
+          : TestScriptVariableBuilder.fromJson(value);
     case 'testscript.setup':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptSetup.fromJson(value);
+          : TestScriptSetupBuilder.fromJson(value);
     case 'testscript.setup.action':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptAction.fromJson(value);
+          : TestScriptActionBuilder.fromJson(value);
     case 'testscript.setup.action.operation':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptOperation.fromJson(value);
+          : TestScriptOperationBuilder.fromJson(value);
     case 'testscript.setup.action.operation.requestheader':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptRequestHeader.fromJson(value);
+          : TestScriptRequestHeaderBuilder.fromJson(value);
     case 'testscript.setup.action.assert':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptAssert.fromJson(value);
+          : TestScriptAssertBuilder.fromJson(value);
     case 'testscript.test':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptTest.fromJson(value);
+          : TestScriptTestBuilder.fromJson(value);
     case 'testscript.test.action':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptAction1.fromJson(value);
+          : TestScriptAction1Builder.fromJson(value);
     case 'testscript.teardown':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptTeardown.fromJson(value);
+          : TestScriptTeardownBuilder.fromJson(value);
     case 'testscript.teardown.action':
       return value is! Map<String, dynamic>
           ? null
-          : TestScriptAction2.fromJson(value);
+          : TestScriptAction2Builder.fromJson(value);
     case 'valueset':
-      return value is! Map<String, dynamic> ? null : ValueSet.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ValueSetBuilder.fromJson(value);
     case 'valueset.compose':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetCompose.fromJson(value);
+          : ValueSetComposeBuilder.fromJson(value);
     case 'valueset.compose.include':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetInclude.fromJson(value);
+          : ValueSetIncludeBuilder.fromJson(value);
     case 'valueset.compose.include.concept':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetConcept.fromJson(value);
+          : ValueSetConceptBuilder.fromJson(value);
     case 'valueset.compose.include.concept.designation':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetDesignation.fromJson(value);
+          : ValueSetDesignationBuilder.fromJson(value);
     case 'valueset.compose.include.filter':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetFilter.fromJson(value);
+          : ValueSetFilterBuilder.fromJson(value);
     case 'valueset.expansion':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetExpansion.fromJson(value);
+          : ValueSetExpansionBuilder.fromJson(value);
     case 'valueset.expansion.parameter':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetParameter.fromJson(value);
+          : ValueSetParameterBuilder.fromJson(value);
     case 'valueset.expansion.contains':
       return value is! Map<String, dynamic>
           ? null
-          : ValueSetContains.fromJson(value);
+          : ValueSetContainsBuilder.fromJson(value);
     case 'verificationresult':
       return value is! Map<String, dynamic>
           ? null
-          : VerificationResult.fromJson(value);
+          : VerificationResultBuilder.fromJson(value);
     case 'verificationresult.primarysource':
       return value is! Map<String, dynamic>
           ? null
-          : VerificationResultPrimarySource.fromJson(value);
+          : VerificationResultPrimarySourceBuilder.fromJson(value);
     case 'verificationresult.attestation':
       return value is! Map<String, dynamic>
           ? null
-          : VerificationResultAttestation.fromJson(value);
+          : VerificationResultAttestationBuilder.fromJson(value);
     case 'verificationresult.validator':
       return value is! Map<String, dynamic>
           ? null
-          : VerificationResultValidator.fromJson(value);
+          : VerificationResultValidatorBuilder.fromJson(value);
     case 'visionprescription':
       return value is! Map<String, dynamic>
           ? null
-          : VisionPrescription.fromJson(value);
+          : VisionPrescriptionBuilder.fromJson(value);
     case 'visionprescription.lensspecification':
       return value is! Map<String, dynamic>
           ? null
-          : VisionPrescriptionLensSpecification.fromJson(value);
+          : VisionPrescriptionLensSpecificationBuilder.fromJson(value);
     case 'visionprescription.lensspecification.prism':
       return value is! Map<String, dynamic>
           ? null
-          : VisionPrescriptionPrism.fromJson(value);
+          : VisionPrescriptionPrismBuilder.fromJson(value);
     case 'address':
-      return value is! Map<String, dynamic> ? null : Address.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : AddressBuilder.fromJson(value);
     case 'age':
-      return value is! Map<String, dynamic> ? null : Age.fromJson(value);
+      return value is! Map<String, dynamic> ? null : AgeBuilder.fromJson(value);
     case 'annotation':
-      return value is! Map<String, dynamic> ? null : Annotation.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : AnnotationBuilder.fromJson(value);
     case 'attachment':
-      return value is! Map<String, dynamic> ? null : Attachment.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : AttachmentBuilder.fromJson(value);
     case 'codeableconcept':
       return value is! Map<String, dynamic>
           ? null
-          : CodeableConcept.fromJson(value);
+          : CodeableConceptBuilder.fromJson(value);
     case 'codeablereference':
       return value is! Map<String, dynamic>
           ? null
-          : CodeableReference.fromJson(value);
+          : CodeableReferenceBuilder.fromJson(value);
     case 'coding':
-      return value is! Map<String, dynamic> ? null : Coding.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : CodingBuilder.fromJson(value);
     case 'contactdetail':
       return value is! Map<String, dynamic>
           ? null
-          : ContactDetail.fromJson(value);
+          : ContactDetailBuilder.fromJson(value);
     case 'contactpoint':
       return value is! Map<String, dynamic>
           ? null
-          : ContactPoint.fromJson(value);
+          : ContactPointBuilder.fromJson(value);
     case 'contributor':
       return value is! Map<String, dynamic>
           ? null
-          : Contributor.fromJson(value);
+          : ContributorBuilder.fromJson(value);
     case 'count':
-      return value is! Map<String, dynamic> ? null : Count.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : CountBuilder.fromJson(value);
     case 'datarequirement':
       return value is! Map<String, dynamic>
           ? null
-          : DataRequirement.fromJson(value);
+          : DataRequirementBuilder.fromJson(value);
     case 'datarequirement.codefilter':
       return value is! Map<String, dynamic>
           ? null
-          : DataRequirementCodeFilter.fromJson(value);
+          : DataRequirementCodeFilterBuilder.fromJson(value);
     case 'datarequirement.datefilter':
       return value is! Map<String, dynamic>
           ? null
-          : DataRequirementDateFilter.fromJson(value);
+          : DataRequirementDateFilterBuilder.fromJson(value);
     case 'datarequirement.sort':
       return value is! Map<String, dynamic>
           ? null
-          : DataRequirementSort.fromJson(value);
+          : DataRequirementSortBuilder.fromJson(value);
     case 'distance':
-      return value is! Map<String, dynamic> ? null : Distance.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : DistanceBuilder.fromJson(value);
     case 'dosage':
-      return value is! Map<String, dynamic> ? null : Dosage.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : DosageBuilder.fromJson(value);
     case 'dosage.doseandrate':
       return value is! Map<String, dynamic>
           ? null
-          : DosageDoseAndRate.fromJson(value);
+          : DosageDoseAndRateBuilder.fromJson(value);
     case 'duration':
       return value is! Map<String, dynamic>
           ? null
-          : FhirDuration.fromJson(value);
+          : FhirDurationBuilder.fromJson(value);
     case 'elementdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinition.fromJson(value);
+          : ElementDefinitionBuilder.fromJson(value);
     case 'elementdefinition.slicing':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionSlicing.fromJson(value);
+          : ElementDefinitionSlicingBuilder.fromJson(value);
     case 'elementdefinition.slicing.discriminator':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionDiscriminator.fromJson(value);
+          : ElementDefinitionDiscriminatorBuilder.fromJson(value);
     case 'elementdefinition.base':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionBase.fromJson(value);
+          : ElementDefinitionBaseBuilder.fromJson(value);
     case 'elementdefinition.type':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionType.fromJson(value);
+          : ElementDefinitionTypeBuilder.fromJson(value);
     case 'elementdefinition.example':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionExample.fromJson(value);
+          : ElementDefinitionExampleBuilder.fromJson(value);
     case 'elementdefinition.constraint':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionConstraint.fromJson(value);
+          : ElementDefinitionConstraintBuilder.fromJson(value);
     case 'elementdefinition.binding':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionBinding.fromJson(value);
+          : ElementDefinitionBindingBuilder.fromJson(value);
     case 'elementdefinition.mapping':
       return value is! Map<String, dynamic>
           ? null
-          : ElementDefinitionMapping.fromJson(value);
+          : ElementDefinitionMappingBuilder.fromJson(value);
     case 'expression':
       return value is! Map<String, dynamic>
           ? null
-          : FhirExpression.fromJson(value);
+          : FhirExpressionBuilder.fromJson(value);
     case 'extension':
       return value is! Map<String, dynamic>
           ? null
-          : FhirExtension.fromJson(value);
+          : FhirExtensionBuilder.fromJson(value);
     case 'humanname':
-      return value is! Map<String, dynamic> ? null : HumanName.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : HumanNameBuilder.fromJson(value);
     case 'identifier':
-      return value is! Map<String, dynamic> ? null : Identifier.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : IdentifierBuilder.fromJson(value);
     case 'marketingstatus':
       return value is! Map<String, dynamic>
           ? null
-          : MarketingStatus.fromJson(value);
+          : MarketingStatusBuilder.fromJson(value);
     case 'meta':
-      return value is! Map<String, dynamic> ? null : FhirMeta.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirMetaBuilder.fromJson(value);
     case 'money':
-      return value is! Map<String, dynamic> ? null : Money.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : MoneyBuilder.fromJson(value);
     case 'narrative':
-      return value is! Map<String, dynamic> ? null : Narrative.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : NarrativeBuilder.fromJson(value);
     case 'parameterdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : ParameterDefinition.fromJson(value);
+          : ParameterDefinitionBuilder.fromJson(value);
     case 'period':
-      return value is! Map<String, dynamic> ? null : Period.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : PeriodBuilder.fromJson(value);
     case 'population':
-      return value is! Map<String, dynamic> ? null : Population.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : PopulationBuilder.fromJson(value);
     case 'prodcharacteristic':
       return value is! Map<String, dynamic>
           ? null
-          : ProdCharacteristic.fromJson(value);
+          : ProdCharacteristicBuilder.fromJson(value);
     case 'productshelflife':
       return value is! Map<String, dynamic>
           ? null
-          : ProductShelfLife.fromJson(value);
+          : ProductShelfLifeBuilder.fromJson(value);
     case 'quantity':
-      return value is! Map<String, dynamic> ? null : Quantity.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : QuantityBuilder.fromJson(value);
     case 'range':
-      return value is! Map<String, dynamic> ? null : Range.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : RangeBuilder.fromJson(value);
     case 'ratio':
-      return value is! Map<String, dynamic> ? null : Ratio.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : RatioBuilder.fromJson(value);
     case 'ratiorange':
-      return value is! Map<String, dynamic> ? null : RatioRange.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : RatioRangeBuilder.fromJson(value);
     case 'reference':
-      return value is! Map<String, dynamic> ? null : Reference.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : ReferenceBuilder.fromJson(value);
     case 'relatedartifact':
       return value is! Map<String, dynamic>
           ? null
-          : RelatedArtifact.fromJson(value);
+          : RelatedArtifactBuilder.fromJson(value);
     case 'sampleddata':
       return value is! Map<String, dynamic>
           ? null
-          : SampledData.fromJson(value);
+          : SampledDataBuilder.fromJson(value);
     case 'signature':
-      return value is! Map<String, dynamic> ? null : Signature.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : SignatureBuilder.fromJson(value);
     case 'timing':
-      return value is! Map<String, dynamic> ? null : Timing.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : TimingBuilder.fromJson(value);
     case 'timing.repeat':
       return value is! Map<String, dynamic>
           ? null
-          : TimingRepeat.fromJson(value);
+          : TimingRepeatBuilder.fromJson(value);
     case 'triggerdefinition':
       return value is! Map<String, dynamic>
           ? null
-          : TriggerDefinition.fromJson(value);
+          : TriggerDefinitionBuilder.fromJson(value);
     case 'usagecontext':
       return value is! Map<String, dynamic>
           ? null
-          : UsageContext.fromJson(value);
+          : UsageContextBuilder.fromJson(value);
     default:
       return null;
   }

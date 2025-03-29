@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// FHIR search modifiers allowed for use in Subscriptions and
 /// SubscriptionTopics.
-class SubscriptionSearchModifier extends FhirCodeEnum {
+class SubscriptionSearchModifierBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  SubscriptionSearchModifier._({
+  SubscriptionSearchModifierBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory SubscriptionSearchModifier(
+  factory SubscriptionSearchModifierBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return SubscriptionSearchModifier._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return SubscriptionSearchModifierBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,161 +44,176 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [SubscriptionSearchModifier] with element only
-  factory SubscriptionSearchModifier.empty() =>
-      SubscriptionSearchModifier._(validatedValue: '');
+  /// Create empty [SubscriptionSearchModifierBuilder] with element only
+  factory SubscriptionSearchModifierBuilder.empty() =>
+      SubscriptionSearchModifierBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
-  factory SubscriptionSearchModifier.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionSearchModifierBuilder] from JSON.
+  factory SubscriptionSearchModifierBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionSearchModifier.elementOnly.withElement(element);
+      return SubscriptionSearchModifierBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SubscriptionSearchModifier cannot be constructed from JSON.',
+        'SubscriptionSearchModifierBuilder cannot be constructed from JSON.',
       );
     }
-    return SubscriptionSearchModifier._(
+    return SubscriptionSearchModifierBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// eq
-  static final SubscriptionSearchModifier eq = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder eq =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: '=',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: '='.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: '='.toFhirStringBuilder,
   );
 
   /// ne
-  static final SubscriptionSearchModifier ne = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder ne =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'ne',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Equal'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not Equal'.toFhirStringBuilder,
   );
 
   /// gt
-  static final SubscriptionSearchModifier gt = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder gt =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'gt',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Greater Than'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Greater Than'.toFhirStringBuilder,
   );
 
   /// lt
-  static final SubscriptionSearchModifier lt = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder lt =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'lt',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Less Than'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Less Than'.toFhirStringBuilder,
   );
 
   /// ge
-  static final SubscriptionSearchModifier ge = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder ge =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'ge',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Greater Than or Equal'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Greater Than or Equal'.toFhirStringBuilder,
   );
 
   /// le
-  static final SubscriptionSearchModifier le = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder le =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'le',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Less Than or Equal'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Less Than or Equal'.toFhirStringBuilder,
   );
 
   /// sa
-  static final SubscriptionSearchModifier sa = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder sa =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'sa',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Starts After'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Starts After'.toFhirStringBuilder,
   );
 
   /// eb
-  static final SubscriptionSearchModifier eb = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder eb =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'eb',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Ends Before'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Ends Before'.toFhirStringBuilder,
   );
 
   /// ap
-  static final SubscriptionSearchModifier ap = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder ap =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'ap',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Approximately'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Approximately'.toFhirStringBuilder,
   );
 
   /// above
-  static final SubscriptionSearchModifier above = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder above =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'above',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Above'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Above'.toFhirStringBuilder,
   );
 
   /// below
-  static final SubscriptionSearchModifier below = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder below =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'below',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Below'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Below'.toFhirStringBuilder,
   );
 
   /// in_
-  static final SubscriptionSearchModifier in_ = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder in_ =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'in',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In'.toFhirStringBuilder,
   );
 
   /// not_in
-  static final SubscriptionSearchModifier not_in = SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder not_in =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'not-in',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not In'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not In'.toFhirStringBuilder,
   );
 
   /// of_type
-  static final SubscriptionSearchModifier of_type =
-      SubscriptionSearchModifier._(
+  static SubscriptionSearchModifierBuilder of_type =
+      SubscriptionSearchModifierBuilder._(
     validatedValue: 'of-type',
-    system:
-        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Of Type'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-search-modifier'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Of Type'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final SubscriptionSearchModifier elementOnly =
-      SubscriptionSearchModifier._(validatedValue: '');
+  static SubscriptionSearchModifierBuilder elementOnly =
+      SubscriptionSearchModifierBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<SubscriptionSearchModifier> values = [
+  static List<SubscriptionSearchModifierBuilder> values = [
     eq,
     ne,
     gt,
@@ -217,15 +232,16 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  SubscriptionSearchModifier clone() => SubscriptionSearchModifier._(
+  SubscriptionSearchModifierBuilder clone() =>
+      SubscriptionSearchModifierBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  SubscriptionSearchModifier withElement(Element? newElement) {
-    return SubscriptionSearchModifier._(
-        validatedValue: value, element: newElement,);
+  SubscriptionSearchModifierBuilder withElement(ElementBuilder? newElement) {
+    return SubscriptionSearchModifierBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -241,11 +257,11 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  SubscriptionSearchModifier copyWith({
+  SubscriptionSearchModifierBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -256,7 +272,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return SubscriptionSearchModifier._(
+    return SubscriptionSearchModifierBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -266,7 +282,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

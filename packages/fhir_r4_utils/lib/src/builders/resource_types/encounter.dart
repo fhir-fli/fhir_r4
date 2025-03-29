@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Encounter]
+/// [EncounterBuilder]
 /// An interaction between a patient and healthcare provider(s) for the
 /// purpose of providing healthcare service(s) or assessing the health
 /// status of a patient.
-class Encounter extends DomainResource {
+class EncounterBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Encounter]
+  /// [EncounterBuilder]
 
-  const Encounter({
+  EncounterBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -20,9 +22,9 @@ class Encounter extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
+    this.status,
     this.statusHistory,
-    required this.class_,
+    this.class_,
     this.classHistory,
     this.type,
     this.serviceType,
@@ -48,52 +50,48 @@ class Encounter extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Encounter.empty() => Encounter(
-        status: EncounterStatus.values.first,
-        class_: Coding.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory EncounterBuilder.empty() => EncounterBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Encounter.fromJson(
+  factory EncounterBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Encounter';
-    return Encounter(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EncounterBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -102,8 +100,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -112,8 +110,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -122,8 +120,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -131,15 +129,15 @@ class Encounter extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<EncounterStatus>(
+      status: JsonParser.parsePrimitive<EncounterStatusBuilder>(
         json,
         'status',
-        EncounterStatus.fromJson,
+        EncounterStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       statusHistory: (json['statusHistory'] as List<dynamic>?)
-          ?.map<EncounterStatusHistory>(
-            (v) => EncounterStatusHistory.fromJson(
+          ?.map<EncounterStatusHistoryBuilder>(
+            (v) => EncounterStatusHistoryBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.statusHistory',
@@ -147,15 +145,15 @@ class Encounter extends DomainResource {
             ),
           )
           .toList(),
-      class_: JsonParser.parseObject<Coding>(
+      class_: JsonParser.parseObject<CodingBuilder>(
         json,
         'class',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.class',
-      )!,
+      ),
       classHistory: (json['classHistory'] as List<dynamic>?)
-          ?.map<EncounterClassHistory>(
-            (v) => EncounterClassHistory.fromJson(
+          ?.map<EncounterClassHistoryBuilder>(
+            (v) => EncounterClassHistoryBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.classHistory',
@@ -164,8 +162,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       type: (json['type'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -173,27 +171,27 @@ class Encounter extends DomainResource {
             ),
           )
           .toList(),
-      serviceType: JsonParser.parseObject<CodeableConcept>(
+      serviceType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'serviceType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.serviceType',
       ),
-      priority: JsonParser.parseObject<CodeableConcept>(
+      priority: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'priority',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.priority',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
       episodeOfCare: (json['episodeOfCare'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.episodeOfCare',
@@ -202,8 +200,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -212,8 +210,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       participant: (json['participant'] as List<dynamic>?)
-          ?.map<EncounterParticipant>(
-            (v) => EncounterParticipant.fromJson(
+          ?.map<EncounterParticipantBuilder>(
+            (v) => EncounterParticipantBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.participant',
@@ -222,8 +220,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       appointment: (json['appointment'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.appointment',
@@ -231,21 +229,21 @@ class Encounter extends DomainResource {
             ),
           )
           .toList(),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      length: JsonParser.parseObject<FhirDuration>(
+      length: JsonParser.parseObject<FhirDurationBuilder>(
         json,
         'length',
-        FhirDuration.fromJson,
+        FhirDurationBuilder.fromJson,
         '$objectPath.length',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -254,8 +252,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -264,8 +262,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       diagnosis: (json['diagnosis'] as List<dynamic>?)
-          ?.map<EncounterDiagnosis>(
-            (v) => EncounterDiagnosis.fromJson(
+          ?.map<EncounterDiagnosisBuilder>(
+            (v) => EncounterDiagnosisBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.diagnosis',
@@ -274,8 +272,8 @@ class Encounter extends DomainResource {
           )
           .toList(),
       account: (json['account'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.account',
@@ -283,15 +281,15 @@ class Encounter extends DomainResource {
             ),
           )
           .toList(),
-      hospitalization: JsonParser.parseObject<EncounterHospitalization>(
+      hospitalization: JsonParser.parseObject<EncounterHospitalizationBuilder>(
         json,
         'hospitalization',
-        EncounterHospitalization.fromJson,
+        EncounterHospitalizationBuilder.fromJson,
         '$objectPath.hospitalization',
       ),
       location: (json['location'] as List<dynamic>?)
-          ?.map<EncounterLocation>(
-            (v) => EncounterLocation.fromJson(
+          ?.map<EncounterLocationBuilder>(
+            (v) => EncounterLocationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.location',
@@ -299,37 +297,37 @@ class Encounter extends DomainResource {
             ),
           )
           .toList(),
-      serviceProvider: JsonParser.parseObject<Reference>(
+      serviceProvider: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'serviceProvider',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.serviceProvider',
       ),
-      partOf: JsonParser.parseObject<Reference>(
+      partOf: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'partOf',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.partOf',
       ),
     );
   }
 
-  /// Deserialize [Encounter]
+  /// Deserialize [EncounterBuilder]
   /// from a [String] or [YamlMap] object
-  factory Encounter.fromYaml(
+  factory EncounterBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Encounter.fromJson(
+      return EncounterBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Encounter.fromJson(
+      return EncounterBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Encounter '
+        'EncounterBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -337,16 +335,16 @@ class Encounter extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Encounter]
+  /// [EncounterBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Encounter.fromJsonString(
+  factory EncounterBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Encounter.fromJson(json);
+      return EncounterBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -358,24 +356,24 @@ class Encounter extends DomainResource {
 
   /// [identifier]
   /// Identifier(s) by which this encounter is known.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// planned | arrived | triaged | in-progress | onleave | finished |
   /// cancelled +.
-  final EncounterStatus status;
+  EncounterStatusBuilder? status;
 
   /// [statusHistory]
   /// The status history permits the encounter resource to contain the status
   /// history without needing to read through the historical versions of the
   /// resource, or even have the server store them.
-  final List<EncounterStatusHistory>? statusHistory;
+  List<EncounterStatusHistoryBuilder>? statusHistory;
 
   /// [class_]
   /// Concepts representing classification of patient encounter such as
   /// ambulatory (outpatient), inpatient, emergency, home health or others
   /// due to local variations.
-  final Coding class_;
+  CodingBuilder? class_;
 
   /// [classHistory]
   /// The class history permits the tracking of the encounters transitions
@@ -385,25 +383,25 @@ class Encounter extends DomainResource {
   /// new encounter ensures that any lab/diagnostic results can more easily
   /// follow the patient and not require re-processing and not get lost or
   /// cancelled during a kind of discharge from emergency to inpatient.
-  final List<EncounterClassHistory>? classHistory;
+  List<EncounterClassHistoryBuilder>? classHistory;
 
   /// [type]
   /// Specific type of encounter (e.g. e-mail consultation, surgical
   /// day-care, skilled nursing, rehabilitation).
-  final List<CodeableConcept>? type;
+  List<CodeableConceptBuilder>? type;
 
   /// [serviceType]
   /// Broad categorization of the service that is to be provided (e.g.
   /// cardiology).
-  final CodeableConcept? serviceType;
+  CodeableConceptBuilder? serviceType;
 
   /// [priority]
   /// Indicates the urgency of the encounter.
-  final CodeableConcept? priority;
+  CodeableConceptBuilder? priority;
 
   /// [subject]
   /// The patient or group present at the encounter.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [episodeOfCare]
   /// Where a specific encounter should be classified as a part of a specific
@@ -414,55 +412,55 @@ class Encounter extends DomainResource {
   /// are typically created after the episode of care and grouped on entry
   /// rather than editing the episode of care to append another encounter to
   /// it (the episode of care could span years).
-  final List<Reference>? episodeOfCare;
+  List<ReferenceBuilder>? episodeOfCare;
 
   /// [basedOn]
   /// The request this encounter satisfies (e.g. incoming referral or
   /// procedure request).
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [participant]
   /// The list of people responsible for providing the service.
-  final List<EncounterParticipant>? participant;
+  List<EncounterParticipantBuilder>? participant;
 
   /// [appointment]
   /// The appointment that scheduled this encounter.
-  final List<Reference>? appointment;
+  List<ReferenceBuilder>? appointment;
 
   /// [period]
   /// The start and end time of the encounter.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [length]
   /// Quantity of time the encounter lasted. This excludes the time during
   /// leaves of absence.
-  final FhirDuration? length;
+  FhirDurationBuilder? length;
 
   /// [reasonCode]
   /// Reason the encounter takes place, expressed as a code. For admissions,
   /// this can be used for a coded admission diagnosis.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Reason the encounter takes place, expressed as a code. For admissions,
   /// this can be used for a coded admission diagnosis.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [diagnosis]
   /// The list of diagnosis relevant to this encounter.
-  final List<EncounterDiagnosis>? diagnosis;
+  List<EncounterDiagnosisBuilder>? diagnosis;
 
   /// [account]
   /// The set of accounts that may be used for billing for this Encounter.
-  final List<Reference>? account;
+  List<ReferenceBuilder>? account;
 
   /// [hospitalization]
   /// Details about the admission to a healthcare service.
-  final EncounterHospitalization? hospitalization;
+  EncounterHospitalizationBuilder? hospitalization;
 
   /// [location]
   /// List of locations where the patient has been during this encounter.
-  final List<EncounterLocation>? location;
+  List<EncounterLocationBuilder>? location;
 
   /// [serviceProvider]
   /// The organization that is primarily responsible for this Encounter's
@@ -471,28 +469,28 @@ class Encounter extends DomainResource {
   /// the services was from an external organization (which may be billed
   /// seperately) for an external consultation. Refer to the example bundle
   /// showing an abbreviated set of Encounters for a colonoscopy.
-  final Reference? serviceProvider;
+  ReferenceBuilder? serviceProvider;
 
   /// [partOf]
   /// Another Encounter of which this encounter is a part of
   /// (administratively or in time).
-  final Reference? partOf;
+  ReferenceBuilder? partOf;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -501,136 +499,43 @@ class Encounter extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusHistory',
-      statusHistory,
-    );
-    addField(
-      'class',
-      class_,
-    );
-    addField(
-      'classHistory',
-      classHistory,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'serviceType',
-      serviceType,
-    );
-    addField(
-      'priority',
-      priority,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'episodeOfCare',
-      episodeOfCare,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'participant',
-      participant,
-    );
-    addField(
-      'appointment',
-      appointment,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'length',
-      length,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'diagnosis',
-      diagnosis,
-    );
-    addField(
-      'account',
-      account,
-    );
-    addField(
-      'hospitalization',
-      hospitalization,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'serviceProvider',
-      serviceProvider,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('statusHistory', statusHistory);
+    addField('class', class_);
+    addField('classHistory', classHistory);
+    addField('type', type);
+    addField('serviceType', serviceType);
+    addField('priority', priority);
+    addField('subject', subject);
+    addField('episodeOfCare', episodeOfCare);
+    addField('basedOn', basedOn);
+    addField('participant', participant);
+    addField('appointment', appointment);
+    addField('period', period);
+    addField('length', length);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('diagnosis', diagnosis);
+    addField('account', account);
+    addField('hospitalization', hospitalization);
+    addField('location', location);
+    addField('serviceProvider', serviceProvider);
+    addField('partOf', partOf);
     return json;
   }
 
@@ -675,11 +580,11 @@ class Encounter extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -718,13 +623,17 @@ class Encounter extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'statusHistory':
         if (statusHistory != null) {
           fields.addAll(statusHistory!);
         }
       case 'class':
-        fields.add(class_);
+        if (class_ != null) {
+          fields.add(class_!);
+        }
       case 'classHistory':
         if (classHistory != null) {
           fields.addAll(classHistory!);
@@ -811,7 +720,7 @@ class Encounter extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -820,357 +729,371 @@ class Encounter extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is EncounterStatus) {
-            return copyWith(status: child);
+          if (child is EncounterStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusHistory':
         {
-          if (child is List<EncounterStatusHistory>) {
-            // Add all elements from passed list
-            final newList = [...?statusHistory, ...child];
-            return copyWith(statusHistory: newList);
-          } else if (child is EncounterStatusHistory) {
+          if (child is List<EncounterStatusHistoryBuilder>) {
+            // Replace or create new list
+            statusHistory = child;
+            return;
+          } else if (child is EncounterStatusHistoryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?statusHistory, child];
-            return copyWith(statusHistory: newList);
+            statusHistory = [...(statusHistory ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'class':
         {
-          if (child is Coding) {
-            return copyWith(class_: child);
+          if (child is CodingBuilder) {
+            class_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classHistory':
         {
-          if (child is List<EncounterClassHistory>) {
-            // Add all elements from passed list
-            final newList = [...?classHistory, ...child];
-            return copyWith(classHistory: newList);
-          } else if (child is EncounterClassHistory) {
+          if (child is List<EncounterClassHistoryBuilder>) {
+            // Replace or create new list
+            classHistory = child;
+            return;
+          } else if (child is EncounterClassHistoryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?classHistory, child];
-            return copyWith(classHistory: newList);
+            classHistory = [...(classHistory ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'serviceType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(serviceType: child);
+          if (child is CodeableConceptBuilder) {
+            serviceType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'priority':
         {
-          if (child is CodeableConcept) {
-            return copyWith(priority: child);
+          if (child is CodeableConceptBuilder) {
+            priority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'episodeOfCare':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?episodeOfCare, ...child];
-            return copyWith(episodeOfCare: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            episodeOfCare = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?episodeOfCare, child];
-            return copyWith(episodeOfCare: newList);
+            episodeOfCare = [...(episodeOfCare ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participant':
         {
-          if (child is List<EncounterParticipant>) {
-            // Add all elements from passed list
-            final newList = [...?participant, ...child];
-            return copyWith(participant: newList);
-          } else if (child is EncounterParticipant) {
+          if (child is List<EncounterParticipantBuilder>) {
+            // Replace or create new list
+            participant = child;
+            return;
+          } else if (child is EncounterParticipantBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?participant, child];
-            return copyWith(participant: newList);
+            participant = [...(participant ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'appointment':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?appointment, ...child];
-            return copyWith(appointment: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            appointment = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?appointment, child];
-            return copyWith(appointment: newList);
+            appointment = [...(appointment ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'length':
         {
-          if (child is FhirDuration) {
-            return copyWith(length: child);
+          if (child is FhirDurationBuilder) {
+            length = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'diagnosis':
         {
-          if (child is List<EncounterDiagnosis>) {
-            // Add all elements from passed list
-            final newList = [...?diagnosis, ...child];
-            return copyWith(diagnosis: newList);
-          } else if (child is EncounterDiagnosis) {
+          if (child is List<EncounterDiagnosisBuilder>) {
+            // Replace or create new list
+            diagnosis = child;
+            return;
+          } else if (child is EncounterDiagnosisBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?diagnosis, child];
-            return copyWith(diagnosis: newList);
+            diagnosis = [...(diagnosis ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'account':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?account, ...child];
-            return copyWith(account: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            account = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?account, child];
-            return copyWith(account: newList);
+            account = [...(account ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'hospitalization':
         {
-          if (child is EncounterHospitalization) {
-            return copyWith(hospitalization: child);
+          if (child is EncounterHospitalizationBuilder) {
+            hospitalization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is List<EncounterLocation>) {
-            // Add all elements from passed list
-            final newList = [...?location, ...child];
-            return copyWith(location: newList);
-          } else if (child is EncounterLocation) {
+          if (child is List<EncounterLocationBuilder>) {
+            // Replace or create new list
+            location = child;
+            return;
+          } else if (child is EncounterLocationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
-            return copyWith(location: newList);
+            location = [...(location ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'serviceProvider':
         {
-          if (child is Reference) {
-            return copyWith(serviceProvider: child);
+          if (child is ReferenceBuilder) {
+            serviceProvider = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is Reference) {
-            return copyWith(partOf: child);
+          if (child is ReferenceBuilder) {
+            partOf = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1186,266 +1109,231 @@ class Encounter extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'statusHistory':
-        return ['EncounterStatusHistory'];
+        return ['EncounterStatusHistoryBuilder'];
       case 'class':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'classHistory':
-        return ['EncounterClassHistory'];
+        return ['EncounterClassHistoryBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'serviceType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'priority':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'episodeOfCare':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'participant':
-        return ['EncounterParticipant'];
+        return ['EncounterParticipantBuilder'];
       case 'appointment':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'length':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'diagnosis':
-        return ['EncounterDiagnosis'];
+        return ['EncounterDiagnosisBuilder'];
       case 'account':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'hospitalization':
-        return ['EncounterHospitalization'];
+        return ['EncounterHospitalizationBuilder'];
       case 'location':
-        return ['EncounterLocation'];
+        return ['EncounterLocationBuilder'];
       case 'serviceProvider':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Encounter]
+  /// Creates a new [EncounterBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Encounter createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: EncounterStatus.empty(),
-          );
+          status = EncounterStatusBuilder.empty();
+          return;
         }
       case 'statusHistory':
         {
-          return copyWith(
-            statusHistory: <EncounterStatusHistory>[],
-          );
+          statusHistory = <EncounterStatusHistoryBuilder>[];
+          return;
         }
       case 'class':
         {
-          return copyWith(
-            class_: Coding.empty(),
-          );
+          class_ = CodingBuilder.empty();
+          return;
         }
       case 'classHistory':
         {
-          return copyWith(
-            classHistory: <EncounterClassHistory>[],
-          );
+          classHistory = <EncounterClassHistoryBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
+          type = <CodeableConceptBuilder>[];
+          return;
         }
       case 'serviceType':
         {
-          return copyWith(
-            serviceType: CodeableConcept.empty(),
-          );
+          serviceType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'priority':
         {
-          return copyWith(
-            priority: CodeableConcept.empty(),
-          );
+          priority = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'episodeOfCare':
         {
-          return copyWith(
-            episodeOfCare: <Reference>[],
-          );
+          episodeOfCare = <ReferenceBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'participant':
         {
-          return copyWith(
-            participant: <EncounterParticipant>[],
-          );
+          participant = <EncounterParticipantBuilder>[];
+          return;
         }
       case 'appointment':
         {
-          return copyWith(
-            appointment: <Reference>[],
-          );
+          appointment = <ReferenceBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'length':
         {
-          return copyWith(
-            length: FhirDuration.empty(),
-          );
+          length = FhirDurationBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'diagnosis':
         {
-          return copyWith(
-            diagnosis: <EncounterDiagnosis>[],
-          );
+          diagnosis = <EncounterDiagnosisBuilder>[];
+          return;
         }
       case 'account':
         {
-          return copyWith(
-            account: <Reference>[],
-          );
+          account = <ReferenceBuilder>[];
+          return;
         }
       case 'hospitalization':
         {
-          return copyWith(
-            hospitalization: EncounterHospitalization.empty(),
-          );
+          hospitalization = EncounterHospitalizationBuilder.empty();
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: <EncounterLocation>[],
-          );
+          location = <EncounterLocationBuilder>[];
+          return;
         }
       case 'serviceProvider':
         {
-          return copyWith(
-            serviceProvider: Reference.empty(),
-          );
+          serviceProvider = ReferenceBuilder.empty();
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: Reference.empty(),
-          );
+          partOf = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1454,7 +1342,7 @@ class Encounter extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Encounter clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1464,7 +1352,9 @@ class Encounter extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
     bool statusHistory = false,
+    bool class_ = false,
     bool classHistory = false,
     bool type = false,
     bool serviceType = false,
@@ -1485,271 +1375,136 @@ class Encounter extends DomainResource {
     bool serviceProvider = false,
     bool partOf = false,
   }) {
-    return Encounter(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      statusHistory: statusHistory ? null : this.statusHistory,
-      class_: class_,
-      classHistory: classHistory ? null : this.classHistory,
-      type: type ? null : this.type,
-      serviceType: serviceType ? null : this.serviceType,
-      priority: priority ? null : this.priority,
-      subject: subject ? null : this.subject,
-      episodeOfCare: episodeOfCare ? null : this.episodeOfCare,
-      basedOn: basedOn ? null : this.basedOn,
-      participant: participant ? null : this.participant,
-      appointment: appointment ? null : this.appointment,
-      period: period ? null : this.period,
-      length: length ? null : this.length,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      diagnosis: diagnosis ? null : this.diagnosis,
-      account: account ? null : this.account,
-      hospitalization: hospitalization ? null : this.hospitalization,
-      location: location ? null : this.location,
-      serviceProvider: serviceProvider ? null : this.serviceProvider,
-      partOf: partOf ? null : this.partOf,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (statusHistory) this.statusHistory = null;
+    if (class_) this.class_ = null;
+    if (classHistory) this.classHistory = null;
+    if (type) this.type = null;
+    if (serviceType) this.serviceType = null;
+    if (priority) this.priority = null;
+    if (subject) this.subject = null;
+    if (episodeOfCare) this.episodeOfCare = null;
+    if (basedOn) this.basedOn = null;
+    if (participant) this.participant = null;
+    if (appointment) this.appointment = null;
+    if (period) this.period = null;
+    if (length) this.length = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (diagnosis) this.diagnosis = null;
+    if (account) this.account = null;
+    if (hospitalization) this.hospitalization = null;
+    if (location) this.location = null;
+    if (serviceProvider) this.serviceProvider = null;
+    if (partOf) this.partOf = null;
   }
 
   @override
-  Encounter clone() => throw UnimplementedError();
+  EncounterBuilder clone() => throw UnimplementedError();
   @override
-  Encounter copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    EncounterStatus? status,
-    List<EncounterStatusHistory>? statusHistory,
-    Coding? class_,
-    List<EncounterClassHistory>? classHistory,
-    List<CodeableConcept>? type,
-    CodeableConcept? serviceType,
-    CodeableConcept? priority,
-    Reference? subject,
-    List<Reference>? episodeOfCare,
-    List<Reference>? basedOn,
-    List<EncounterParticipant>? participant,
-    List<Reference>? appointment,
-    Period? period,
-    FhirDuration? length,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<EncounterDiagnosis>? diagnosis,
-    List<Reference>? account,
-    EncounterHospitalization? hospitalization,
-    List<EncounterLocation>? location,
-    Reference? serviceProvider,
-    Reference? partOf,
+  EncounterBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    EncounterStatusBuilder? status,
+    List<EncounterStatusHistoryBuilder>? statusHistory,
+    CodingBuilder? class_,
+    List<EncounterClassHistoryBuilder>? classHistory,
+    List<CodeableConceptBuilder>? type,
+    CodeableConceptBuilder? serviceType,
+    CodeableConceptBuilder? priority,
+    ReferenceBuilder? subject,
+    List<ReferenceBuilder>? episodeOfCare,
+    List<ReferenceBuilder>? basedOn,
+    List<EncounterParticipantBuilder>? participant,
+    List<ReferenceBuilder>? appointment,
+    PeriodBuilder? period,
+    FhirDurationBuilder? length,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<EncounterDiagnosisBuilder>? diagnosis,
+    List<ReferenceBuilder>? account,
+    EncounterHospitalizationBuilder? hospitalization,
+    List<EncounterLocationBuilder>? location,
+    ReferenceBuilder? serviceProvider,
+    ReferenceBuilder? partOf,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Encounter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = EncounterBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusHistory: statusHistory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.statusHistory',
-                ),
-              )
-              .toList() ??
-          this.statusHistory,
-      class_: class_?.copyWith(
-            objectPath: '$newObjectPath.class',
-          ) ??
-          this.class_,
-      classHistory: classHistory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.classHistory',
-                ),
-              )
-              .toList() ??
-          this.classHistory,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      serviceType: serviceType?.copyWith(
-            objectPath: '$newObjectPath.serviceType',
-          ) ??
-          this.serviceType,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      episodeOfCare: episodeOfCare
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.episodeOfCare',
-                ),
-              )
-              .toList() ??
-          this.episodeOfCare,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      participant: participant
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.participant',
-                ),
-              )
-              .toList() ??
-          this.participant,
-      appointment: appointment
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.appointment',
-                ),
-              )
-              .toList() ??
-          this.appointment,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      length: length?.copyWith(
-            objectPath: '$newObjectPath.length',
-          ) ??
-          this.length,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      diagnosis: diagnosis
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.diagnosis',
-                ),
-              )
-              .toList() ??
-          this.diagnosis,
-      account: account
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.account',
-                ),
-              )
-              .toList() ??
-          this.account,
-      hospitalization: hospitalization?.copyWith(
-            objectPath: '$newObjectPath.hospitalization',
-          ) ??
-          this.hospitalization,
-      location: location
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.location',
-                ),
-              )
-              .toList() ??
-          this.location,
-      serviceProvider: serviceProvider?.copyWith(
-            objectPath: '$newObjectPath.serviceProvider',
-          ) ??
-          this.serviceProvider,
-      partOf: partOf?.copyWith(
-            objectPath: '$newObjectPath.partOf',
-          ) ??
-          this.partOf,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      statusHistory: statusHistory ?? this.statusHistory,
+      class_: class_ ?? this.class_,
+      classHistory: classHistory ?? this.classHistory,
+      type: type ?? this.type,
+      serviceType: serviceType ?? this.serviceType,
+      priority: priority ?? this.priority,
+      subject: subject ?? this.subject,
+      episodeOfCare: episodeOfCare ?? this.episodeOfCare,
+      basedOn: basedOn ?? this.basedOn,
+      participant: participant ?? this.participant,
+      appointment: appointment ?? this.appointment,
+      period: period ?? this.period,
+      length: length ?? this.length,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      diagnosis: diagnosis ?? this.diagnosis,
+      account: account ?? this.account,
+      hospitalization: hospitalization ?? this.hospitalization,
+      location: location ?? this.location,
+      serviceProvider: serviceProvider ?? this.serviceProvider,
+      partOf: partOf ?? this.partOf,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Encounter) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EncounterBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1784,25 +1539,25 @@ class Encounter extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1814,7 +1569,7 @@ class Encounter extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<EncounterStatusHistory>(
+    if (!listEquals<EncounterStatusHistoryBuilder>(
       statusHistory,
       o.statusHistory,
     )) {
@@ -1826,13 +1581,13 @@ class Encounter extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<EncounterClassHistory>(
+    if (!listEquals<EncounterClassHistoryBuilder>(
       classHistory,
       o.classHistory,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       type,
       o.type,
     )) {
@@ -1856,25 +1611,25 @@ class Encounter extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       episodeOfCare,
       o.episodeOfCare,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<EncounterParticipant>(
+    if (!listEquals<EncounterParticipantBuilder>(
       participant,
       o.participant,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       appointment,
       o.appointment,
     )) {
@@ -1892,25 +1647,25 @@ class Encounter extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<EncounterDiagnosis>(
+    if (!listEquals<EncounterDiagnosisBuilder>(
       diagnosis,
       o.diagnosis,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       account,
       o.account,
     )) {
@@ -1922,7 +1677,7 @@ class Encounter extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<EncounterLocation>(
+    if (!listEquals<EncounterLocationBuilder>(
       location,
       o.location,
     )) {
@@ -1944,48 +1699,45 @@ class Encounter extends DomainResource {
   }
 }
 
-/// [EncounterStatusHistory]
+/// [EncounterStatusHistoryBuilder]
 /// The status history permits the encounter resource to contain the status
 /// history without needing to read through the historical versions of the
 /// resource, or even have the server store them.
-class EncounterStatusHistory extends BackboneElement {
+class EncounterStatusHistoryBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [EncounterStatusHistory]
+  /// [EncounterStatusHistoryBuilder]
 
-  const EncounterStatusHistory({
+  EncounterStatusHistoryBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.status,
-    required this.period,
+    this.status,
+    this.period,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Encounter.statusHistory',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EncounterStatusHistory.empty() => EncounterStatusHistory(
-        status: EncounterStatus.values.first,
-        period: Period.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory EncounterStatusHistoryBuilder.empty() =>
+      EncounterStatusHistoryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterStatusHistory.fromJson(
+  factory EncounterStatusHistoryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Encounter.statusHistory';
-    return EncounterStatusHistory(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EncounterStatusHistoryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1994,8 +1746,8 @@ class EncounterStatusHistory extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2003,37 +1755,37 @@ class EncounterStatusHistory extends BackboneElement {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<EncounterStatus>(
+      status: JsonParser.parsePrimitive<EncounterStatusBuilder>(
         json,
         'status',
-        EncounterStatus.fromJson,
+        EncounterStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      period: JsonParser.parseObject<Period>(
+      ),
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [EncounterStatusHistory]
+  /// Deserialize [EncounterStatusHistoryBuilder]
   /// from a [String] or [YamlMap] object
-  factory EncounterStatusHistory.fromYaml(
+  factory EncounterStatusHistoryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return EncounterStatusHistory.fromJson(
+      return EncounterStatusHistoryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return EncounterStatusHistory.fromJson(
+      return EncounterStatusHistoryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EncounterStatusHistory '
+        'EncounterStatusHistoryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2041,16 +1793,16 @@ class EncounterStatusHistory extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [EncounterStatusHistory]
+  /// [EncounterStatusHistoryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterStatusHistory.fromJsonString(
+  factory EncounterStatusHistoryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return EncounterStatusHistory.fromJson(json);
+      return EncounterStatusHistoryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2063,27 +1815,27 @@ class EncounterStatusHistory extends BackboneElement {
   /// [status]
   /// planned | arrived | triaged | in-progress | onleave | finished |
   /// cancelled +.
-  final EncounterStatus status;
+  EncounterStatusBuilder? status;
 
   /// [period]
   /// The time that the episode was in the specified status.
-  final Period period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2092,31 +1844,16 @@ class EncounterStatusHistory extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('status', status);
+    addField('period', period);
     return json;
   }
 
@@ -2135,11 +1872,11 @@ class EncounterStatusHistory extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2154,9 +1891,13 @@ class EncounterStatusHistory extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'period':
-        fields.add(period);
+        if (period != null) {
+          fields.add(period!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2167,7 +1908,7 @@ class EncounterStatusHistory extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2176,65 +1917,67 @@ class EncounterStatusHistory extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is EncounterStatus) {
-            return copyWith(status: child);
+          if (child is EncounterStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2250,58 +1993,49 @@ class EncounterStatusHistory extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [EncounterStatusHistory]
+  /// Creates a new [EncounterStatusHistoryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  EncounterStatusHistory createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: EncounterStatus.empty(),
-          );
+          status = EncounterStatusBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2310,29 +2044,29 @@ class EncounterStatusHistory extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  EncounterStatusHistory clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool status = false,
+    bool period = false,
   }) {
-    return EncounterStatusHistory(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      status: status,
-      period: period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (status) this.status = null;
+    if (period) this.period = null;
   }
 
   @override
-  EncounterStatusHistory clone() => throw UnimplementedError();
+  EncounterStatusHistoryBuilder clone() => throw UnimplementedError();
   @override
-  EncounterStatusHistory copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    EncounterStatus? status,
-    Period? period,
+  EncounterStatusHistoryBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    EncounterStatusBuilder? status,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2340,42 +2074,36 @@ class EncounterStatusHistory extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return EncounterStatusHistory(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = EncounterStatusHistoryBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      status: status ?? this.status,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! EncounterStatusHistory) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EncounterStatusHistoryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2386,13 +2114,13 @@ class EncounterStatusHistory extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2414,7 +2142,7 @@ class EncounterStatusHistory extends BackboneElement {
   }
 }
 
-/// [EncounterClassHistory]
+/// [EncounterClassHistoryBuilder]
 /// The class history permits the tracking of the encounters transitions
 /// without needing to go through the resource history. This would be used
 /// for a case where an admission starts of as an emergency encounter, then
@@ -2422,44 +2150,41 @@ class EncounterStatusHistory extends BackboneElement {
 /// new encounter ensures that any lab/diagnostic results can more easily
 /// follow the patient and not require re-processing and not get lost or
 /// cancelled during a kind of discharge from emergency to inpatient.
-class EncounterClassHistory extends BackboneElement {
+class EncounterClassHistoryBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [EncounterClassHistory]
+  /// [EncounterClassHistoryBuilder]
 
-  const EncounterClassHistory({
+  EncounterClassHistoryBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.class_,
-    required this.period,
+    this.class_,
+    this.period,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Encounter.classHistory',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EncounterClassHistory.empty() => EncounterClassHistory(
-        class_: Coding.empty(),
-        period: Period.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory EncounterClassHistoryBuilder.empty() =>
+      EncounterClassHistoryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterClassHistory.fromJson(
+  factory EncounterClassHistoryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Encounter.classHistory';
-    return EncounterClassHistory(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EncounterClassHistoryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2468,8 +2193,8 @@ class EncounterClassHistory extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2477,37 +2202,37 @@ class EncounterClassHistory extends BackboneElement {
             ),
           )
           .toList(),
-      class_: JsonParser.parseObject<Coding>(
+      class_: JsonParser.parseObject<CodingBuilder>(
         json,
         'class',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.class',
-      )!,
-      period: JsonParser.parseObject<Period>(
+      ),
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [EncounterClassHistory]
+  /// Deserialize [EncounterClassHistoryBuilder]
   /// from a [String] or [YamlMap] object
-  factory EncounterClassHistory.fromYaml(
+  factory EncounterClassHistoryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return EncounterClassHistory.fromJson(
+      return EncounterClassHistoryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return EncounterClassHistory.fromJson(
+      return EncounterClassHistoryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EncounterClassHistory '
+        'EncounterClassHistoryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2515,16 +2240,16 @@ class EncounterClassHistory extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [EncounterClassHistory]
+  /// [EncounterClassHistoryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterClassHistory.fromJsonString(
+  factory EncounterClassHistoryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return EncounterClassHistory.fromJson(json);
+      return EncounterClassHistoryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2536,27 +2261,27 @@ class EncounterClassHistory extends BackboneElement {
 
   /// [class_]
   /// inpatient | outpatient | ambulatory | emergency +.
-  final Coding class_;
+  CodingBuilder? class_;
 
   /// [period]
   /// The time that the episode was in the specified class.
-  final Period period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2565,31 +2290,16 @@ class EncounterClassHistory extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'class',
-      class_,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('class', class_);
+    addField('period', period);
     return json;
   }
 
@@ -2608,11 +2318,11 @@ class EncounterClassHistory extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2627,9 +2337,13 @@ class EncounterClassHistory extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'class':
-        fields.add(class_);
+        if (class_ != null) {
+          fields.add(class_!);
+        }
       case 'period':
-        fields.add(period);
+        if (period != null) {
+          fields.add(period!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2640,7 +2354,7 @@ class EncounterClassHistory extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2649,65 +2363,67 @@ class EncounterClassHistory extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'class':
         {
-          if (child is Coding) {
-            return copyWith(class_: child);
+          if (child is CodingBuilder) {
+            class_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2723,58 +2439,49 @@ class EncounterClassHistory extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'class':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [EncounterClassHistory]
+  /// Creates a new [EncounterClassHistoryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  EncounterClassHistory createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'class':
         {
-          return copyWith(
-            class_: Coding.empty(),
-          );
+          class_ = CodingBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2783,29 +2490,29 @@ class EncounterClassHistory extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  EncounterClassHistory clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool class_ = false,
+    bool period = false,
   }) {
-    return EncounterClassHistory(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      class_: class_,
-      period: period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (class_) this.class_ = null;
+    if (period) this.period = null;
   }
 
   @override
-  EncounterClassHistory clone() => throw UnimplementedError();
+  EncounterClassHistoryBuilder clone() => throw UnimplementedError();
   @override
-  EncounterClassHistory copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Coding? class_,
-    Period? period,
+  EncounterClassHistoryBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodingBuilder? class_,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2813,42 +2520,36 @@ class EncounterClassHistory extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return EncounterClassHistory(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      class_: class_?.copyWith(
-            objectPath: '$newObjectPath.class',
-          ) ??
-          this.class_,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = EncounterClassHistoryBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      class_: class_ ?? this.class_,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! EncounterClassHistory) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EncounterClassHistoryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2859,13 +2560,13 @@ class EncounterClassHistory extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2887,13 +2588,13 @@ class EncounterClassHistory extends BackboneElement {
   }
 }
 
-/// [EncounterParticipant]
+/// [EncounterParticipantBuilder]
 /// The list of people responsible for providing the service.
-class EncounterParticipant extends BackboneElement {
+class EncounterParticipantBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [EncounterParticipant]
+  /// [EncounterParticipantBuilder]
 
-  const EncounterParticipant({
+  EncounterParticipantBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2906,25 +2607,24 @@ class EncounterParticipant extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EncounterParticipant.empty() => const EncounterParticipant();
+  /// For Builder classes, no fields are required
+  factory EncounterParticipantBuilder.empty() => EncounterParticipantBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterParticipant.fromJson(
+  factory EncounterParticipantBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Encounter.participant';
-    return EncounterParticipant(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EncounterParticipantBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2933,8 +2633,8 @@ class EncounterParticipant extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2943,8 +2643,8 @@ class EncounterParticipant extends BackboneElement {
           )
           .toList(),
       type: (json['type'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -2952,37 +2652,37 @@ class EncounterParticipant extends BackboneElement {
             ),
           )
           .toList(),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      individual: JsonParser.parseObject<Reference>(
+      individual: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'individual',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.individual',
       ),
     );
   }
 
-  /// Deserialize [EncounterParticipant]
+  /// Deserialize [EncounterParticipantBuilder]
   /// from a [String] or [YamlMap] object
-  factory EncounterParticipant.fromYaml(
+  factory EncounterParticipantBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return EncounterParticipant.fromJson(
+      return EncounterParticipantBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return EncounterParticipant.fromJson(
+      return EncounterParticipantBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EncounterParticipant '
+        'EncounterParticipantBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2990,16 +2690,16 @@ class EncounterParticipant extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [EncounterParticipant]
+  /// [EncounterParticipantBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterParticipant.fromJsonString(
+  factory EncounterParticipantBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return EncounterParticipant.fromJson(json);
+      return EncounterParticipantBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3011,33 +2711,33 @@ class EncounterParticipant extends BackboneElement {
 
   /// [type]
   /// Role of participant in encounter.
-  final List<CodeableConcept>? type;
+  List<CodeableConceptBuilder>? type;
 
   /// [period]
   /// The period of time that the specified participant participated in the
   /// encounter. These can overlap or be sub-sets of the overall encounter's
   /// period.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [individual]
   /// Persons involved in the encounter other than the patient.
-  final Reference? individual;
+  ReferenceBuilder? individual;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3046,35 +2746,17 @@ class EncounterParticipant extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'individual',
-      individual,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('period', period);
+    addField('individual', individual);
     return json;
   }
 
@@ -3094,11 +2776,11 @@ class EncounterParticipant extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3134,7 +2816,7 @@ class EncounterParticipant extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3143,79 +2825,81 @@ class EncounterParticipant extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'individual':
         {
-          if (child is Reference) {
-            return copyWith(individual: child);
+          if (child is ReferenceBuilder) {
+            individual = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3231,66 +2915,56 @@ class EncounterParticipant extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'individual':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [EncounterParticipant]
+  /// Creates a new [EncounterParticipantBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  EncounterParticipant createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
+          type = <CodeableConceptBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'individual':
         {
-          return copyWith(
-            individual: Reference.empty(),
-          );
+          individual = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3299,7 +2973,7 @@ class EncounterParticipant extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  EncounterParticipant clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3307,26 +2981,24 @@ class EncounterParticipant extends BackboneElement {
     bool period = false,
     bool individual = false,
   }) {
-    return EncounterParticipant(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      period: period ? null : this.period,
-      individual: individual ? null : this.individual,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (period) this.period = null;
+    if (individual) this.individual = null;
   }
 
   @override
-  EncounterParticipant clone() => throw UnimplementedError();
+  EncounterParticipantBuilder clone() => throw UnimplementedError();
   @override
-  EncounterParticipant copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? type,
-    Period? period,
-    Reference? individual,
+  EncounterParticipantBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? type,
+    PeriodBuilder? period,
+    ReferenceBuilder? individual,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3334,50 +3006,37 @@ class EncounterParticipant extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return EncounterParticipant(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      individual: individual?.copyWith(
-            objectPath: '$newObjectPath.individual',
-          ) ??
-          this.individual,
+    final newResult = EncounterParticipantBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      period: period ?? this.period,
+      individual: individual ?? this.individual,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! EncounterParticipant) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EncounterParticipantBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3388,19 +3047,19 @@ class EncounterParticipant extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       type,
       o.type,
     )) {
@@ -3422,17 +3081,17 @@ class EncounterParticipant extends BackboneElement {
   }
 }
 
-/// [EncounterDiagnosis]
+/// [EncounterDiagnosisBuilder]
 /// The list of diagnosis relevant to this encounter.
-class EncounterDiagnosis extends BackboneElement {
+class EncounterDiagnosisBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [EncounterDiagnosis]
+  /// [EncounterDiagnosisBuilder]
 
-  const EncounterDiagnosis({
+  EncounterDiagnosisBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.condition,
+    this.condition,
     this.use,
     this.rank,
     super.disallowExtensions,
@@ -3441,27 +3100,24 @@ class EncounterDiagnosis extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EncounterDiagnosis.empty() => EncounterDiagnosis(
-        condition: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory EncounterDiagnosisBuilder.empty() => EncounterDiagnosisBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterDiagnosis.fromJson(
+  factory EncounterDiagnosisBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Encounter.diagnosis';
-    return EncounterDiagnosis(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EncounterDiagnosisBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3470,8 +3126,8 @@ class EncounterDiagnosis extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3479,43 +3135,43 @@ class EncounterDiagnosis extends BackboneElement {
             ),
           )
           .toList(),
-      condition: JsonParser.parseObject<Reference>(
+      condition: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'condition',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.condition',
-      )!,
-      use: JsonParser.parseObject<CodeableConcept>(
+      ),
+      use: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'use',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.use',
       ),
-      rank: JsonParser.parsePrimitive<FhirPositiveInt>(
+      rank: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'rank',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.rank',
       ),
     );
   }
 
-  /// Deserialize [EncounterDiagnosis]
+  /// Deserialize [EncounterDiagnosisBuilder]
   /// from a [String] or [YamlMap] object
-  factory EncounterDiagnosis.fromYaml(
+  factory EncounterDiagnosisBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return EncounterDiagnosis.fromJson(
+      return EncounterDiagnosisBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return EncounterDiagnosis.fromJson(
+      return EncounterDiagnosisBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EncounterDiagnosis '
+        'EncounterDiagnosisBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3523,16 +3179,16 @@ class EncounterDiagnosis extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [EncounterDiagnosis]
+  /// [EncounterDiagnosisBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterDiagnosis.fromJsonString(
+  factory EncounterDiagnosisBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return EncounterDiagnosis.fromJson(json);
+      return EncounterDiagnosisBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3547,32 +3203,32 @@ class EncounterDiagnosis extends BackboneElement {
   /// another resource. For admissions, this is the admission diagnosis. The
   /// indication will typically be a Condition (with other resources
   /// referenced in the evidence.detail), or a Procedure.
-  final Reference condition;
+  ReferenceBuilder? condition;
 
   /// [use]
   /// Role that this diagnosis has within the encounter (e.g. admission,
   /// billing, discharge …).
-  final CodeableConcept? use;
+  CodeableConceptBuilder? use;
 
   /// [rank]
   /// Ranking of the diagnosis (for each role type).
-  final FhirPositiveInt? rank;
+  FhirPositiveIntBuilder? rank;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3581,35 +3237,17 @@ class EncounterDiagnosis extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'condition',
-      condition,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'rank',
-      rank,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('condition', condition);
+    addField('use', use);
+    addField('rank', rank);
     return json;
   }
 
@@ -3629,11 +3267,11 @@ class EncounterDiagnosis extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3648,7 +3286,9 @@ class EncounterDiagnosis extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'condition':
-        fields.add(condition);
+        if (condition != null) {
+          fields.add(condition!);
+        }
       case 'use':
         if (use != null) {
           fields.add(use!);
@@ -3667,7 +3307,7 @@ class EncounterDiagnosis extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3676,73 +3316,76 @@ class EncounterDiagnosis extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is Reference) {
-            return copyWith(condition: child);
+          if (child is ReferenceBuilder) {
+            condition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
         {
-          if (child is CodeableConcept) {
-            return copyWith(use: child);
+          if (child is CodeableConceptBuilder) {
+            use = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rank':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(rank: child);
+          if (child is FhirPositiveIntBuilder) {
+            rank = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3758,66 +3401,56 @@ class EncounterDiagnosis extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'condition':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'use':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'rank':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [EncounterDiagnosis]
+  /// Creates a new [EncounterDiagnosisBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  EncounterDiagnosis createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: Reference.empty(),
-          );
+          condition = ReferenceBuilder.empty();
+          return;
         }
       case 'use':
         {
-          return copyWith(
-            use: CodeableConcept.empty(),
-          );
+          use = CodeableConceptBuilder.empty();
+          return;
         }
       case 'rank':
         {
-          return copyWith(
-            rank: FhirPositiveInt.empty(),
-          );
+          rank = FhirPositiveIntBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3826,33 +3459,32 @@ class EncounterDiagnosis extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  EncounterDiagnosis clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool condition = false,
     bool use = false,
     bool rank = false,
   }) {
-    return EncounterDiagnosis(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      condition: condition,
-      use: use ? null : this.use,
-      rank: rank ? null : this.rank,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (condition) this.condition = null;
+    if (use) this.use = null;
+    if (rank) this.rank = null;
   }
 
   @override
-  EncounterDiagnosis clone() => throw UnimplementedError();
+  EncounterDiagnosisBuilder clone() => throw UnimplementedError();
   @override
-  EncounterDiagnosis copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? condition,
-    CodeableConcept? use,
-    FhirPositiveInt? rank,
+  EncounterDiagnosisBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? condition,
+    CodeableConceptBuilder? use,
+    FhirPositiveIntBuilder? rank,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3860,46 +3492,37 @@ class EncounterDiagnosis extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return EncounterDiagnosis(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      rank: rank?.copyWith(
-            objectPath: '$newObjectPath.rank',
-          ) ??
-          this.rank,
+    final newResult = EncounterDiagnosisBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      condition: condition ?? this.condition,
+      use: use ?? this.use,
+      rank: rank ?? this.rank,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! EncounterDiagnosis) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EncounterDiagnosisBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3910,13 +3533,13 @@ class EncounterDiagnosis extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3944,13 +3567,13 @@ class EncounterDiagnosis extends BackboneElement {
   }
 }
 
-/// [EncounterHospitalization]
+/// [EncounterHospitalizationBuilder]
 /// Details about the admission to a healthcare service.
-class EncounterHospitalization extends BackboneElement {
+class EncounterHospitalizationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [EncounterHospitalization]
+  /// [EncounterHospitalizationBuilder]
 
-  const EncounterHospitalization({
+  EncounterHospitalizationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3969,25 +3592,25 @@ class EncounterHospitalization extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EncounterHospitalization.empty() => const EncounterHospitalization();
+  /// For Builder classes, no fields are required
+  factory EncounterHospitalizationBuilder.empty() =>
+      EncounterHospitalizationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterHospitalization.fromJson(
+  factory EncounterHospitalizationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Encounter.hospitalization';
-    return EncounterHospitalization(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EncounterHospitalizationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3996,8 +3619,8 @@ class EncounterHospitalization extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4005,33 +3628,33 @@ class EncounterHospitalization extends BackboneElement {
             ),
           )
           .toList(),
-      preAdmissionIdentifier: JsonParser.parseObject<Identifier>(
+      preAdmissionIdentifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'preAdmissionIdentifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.preAdmissionIdentifier',
       ),
-      origin: JsonParser.parseObject<Reference>(
+      origin: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'origin',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.origin',
       ),
-      admitSource: JsonParser.parseObject<CodeableConcept>(
+      admitSource: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'admitSource',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.admitSource',
       ),
-      reAdmission: JsonParser.parseObject<CodeableConcept>(
+      reAdmission: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'reAdmission',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.reAdmission',
       ),
       dietPreference: (json['dietPreference'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.dietPreference',
@@ -4040,8 +3663,8 @@ class EncounterHospitalization extends BackboneElement {
           )
           .toList(),
       specialCourtesy: (json['specialCourtesy'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specialCourtesy',
@@ -4050,8 +3673,8 @@ class EncounterHospitalization extends BackboneElement {
           )
           .toList(),
       specialArrangement: (json['specialArrangement'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specialArrangement',
@@ -4059,37 +3682,37 @@ class EncounterHospitalization extends BackboneElement {
             ),
           )
           .toList(),
-      destination: JsonParser.parseObject<Reference>(
+      destination: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'destination',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.destination',
       ),
-      dischargeDisposition: JsonParser.parseObject<CodeableConcept>(
+      dischargeDisposition: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'dischargeDisposition',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.dischargeDisposition',
       ),
     );
   }
 
-  /// Deserialize [EncounterHospitalization]
+  /// Deserialize [EncounterHospitalizationBuilder]
   /// from a [String] or [YamlMap] object
-  factory EncounterHospitalization.fromYaml(
+  factory EncounterHospitalizationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return EncounterHospitalization.fromJson(
+      return EncounterHospitalizationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return EncounterHospitalization.fromJson(
+      return EncounterHospitalizationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EncounterHospitalization '
+        'EncounterHospitalizationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4097,16 +3720,16 @@ class EncounterHospitalization extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [EncounterHospitalization]
+  /// [EncounterHospitalizationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterHospitalization.fromJsonString(
+  factory EncounterHospitalizationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return EncounterHospitalization.fromJson(json);
+      return EncounterHospitalizationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4118,56 +3741,56 @@ class EncounterHospitalization extends BackboneElement {
 
   /// [preAdmissionIdentifier]
   /// Pre-admission identifier.
-  final Identifier? preAdmissionIdentifier;
+  IdentifierBuilder? preAdmissionIdentifier;
 
   /// [origin]
   /// The location/organization from which the patient came before admission.
-  final Reference? origin;
+  ReferenceBuilder? origin;
 
   /// [admitSource]
   /// From where patient was admitted (physician referral, transfer).
-  final CodeableConcept? admitSource;
+  CodeableConceptBuilder? admitSource;
 
   /// [reAdmission]
   /// Whether this hospitalization is a readmission and why if known.
-  final CodeableConcept? reAdmission;
+  CodeableConceptBuilder? reAdmission;
 
   /// [dietPreference]
   /// Diet preferences reported by the patient.
-  final List<CodeableConcept>? dietPreference;
+  List<CodeableConceptBuilder>? dietPreference;
 
   /// [specialCourtesy]
   /// Special courtesies (VIP, board member).
-  final List<CodeableConcept>? specialCourtesy;
+  List<CodeableConceptBuilder>? specialCourtesy;
 
   /// [specialArrangement]
   /// Any special requests that have been made for this hospitalization
   /// encounter, such as the provision of specific equipment or other things.
-  final List<CodeableConcept>? specialArrangement;
+  List<CodeableConceptBuilder>? specialArrangement;
 
   /// [destination]
   /// Location/organization to which the patient is discharged.
-  final Reference? destination;
+  ReferenceBuilder? destination;
 
   /// [dischargeDisposition]
   /// Category or kind of location after discharge.
-  final CodeableConcept? dischargeDisposition;
+  CodeableConceptBuilder? dischargeDisposition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4176,59 +3799,23 @@ class EncounterHospitalization extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'preAdmissionIdentifier',
-      preAdmissionIdentifier,
-    );
-    addField(
-      'origin',
-      origin,
-    );
-    addField(
-      'admitSource',
-      admitSource,
-    );
-    addField(
-      'reAdmission',
-      reAdmission,
-    );
-    addField(
-      'dietPreference',
-      dietPreference,
-    );
-    addField(
-      'specialCourtesy',
-      specialCourtesy,
-    );
-    addField(
-      'specialArrangement',
-      specialArrangement,
-    );
-    addField(
-      'destination',
-      destination,
-    );
-    addField(
-      'dischargeDisposition',
-      dischargeDisposition,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('preAdmissionIdentifier', preAdmissionIdentifier);
+    addField('origin', origin);
+    addField('admitSource', admitSource);
+    addField('reAdmission', reAdmission);
+    addField('dietPreference', dietPreference);
+    addField('specialCourtesy', specialCourtesy);
+    addField('specialArrangement', specialArrangement);
+    addField('destination', destination);
+    addField('dischargeDisposition', dischargeDisposition);
     return json;
   }
 
@@ -4254,11 +3841,11 @@ class EncounterHospitalization extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4318,7 +3905,7 @@ class EncounterHospitalization extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4327,139 +3914,145 @@ class EncounterHospitalization extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'preAdmissionIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(preAdmissionIdentifier: child);
+          if (child is IdentifierBuilder) {
+            preAdmissionIdentifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'origin':
         {
-          if (child is Reference) {
-            return copyWith(origin: child);
+          if (child is ReferenceBuilder) {
+            origin = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'admitSource':
         {
-          if (child is CodeableConcept) {
-            return copyWith(admitSource: child);
+          if (child is CodeableConceptBuilder) {
+            admitSource = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reAdmission':
         {
-          if (child is CodeableConcept) {
-            return copyWith(reAdmission: child);
+          if (child is CodeableConceptBuilder) {
+            reAdmission = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dietPreference':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?dietPreference, ...child];
-            return copyWith(dietPreference: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            dietPreference = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?dietPreference, child];
-            return copyWith(dietPreference: newList);
+            dietPreference = [...(dietPreference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialCourtesy':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialCourtesy, ...child];
-            return copyWith(specialCourtesy: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            specialCourtesy = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialCourtesy, child];
-            return copyWith(specialCourtesy: newList);
+            specialCourtesy = [...(specialCourtesy ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialArrangement':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialArrangement, ...child];
-            return copyWith(specialArrangement: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            specialArrangement = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialArrangement, child];
-            return copyWith(specialArrangement: newList);
+            specialArrangement = [...(specialArrangement ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'destination':
         {
-          if (child is Reference) {
-            return copyWith(destination: child);
+          if (child is ReferenceBuilder) {
+            destination = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dischargeDisposition':
         {
-          if (child is CodeableConcept) {
-            return copyWith(dischargeDisposition: child);
+          if (child is CodeableConceptBuilder) {
+            dischargeDisposition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4475,114 +4068,98 @@ class EncounterHospitalization extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'preAdmissionIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'origin':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'admitSource':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reAdmission':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'dietPreference':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'specialCourtesy':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'specialArrangement':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'destination':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'dischargeDisposition':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [EncounterHospitalization]
+  /// Creates a new [EncounterHospitalizationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  EncounterHospitalization createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'preAdmissionIdentifier':
         {
-          return copyWith(
-            preAdmissionIdentifier: Identifier.empty(),
-          );
+          preAdmissionIdentifier = IdentifierBuilder.empty();
+          return;
         }
       case 'origin':
         {
-          return copyWith(
-            origin: Reference.empty(),
-          );
+          origin = ReferenceBuilder.empty();
+          return;
         }
       case 'admitSource':
         {
-          return copyWith(
-            admitSource: CodeableConcept.empty(),
-          );
+          admitSource = CodeableConceptBuilder.empty();
+          return;
         }
       case 'reAdmission':
         {
-          return copyWith(
-            reAdmission: CodeableConcept.empty(),
-          );
+          reAdmission = CodeableConceptBuilder.empty();
+          return;
         }
       case 'dietPreference':
         {
-          return copyWith(
-            dietPreference: <CodeableConcept>[],
-          );
+          dietPreference = <CodeableConceptBuilder>[];
+          return;
         }
       case 'specialCourtesy':
         {
-          return copyWith(
-            specialCourtesy: <CodeableConcept>[],
-          );
+          specialCourtesy = <CodeableConceptBuilder>[];
+          return;
         }
       case 'specialArrangement':
         {
-          return copyWith(
-            specialArrangement: <CodeableConcept>[],
-          );
+          specialArrangement = <CodeableConceptBuilder>[];
+          return;
         }
       case 'destination':
         {
-          return copyWith(
-            destination: Reference.empty(),
-          );
+          destination = ReferenceBuilder.empty();
+          return;
         }
       case 'dischargeDisposition':
         {
-          return copyWith(
-            dischargeDisposition: CodeableConcept.empty(),
-          );
+          dischargeDisposition = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4591,7 +4168,7 @@ class EncounterHospitalization extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  EncounterHospitalization clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -4605,40 +4182,36 @@ class EncounterHospitalization extends BackboneElement {
     bool destination = false,
     bool dischargeDisposition = false,
   }) {
-    return EncounterHospitalization(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      preAdmissionIdentifier:
-          preAdmissionIdentifier ? null : this.preAdmissionIdentifier,
-      origin: origin ? null : this.origin,
-      admitSource: admitSource ? null : this.admitSource,
-      reAdmission: reAdmission ? null : this.reAdmission,
-      dietPreference: dietPreference ? null : this.dietPreference,
-      specialCourtesy: specialCourtesy ? null : this.specialCourtesy,
-      specialArrangement: specialArrangement ? null : this.specialArrangement,
-      destination: destination ? null : this.destination,
-      dischargeDisposition:
-          dischargeDisposition ? null : this.dischargeDisposition,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (preAdmissionIdentifier) this.preAdmissionIdentifier = null;
+    if (origin) this.origin = null;
+    if (admitSource) this.admitSource = null;
+    if (reAdmission) this.reAdmission = null;
+    if (dietPreference) this.dietPreference = null;
+    if (specialCourtesy) this.specialCourtesy = null;
+    if (specialArrangement) this.specialArrangement = null;
+    if (destination) this.destination = null;
+    if (dischargeDisposition) this.dischargeDisposition = null;
   }
 
   @override
-  EncounterHospitalization clone() => throw UnimplementedError();
+  EncounterHospitalizationBuilder clone() => throw UnimplementedError();
   @override
-  EncounterHospitalization copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? preAdmissionIdentifier,
-    Reference? origin,
-    CodeableConcept? admitSource,
-    CodeableConcept? reAdmission,
-    List<CodeableConcept>? dietPreference,
-    List<CodeableConcept>? specialCourtesy,
-    List<CodeableConcept>? specialArrangement,
-    Reference? destination,
-    CodeableConcept? dischargeDisposition,
+  EncounterHospitalizationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? preAdmissionIdentifier,
+    ReferenceBuilder? origin,
+    CodeableConceptBuilder? admitSource,
+    CodeableConceptBuilder? reAdmission,
+    List<CodeableConceptBuilder>? dietPreference,
+    List<CodeableConceptBuilder>? specialCourtesy,
+    List<CodeableConceptBuilder>? specialArrangement,
+    ReferenceBuilder? destination,
+    CodeableConceptBuilder? dischargeDisposition,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4646,82 +4219,44 @@ class EncounterHospitalization extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return EncounterHospitalization(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      preAdmissionIdentifier: preAdmissionIdentifier?.copyWith(
-            objectPath: '$newObjectPath.preAdmissionIdentifier',
-          ) ??
-          this.preAdmissionIdentifier,
-      origin: origin?.copyWith(
-            objectPath: '$newObjectPath.origin',
-          ) ??
-          this.origin,
-      admitSource: admitSource?.copyWith(
-            objectPath: '$newObjectPath.admitSource',
-          ) ??
-          this.admitSource,
-      reAdmission: reAdmission?.copyWith(
-            objectPath: '$newObjectPath.reAdmission',
-          ) ??
-          this.reAdmission,
-      dietPreference: dietPreference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dietPreference',
-                ),
-              )
-              .toList() ??
-          this.dietPreference,
-      specialCourtesy: specialCourtesy
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialCourtesy',
-                ),
-              )
-              .toList() ??
-          this.specialCourtesy,
-      specialArrangement: specialArrangement
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialArrangement',
-                ),
-              )
-              .toList() ??
-          this.specialArrangement,
-      destination: destination?.copyWith(
-            objectPath: '$newObjectPath.destination',
-          ) ??
-          this.destination,
-      dischargeDisposition: dischargeDisposition?.copyWith(
-            objectPath: '$newObjectPath.dischargeDisposition',
-          ) ??
-          this.dischargeDisposition,
+    final newResult = EncounterHospitalizationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      preAdmissionIdentifier:
+          preAdmissionIdentifier ?? this.preAdmissionIdentifier,
+      origin: origin ?? this.origin,
+      admitSource: admitSource ?? this.admitSource,
+      reAdmission: reAdmission ?? this.reAdmission,
+      dietPreference: dietPreference ?? this.dietPreference,
+      specialCourtesy: specialCourtesy ?? this.specialCourtesy,
+      specialArrangement: specialArrangement ?? this.specialArrangement,
+      destination: destination ?? this.destination,
+      dischargeDisposition: dischargeDisposition ?? this.dischargeDisposition,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! EncounterHospitalization) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EncounterHospitalizationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4732,13 +4267,13 @@ class EncounterHospitalization extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4768,19 +4303,19 @@ class EncounterHospitalization extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       dietPreference,
       o.dietPreference,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       specialCourtesy,
       o.specialCourtesy,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       specialArrangement,
       o.specialArrangement,
     )) {
@@ -4802,17 +4337,17 @@ class EncounterHospitalization extends BackboneElement {
   }
 }
 
-/// [EncounterLocation]
+/// [EncounterLocationBuilder]
 /// List of locations where the patient has been during this encounter.
-class EncounterLocation extends BackboneElement {
+class EncounterLocationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [EncounterLocation]
+  /// [EncounterLocationBuilder]
 
-  const EncounterLocation({
+  EncounterLocationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.location,
+    this.location,
     this.status,
     this.physicalType,
     this.period,
@@ -4822,27 +4357,24 @@ class EncounterLocation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EncounterLocation.empty() => EncounterLocation(
-        location: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory EncounterLocationBuilder.empty() => EncounterLocationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterLocation.fromJson(
+  factory EncounterLocationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Encounter.location';
-    return EncounterLocation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EncounterLocationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4851,8 +4383,8 @@ class EncounterLocation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4860,49 +4392,49 @@ class EncounterLocation extends BackboneElement {
             ),
           )
           .toList(),
-      location: JsonParser.parseObject<Reference>(
+      location: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'location',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.location',
-      )!,
-      status: JsonParser.parsePrimitive<EncounterLocationStatus>(
+      ),
+      status: JsonParser.parsePrimitive<EncounterLocationStatusBuilder>(
         json,
         'status',
-        EncounterLocationStatus.fromJson,
+        EncounterLocationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      physicalType: JsonParser.parseObject<CodeableConcept>(
+      physicalType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'physicalType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.physicalType',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
     );
   }
 
-  /// Deserialize [EncounterLocation]
+  /// Deserialize [EncounterLocationBuilder]
   /// from a [String] or [YamlMap] object
-  factory EncounterLocation.fromYaml(
+  factory EncounterLocationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return EncounterLocation.fromJson(
+      return EncounterLocationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return EncounterLocation.fromJson(
+      return EncounterLocationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EncounterLocation '
+        'EncounterLocationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4910,16 +4442,16 @@ class EncounterLocation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [EncounterLocation]
+  /// [EncounterLocationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterLocation.fromJsonString(
+  factory EncounterLocationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return EncounterLocation.fromJson(json);
+      return EncounterLocationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4931,38 +4463,38 @@ class EncounterLocation extends BackboneElement {
 
   /// [location]
   /// The location where the encounter takes place.
-  final Reference location;
+  ReferenceBuilder? location;
 
   /// [status]
   /// The status of the participants' presence at the specified location
   /// during the period specified. If the participant is no longer at the
   /// location, then the period will have an end date/time.
-  final EncounterLocationStatus? status;
+  EncounterLocationStatusBuilder? status;
 
   /// [physicalType]
   /// This will be used to specify the required levels (bed/ward/room/etc.)
   /// desired to be recorded to simplify either messaging or query.
-  final CodeableConcept? physicalType;
+  CodeableConceptBuilder? physicalType;
 
   /// [period]
   /// Time period during which the patient was present at the location.
-  final Period? period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4971,39 +4503,18 @@ class EncounterLocation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'physicalType',
-      physicalType,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('location', location);
+    addField('status', status);
+    addField('physicalType', physicalType);
+    addField('period', period);
     return json;
   }
 
@@ -5024,11 +4535,11 @@ class EncounterLocation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -5043,7 +4554,9 @@ class EncounterLocation extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'location':
-        fields.add(location);
+        if (location != null) {
+          fields.add(location!);
+        }
       case 'status':
         if (status != null) {
           fields.add(status!);
@@ -5066,7 +4579,7 @@ class EncounterLocation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -5075,81 +4588,85 @@ class EncounterLocation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is Reference) {
-            return copyWith(location: child);
+          if (child is ReferenceBuilder) {
+            location = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is EncounterLocationStatus) {
-            return copyWith(status: child);
+          if (child is EncounterLocationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'physicalType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(physicalType: child);
+          if (child is CodeableConceptBuilder) {
+            physicalType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5165,74 +4682,63 @@ class EncounterLocation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'location':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'physicalType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [EncounterLocation]
+  /// Creates a new [EncounterLocationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  EncounterLocation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: Reference.empty(),
-          );
+          location = ReferenceBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: EncounterLocationStatus.empty(),
-          );
+          status = EncounterLocationStatusBuilder.empty();
+          return;
         }
       case 'physicalType':
         {
-          return copyWith(
-            physicalType: CodeableConcept.empty(),
-          );
+          physicalType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5241,36 +4747,35 @@ class EncounterLocation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  EncounterLocation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool location = false,
     bool status = false,
     bool physicalType = false,
     bool period = false,
   }) {
-    return EncounterLocation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      location: location,
-      status: status ? null : this.status,
-      physicalType: physicalType ? null : this.physicalType,
-      period: period ? null : this.period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (location) this.location = null;
+    if (status) this.status = null;
+    if (physicalType) this.physicalType = null;
+    if (period) this.period = null;
   }
 
   @override
-  EncounterLocation clone() => throw UnimplementedError();
+  EncounterLocationBuilder clone() => throw UnimplementedError();
   @override
-  EncounterLocation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? location,
-    EncounterLocationStatus? status,
-    CodeableConcept? physicalType,
-    Period? period,
+  EncounterLocationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? location,
+    EncounterLocationStatusBuilder? status,
+    CodeableConceptBuilder? physicalType,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5278,50 +4783,38 @@ class EncounterLocation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return EncounterLocation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      physicalType: physicalType?.copyWith(
-            objectPath: '$newObjectPath.physicalType',
-          ) ??
-          this.physicalType,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = EncounterLocationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      location: location ?? this.location,
+      status: status ?? this.status,
+      physicalType: physicalType ?? this.physicalType,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! EncounterLocation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EncounterLocationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5332,13 +4825,13 @@ class EncounterLocation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

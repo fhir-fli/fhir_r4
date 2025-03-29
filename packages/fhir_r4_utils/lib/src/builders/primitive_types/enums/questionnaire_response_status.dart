@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Lifecycle status of the questionnaire response.
-class QuestionnaireResponseStatus extends FhirCodeEnum {
+class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  QuestionnaireResponseStatus._({
+  QuestionnaireResponseStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory QuestionnaireResponseStatus(
+  factory QuestionnaireResponseStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return QuestionnaireResponseStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return QuestionnaireResponseStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,84 +43,87 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [QuestionnaireResponseStatus] with element only
-  factory QuestionnaireResponseStatus.empty() =>
-      QuestionnaireResponseStatus._(validatedValue: '');
+  /// Create empty [QuestionnaireResponseStatusBuilder] with element only
+  factory QuestionnaireResponseStatusBuilder.empty() =>
+      QuestionnaireResponseStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [QuestionnaireResponseStatus] from JSON.
-  factory QuestionnaireResponseStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [QuestionnaireResponseStatusBuilder] from JSON.
+  factory QuestionnaireResponseStatusBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireResponseStatus.elementOnly.withElement(element);
+      return QuestionnaireResponseStatusBuilder.elementOnly
+          .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'QuestionnaireResponseStatus cannot be constructed from JSON.',
+        'QuestionnaireResponseStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireResponseStatus._(
+    return QuestionnaireResponseStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// in_progress
-  static final QuestionnaireResponseStatus in_progress =
-      QuestionnaireResponseStatus._(
+  static QuestionnaireResponseStatusBuilder in_progress =
+      QuestionnaireResponseStatusBuilder._(
     validatedValue: 'in-progress',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In Progress'.toFhirStringBuilder,
   );
 
   /// completed
-  static final QuestionnaireResponseStatus completed =
-      QuestionnaireResponseStatus._(
+  static QuestionnaireResponseStatusBuilder completed =
+      QuestionnaireResponseStatusBuilder._(
     validatedValue: 'completed',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// amended
-  static final QuestionnaireResponseStatus amended =
-      QuestionnaireResponseStatus._(
+  static QuestionnaireResponseStatusBuilder amended =
+      QuestionnaireResponseStatusBuilder._(
     validatedValue: 'amended',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Amended'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final QuestionnaireResponseStatus entered_in_error =
-      QuestionnaireResponseStatus._(
+  static QuestionnaireResponseStatusBuilder entered_in_error =
+      QuestionnaireResponseStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// stopped
-  static final QuestionnaireResponseStatus stopped =
-      QuestionnaireResponseStatus._(
+  static QuestionnaireResponseStatusBuilder stopped =
+      QuestionnaireResponseStatusBuilder._(
     validatedValue: 'stopped',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Stopped'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final QuestionnaireResponseStatus elementOnly =
-      QuestionnaireResponseStatus._(validatedValue: '');
+  static QuestionnaireResponseStatusBuilder elementOnly =
+      QuestionnaireResponseStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<QuestionnaireResponseStatus> values = [
+  static List<QuestionnaireResponseStatusBuilder> values = [
     in_progress,
     completed,
     amended,
@@ -130,15 +133,16 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  QuestionnaireResponseStatus clone() => QuestionnaireResponseStatus._(
+  QuestionnaireResponseStatusBuilder clone() =>
+      QuestionnaireResponseStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  QuestionnaireResponseStatus withElement(Element? newElement) {
-    return QuestionnaireResponseStatus._(
-        validatedValue: value, element: newElement,);
+  QuestionnaireResponseStatusBuilder withElement(ElementBuilder? newElement) {
+    return QuestionnaireResponseStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -154,11 +158,11 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  QuestionnaireResponseStatus copyWith({
+  QuestionnaireResponseStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -169,7 +173,7 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return QuestionnaireResponseStatus._(
+    return QuestionnaireResponseStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -179,7 +183,7 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

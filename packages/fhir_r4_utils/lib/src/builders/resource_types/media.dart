@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Media]
+/// [MediaBuilder]
 /// A photo, video, or audio recording acquired or used in healthcare. The
 /// actual content may be inline or provided by direct reference.
-class Media extends DomainResource {
+class MediaBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Media]
+  /// [MediaBuilder]
 
-  const Media({
+  MediaBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,7 +23,7 @@ class Media extends DomainResource {
     this.identifier,
     this.basedOn,
     this.partOf,
-    required this.status,
+    this.status,
     this.type,
     this.modality,
     this.view,
@@ -38,7 +40,7 @@ class Media extends DomainResource {
     this.width,
     this.frames,
     this.duration,
-    required this.content,
+    this.content,
     this.note,
   }) : super(
           objectPath: 'Media',
@@ -46,52 +48,48 @@ class Media extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Media.empty() => Media(
-        status: EventStatus.values.first,
-        content: Attachment.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory MediaBuilder.empty() => MediaBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Media.fromJson(
+  factory MediaBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Media';
-    return Media(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MediaBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -100,8 +98,8 @@ class Media extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -110,8 +108,8 @@ class Media extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -120,8 +118,8 @@ class Media extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -130,8 +128,8 @@ class Media extends DomainResource {
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -140,8 +138,8 @@ class Media extends DomainResource {
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.partOf',
@@ -149,65 +147,65 @@ class Media extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<EventStatus>(
+      status: JsonParser.parsePrimitive<EventStatusBuilder>(
         json,
         'status',
-        EventStatus.fromJson,
+        EventStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      type: JsonParser.parseObject<CodeableConcept>(
+      ),
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      modality: JsonParser.parseObject<CodeableConcept>(
+      modality: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'modality',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.modality',
       ),
-      view: JsonParser.parseObject<CodeableConcept>(
+      view: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'view',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.view',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      encounter: JsonParser.parseObject<Reference>(
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      createdX: JsonParser.parsePolymorphic<CreatedXMedia>(
+      createdX: JsonParser.parsePolymorphic<CreatedXMediaBuilder>(
         json,
         {
-          'createdDateTime': FhirDateTime.fromJson,
-          'createdPeriod': Period.fromJson,
+          'createdDateTime': FhirDateTimeBuilder.fromJson,
+          'createdPeriod': PeriodBuilder.fromJson,
         },
         objectPath,
       ),
-      issued: JsonParser.parsePrimitive<FhirInstant>(
+      issued: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'issued',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.issued',
       ),
-      operator_: JsonParser.parseObject<Reference>(
+      operator_: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'operator',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.operator',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -215,57 +213,57 @@ class Media extends DomainResource {
             ),
           )
           .toList(),
-      bodySite: JsonParser.parseObject<CodeableConcept>(
+      bodySite: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'bodySite',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.bodySite',
       ),
-      deviceName: JsonParser.parsePrimitive<FhirString>(
+      deviceName: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'deviceName',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.deviceName',
       ),
-      device: JsonParser.parseObject<Reference>(
+      device: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'device',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.device',
       ),
-      height: JsonParser.parsePrimitive<FhirPositiveInt>(
+      height: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'height',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.height',
       ),
-      width: JsonParser.parsePrimitive<FhirPositiveInt>(
+      width: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'width',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.width',
       ),
-      frames: JsonParser.parsePrimitive<FhirPositiveInt>(
+      frames: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'frames',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.frames',
       ),
-      duration: JsonParser.parsePrimitive<FhirDecimal>(
+      duration: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'duration',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.duration',
       ),
-      content: JsonParser.parseObject<Attachment>(
+      content: JsonParser.parseObject<AttachmentBuilder>(
         json,
         'content',
-        Attachment.fromJson,
+        AttachmentBuilder.fromJson,
         '$objectPath.content',
-      )!,
+      ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -276,22 +274,22 @@ class Media extends DomainResource {
     );
   }
 
-  /// Deserialize [Media]
+  /// Deserialize [MediaBuilder]
   /// from a [String] or [YamlMap] object
-  factory Media.fromYaml(
+  factory MediaBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Media.fromJson(
+      return MediaBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Media.fromJson(
+      return MediaBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Media '
+        'MediaBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -299,16 +297,16 @@ class Media extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Media]
+  /// [MediaBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Media.fromJsonString(
+  factory MediaBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Media.fromJson(json);
+      return MediaBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -323,88 +321,89 @@ class Media extends DomainResource {
   /// for the image itself, identifiers for the context of its collection
   /// (e.g. series ids) and context ids such as accession numbers or other
   /// workflow identifiers.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [basedOn]
   /// A procedure that is fulfilled in whole or in part by the creation of
   /// this media.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [partOf]
   /// A larger event of which this particular event is a component or step.
-  final List<Reference>? partOf;
+  List<ReferenceBuilder>? partOf;
 
   /// [status]
   /// The current state of the {{title}}.
-  final EventStatus status;
+  EventStatusBuilder? status;
 
   /// [type]
   /// A code that classifies whether the media is an image, video or audio
   /// recording or some other media category.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [modality]
   /// Details of the type of the media - usually, how it was acquired (what
   /// type of device). If images sourced from a DICOM system, are wrapped in
   /// a Media resource, then this is the modality.
-  final CodeableConcept? modality;
+  CodeableConceptBuilder? modality;
 
   /// [view]
   /// The name of the imaging view e.g. Lateral or Antero-posterior (AP).
-  final CodeableConcept? view;
+  CodeableConceptBuilder? view;
 
   /// [subject]
   /// Who/What this Media is a record of.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The encounter that establishes the context for this media.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [createdX]
   /// The date and time(s) at which the media was collected.
-  final CreatedXMedia? createdX;
+  CreatedXMediaBuilder? createdX;
 
-  /// Getter for [createdDateTime] as a FhirDateTime
-  FhirDateTime? get createdDateTime => createdX?.isAs<FhirDateTime>();
+  /// Getter for [createdDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get createdDateTime =>
+      createdX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [createdPeriod] as a Period
-  Period? get createdPeriod => createdX?.isAs<Period>();
+  /// Getter for [createdPeriod] as a PeriodBuilder
+  PeriodBuilder? get createdPeriod => createdX?.isAs<PeriodBuilder>();
 
   /// [issued]
   /// The date and time this version of the media was made available to
   /// providers, typically after having been reviewed.
-  final FhirInstant? issued;
+  FhirInstantBuilder? issued;
 
   /// [operator_]
   /// The person who administered the collection of the image.
-  final Reference? operator_;
+  ReferenceBuilder? operator_;
 
   /// [reasonCode]
   /// Describes why the event occurred in coded or textual form.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [bodySite]
   /// Indicates the site on the subject's body where the observation was made
   /// (i.e. the target site).
-  final CodeableConcept? bodySite;
+  CodeableConceptBuilder? bodySite;
 
   /// [deviceName]
   /// The name of the device / manufacturer of the device that was used to
   /// make the recording.
-  final FhirString? deviceName;
+  FhirStringBuilder? deviceName;
 
   /// [device]
   /// The device used to collect the media.
-  final Reference? device;
+  ReferenceBuilder? device;
 
   /// [height]
   /// Height of the image in pixels (photo/video).
-  final FhirPositiveInt? height;
+  FhirPositiveIntBuilder? height;
 
   /// [width]
   /// Width of the image in pixels (photo/video).
-  final FhirPositiveInt? width;
+  FhirPositiveIntBuilder? width;
 
   /// [frames]
   /// The number of frames in a photo. This is used with a multi-page fax, or
@@ -412,37 +411,37 @@ class Media extends DomainResource {
   /// image, or an animated gif. If there is more than one frame, this SHALL
   /// have a value in order to alert interface software that a multi-frame
   /// capable rendering widget is required.
-  final FhirPositiveInt? frames;
+  FhirPositiveIntBuilder? frames;
 
   /// [duration]
   /// The duration of the recording in seconds - for audio and video.
-  final FhirDecimal? duration;
+  FhirDecimalBuilder? duration;
 
   /// [content]
   /// The actual content of the media - inline or by direct reference to the
   /// media source file.
-  final Attachment content;
+  AttachmentBuilder? content;
 
   /// [note]
   /// Comments made about the media by the performer, subject or other
   /// participants.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -451,136 +450,46 @@ class Media extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'modality',
-      modality,
-    );
-    addField(
-      'view',
-      view,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('basedOn', basedOn);
+    addField('partOf', partOf);
+    addField('status', status);
+    addField('type', type);
+    addField('modality', modality);
+    addField('view', view);
+    addField('subject', subject);
+    addField('encounter', encounter);
     if (createdX != null) {
       final fhirType = createdX!.fhirType;
-      addField(
-        'created${fhirType.capitalize()}',
-        createdX,
-      );
+      addField('created${fhirType.capitalize()}', createdX);
     }
 
-    addField(
-      'issued',
-      issued,
-    );
-    addField(
-      'operator',
-      operator_,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'bodySite',
-      bodySite,
-    );
-    addField(
-      'deviceName',
-      deviceName,
-    );
-    addField(
-      'device',
-      device,
-    );
-    addField(
-      'height',
-      height,
-    );
-    addField(
-      'width',
-      width,
-    );
-    addField(
-      'frames',
-      frames,
-    );
-    addField(
-      'duration',
-      duration,
-    );
-    addField(
-      'content',
-      content,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('issued', issued);
+    addField('operator', operator_);
+    addField('reasonCode', reasonCode);
+    addField('bodySite', bodySite);
+    addField('deviceName', deviceName);
+    addField('device', device);
+    addField('height', height);
+    addField('width', width);
+    addField('frames', frames);
+    addField('duration', duration);
+    addField('content', content);
+    addField('note', note);
     return json;
   }
 
@@ -624,11 +533,11 @@ class Media extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -675,7 +584,9 @@ class Media extends DomainResource {
           fields.addAll(partOf!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'type':
         if (type != null) {
           fields.add(type!);
@@ -697,15 +608,19 @@ class Media extends DomainResource {
           fields.add(encounter!);
         }
       case 'created':
-        fields.add(createdX!);
+        if (createdX != null) {
+          fields.add(createdX!);
+        }
       case 'createdX':
-        fields.add(createdX!);
+        if (createdX != null) {
+          fields.add(createdX!);
+        }
       case 'createdDateTime':
-        if (createdX is FhirDateTime) {
+        if (createdX is FhirDateTimeBuilder) {
           fields.add(createdX!);
         }
       case 'createdPeriod':
-        if (createdX is Period) {
+        if (createdX is PeriodBuilder) {
           fields.add(createdX!);
         }
       case 'issued':
@@ -749,7 +664,9 @@ class Media extends DomainResource {
           fields.add(duration!);
         }
       case 'content':
-        fields.add(content);
+        if (content != null) {
+          fields.add(content!);
+        }
       case 'note':
         if (note != null) {
           fields.addAll(note!);
@@ -764,7 +681,7 @@ class Media extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -773,323 +690,348 @@ class Media extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            partOf = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
-            return copyWith(partOf: newList);
+            partOf = [...(partOf ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is EventStatus) {
-            return copyWith(status: child);
+          if (child is EventStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modality':
         {
-          if (child is CodeableConcept) {
-            return copyWith(modality: child);
+          if (child is CodeableConceptBuilder) {
+            modality = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'view':
         {
-          if (child is CodeableConcept) {
-            return copyWith(view: child);
+          if (child is CodeableConceptBuilder) {
+            view = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'createdX':
         {
-          if (child is CreatedXMedia) {
-            return copyWith(createdX: child);
+          if (child is CreatedXMediaBuilder) {
+            createdX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(createdX: child);
+            if (child is FhirDateTimeBuilder) {
+              createdX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(createdX: child);
+            if (child is PeriodBuilder) {
+              createdX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'createdFhirDateTime':
+      case 'createdDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(createdX: child);
+          if (child is FhirDateTimeBuilder) {
+            createdX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'createdPeriod':
         {
-          if (child is Period) {
-            return copyWith(createdX: child);
+          if (child is PeriodBuilder) {
+            createdX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issued':
         {
-          if (child is FhirInstant) {
-            return copyWith(issued: child);
+          if (child is FhirInstantBuilder) {
+            issued = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'operator':
         {
-          if (child is Reference) {
-            return copyWith(operator_: child);
+          if (child is ReferenceBuilder) {
+            operator_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
         {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
+          if (child is CodeableConceptBuilder) {
+            bodySite = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deviceName':
         {
-          if (child is FhirString) {
-            return copyWith(deviceName: child);
+          if (child is FhirStringBuilder) {
+            deviceName = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'device':
         {
-          if (child is Reference) {
-            return copyWith(device: child);
+          if (child is ReferenceBuilder) {
+            device = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'height':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(height: child);
+          if (child is FhirPositiveIntBuilder) {
+            height = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'width':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(width: child);
+          if (child is FhirPositiveIntBuilder) {
+            width = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'frames':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(frames: child);
+          if (child is FhirPositiveIntBuilder) {
+            frames = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'duration':
         {
-          if (child is FhirDecimal) {
-            return copyWith(duration: child);
+          if (child is FhirDecimalBuilder) {
+            duration = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'content':
         {
-          if (child is Attachment) {
-            return copyWith(content: child);
+          if (child is AttachmentBuilder) {
+            content = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1105,271 +1047,236 @@ class Media extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'modality':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'view':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'created':
       case 'createdX':
-        return ['FhirDateTime', 'Period'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
       case 'createdDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'createdPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'issued':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'operator':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'bodySite':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'deviceName':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'device':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'height':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'width':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'frames':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'duration':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'content':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Media]
+  /// Creates a new [MediaBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Media createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: <Reference>[],
-          );
+          partOf = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: EventStatus.empty(),
-          );
+          status = EventStatusBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'modality':
         {
-          return copyWith(
-            modality: CodeableConcept.empty(),
-          );
+          modality = CodeableConceptBuilder.empty();
+          return;
         }
       case 'view':
         {
-          return copyWith(
-            view: CodeableConcept.empty(),
-          );
+          view = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'created':
       case 'createdX':
       case 'createdDateTime':
         {
-          return copyWith(
-            createdX: FhirDateTime.empty(),
-          );
+          createdX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'createdPeriod':
         {
-          return copyWith(
-            createdX: Period.empty(),
-          );
+          createdX = PeriodBuilder.empty();
+          return;
         }
       case 'issued':
         {
-          return copyWith(
-            issued: FhirInstant.empty(),
-          );
+          issued = FhirInstantBuilder.empty();
+          return;
         }
       case 'operator':
         {
-          return copyWith(
-            operator_: Reference.empty(),
-          );
+          operator_ = ReferenceBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'bodySite':
         {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
+          bodySite = CodeableConceptBuilder.empty();
+          return;
         }
       case 'deviceName':
         {
-          return copyWith(
-            deviceName: FhirString.empty(),
-          );
+          deviceName = FhirStringBuilder.empty();
+          return;
         }
       case 'device':
         {
-          return copyWith(
-            device: Reference.empty(),
-          );
+          device = ReferenceBuilder.empty();
+          return;
         }
       case 'height':
         {
-          return copyWith(
-            height: FhirPositiveInt.empty(),
-          );
+          height = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'width':
         {
-          return copyWith(
-            width: FhirPositiveInt.empty(),
-          );
+          width = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'frames':
         {
-          return copyWith(
-            frames: FhirPositiveInt.empty(),
-          );
+          frames = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'duration':
         {
-          return copyWith(
-            duration: FhirDecimal.empty(),
-          );
+          duration = FhirDecimalBuilder.empty();
+          return;
         }
       case 'content':
         {
-          return copyWith(
-            content: Attachment.empty(),
-          );
+          content = AttachmentBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1378,7 +1285,7 @@ class Media extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Media clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1390,6 +1297,7 @@ class Media extends DomainResource {
     bool identifier = false,
     bool basedOn = false,
     bool partOf = false,
+    bool status = false,
     bool type = false,
     bool modality = false,
     bool view = false,
@@ -1406,235 +1314,136 @@ class Media extends DomainResource {
     bool width = false,
     bool frames = false,
     bool duration = false,
+    bool content = false,
     bool note = false,
   }) {
-    return Media(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      type: type ? null : this.type,
-      modality: modality ? null : this.modality,
-      view: view ? null : this.view,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      createdX: created ? null : createdX,
-      issued: issued ? null : this.issued,
-      operator_: operator_ ? null : this.operator_,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      bodySite: bodySite ? null : this.bodySite,
-      deviceName: deviceName ? null : this.deviceName,
-      device: device ? null : this.device,
-      height: height ? null : this.height,
-      width: width ? null : this.width,
-      frames: frames ? null : this.frames,
-      duration: duration ? null : this.duration,
-      content: content,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (basedOn) this.basedOn = null;
+    if (partOf) this.partOf = null;
+    if (status) this.status = null;
+    if (type) this.type = null;
+    if (modality) this.modality = null;
+    if (view) this.view = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (created) this.createdX = null;
+    if (issued) this.issued = null;
+    if (operator_) this.operator_ = null;
+    if (reasonCode) this.reasonCode = null;
+    if (bodySite) this.bodySite = null;
+    if (deviceName) this.deviceName = null;
+    if (device) this.device = null;
+    if (height) this.height = null;
+    if (width) this.width = null;
+    if (frames) this.frames = null;
+    if (duration) this.duration = null;
+    if (content) this.content = null;
+    if (note) this.note = null;
   }
 
   @override
-  Media clone() => throw UnimplementedError();
+  MediaBuilder clone() => throw UnimplementedError();
   @override
-  Media copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? basedOn,
-    List<Reference>? partOf,
-    EventStatus? status,
-    CodeableConcept? type,
-    CodeableConcept? modality,
-    CodeableConcept? view,
-    Reference? subject,
-    Reference? encounter,
-    CreatedXMedia? createdX,
-    FhirInstant? issued,
-    Reference? operator_,
-    List<CodeableConcept>? reasonCode,
-    CodeableConcept? bodySite,
-    FhirString? deviceName,
-    Reference? device,
-    FhirPositiveInt? height,
-    FhirPositiveInt? width,
-    FhirPositiveInt? frames,
-    FhirDecimal? duration,
-    Attachment? content,
-    List<Annotation>? note,
+  MediaBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<ReferenceBuilder>? basedOn,
+    List<ReferenceBuilder>? partOf,
+    EventStatusBuilder? status,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? modality,
+    CodeableConceptBuilder? view,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    CreatedXMediaBuilder? createdX,
+    FhirInstantBuilder? issued,
+    ReferenceBuilder? operator_,
+    List<CodeableConceptBuilder>? reasonCode,
+    CodeableConceptBuilder? bodySite,
+    FhirStringBuilder? deviceName,
+    ReferenceBuilder? device,
+    FhirPositiveIntBuilder? height,
+    FhirPositiveIntBuilder? width,
+    FhirPositiveIntBuilder? frames,
+    FhirDecimalBuilder? duration,
+    AttachmentBuilder? content,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Media(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = MediaBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      modality: modality?.copyWith(
-            objectPath: '$newObjectPath.modality',
-          ) ??
-          this.modality,
-      view: view?.copyWith(
-            objectPath: '$newObjectPath.view',
-          ) ??
-          this.view,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      createdX: createdX?.copyWith(
-            objectPath: '$newObjectPath.createdX',
-          ) as CreatedXMedia? ??
-          this.createdX,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      operator_: operator_?.copyWith(
-            objectPath: '$newObjectPath.operator',
-          ) ??
-          this.operator_,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      deviceName: deviceName?.copyWith(
-            objectPath: '$newObjectPath.deviceName',
-          ) ??
-          this.deviceName,
-      device: device?.copyWith(
-            objectPath: '$newObjectPath.device',
-          ) ??
-          this.device,
-      height: height?.copyWith(
-            objectPath: '$newObjectPath.height',
-          ) ??
-          this.height,
-      width: width?.copyWith(
-            objectPath: '$newObjectPath.width',
-          ) ??
-          this.width,
-      frames: frames?.copyWith(
-            objectPath: '$newObjectPath.frames',
-          ) ??
-          this.frames,
-      duration: duration?.copyWith(
-            objectPath: '$newObjectPath.duration',
-          ) ??
-          this.duration,
-      content: content?.copyWith(
-            objectPath: '$newObjectPath.content',
-          ) ??
-          this.content,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      basedOn: basedOn ?? this.basedOn,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      type: type ?? this.type,
+      modality: modality ?? this.modality,
+      view: view ?? this.view,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      createdX: createdX ?? this.createdX,
+      issued: issued ?? this.issued,
+      operator_: operator_ ?? this.operator_,
+      reasonCode: reasonCode ?? this.reasonCode,
+      bodySite: bodySite ?? this.bodySite,
+      deviceName: deviceName ?? this.deviceName,
+      device: device ?? this.device,
+      height: height ?? this.height,
+      width: width ?? this.width,
+      frames: frames ?? this.frames,
+      duration: duration ?? this.duration,
+      content: content ?? this.content,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Media) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MediaBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1669,37 +1478,37 @@ class Media extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       partOf,
       o.partOf,
     )) {
@@ -1759,7 +1568,7 @@ class Media extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
@@ -1813,7 +1622,7 @@ class Media extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {

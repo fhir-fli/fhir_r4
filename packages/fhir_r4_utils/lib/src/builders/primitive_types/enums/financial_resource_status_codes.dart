@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// This value set includes Status codes.
-class FinancialResourceStatusCodes extends FhirCodeEnum {
+class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  FinancialResourceStatusCodes._({
+  FinancialResourceStatusCodesBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory FinancialResourceStatusCodes(
+  factory FinancialResourceStatusCodesBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return FinancialResourceStatusCodes._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return FinancialResourceStatusCodesBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,70 +43,73 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [FinancialResourceStatusCodes] with element only
-  factory FinancialResourceStatusCodes.empty() =>
-      FinancialResourceStatusCodes._(validatedValue: '');
+  /// Create empty [FinancialResourceStatusCodesBuilder] with element only
+  factory FinancialResourceStatusCodesBuilder.empty() =>
+      FinancialResourceStatusCodesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
-  factory FinancialResourceStatusCodes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FinancialResourceStatusCodesBuilder] from JSON.
+  factory FinancialResourceStatusCodesBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FinancialResourceStatusCodes.elementOnly.withElement(element);
+      return FinancialResourceStatusCodesBuilder.elementOnly
+          .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'FinancialResourceStatusCodes cannot be constructed from JSON.',
+        'FinancialResourceStatusCodesBuilder cannot be constructed from JSON.',
       );
     }
-    return FinancialResourceStatusCodes._(
+    return FinancialResourceStatusCodesBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// active
-  static final FinancialResourceStatusCodes active =
-      FinancialResourceStatusCodes._(
+  static FinancialResourceStatusCodesBuilder active =
+      FinancialResourceStatusCodesBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final FinancialResourceStatusCodes cancelled =
-      FinancialResourceStatusCodes._(
+  static FinancialResourceStatusCodesBuilder cancelled =
+      FinancialResourceStatusCodesBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Cancelled'.toFhirStringBuilder,
   );
 
   /// draft
-  static final FinancialResourceStatusCodes draft =
-      FinancialResourceStatusCodes._(
+  static FinancialResourceStatusCodesBuilder draft =
+      FinancialResourceStatusCodesBuilder._(
     validatedValue: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Draft'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Draft'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final FinancialResourceStatusCodes entered_in_error =
-      FinancialResourceStatusCodes._(
+  static FinancialResourceStatusCodesBuilder entered_in_error =
+      FinancialResourceStatusCodesBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final FinancialResourceStatusCodes elementOnly =
-      FinancialResourceStatusCodes._(validatedValue: '');
+  static FinancialResourceStatusCodesBuilder elementOnly =
+      FinancialResourceStatusCodesBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<FinancialResourceStatusCodes> values = [
+  static List<FinancialResourceStatusCodesBuilder> values = [
     active,
     cancelled,
     draft,
@@ -115,15 +118,16 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  FinancialResourceStatusCodes clone() => FinancialResourceStatusCodes._(
+  FinancialResourceStatusCodesBuilder clone() =>
+      FinancialResourceStatusCodesBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  FinancialResourceStatusCodes withElement(Element? newElement) {
-    return FinancialResourceStatusCodes._(
-        validatedValue: value, element: newElement,);
+  FinancialResourceStatusCodesBuilder withElement(ElementBuilder? newElement) {
+    return FinancialResourceStatusCodesBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,11 +143,11 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  FinancialResourceStatusCodes copyWith({
+  FinancialResourceStatusCodesBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -154,7 +158,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return FinancialResourceStatusCodes._(
+    return FinancialResourceStatusCodesBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -164,7 +168,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

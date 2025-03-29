@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Describes the type of a metric calibration.
-class DeviceMetricCalibrationType extends FhirCodeEnum {
+class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  DeviceMetricCalibrationType._({
+  DeviceMetricCalibrationTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory DeviceMetricCalibrationType(
+  factory DeviceMetricCalibrationTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return DeviceMetricCalibrationType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return DeviceMetricCalibrationTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,69 +43,77 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [DeviceMetricCalibrationType] with element only
-  factory DeviceMetricCalibrationType.empty() =>
-      DeviceMetricCalibrationType._(validatedValue: '');
+  /// Create empty [DeviceMetricCalibrationTypeBuilder] with element only
+  factory DeviceMetricCalibrationTypeBuilder.empty() =>
+      DeviceMetricCalibrationTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
-  factory DeviceMetricCalibrationType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceMetricCalibrationTypeBuilder] from JSON.
+  factory DeviceMetricCalibrationTypeBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCalibrationType.elementOnly.withElement(element);
+      return DeviceMetricCalibrationTypeBuilder.elementOnly
+          .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DeviceMetricCalibrationType cannot be constructed from JSON.',
+        'DeviceMetricCalibrationTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricCalibrationType._(
+    return DeviceMetricCalibrationTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// unspecified
-  static final DeviceMetricCalibrationType unspecified =
-      DeviceMetricCalibrationType._(
+  static DeviceMetricCalibrationTypeBuilder unspecified =
+      DeviceMetricCalibrationTypeBuilder._(
     validatedValue: 'unspecified',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unspecified'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unspecified'.toFhirStringBuilder,
   );
 
   /// offset
-  static final DeviceMetricCalibrationType offset =
-      DeviceMetricCalibrationType._(
+  static DeviceMetricCalibrationTypeBuilder offset =
+      DeviceMetricCalibrationTypeBuilder._(
     validatedValue: 'offset',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Offset'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Offset'.toFhirStringBuilder,
   );
 
   /// gain
-  static final DeviceMetricCalibrationType gain = DeviceMetricCalibrationType._(
+  static DeviceMetricCalibrationTypeBuilder gain =
+      DeviceMetricCalibrationTypeBuilder._(
     validatedValue: 'gain',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Gain'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Gain'.toFhirStringBuilder,
   );
 
   /// two_point
-  static final DeviceMetricCalibrationType two_point =
-      DeviceMetricCalibrationType._(
+  static DeviceMetricCalibrationTypeBuilder two_point =
+      DeviceMetricCalibrationTypeBuilder._(
     validatedValue: 'two-point',
-    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Two Point'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Two Point'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final DeviceMetricCalibrationType elementOnly =
-      DeviceMetricCalibrationType._(validatedValue: '');
+  static DeviceMetricCalibrationTypeBuilder elementOnly =
+      DeviceMetricCalibrationTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<DeviceMetricCalibrationType> values = [
+  static List<DeviceMetricCalibrationTypeBuilder> values = [
     unspecified,
     offset,
     gain,
@@ -114,15 +122,16 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  DeviceMetricCalibrationType clone() => DeviceMetricCalibrationType._(
+  DeviceMetricCalibrationTypeBuilder clone() =>
+      DeviceMetricCalibrationTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  DeviceMetricCalibrationType withElement(Element? newElement) {
-    return DeviceMetricCalibrationType._(
-        validatedValue: value, element: newElement,);
+  DeviceMetricCalibrationTypeBuilder withElement(ElementBuilder? newElement) {
+    return DeviceMetricCalibrationTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,11 +147,11 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  DeviceMetricCalibrationType copyWith({
+  DeviceMetricCalibrationTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -153,7 +162,7 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return DeviceMetricCalibrationType._(
+    return DeviceMetricCalibrationTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -163,7 +172,7 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

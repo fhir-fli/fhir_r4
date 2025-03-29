@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [AppointmentResponse]
+/// [AppointmentResponseBuilder]
 /// A reply to an appointment request for a patient and/or practitioner(s),
 /// such as a confirmation or rejection.
-class AppointmentResponse extends DomainResource {
+class AppointmentResponseBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [AppointmentResponse]
+  /// [AppointmentResponseBuilder]
 
-  const AppointmentResponse({
+  AppointmentResponseBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -19,12 +21,12 @@ class AppointmentResponse extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.appointment,
+    this.appointment,
     this.start,
     this.end,
     this.participantType,
     this.actor,
-    required this.participantStatus,
+    this.participantStatus,
     this.comment,
   }) : super(
           objectPath: 'AppointmentResponse',
@@ -32,52 +34,48 @@ class AppointmentResponse extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AppointmentResponse.empty() => AppointmentResponse(
-        appointment: Reference.empty(),
-        participantStatus: ParticipationStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory AppointmentResponseBuilder.empty() => AppointmentResponseBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AppointmentResponse.fromJson(
+  factory AppointmentResponseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AppointmentResponse';
-    return AppointmentResponse(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AppointmentResponseBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -86,8 +84,8 @@ class AppointmentResponse extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -96,8 +94,8 @@ class AppointmentResponse extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -106,8 +104,8 @@ class AppointmentResponse extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -115,27 +113,27 @@ class AppointmentResponse extends DomainResource {
             ),
           )
           .toList(),
-      appointment: JsonParser.parseObject<Reference>(
+      appointment: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'appointment',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.appointment',
-      )!,
-      start: JsonParser.parsePrimitive<FhirInstant>(
+      ),
+      start: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'start',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.start',
       ),
-      end: JsonParser.parsePrimitive<FhirInstant>(
+      end: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'end',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.end',
       ),
       participantType: (json['participantType'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.participantType',
@@ -143,43 +141,43 @@ class AppointmentResponse extends DomainResource {
             ),
           )
           .toList(),
-      actor: JsonParser.parseObject<Reference>(
+      actor: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'actor',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.actor',
       ),
-      participantStatus: JsonParser.parsePrimitive<ParticipationStatus>(
+      participantStatus: JsonParser.parsePrimitive<ParticipationStatusBuilder>(
         json,
         'participantStatus',
-        ParticipationStatus.fromJson,
+        ParticipationStatusBuilder.fromJson,
         '$objectPath.participantStatus',
-      )!,
-      comment: JsonParser.parsePrimitive<FhirString>(
+      ),
+      comment: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'comment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.comment',
       ),
     );
   }
 
-  /// Deserialize [AppointmentResponse]
+  /// Deserialize [AppointmentResponseBuilder]
   /// from a [String] or [YamlMap] object
-  factory AppointmentResponse.fromYaml(
+  factory AppointmentResponseBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AppointmentResponse.fromJson(
+      return AppointmentResponseBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AppointmentResponse.fromJson(
+      return AppointmentResponseBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AppointmentResponse '
+        'AppointmentResponseBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -187,16 +185,16 @@ class AppointmentResponse extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [AppointmentResponse]
+  /// [AppointmentResponseBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AppointmentResponse.fromJsonString(
+  factory AppointmentResponseBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AppointmentResponse.fromJson(json);
+      return AppointmentResponseBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -211,31 +209,31 @@ class AppointmentResponse extends DomainResource {
   /// concern that are defined by business processes and/ or used to refer to
   /// it when a direct URL reference to the resource itself is not
   /// appropriate.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [appointment]
   /// Appointment that this response is replying to.
-  final Reference appointment;
+  ReferenceBuilder? appointment;
 
   /// [start]
   /// Date/Time that the appointment is to take place, or requested new start
   /// time.
-  final FhirInstant? start;
+  FhirInstantBuilder? start;
 
   /// [end]
   /// This may be either the same as the appointment request to confirm the
   /// details of the appointment, or alternately a new time to request a
   /// re-negotiation of the end time.
-  final FhirInstant? end;
+  FhirInstantBuilder? end;
 
   /// [participantType]
   /// Role of participant in the appointment.
-  final List<CodeableConcept>? participantType;
+  List<CodeableConceptBuilder>? participantType;
 
   /// [actor]
   /// A Person, Location, HealthcareService, or Device that is participating
   /// in the appointment.
-  final Reference? actor;
+  ReferenceBuilder? actor;
 
   /// [participantStatus]
   /// Participation status of the participant. When the status is declined or
@@ -243,27 +241,27 @@ class AppointmentResponse extends DomainResource {
   /// these times should be interpreted as a requested time change. When the
   /// status is accepted, the times can either be the time of the appointment
   /// (as a confirmation of the time) or can be empty.
-  final ParticipationStatus participantStatus;
+  ParticipationStatusBuilder? participantStatus;
 
   /// [comment]
   /// Additional comments about the appointment.
-  final FhirString? comment;
+  FhirStringBuilder? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -272,76 +270,28 @@ class AppointmentResponse extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'appointment',
-      appointment,
-    );
-    addField(
-      'start',
-      start,
-    );
-    addField(
-      'end',
-      end,
-    );
-    addField(
-      'participantType',
-      participantType,
-    );
-    addField(
-      'actor',
-      actor,
-    );
-    addField(
-      'participantStatus',
-      participantStatus,
-    );
-    addField(
-      'comment',
-      comment,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('appointment', appointment);
+    addField('start', start);
+    addField('end', end);
+    addField('participantType', participantType);
+    addField('actor', actor);
+    addField('participantStatus', participantStatus);
+    addField('comment', comment);
     return json;
   }
 
@@ -371,11 +321,11 @@ class AppointmentResponse extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -414,7 +364,9 @@ class AppointmentResponse extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'appointment':
-        fields.add(appointment);
+        if (appointment != null) {
+          fields.add(appointment!);
+        }
       case 'start':
         if (start != null) {
           fields.add(start!);
@@ -432,7 +384,9 @@ class AppointmentResponse extends DomainResource {
           fields.add(actor!);
         }
       case 'participantStatus':
-        fields.add(participantStatus);
+        if (participantStatus != null) {
+          fields.add(participantStatus!);
+        }
       case 'comment':
         if (comment != null) {
           fields.add(comment!);
@@ -447,7 +401,7 @@ class AppointmentResponse extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -456,171 +410,181 @@ class AppointmentResponse extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'appointment':
         {
-          if (child is Reference) {
-            return copyWith(appointment: child);
+          if (child is ReferenceBuilder) {
+            appointment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
         {
-          if (child is FhirInstant) {
-            return copyWith(start: child);
+          if (child is FhirInstantBuilder) {
+            start = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
         {
-          if (child is FhirInstant) {
-            return copyWith(end: child);
+          if (child is FhirInstantBuilder) {
+            end = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participantType':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?participantType, ...child];
-            return copyWith(participantType: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            participantType = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?participantType, child];
-            return copyWith(participantType: newList);
+            participantType = [...(participantType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
         {
-          if (child is Reference) {
-            return copyWith(actor: child);
+          if (child is ReferenceBuilder) {
+            actor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participantStatus':
         {
-          if (child is ParticipationStatus) {
-            return copyWith(participantStatus: child);
+          if (child is ParticipationStatusBuilder) {
+            participantStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is FhirString) {
-            return copyWith(comment: child);
+          if (child is FhirStringBuilder) {
+            comment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -636,146 +600,126 @@ class AppointmentResponse extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'appointment':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'start':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'end':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'participantType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'actor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'participantStatus':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'comment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AppointmentResponse]
+  /// Creates a new [AppointmentResponseBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AppointmentResponse createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'appointment':
         {
-          return copyWith(
-            appointment: Reference.empty(),
-          );
+          appointment = ReferenceBuilder.empty();
+          return;
         }
       case 'start':
         {
-          return copyWith(
-            start: FhirInstant.empty(),
-          );
+          start = FhirInstantBuilder.empty();
+          return;
         }
       case 'end':
         {
-          return copyWith(
-            end: FhirInstant.empty(),
-          );
+          end = FhirInstantBuilder.empty();
+          return;
         }
       case 'participantType':
         {
-          return copyWith(
-            participantType: <CodeableConcept>[],
-          );
+          participantType = <CodeableConceptBuilder>[];
+          return;
         }
       case 'actor':
         {
-          return copyWith(
-            actor: Reference.empty(),
-          );
+          actor = ReferenceBuilder.empty();
+          return;
         }
       case 'participantStatus':
         {
-          return copyWith(
-            participantStatus: ParticipationStatus.empty(),
-          );
+          participantStatus = ParticipationStatusBuilder.empty();
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
+          comment = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -784,7 +728,7 @@ class AppointmentResponse extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  AppointmentResponse clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -794,143 +738,99 @@ class AppointmentResponse extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool appointment = false,
     bool start = false,
     bool end = false,
     bool participantType = false,
     bool actor = false,
+    bool participantStatus = false,
     bool comment = false,
   }) {
-    return AppointmentResponse(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      appointment: appointment,
-      start: start ? null : this.start,
-      end: end ? null : this.end,
-      participantType: participantType ? null : this.participantType,
-      actor: actor ? null : this.actor,
-      participantStatus: participantStatus,
-      comment: comment ? null : this.comment,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (appointment) this.appointment = null;
+    if (start) this.start = null;
+    if (end) this.end = null;
+    if (participantType) this.participantType = null;
+    if (actor) this.actor = null;
+    if (participantStatus) this.participantStatus = null;
+    if (comment) this.comment = null;
   }
 
   @override
-  AppointmentResponse clone() => throw UnimplementedError();
+  AppointmentResponseBuilder clone() => throw UnimplementedError();
   @override
-  AppointmentResponse copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    Reference? appointment,
-    FhirInstant? start,
-    FhirInstant? end,
-    List<CodeableConcept>? participantType,
-    Reference? actor,
-    ParticipationStatus? participantStatus,
-    FhirString? comment,
+  AppointmentResponseBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    ReferenceBuilder? appointment,
+    FhirInstantBuilder? start,
+    FhirInstantBuilder? end,
+    List<CodeableConceptBuilder>? participantType,
+    ReferenceBuilder? actor,
+    ParticipationStatusBuilder? participantStatus,
+    FhirStringBuilder? comment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return AppointmentResponse(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = AppointmentResponseBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      appointment: appointment?.copyWith(
-            objectPath: '$newObjectPath.appointment',
-          ) ??
-          this.appointment,
-      start: start?.copyWith(
-            objectPath: '$newObjectPath.start',
-          ) ??
-          this.start,
-      end: end?.copyWith(
-            objectPath: '$newObjectPath.end',
-          ) ??
-          this.end,
-      participantType: participantType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.participantType',
-                ),
-              )
-              .toList() ??
-          this.participantType,
-      actor: actor?.copyWith(
-            objectPath: '$newObjectPath.actor',
-          ) ??
-          this.actor,
-      participantStatus: participantStatus?.copyWith(
-            objectPath: '$newObjectPath.participantStatus',
-          ) ??
-          this.participantStatus,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      appointment: appointment ?? this.appointment,
+      start: start ?? this.start,
+      end: end ?? this.end,
+      participantType: participantType ?? this.participantType,
+      actor: actor ?? this.actor,
+      participantStatus: participantStatus ?? this.participantStatus,
+      comment: comment ?? this.comment,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AppointmentResponse) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AppointmentResponseBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -965,25 +865,25 @@ class AppointmentResponse extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1007,7 +907,7 @@ class AppointmentResponse extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       participantType,
       o.participantType,
     )) {

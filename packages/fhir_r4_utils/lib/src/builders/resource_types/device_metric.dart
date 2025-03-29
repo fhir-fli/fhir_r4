@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [DeviceMetric]
+/// [DeviceMetricBuilder]
 /// Describes a measurement, calculation or setting capability of a medical
 /// device.
-class DeviceMetric extends DomainResource {
+class DeviceMetricBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [DeviceMetric]
+  /// [DeviceMetricBuilder]
 
-  const DeviceMetric({
+  DeviceMetricBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -19,13 +21,13 @@ class DeviceMetric extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.type,
+    this.type,
     this.unit,
     this.source,
     this.parent,
     this.operationalStatus,
     this.color,
-    required this.category,
+    this.category,
     this.measurementPeriod,
     this.calibration,
   }) : super(
@@ -34,52 +36,48 @@ class DeviceMetric extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceMetric.empty() => DeviceMetric(
-        type: CodeableConcept.empty(),
-        category: DeviceMetricCategory.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceMetricBuilder.empty() => DeviceMetricBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceMetric.fromJson(
+  factory DeviceMetricBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceMetric';
-    return DeviceMetric(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceMetricBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -88,8 +86,8 @@ class DeviceMetric extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -98,8 +96,8 @@ class DeviceMetric extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -108,8 +106,8 @@ class DeviceMetric extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -117,58 +115,58 @@ class DeviceMetric extends DomainResource {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      unit: JsonParser.parseObject<CodeableConcept>(
+      ),
+      unit: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'unit',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.unit',
       ),
-      source: JsonParser.parseObject<Reference>(
+      source: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'source',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.source',
       ),
-      parent: JsonParser.parseObject<Reference>(
+      parent: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'parent',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.parent',
       ),
       operationalStatus:
-          JsonParser.parsePrimitive<DeviceMetricOperationalStatus>(
+          JsonParser.parsePrimitive<DeviceMetricOperationalStatusBuilder>(
         json,
         'operationalStatus',
-        DeviceMetricOperationalStatus.fromJson,
+        DeviceMetricOperationalStatusBuilder.fromJson,
         '$objectPath.operationalStatus',
       ),
-      color: JsonParser.parsePrimitive<DeviceMetricColor>(
+      color: JsonParser.parsePrimitive<DeviceMetricColorBuilder>(
         json,
         'color',
-        DeviceMetricColor.fromJson,
+        DeviceMetricColorBuilder.fromJson,
         '$objectPath.color',
       ),
-      category: JsonParser.parsePrimitive<DeviceMetricCategory>(
+      category: JsonParser.parsePrimitive<DeviceMetricCategoryBuilder>(
         json,
         'category',
-        DeviceMetricCategory.fromJson,
+        DeviceMetricCategoryBuilder.fromJson,
         '$objectPath.category',
-      )!,
-      measurementPeriod: JsonParser.parseObject<Timing>(
+      ),
+      measurementPeriod: JsonParser.parseObject<TimingBuilder>(
         json,
         'measurementPeriod',
-        Timing.fromJson,
+        TimingBuilder.fromJson,
         '$objectPath.measurementPeriod',
       ),
       calibration: (json['calibration'] as List<dynamic>?)
-          ?.map<DeviceMetricCalibration>(
-            (v) => DeviceMetricCalibration.fromJson(
+          ?.map<DeviceMetricCalibrationBuilder>(
+            (v) => DeviceMetricCalibrationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.calibration',
@@ -179,22 +177,22 @@ class DeviceMetric extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceMetric]
+  /// Deserialize [DeviceMetricBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceMetric.fromYaml(
+  factory DeviceMetricBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceMetric.fromJson(
+      return DeviceMetricBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceMetric.fromJson(
+      return DeviceMetricBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceMetric '
+        'DeviceMetricBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -202,16 +200,16 @@ class DeviceMetric extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [DeviceMetric]
+  /// [DeviceMetricBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceMetric.fromJsonString(
+  factory DeviceMetricBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceMetric.fromJson(json);
+      return DeviceMetricBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -225,23 +223,23 @@ class DeviceMetric extends DomainResource {
   /// Unique instance identifiers assigned to a device by the device or
   /// gateway software, manufacturers, other organizations or owners. For
   /// example: handle ID.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [type]
   /// Describes the type of the metric. For example: Heart Rate, PEEP
   /// Setting, etc.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [unit]
   /// Describes the unit that an observed value determined for this metric
   /// will have. For example: Percent, Seconds, etc.
-  final CodeableConcept? unit;
+  CodeableConceptBuilder? unit;
 
   /// [source]
   /// Describes the link to the Device that this DeviceMetric belongs to and
   /// that contains administrative device information such as manufacturer,
   /// serial number, etc.
-  final Reference? source;
+  ReferenceBuilder? source;
 
   /// [parent]
   /// Describes the link to the Device that this DeviceMetric belongs to and
@@ -250,12 +248,12 @@ class DeviceMetric extends DomainResource {
   /// Device that represents a Channel. This reference can be used by a
   /// client application to distinguish DeviceMetrics that have the same
   /// type, but should be interpreted based on their containment location.
-  final Reference? parent;
+  ReferenceBuilder? parent;
 
   /// [operationalStatus]
   /// Indicates current operational state of the device. For example: On,
   /// Off, Standby, etc.
-  final DeviceMetricOperationalStatus? operationalStatus;
+  DeviceMetricOperationalStatusBuilder? operationalStatus;
 
   /// [color]
   /// Describes the color representation for the metric. This is often used
@@ -263,12 +261,12 @@ class DeviceMetric extends DomainResource {
   /// practice, consider a Patient Monitor that has ECG/HR and Pleth for
   /// example; the parameters are displayed in different characteristic
   /// colors, such as HR-blue, BP-green, and PR and SpO2- magenta.
-  final DeviceMetricColor? color;
+  DeviceMetricColorBuilder? color;
 
   /// [category]
   /// Indicates the category of the observation generation process. A
   /// DeviceMetric can be for example a setting, measurement, or calculation.
-  final DeviceMetricCategory category;
+  DeviceMetricCategoryBuilder? category;
 
   /// [measurementPeriod]
   /// Describes the measurement repetition time. This is not necessarily the
@@ -280,28 +278,28 @@ class DeviceMetric extends DomainResource {
   /// be different than the measurement repetition time, if the device does
   /// not update the published observed value with the same frequency as it
   /// was measured.
-  final Timing? measurementPeriod;
+  TimingBuilder? measurementPeriod;
 
   /// [calibration]
   /// Describes the calibrations that have been performed or that are
   /// required to be performed.
-  final List<DeviceMetricCalibration>? calibration;
+  List<DeviceMetricCalibrationBuilder>? calibration;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -310,84 +308,30 @@ class DeviceMetric extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'unit',
-      unit,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'parent',
-      parent,
-    );
-    addField(
-      'operationalStatus',
-      operationalStatus,
-    );
-    addField(
-      'color',
-      color,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'measurementPeriod',
-      measurementPeriod,
-    );
-    addField(
-      'calibration',
-      calibration,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('type', type);
+    addField('unit', unit);
+    addField('source', source);
+    addField('parent', parent);
+    addField('operationalStatus', operationalStatus);
+    addField('color', color);
+    addField('category', category);
+    addField('measurementPeriod', measurementPeriod);
+    addField('calibration', calibration);
     return json;
   }
 
@@ -419,11 +363,11 @@ class DeviceMetric extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -462,7 +406,9 @@ class DeviceMetric extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'unit':
         if (unit != null) {
           fields.add(unit!);
@@ -484,7 +430,9 @@ class DeviceMetric extends DomainResource {
           fields.add(color!);
         }
       case 'category':
-        fields.add(category);
+        if (category != null) {
+          fields.add(category!);
+        }
       case 'measurementPeriod':
         if (measurementPeriod != null) {
           fields.add(measurementPeriod!);
@@ -503,7 +451,7 @@ class DeviceMetric extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -512,187 +460,199 @@ class DeviceMetric extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'unit':
         {
-          if (child is CodeableConcept) {
-            return copyWith(unit: child);
+          if (child is CodeableConceptBuilder) {
+            unit = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is Reference) {
-            return copyWith(source: child);
+          if (child is ReferenceBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'parent':
         {
-          if (child is Reference) {
-            return copyWith(parent: child);
+          if (child is ReferenceBuilder) {
+            parent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'operationalStatus':
         {
-          if (child is DeviceMetricOperationalStatus) {
-            return copyWith(operationalStatus: child);
+          if (child is DeviceMetricOperationalStatusBuilder) {
+            operationalStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'color':
         {
-          if (child is DeviceMetricColor) {
-            return copyWith(color: child);
+          if (child is DeviceMetricColorBuilder) {
+            color = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is DeviceMetricCategory) {
-            return copyWith(category: child);
+          if (child is DeviceMetricCategoryBuilder) {
+            category = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measurementPeriod':
         {
-          if (child is Timing) {
-            return copyWith(measurementPeriod: child);
+          if (child is TimingBuilder) {
+            measurementPeriod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'calibration':
         {
-          if (child is List<DeviceMetricCalibration>) {
-            // Add all elements from passed list
-            final newList = [...?calibration, ...child];
-            return copyWith(calibration: newList);
-          } else if (child is DeviceMetricCalibration) {
+          if (child is List<DeviceMetricCalibrationBuilder>) {
+            // Replace or create new list
+            calibration = child;
+            return;
+          } else if (child is DeviceMetricCalibrationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?calibration, child];
-            return copyWith(calibration: newList);
+            calibration = [...(calibration ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -708,162 +668,140 @@ class DeviceMetric extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'unit':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'source':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'parent':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'operationalStatus':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'color':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'measurementPeriod':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'calibration':
-        return ['DeviceMetricCalibration'];
+        return ['DeviceMetricCalibrationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceMetric]
+  /// Creates a new [DeviceMetricBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceMetric createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'unit':
         {
-          return copyWith(
-            unit: CodeableConcept.empty(),
-          );
+          unit = CodeableConceptBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: Reference.empty(),
-          );
+          source = ReferenceBuilder.empty();
+          return;
         }
       case 'parent':
         {
-          return copyWith(
-            parent: Reference.empty(),
-          );
+          parent = ReferenceBuilder.empty();
+          return;
         }
       case 'operationalStatus':
         {
-          return copyWith(
-            operationalStatus: DeviceMetricOperationalStatus.empty(),
-          );
+          operationalStatus = DeviceMetricOperationalStatusBuilder.empty();
+          return;
         }
       case 'color':
         {
-          return copyWith(
-            color: DeviceMetricColor.empty(),
-          );
+          color = DeviceMetricColorBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: DeviceMetricCategory.empty(),
-          );
+          category = DeviceMetricCategoryBuilder.empty();
+          return;
         }
       case 'measurementPeriod':
         {
-          return copyWith(
-            measurementPeriod: Timing.empty(),
-          );
+          measurementPeriod = TimingBuilder.empty();
+          return;
         }
       case 'calibration':
         {
-          return copyWith(
-            calibration: <DeviceMetricCalibration>[],
-          );
+          calibration = <DeviceMetricCalibrationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -872,7 +810,7 @@ class DeviceMetric extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  DeviceMetric clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -882,157 +820,107 @@ class DeviceMetric extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool type = false,
     bool unit = false,
     bool source = false,
     bool parent = false,
     bool operationalStatus = false,
     bool color = false,
+    bool category = false,
     bool measurementPeriod = false,
     bool calibration = false,
   }) {
-    return DeviceMetric(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      type: type,
-      unit: unit ? null : this.unit,
-      source: source ? null : this.source,
-      parent: parent ? null : this.parent,
-      operationalStatus: operationalStatus ? null : this.operationalStatus,
-      color: color ? null : this.color,
-      category: category,
-      measurementPeriod: measurementPeriod ? null : this.measurementPeriod,
-      calibration: calibration ? null : this.calibration,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (type) this.type = null;
+    if (unit) this.unit = null;
+    if (source) this.source = null;
+    if (parent) this.parent = null;
+    if (operationalStatus) this.operationalStatus = null;
+    if (color) this.color = null;
+    if (category) this.category = null;
+    if (measurementPeriod) this.measurementPeriod = null;
+    if (calibration) this.calibration = null;
   }
 
   @override
-  DeviceMetric clone() => throw UnimplementedError();
+  DeviceMetricBuilder clone() => throw UnimplementedError();
   @override
-  DeviceMetric copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    CodeableConcept? type,
-    CodeableConcept? unit,
-    Reference? source,
-    Reference? parent,
-    DeviceMetricOperationalStatus? operationalStatus,
-    DeviceMetricColor? color,
-    DeviceMetricCategory? category,
-    Timing? measurementPeriod,
-    List<DeviceMetricCalibration>? calibration,
+  DeviceMetricBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? unit,
+    ReferenceBuilder? source,
+    ReferenceBuilder? parent,
+    DeviceMetricOperationalStatusBuilder? operationalStatus,
+    DeviceMetricColorBuilder? color,
+    DeviceMetricCategoryBuilder? category,
+    TimingBuilder? measurementPeriod,
+    List<DeviceMetricCalibrationBuilder>? calibration,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return DeviceMetric(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = DeviceMetricBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      unit: unit?.copyWith(
-            objectPath: '$newObjectPath.unit',
-          ) ??
-          this.unit,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      parent: parent?.copyWith(
-            objectPath: '$newObjectPath.parent',
-          ) ??
-          this.parent,
-      operationalStatus: operationalStatus?.copyWith(
-            objectPath: '$newObjectPath.operationalStatus',
-          ) ??
-          this.operationalStatus,
-      color: color?.copyWith(
-            objectPath: '$newObjectPath.color',
-          ) ??
-          this.color,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      measurementPeriod: measurementPeriod?.copyWith(
-            objectPath: '$newObjectPath.measurementPeriod',
-          ) ??
-          this.measurementPeriod,
-      calibration: calibration
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.calibration',
-                ),
-              )
-              .toList() ??
-          this.calibration,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      type: type ?? this.type,
+      unit: unit ?? this.unit,
+      source: source ?? this.source,
+      parent: parent ?? this.parent,
+      operationalStatus: operationalStatus ?? this.operationalStatus,
+      color: color ?? this.color,
+      category: category ?? this.category,
+      measurementPeriod: measurementPeriod ?? this.measurementPeriod,
+      calibration: calibration ?? this.calibration,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceMetric) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceMetricBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1067,25 +955,25 @@ class DeviceMetric extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1139,7 +1027,7 @@ class DeviceMetric extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<DeviceMetricCalibration>(
+    if (!listEquals<DeviceMetricCalibrationBuilder>(
       calibration,
       o.calibration,
     )) {
@@ -1149,14 +1037,14 @@ class DeviceMetric extends DomainResource {
   }
 }
 
-/// [DeviceMetricCalibration]
+/// [DeviceMetricCalibrationBuilder]
 /// Describes the calibrations that have been performed or that are
 /// required to be performed.
-class DeviceMetricCalibration extends BackboneElement {
+class DeviceMetricCalibrationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DeviceMetricCalibration]
+  /// [DeviceMetricCalibrationBuilder]
 
-  const DeviceMetricCalibration({
+  DeviceMetricCalibrationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1169,25 +1057,25 @@ class DeviceMetricCalibration extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceMetricCalibration.empty() => const DeviceMetricCalibration();
+  /// For Builder classes, no fields are required
+  factory DeviceMetricCalibrationBuilder.empty() =>
+      DeviceMetricCalibrationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceMetricCalibration.fromJson(
+  factory DeviceMetricCalibrationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceMetric.calibration';
-    return DeviceMetricCalibration(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceMetricCalibrationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1196,8 +1084,8 @@ class DeviceMetricCalibration extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1205,43 +1093,43 @@ class DeviceMetricCalibration extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<DeviceMetricCalibrationType>(
+      type: JsonParser.parsePrimitive<DeviceMetricCalibrationTypeBuilder>(
         json,
         'type',
-        DeviceMetricCalibrationType.fromJson,
+        DeviceMetricCalibrationTypeBuilder.fromJson,
         '$objectPath.type',
       ),
-      state: JsonParser.parsePrimitive<DeviceMetricCalibrationState>(
+      state: JsonParser.parsePrimitive<DeviceMetricCalibrationStateBuilder>(
         json,
         'state',
-        DeviceMetricCalibrationState.fromJson,
+        DeviceMetricCalibrationStateBuilder.fromJson,
         '$objectPath.state',
       ),
-      time: JsonParser.parsePrimitive<FhirInstant>(
+      time: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'time',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.time',
       ),
     );
   }
 
-  /// Deserialize [DeviceMetricCalibration]
+  /// Deserialize [DeviceMetricCalibrationBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceMetricCalibration.fromYaml(
+  factory DeviceMetricCalibrationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceMetricCalibration.fromJson(
+      return DeviceMetricCalibrationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceMetricCalibration.fromJson(
+      return DeviceMetricCalibrationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceMetricCalibration '
+        'DeviceMetricCalibrationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1249,16 +1137,16 @@ class DeviceMetricCalibration extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DeviceMetricCalibration]
+  /// [DeviceMetricCalibrationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceMetricCalibration.fromJsonString(
+  factory DeviceMetricCalibrationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceMetricCalibration.fromJson(json);
+      return DeviceMetricCalibrationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1270,31 +1158,31 @@ class DeviceMetricCalibration extends BackboneElement {
 
   /// [type]
   /// Describes the type of the calibration method.
-  final DeviceMetricCalibrationType? type;
+  DeviceMetricCalibrationTypeBuilder? type;
 
   /// [state]
   /// Describes the state of the calibration.
-  final DeviceMetricCalibrationState? state;
+  DeviceMetricCalibrationStateBuilder? state;
 
   /// [time]
   /// Describes the time last calibration has been performed.
-  final FhirInstant? time;
+  FhirInstantBuilder? time;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1303,35 +1191,17 @@ class DeviceMetricCalibration extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'state',
-      state,
-    );
-    addField(
-      'time',
-      time,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('state', state);
+    addField('time', time);
     return json;
   }
 
@@ -1351,11 +1221,11 @@ class DeviceMetricCalibration extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1391,7 +1261,7 @@ class DeviceMetricCalibration extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1400,73 +1270,76 @@ class DeviceMetricCalibration extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is DeviceMetricCalibrationType) {
-            return copyWith(type: child);
+          if (child is DeviceMetricCalibrationTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'state':
         {
-          if (child is DeviceMetricCalibrationState) {
-            return copyWith(state: child);
+          if (child is DeviceMetricCalibrationStateBuilder) {
+            state = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'time':
         {
-          if (child is FhirInstant) {
-            return copyWith(time: child);
+          if (child is FhirInstantBuilder) {
+            time = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1482,66 +1355,56 @@ class DeviceMetricCalibration extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'state':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'time':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceMetricCalibration]
+  /// Creates a new [DeviceMetricCalibrationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceMetricCalibration createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: DeviceMetricCalibrationType.empty(),
-          );
+          type = DeviceMetricCalibrationTypeBuilder.empty();
+          return;
         }
       case 'state':
         {
-          return copyWith(
-            state: DeviceMetricCalibrationState.empty(),
-          );
+          state = DeviceMetricCalibrationStateBuilder.empty();
+          return;
         }
       case 'time':
         {
-          return copyWith(
-            time: FhirInstant.empty(),
-          );
+          time = FhirInstantBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1550,7 +1413,7 @@ class DeviceMetricCalibration extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DeviceMetricCalibration clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1558,26 +1421,24 @@ class DeviceMetricCalibration extends BackboneElement {
     bool state = false,
     bool time = false,
   }) {
-    return DeviceMetricCalibration(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      state: state ? null : this.state,
-      time: time ? null : this.time,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (state) this.state = null;
+    if (time) this.time = null;
   }
 
   @override
-  DeviceMetricCalibration clone() => throw UnimplementedError();
+  DeviceMetricCalibrationBuilder clone() => throw UnimplementedError();
   @override
-  DeviceMetricCalibration copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    DeviceMetricCalibrationType? type,
-    DeviceMetricCalibrationState? state,
-    FhirInstant? time,
+  DeviceMetricCalibrationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    DeviceMetricCalibrationTypeBuilder? type,
+    DeviceMetricCalibrationStateBuilder? state,
+    FhirInstantBuilder? time,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1585,46 +1446,37 @@ class DeviceMetricCalibration extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DeviceMetricCalibration(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      state: state?.copyWith(
-            objectPath: '$newObjectPath.state',
-          ) ??
-          this.state,
-      time: time?.copyWith(
-            objectPath: '$newObjectPath.time',
-          ) ??
-          this.time,
+    final newResult = DeviceMetricCalibrationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      state: state ?? this.state,
+      time: time ?? this.time,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceMetricCalibration) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceMetricCalibrationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1635,13 +1487,13 @@ class DeviceMetricCalibration extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

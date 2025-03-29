@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// A coded concept listing the base codes.
-class VisionBase extends FhirCodeEnum {
+class VisionBaseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  VisionBase._({
+  VisionBaseBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class VisionBase extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory VisionBase(
+  factory VisionBaseBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return VisionBase._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return VisionBaseBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,64 +43,66 @@ class VisionBase extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [VisionBase] with element only
-  factory VisionBase.empty() => VisionBase._(validatedValue: '');
+  /// Create empty [VisionBaseBuilder] with element only
+  factory VisionBaseBuilder.empty() => VisionBaseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [VisionBase] from JSON.
-  factory VisionBase.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [VisionBaseBuilder] from JSON.
+  factory VisionBaseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return VisionBase.elementOnly.withElement(element);
+      return VisionBaseBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'VisionBase cannot be constructed from JSON.',
+        'VisionBaseBuilder cannot be constructed from JSON.',
       );
     }
-    return VisionBase._(
+    return VisionBaseBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// up
-  static final VisionBase up = VisionBase._(
+  static VisionBaseBuilder up = VisionBaseBuilder._(
     validatedValue: 'up',
-    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Up'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Up'.toFhirStringBuilder,
   );
 
   /// down
-  static final VisionBase down = VisionBase._(
+  static VisionBaseBuilder down = VisionBaseBuilder._(
     validatedValue: 'down',
-    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Down'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Down'.toFhirStringBuilder,
   );
 
   /// in_
-  static final VisionBase in_ = VisionBase._(
+  static VisionBaseBuilder in_ = VisionBaseBuilder._(
     validatedValue: 'in',
-    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In'.toFhirStringBuilder,
   );
 
   /// out
-  static final VisionBase out = VisionBase._(
+  static VisionBaseBuilder out = VisionBaseBuilder._(
     validatedValue: 'out',
-    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Out'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Out'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final VisionBase elementOnly = VisionBase._(validatedValue: '');
+  static VisionBaseBuilder elementOnly =
+      VisionBaseBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<VisionBase> values = [
+  static List<VisionBaseBuilder> values = [
     up,
     down,
     in_,
@@ -109,14 +111,14 @@ class VisionBase extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  VisionBase clone() => VisionBase._(
+  VisionBaseBuilder clone() => VisionBaseBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  VisionBase withElement(Element? newElement) {
-    return VisionBase._(validatedValue: value, element: newElement);
+  VisionBaseBuilder withElement(ElementBuilder? newElement) {
+    return VisionBaseBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -132,11 +134,11 @@ class VisionBase extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  VisionBase copyWith({
+  VisionBaseBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -147,7 +149,7 @@ class VisionBase extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return VisionBase._(
+    return VisionBaseBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -157,7 +159,7 @@ class VisionBase extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [SupplyRequest]
+/// [SupplyRequestBuilder]
 /// A record of a request for a medication, substance or device used in the
 /// healthcare setting.
-class SupplyRequest extends DomainResource {
+class SupplyRequestBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [SupplyRequest]
+  /// [SupplyRequestBuilder]
 
-  const SupplyRequest({
+  SupplyRequestBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -22,8 +24,8 @@ class SupplyRequest extends DomainResource {
     this.status,
     this.category,
     this.priority,
-    required this.itemX,
-    required this.quantity,
+    this.itemX,
+    this.quantity,
     this.parameter,
     this.occurrenceX,
     this.authoredOn,
@@ -39,52 +41,48 @@ class SupplyRequest extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SupplyRequest.empty() => SupplyRequest(
-        itemX: CodeableConcept.empty(),
-        quantity: Quantity.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SupplyRequestBuilder.empty() => SupplyRequestBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SupplyRequest.fromJson(
+  factory SupplyRequestBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SupplyRequest';
-    return SupplyRequest(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SupplyRequestBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -93,8 +91,8 @@ class SupplyRequest extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -103,8 +101,8 @@ class SupplyRequest extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -113,8 +111,8 @@ class SupplyRequest extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -122,41 +120,41 @@ class SupplyRequest extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<SupplyRequestStatus>(
+      status: JsonParser.parsePrimitive<SupplyRequestStatusBuilder>(
         json,
         'status',
-        SupplyRequestStatus.fromJson,
+        SupplyRequestStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      category: JsonParser.parseObject<CodeableConcept>(
+      category: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'category',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.category',
       ),
-      priority: JsonParser.parsePrimitive<RequestPriority>(
+      priority: JsonParser.parsePrimitive<RequestPriorityBuilder>(
         json,
         'priority',
-        RequestPriority.fromJson,
+        RequestPriorityBuilder.fromJson,
         '$objectPath.priority',
       ),
-      itemX: JsonParser.parsePolymorphic<ItemXSupplyRequest>(
+      itemX: JsonParser.parsePolymorphic<ItemXSupplyRequestBuilder>(
         json,
         {
-          'itemCodeableConcept': CodeableConcept.fromJson,
-          'itemReference': Reference.fromJson,
+          'itemCodeableConcept': CodeableConceptBuilder.fromJson,
+          'itemReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
-      quantity: JsonParser.parseObject<Quantity>(
+      ),
+      quantity: JsonParser.parseObject<QuantityBuilder>(
         json,
         'quantity',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.quantity',
-      )!,
+      ),
       parameter: (json['parameter'] as List<dynamic>?)
-          ?.map<SupplyRequestParameter>(
-            (v) => SupplyRequestParameter.fromJson(
+          ?.map<SupplyRequestParameterBuilder>(
+            (v) => SupplyRequestParameterBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.parameter',
@@ -164,30 +162,30 @@ class SupplyRequest extends DomainResource {
             ),
           )
           .toList(),
-      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXSupplyRequest>(
+      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXSupplyRequestBuilder>(
         json,
         {
-          'occurrenceDateTime': FhirDateTime.fromJson,
-          'occurrencePeriod': Period.fromJson,
-          'occurrenceTiming': Timing.fromJson,
+          'occurrenceDateTime': FhirDateTimeBuilder.fromJson,
+          'occurrencePeriod': PeriodBuilder.fromJson,
+          'occurrenceTiming': TimingBuilder.fromJson,
         },
         objectPath,
       ),
-      authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
+      authoredOn: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'authoredOn',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.authoredOn',
       ),
-      requester: JsonParser.parseObject<Reference>(
+      requester: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'requester',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.requester',
       ),
       supplier: (json['supplier'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.supplier',
@@ -196,8 +194,8 @@ class SupplyRequest extends DomainResource {
           )
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -206,8 +204,8 @@ class SupplyRequest extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -215,37 +213,37 @@ class SupplyRequest extends DomainResource {
             ),
           )
           .toList(),
-      deliverFrom: JsonParser.parseObject<Reference>(
+      deliverFrom: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'deliverFrom',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.deliverFrom',
       ),
-      deliverTo: JsonParser.parseObject<Reference>(
+      deliverTo: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'deliverTo',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.deliverTo',
       ),
     );
   }
 
-  /// Deserialize [SupplyRequest]
+  /// Deserialize [SupplyRequestBuilder]
   /// from a [String] or [YamlMap] object
-  factory SupplyRequest.fromYaml(
+  factory SupplyRequestBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SupplyRequest.fromJson(
+      return SupplyRequestBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SupplyRequest.fromJson(
+      return SupplyRequestBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SupplyRequest '
+        'SupplyRequestBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -253,16 +251,16 @@ class SupplyRequest extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [SupplyRequest]
+  /// [SupplyRequestBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyRequest.fromJsonString(
+  factory SupplyRequestBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SupplyRequest.fromJson(json);
+      return SupplyRequestBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -276,99 +274,101 @@ class SupplyRequest extends DomainResource {
   /// Business identifiers assigned to this SupplyRequest by the author
   /// and/or other systems. These identifiers remain constant as the resource
   /// is updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// Status of the supply request.
-  final SupplyRequestStatus? status;
+  SupplyRequestStatusBuilder? status;
 
   /// [category]
   /// Category of supply, e.g. central, non-stock, etc. This is used to
   /// support work flows associated with the supply process.
-  final CodeableConcept? category;
+  CodeableConceptBuilder? category;
 
   /// [priority]
   /// Indicates how quickly this SupplyRequest should be addressed with
   /// respect to other requests.
-  final RequestPriority? priority;
+  RequestPriorityBuilder? priority;
 
   /// [itemX]
   /// The item that is requested to be supplied. This is either a link to a
   /// resource representing the details of the item or a code that identifies
   /// the item from a known list.
-  final ItemXSupplyRequest itemX;
+  ItemXSupplyRequestBuilder? itemX;
 
-  /// Getter for [itemCodeableConcept] as a CodeableConcept
-  CodeableConcept? get itemCodeableConcept => itemX.isAs<CodeableConcept>();
+  /// Getter for [itemCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get itemCodeableConcept =>
+      itemX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [itemReference] as a Reference
-  Reference? get itemReference => itemX.isAs<Reference>();
+  /// Getter for [itemReference] as a ReferenceBuilder
+  ReferenceBuilder? get itemReference => itemX?.isAs<ReferenceBuilder>();
 
   /// [quantity]
   /// The amount that is being ordered of the indicated item.
-  final Quantity quantity;
+  QuantityBuilder? quantity;
 
   /// [parameter]
   /// Specific parameters for the ordered item. For example, the size of the
   /// indicated item.
-  final List<SupplyRequestParameter>? parameter;
+  List<SupplyRequestParameterBuilder>? parameter;
 
   /// [occurrenceX]
   /// When the request should be fulfilled.
-  final OccurrenceXSupplyRequest? occurrenceX;
+  OccurrenceXSupplyRequestBuilder? occurrenceX;
 
-  /// Getter for [occurrenceDateTime] as a FhirDateTime
-  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+  /// Getter for [occurrenceDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get occurrenceDateTime =>
+      occurrenceX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [occurrencePeriod] as a Period
-  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+  /// Getter for [occurrencePeriod] as a PeriodBuilder
+  PeriodBuilder? get occurrencePeriod => occurrenceX?.isAs<PeriodBuilder>();
 
-  /// Getter for [occurrenceTiming] as a Timing
-  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
+  /// Getter for [occurrenceTiming] as a TimingBuilder
+  TimingBuilder? get occurrenceTiming => occurrenceX?.isAs<TimingBuilder>();
 
   /// [authoredOn]
   /// When the request was made.
-  final FhirDateTime? authoredOn;
+  FhirDateTimeBuilder? authoredOn;
 
   /// [requester]
   /// The device, practitioner, etc. who initiated the request.
-  final Reference? requester;
+  ReferenceBuilder? requester;
 
   /// [supplier]
   /// Who is intended to fulfill the request.
-  final List<Reference>? supplier;
+  List<ReferenceBuilder>? supplier;
 
   /// [reasonCode]
   /// The reason why the supply item was requested.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// The reason why the supply item was requested.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [deliverFrom]
   /// Where the supply is expected to come from.
-  final Reference? deliverFrom;
+  ReferenceBuilder? deliverFrom;
 
   /// [deliverTo]
   /// Where the supply is destined to go.
-  final Reference? deliverTo;
+  ReferenceBuilder? deliverTo;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -377,110 +377,43 @@ class SupplyRequest extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'priority',
-      priority,
-    );
-    final itemXFhirType = itemX.fhirType;
-    addField(
-      'item${itemXFhirType.capitalize()}',
-      itemX,
-    );
-
-    addField(
-      'quantity',
-      quantity,
-    );
-    addField(
-      'parameter',
-      parameter,
-    );
-    if (occurrenceX != null) {
-      final fhirType = occurrenceX!.fhirType;
-      addField(
-        'occurrence${fhirType.capitalize()}',
-        occurrenceX,
-      );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('category', category);
+    addField('priority', priority);
+    if (itemX != null) {
+      final fhirType = itemX!.fhirType;
+      addField('item${fhirType.capitalize()}', itemX);
     }
 
-    addField(
-      'authoredOn',
-      authoredOn,
-    );
-    addField(
-      'requester',
-      requester,
-    );
-    addField(
-      'supplier',
-      supplier,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'deliverFrom',
-      deliverFrom,
-    );
-    addField(
-      'deliverTo',
-      deliverTo,
-    );
+    addField('quantity', quantity);
+    addField('parameter', parameter);
+    if (occurrenceX != null) {
+      final fhirType = occurrenceX!.fhirType;
+      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+    }
+
+    addField('authoredOn', authoredOn);
+    addField('requester', requester);
+    addField('supplier', supplier);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('deliverFrom', deliverFrom);
+    addField('deliverTo', deliverTo);
     return json;
   }
 
@@ -517,11 +450,11 @@ class SupplyRequest extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -572,37 +505,47 @@ class SupplyRequest extends DomainResource {
           fields.add(priority!);
         }
       case 'item':
-        fields.add(itemX);
+        if (itemX != null) {
+          fields.add(itemX!);
+        }
       case 'itemX':
-        fields.add(itemX);
+        if (itemX != null) {
+          fields.add(itemX!);
+        }
       case 'itemCodeableConcept':
-        if (itemX is CodeableConcept) {
-          fields.add(itemX);
+        if (itemX is CodeableConceptBuilder) {
+          fields.add(itemX!);
         }
       case 'itemReference':
-        if (itemX is Reference) {
-          fields.add(itemX);
+        if (itemX is ReferenceBuilder) {
+          fields.add(itemX!);
         }
       case 'quantity':
-        fields.add(quantity);
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
       case 'parameter':
         if (parameter != null) {
           fields.addAll(parameter!);
         }
       case 'occurrence':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceX':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceDateTime':
-        if (occurrenceX is FhirDateTime) {
+        if (occurrenceX is FhirDateTimeBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrencePeriod':
-        if (occurrenceX is Period) {
+        if (occurrenceX is PeriodBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrenceTiming':
-        if (occurrenceX is Timing) {
+        if (occurrenceX is TimingBuilder) {
           fields.add(occurrenceX!);
         }
       case 'authoredOn':
@@ -643,7 +586,7 @@ class SupplyRequest extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -652,300 +595,324 @@ class SupplyRequest extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is SupplyRequestStatus) {
-            return copyWith(status: child);
+          if (child is SupplyRequestStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
+          if (child is CodeableConceptBuilder) {
+            category = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'priority':
         {
-          if (child is RequestPriority) {
-            return copyWith(priority: child);
+          if (child is RequestPriorityBuilder) {
+            priority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'itemX':
         {
-          if (child is ItemXSupplyRequest) {
-            return copyWith(itemX: child);
+          if (child is ItemXSupplyRequestBuilder) {
+            itemX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(itemX: child);
+            if (child is CodeableConceptBuilder) {
+              itemX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(itemX: child);
+            if (child is ReferenceBuilder) {
+              itemX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'itemCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(itemX: child);
+          if (child is CodeableConceptBuilder) {
+            itemX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'itemReference':
         {
-          if (child is Reference) {
-            return copyWith(itemX: child);
+          if (child is ReferenceBuilder) {
+            itemX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
         {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
+          if (child is QuantityBuilder) {
+            quantity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'parameter':
         {
-          if (child is List<SupplyRequestParameter>) {
-            // Add all elements from passed list
-            final newList = [...?parameter, ...child];
-            return copyWith(parameter: newList);
-          } else if (child is SupplyRequestParameter) {
+          if (child is List<SupplyRequestParameterBuilder>) {
+            // Replace or create new list
+            parameter = child;
+            return;
+          } else if (child is SupplyRequestParameterBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?parameter, child];
-            return copyWith(parameter: newList);
+            parameter = [...(parameter ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceX':
         {
-          if (child is OccurrenceXSupplyRequest) {
-            return copyWith(occurrenceX: child);
+          if (child is OccurrenceXSupplyRequestBuilder) {
+            occurrenceX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(occurrenceX: child);
+            if (child is FhirDateTimeBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(occurrenceX: child);
+            if (child is PeriodBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(occurrenceX: child);
+            if (child is TimingBuilder) {
+              occurrenceX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'occurrenceFhirDateTime':
+      case 'occurrenceDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(occurrenceX: child);
+          if (child is FhirDateTimeBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrencePeriod':
         {
-          if (child is Period) {
-            return copyWith(occurrenceX: child);
+          if (child is PeriodBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceTiming':
         {
-          if (child is Timing) {
-            return copyWith(occurrenceX: child);
+          if (child is TimingBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authoredOn':
         {
-          if (child is FhirDateTime) {
-            return copyWith(authoredOn: child);
+          if (child is FhirDateTimeBuilder) {
+            authoredOn = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requester':
         {
-          if (child is Reference) {
-            return copyWith(requester: child);
+          if (child is ReferenceBuilder) {
+            requester = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'supplier':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?supplier, ...child];
-            return copyWith(supplier: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            supplier = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?supplier, child];
-            return copyWith(supplier: newList);
+            supplier = [...(supplier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deliverFrom':
         {
-          if (child is Reference) {
-            return copyWith(deliverFrom: child);
+          if (child is ReferenceBuilder) {
+            deliverFrom = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deliverTo':
         {
-          if (child is Reference) {
-            return copyWith(deliverTo: child);
+          if (child is ReferenceBuilder) {
+            deliverTo = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -961,236 +928,206 @@ class SupplyRequest extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'priority':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'item':
       case 'itemX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'itemCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'itemReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'quantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'parameter':
-        return ['SupplyRequestParameter'];
+        return ['SupplyRequestParameterBuilder'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTime', 'Period', 'Timing'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder', 'TimingBuilder'];
       case 'occurrenceDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'occurrencePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'occurrenceTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'authoredOn':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'requester':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'supplier':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'deliverFrom':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'deliverTo':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SupplyRequest]
+  /// Creates a new [SupplyRequestBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SupplyRequest createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: SupplyRequestStatus.empty(),
-          );
+          status = SupplyRequestStatusBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
+          category = CodeableConceptBuilder.empty();
+          return;
         }
       case 'priority':
         {
-          return copyWith(
-            priority: RequestPriority.empty(),
-          );
+          priority = RequestPriorityBuilder.empty();
+          return;
         }
       case 'item':
       case 'itemX':
       case 'itemCodeableConcept':
         {
-          return copyWith(
-            itemX: CodeableConcept.empty(),
-          );
+          itemX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'itemReference':
         {
-          return copyWith(
-            itemX: Reference.empty(),
-          );
+          itemX = ReferenceBuilder.empty();
+          return;
         }
       case 'quantity':
         {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
+          quantity = QuantityBuilder.empty();
+          return;
         }
       case 'parameter':
         {
-          return copyWith(
-            parameter: <SupplyRequestParameter>[],
-          );
+          parameter = <SupplyRequestParameterBuilder>[];
+          return;
         }
       case 'occurrence':
       case 'occurrenceX':
       case 'occurrenceDateTime':
         {
-          return copyWith(
-            occurrenceX: FhirDateTime.empty(),
-          );
+          occurrenceX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'occurrencePeriod':
         {
-          return copyWith(
-            occurrenceX: Period.empty(),
-          );
+          occurrenceX = PeriodBuilder.empty();
+          return;
         }
       case 'occurrenceTiming':
         {
-          return copyWith(
-            occurrenceX: Timing.empty(),
-          );
+          occurrenceX = TimingBuilder.empty();
+          return;
         }
       case 'authoredOn':
         {
-          return copyWith(
-            authoredOn: FhirDateTime.empty(),
-          );
+          authoredOn = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'requester':
         {
-          return copyWith(
-            requester: Reference.empty(),
-          );
+          requester = ReferenceBuilder.empty();
+          return;
         }
       case 'supplier':
         {
-          return copyWith(
-            supplier: <Reference>[],
-          );
+          supplier = <ReferenceBuilder>[];
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'deliverFrom':
         {
-          return copyWith(
-            deliverFrom: Reference.empty(),
-          );
+          deliverFrom = ReferenceBuilder.empty();
+          return;
         }
       case 'deliverTo':
         {
-          return copyWith(
-            deliverTo: Reference.empty(),
-          );
+          deliverTo = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1199,7 +1136,7 @@ class SupplyRequest extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  SupplyRequest clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1212,6 +1149,8 @@ class SupplyRequest extends DomainResource {
     bool status = false,
     bool category = false,
     bool priority = false,
+    bool item = false,
+    bool quantity = false,
     bool parameter = false,
     bool occurrence = false,
     bool authoredOn = false,
@@ -1222,191 +1161,112 @@ class SupplyRequest extends DomainResource {
     bool deliverFrom = false,
     bool deliverTo = false,
   }) {
-    return SupplyRequest(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status ? null : this.status,
-      category: category ? null : this.category,
-      priority: priority ? null : this.priority,
-      itemX: itemX,
-      quantity: quantity,
-      parameter: parameter ? null : this.parameter,
-      occurrenceX: occurrence ? null : occurrenceX,
-      authoredOn: authoredOn ? null : this.authoredOn,
-      requester: requester ? null : this.requester,
-      supplier: supplier ? null : this.supplier,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      deliverFrom: deliverFrom ? null : this.deliverFrom,
-      deliverTo: deliverTo ? null : this.deliverTo,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (category) this.category = null;
+    if (priority) this.priority = null;
+    if (item) this.itemX = null;
+    if (quantity) this.quantity = null;
+    if (parameter) this.parameter = null;
+    if (occurrence) this.occurrenceX = null;
+    if (authoredOn) this.authoredOn = null;
+    if (requester) this.requester = null;
+    if (supplier) this.supplier = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (deliverFrom) this.deliverFrom = null;
+    if (deliverTo) this.deliverTo = null;
   }
 
   @override
-  SupplyRequest clone() => throw UnimplementedError();
+  SupplyRequestBuilder clone() => throw UnimplementedError();
   @override
-  SupplyRequest copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    SupplyRequestStatus? status,
-    CodeableConcept? category,
-    RequestPriority? priority,
-    ItemXSupplyRequest? itemX,
-    Quantity? quantity,
-    List<SupplyRequestParameter>? parameter,
-    OccurrenceXSupplyRequest? occurrenceX,
-    FhirDateTime? authoredOn,
-    Reference? requester,
-    List<Reference>? supplier,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    Reference? deliverFrom,
-    Reference? deliverTo,
+  SupplyRequestBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    SupplyRequestStatusBuilder? status,
+    CodeableConceptBuilder? category,
+    RequestPriorityBuilder? priority,
+    ItemXSupplyRequestBuilder? itemX,
+    QuantityBuilder? quantity,
+    List<SupplyRequestParameterBuilder>? parameter,
+    OccurrenceXSupplyRequestBuilder? occurrenceX,
+    FhirDateTimeBuilder? authoredOn,
+    ReferenceBuilder? requester,
+    List<ReferenceBuilder>? supplier,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    ReferenceBuilder? deliverFrom,
+    ReferenceBuilder? deliverTo,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return SupplyRequest(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = SupplyRequestBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      itemX: itemX?.copyWith(
-            objectPath: '$newObjectPath.itemX',
-          ) as ItemXSupplyRequest? ??
-          this.itemX,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      parameter: parameter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameter',
-                ),
-              )
-              .toList() ??
-          this.parameter,
-      occurrenceX: occurrenceX?.copyWith(
-            objectPath: '$newObjectPath.occurrenceX',
-          ) as OccurrenceXSupplyRequest? ??
-          this.occurrenceX,
-      authoredOn: authoredOn?.copyWith(
-            objectPath: '$newObjectPath.authoredOn',
-          ) ??
-          this.authoredOn,
-      requester: requester?.copyWith(
-            objectPath: '$newObjectPath.requester',
-          ) ??
-          this.requester,
-      supplier: supplier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supplier',
-                ),
-              )
-              .toList() ??
-          this.supplier,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      deliverFrom: deliverFrom?.copyWith(
-            objectPath: '$newObjectPath.deliverFrom',
-          ) ??
-          this.deliverFrom,
-      deliverTo: deliverTo?.copyWith(
-            objectPath: '$newObjectPath.deliverTo',
-          ) ??
-          this.deliverTo,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      category: category ?? this.category,
+      priority: priority ?? this.priority,
+      itemX: itemX ?? this.itemX,
+      quantity: quantity ?? this.quantity,
+      parameter: parameter ?? this.parameter,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
+      authoredOn: authoredOn ?? this.authoredOn,
+      requester: requester ?? this.requester,
+      supplier: supplier ?? this.supplier,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      deliverFrom: deliverFrom ?? this.deliverFrom,
+      deliverTo: deliverTo ?? this.deliverTo,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SupplyRequest) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SupplyRequestBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1441,25 +1301,25 @@ class SupplyRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1495,7 +1355,7 @@ class SupplyRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<SupplyRequestParameter>(
+    if (!listEquals<SupplyRequestParameterBuilder>(
       parameter,
       o.parameter,
     )) {
@@ -1519,19 +1379,19 @@ class SupplyRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       supplier,
       o.supplier,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
@@ -1553,14 +1413,14 @@ class SupplyRequest extends DomainResource {
   }
 }
 
-/// [SupplyRequestParameter]
+/// [SupplyRequestParameterBuilder]
 /// Specific parameters for the ordered item. For example, the size of the
 /// indicated item.
-class SupplyRequestParameter extends BackboneElement {
+class SupplyRequestParameterBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SupplyRequestParameter]
+  /// [SupplyRequestParameterBuilder]
 
-  const SupplyRequestParameter({
+  SupplyRequestParameterBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1572,25 +1432,25 @@ class SupplyRequestParameter extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SupplyRequestParameter.empty() => const SupplyRequestParameter();
+  /// For Builder classes, no fields are required
+  factory SupplyRequestParameterBuilder.empty() =>
+      SupplyRequestParameterBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SupplyRequestParameter.fromJson(
+  factory SupplyRequestParameterBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SupplyRequest.parameter';
-    return SupplyRequestParameter(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SupplyRequestParameterBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1599,8 +1459,8 @@ class SupplyRequestParameter extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1608,41 +1468,41 @@ class SupplyRequestParameter extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      valueX: JsonParser.parsePolymorphic<ValueXSupplyRequestParameter>(
+      valueX: JsonParser.parsePolymorphic<ValueXSupplyRequestParameterBuilder>(
         json,
         {
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueQuantity': Quantity.fromJson,
-          'valueRange': Range.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueRange': RangeBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [SupplyRequestParameter]
+  /// Deserialize [SupplyRequestParameterBuilder]
   /// from a [String] or [YamlMap] object
-  factory SupplyRequestParameter.fromYaml(
+  factory SupplyRequestParameterBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SupplyRequestParameter.fromJson(
+      return SupplyRequestParameterBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SupplyRequestParameter.fromJson(
+      return SupplyRequestParameterBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SupplyRequestParameter '
+        'SupplyRequestParameterBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1650,16 +1510,16 @@ class SupplyRequestParameter extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SupplyRequestParameter]
+  /// [SupplyRequestParameterBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyRequestParameter.fromJsonString(
+  factory SupplyRequestParameterBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SupplyRequestParameter.fromJson(json);
+      return SupplyRequestParameterBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1671,39 +1531,40 @@ class SupplyRequestParameter extends BackboneElement {
 
   /// [code]
   /// A code or string that identifies the device detail being asserted.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [valueX]
   /// The value of the device detail.
-  final ValueXSupplyRequestParameter? valueX;
+  ValueXSupplyRequestParameterBuilder? valueX;
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueRange] as a Range
-  Range? get valueRange => valueX?.isAs<Range>();
+  /// Getter for [valueRange] as a RangeBuilder
+  RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1712,33 +1573,18 @@ class SupplyRequestParameter extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField(
-        'value${fhirType.capitalize()}',
-        valueX,
-      );
+      addField('value${fhirType.capitalize()}', valueX);
     }
 
     return json;
@@ -1759,11 +1605,11 @@ class SupplyRequestParameter extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1782,23 +1628,27 @@ class SupplyRequestParameter extends BackboneElement {
           fields.add(code!);
         }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
+        if (valueX is CodeableConceptBuilder) {
           fields.add(valueX!);
         }
       case 'valueQuantity':
-        if (valueX is Quantity) {
+        if (valueX is QuantityBuilder) {
           fields.add(valueX!);
         }
       case 'valueRange':
-        if (valueX is Range) {
+        if (valueX is RangeBuilder) {
           fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
+        if (valueX is FhirBooleanBuilder) {
           fields.add(valueX!);
         }
       default:
@@ -1811,7 +1661,7 @@ class SupplyRequestParameter extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1820,109 +1670,119 @@ class SupplyRequestParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXSupplyRequestParameter) {
-            return copyWith(valueX: child);
+          if (child is ValueXSupplyRequestParameterBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(valueX: child);
+            if (child is RangeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRange':
         {
-          if (child is Range) {
-            return copyWith(valueX: child);
+          if (child is RangeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1938,87 +1798,80 @@ class SupplyRequestParameter extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
       case 'valueX':
-        return ['CodeableConcept', 'Quantity', 'Range', 'FhirBoolean'];
+        return [
+          'CodeableConceptBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'FhirBooleanBuilder'
+        ];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SupplyRequestParameter]
+  /// Creates a new [SupplyRequestParameterBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SupplyRequestParameter createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueRange':
         {
-          return copyWith(
-            valueX: Range.empty(),
-          );
+          valueX = RangeBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2027,31 +1880,29 @@ class SupplyRequestParameter extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SupplyRequestParameter clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool code = false,
     bool value = false,
   }) {
-    return SupplyRequestParameter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      valueX: value ? null : valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  SupplyRequestParameter clone() => throw UnimplementedError();
+  SupplyRequestParameterBuilder clone() => throw UnimplementedError();
   @override
-  SupplyRequestParameter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    ValueXSupplyRequestParameter? valueX,
+  SupplyRequestParameterBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    ValueXSupplyRequestParameterBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2059,42 +1910,36 @@ class SupplyRequestParameter extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SupplyRequestParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXSupplyRequestParameter? ??
-          this.valueX,
+    final newResult = SupplyRequestParameterBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SupplyRequestParameter) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SupplyRequestParameterBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2105,13 +1950,13 @@ class SupplyRequestParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

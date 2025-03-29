@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Codes that convey the current status of the research study.
-class ResearchStudyStatus extends FhirCodeEnum {
+class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ResearchStudyStatus._({
+  ResearchStudyStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ResearchStudyStatus(
+  factory ResearchStudyStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ResearchStudyStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ResearchStudyStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,126 +43,141 @@ class ResearchStudyStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ResearchStudyStatus] with element only
-  factory ResearchStudyStatus.empty() =>
-      ResearchStudyStatus._(validatedValue: '');
+  /// Create empty [ResearchStudyStatusBuilder] with element only
+  factory ResearchStudyStatusBuilder.empty() =>
+      ResearchStudyStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ResearchStudyStatus] from JSON.
-  factory ResearchStudyStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ResearchStudyStatusBuilder] from JSON.
+  factory ResearchStudyStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyStatus.elementOnly.withElement(element);
+      return ResearchStudyStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ResearchStudyStatus cannot be constructed from JSON.',
+        'ResearchStudyStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyStatus._(
+    return ResearchStudyStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// active
-  static final ResearchStudyStatus active = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder active = ResearchStudyStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// administratively_completed
-  static final ResearchStudyStatus administratively_completed =
-      ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder administratively_completed =
+      ResearchStudyStatusBuilder._(
     validatedValue: 'administratively-completed',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Administratively Completed'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Administratively Completed'.toFhirStringBuilder,
   );
 
   /// approved
-  static final ResearchStudyStatus approved = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder approved = ResearchStudyStatusBuilder._(
     validatedValue: 'approved',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Approved'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Approved'.toFhirStringBuilder,
   );
 
   /// closed_to_accrual
-  static final ResearchStudyStatus closed_to_accrual = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder closed_to_accrual =
+      ResearchStudyStatusBuilder._(
     validatedValue: 'closed-to-accrual',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Closed to Accrual'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Closed to Accrual'.toFhirStringBuilder,
   );
 
   /// closed_to_accrual_and_intervention
-  static final ResearchStudyStatus closed_to_accrual_and_intervention =
-      ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder closed_to_accrual_and_intervention =
+      ResearchStudyStatusBuilder._(
     validatedValue: 'closed-to-accrual-and-intervention',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Closed to Accrual and Intervention'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Closed to Accrual and Intervention'.toFhirStringBuilder,
   );
 
   /// completed
-  static final ResearchStudyStatus completed = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder completed = ResearchStudyStatusBuilder._(
     validatedValue: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// disapproved
-  static final ResearchStudyStatus disapproved = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder disapproved = ResearchStudyStatusBuilder._(
     validatedValue: 'disapproved',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Disapproved'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Disapproved'.toFhirStringBuilder,
   );
 
   /// in_review
-  static final ResearchStudyStatus in_review = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder in_review = ResearchStudyStatusBuilder._(
     validatedValue: 'in-review',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Review'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In Review'.toFhirStringBuilder,
   );
 
   /// temporarily_closed_to_accrual
-  static final ResearchStudyStatus temporarily_closed_to_accrual =
-      ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder temporarily_closed_to_accrual =
+      ResearchStudyStatusBuilder._(
     validatedValue: 'temporarily-closed-to-accrual',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Temporarily Closed to Accrual'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Temporarily Closed to Accrual'.toFhirStringBuilder,
   );
 
   /// temporarily_closed_to_accrual_and_intervention
-  static final ResearchStudyStatus
-      temporarily_closed_to_accrual_and_intervention = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder
+      temporarily_closed_to_accrual_and_intervention =
+      ResearchStudyStatusBuilder._(
     validatedValue: 'temporarily-closed-to-accrual-and-intervention',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Temporarily Closed to Accrual and Intervention'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display:
+        'Temporarily Closed to Accrual and Intervention'.toFhirStringBuilder,
   );
 
   /// withdrawn
-  static final ResearchStudyStatus withdrawn = ResearchStudyStatus._(
+  static ResearchStudyStatusBuilder withdrawn = ResearchStudyStatusBuilder._(
     validatedValue: 'withdrawn',
-    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Withdrawn'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Withdrawn'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ResearchStudyStatus elementOnly =
-      ResearchStudyStatus._(validatedValue: '');
+  static ResearchStudyStatusBuilder elementOnly =
+      ResearchStudyStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ResearchStudyStatus> values = [
+  static List<ResearchStudyStatusBuilder> values = [
     active,
     administratively_completed,
     approved,
@@ -178,14 +193,15 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ResearchStudyStatus clone() => ResearchStudyStatus._(
+  ResearchStudyStatusBuilder clone() => ResearchStudyStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ResearchStudyStatus withElement(Element? newElement) {
-    return ResearchStudyStatus._(validatedValue: value, element: newElement);
+  ResearchStudyStatusBuilder withElement(ElementBuilder? newElement) {
+    return ResearchStudyStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -201,11 +217,11 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ResearchStudyStatus copyWith({
+  ResearchStudyStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -216,7 +232,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ResearchStudyStatus._(
+    return ResearchStudyStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -226,7 +242,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

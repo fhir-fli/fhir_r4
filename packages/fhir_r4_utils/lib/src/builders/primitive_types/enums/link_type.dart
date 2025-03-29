@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// The type of link between this patient resource and another patient
 /// resource.
-class LinkType extends FhirCodeEnum {
+class LinkTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  LinkType._({
+  LinkTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class LinkType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory LinkType(
+  factory LinkTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return LinkType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return LinkTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,64 +44,65 @@ class LinkType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [LinkType] with element only
-  factory LinkType.empty() => LinkType._(validatedValue: '');
+  /// Create empty [LinkTypeBuilder] with element only
+  factory LinkTypeBuilder.empty() => LinkTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [LinkType] from JSON.
-  factory LinkType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [LinkTypeBuilder] from JSON.
+  factory LinkTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkType.elementOnly.withElement(element);
+      return LinkTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'LinkType cannot be constructed from JSON.',
+        'LinkTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return LinkType._(
+    return LinkTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// replaced_by
-  static final LinkType replaced_by = LinkType._(
+  static LinkTypeBuilder replaced_by = LinkTypeBuilder._(
     validatedValue: 'replaced-by',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaced-by'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Replaced-by'.toFhirStringBuilder,
   );
 
   /// replaces
-  static final LinkType replaces = LinkType._(
+  static LinkTypeBuilder replaces = LinkTypeBuilder._(
     validatedValue: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaces'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Replaces'.toFhirStringBuilder,
   );
 
   /// refer
-  static final LinkType refer = LinkType._(
+  static LinkTypeBuilder refer = LinkTypeBuilder._(
     validatedValue: 'refer',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Refer'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Refer'.toFhirStringBuilder,
   );
 
   /// seealso
-  static final LinkType seealso = LinkType._(
+  static LinkTypeBuilder seealso = LinkTypeBuilder._(
     validatedValue: 'seealso',
-    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'See also'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'See also'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final LinkType elementOnly = LinkType._(validatedValue: '');
+  static LinkTypeBuilder elementOnly = LinkTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<LinkType> values = [
+  static List<LinkTypeBuilder> values = [
     replaced_by,
     replaces,
     refer,
@@ -110,14 +111,14 @@ class LinkType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  LinkType clone() => LinkType._(
+  LinkTypeBuilder clone() => LinkTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  LinkType withElement(Element? newElement) {
-    return LinkType._(validatedValue: value, element: newElement);
+  LinkTypeBuilder withElement(ElementBuilder? newElement) {
+    return LinkTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +134,11 @@ class LinkType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  LinkType copyWith({
+  LinkTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +149,7 @@ class LinkType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return LinkType._(
+    return LinkTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +159,7 @@ class LinkType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

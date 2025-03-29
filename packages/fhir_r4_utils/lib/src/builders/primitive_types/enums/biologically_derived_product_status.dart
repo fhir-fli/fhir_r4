@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Biologically Derived Product Status.
-class BiologicallyDerivedProductStatus extends FhirCodeEnum {
+class BiologicallyDerivedProductStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  BiologicallyDerivedProductStatus._({
+  BiologicallyDerivedProductStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory BiologicallyDerivedProductStatus(
+  factory BiologicallyDerivedProductStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return BiologicallyDerivedProductStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return BiologicallyDerivedProductStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,68 +43,72 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [BiologicallyDerivedProductStatus] with element only
-  factory BiologicallyDerivedProductStatus.empty() =>
-      BiologicallyDerivedProductStatus._(validatedValue: '');
+  /// Create empty [BiologicallyDerivedProductStatusBuilder] with element only
+  factory BiologicallyDerivedProductStatusBuilder.empty() =>
+      BiologicallyDerivedProductStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [BiologicallyDerivedProductStatus] from JSON.
-  factory BiologicallyDerivedProductStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [BiologicallyDerivedProductStatusBuilder] from JSON.
+  factory BiologicallyDerivedProductStatusBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
+      return BiologicallyDerivedProductStatusBuilder.elementOnly
+          .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'BiologicallyDerivedProductStatus cannot be constructed from JSON.',
+        'BiologicallyDerivedProductStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return BiologicallyDerivedProductStatus._(
+    return BiologicallyDerivedProductStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// available
-  static final BiologicallyDerivedProductStatus available =
-      BiologicallyDerivedProductStatus._(
+  static BiologicallyDerivedProductStatusBuilder available =
+      BiologicallyDerivedProductStatusBuilder._(
     validatedValue: 'available',
-    system: 'http://hl7.org/fhir/ValueSet/product-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Available'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/product-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Available'.toFhirStringBuilder,
   );
 
   /// unavailable
-  static final BiologicallyDerivedProductStatus unavailable =
-      BiologicallyDerivedProductStatus._(
+  static BiologicallyDerivedProductStatusBuilder unavailable =
+      BiologicallyDerivedProductStatusBuilder._(
     validatedValue: 'unavailable',
-    system: 'http://hl7.org/fhir/ValueSet/product-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unavailable'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/product-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unavailable'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final BiologicallyDerivedProductStatus elementOnly =
-      BiologicallyDerivedProductStatus._(validatedValue: '');
+  static BiologicallyDerivedProductStatusBuilder elementOnly =
+      BiologicallyDerivedProductStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<BiologicallyDerivedProductStatus> values = [
+  static List<BiologicallyDerivedProductStatusBuilder> values = [
     available,
     unavailable,
   ];
 
   /// Clones the current instance
   @override
-  BiologicallyDerivedProductStatus clone() =>
-      BiologicallyDerivedProductStatus._(
+  BiologicallyDerivedProductStatusBuilder clone() =>
+      BiologicallyDerivedProductStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  BiologicallyDerivedProductStatus withElement(Element? newElement) {
-    return BiologicallyDerivedProductStatus._(
-        validatedValue: value, element: newElement,);
+  BiologicallyDerivedProductStatusBuilder withElement(
+      ElementBuilder? newElement) {
+    return BiologicallyDerivedProductStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,11 +124,11 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  BiologicallyDerivedProductStatus copyWith({
+  BiologicallyDerivedProductStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -135,7 +139,7 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return BiologicallyDerivedProductStatus._(
+    return BiologicallyDerivedProductStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -145,7 +149,7 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

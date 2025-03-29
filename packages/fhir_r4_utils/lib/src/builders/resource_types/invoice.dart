@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Invoice]
+/// [InvoiceBuilder]
 /// Invoice containing collected ChargeItems from an Account with
 /// calculated individual and total price for Billing purpose.
-class Invoice extends DomainResource {
+class InvoiceBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Invoice]
+  /// [InvoiceBuilder]
 
-  const Invoice({
+  InvoiceBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -19,7 +21,7 @@ class Invoice extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
+    this.status,
     this.cancelledReason,
     this.type,
     this.subject,
@@ -40,51 +42,48 @@ class Invoice extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Invoice.empty() => Invoice(
-        status: InvoiceStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory InvoiceBuilder.empty() => InvoiceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Invoice.fromJson(
+  factory InvoiceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Invoice';
-    return Invoice(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return InvoiceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -93,8 +92,8 @@ class Invoice extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -103,8 +102,8 @@ class Invoice extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -113,8 +112,8 @@ class Invoice extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -122,45 +121,45 @@ class Invoice extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<InvoiceStatus>(
+      status: JsonParser.parsePrimitive<InvoiceStatusBuilder>(
         json,
         'status',
-        InvoiceStatus.fromJson,
+        InvoiceStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      cancelledReason: JsonParser.parsePrimitive<FhirString>(
+      ),
+      cancelledReason: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'cancelledReason',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.cancelledReason',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      recipient: JsonParser.parseObject<Reference>(
+      recipient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'recipient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.recipient',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
       participant: (json['participant'] as List<dynamic>?)
-          ?.map<InvoiceParticipant>(
-            (v) => InvoiceParticipant.fromJson(
+          ?.map<InvoiceParticipantBuilder>(
+            (v) => InvoiceParticipantBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.participant',
@@ -168,21 +167,21 @@ class Invoice extends DomainResource {
             ),
           )
           .toList(),
-      issuer: JsonParser.parseObject<Reference>(
+      issuer: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'issuer',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.issuer',
       ),
-      account: JsonParser.parseObject<Reference>(
+      account: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'account',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.account',
       ),
       lineItem: (json['lineItem'] as List<dynamic>?)
-          ?.map<InvoiceLineItem>(
-            (v) => InvoiceLineItem.fromJson(
+          ?.map<InvoiceLineItemBuilder>(
+            (v) => InvoiceLineItemBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.lineItem',
@@ -191,8 +190,8 @@ class Invoice extends DomainResource {
           )
           .toList(),
       totalPriceComponent: (json['totalPriceComponent'] as List<dynamic>?)
-          ?.map<InvoicePriceComponent>(
-            (v) => InvoicePriceComponent.fromJson(
+          ?.map<InvoicePriceComponentBuilder>(
+            (v) => InvoicePriceComponentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.totalPriceComponent',
@@ -200,27 +199,27 @@ class Invoice extends DomainResource {
             ),
           )
           .toList(),
-      totalNet: JsonParser.parseObject<Money>(
+      totalNet: JsonParser.parseObject<MoneyBuilder>(
         json,
         'totalNet',
-        Money.fromJson,
+        MoneyBuilder.fromJson,
         '$objectPath.totalNet',
       ),
-      totalGross: JsonParser.parseObject<Money>(
+      totalGross: JsonParser.parseObject<MoneyBuilder>(
         json,
         'totalGross',
-        Money.fromJson,
+        MoneyBuilder.fromJson,
         '$objectPath.totalGross',
       ),
-      paymentTerms: JsonParser.parsePrimitive<FhirMarkdown>(
+      paymentTerms: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'paymentTerms',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.paymentTerms',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -231,22 +230,22 @@ class Invoice extends DomainResource {
     );
   }
 
-  /// Deserialize [Invoice]
+  /// Deserialize [InvoiceBuilder]
   /// from a [String] or [YamlMap] object
-  factory Invoice.fromYaml(
+  factory InvoiceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Invoice.fromJson(
+      return InvoiceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Invoice.fromJson(
+      return InvoiceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Invoice '
+        'InvoiceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -254,16 +253,16 @@ class Invoice extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Invoice]
+  /// [InvoiceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Invoice.fromJsonString(
+  factory InvoiceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Invoice.fromJson(json);
+      return InvoiceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -276,94 +275,94 @@ class Invoice extends DomainResource {
   /// [identifier]
   /// Identifier of this Invoice, often used for reference in correspondence
   /// about this invoice or for tracking of payments.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// The current state of the Invoice.
-  final InvoiceStatus status;
+  InvoiceStatusBuilder? status;
 
   /// [cancelledReason]
   /// In case of Invoice cancellation a reason must be given (entered in
   /// error, superseded by corrected invoice etc.).
-  final FhirString? cancelledReason;
+  FhirStringBuilder? cancelledReason;
 
   /// [type]
   /// Type of Invoice depending on domain, realm an usage (e.g.
   /// internal/external, dental, preliminary).
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [subject]
   /// The individual or set of individuals receiving the goods and services
   /// billed in this invoice.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [recipient]
   /// The individual or Organization responsible for balancing of this
   /// invoice.
-  final Reference? recipient;
+  ReferenceBuilder? recipient;
 
   /// [date]
   /// Date/time(s) of when this Invoice was posted.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [participant]
   /// Indicates who or what performed or participated in the charged service.
-  final List<InvoiceParticipant>? participant;
+  List<InvoiceParticipantBuilder>? participant;
 
   /// [issuer]
   /// The organizationissuing the Invoice.
-  final Reference? issuer;
+  ReferenceBuilder? issuer;
 
   /// [account]
   /// Account which is supposed to be balanced with this Invoice.
-  final Reference? account;
+  ReferenceBuilder? account;
 
   /// [lineItem]
   /// Each line item represents one charge for goods and services rendered.
   /// Details such as date, code and amount are found in the referenced
   /// ChargeItem resource.
-  final List<InvoiceLineItem>? lineItem;
+  List<InvoiceLineItemBuilder>? lineItem;
 
   /// [totalPriceComponent]
   /// The total amount for the Invoice may be calculated as the sum of the
   /// line items with surcharges/deductions that apply in certain conditions.
   /// The priceComponent element can be used to offer transparency to the
   /// recipient of the Invoice of how the total price was calculated.
-  final List<InvoicePriceComponent>? totalPriceComponent;
+  List<InvoicePriceComponentBuilder>? totalPriceComponent;
 
   /// [totalNet]
   /// Invoice total , taxes excluded.
-  final Money? totalNet;
+  MoneyBuilder? totalNet;
 
   /// [totalGross]
   /// Invoice total, tax included.
-  final Money? totalGross;
+  MoneyBuilder? totalGross;
 
   /// [paymentTerms]
   /// Payment details such as banking details, period of payment,
   /// deductibles, methods of payment.
-  final FhirMarkdown? paymentTerms;
+  FhirMarkdownBuilder? paymentTerms;
 
   /// [note]
   /// Comments made about the invoice by the issuer, subject, or other
   /// participants.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -372,108 +371,36 @@ class Invoice extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'cancelledReason',
-      cancelledReason,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'recipient',
-      recipient,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'participant',
-      participant,
-    );
-    addField(
-      'issuer',
-      issuer,
-    );
-    addField(
-      'account',
-      account,
-    );
-    addField(
-      'lineItem',
-      lineItem,
-    );
-    addField(
-      'totalPriceComponent',
-      totalPriceComponent,
-    );
-    addField(
-      'totalNet',
-      totalNet,
-    );
-    addField(
-      'totalGross',
-      totalGross,
-    );
-    addField(
-      'paymentTerms',
-      paymentTerms,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('cancelledReason', cancelledReason);
+    addField('type', type);
+    addField('subject', subject);
+    addField('recipient', recipient);
+    addField('date', date);
+    addField('participant', participant);
+    addField('issuer', issuer);
+    addField('account', account);
+    addField('lineItem', lineItem);
+    addField('totalPriceComponent', totalPriceComponent);
+    addField('totalNet', totalNet);
+    addField('totalGross', totalGross);
+    addField('paymentTerms', paymentTerms);
+    addField('note', note);
     return json;
   }
 
@@ -511,11 +438,11 @@ class Invoice extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -554,7 +481,9 @@ class Invoice extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'cancelledReason':
         if (cancelledReason != null) {
           fields.add(cancelledReason!);
@@ -621,7 +550,7 @@ class Invoice extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -630,253 +559,268 @@ class Invoice extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is InvoiceStatus) {
-            return copyWith(status: child);
+          if (child is InvoiceStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'cancelledReason':
         {
-          if (child is FhirString) {
-            return copyWith(cancelledReason: child);
+          if (child is FhirStringBuilder) {
+            cancelledReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recipient':
         {
-          if (child is Reference) {
-            return copyWith(recipient: child);
+          if (child is ReferenceBuilder) {
+            recipient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'participant':
         {
-          if (child is List<InvoiceParticipant>) {
-            // Add all elements from passed list
-            final newList = [...?participant, ...child];
-            return copyWith(participant: newList);
-          } else if (child is InvoiceParticipant) {
+          if (child is List<InvoiceParticipantBuilder>) {
+            // Replace or create new list
+            participant = child;
+            return;
+          } else if (child is InvoiceParticipantBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?participant, child];
-            return copyWith(participant: newList);
+            participant = [...(participant ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issuer':
         {
-          if (child is Reference) {
-            return copyWith(issuer: child);
+          if (child is ReferenceBuilder) {
+            issuer = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'account':
         {
-          if (child is Reference) {
-            return copyWith(account: child);
+          if (child is ReferenceBuilder) {
+            account = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lineItem':
         {
-          if (child is List<InvoiceLineItem>) {
-            // Add all elements from passed list
-            final newList = [...?lineItem, ...child];
-            return copyWith(lineItem: newList);
-          } else if (child is InvoiceLineItem) {
+          if (child is List<InvoiceLineItemBuilder>) {
+            // Replace or create new list
+            lineItem = child;
+            return;
+          } else if (child is InvoiceLineItemBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?lineItem, child];
-            return copyWith(lineItem: newList);
+            lineItem = [...(lineItem ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'totalPriceComponent':
         {
-          if (child is List<InvoicePriceComponent>) {
-            // Add all elements from passed list
-            final newList = [...?totalPriceComponent, ...child];
-            return copyWith(totalPriceComponent: newList);
-          } else if (child is InvoicePriceComponent) {
+          if (child is List<InvoicePriceComponentBuilder>) {
+            // Replace or create new list
+            totalPriceComponent = child;
+            return;
+          } else if (child is InvoicePriceComponentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?totalPriceComponent, child];
-            return copyWith(totalPriceComponent: newList);
+            totalPriceComponent = [...(totalPriceComponent ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'totalNet':
         {
-          if (child is Money) {
-            return copyWith(totalNet: child);
+          if (child is MoneyBuilder) {
+            totalNet = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'totalGross':
         {
-          if (child is Money) {
-            return copyWith(totalGross: child);
+          if (child is MoneyBuilder) {
+            totalGross = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'paymentTerms':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(paymentTerms: child);
+          if (child is FhirMarkdownBuilder) {
+            paymentTerms = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -892,210 +836,182 @@ class Invoice extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'cancelledReason':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'recipient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'participant':
-        return ['InvoiceParticipant'];
+        return ['InvoiceParticipantBuilder'];
       case 'issuer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'account':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'lineItem':
-        return ['InvoiceLineItem'];
+        return ['InvoiceLineItemBuilder'];
       case 'totalPriceComponent':
-        return ['InvoicePriceComponent'];
+        return ['InvoicePriceComponentBuilder'];
       case 'totalNet':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'totalGross':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'paymentTerms':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Invoice]
+  /// Creates a new [InvoiceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Invoice createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: InvoiceStatus.empty(),
-          );
+          status = InvoiceStatusBuilder.empty();
+          return;
         }
       case 'cancelledReason':
         {
-          return copyWith(
-            cancelledReason: FhirString.empty(),
-          );
+          cancelledReason = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'recipient':
         {
-          return copyWith(
-            recipient: Reference.empty(),
-          );
+          recipient = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'participant':
         {
-          return copyWith(
-            participant: <InvoiceParticipant>[],
-          );
+          participant = <InvoiceParticipantBuilder>[];
+          return;
         }
       case 'issuer':
         {
-          return copyWith(
-            issuer: Reference.empty(),
-          );
+          issuer = ReferenceBuilder.empty();
+          return;
         }
       case 'account':
         {
-          return copyWith(
-            account: Reference.empty(),
-          );
+          account = ReferenceBuilder.empty();
+          return;
         }
       case 'lineItem':
         {
-          return copyWith(
-            lineItem: <InvoiceLineItem>[],
-          );
+          lineItem = <InvoiceLineItemBuilder>[];
+          return;
         }
       case 'totalPriceComponent':
         {
-          return copyWith(
-            totalPriceComponent: <InvoicePriceComponent>[],
-          );
+          totalPriceComponent = <InvoicePriceComponentBuilder>[];
+          return;
         }
       case 'totalNet':
         {
-          return copyWith(
-            totalNet: Money.empty(),
-          );
+          totalNet = MoneyBuilder.empty();
+          return;
         }
       case 'totalGross':
         {
-          return copyWith(
-            totalGross: Money.empty(),
-          );
+          totalGross = MoneyBuilder.empty();
+          return;
         }
       case 'paymentTerms':
         {
-          return copyWith(
-            paymentTerms: FhirMarkdown.empty(),
-          );
+          paymentTerms = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1104,7 +1020,7 @@ class Invoice extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Invoice clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1114,6 +1030,7 @@ class Invoice extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
     bool cancelledReason = false,
     bool type = false,
     bool subject = false,
@@ -1129,198 +1046,115 @@ class Invoice extends DomainResource {
     bool paymentTerms = false,
     bool note = false,
   }) {
-    return Invoice(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      cancelledReason: cancelledReason ? null : this.cancelledReason,
-      type: type ? null : this.type,
-      subject: subject ? null : this.subject,
-      recipient: recipient ? null : this.recipient,
-      date: date ? null : this.date,
-      participant: participant ? null : this.participant,
-      issuer: issuer ? null : this.issuer,
-      account: account ? null : this.account,
-      lineItem: lineItem ? null : this.lineItem,
-      totalPriceComponent:
-          totalPriceComponent ? null : this.totalPriceComponent,
-      totalNet: totalNet ? null : this.totalNet,
-      totalGross: totalGross ? null : this.totalGross,
-      paymentTerms: paymentTerms ? null : this.paymentTerms,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (cancelledReason) this.cancelledReason = null;
+    if (type) this.type = null;
+    if (subject) this.subject = null;
+    if (recipient) this.recipient = null;
+    if (date) this.date = null;
+    if (participant) this.participant = null;
+    if (issuer) this.issuer = null;
+    if (account) this.account = null;
+    if (lineItem) this.lineItem = null;
+    if (totalPriceComponent) this.totalPriceComponent = null;
+    if (totalNet) this.totalNet = null;
+    if (totalGross) this.totalGross = null;
+    if (paymentTerms) this.paymentTerms = null;
+    if (note) this.note = null;
   }
 
   @override
-  Invoice clone() => throw UnimplementedError();
+  InvoiceBuilder clone() => throw UnimplementedError();
   @override
-  Invoice copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    InvoiceStatus? status,
-    FhirString? cancelledReason,
-    CodeableConcept? type,
-    Reference? subject,
-    Reference? recipient,
-    FhirDateTime? date,
-    List<InvoiceParticipant>? participant,
-    Reference? issuer,
-    Reference? account,
-    List<InvoiceLineItem>? lineItem,
-    List<InvoicePriceComponent>? totalPriceComponent,
-    Money? totalNet,
-    Money? totalGross,
-    FhirMarkdown? paymentTerms,
-    List<Annotation>? note,
+  InvoiceBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    InvoiceStatusBuilder? status,
+    FhirStringBuilder? cancelledReason,
+    CodeableConceptBuilder? type,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? recipient,
+    FhirDateTimeBuilder? date,
+    List<InvoiceParticipantBuilder>? participant,
+    ReferenceBuilder? issuer,
+    ReferenceBuilder? account,
+    List<InvoiceLineItemBuilder>? lineItem,
+    List<InvoicePriceComponentBuilder>? totalPriceComponent,
+    MoneyBuilder? totalNet,
+    MoneyBuilder? totalGross,
+    FhirMarkdownBuilder? paymentTerms,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Invoice(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = InvoiceBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      cancelledReason: cancelledReason?.copyWith(
-            objectPath: '$newObjectPath.cancelledReason',
-          ) ??
-          this.cancelledReason,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      recipient: recipient?.copyWith(
-            objectPath: '$newObjectPath.recipient',
-          ) ??
-          this.recipient,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      participant: participant
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.participant',
-                ),
-              )
-              .toList() ??
-          this.participant,
-      issuer: issuer?.copyWith(
-            objectPath: '$newObjectPath.issuer',
-          ) ??
-          this.issuer,
-      account: account?.copyWith(
-            objectPath: '$newObjectPath.account',
-          ) ??
-          this.account,
-      lineItem: lineItem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.lineItem',
-                ),
-              )
-              .toList() ??
-          this.lineItem,
-      totalPriceComponent: totalPriceComponent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.totalPriceComponent',
-                ),
-              )
-              .toList() ??
-          this.totalPriceComponent,
-      totalNet: totalNet?.copyWith(
-            objectPath: '$newObjectPath.totalNet',
-          ) ??
-          this.totalNet,
-      totalGross: totalGross?.copyWith(
-            objectPath: '$newObjectPath.totalGross',
-          ) ??
-          this.totalGross,
-      paymentTerms: paymentTerms?.copyWith(
-            objectPath: '$newObjectPath.paymentTerms',
-          ) ??
-          this.paymentTerms,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      cancelledReason: cancelledReason ?? this.cancelledReason,
+      type: type ?? this.type,
+      subject: subject ?? this.subject,
+      recipient: recipient ?? this.recipient,
+      date: date ?? this.date,
+      participant: participant ?? this.participant,
+      issuer: issuer ?? this.issuer,
+      account: account ?? this.account,
+      lineItem: lineItem ?? this.lineItem,
+      totalPriceComponent: totalPriceComponent ?? this.totalPriceComponent,
+      totalNet: totalNet ?? this.totalNet,
+      totalGross: totalGross ?? this.totalGross,
+      paymentTerms: paymentTerms ?? this.paymentTerms,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Invoice) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! InvoiceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1355,25 +1189,25 @@ class Invoice extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1415,7 +1249,7 @@ class Invoice extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<InvoiceParticipant>(
+    if (!listEquals<InvoiceParticipantBuilder>(
       participant,
       o.participant,
     )) {
@@ -1433,13 +1267,13 @@ class Invoice extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<InvoiceLineItem>(
+    if (!listEquals<InvoiceLineItemBuilder>(
       lineItem,
       o.lineItem,
     )) {
       return false;
     }
-    if (!listEquals<InvoicePriceComponent>(
+    if (!listEquals<InvoicePriceComponentBuilder>(
       totalPriceComponent,
       o.totalPriceComponent,
     )) {
@@ -1463,7 +1297,7 @@ class Invoice extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -1473,45 +1307,42 @@ class Invoice extends DomainResource {
   }
 }
 
-/// [InvoiceParticipant]
+/// [InvoiceParticipantBuilder]
 /// Indicates who or what performed or participated in the charged service.
-class InvoiceParticipant extends BackboneElement {
+class InvoiceParticipantBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [InvoiceParticipant]
+  /// [InvoiceParticipantBuilder]
 
-  const InvoiceParticipant({
+  InvoiceParticipantBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.role,
-    required this.actor,
+    this.actor,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Invoice.participant',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory InvoiceParticipant.empty() => InvoiceParticipant(
-        actor: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory InvoiceParticipantBuilder.empty() => InvoiceParticipantBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InvoiceParticipant.fromJson(
+  factory InvoiceParticipantBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Invoice.participant';
-    return InvoiceParticipant(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return InvoiceParticipantBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1520,8 +1351,8 @@ class InvoiceParticipant extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1529,37 +1360,37 @@ class InvoiceParticipant extends BackboneElement {
             ),
           )
           .toList(),
-      role: JsonParser.parseObject<CodeableConcept>(
+      role: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'role',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.role',
       ),
-      actor: JsonParser.parseObject<Reference>(
+      actor: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'actor',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.actor',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [InvoiceParticipant]
+  /// Deserialize [InvoiceParticipantBuilder]
   /// from a [String] or [YamlMap] object
-  factory InvoiceParticipant.fromYaml(
+  factory InvoiceParticipantBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return InvoiceParticipant.fromJson(
+      return InvoiceParticipantBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return InvoiceParticipant.fromJson(
+      return InvoiceParticipantBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'InvoiceParticipant '
+        'InvoiceParticipantBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1567,16 +1398,16 @@ class InvoiceParticipant extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [InvoiceParticipant]
+  /// [InvoiceParticipantBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory InvoiceParticipant.fromJsonString(
+  factory InvoiceParticipantBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return InvoiceParticipant.fromJson(json);
+      return InvoiceParticipantBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1590,28 +1421,28 @@ class InvoiceParticipant extends BackboneElement {
   /// Describes the type of involvement (e.g. transcriptionist, creator
   /// etc.). If the invoice has been created automatically, the Participant
   /// may be a billing engine or another kind of device.
-  final CodeableConcept? role;
+  CodeableConceptBuilder? role;
 
   /// [actor]
   /// The device, practitioner, etc. who performed or participated in the
   /// service.
-  final Reference actor;
+  ReferenceBuilder? actor;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1620,31 +1451,16 @@ class InvoiceParticipant extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'actor',
-      actor,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('role', role);
+    addField('actor', actor);
     return json;
   }
 
@@ -1663,11 +1479,11 @@ class InvoiceParticipant extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1686,7 +1502,9 @@ class InvoiceParticipant extends BackboneElement {
           fields.add(role!);
         }
       case 'actor':
-        fields.add(actor);
+        if (actor != null) {
+          fields.add(actor!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1697,7 +1515,7 @@ class InvoiceParticipant extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1706,65 +1524,67 @@ class InvoiceParticipant extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
+          if (child is CodeableConceptBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
         {
-          if (child is Reference) {
-            return copyWith(actor: child);
+          if (child is ReferenceBuilder) {
+            actor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1780,58 +1600,49 @@ class InvoiceParticipant extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'actor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [InvoiceParticipant]
+  /// Creates a new [InvoiceParticipantBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  InvoiceParticipant createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
+          role = CodeableConceptBuilder.empty();
+          return;
         }
       case 'actor':
         {
-          return copyWith(
-            actor: Reference.empty(),
-          );
+          actor = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1840,30 +1651,29 @@ class InvoiceParticipant extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  InvoiceParticipant clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool role = false,
+    bool actor = false,
   }) {
-    return InvoiceParticipant(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      role: role ? null : this.role,
-      actor: actor,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (role) this.role = null;
+    if (actor) this.actor = null;
   }
 
   @override
-  InvoiceParticipant clone() => throw UnimplementedError();
+  InvoiceParticipantBuilder clone() => throw UnimplementedError();
   @override
-  InvoiceParticipant copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? role,
-    Reference? actor,
+  InvoiceParticipantBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? role,
+    ReferenceBuilder? actor,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1871,42 +1681,36 @@ class InvoiceParticipant extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return InvoiceParticipant(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      actor: actor?.copyWith(
-            objectPath: '$newObjectPath.actor',
-          ) ??
-          this.actor,
+    final newResult = InvoiceParticipantBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      role: role ?? this.role,
+      actor: actor ?? this.actor,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! InvoiceParticipant) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! InvoiceParticipantBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1917,13 +1721,13 @@ class InvoiceParticipant extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1945,20 +1749,20 @@ class InvoiceParticipant extends BackboneElement {
   }
 }
 
-/// [InvoiceLineItem]
+/// [InvoiceLineItemBuilder]
 /// Each line item represents one charge for goods and services rendered.
 /// Details such as date, code and amount are found in the referenced
 /// ChargeItem resource.
-class InvoiceLineItem extends BackboneElement {
+class InvoiceLineItemBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [InvoiceLineItem]
+  /// [InvoiceLineItemBuilder]
 
-  const InvoiceLineItem({
+  InvoiceLineItemBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.sequence,
-    required this.chargeItemX,
+    this.chargeItemX,
     this.priceComponent,
     super.disallowExtensions,
   }) : super(
@@ -1966,27 +1770,24 @@ class InvoiceLineItem extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory InvoiceLineItem.empty() => InvoiceLineItem(
-        chargeItemX: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory InvoiceLineItemBuilder.empty() => InvoiceLineItemBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InvoiceLineItem.fromJson(
+  factory InvoiceLineItemBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Invoice.lineItem';
-    return InvoiceLineItem(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return InvoiceLineItemBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1995,8 +1796,8 @@ class InvoiceLineItem extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2004,23 +1805,24 @@ class InvoiceLineItem extends BackboneElement {
             ),
           )
           .toList(),
-      sequence: JsonParser.parsePrimitive<FhirPositiveInt>(
+      sequence: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'sequence',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.sequence',
       ),
-      chargeItemX: JsonParser.parsePolymorphic<ChargeItemXInvoiceLineItem>(
+      chargeItemX:
+          JsonParser.parsePolymorphic<ChargeItemXInvoiceLineItemBuilder>(
         json,
         {
-          'chargeItemReference': Reference.fromJson,
-          'chargeItemCodeableConcept': CodeableConcept.fromJson,
+          'chargeItemReference': ReferenceBuilder.fromJson,
+          'chargeItemCodeableConcept': CodeableConceptBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
       priceComponent: (json['priceComponent'] as List<dynamic>?)
-          ?.map<InvoicePriceComponent>(
-            (v) => InvoicePriceComponent.fromJson(
+          ?.map<InvoicePriceComponentBuilder>(
+            (v) => InvoicePriceComponentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.priceComponent',
@@ -2031,22 +1833,22 @@ class InvoiceLineItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [InvoiceLineItem]
+  /// Deserialize [InvoiceLineItemBuilder]
   /// from a [String] or [YamlMap] object
-  factory InvoiceLineItem.fromYaml(
+  factory InvoiceLineItemBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return InvoiceLineItem.fromJson(
+      return InvoiceLineItemBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return InvoiceLineItem.fromJson(
+      return InvoiceLineItemBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'InvoiceLineItem '
+        'InvoiceLineItemBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2054,16 +1856,16 @@ class InvoiceLineItem extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [InvoiceLineItem]
+  /// [InvoiceLineItemBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory InvoiceLineItem.fromJsonString(
+  factory InvoiceLineItemBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return InvoiceLineItem.fromJson(json);
+      return InvoiceLineItemBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2075,21 +1877,22 @@ class InvoiceLineItem extends BackboneElement {
 
   /// [sequence]
   /// Sequence in which the items appear on the invoice.
-  final FhirPositiveInt? sequence;
+  FhirPositiveIntBuilder? sequence;
 
   /// [chargeItemX]
   /// The ChargeItem contains information such as the billing code, date,
   /// amount etc. If no further details are required for the lineItem, inline
   /// billing codes can be added using the CodeableConcept data type instead
   /// of the Reference.
-  final ChargeItemXInvoiceLineItem chargeItemX;
+  ChargeItemXInvoiceLineItemBuilder? chargeItemX;
 
-  /// Getter for [chargeItemReference] as a Reference
-  Reference? get chargeItemReference => chargeItemX.isAs<Reference>();
+  /// Getter for [chargeItemReference] as a ReferenceBuilder
+  ReferenceBuilder? get chargeItemReference =>
+      chargeItemX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [chargeItemCodeableConcept] as a CodeableConcept
-  CodeableConcept? get chargeItemCodeableConcept =>
-      chargeItemX.isAs<CodeableConcept>();
+  /// Getter for [chargeItemCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get chargeItemCodeableConcept =>
+      chargeItemX?.isAs<CodeableConceptBuilder>();
 
   /// [priceComponent]
   /// The price for a ChargeItem may be calculated as a base price with
@@ -2098,23 +1901,23 @@ class InvoiceLineItem extends BackboneElement {
   /// conditions that apply to a billing code is currently under development.
   /// The priceComponent element can be used to offer transparency to the
   /// recipient of the Invoice as to how the prices have been calculated.
-  final List<InvoicePriceComponent>? priceComponent;
+  List<InvoicePriceComponentBuilder>? priceComponent;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2123,37 +1926,21 @@ class InvoiceLineItem extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'sequence',
-      sequence,
-    );
-    final chargeItemXFhirType = chargeItemX.fhirType;
-    addField(
-      'chargeItem${chargeItemXFhirType.capitalize()}',
-      chargeItemX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('sequence', sequence);
+    if (chargeItemX != null) {
+      final fhirType = chargeItemX!.fhirType;
+      addField('chargeItem${fhirType.capitalize()}', chargeItemX);
+    }
 
-    addField(
-      'priceComponent',
-      priceComponent,
-    );
+    addField('priceComponent', priceComponent);
     return json;
   }
 
@@ -2173,11 +1960,11 @@ class InvoiceLineItem extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2196,16 +1983,20 @@ class InvoiceLineItem extends BackboneElement {
           fields.add(sequence!);
         }
       case 'chargeItem':
-        fields.add(chargeItemX);
+        if (chargeItemX != null) {
+          fields.add(chargeItemX!);
+        }
       case 'chargeItemX':
-        fields.add(chargeItemX);
+        if (chargeItemX != null) {
+          fields.add(chargeItemX!);
+        }
       case 'chargeItemReference':
-        if (chargeItemX is Reference) {
-          fields.add(chargeItemX);
+        if (chargeItemX is ReferenceBuilder) {
+          fields.add(chargeItemX!);
         }
       case 'chargeItemCodeableConcept':
-        if (chargeItemX is CodeableConcept) {
-          fields.add(chargeItemX);
+        if (chargeItemX is CodeableConceptBuilder) {
+          fields.add(chargeItemX!);
         }
       case 'priceComponent':
         if (priceComponent != null) {
@@ -2221,7 +2012,7 @@ class InvoiceLineItem extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2230,101 +2021,107 @@ class InvoiceLineItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sequence':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
+          if (child is FhirPositiveIntBuilder) {
+            sequence = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'chargeItemX':
         {
-          if (child is ChargeItemXInvoiceLineItem) {
-            return copyWith(chargeItemX: child);
+          if (child is ChargeItemXInvoiceLineItemBuilder) {
+            chargeItemX = child;
+            return;
           } else {
-            if (child is Reference) {
-              return copyWith(chargeItemX: child);
+            if (child is ReferenceBuilder) {
+              chargeItemX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(chargeItemX: child);
+            if (child is CodeableConceptBuilder) {
+              chargeItemX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'chargeItemReference':
         {
-          if (child is Reference) {
-            return copyWith(chargeItemX: child);
+          if (child is ReferenceBuilder) {
+            chargeItemX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'chargeItemCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(chargeItemX: child);
+          if (child is CodeableConceptBuilder) {
+            chargeItemX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'priceComponent':
         {
-          if (child is List<InvoicePriceComponent>) {
-            // Add all elements from passed list
-            final newList = [...?priceComponent, ...child];
-            return copyWith(priceComponent: newList);
-          } else if (child is InvoicePriceComponent) {
+          if (child is List<InvoicePriceComponentBuilder>) {
+            // Replace or create new list
+            priceComponent = child;
+            return;
+          } else if (child is InvoicePriceComponentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?priceComponent, child];
-            return copyWith(priceComponent: newList);
+            priceComponent = [...(priceComponent ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2340,79 +2137,68 @@ class InvoiceLineItem extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'sequence':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'chargeItem':
       case 'chargeItemX':
-        return ['Reference', 'CodeableConcept'];
+        return ['ReferenceBuilder', 'CodeableConceptBuilder'];
       case 'chargeItemReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'chargeItemCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'priceComponent':
-        return ['InvoicePriceComponent'];
+        return ['InvoicePriceComponentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [InvoiceLineItem]
+  /// Creates a new [InvoiceLineItemBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  InvoiceLineItem createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'sequence':
         {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
+          sequence = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'chargeItem':
       case 'chargeItemX':
       case 'chargeItemReference':
         {
-          return copyWith(
-            chargeItemX: Reference.empty(),
-          );
+          chargeItemX = ReferenceBuilder.empty();
+          return;
         }
       case 'chargeItemCodeableConcept':
         {
-          return copyWith(
-            chargeItemX: CodeableConcept.empty(),
-          );
+          chargeItemX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'priceComponent':
         {
-          return copyWith(
-            priceComponent: <InvoicePriceComponent>[],
-          );
+          priceComponent = <InvoicePriceComponentBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2421,33 +2207,32 @@ class InvoiceLineItem extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  InvoiceLineItem clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool sequence = false,
+    bool chargeItem = false,
     bool priceComponent = false,
   }) {
-    return InvoiceLineItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence ? null : this.sequence,
-      chargeItemX: chargeItemX,
-      priceComponent: priceComponent ? null : this.priceComponent,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (sequence) this.sequence = null;
+    if (chargeItem) this.chargeItemX = null;
+    if (priceComponent) this.priceComponent = null;
   }
 
   @override
-  InvoiceLineItem clone() => throw UnimplementedError();
+  InvoiceLineItemBuilder clone() => throw UnimplementedError();
   @override
-  InvoiceLineItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    ChargeItemXInvoiceLineItem? chargeItemX,
-    List<InvoicePriceComponent>? priceComponent,
+  InvoiceLineItemBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirPositiveIntBuilder? sequence,
+    ChargeItemXInvoiceLineItemBuilder? chargeItemX,
+    List<InvoicePriceComponentBuilder>? priceComponent,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2455,50 +2240,37 @@ class InvoiceLineItem extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return InvoiceLineItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      chargeItemX: chargeItemX?.copyWith(
-            objectPath: '$newObjectPath.chargeItemX',
-          ) as ChargeItemXInvoiceLineItem? ??
-          this.chargeItemX,
-      priceComponent: priceComponent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.priceComponent',
-                ),
-              )
-              .toList() ??
-          this.priceComponent,
+    final newResult = InvoiceLineItemBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      sequence: sequence ?? this.sequence,
+      chargeItemX: chargeItemX ?? this.chargeItemX,
+      priceComponent: priceComponent ?? this.priceComponent,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! InvoiceLineItem) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! InvoiceLineItemBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2509,13 +2281,13 @@ class InvoiceLineItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2533,7 +2305,7 @@ class InvoiceLineItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<InvoicePriceComponent>(
+    if (!listEquals<InvoicePriceComponentBuilder>(
       priceComponent,
       o.priceComponent,
     )) {
@@ -2543,22 +2315,22 @@ class InvoiceLineItem extends BackboneElement {
   }
 }
 
-/// [InvoicePriceComponent]
+/// [InvoicePriceComponentBuilder]
 /// The price for a ChargeItem may be calculated as a base price with
 /// surcharges/deductions that apply in certain conditions. A
 /// ChargeItemDefinition resource that defines the prices, factors and
 /// conditions that apply to a billing code is currently under development.
 /// The priceComponent element can be used to offer transparency to the
 /// recipient of the Invoice as to how the prices have been calculated.
-class InvoicePriceComponent extends BackboneElement {
+class InvoicePriceComponentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [InvoicePriceComponent]
+  /// [InvoicePriceComponentBuilder]
 
-  const InvoicePriceComponent({
+  InvoicePriceComponentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.code,
     this.factor,
     this.amount,
@@ -2568,27 +2340,25 @@ class InvoicePriceComponent extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory InvoicePriceComponent.empty() => InvoicePriceComponent(
-        type: InvoicePriceComponentType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory InvoicePriceComponentBuilder.empty() =>
+      InvoicePriceComponentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InvoicePriceComponent.fromJson(
+  factory InvoicePriceComponentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Invoice.lineItem.priceComponent';
-    return InvoicePriceComponent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return InvoicePriceComponentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2597,8 +2367,8 @@ class InvoicePriceComponent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2606,49 +2376,49 @@ class InvoicePriceComponent extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<InvoicePriceComponentType>(
+      type: JsonParser.parsePrimitive<InvoicePriceComponentTypeBuilder>(
         json,
         'type',
-        InvoicePriceComponentType.fromJson,
+        InvoicePriceComponentTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      code: JsonParser.parseObject<CodeableConcept>(
+      ),
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      factor: JsonParser.parsePrimitive<FhirDecimal>(
+      factor: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'factor',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.factor',
       ),
-      amount: JsonParser.parseObject<Money>(
+      amount: JsonParser.parseObject<MoneyBuilder>(
         json,
         'amount',
-        Money.fromJson,
+        MoneyBuilder.fromJson,
         '$objectPath.amount',
       ),
     );
   }
 
-  /// Deserialize [InvoicePriceComponent]
+  /// Deserialize [InvoicePriceComponentBuilder]
   /// from a [String] or [YamlMap] object
-  factory InvoicePriceComponent.fromYaml(
+  factory InvoicePriceComponentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return InvoicePriceComponent.fromJson(
+      return InvoicePriceComponentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return InvoicePriceComponent.fromJson(
+      return InvoicePriceComponentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'InvoicePriceComponent '
+        'InvoicePriceComponentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2656,16 +2426,16 @@ class InvoicePriceComponent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [InvoicePriceComponent]
+  /// [InvoicePriceComponentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory InvoicePriceComponent.fromJsonString(
+  factory InvoicePriceComponentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return InvoicePriceComponent.fromJson(json);
+      return InvoicePriceComponentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2677,37 +2447,37 @@ class InvoicePriceComponent extends BackboneElement {
 
   /// [type]
   /// This code identifies the type of the component.
-  final InvoicePriceComponentType type;
+  InvoicePriceComponentTypeBuilder? type;
 
   /// [code]
   /// A code that identifies the component. Codes may be used to
   /// differentiate between kinds of taxes, surcharges, discounts etc.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [factor]
   /// The factor that has been applied on the base price for calculating this
   /// component.
-  final FhirDecimal? factor;
+  FhirDecimalBuilder? factor;
 
   /// [amount]
   /// The amount calculated for this component.
-  final Money? amount;
+  MoneyBuilder? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2716,39 +2486,18 @@ class InvoicePriceComponent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'factor',
-      factor,
-    );
-    addField(
-      'amount',
-      amount,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('code', code);
+    addField('factor', factor);
+    addField('amount', amount);
     return json;
   }
 
@@ -2769,11 +2518,11 @@ class InvoicePriceComponent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2788,7 +2537,9 @@ class InvoicePriceComponent extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'code':
         if (code != null) {
           fields.add(code!);
@@ -2811,7 +2562,7 @@ class InvoicePriceComponent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2820,81 +2571,85 @@ class InvoicePriceComponent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is InvoicePriceComponentType) {
-            return copyWith(type: child);
+          if (child is InvoicePriceComponentTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'factor':
         {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
+          if (child is FhirDecimalBuilder) {
+            factor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'amount':
         {
-          if (child is Money) {
-            return copyWith(amount: child);
+          if (child is MoneyBuilder) {
+            amount = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2910,74 +2665,63 @@ class InvoicePriceComponent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'factor':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'amount':
-        return ['Money'];
+        return ['MoneyBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [InvoicePriceComponent]
+  /// Creates a new [InvoicePriceComponentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  InvoicePriceComponent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: InvoicePriceComponentType.empty(),
-          );
+          type = InvoicePriceComponentTypeBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'factor':
         {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
+          factor = FhirDecimalBuilder.empty();
+          return;
         }
       case 'amount':
         {
-          return copyWith(
-            amount: Money.empty(),
-          );
+          amount = MoneyBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2986,36 +2730,35 @@ class InvoicePriceComponent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  InvoicePriceComponent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool code = false,
     bool factor = false,
     bool amount = false,
   }) {
-    return InvoicePriceComponent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      code: code ? null : this.code,
-      factor: factor ? null : this.factor,
-      amount: amount ? null : this.amount,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (code) this.code = null;
+    if (factor) this.factor = null;
+    if (amount) this.amount = null;
   }
 
   @override
-  InvoicePriceComponent clone() => throw UnimplementedError();
+  InvoicePriceComponentBuilder clone() => throw UnimplementedError();
   @override
-  InvoicePriceComponent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    InvoicePriceComponentType? type,
-    CodeableConcept? code,
-    FhirDecimal? factor,
-    Money? amount,
+  InvoicePriceComponentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    InvoicePriceComponentTypeBuilder? type,
+    CodeableConceptBuilder? code,
+    FhirDecimalBuilder? factor,
+    MoneyBuilder? amount,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3023,50 +2766,38 @@ class InvoicePriceComponent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return InvoicePriceComponent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
+    final newResult = InvoicePriceComponentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      code: code ?? this.code,
+      factor: factor ?? this.factor,
+      amount: amount ?? this.amount,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! InvoicePriceComponent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! InvoicePriceComponentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3077,13 +2808,13 @@ class InvoicePriceComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

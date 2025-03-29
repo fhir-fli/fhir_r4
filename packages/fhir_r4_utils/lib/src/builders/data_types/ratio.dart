@@ -1,64 +1,65 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Ratio]
+/// [RatioBuilder]
 /// A relationship of two Quantity values - expressed as a numerator and a
 /// denominator.
-class Ratio extends DataType
+class RatioBuilder extends DataTypeBuilder
     implements
-        DetailXGoalTarget,
-        PresentationXIngredientStrength,
-        ConcentrationXIngredientStrength,
-        StrengthXIngredientReferenceStrength,
-        RateXMedicationAdministrationDosage,
-        RateXNutritionOrderAdministration,
-        ValueXObservation,
-        ValueXObservationComponent,
-        ValueXParametersParameter,
-        QuantityXServiceRequest,
-        DefaultValueXStructureMapSource,
-        AmountXSubstanceDefinitionRelationship,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        RateXDosageDoseAndRate,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        DetailXGoalTargetBuilder,
+        PresentationXIngredientStrengthBuilder,
+        ConcentrationXIngredientStrengthBuilder,
+        StrengthXIngredientReferenceStrengthBuilder,
+        RateXMedicationAdministrationDosageBuilder,
+        RateXNutritionOrderAdministrationBuilder,
+        ValueXObservationBuilder,
+        ValueXObservationComponentBuilder,
+        ValueXParametersParameterBuilder,
+        QuantityXServiceRequestBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        AmountXSubstanceDefinitionRelationshipBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        RateXDosageDoseAndRateBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Ratio]
+  /// [RatioBuilder]
 
-  const Ratio({
+  RatioBuilder({
     super.id,
     super.extension_,
     this.numerator,
     this.denominator,
     super.disallowExtensions,
-    super.objectPath = 'Ratio',
+    super.objectPath = 'RatioBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Ratio.empty() => const Ratio();
+  /// For Builder classes, no fields are required
+  factory RatioBuilder.empty() => RatioBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Ratio.fromJson(
+  factory RatioBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Ratio';
-    return Ratio(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RatioBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -66,37 +67,37 @@ class Ratio extends DataType
             ),
           )
           .toList(),
-      numerator: JsonParser.parseObject<Quantity>(
+      numerator: JsonParser.parseObject<QuantityBuilder>(
         json,
         'numerator',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.numerator',
       ),
-      denominator: JsonParser.parseObject<Quantity>(
+      denominator: JsonParser.parseObject<QuantityBuilder>(
         json,
         'denominator',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.denominator',
       ),
     );
   }
 
-  /// Deserialize [Ratio]
+  /// Deserialize [RatioBuilder]
   /// from a [String] or [YamlMap] object
-  factory Ratio.fromYaml(
+  factory RatioBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Ratio.fromJson(
+      return RatioBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Ratio.fromJson(
+      return RatioBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Ratio '
+        'RatioBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -104,16 +105,16 @@ class Ratio extends DataType
   }
 
   /// Factory constructor for
-  /// [Ratio]
+  /// [RatioBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Ratio.fromJsonString(
+  factory RatioBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Ratio.fromJson(json);
+      return RatioBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -125,27 +126,27 @@ class Ratio extends DataType
 
   /// [numerator]
   /// The value of the numerator.
-  final Quantity? numerator;
+  QuantityBuilder? numerator;
 
   /// [denominator]
   /// The value of the denominator.
-  final Quantity? denominator;
+  QuantityBuilder? denominator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -154,27 +155,15 @@ class Ratio extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'numerator',
-      numerator,
-    );
-    addField(
-      'denominator',
-      denominator,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('numerator', numerator);
+    addField('denominator', denominator);
     return json;
   }
 
@@ -192,11 +181,11 @@ class Ratio extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -224,7 +213,7 @@ class Ratio extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -233,51 +222,53 @@ class Ratio extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'numerator':
         {
-          if (child is Quantity) {
-            return copyWith(numerator: child);
+          if (child is QuantityBuilder) {
+            numerator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'denominator':
         {
-          if (child is Quantity) {
-            return copyWith(denominator: child);
+          if (child is QuantityBuilder) {
+            denominator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -293,50 +284,42 @@ class Ratio extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'numerator':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'denominator':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Ratio]
+  /// Creates a new [RatioBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Ratio createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'numerator':
         {
-          return copyWith(
-            numerator: Quantity.empty(),
-          );
+          numerator = QuantityBuilder.empty();
+          return;
         }
       case 'denominator':
         {
-          return copyWith(
-            denominator: Quantity.empty(),
-          );
+          denominator = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -345,28 +328,26 @@ class Ratio extends DataType
 
   /// Clears specific fields in this object
   @override
-  Ratio clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool numerator = false,
     bool denominator = false,
   }) {
-    return Ratio(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      numerator: numerator ? null : this.numerator,
-      denominator: denominator ? null : this.denominator,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (numerator) this.numerator = null;
+    if (denominator) this.denominator = null;
   }
 
   @override
-  Ratio clone() => throw UnimplementedError();
+  RatioBuilder clone() => throw UnimplementedError();
   @override
-  Ratio copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Quantity? numerator,
-    Quantity? denominator,
+  RatioBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    QuantityBuilder? numerator,
+    QuantityBuilder? denominator,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -374,34 +355,35 @@ class Ratio extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Ratio(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      numerator: numerator?.copyWith(
-            objectPath: '$newObjectPath.numerator',
-          ) ??
-          this.numerator,
-      denominator: denominator?.copyWith(
-            objectPath: '$newObjectPath.denominator',
-          ) ??
-          this.denominator,
+    final newResult = RatioBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      numerator: numerator ?? this.numerator,
+      denominator: denominator ?? this.denominator,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Ratio) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RatioBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -412,7 +394,7 @@ class Ratio extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

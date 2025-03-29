@@ -1,49 +1,50 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [CodeableReference]
+/// [CodeableReferenceBuilder]
 /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).
-class CodeableReference extends DataType
+class CodeableReferenceBuilder extends DataTypeBuilder
     implements
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [CodeableReference]
+  /// [CodeableReferenceBuilder]
 
-  const CodeableReference({
+  CodeableReferenceBuilder({
     super.id,
     super.extension_,
     this.concept,
     this.reference,
     super.disallowExtensions,
-    super.objectPath = 'CodeableReference',
+    super.objectPath = 'CodeableReferenceBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CodeableReference.empty() => const CodeableReference();
+  /// For Builder classes, no fields are required
+  factory CodeableReferenceBuilder.empty() => CodeableReferenceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeableReference.fromJson(
+  factory CodeableReferenceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'CodeableReference';
-    return CodeableReference(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CodeableReferenceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -51,37 +52,37 @@ class CodeableReference extends DataType
             ),
           )
           .toList(),
-      concept: JsonParser.parseObject<CodeableConcept>(
+      concept: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'concept',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.concept',
       ),
-      reference: JsonParser.parseObject<Reference>(
+      reference: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'reference',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.reference',
       ),
     );
   }
 
-  /// Deserialize [CodeableReference]
+  /// Deserialize [CodeableReferenceBuilder]
   /// from a [String] or [YamlMap] object
-  factory CodeableReference.fromYaml(
+  factory CodeableReferenceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CodeableReference.fromJson(
+      return CodeableReferenceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CodeableReference.fromJson(
+      return CodeableReferenceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CodeableReference '
+        'CodeableReferenceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -89,16 +90,16 @@ class CodeableReference extends DataType
   }
 
   /// Factory constructor for
-  /// [CodeableReference]
+  /// [CodeableReferenceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeableReference.fromJsonString(
+  factory CodeableReferenceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CodeableReference.fromJson(json);
+      return CodeableReferenceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -111,28 +112,28 @@ class CodeableReference extends DataType
   /// [concept]
   /// A reference to a concept - e.g. the information is identified by its
   /// general class to the degree of precision found in the terminology.
-  final CodeableConcept? concept;
+  CodeableConceptBuilder? concept;
 
   /// [reference]
   /// A reference to a resource the provides exact details about the
   /// information being referenced.
-  final Reference? reference;
+  ReferenceBuilder? reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -141,27 +142,15 @@ class CodeableReference extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'concept',
-      concept,
-    );
-    addField(
-      'reference',
-      reference,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('concept', concept);
+    addField('reference', reference);
     return json;
   }
 
@@ -179,11 +168,11 @@ class CodeableReference extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -211,7 +200,7 @@ class CodeableReference extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -220,51 +209,53 @@ class CodeableReference extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'concept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(concept: child);
+          if (child is CodeableConceptBuilder) {
+            concept = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is Reference) {
-            return copyWith(reference: child);
+          if (child is ReferenceBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -280,50 +271,42 @@ class CodeableReference extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'concept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CodeableReference]
+  /// Creates a new [CodeableReferenceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CodeableReference createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'concept':
         {
-          return copyWith(
-            concept: CodeableConcept.empty(),
-          );
+          concept = CodeableConceptBuilder.empty();
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: Reference.empty(),
-          );
+          reference = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -332,28 +315,26 @@ class CodeableReference extends DataType
 
   /// Clears specific fields in this object
   @override
-  CodeableReference clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool concept = false,
     bool reference = false,
   }) {
-    return CodeableReference(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      concept: concept ? null : this.concept,
-      reference: reference ? null : this.reference,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (concept) this.concept = null;
+    if (reference) this.reference = null;
   }
 
   @override
-  CodeableReference clone() => throw UnimplementedError();
+  CodeableReferenceBuilder clone() => throw UnimplementedError();
   @override
-  CodeableReference copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    CodeableConcept? concept,
-    Reference? reference,
+  CodeableReferenceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    CodeableConceptBuilder? concept,
+    ReferenceBuilder? reference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -361,34 +342,35 @@ class CodeableReference extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return CodeableReference(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      concept: concept?.copyWith(
-            objectPath: '$newObjectPath.concept',
-          ) ??
-          this.concept,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
+    final newResult = CodeableReferenceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      concept: concept ?? this.concept,
+      reference: reference ?? this.reference,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CodeableReference) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CodeableReferenceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -399,7 +381,7 @@ class CodeableReference extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart' show FHIRException;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -250,22 +251,21 @@ class ElementBuilder extends FhirBaseBuilder {
     return <FhirBaseBuilder>[];
   }
 
-  @override
-
   /// Sets a property by name.
-  FhirBaseBuilder setChildByName(String childName, dynamic child) {
+  @override
+  void setChildByName(String childName, dynamic child) {
     if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
     switch (childName) {
       case 'id':
         if (child is FhirStringBuilder) {
-          return copyWith(id: child);
+          id = child;
         }
         throw Exception('Cannot set child value for $childName');
       case 'extension':
         if (child is List<FhirExtensionBuilder>) {
-          return copyWith(extension_: child);
+          extension_ = child;
         }
         throw Exception('Cannot set child value for $childName');
     }
@@ -287,24 +287,23 @@ class ElementBuilder extends FhirBaseBuilder {
 
   /// Creates an empty property in the object
   @override
-  ElementBuilder createProperty(String propertyName) {
-    switch (propertyName) {
-      case 'id':
-        return copyWith(id: FhirStringBuilder.empty());
-      case 'extension':
-        return copyWith(extension_: <FhirExtensionBuilder>[]);
-      default:
-        throw Exception('Cannot make property for $propertyName');
+  void createProperty(String propertyName) {
+    if (propertyName == 'id') {
+      id = FhirStringBuilder.empty();
+    }
+    if (propertyName == 'extension') {
+      extension_ = <FhirExtensionBuilder>[];
     }
   }
 
   /// Clears specific fields in this object
   @override
-  ElementBuilder clear({bool id = false, bool extension_ = false}) {
-    return ElementBuilder(
-      id: id == true ? FhirStringBuilder.empty() : this.id,
-      extension_:
-          extension_ == true ? <FhirExtensionBuilder>[] : this.extension_,
-    );
+  void clear({bool id = false, bool extension_ = false}) {
+    if (id) {
+      this.id = null;
+    }
+    if (extension_) {
+      this.extension_ = null;
+    }
   }
 }

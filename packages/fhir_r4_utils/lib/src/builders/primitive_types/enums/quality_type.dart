@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Type for quality report.
-class QualityType extends FhirCodeEnum {
+class QualityTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  QualityType._({
+  QualityTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class QualityType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory QualityType(
+  factory QualityTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return QualityType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return QualityTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,56 +43,59 @@ class QualityType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [QualityType] with element only
-  factory QualityType.empty() => QualityType._(validatedValue: '');
+  /// Create empty [QualityTypeBuilder] with element only
+  factory QualityTypeBuilder.empty() =>
+      QualityTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [QualityType] from JSON.
-  factory QualityType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [QualityTypeBuilder] from JSON.
+  factory QualityTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QualityType.elementOnly.withElement(element);
+      return QualityTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'QualityType cannot be constructed from JSON.',
+        'QualityTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return QualityType._(
+    return QualityTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// indel
-  static final QualityType indel = QualityType._(
+  static QualityTypeBuilder indel = QualityTypeBuilder._(
     validatedValue: 'indel',
-    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'INDEL Comparison'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'INDEL Comparison'.toFhirStringBuilder,
   );
 
   /// snp
-  static final QualityType snp = QualityType._(
+  static QualityTypeBuilder snp = QualityTypeBuilder._(
     validatedValue: 'snp',
-    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SNP Comparison'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'SNP Comparison'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final QualityType unknown = QualityType._(
+  static QualityTypeBuilder unknown = QualityTypeBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'UNKNOWN Comparison'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'UNKNOWN Comparison'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final QualityType elementOnly = QualityType._(validatedValue: '');
+  static QualityTypeBuilder elementOnly =
+      QualityTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<QualityType> values = [
+  static List<QualityTypeBuilder> values = [
     indel,
     snp,
     unknown,
@@ -100,14 +103,14 @@ class QualityType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  QualityType clone() => QualityType._(
+  QualityTypeBuilder clone() => QualityTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  QualityType withElement(Element? newElement) {
-    return QualityType._(validatedValue: value, element: newElement);
+  QualityTypeBuilder withElement(ElementBuilder? newElement) {
+    return QualityTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,11 +126,11 @@ class QualityType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  QualityType copyWith({
+  QualityTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -138,7 +141,7 @@ class QualityType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return QualityType._(
+    return QualityTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -148,7 +151,7 @@ class QualityType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

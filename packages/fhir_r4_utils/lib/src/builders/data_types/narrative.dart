@@ -1,46 +1,44 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Narrative]
+/// [NarrativeBuilder]
 /// A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.
-class Narrative extends DataType {
+class NarrativeBuilder extends DataTypeBuilder {
   /// Primary constructor for
-  /// [Narrative]
+  /// [NarrativeBuilder]
 
-  const Narrative({
+  NarrativeBuilder({
     super.id,
     super.extension_,
-    required this.status,
-    required this.div,
+    this.status,
+    this.div,
     super.disallowExtensions,
-    super.objectPath = 'Narrative',
+    super.objectPath = 'NarrativeBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Narrative.empty() => Narrative(
-        status: NarrativeStatus.values.first,
-        div: FhirXhtml.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory NarrativeBuilder.empty() => NarrativeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Narrative.fromJson(
+  factory NarrativeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Narrative';
-    return Narrative(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return NarrativeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -48,37 +46,37 @@ class Narrative extends DataType {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<NarrativeStatus>(
+      status: JsonParser.parsePrimitive<NarrativeStatusBuilder>(
         json,
         'status',
-        NarrativeStatus.fromJson,
+        NarrativeStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      div: JsonParser.parsePrimitive<FhirXhtml>(
+      ),
+      div: JsonParser.parsePrimitive<FhirXhtmlBuilder>(
         json,
         'div',
-        FhirXhtml.fromJson,
+        FhirXhtmlBuilder.fromJson,
         '$objectPath.div',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [Narrative]
+  /// Deserialize [NarrativeBuilder]
   /// from a [String] or [YamlMap] object
-  factory Narrative.fromYaml(
+  factory NarrativeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Narrative.fromJson(
+      return NarrativeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Narrative.fromJson(
+      return NarrativeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Narrative '
+        'NarrativeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -86,16 +84,16 @@ class Narrative extends DataType {
   }
 
   /// Factory constructor for
-  /// [Narrative]
+  /// [NarrativeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Narrative.fromJsonString(
+  factory NarrativeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Narrative.fromJson(json);
+      return NarrativeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -109,27 +107,27 @@ class Narrative extends DataType {
   /// The status of the narrative - whether it's entirely generated (from
   /// just the defined data or the extensions too), or whether a human
   /// authored it and it may contain additional data.
-  final NarrativeStatus status;
+  NarrativeStatusBuilder? status;
 
   /// [div]
   /// The actual narrative content, a stripped down version of XHTML.
-  final FhirXhtml div;
+  FhirXhtmlBuilder? div;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -138,27 +136,15 @@ class Narrative extends DataType {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'div',
-      div,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('status', status);
+    addField('div', div);
     return json;
   }
 
@@ -176,11 +162,11 @@ class Narrative extends DataType {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -191,9 +177,13 @@ class Narrative extends DataType {
           fields.addAll(extension_!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'div':
-        fields.add(div);
+        if (div != null) {
+          fields.add(div!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -204,7 +194,7 @@ class Narrative extends DataType {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -213,51 +203,53 @@ class Narrative extends DataType {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is NarrativeStatus) {
-            return copyWith(status: child);
+          if (child is NarrativeStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'div':
         {
-          if (child is FhirXhtml) {
-            return copyWith(div: child);
+          if (child is FhirXhtmlBuilder) {
+            div = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -273,50 +265,42 @@ class Narrative extends DataType {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'div':
-        return ['FhirXhtml'];
+        return ['FhirXhtmlBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Narrative]
+  /// Creates a new [NarrativeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Narrative createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: NarrativeStatus.empty(),
-          );
+          status = NarrativeStatusBuilder.empty();
+          return;
         }
       case 'div':
         {
-          return copyWith(
-            div: FhirXhtml.empty(),
-          );
+          div = FhirXhtmlBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -325,26 +309,26 @@ class Narrative extends DataType {
 
   /// Clears specific fields in this object
   @override
-  Narrative clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool status = false,
+    bool div = false,
   }) {
-    return Narrative(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      status: status,
-      div: div,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (status) this.status = null;
+    if (div) this.div = null;
   }
 
   @override
-  Narrative clone() => throw UnimplementedError();
+  NarrativeBuilder clone() => throw UnimplementedError();
   @override
-  Narrative copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    NarrativeStatus? status,
-    FhirXhtml? div,
+  NarrativeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    NarrativeStatusBuilder? status,
+    FhirXhtmlBuilder? div,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -352,34 +336,35 @@ class Narrative extends DataType {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Narrative(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      div: div?.copyWith(
-            objectPath: '$newObjectPath.div',
-          ) ??
-          this.div,
+    final newResult = NarrativeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      status: status ?? this.status,
+      div: div ?? this.div,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Narrative) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! NarrativeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -390,7 +375,7 @@ class Narrative extends DataType {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

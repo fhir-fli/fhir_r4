@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Schedule]
+/// [ScheduleBuilder]
 /// A container for slots of time that may be available for booking
 /// appointments.
-class Schedule extends DomainResource {
+class ScheduleBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Schedule]
+  /// [ScheduleBuilder]
 
-  const Schedule({
+  ScheduleBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -23,7 +25,7 @@ class Schedule extends DomainResource {
     this.serviceCategory,
     this.serviceType,
     this.specialty,
-    required this.actor,
+    this.actor,
     this.planningHorizon,
     this.comment,
   }) : super(
@@ -32,51 +34,48 @@ class Schedule extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Schedule.empty() => const Schedule(
-        actor: <Reference>[],
-      );
+  /// For Builder classes, no fields are required
+  factory ScheduleBuilder.empty() => ScheduleBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Schedule.fromJson(
+  factory ScheduleBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Schedule';
-    return Schedule(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ScheduleBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -85,8 +84,8 @@ class Schedule extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -95,8 +94,8 @@ class Schedule extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -105,8 +104,8 @@ class Schedule extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -114,15 +113,15 @@ class Schedule extends DomainResource {
             ),
           )
           .toList(),
-      active: JsonParser.parsePrimitive<FhirBoolean>(
+      active: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'active',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.active',
       ),
       serviceCategory: (json['serviceCategory'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.serviceCategory',
@@ -131,8 +130,8 @@ class Schedule extends DomainResource {
           )
           .toList(),
       serviceType: (json['serviceType'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.serviceType',
@@ -141,8 +140,8 @@ class Schedule extends DomainResource {
           )
           .toList(),
       specialty: (json['specialty'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specialty',
@@ -150,9 +149,9 @@ class Schedule extends DomainResource {
             ),
           )
           .toList(),
-      actor: (json['actor'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
+      actor: (json['actor'] as List<dynamic>?)
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.actor',
@@ -160,37 +159,37 @@ class Schedule extends DomainResource {
             ),
           )
           .toList(),
-      planningHorizon: JsonParser.parseObject<Period>(
+      planningHorizon: JsonParser.parseObject<PeriodBuilder>(
         json,
         'planningHorizon',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.planningHorizon',
       ),
-      comment: JsonParser.parsePrimitive<FhirString>(
+      comment: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'comment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.comment',
       ),
     );
   }
 
-  /// Deserialize [Schedule]
+  /// Deserialize [ScheduleBuilder]
   /// from a [String] or [YamlMap] object
-  factory Schedule.fromYaml(
+  factory ScheduleBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Schedule.fromJson(
+      return ScheduleBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Schedule.fromJson(
+      return ScheduleBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Schedule '
+        'ScheduleBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -198,16 +197,16 @@ class Schedule extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Schedule]
+  /// [ScheduleBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Schedule.fromJsonString(
+  factory ScheduleBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Schedule.fromJson(json);
+      return ScheduleBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -219,31 +218,31 @@ class Schedule extends DomainResource {
 
   /// [identifier]
   /// External Ids for this item.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [active]
   /// Whether this schedule record is in active use or should not be used
   /// (such as was entered in error).
-  final FhirBoolean? active;
+  FhirBooleanBuilder? active;
 
   /// [serviceCategory]
   /// A broad categorization of the service that is to be performed during
   /// this appointment.
-  final List<CodeableConcept>? serviceCategory;
+  List<CodeableConceptBuilder>? serviceCategory;
 
   /// [serviceType]
   /// The specific service that is to be performed during this appointment.
-  final List<CodeableConcept>? serviceType;
+  List<CodeableConceptBuilder>? serviceType;
 
   /// [specialty]
   /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConceptBuilder>? specialty;
 
   /// [actor]
   /// Slots that reference this schedule resource provide the availability
   /// details to these referenced resource(s).
-  final List<Reference> actor;
+  List<ReferenceBuilder>? actor;
 
   /// [planningHorizon]
   /// The period of time that the slots that reference this Schedule resource
@@ -251,28 +250,28 @@ class Schedule extends DomainResource {
   /// organization's planning horizon; the interval for which they are
   /// currently accepting appointments. This does not define a "template" for
   /// planning outside these dates.
-  final Period? planningHorizon;
+  PeriodBuilder? planningHorizon;
 
   /// [comment]
   /// Comments on the availability to describe any extended information. Such
   /// as custom constraints on the slots that may be associated.
-  final FhirString? comment;
+  FhirStringBuilder? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -281,76 +280,28 @@ class Schedule extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'active',
-      active,
-    );
-    addField(
-      'serviceCategory',
-      serviceCategory,
-    );
-    addField(
-      'serviceType',
-      serviceType,
-    );
-    addField(
-      'specialty',
-      specialty,
-    );
-    addField(
-      'actor',
-      actor,
-    );
-    addField(
-      'planningHorizon',
-      planningHorizon,
-    );
-    addField(
-      'comment',
-      comment,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('active', active);
+    addField('serviceCategory', serviceCategory);
+    addField('serviceType', serviceType);
+    addField('specialty', specialty);
+    addField('actor', actor);
+    addField('planningHorizon', planningHorizon);
+    addField('comment', comment);
     return json;
   }
 
@@ -380,11 +331,11 @@ class Schedule extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -439,7 +390,9 @@ class Schedule extends DomainResource {
           fields.addAll(specialty!);
         }
       case 'actor':
-        fields.addAll(actor);
+        if (actor != null) {
+          fields.addAll(actor!);
+        }
       case 'planningHorizon':
         if (planningHorizon != null) {
           fields.add(planningHorizon!);
@@ -458,7 +411,7 @@ class Schedule extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -467,189 +420,196 @@ class Schedule extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'active':
         {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
+          if (child is FhirBooleanBuilder) {
+            active = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'serviceCategory':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?serviceCategory, ...child];
-            return copyWith(serviceCategory: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            serviceCategory = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?serviceCategory, child];
-            return copyWith(serviceCategory: newList);
+            serviceCategory = [...(serviceCategory ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'serviceType':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?serviceType, ...child];
-            return copyWith(serviceType: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            serviceType = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?serviceType, child];
-            return copyWith(serviceType: newList);
+            serviceType = [...(serviceType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialty':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialty, ...child];
-            return copyWith(specialty: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            specialty = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialty, child];
-            return copyWith(specialty: newList);
+            specialty = [...(specialty ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...actor, ...child];
-            return copyWith(actor: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            actor = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...actor, child];
-            return copyWith(actor: newList);
+            actor = [...(actor ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'planningHorizon':
         {
-          if (child is Period) {
-            return copyWith(planningHorizon: child);
+          if (child is PeriodBuilder) {
+            planningHorizon = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is FhirString) {
-            return copyWith(comment: child);
+          if (child is FhirStringBuilder) {
+            comment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -665,146 +625,126 @@ class Schedule extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'active':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'serviceCategory':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'serviceType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'specialty':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'actor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'planningHorizon':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'comment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Schedule]
+  /// Creates a new [ScheduleBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Schedule createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'active':
         {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
+          active = FhirBooleanBuilder.empty();
+          return;
         }
       case 'serviceCategory':
         {
-          return copyWith(
-            serviceCategory: <CodeableConcept>[],
-          );
+          serviceCategory = <CodeableConceptBuilder>[];
+          return;
         }
       case 'serviceType':
         {
-          return copyWith(
-            serviceType: <CodeableConcept>[],
-          );
+          serviceType = <CodeableConceptBuilder>[];
+          return;
         }
       case 'specialty':
         {
-          return copyWith(
-            specialty: <CodeableConcept>[],
-          );
+          specialty = <CodeableConceptBuilder>[];
+          return;
         }
       case 'actor':
         {
-          return copyWith(
-            actor: <Reference>[],
-          );
+          actor = <ReferenceBuilder>[];
+          return;
         }
       case 'planningHorizon':
         {
-          return copyWith(
-            planningHorizon: Period.empty(),
-          );
+          planningHorizon = PeriodBuilder.empty();
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
+          comment = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -813,7 +753,7 @@ class Schedule extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Schedule clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -827,152 +767,95 @@ class Schedule extends DomainResource {
     bool serviceCategory = false,
     bool serviceType = false,
     bool specialty = false,
+    bool actor = false,
     bool planningHorizon = false,
     bool comment = false,
   }) {
-    return Schedule(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      active: active ? null : this.active,
-      serviceCategory: serviceCategory ? null : this.serviceCategory,
-      serviceType: serviceType ? null : this.serviceType,
-      specialty: specialty ? null : this.specialty,
-      actor: actor,
-      planningHorizon: planningHorizon ? null : this.planningHorizon,
-      comment: comment ? null : this.comment,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (active) this.active = null;
+    if (serviceCategory) this.serviceCategory = null;
+    if (serviceType) this.serviceType = null;
+    if (specialty) this.specialty = null;
+    if (actor) this.actor = null;
+    if (planningHorizon) this.planningHorizon = null;
+    if (comment) this.comment = null;
   }
 
   @override
-  Schedule clone() => throw UnimplementedError();
+  ScheduleBuilder clone() => throw UnimplementedError();
   @override
-  Schedule copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirBoolean? active,
-    List<CodeableConcept>? serviceCategory,
-    List<CodeableConcept>? serviceType,
-    List<CodeableConcept>? specialty,
-    List<Reference>? actor,
-    Period? planningHorizon,
-    FhirString? comment,
+  ScheduleBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirBooleanBuilder? active,
+    List<CodeableConceptBuilder>? serviceCategory,
+    List<CodeableConceptBuilder>? serviceType,
+    List<CodeableConceptBuilder>? specialty,
+    List<ReferenceBuilder>? actor,
+    PeriodBuilder? planningHorizon,
+    FhirStringBuilder? comment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Schedule(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ScheduleBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      serviceCategory: serviceCategory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.serviceCategory',
-                ),
-              )
-              .toList() ??
-          this.serviceCategory,
-      serviceType: serviceType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.serviceType',
-                ),
-              )
-              .toList() ??
-          this.serviceType,
-      specialty: specialty
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialty',
-                ),
-              )
-              .toList() ??
-          this.specialty,
-      actor: actor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.actor',
-                ),
-              )
-              .toList() ??
-          this.actor,
-      planningHorizon: planningHorizon?.copyWith(
-            objectPath: '$newObjectPath.planningHorizon',
-          ) ??
-          this.planningHorizon,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      active: active ?? this.active,
+      serviceCategory: serviceCategory ?? this.serviceCategory,
+      serviceType: serviceType ?? this.serviceType,
+      specialty: specialty ?? this.specialty,
+      actor: actor ?? this.actor,
+      planningHorizon: planningHorizon ?? this.planningHorizon,
+      comment: comment ?? this.comment,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Schedule) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ScheduleBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1007,25 +890,25 @@ class Schedule extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1037,25 +920,25 @@ class Schedule extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       serviceCategory,
       o.serviceCategory,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       serviceType,
       o.serviceType,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       specialty,
       o.specialty,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       actor,
       o.actor,
     )) {

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// A code that describes the type of issue.
-class IssueType extends FhirCodeEnum {
+class IssueTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  IssueType._({
+  IssueTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class IssueType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory IssueType(
+  factory IssueTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return IssueType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return IssueTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,280 +43,281 @@ class IssueType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [IssueType] with element only
-  factory IssueType.empty() => IssueType._(validatedValue: '');
+  /// Create empty [IssueTypeBuilder] with element only
+  factory IssueTypeBuilder.empty() => IssueTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [IssueType] from JSON.
-  factory IssueType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [IssueTypeBuilder] from JSON.
+  factory IssueTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IssueType.elementOnly.withElement(element);
+      return IssueTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'IssueType cannot be constructed from JSON.',
+        'IssueTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return IssueType._(
+    return IssueTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// invalid
-  static final IssueType invalid = IssueType._(
+  static IssueTypeBuilder invalid = IssueTypeBuilder._(
     validatedValue: 'invalid',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Invalid Content'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Invalid Content'.toFhirStringBuilder,
   );
 
   /// structure
-  static final IssueType structure = IssueType._(
+  static IssueTypeBuilder structure = IssueTypeBuilder._(
     validatedValue: 'structure',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Structural Issue'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Structural Issue'.toFhirStringBuilder,
   );
 
   /// required_
-  static final IssueType required_ = IssueType._(
+  static IssueTypeBuilder required_ = IssueTypeBuilder._(
     validatedValue: 'required',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Required element missing'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Required element missing'.toFhirStringBuilder,
   );
 
   /// value
-  static final IssueType value_ = IssueType._(
+  static IssueTypeBuilder value_ = IssueTypeBuilder._(
     validatedValue: 'value',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Element value invalid'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Element value invalid'.toFhirStringBuilder,
   );
 
   /// invariant
-  static final IssueType invariant = IssueType._(
+  static IssueTypeBuilder invariant = IssueTypeBuilder._(
     validatedValue: 'invariant',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Validation rule failed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Validation rule failed'.toFhirStringBuilder,
   );
 
   /// security
-  static final IssueType security = IssueType._(
+  static IssueTypeBuilder security = IssueTypeBuilder._(
     validatedValue: 'security',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Security Problem'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Security Problem'.toFhirStringBuilder,
   );
 
   /// login
-  static final IssueType login = IssueType._(
+  static IssueTypeBuilder login = IssueTypeBuilder._(
     validatedValue: 'login',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Login Required'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Login Required'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final IssueType unknown = IssueType._(
+  static IssueTypeBuilder unknown = IssueTypeBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown User'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown User'.toFhirStringBuilder,
   );
 
   /// expired
-  static final IssueType expired = IssueType._(
+  static IssueTypeBuilder expired = IssueTypeBuilder._(
     validatedValue: 'expired',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Session Expired'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Session Expired'.toFhirStringBuilder,
   );
 
   /// forbidden
-  static final IssueType forbidden = IssueType._(
+  static IssueTypeBuilder forbidden = IssueTypeBuilder._(
     validatedValue: 'forbidden',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Forbidden'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Forbidden'.toFhirStringBuilder,
   );
 
   /// suppressed
-  static final IssueType suppressed = IssueType._(
+  static IssueTypeBuilder suppressed = IssueTypeBuilder._(
     validatedValue: 'suppressed',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Information Suppressed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Information Suppressed'.toFhirStringBuilder,
   );
 
   /// processing
-  static final IssueType processing = IssueType._(
+  static IssueTypeBuilder processing = IssueTypeBuilder._(
     validatedValue: 'processing',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Processing Failure'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Processing Failure'.toFhirStringBuilder,
   );
 
   /// not_supported
-  static final IssueType not_supported = IssueType._(
+  static IssueTypeBuilder not_supported = IssueTypeBuilder._(
     validatedValue: 'not-supported',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Content not supported'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Content not supported'.toFhirStringBuilder,
   );
 
   /// duplicate
-  static final IssueType duplicate = IssueType._(
+  static IssueTypeBuilder duplicate = IssueTypeBuilder._(
     validatedValue: 'duplicate',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Duplicate'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Duplicate'.toFhirStringBuilder,
   );
 
   /// multiple_matches
-  static final IssueType multiple_matches = IssueType._(
+  static IssueTypeBuilder multiple_matches = IssueTypeBuilder._(
     validatedValue: 'multiple-matches',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Multiple Matches'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Multiple Matches'.toFhirStringBuilder,
   );
 
   /// not_found
-  static final IssueType not_found = IssueType._(
+  static IssueTypeBuilder not_found = IssueTypeBuilder._(
     validatedValue: 'not-found',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Found'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not Found'.toFhirStringBuilder,
   );
 
   /// deleted
-  static final IssueType deleted = IssueType._(
+  static IssueTypeBuilder deleted = IssueTypeBuilder._(
     validatedValue: 'deleted',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Deleted'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Deleted'.toFhirStringBuilder,
   );
 
   /// too_long
-  static final IssueType too_long = IssueType._(
+  static IssueTypeBuilder too_long = IssueTypeBuilder._(
     validatedValue: 'too-long',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Content Too Long'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Content Too Long'.toFhirStringBuilder,
   );
 
   /// code_invalid
-  static final IssueType code_invalid = IssueType._(
+  static IssueTypeBuilder code_invalid = IssueTypeBuilder._(
     validatedValue: 'code-invalid',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Invalid Code'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Invalid Code'.toFhirStringBuilder,
   );
 
   /// extension_
-  static final IssueType extensionValue = IssueType._(
+  static IssueTypeBuilder extensionValue = IssueTypeBuilder._(
     validatedValue: 'extension',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unacceptable Extension'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unacceptable Extension'.toFhirStringBuilder,
   );
 
   /// too_costly
-  static final IssueType too_costly = IssueType._(
+  static IssueTypeBuilder too_costly = IssueTypeBuilder._(
     validatedValue: 'too-costly',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Operation Too Costly'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Operation Too Costly'.toFhirStringBuilder,
   );
 
   /// business_rule
-  static final IssueType business_rule = IssueType._(
+  static IssueTypeBuilder business_rule = IssueTypeBuilder._(
     validatedValue: 'business-rule',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Business Rule Violation'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Business Rule Violation'.toFhirStringBuilder,
   );
 
   /// conflict
-  static final IssueType conflict = IssueType._(
+  static IssueTypeBuilder conflict = IssueTypeBuilder._(
     validatedValue: 'conflict',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Edit Version Conflict'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Edit Version Conflict'.toFhirStringBuilder,
   );
 
   /// transient
-  static final IssueType transient = IssueType._(
+  static IssueTypeBuilder transient = IssueTypeBuilder._(
     validatedValue: 'transient',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transient Issue'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Transient Issue'.toFhirStringBuilder,
   );
 
   /// lock_error
-  static final IssueType lock_error = IssueType._(
+  static IssueTypeBuilder lock_error = IssueTypeBuilder._(
     validatedValue: 'lock-error',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Lock Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Lock Error'.toFhirStringBuilder,
   );
 
   /// no_store
-  static final IssueType no_store = IssueType._(
+  static IssueTypeBuilder no_store = IssueTypeBuilder._(
     validatedValue: 'no-store',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'No Store Available'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'No Store Available'.toFhirStringBuilder,
   );
 
   /// exception
-  static final IssueType exception = IssueType._(
+  static IssueTypeBuilder exception = IssueTypeBuilder._(
     validatedValue: 'exception',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Exception'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Exception'.toFhirStringBuilder,
   );
 
   /// timeout
-  static final IssueType timeout = IssueType._(
+  static IssueTypeBuilder timeout = IssueTypeBuilder._(
     validatedValue: 'timeout',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Timeout'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Timeout'.toFhirStringBuilder,
   );
 
   /// incomplete
-  static final IssueType incomplete = IssueType._(
+  static IssueTypeBuilder incomplete = IssueTypeBuilder._(
     validatedValue: 'incomplete',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Incomplete Results'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Incomplete Results'.toFhirStringBuilder,
   );
 
   /// throttled
-  static final IssueType throttled = IssueType._(
+  static IssueTypeBuilder throttled = IssueTypeBuilder._(
     validatedValue: 'throttled',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Throttled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Throttled'.toFhirStringBuilder,
   );
 
   /// informational
-  static final IssueType informational = IssueType._(
+  static IssueTypeBuilder informational = IssueTypeBuilder._(
     validatedValue: 'informational',
-    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Informational Note'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Informational Note'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final IssueType elementOnly = IssueType._(validatedValue: '');
+  static IssueTypeBuilder elementOnly = IssueTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<IssueType> values = [
+  static List<IssueTypeBuilder> values = [
     invalid,
     structure,
     required_,
@@ -352,14 +353,14 @@ class IssueType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  IssueType clone() => IssueType._(
+  IssueTypeBuilder clone() => IssueTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  IssueType withElement(Element? newElement) {
-    return IssueType._(validatedValue: value, element: newElement);
+  IssueTypeBuilder withElement(ElementBuilder? newElement) {
+    return IssueTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -375,11 +376,11 @@ class IssueType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  IssueType copyWith({
+  IssueTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -390,7 +391,7 @@ class IssueType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return IssueType._(
+    return IssueTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -400,7 +401,7 @@ class IssueType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Organization]
+/// [OrganizationBuilder]
 /// A formally or informally recognized grouping of people or organizations
 /// formed for the purpose of achieving some form of collective action.
 /// Includes companies, institutions, corporations, departments, community
 /// groups, healthcare practice groups, payer/insurer, etc.
-class Organization extends DomainResource {
+class OrganizationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Organization]
+  /// [OrganizationBuilder]
 
-  const Organization({
+  OrganizationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -36,49 +38,48 @@ class Organization extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Organization.empty() => const Organization();
+  /// For Builder classes, no fields are required
+  factory OrganizationBuilder.empty() => OrganizationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Organization.fromJson(
+  factory OrganizationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Organization';
-    return Organization(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return OrganizationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -87,8 +88,8 @@ class Organization extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -97,8 +98,8 @@ class Organization extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -107,8 +108,8 @@ class Organization extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -116,15 +117,15 @@ class Organization extends DomainResource {
             ),
           )
           .toList(),
-      active: JsonParser.parsePrimitive<FhirBoolean>(
+      active: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'active',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.active',
       ),
       type: (json['type'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -132,21 +133,21 @@ class Organization extends DomainResource {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      alias: JsonParser.parsePrimitiveList<FhirString>(
+      alias: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'alias',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.alias',
       ),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -155,8 +156,8 @@ class Organization extends DomainResource {
           )
           .toList(),
       address: (json['address'] as List<dynamic>?)
-          ?.map<Address>(
-            (v) => Address.fromJson(
+          ?.map<AddressBuilder>(
+            (v) => AddressBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.address',
@@ -164,15 +165,15 @@ class Organization extends DomainResource {
             ),
           )
           .toList(),
-      partOf: JsonParser.parseObject<Reference>(
+      partOf: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'partOf',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.partOf',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<OrganizationContact>(
-            (v) => OrganizationContact.fromJson(
+          ?.map<OrganizationContactBuilder>(
+            (v) => OrganizationContactBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -181,8 +182,8 @@ class Organization extends DomainResource {
           )
           .toList(),
       endpoint: (json['endpoint'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.endpoint',
@@ -193,22 +194,22 @@ class Organization extends DomainResource {
     );
   }
 
-  /// Deserialize [Organization]
+  /// Deserialize [OrganizationBuilder]
   /// from a [String] or [YamlMap] object
-  factory Organization.fromYaml(
+  factory OrganizationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Organization.fromJson(
+      return OrganizationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Organization.fromJson(
+      return OrganizationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Organization '
+        'OrganizationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -216,16 +217,16 @@ class Organization extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Organization]
+  /// [OrganizationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Organization.fromJsonString(
+  factory OrganizationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Organization.fromJson(json);
+      return OrganizationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -238,61 +239,61 @@ class Organization extends DomainResource {
   /// [identifier]
   /// Identifier for the organization that is used to identify the
   /// organization across multiple disparate systems.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [active]
   /// Whether the organization's record is still in active use.
-  final FhirBoolean? active;
+  FhirBooleanBuilder? active;
 
   /// [type]
   /// The kind(s) of organization that this is.
-  final List<CodeableConcept>? type;
+  List<CodeableConceptBuilder>? type;
 
   /// [name]
   /// A name associated with the organization.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [alias]
   /// A list of alternate names that the organization is known as, or was
   /// known as in the past.
-  final List<FhirString>? alias;
+  List<FhirStringBuilder>? alias;
 
   /// [telecom]
   /// A contact detail for the organization.
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [address]
   /// An address for the organization.
-  final List<Address>? address;
+  List<AddressBuilder>? address;
 
   /// [partOf]
   /// The organization of which this organization forms a part.
-  final Reference? partOf;
+  ReferenceBuilder? partOf;
 
   /// [contact]
   /// Contact for the organization for a certain purpose.
-  final List<OrganizationContact>? contact;
+  List<OrganizationContactBuilder>? contact;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// organization.
-  final List<Reference>? endpoint;
+  List<ReferenceBuilder>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -301,84 +302,30 @@ class Organization extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'active',
-      active,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'alias',
-      alias,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'address',
-      address,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'endpoint',
-      endpoint,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('active', active);
+    addField('type', type);
+    addField('name', name);
+    addField('alias', alias);
+    addField('telecom', telecom);
+    addField('address', address);
+    addField('partOf', partOf);
+    addField('contact', contact);
+    addField('endpoint', endpoint);
     return json;
   }
 
@@ -410,11 +357,11 @@ class Organization extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -498,7 +445,7 @@ class Organization extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -507,217 +454,224 @@ class Organization extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'active':
         {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
+          if (child is FhirBooleanBuilder) {
+            active = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'alias':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?alias, ...child];
-            return copyWith(alias: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            alias = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?alias, child];
-            return copyWith(alias: newList);
+            alias = [...(alias ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
         {
-          if (child is List<Address>) {
-            // Add all elements from passed list
-            final newList = [...?address, ...child];
-            return copyWith(address: newList);
-          } else if (child is Address) {
+          if (child is List<AddressBuilder>) {
+            // Replace or create new list
+            address = child;
+            return;
+          } else if (child is AddressBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?address, child];
-            return copyWith(address: newList);
+            address = [...(address ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is Reference) {
-            return copyWith(partOf: child);
+          if (child is ReferenceBuilder) {
+            partOf = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<OrganizationContact>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is OrganizationContact) {
+          if (child is List<OrganizationContactBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is OrganizationContactBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?endpoint, ...child];
-            return copyWith(endpoint: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            endpoint = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
-            return copyWith(endpoint: newList);
+            endpoint = [...(endpoint ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -733,162 +687,140 @@ class Organization extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'active':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'alias':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'address':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'contact':
-        return ['OrganizationContact'];
+        return ['OrganizationContactBuilder'];
       case 'endpoint':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Organization]
+  /// Creates a new [OrganizationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Organization createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'active':
         {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
+          active = FhirBooleanBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
+          type = <CodeableConceptBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'alias':
         {
-          return copyWith(
-            alias: <FhirString>[],
-          );
+          alias = <FhirStringBuilder>[];
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'address':
         {
-          return copyWith(
-            address: <Address>[],
-          );
+          address = <AddressBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: Reference.empty(),
-          );
+          partOf = ReferenceBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <OrganizationContact>[],
-          );
+          contact = <OrganizationContactBuilder>[];
+          return;
         }
       case 'endpoint':
         {
-          return copyWith(
-            endpoint: <Reference>[],
-          );
+          endpoint = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -897,7 +829,7 @@ class Organization extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Organization clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -917,169 +849,97 @@ class Organization extends DomainResource {
     bool contact = false,
     bool endpoint = false,
   }) {
-    return Organization(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      active: active ? null : this.active,
-      type: type ? null : this.type,
-      name: name ? null : this.name,
-      alias: alias ? null : this.alias,
-      telecom: telecom ? null : this.telecom,
-      address: address ? null : this.address,
-      partOf: partOf ? null : this.partOf,
-      contact: contact ? null : this.contact,
-      endpoint: endpoint ? null : this.endpoint,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (active) this.active = null;
+    if (type) this.type = null;
+    if (name) this.name = null;
+    if (alias) this.alias = null;
+    if (telecom) this.telecom = null;
+    if (address) this.address = null;
+    if (partOf) this.partOf = null;
+    if (contact) this.contact = null;
+    if (endpoint) this.endpoint = null;
   }
 
   @override
-  Organization clone() => throw UnimplementedError();
+  OrganizationBuilder clone() => throw UnimplementedError();
   @override
-  Organization copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirBoolean? active,
-    List<CodeableConcept>? type,
-    FhirString? name,
-    List<FhirString>? alias,
-    List<ContactPoint>? telecom,
-    List<Address>? address,
-    Reference? partOf,
-    List<OrganizationContact>? contact,
-    List<Reference>? endpoint,
+  OrganizationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirBooleanBuilder? active,
+    List<CodeableConceptBuilder>? type,
+    FhirStringBuilder? name,
+    List<FhirStringBuilder>? alias,
+    List<ContactPointBuilder>? telecom,
+    List<AddressBuilder>? address,
+    ReferenceBuilder? partOf,
+    List<OrganizationContactBuilder>? contact,
+    List<ReferenceBuilder>? endpoint,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Organization(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = OrganizationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      alias: alias
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.alias',
-                ),
-              )
-              .toList() ??
-          this.alias,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      address: address
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.address',
-                ),
-              )
-              .toList() ??
-          this.address,
-      partOf: partOf?.copyWith(
-            objectPath: '$newObjectPath.partOf',
-          ) ??
-          this.partOf,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      endpoint: endpoint
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endpoint',
-                ),
-              )
-              .toList() ??
-          this.endpoint,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      active: active ?? this.active,
+      type: type ?? this.type,
+      name: name ?? this.name,
+      alias: alias ?? this.alias,
+      telecom: telecom ?? this.telecom,
+      address: address ?? this.address,
+      partOf: partOf ?? this.partOf,
+      contact: contact ?? this.contact,
+      endpoint: endpoint ?? this.endpoint,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Organization) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! OrganizationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1114,25 +974,25 @@ class Organization extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1144,7 +1004,7 @@ class Organization extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       type,
       o.type,
     )) {
@@ -1156,19 +1016,19 @@ class Organization extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       alias,
       o.alias,
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {
       return false;
     }
-    if (!listEquals<Address>(
+    if (!listEquals<AddressBuilder>(
       address,
       o.address,
     )) {
@@ -1180,13 +1040,13 @@ class Organization extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<OrganizationContact>(
+    if (!listEquals<OrganizationContactBuilder>(
       contact,
       o.contact,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       endpoint,
       o.endpoint,
     )) {
@@ -1196,13 +1056,13 @@ class Organization extends DomainResource {
   }
 }
 
-/// [OrganizationContact]
+/// [OrganizationContactBuilder]
 /// Contact for the organization for a certain purpose.
-class OrganizationContact extends BackboneElement {
+class OrganizationContactBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [OrganizationContact]
+  /// [OrganizationContactBuilder]
 
-  const OrganizationContact({
+  OrganizationContactBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1216,25 +1076,24 @@ class OrganizationContact extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory OrganizationContact.empty() => const OrganizationContact();
+  /// For Builder classes, no fields are required
+  factory OrganizationContactBuilder.empty() => OrganizationContactBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OrganizationContact.fromJson(
+  factory OrganizationContactBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Organization.contact';
-    return OrganizationContact(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return OrganizationContactBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1243,8 +1102,8 @@ class OrganizationContact extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1252,21 +1111,21 @@ class OrganizationContact extends BackboneElement {
             ),
           )
           .toList(),
-      purpose: JsonParser.parseObject<CodeableConcept>(
+      purpose: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'purpose',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      name: JsonParser.parseObject<HumanName>(
+      name: JsonParser.parseObject<HumanNameBuilder>(
         json,
         'name',
-        HumanName.fromJson,
+        HumanNameBuilder.fromJson,
         '$objectPath.name',
       ),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -1274,31 +1133,31 @@ class OrganizationContact extends BackboneElement {
             ),
           )
           .toList(),
-      address: JsonParser.parseObject<Address>(
+      address: JsonParser.parseObject<AddressBuilder>(
         json,
         'address',
-        Address.fromJson,
+        AddressBuilder.fromJson,
         '$objectPath.address',
       ),
     );
   }
 
-  /// Deserialize [OrganizationContact]
+  /// Deserialize [OrganizationContactBuilder]
   /// from a [String] or [YamlMap] object
-  factory OrganizationContact.fromYaml(
+  factory OrganizationContactBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return OrganizationContact.fromJson(
+      return OrganizationContactBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return OrganizationContact.fromJson(
+      return OrganizationContactBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'OrganizationContact '
+        'OrganizationContactBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1306,16 +1165,16 @@ class OrganizationContact extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [OrganizationContact]
+  /// [OrganizationContactBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory OrganizationContact.fromJsonString(
+  factory OrganizationContactBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return OrganizationContact.fromJson(json);
+      return OrganizationContactBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1327,36 +1186,36 @@ class OrganizationContact extends BackboneElement {
 
   /// [purpose]
   /// Indicates a purpose for which the contact can be reached.
-  final CodeableConcept? purpose;
+  CodeableConceptBuilder? purpose;
 
   /// [name]
   /// A name associated with the contact.
-  final HumanName? name;
+  HumanNameBuilder? name;
 
   /// [telecom]
   /// A contact detail (e.g. a telephone number or an email address) by which
   /// the party may be contacted.
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [address]
   /// Visiting or postal addresses for the contact.
-  final Address? address;
+  AddressBuilder? address;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1365,39 +1224,18 @@ class OrganizationContact extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'address',
-      address,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('purpose', purpose);
+    addField('name', name);
+    addField('telecom', telecom);
+    addField('address', address);
     return json;
   }
 
@@ -1418,11 +1256,11 @@ class OrganizationContact extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1462,7 +1300,7 @@ class OrganizationContact extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1471,87 +1309,90 @@ class OrganizationContact extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is CodeableConcept) {
-            return copyWith(purpose: child);
+          if (child is CodeableConceptBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is HumanName) {
-            return copyWith(name: child);
+          if (child is HumanNameBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
         {
-          if (child is Address) {
-            return copyWith(address: child);
+          if (child is AddressBuilder) {
+            address = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1567,74 +1408,63 @@ class OrganizationContact extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'purpose':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'name':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'address':
-        return ['Address'];
+        return ['AddressBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [OrganizationContact]
+  /// Creates a new [OrganizationContactBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  OrganizationContact createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: CodeableConcept.empty(),
-          );
+          purpose = CodeableConceptBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: HumanName.empty(),
-          );
+          name = HumanNameBuilder.empty();
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'address':
         {
-          return copyWith(
-            address: Address.empty(),
-          );
+          address = AddressBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1643,7 +1473,7 @@ class OrganizationContact extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  OrganizationContact clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1652,28 +1482,26 @@ class OrganizationContact extends BackboneElement {
     bool telecom = false,
     bool address = false,
   }) {
-    return OrganizationContact(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      purpose: purpose ? null : this.purpose,
-      name: name ? null : this.name,
-      telecom: telecom ? null : this.telecom,
-      address: address ? null : this.address,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (purpose) this.purpose = null;
+    if (name) this.name = null;
+    if (telecom) this.telecom = null;
+    if (address) this.address = null;
   }
 
   @override
-  OrganizationContact clone() => throw UnimplementedError();
+  OrganizationContactBuilder clone() => throw UnimplementedError();
   @override
-  OrganizationContact copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? purpose,
-    HumanName? name,
-    List<ContactPoint>? telecom,
-    Address? address,
+  OrganizationContactBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? purpose,
+    HumanNameBuilder? name,
+    List<ContactPointBuilder>? telecom,
+    AddressBuilder? address,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1681,54 +1509,38 @@ class OrganizationContact extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return OrganizationContact(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      address: address?.copyWith(
-            objectPath: '$newObjectPath.address',
-          ) ??
-          this.address,
+    final newResult = OrganizationContactBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      purpose: purpose ?? this.purpose,
+      name: name ?? this.name,
+      telecom: telecom ?? this.telecom,
+      address: address ?? this.address,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! OrganizationContact) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! OrganizationContactBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1739,13 +1551,13 @@ class OrganizationContact extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1763,7 +1575,7 @@ class OrganizationContact extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {

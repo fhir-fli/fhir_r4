@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Is the Participant required to attend the appointment.
-class ParticipantRequired extends FhirCodeEnum {
+class ParticipantRequiredBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ParticipantRequired._({
+  ParticipantRequiredBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ParticipantRequired extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ParticipantRequired(
+  factory ParticipantRequiredBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ParticipantRequired._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ParticipantRequiredBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,58 +43,60 @@ class ParticipantRequired extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ParticipantRequired] with element only
-  factory ParticipantRequired.empty() =>
-      ParticipantRequired._(validatedValue: '');
+  /// Create empty [ParticipantRequiredBuilder] with element only
+  factory ParticipantRequiredBuilder.empty() =>
+      ParticipantRequiredBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ParticipantRequired] from JSON.
-  factory ParticipantRequired.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ParticipantRequiredBuilder] from JSON.
+  factory ParticipantRequiredBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipantRequired.elementOnly.withElement(element);
+      return ParticipantRequiredBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ParticipantRequired cannot be constructed from JSON.',
+        'ParticipantRequiredBuilder cannot be constructed from JSON.',
       );
     }
-    return ParticipantRequired._(
+    return ParticipantRequiredBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// required_
-  static final ParticipantRequired required_ = ParticipantRequired._(
+  static ParticipantRequiredBuilder required_ = ParticipantRequiredBuilder._(
     validatedValue: 'required',
-    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Required'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Required'.toFhirStringBuilder,
   );
 
   /// optional
-  static final ParticipantRequired optional = ParticipantRequired._(
+  static ParticipantRequiredBuilder optional = ParticipantRequiredBuilder._(
     validatedValue: 'optional',
-    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Optional'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Optional'.toFhirStringBuilder,
   );
 
   /// information_only
-  static final ParticipantRequired information_only = ParticipantRequired._(
+  static ParticipantRequiredBuilder information_only =
+      ParticipantRequiredBuilder._(
     validatedValue: 'information-only',
-    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Information Only'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Information Only'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ParticipantRequired elementOnly =
-      ParticipantRequired._(validatedValue: '');
+  static ParticipantRequiredBuilder elementOnly =
+      ParticipantRequiredBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ParticipantRequired> values = [
+  static List<ParticipantRequiredBuilder> values = [
     required_,
     optional,
     information_only,
@@ -102,14 +104,15 @@ class ParticipantRequired extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ParticipantRequired clone() => ParticipantRequired._(
+  ParticipantRequiredBuilder clone() => ParticipantRequiredBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ParticipantRequired withElement(Element? newElement) {
-    return ParticipantRequired._(validatedValue: value, element: newElement);
+  ParticipantRequiredBuilder withElement(ElementBuilder? newElement) {
+    return ParticipantRequiredBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -125,11 +128,11 @@ class ParticipantRequired extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ParticipantRequired copyWith({
+  ParticipantRequiredBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -140,7 +143,7 @@ class ParticipantRequired extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ParticipantRequired._(
+    return ParticipantRequiredBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -150,7 +153,7 @@ class ParticipantRequired extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

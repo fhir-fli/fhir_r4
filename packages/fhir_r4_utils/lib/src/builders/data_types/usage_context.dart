@@ -1,58 +1,56 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [UsageContext]
+/// [UsageContextBuilder]
 /// Specifies clinical/business/etc. metadata that can be used to retrieve,
 /// index and/or categorize an artifact. This metadata can either be
 /// specific to the applicable population (e.g., age category, DRG) or the
 /// specific context of care (e.g., venue, care setting, provider of care).
-class UsageContext extends DataType
+class UsageContextBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [UsageContext]
+  /// [UsageContextBuilder]
 
-  const UsageContext({
+  UsageContextBuilder({
     super.id,
     super.extension_,
-    required this.code,
-    required this.valueX,
+    this.code,
+    this.valueX,
     super.disallowExtensions,
-    super.objectPath = 'UsageContext',
+    super.objectPath = 'UsageContextBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory UsageContext.empty() => UsageContext(
-        code: Coding.empty(),
-        valueX: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory UsageContextBuilder.empty() => UsageContextBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory UsageContext.fromJson(
+  factory UsageContextBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'UsageContext';
-    return UsageContext(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return UsageContextBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -60,41 +58,41 @@ class UsageContext extends DataType
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<Coding>(
+      code: JsonParser.parseObject<CodingBuilder>(
         json,
         'code',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      valueX: JsonParser.parsePolymorphic<ValueXUsageContext>(
+      ),
+      valueX: JsonParser.parsePolymorphic<ValueXUsageContextBuilder>(
         json,
         {
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueQuantity': Quantity.fromJson,
-          'valueRange': Range.fromJson,
-          'valueReference': Reference.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueRange': RangeBuilder.fromJson,
+          'valueReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [UsageContext]
+  /// Deserialize [UsageContextBuilder]
   /// from a [String] or [YamlMap] object
-  factory UsageContext.fromYaml(
+  factory UsageContextBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return UsageContext.fromJson(
+      return UsageContextBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return UsageContext.fromJson(
+      return UsageContextBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'UsageContext '
+        'UsageContextBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -102,16 +100,16 @@ class UsageContext extends DataType
   }
 
   /// Factory constructor for
-  /// [UsageContext]
+  /// [UsageContextBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory UsageContext.fromJsonString(
+  factory UsageContextBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return UsageContext.fromJson(json);
+      return UsageContextBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -124,40 +122,41 @@ class UsageContext extends DataType
   /// [code]
   /// A code that identifies the type of context being specified by this
   /// usage context.
-  final Coding code;
+  CodingBuilder? code;
 
   /// [valueX]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final ValueXUsageContext valueX;
+  ValueXUsageContextBuilder? valueX;
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueRange] as a Range
-  Range? get valueRange => valueX.isAs<Range>();
+  /// Getter for [valueRange] as a RangeBuilder
+  RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// Getter for [valueReference] as a Reference
-  Reference? get valueReference => valueX.isAs<Reference>();
+  /// Getter for [valueReference] as a ReferenceBuilder
+  ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -166,28 +165,18 @@ class UsageContext extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'code',
-      code,
-    );
-    final valueXFhirType = valueX.fhirType;
-    addField(
-      'value${valueXFhirType.capitalize()}',
-      valueX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('code', code);
+    if (valueX != null) {
+      final fhirType = valueX!.fhirType;
+      addField('value${fhirType.capitalize()}', valueX);
+    }
 
     return json;
   }
@@ -206,11 +195,11 @@ class UsageContext extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -221,26 +210,32 @@ class UsageContext extends DataType
           fields.addAll(extension_!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'value':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
-          fields.add(valueX);
+        if (valueX is CodeableConceptBuilder) {
+          fields.add(valueX!);
         }
       case 'valueQuantity':
-        if (valueX is Quantity) {
-          fields.add(valueX);
+        if (valueX is QuantityBuilder) {
+          fields.add(valueX!);
         }
       case 'valueRange':
-        if (valueX is Range) {
-          fields.add(valueX);
+        if (valueX is RangeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueReference':
-        if (valueX is Reference) {
-          fields.add(valueX);
+        if (valueX is ReferenceBuilder) {
+          fields.add(valueX!);
         }
       default:
         if (checkValid) {
@@ -252,7 +247,7 @@ class UsageContext extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -261,95 +256,105 @@ class UsageContext extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is Coding) {
-            return copyWith(code: child);
+          if (child is CodingBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXUsageContext) {
-            return copyWith(valueX: child);
+          if (child is ValueXUsageContextBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(valueX: child);
+            if (child is RangeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(valueX: child);
+            if (child is ReferenceBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRange':
         {
-          if (child is Range) {
-            return copyWith(valueX: child);
+          if (child is RangeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueReference':
         {
-          if (child is Reference) {
-            return copyWith(valueX: child);
+          if (child is ReferenceBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -365,79 +370,73 @@ class UsageContext extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'value':
       case 'valueX':
-        return ['CodeableConcept', 'Quantity', 'Range', 'Reference'];
+        return [
+          'CodeableConceptBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'ReferenceBuilder'
+        ];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'valueReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [UsageContext]
+  /// Creates a new [UsageContextBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  UsageContext createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: Coding.empty(),
-          );
+          code = CodingBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueRange':
         {
-          return copyWith(
-            valueX: Range.empty(),
-          );
+          valueX = RangeBuilder.empty();
+          return;
         }
       case 'valueReference':
         {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
+          valueX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -446,26 +445,26 @@ class UsageContext extends DataType
 
   /// Clears specific fields in this object
   @override
-  UsageContext clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool code = false,
+    bool value = false,
   }) {
-    return UsageContext(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      code: code,
-      valueX: valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (code) this.code = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  UsageContext clone() => throw UnimplementedError();
+  UsageContextBuilder clone() => throw UnimplementedError();
   @override
-  UsageContext copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Coding? code,
-    ValueXUsageContext? valueX,
+  UsageContextBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    CodingBuilder? code,
+    ValueXUsageContextBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -473,34 +472,35 @@ class UsageContext extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return UsageContext(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXUsageContext? ??
-          this.valueX,
+    final newResult = UsageContextBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      code: code ?? this.code,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! UsageContext) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! UsageContextBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -511,7 +511,7 @@ class UsageContext extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// SHALL applications comply with this constraint?
-class ConstraintSeverity extends FhirCodeEnum {
+class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ConstraintSeverity._({
+  ConstraintSeverityBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ConstraintSeverity extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ConstraintSeverity(
+  factory ConstraintSeverityBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ConstraintSeverity._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ConstraintSeverityBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,64 +43,66 @@ class ConstraintSeverity extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ConstraintSeverity] with element only
-  factory ConstraintSeverity.empty() =>
-      ConstraintSeverity._(validatedValue: '');
+  /// Create empty [ConstraintSeverityBuilder] with element only
+  factory ConstraintSeverityBuilder.empty() =>
+      ConstraintSeverityBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConstraintSeverity] from JSON.
-  factory ConstraintSeverity.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConstraintSeverityBuilder] from JSON.
+  factory ConstraintSeverityBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConstraintSeverity.elementOnly.withElement(element);
+      return ConstraintSeverityBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ConstraintSeverity cannot be constructed from JSON.',
+        'ConstraintSeverityBuilder cannot be constructed from JSON.',
       );
     }
-    return ConstraintSeverity._(
+    return ConstraintSeverityBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// error
-  static final ConstraintSeverity error = ConstraintSeverity._(
+  static ConstraintSeverityBuilder error = ConstraintSeverityBuilder._(
     validatedValue: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Error'.toFhirStringBuilder,
   );
 
   /// warning
-  static final ConstraintSeverity warning = ConstraintSeverity._(
+  static ConstraintSeverityBuilder warning = ConstraintSeverityBuilder._(
     validatedValue: 'warning',
-    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Warning'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Warning'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ConstraintSeverity elementOnly =
-      ConstraintSeverity._(validatedValue: '');
+  static ConstraintSeverityBuilder elementOnly =
+      ConstraintSeverityBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ConstraintSeverity> values = [
+  static List<ConstraintSeverityBuilder> values = [
     error,
     warning,
   ];
 
   /// Clones the current instance
   @override
-  ConstraintSeverity clone() => ConstraintSeverity._(
+  ConstraintSeverityBuilder clone() => ConstraintSeverityBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ConstraintSeverity withElement(Element? newElement) {
-    return ConstraintSeverity._(validatedValue: value, element: newElement);
+  ConstraintSeverityBuilder withElement(ElementBuilder? newElement) {
+    return ConstraintSeverityBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,11 +118,11 @@ class ConstraintSeverity extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ConstraintSeverity copyWith({
+  ConstraintSeverityBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -131,7 +133,7 @@ class ConstraintSeverity extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ConstraintSeverity._(
+    return ConstraintSeverityBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -141,7 +143,7 @@ class ConstraintSeverity extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

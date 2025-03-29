@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The purpose of the Claim: predetermination, preauthorization, claim.
-class Use extends FhirCodeEnum {
+class UseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  Use._({
+  UseBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class Use extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory Use(
+  factory UseBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return Use._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return UseBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,56 +43,57 @@ class Use extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [Use] with element only
-  factory Use.empty() => Use._(validatedValue: '');
+  /// Create empty [UseBuilder] with element only
+  factory UseBuilder.empty() => UseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [Use] from JSON.
-  factory Use.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [UseBuilder] from JSON.
+  factory UseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Use.elementOnly.withElement(element);
+      return UseBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'Use cannot be constructed from JSON.',
+        'UseBuilder cannot be constructed from JSON.',
       );
     }
-    return Use._(
+    return UseBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// claim
-  static final Use claim = Use._(
+  static UseBuilder claim = UseBuilder._(
     validatedValue: 'claim',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Claim'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Claim'.toFhirStringBuilder,
   );
 
   /// preauthorization
-  static final Use preauthorization = Use._(
+  static UseBuilder preauthorization = UseBuilder._(
     validatedValue: 'preauthorization',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preauthorization'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Preauthorization'.toFhirStringBuilder,
   );
 
   /// predetermination
-  static final Use predetermination = Use._(
+  static UseBuilder predetermination = UseBuilder._(
     validatedValue: 'predetermination',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Predetermination'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Predetermination'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final Use elementOnly = Use._(validatedValue: '');
+  static UseBuilder elementOnly = UseBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<Use> values = [
+  static List<UseBuilder> values = [
     claim,
     preauthorization,
     predetermination,
@@ -100,14 +101,14 @@ class Use extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  Use clone() => Use._(
+  UseBuilder clone() => UseBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  Use withElement(Element? newElement) {
-    return Use._(validatedValue: value, element: newElement);
+  UseBuilder withElement(ElementBuilder? newElement) {
+    return UseBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,11 +124,11 @@ class Use extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  Use copyWith({
+  UseBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -138,7 +139,7 @@ class Use extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return Use._(
+    return UseBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -148,7 +149,7 @@ class Use extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

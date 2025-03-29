@@ -42,7 +42,7 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Oid',
+    String? objectPath = 'Oid',
   }) {
     // If not null, validate. Otherwise remain null if also no element.
     final validated = _validateOid(input);
@@ -118,7 +118,7 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Returns the FHIR type as 'oid'.
   @override

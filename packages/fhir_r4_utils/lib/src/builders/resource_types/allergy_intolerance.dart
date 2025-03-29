@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [AllergyIntolerance]
+/// [AllergyIntoleranceBuilder]
 /// Risk of harmful or undesirable, physiological response which is unique
 /// to an individual and associated with exposure to a substance.
-class AllergyIntolerance extends DomainResource {
+class AllergyIntoleranceBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [AllergyIntolerance]
+  /// [AllergyIntoleranceBuilder]
 
-  const AllergyIntolerance({
+  AllergyIntoleranceBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -25,7 +27,7 @@ class AllergyIntolerance extends DomainResource {
     this.category,
     this.criticality,
     this.code,
-    required this.patient,
+    this.patient,
     this.encounter,
     this.onsetX,
     this.recordedDate,
@@ -40,51 +42,48 @@ class AllergyIntolerance extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AllergyIntolerance.empty() => AllergyIntolerance(
-        patient: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory AllergyIntoleranceBuilder.empty() => AllergyIntoleranceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AllergyIntolerance.fromJson(
+  factory AllergyIntoleranceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AllergyIntolerance';
-    return AllergyIntolerance(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AllergyIntoleranceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -93,8 +92,8 @@ class AllergyIntolerance extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -103,8 +102,8 @@ class AllergyIntolerance extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -113,8 +112,8 @@ class AllergyIntolerance extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -122,92 +121,94 @@ class AllergyIntolerance extends DomainResource {
             ),
           )
           .toList(),
-      clinicalStatus: JsonParser.parseObject<CodeableConcept>(
+      clinicalStatus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'clinicalStatus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.clinicalStatus',
       ),
-      verificationStatus: JsonParser.parseObject<CodeableConcept>(
+      verificationStatus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'verificationStatus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.verificationStatus',
       ),
-      type: JsonParser.parsePrimitive<AllergyIntoleranceType>(
+      type: JsonParser.parsePrimitive<AllergyIntoleranceTypeBuilder>(
         json,
         'type',
-        AllergyIntoleranceType.fromJson,
+        AllergyIntoleranceTypeBuilder.fromJson,
         '$objectPath.type',
       ),
-      category: JsonParser.parsePrimitiveList<AllergyIntoleranceCategory>(
+      category:
+          JsonParser.parsePrimitiveList<AllergyIntoleranceCategoryBuilder>(
         json,
         'category',
-        AllergyIntoleranceCategory.fromJson,
+        AllergyIntoleranceCategoryBuilder.fromJson,
         '$objectPath.category',
       ),
-      criticality: JsonParser.parsePrimitive<AllergyIntoleranceCriticality>(
+      criticality:
+          JsonParser.parsePrimitive<AllergyIntoleranceCriticalityBuilder>(
         json,
         'criticality',
-        AllergyIntoleranceCriticality.fromJson,
+        AllergyIntoleranceCriticalityBuilder.fromJson,
         '$objectPath.criticality',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      patient: JsonParser.parseObject<Reference>(
+      patient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'patient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.patient',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      onsetX: JsonParser.parsePolymorphic<OnsetXAllergyIntolerance>(
+      onsetX: JsonParser.parsePolymorphic<OnsetXAllergyIntoleranceBuilder>(
         json,
         {
-          'onsetDateTime': FhirDateTime.fromJson,
-          'onsetAge': Age.fromJson,
-          'onsetPeriod': Period.fromJson,
-          'onsetRange': Range.fromJson,
-          'onsetString': FhirString.fromJson,
+          'onsetDateTime': FhirDateTimeBuilder.fromJson,
+          'onsetAge': AgeBuilder.fromJson,
+          'onsetPeriod': PeriodBuilder.fromJson,
+          'onsetRange': RangeBuilder.fromJson,
+          'onsetString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      recordedDate: JsonParser.parsePrimitive<FhirDateTime>(
+      recordedDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'recordedDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.recordedDate',
       ),
-      recorder: JsonParser.parseObject<Reference>(
+      recorder: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'recorder',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.recorder',
       ),
-      asserter: JsonParser.parseObject<Reference>(
+      asserter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'asserter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.asserter',
       ),
-      lastOccurrence: JsonParser.parsePrimitive<FhirDateTime>(
+      lastOccurrence: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'lastOccurrence',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.lastOccurrence',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -216,8 +217,8 @@ class AllergyIntolerance extends DomainResource {
           )
           .toList(),
       reaction: (json['reaction'] as List<dynamic>?)
-          ?.map<AllergyIntoleranceReaction>(
-            (v) => AllergyIntoleranceReaction.fromJson(
+          ?.map<AllergyIntoleranceReactionBuilder>(
+            (v) => AllergyIntoleranceReactionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reaction',
@@ -228,22 +229,22 @@ class AllergyIntolerance extends DomainResource {
     );
   }
 
-  /// Deserialize [AllergyIntolerance]
+  /// Deserialize [AllergyIntoleranceBuilder]
   /// from a [String] or [YamlMap] object
-  factory AllergyIntolerance.fromYaml(
+  factory AllergyIntoleranceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AllergyIntolerance.fromJson(
+      return AllergyIntoleranceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AllergyIntolerance.fromJson(
+      return AllergyIntoleranceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AllergyIntolerance '
+        'AllergyIntoleranceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -251,16 +252,16 @@ class AllergyIntolerance extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [AllergyIntolerance]
+  /// [AllergyIntoleranceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AllergyIntolerance.fromJsonString(
+  factory AllergyIntoleranceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AllergyIntolerance.fromJson(json);
+      return AllergyIntoleranceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -274,31 +275,31 @@ class AllergyIntolerance extends DomainResource {
   /// Business identifiers assigned to this AllergyIntolerance by the
   /// performer or other systems which remain constant as the resource is
   /// updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [clinicalStatus]
   /// The clinical status of the allergy or intolerance.
-  final CodeableConcept? clinicalStatus;
+  CodeableConceptBuilder? clinicalStatus;
 
   /// [verificationStatus]
   /// Assertion about certainty associated with the propensity, or potential
   /// risk, of a reaction to the identified substance (including
   /// pharmaceutical product).
-  final CodeableConcept? verificationStatus;
+  CodeableConceptBuilder? verificationStatus;
 
   /// [type]
   /// Identification of the underlying physiological mechanism for the
   /// reaction risk.
-  final AllergyIntoleranceType? type;
+  AllergyIntoleranceTypeBuilder? type;
 
   /// [category]
   /// Category of the identified substance.
-  final List<AllergyIntoleranceCategory>? category;
+  List<AllergyIntoleranceCategoryBuilder>? category;
 
   /// [criticality]
   /// Estimate of the potential clinical harm, or seriousness, of the
   /// reaction to the identified substance.
-  final AllergyIntoleranceCriticality? criticality;
+  AllergyIntoleranceCriticalityBuilder? criticality;
 
   /// [code]
   /// Code for an allergy or intolerance statement (either a positive or a
@@ -317,81 +318,81 @@ class AllergyIntolerance extends DomainResource {
   /// system is unable to confirm that AllergyIntolerance.reaction.substance
   /// falls within the semantic scope of AllergyIntolerance.code, then the
   /// receiving system should ignore AllergyIntolerance.reaction.substance.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [patient]
   /// The patient who has the allergy or intolerance.
-  final Reference patient;
+  ReferenceBuilder? patient;
 
   /// [encounter]
   /// The encounter when the allergy or intolerance was asserted.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [onsetX]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final OnsetXAllergyIntolerance? onsetX;
+  OnsetXAllergyIntoleranceBuilder? onsetX;
 
-  /// Getter for [onsetDateTime] as a FhirDateTime
-  FhirDateTime? get onsetDateTime => onsetX?.isAs<FhirDateTime>();
+  /// Getter for [onsetDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get onsetDateTime => onsetX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [onsetAge] as a Age
-  Age? get onsetAge => onsetX?.isAs<Age>();
+  /// Getter for [onsetAge] as a AgeBuilder
+  AgeBuilder? get onsetAge => onsetX?.isAs<AgeBuilder>();
 
-  /// Getter for [onsetPeriod] as a Period
-  Period? get onsetPeriod => onsetX?.isAs<Period>();
+  /// Getter for [onsetPeriod] as a PeriodBuilder
+  PeriodBuilder? get onsetPeriod => onsetX?.isAs<PeriodBuilder>();
 
-  /// Getter for [onsetRange] as a Range
-  Range? get onsetRange => onsetX?.isAs<Range>();
+  /// Getter for [onsetRange] as a RangeBuilder
+  RangeBuilder? get onsetRange => onsetX?.isAs<RangeBuilder>();
 
-  /// Getter for [onsetString] as a FhirString
-  FhirString? get onsetString => onsetX?.isAs<FhirString>();
+  /// Getter for [onsetString] as a FhirStringBuilder
+  FhirStringBuilder? get onsetString => onsetX?.isAs<FhirStringBuilder>();
 
   /// [recordedDate]
   /// The recordedDate represents when this particular AllergyIntolerance
   /// record was created in the system, which is often a system-generated
   /// date.
-  final FhirDateTime? recordedDate;
+  FhirDateTimeBuilder? recordedDate;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
   /// content.
-  final Reference? recorder;
+  ReferenceBuilder? recorder;
 
   /// [asserter]
   /// The source of the information about the allergy that is recorded.
-  final Reference? asserter;
+  ReferenceBuilder? asserter;
 
   /// [lastOccurrence]
   /// Represents the date and/or time of the last known occurrence of a
   /// reaction event.
-  final FhirDateTime? lastOccurrence;
+  FhirDateTimeBuilder? lastOccurrence;
 
   /// [note]
   /// Additional narrative about the propensity for the Adverse Reaction, not
   /// captured in other fields.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [reaction]
   /// Details about each adverse reaction event linked to exposure to the
   /// identified substance.
-  final List<AllergyIntoleranceReaction>? reaction;
+  List<AllergyIntoleranceReactionBuilder>? reaction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -400,112 +401,40 @@ class AllergyIntolerance extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'clinicalStatus',
-      clinicalStatus,
-    );
-    addField(
-      'verificationStatus',
-      verificationStatus,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'criticality',
-      criticality,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'patient',
-      patient,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('clinicalStatus', clinicalStatus);
+    addField('verificationStatus', verificationStatus);
+    addField('type', type);
+    addField('category', category);
+    addField('criticality', criticality);
+    addField('code', code);
+    addField('patient', patient);
+    addField('encounter', encounter);
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField(
-        'onset${fhirType.capitalize()}',
-        onsetX,
-      );
+      addField('onset${fhirType.capitalize()}', onsetX);
     }
 
-    addField(
-      'recordedDate',
-      recordedDate,
-    );
-    addField(
-      'recorder',
-      recorder,
-    );
-    addField(
-      'asserter',
-      asserter,
-    );
-    addField(
-      'lastOccurrence',
-      lastOccurrence,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'reaction',
-      reaction,
-    );
+    addField('recordedDate', recordedDate);
+    addField('recorder', recorder);
+    addField('asserter', asserter);
+    addField('lastOccurrence', lastOccurrence);
+    addField('note', note);
+    addField('reaction', reaction);
     return json;
   }
 
@@ -543,11 +472,11 @@ class AllergyIntolerance extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -610,33 +539,39 @@ class AllergyIntolerance extends DomainResource {
           fields.add(code!);
         }
       case 'patient':
-        fields.add(patient);
+        if (patient != null) {
+          fields.add(patient!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
         }
       case 'onset':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetX':
-        fields.add(onsetX!);
+        if (onsetX != null) {
+          fields.add(onsetX!);
+        }
       case 'onsetDateTime':
-        if (onsetX is FhirDateTime) {
+        if (onsetX is FhirDateTimeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetAge':
-        if (onsetX is Age) {
+        if (onsetX is AgeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetPeriod':
-        if (onsetX is Period) {
+        if (onsetX is PeriodBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetRange':
-        if (onsetX is Range) {
+        if (onsetX is RangeBuilder) {
           fields.add(onsetX!);
         }
       case 'onsetString':
-        if (onsetX is FhirString) {
+        if (onsetX is FhirStringBuilder) {
           fields.add(onsetX!);
         }
       case 'recordedDate':
@@ -673,7 +608,7 @@ class AllergyIntolerance extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -682,302 +617,328 @@ class AllergyIntolerance extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'clinicalStatus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(clinicalStatus: child);
+          if (child is CodeableConceptBuilder) {
+            clinicalStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'verificationStatus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(verificationStatus: child);
+          if (child is CodeableConceptBuilder) {
+            verificationStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is AllergyIntoleranceType) {
-            return copyWith(type: child);
+          if (child is AllergyIntoleranceTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<AllergyIntoleranceCategory>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is AllergyIntoleranceCategory) {
+          if (child is List<AllergyIntoleranceCategoryBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is AllergyIntoleranceCategoryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'criticality':
         {
-          if (child is AllergyIntoleranceCriticality) {
-            return copyWith(criticality: child);
+          if (child is AllergyIntoleranceCriticalityBuilder) {
+            criticality = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
         {
-          if (child is Reference) {
-            return copyWith(patient: child);
+          if (child is ReferenceBuilder) {
+            patient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetX':
         {
-          if (child is OnsetXAllergyIntolerance) {
-            return copyWith(onsetX: child);
+          if (child is OnsetXAllergyIntoleranceBuilder) {
+            onsetX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(onsetX: child);
+            if (child is FhirDateTimeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(onsetX: child);
+            if (child is AgeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(onsetX: child);
+            if (child is PeriodBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(onsetX: child);
+            if (child is RangeBuilder) {
+              onsetX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(onsetX: child);
+            if (child is FhirStringBuilder) {
+              onsetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'onsetFhirDateTime':
+      case 'onsetDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(onsetX: child);
+          if (child is FhirDateTimeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetAge':
         {
-          if (child is Age) {
-            return copyWith(onsetX: child);
+          if (child is AgeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetPeriod':
         {
-          if (child is Period) {
-            return copyWith(onsetX: child);
+          if (child is PeriodBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetRange':
         {
-          if (child is Range) {
-            return copyWith(onsetX: child);
+          if (child is RangeBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'onsetFhirString':
+      case 'onsetString':
         {
-          if (child is FhirString) {
-            return copyWith(onsetX: child);
+          if (child is FhirStringBuilder) {
+            onsetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recordedDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(recordedDate: child);
+          if (child is FhirDateTimeBuilder) {
+            recordedDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorder':
         {
-          if (child is Reference) {
-            return copyWith(recorder: child);
+          if (child is ReferenceBuilder) {
+            recorder = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asserter':
         {
-          if (child is Reference) {
-            return copyWith(asserter: child);
+          if (child is ReferenceBuilder) {
+            asserter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastOccurrence':
         {
-          if (child is FhirDateTime) {
-            return copyWith(lastOccurrence: child);
+          if (child is FhirDateTimeBuilder) {
+            lastOccurrence = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reaction':
         {
-          if (child is List<AllergyIntoleranceReaction>) {
-            // Add all elements from passed list
-            final newList = [...?reaction, ...child];
-            return copyWith(reaction: newList);
-          } else if (child is AllergyIntoleranceReaction) {
+          if (child is List<AllergyIntoleranceReactionBuilder>) {
+            // Replace or create new list
+            reaction = child;
+            return;
+          } else if (child is AllergyIntoleranceReactionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reaction, child];
-            return copyWith(reaction: newList);
+            reaction = [...(reaction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -993,247 +954,221 @@ class AllergyIntolerance extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'clinicalStatus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'verificationStatus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'criticality':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'patient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'onset':
       case 'onsetX':
-        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+        return [
+          'FhirDateTimeBuilder',
+          'AgeBuilder',
+          'PeriodBuilder',
+          'RangeBuilder',
+          'FhirStringBuilder'
+        ];
       case 'onsetDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'onsetAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'onsetPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'onsetRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'onsetString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'recordedDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'recorder':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'asserter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'lastOccurrence':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'reaction':
-        return ['AllergyIntoleranceReaction'];
+        return ['AllergyIntoleranceReactionBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AllergyIntolerance]
+  /// Creates a new [AllergyIntoleranceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AllergyIntolerance createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'clinicalStatus':
         {
-          return copyWith(
-            clinicalStatus: CodeableConcept.empty(),
-          );
+          clinicalStatus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'verificationStatus':
         {
-          return copyWith(
-            verificationStatus: CodeableConcept.empty(),
-          );
+          verificationStatus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: AllergyIntoleranceType.empty(),
-          );
+          type = AllergyIntoleranceTypeBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <AllergyIntoleranceCategory>[],
-          );
+          category = <AllergyIntoleranceCategoryBuilder>[];
+          return;
         }
       case 'criticality':
         {
-          return copyWith(
-            criticality: AllergyIntoleranceCriticality.empty(),
-          );
+          criticality = AllergyIntoleranceCriticalityBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'patient':
         {
-          return copyWith(
-            patient: Reference.empty(),
-          );
+          patient = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'onset':
       case 'onsetX':
       case 'onsetDateTime':
         {
-          return copyWith(
-            onsetX: FhirDateTime.empty(),
-          );
+          onsetX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'onsetAge':
         {
-          return copyWith(
-            onsetX: Age.empty(),
-          );
+          onsetX = AgeBuilder.empty();
+          return;
         }
       case 'onsetPeriod':
         {
-          return copyWith(
-            onsetX: Period.empty(),
-          );
+          onsetX = PeriodBuilder.empty();
+          return;
         }
       case 'onsetRange':
         {
-          return copyWith(
-            onsetX: Range.empty(),
-          );
+          onsetX = RangeBuilder.empty();
+          return;
         }
       case 'onsetString':
         {
-          return copyWith(
-            onsetX: FhirString.empty(),
-          );
+          onsetX = FhirStringBuilder.empty();
+          return;
         }
       case 'recordedDate':
         {
-          return copyWith(
-            recordedDate: FhirDateTime.empty(),
-          );
+          recordedDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'recorder':
         {
-          return copyWith(
-            recorder: Reference.empty(),
-          );
+          recorder = ReferenceBuilder.empty();
+          return;
         }
       case 'asserter':
         {
-          return copyWith(
-            asserter: Reference.empty(),
-          );
+          asserter = ReferenceBuilder.empty();
+          return;
         }
       case 'lastOccurrence':
         {
-          return copyWith(
-            lastOccurrence: FhirDateTime.empty(),
-          );
+          lastOccurrence = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'reaction':
         {
-          return copyWith(
-            reaction: <AllergyIntoleranceReaction>[],
-          );
+          reaction = <AllergyIntoleranceReactionBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1242,7 +1177,7 @@ class AllergyIntolerance extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  AllergyIntolerance clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1258,6 +1193,7 @@ class AllergyIntolerance extends DomainResource {
     bool category = false,
     bool criticality = false,
     bool code = false,
+    bool patient = false,
     bool encounter = false,
     bool onset = false,
     bool recordedDate = false,
@@ -1267,193 +1203,115 @@ class AllergyIntolerance extends DomainResource {
     bool note = false,
     bool reaction = false,
   }) {
-    return AllergyIntolerance(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      clinicalStatus: clinicalStatus ? null : this.clinicalStatus,
-      verificationStatus: verificationStatus ? null : this.verificationStatus,
-      type: type ? null : this.type,
-      category: category ? null : this.category,
-      criticality: criticality ? null : this.criticality,
-      code: code ? null : this.code,
-      patient: patient,
-      encounter: encounter ? null : this.encounter,
-      onsetX: onset ? null : onsetX,
-      recordedDate: recordedDate ? null : this.recordedDate,
-      recorder: recorder ? null : this.recorder,
-      asserter: asserter ? null : this.asserter,
-      lastOccurrence: lastOccurrence ? null : this.lastOccurrence,
-      note: note ? null : this.note,
-      reaction: reaction ? null : this.reaction,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (clinicalStatus) this.clinicalStatus = null;
+    if (verificationStatus) this.verificationStatus = null;
+    if (type) this.type = null;
+    if (category) this.category = null;
+    if (criticality) this.criticality = null;
+    if (code) this.code = null;
+    if (patient) this.patient = null;
+    if (encounter) this.encounter = null;
+    if (onset) this.onsetX = null;
+    if (recordedDate) this.recordedDate = null;
+    if (recorder) this.recorder = null;
+    if (asserter) this.asserter = null;
+    if (lastOccurrence) this.lastOccurrence = null;
+    if (note) this.note = null;
+    if (reaction) this.reaction = null;
   }
 
   @override
-  AllergyIntolerance clone() => throw UnimplementedError();
+  AllergyIntoleranceBuilder clone() => throw UnimplementedError();
   @override
-  AllergyIntolerance copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    CodeableConcept? clinicalStatus,
-    CodeableConcept? verificationStatus,
-    AllergyIntoleranceType? type,
-    List<AllergyIntoleranceCategory>? category,
-    AllergyIntoleranceCriticality? criticality,
-    CodeableConcept? code,
-    Reference? patient,
-    Reference? encounter,
-    OnsetXAllergyIntolerance? onsetX,
-    FhirDateTime? recordedDate,
-    Reference? recorder,
-    Reference? asserter,
-    FhirDateTime? lastOccurrence,
-    List<Annotation>? note,
-    List<AllergyIntoleranceReaction>? reaction,
+  AllergyIntoleranceBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    CodeableConceptBuilder? clinicalStatus,
+    CodeableConceptBuilder? verificationStatus,
+    AllergyIntoleranceTypeBuilder? type,
+    List<AllergyIntoleranceCategoryBuilder>? category,
+    AllergyIntoleranceCriticalityBuilder? criticality,
+    CodeableConceptBuilder? code,
+    ReferenceBuilder? patient,
+    ReferenceBuilder? encounter,
+    OnsetXAllergyIntoleranceBuilder? onsetX,
+    FhirDateTimeBuilder? recordedDate,
+    ReferenceBuilder? recorder,
+    ReferenceBuilder? asserter,
+    FhirDateTimeBuilder? lastOccurrence,
+    List<AnnotationBuilder>? note,
+    List<AllergyIntoleranceReactionBuilder>? reaction,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return AllergyIntolerance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = AllergyIntoleranceBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      clinicalStatus: clinicalStatus?.copyWith(
-            objectPath: '$newObjectPath.clinicalStatus',
-          ) ??
-          this.clinicalStatus,
-      verificationStatus: verificationStatus?.copyWith(
-            objectPath: '$newObjectPath.verificationStatus',
-          ) ??
-          this.verificationStatus,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      criticality: criticality?.copyWith(
-            objectPath: '$newObjectPath.criticality',
-          ) ??
-          this.criticality,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      onsetX: onsetX?.copyWith(
-            objectPath: '$newObjectPath.onsetX',
-          ) as OnsetXAllergyIntolerance? ??
-          this.onsetX,
-      recordedDate: recordedDate?.copyWith(
-            objectPath: '$newObjectPath.recordedDate',
-          ) ??
-          this.recordedDate,
-      recorder: recorder?.copyWith(
-            objectPath: '$newObjectPath.recorder',
-          ) ??
-          this.recorder,
-      asserter: asserter?.copyWith(
-            objectPath: '$newObjectPath.asserter',
-          ) ??
-          this.asserter,
-      lastOccurrence: lastOccurrence?.copyWith(
-            objectPath: '$newObjectPath.lastOccurrence',
-          ) ??
-          this.lastOccurrence,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      reaction: reaction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reaction',
-                ),
-              )
-              .toList() ??
-          this.reaction,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      clinicalStatus: clinicalStatus ?? this.clinicalStatus,
+      verificationStatus: verificationStatus ?? this.verificationStatus,
+      type: type ?? this.type,
+      category: category ?? this.category,
+      criticality: criticality ?? this.criticality,
+      code: code ?? this.code,
+      patient: patient ?? this.patient,
+      encounter: encounter ?? this.encounter,
+      onsetX: onsetX ?? this.onsetX,
+      recordedDate: recordedDate ?? this.recordedDate,
+      recorder: recorder ?? this.recorder,
+      asserter: asserter ?? this.asserter,
+      lastOccurrence: lastOccurrence ?? this.lastOccurrence,
+      note: note ?? this.note,
+      reaction: reaction ?? this.reaction,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AllergyIntolerance) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AllergyIntoleranceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1488,25 +1346,25 @@ class AllergyIntolerance extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1530,7 +1388,7 @@ class AllergyIntolerance extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<AllergyIntoleranceCategory>(
+    if (!listEquals<AllergyIntoleranceCategoryBuilder>(
       category,
       o.category,
     )) {
@@ -1590,13 +1448,13 @@ class AllergyIntolerance extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<AllergyIntoleranceReaction>(
+    if (!listEquals<AllergyIntoleranceReactionBuilder>(
       reaction,
       o.reaction,
     )) {
@@ -1606,19 +1464,19 @@ class AllergyIntolerance extends DomainResource {
   }
 }
 
-/// [AllergyIntoleranceReaction]
+/// [AllergyIntoleranceReactionBuilder]
 /// Details about each adverse reaction event linked to exposure to the
 /// identified substance.
-class AllergyIntoleranceReaction extends BackboneElement {
+class AllergyIntoleranceReactionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AllergyIntoleranceReaction]
+  /// [AllergyIntoleranceReactionBuilder]
 
-  const AllergyIntoleranceReaction({
+  AllergyIntoleranceReactionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.substance,
-    required this.manifestation,
+    this.manifestation,
     this.description,
     this.onset,
     this.severity,
@@ -1630,27 +1488,25 @@ class AllergyIntoleranceReaction extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AllergyIntoleranceReaction.empty() => const AllergyIntoleranceReaction(
-        manifestation: <CodeableConcept>[],
-      );
+  /// For Builder classes, no fields are required
+  factory AllergyIntoleranceReactionBuilder.empty() =>
+      AllergyIntoleranceReactionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AllergyIntoleranceReaction.fromJson(
+  factory AllergyIntoleranceReactionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AllergyIntolerance.reaction';
-    return AllergyIntoleranceReaction(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AllergyIntoleranceReactionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1659,8 +1515,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1668,15 +1524,15 @@ class AllergyIntoleranceReaction extends BackboneElement {
             ),
           )
           .toList(),
-      substance: JsonParser.parseObject<CodeableConcept>(
+      substance: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'substance',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.substance',
       ),
-      manifestation: (json['manifestation'] as List<dynamic>)
-          .map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+      manifestation: (json['manifestation'] as List<dynamic>?)
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.manifestation',
@@ -1684,33 +1540,33 @@ class AllergyIntoleranceReaction extends BackboneElement {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      onset: JsonParser.parsePrimitive<FhirDateTime>(
+      onset: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'onset',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.onset',
       ),
-      severity: JsonParser.parsePrimitive<AllergyIntoleranceSeverity>(
+      severity: JsonParser.parsePrimitive<AllergyIntoleranceSeverityBuilder>(
         json,
         'severity',
-        AllergyIntoleranceSeverity.fromJson,
+        AllergyIntoleranceSeverityBuilder.fromJson,
         '$objectPath.severity',
       ),
-      exposureRoute: JsonParser.parseObject<CodeableConcept>(
+      exposureRoute: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'exposureRoute',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.exposureRoute',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -1721,22 +1577,22 @@ class AllergyIntoleranceReaction extends BackboneElement {
     );
   }
 
-  /// Deserialize [AllergyIntoleranceReaction]
+  /// Deserialize [AllergyIntoleranceReactionBuilder]
   /// from a [String] or [YamlMap] object
-  factory AllergyIntoleranceReaction.fromYaml(
+  factory AllergyIntoleranceReactionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AllergyIntoleranceReaction.fromJson(
+      return AllergyIntoleranceReactionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AllergyIntoleranceReaction.fromJson(
+      return AllergyIntoleranceReactionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AllergyIntoleranceReaction '
+        'AllergyIntoleranceReactionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1744,16 +1600,16 @@ class AllergyIntoleranceReaction extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AllergyIntoleranceReaction]
+  /// [AllergyIntoleranceReactionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AllergyIntoleranceReaction.fromJsonString(
+  factory AllergyIntoleranceReactionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AllergyIntoleranceReaction.fromJson(json);
+      return AllergyIntoleranceReactionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1775,52 +1631,52 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// confirm that AllergyIntolerance.reaction.substance falls within the
   /// semantic scope of AllergyIntolerance.code, then the receiving system
   /// should ignore AllergyIntolerance.reaction.substance.
-  final CodeableConcept? substance;
+  CodeableConceptBuilder? substance;
 
   /// [manifestation]
   /// Clinical symptoms and/or signs that are observed or associated with the
   /// adverse reaction event.
-  final List<CodeableConcept> manifestation;
+  List<CodeableConceptBuilder>? manifestation;
 
   /// [description]
   /// Text description about the reaction as a whole, including details of
   /// the manifestation if required.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [onset]
   /// Record of the date and/or time of the onset of the Reaction.
-  final FhirDateTime? onset;
+  FhirDateTimeBuilder? onset;
 
   /// [severity]
   /// Clinical assessment of the severity of the reaction event as a whole,
   /// potentially considering multiple different manifestations.
-  final AllergyIntoleranceSeverity? severity;
+  AllergyIntoleranceSeverityBuilder? severity;
 
   /// [exposureRoute]
   /// Identification of the route by which the subject was exposed to the
   /// substance.
-  final CodeableConcept? exposureRoute;
+  CodeableConceptBuilder? exposureRoute;
 
   /// [note]
   /// Additional text about the adverse reaction event not captured in other
   /// fields.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1829,51 +1685,21 @@ class AllergyIntoleranceReaction extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'substance',
-      substance,
-    );
-    addField(
-      'manifestation',
-      manifestation,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'onset',
-      onset,
-    );
-    addField(
-      'severity',
-      severity,
-    );
-    addField(
-      'exposureRoute',
-      exposureRoute,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('substance', substance);
+    addField('manifestation', manifestation);
+    addField('description', description);
+    addField('onset', onset);
+    addField('severity', severity);
+    addField('exposureRoute', exposureRoute);
+    addField('note', note);
     return json;
   }
 
@@ -1897,11 +1723,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1920,7 +1746,9 @@ class AllergyIntoleranceReaction extends BackboneElement {
           fields.add(substance!);
         }
       case 'manifestation':
-        fields.addAll(manifestation);
+        if (manifestation != null) {
+          fields.addAll(manifestation!);
+        }
       case 'description':
         if (description != null) {
           fields.add(description!);
@@ -1951,7 +1779,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1960,117 +1788,122 @@ class AllergyIntoleranceReaction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
         {
-          if (child is CodeableConcept) {
-            return copyWith(substance: child);
+          if (child is CodeableConceptBuilder) {
+            substance = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manifestation':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...manifestation, ...child];
-            return copyWith(manifestation: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            manifestation = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...manifestation, child];
-            return copyWith(manifestation: newList);
+            manifestation = [...(manifestation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onset':
         {
-          if (child is FhirDateTime) {
-            return copyWith(onset: child);
+          if (child is FhirDateTimeBuilder) {
+            onset = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
         {
-          if (child is AllergyIntoleranceSeverity) {
-            return copyWith(severity: child);
+          if (child is AllergyIntoleranceSeverityBuilder) {
+            severity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'exposureRoute':
         {
-          if (child is CodeableConcept) {
-            return copyWith(exposureRoute: child);
+          if (child is CodeableConceptBuilder) {
+            exposureRoute = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2086,98 +1919,84 @@ class AllergyIntoleranceReaction extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'substance':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'manifestation':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'onset':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'severity':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'exposureRoute':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AllergyIntoleranceReaction]
+  /// Creates a new [AllergyIntoleranceReactionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AllergyIntoleranceReaction createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'substance':
         {
-          return copyWith(
-            substance: CodeableConcept.empty(),
-          );
+          substance = CodeableConceptBuilder.empty();
+          return;
         }
       case 'manifestation':
         {
-          return copyWith(
-            manifestation: <CodeableConcept>[],
-          );
+          manifestation = <CodeableConceptBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'onset':
         {
-          return copyWith(
-            onset: FhirDateTime.empty(),
-          );
+          onset = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'severity':
         {
-          return copyWith(
-            severity: AllergyIntoleranceSeverity.empty(),
-          );
+          severity = AllergyIntoleranceSeverityBuilder.empty();
+          return;
         }
       case 'exposureRoute':
         {
-          return copyWith(
-            exposureRoute: CodeableConcept.empty(),
-          );
+          exposureRoute = CodeableConceptBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2186,45 +2005,44 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AllergyIntoleranceReaction clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool substance = false,
+    bool manifestation = false,
     bool description = false,
     bool onset = false,
     bool severity = false,
     bool exposureRoute = false,
     bool note = false,
   }) {
-    return AllergyIntoleranceReaction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      substance: substance ? null : this.substance,
-      manifestation: manifestation,
-      description: description ? null : this.description,
-      onset: onset ? null : this.onset,
-      severity: severity ? null : this.severity,
-      exposureRoute: exposureRoute ? null : this.exposureRoute,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (substance) this.substance = null;
+    if (manifestation) this.manifestation = null;
+    if (description) this.description = null;
+    if (onset) this.onset = null;
+    if (severity) this.severity = null;
+    if (exposureRoute) this.exposureRoute = null;
+    if (note) this.note = null;
   }
 
   @override
-  AllergyIntoleranceReaction clone() => throw UnimplementedError();
+  AllergyIntoleranceReactionBuilder clone() => throw UnimplementedError();
   @override
-  AllergyIntoleranceReaction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? substance,
-    List<CodeableConcept>? manifestation,
-    FhirString? description,
-    FhirDateTime? onset,
-    AllergyIntoleranceSeverity? severity,
-    CodeableConcept? exposureRoute,
-    List<Annotation>? note,
+  AllergyIntoleranceReactionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? substance,
+    List<CodeableConceptBuilder>? manifestation,
+    FhirStringBuilder? description,
+    FhirDateTimeBuilder? onset,
+    AllergyIntoleranceSeverityBuilder? severity,
+    CodeableConceptBuilder? exposureRoute,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2232,70 +2050,41 @@ class AllergyIntoleranceReaction extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AllergyIntoleranceReaction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      substance: substance?.copyWith(
-            objectPath: '$newObjectPath.substance',
-          ) ??
-          this.substance,
-      manifestation: manifestation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manifestation',
-                ),
-              )
-              .toList() ??
-          this.manifestation,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      onset: onset?.copyWith(
-            objectPath: '$newObjectPath.onset',
-          ) ??
-          this.onset,
-      severity: severity?.copyWith(
-            objectPath: '$newObjectPath.severity',
-          ) ??
-          this.severity,
-      exposureRoute: exposureRoute?.copyWith(
-            objectPath: '$newObjectPath.exposureRoute',
-          ) ??
-          this.exposureRoute,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+    final newResult = AllergyIntoleranceReactionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      substance: substance ?? this.substance,
+      manifestation: manifestation ?? this.manifestation,
+      description: description ?? this.description,
+      onset: onset ?? this.onset,
+      severity: severity ?? this.severity,
+      exposureRoute: exposureRoute ?? this.exposureRoute,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AllergyIntoleranceReaction) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AllergyIntoleranceReactionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2306,13 +2095,13 @@ class AllergyIntoleranceReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2324,7 +2113,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       manifestation,
       o.manifestation,
     )) {
@@ -2354,7 +2143,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of participant.
-class TestReportParticipantType extends FhirCodeEnum {
+class TestReportParticipantTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  TestReportParticipantType._({
+  TestReportParticipantTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class TestReportParticipantType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory TestReportParticipantType(
+  factory TestReportParticipantTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return TestReportParticipantType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return TestReportParticipantTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,59 +43,65 @@ class TestReportParticipantType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [TestReportParticipantType] with element only
-  factory TestReportParticipantType.empty() =>
-      TestReportParticipantType._(validatedValue: '');
+  /// Create empty [TestReportParticipantTypeBuilder] with element only
+  factory TestReportParticipantTypeBuilder.empty() =>
+      TestReportParticipantTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TestReportParticipantType] from JSON.
-  factory TestReportParticipantType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TestReportParticipantTypeBuilder] from JSON.
+  factory TestReportParticipantTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportParticipantType.elementOnly.withElement(element);
+      return TestReportParticipantTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TestReportParticipantType cannot be constructed from JSON.',
+        'TestReportParticipantTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return TestReportParticipantType._(
+    return TestReportParticipantTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// test_engine
-  static final TestReportParticipantType test_engine =
-      TestReportParticipantType._(
+  static TestReportParticipantTypeBuilder test_engine =
+      TestReportParticipantTypeBuilder._(
     validatedValue: 'test-engine',
-    system: 'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Test Engine'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Test Engine'.toFhirStringBuilder,
   );
 
   /// client
-  static final TestReportParticipantType client = TestReportParticipantType._(
+  static TestReportParticipantTypeBuilder client =
+      TestReportParticipantTypeBuilder._(
     validatedValue: 'client',
-    system: 'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Client'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Client'.toFhirStringBuilder,
   );
 
   /// server
-  static final TestReportParticipantType server = TestReportParticipantType._(
+  static TestReportParticipantTypeBuilder server =
+      TestReportParticipantTypeBuilder._(
     validatedValue: 'server',
-    system: 'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Server'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Server'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final TestReportParticipantType elementOnly =
-      TestReportParticipantType._(validatedValue: '');
+  static TestReportParticipantTypeBuilder elementOnly =
+      TestReportParticipantTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<TestReportParticipantType> values = [
+  static List<TestReportParticipantTypeBuilder> values = [
     test_engine,
     client,
     server,
@@ -103,15 +109,16 @@ class TestReportParticipantType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  TestReportParticipantType clone() => TestReportParticipantType._(
+  TestReportParticipantTypeBuilder clone() =>
+      TestReportParticipantTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  TestReportParticipantType withElement(Element? newElement) {
-    return TestReportParticipantType._(
-        validatedValue: value, element: newElement,);
+  TestReportParticipantTypeBuilder withElement(ElementBuilder? newElement) {
+    return TestReportParticipantTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -127,11 +134,11 @@ class TestReportParticipantType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  TestReportParticipantType copyWith({
+  TestReportParticipantTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -142,7 +149,7 @@ class TestReportParticipantType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return TestReportParticipantType._(
+    return TestReportParticipantTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -152,7 +159,7 @@ class TestReportParticipantType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

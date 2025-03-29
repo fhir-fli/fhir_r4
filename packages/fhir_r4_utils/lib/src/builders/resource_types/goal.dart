@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Goal]
+/// [GoalBuilder]
 /// Describes the intended objective(s) for a patient, group or
 /// organization care, for example, weight loss, restoring an activity of
 /// daily living, obtaining herd immunity via immunization, meeting a
 /// process improvement objective, etc.
-class Goal extends DomainResource {
+class GoalBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Goal]
+  /// [GoalBuilder]
 
-  const Goal({
+  GoalBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,12 +23,12 @@ class Goal extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.lifecycleStatus,
+    this.lifecycleStatus,
     this.achievementStatus,
     this.category,
     this.priority,
-    required this.description,
-    required this.subject,
+    this.description,
+    this.subject,
     this.startX,
     this.target,
     this.statusDate,
@@ -42,53 +44,48 @@ class Goal extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Goal.empty() => Goal(
-        lifecycleStatus: GoalLifecycleStatus.values.first,
-        description: CodeableConcept.empty(),
-        subject: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory GoalBuilder.empty() => GoalBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Goal.fromJson(
+  factory GoalBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Goal';
-    return Goal(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GoalBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -97,8 +94,8 @@ class Goal extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -107,8 +104,8 @@ class Goal extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -117,8 +114,8 @@ class Goal extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -126,21 +123,21 @@ class Goal extends DomainResource {
             ),
           )
           .toList(),
-      lifecycleStatus: JsonParser.parsePrimitive<GoalLifecycleStatus>(
+      lifecycleStatus: JsonParser.parsePrimitive<GoalLifecycleStatusBuilder>(
         json,
         'lifecycleStatus',
-        GoalLifecycleStatus.fromJson,
+        GoalLifecycleStatusBuilder.fromJson,
         '$objectPath.lifecycleStatus',
-      )!,
-      achievementStatus: JsonParser.parseObject<CodeableConcept>(
+      ),
+      achievementStatus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'achievementStatus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.achievementStatus',
       ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -148,35 +145,35 @@ class Goal extends DomainResource {
             ),
           )
           .toList(),
-      priority: JsonParser.parseObject<CodeableConcept>(
+      priority: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'priority',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.priority',
       ),
-      description: JsonParser.parseObject<CodeableConcept>(
+      description: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'description',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.description',
-      )!,
-      subject: JsonParser.parseObject<Reference>(
+      ),
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      startX: JsonParser.parsePolymorphic<StartXGoal>(
+      ),
+      startX: JsonParser.parsePolymorphic<StartXGoalBuilder>(
         json,
         {
-          'startDate': FhirDate.fromJson,
-          'startCodeableConcept': CodeableConcept.fromJson,
+          'startDate': FhirDateBuilder.fromJson,
+          'startCodeableConcept': CodeableConceptBuilder.fromJson,
         },
         objectPath,
       ),
       target: (json['target'] as List<dynamic>?)
-          ?.map<GoalTarget>(
-            (v) => GoalTarget.fromJson(
+          ?.map<GoalTargetBuilder>(
+            (v) => GoalTargetBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.target',
@@ -184,27 +181,27 @@ class Goal extends DomainResource {
             ),
           )
           .toList(),
-      statusDate: JsonParser.parsePrimitive<FhirDate>(
+      statusDate: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'statusDate',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.statusDate',
       ),
-      statusReason: JsonParser.parsePrimitive<FhirString>(
+      statusReason: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'statusReason',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.statusReason',
       ),
-      expressedBy: JsonParser.parseObject<Reference>(
+      expressedBy: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'expressedBy',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.expressedBy',
       ),
       addresses: (json['addresses'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.addresses',
@@ -213,8 +210,8 @@ class Goal extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -223,8 +220,8 @@ class Goal extends DomainResource {
           )
           .toList(),
       outcomeCode: (json['outcomeCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.outcomeCode',
@@ -233,8 +230,8 @@ class Goal extends DomainResource {
           )
           .toList(),
       outcomeReference: (json['outcomeReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.outcomeReference',
@@ -245,22 +242,22 @@ class Goal extends DomainResource {
     );
   }
 
-  /// Deserialize [Goal]
+  /// Deserialize [GoalBuilder]
   /// from a [String] or [YamlMap] object
-  factory Goal.fromYaml(
+  factory GoalBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Goal.fromJson(
+      return GoalBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Goal.fromJson(
+      return GoalBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Goal '
+        'GoalBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -268,16 +265,16 @@ class Goal extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Goal]
+  /// [GoalBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Goal.fromJsonString(
+  factory GoalBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Goal.fromJson(json);
+      return GoalBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -291,97 +288,98 @@ class Goal extends DomainResource {
   /// Business identifiers assigned to this goal by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [lifecycleStatus]
   /// The state of the goal throughout its lifecycle.
-  final GoalLifecycleStatus lifecycleStatus;
+  GoalLifecycleStatusBuilder? lifecycleStatus;
 
   /// [achievementStatus]
   /// Describes the progression, or lack thereof, towards the goal against
   /// the target.
-  final CodeableConcept? achievementStatus;
+  CodeableConceptBuilder? achievementStatus;
 
   /// [category]
   /// Indicates a category the goal falls within.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [priority]
   /// Identifies the mutually agreed level of importance associated with
   /// reaching/sustaining the goal.
-  final CodeableConcept? priority;
+  CodeableConceptBuilder? priority;
 
   /// [description]
   /// Human-readable and/or coded description of a specific desired objective
   /// of care, such as "control blood pressure" or "negotiate an obstacle
   /// course" or "dance with child at wedding".
-  final CodeableConcept description;
+  CodeableConceptBuilder? description;
 
   /// [subject]
   /// Identifies the patient, group or organization for whom the goal is
   /// being established.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [startX]
   /// The date or event after which the goal should begin being pursued.
-  final StartXGoal? startX;
+  StartXGoalBuilder? startX;
 
-  /// Getter for [startDate] as a FhirDate
-  FhirDate? get startDate => startX?.isAs<FhirDate>();
+  /// Getter for [startDate] as a FhirDateBuilder
+  FhirDateBuilder? get startDate => startX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [startCodeableConcept] as a CodeableConcept
-  CodeableConcept? get startCodeableConcept => startX?.isAs<CodeableConcept>();
+  /// Getter for [startCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get startCodeableConcept =>
+      startX?.isAs<CodeableConceptBuilder>();
 
   /// [target]
   /// Indicates what should be done by when.
-  final List<GoalTarget>? target;
+  List<GoalTargetBuilder>? target;
 
   /// [statusDate]
   /// Identifies when the current status. I.e. When initially created, when
   /// achieved, when cancelled, etc.
-  final FhirDate? statusDate;
+  FhirDateBuilder? statusDate;
 
   /// [statusReason]
   /// Captures the reason for the current status.
-  final FhirString? statusReason;
+  FhirStringBuilder? statusReason;
 
   /// [expressedBy]
   /// Indicates whose goal this is - patient goal, practitioner goal, etc.
-  final Reference? expressedBy;
+  ReferenceBuilder? expressedBy;
 
   /// [addresses]
   /// The identified conditions and other health record elements that are
   /// intended to be addressed by the goal.
-  final List<Reference>? addresses;
+  List<ReferenceBuilder>? addresses;
 
   /// [note]
   /// Any comments related to the goal.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [outcomeCode]
   /// Identifies the change (or lack of change) at the point when the status
   /// of the goal is assessed.
-  final List<CodeableConcept>? outcomeCode;
+  List<CodeableConceptBuilder>? outcomeCode;
 
   /// [outcomeReference]
   /// Details of what's changed (or not changed).
-  final List<Reference>? outcomeReference;
+  List<ReferenceBuilder>? outcomeReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -390,112 +388,40 @@ class Goal extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'lifecycleStatus',
-      lifecycleStatus,
-    );
-    addField(
-      'achievementStatus',
-      achievementStatus,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'priority',
-      priority,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'subject',
-      subject,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('lifecycleStatus', lifecycleStatus);
+    addField('achievementStatus', achievementStatus);
+    addField('category', category);
+    addField('priority', priority);
+    addField('description', description);
+    addField('subject', subject);
     if (startX != null) {
       final fhirType = startX!.fhirType;
-      addField(
-        'start${fhirType.capitalize()}',
-        startX,
-      );
+      addField('start${fhirType.capitalize()}', startX);
     }
 
-    addField(
-      'target',
-      target,
-    );
-    addField(
-      'statusDate',
-      statusDate,
-    );
-    addField(
-      'statusReason',
-      statusReason,
-    );
-    addField(
-      'expressedBy',
-      expressedBy,
-    );
-    addField(
-      'addresses',
-      addresses,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'outcomeCode',
-      outcomeCode,
-    );
-    addField(
-      'outcomeReference',
-      outcomeReference,
-    );
+    addField('target', target);
+    addField('statusDate', statusDate);
+    addField('statusReason', statusReason);
+    addField('expressedBy', expressedBy);
+    addField('addresses', addresses);
+    addField('note', note);
+    addField('outcomeCode', outcomeCode);
+    addField('outcomeReference', outcomeReference);
     return json;
   }
 
@@ -533,11 +459,11 @@ class Goal extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -576,7 +502,9 @@ class Goal extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'lifecycleStatus':
-        fields.add(lifecycleStatus);
+        if (lifecycleStatus != null) {
+          fields.add(lifecycleStatus!);
+        }
       case 'achievementStatus':
         if (achievementStatus != null) {
           fields.add(achievementStatus!);
@@ -590,19 +518,27 @@ class Goal extends DomainResource {
           fields.add(priority!);
         }
       case 'description':
-        fields.add(description);
+        if (description != null) {
+          fields.add(description!);
+        }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'start':
-        fields.add(startX!);
+        if (startX != null) {
+          fields.add(startX!);
+        }
       case 'startX':
-        fields.add(startX!);
+        if (startX != null) {
+          fields.add(startX!);
+        }
       case 'startDate':
-        if (startX is FhirDate) {
+        if (startX is FhirDateBuilder) {
           fields.add(startX!);
         }
       case 'startCodeableConcept':
-        if (startX is CodeableConcept) {
+        if (startX is CodeableConceptBuilder) {
           fields.add(startX!);
         }
       case 'target':
@@ -647,7 +583,7 @@ class Goal extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -656,287 +592,304 @@ class Goal extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lifecycleStatus':
         {
-          if (child is GoalLifecycleStatus) {
-            return copyWith(lifecycleStatus: child);
+          if (child is GoalLifecycleStatusBuilder) {
+            lifecycleStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'achievementStatus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(achievementStatus: child);
+          if (child is CodeableConceptBuilder) {
+            achievementStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'priority':
         {
-          if (child is CodeableConcept) {
-            return copyWith(priority: child);
+          if (child is CodeableConceptBuilder) {
+            priority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is CodeableConcept) {
-            return copyWith(description: child);
+          if (child is CodeableConceptBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'startX':
         {
-          if (child is StartXGoal) {
-            return copyWith(startX: child);
+          if (child is StartXGoalBuilder) {
+            startX = child;
+            return;
           } else {
-            if (child is FhirDate) {
-              return copyWith(startX: child);
+            if (child is FhirDateBuilder) {
+              startX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(startX: child);
+            if (child is CodeableConceptBuilder) {
+              startX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'startFhirDate':
+      case 'startDate':
         {
-          if (child is FhirDate) {
-            return copyWith(startX: child);
+          if (child is FhirDateBuilder) {
+            startX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'startCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(startX: child);
+          if (child is CodeableConceptBuilder) {
+            startX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is List<GoalTarget>) {
-            // Add all elements from passed list
-            final newList = [...?target, ...child];
-            return copyWith(target: newList);
-          } else if (child is GoalTarget) {
+          if (child is List<GoalTargetBuilder>) {
+            // Replace or create new list
+            target = child;
+            return;
+          } else if (child is GoalTargetBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
-            return copyWith(target: newList);
+            target = [...(target ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
         {
-          if (child is FhirDate) {
-            return copyWith(statusDate: child);
+          if (child is FhirDateBuilder) {
+            statusDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusReason':
         {
-          if (child is FhirString) {
-            return copyWith(statusReason: child);
+          if (child is FhirStringBuilder) {
+            statusReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expressedBy':
         {
-          if (child is Reference) {
-            return copyWith(expressedBy: child);
+          if (child is ReferenceBuilder) {
+            expressedBy = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'addresses':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?addresses, ...child];
-            return copyWith(addresses: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            addresses = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?addresses, child];
-            return copyWith(addresses: newList);
+            addresses = [...(addresses ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcomeCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?outcomeCode, ...child];
-            return copyWith(outcomeCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            outcomeCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeCode, child];
-            return copyWith(outcomeCode: newList);
+            outcomeCode = [...(outcomeCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcomeReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?outcomeReference, ...child];
-            return copyWith(outcomeReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            outcomeReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeReference, child];
-            return copyWith(outcomeReference: newList);
+            outcomeReference = [...(outcomeReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -952,223 +905,194 @@ class Goal extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'lifecycleStatus':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'achievementStatus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'priority':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'start':
       case 'startX':
-        return ['FhirDate', 'CodeableConcept'];
+        return ['FhirDateBuilder', 'CodeableConceptBuilder'];
       case 'startDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'startCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'target':
-        return ['GoalTarget'];
+        return ['GoalTargetBuilder'];
       case 'statusDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'statusReason':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'expressedBy':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'addresses':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'outcomeCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'outcomeReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Goal]
+  /// Creates a new [GoalBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Goal createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'lifecycleStatus':
         {
-          return copyWith(
-            lifecycleStatus: GoalLifecycleStatus.empty(),
-          );
+          lifecycleStatus = GoalLifecycleStatusBuilder.empty();
+          return;
         }
       case 'achievementStatus':
         {
-          return copyWith(
-            achievementStatus: CodeableConcept.empty(),
-          );
+          achievementStatus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'priority':
         {
-          return copyWith(
-            priority: CodeableConcept.empty(),
-          );
+          priority = CodeableConceptBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: CodeableConcept.empty(),
-          );
+          description = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'start':
       case 'startX':
       case 'startDate':
         {
-          return copyWith(
-            startX: FhirDate.empty(),
-          );
+          startX = FhirDateBuilder.empty();
+          return;
         }
       case 'startCodeableConcept':
         {
-          return copyWith(
-            startX: CodeableConcept.empty(),
-          );
+          startX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: <GoalTarget>[],
-          );
+          target = <GoalTargetBuilder>[];
+          return;
         }
       case 'statusDate':
         {
-          return copyWith(
-            statusDate: FhirDate.empty(),
-          );
+          statusDate = FhirDateBuilder.empty();
+          return;
         }
       case 'statusReason':
         {
-          return copyWith(
-            statusReason: FhirString.empty(),
-          );
+          statusReason = FhirStringBuilder.empty();
+          return;
         }
       case 'expressedBy':
         {
-          return copyWith(
-            expressedBy: Reference.empty(),
-          );
+          expressedBy = ReferenceBuilder.empty();
+          return;
         }
       case 'addresses':
         {
-          return copyWith(
-            addresses: <Reference>[],
-          );
+          addresses = <ReferenceBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'outcomeCode':
         {
-          return copyWith(
-            outcomeCode: <CodeableConcept>[],
-          );
+          outcomeCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'outcomeReference':
         {
-          return copyWith(
-            outcomeReference: <Reference>[],
-          );
+          outcomeReference = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1177,7 +1101,7 @@ class Goal extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Goal clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1187,9 +1111,12 @@ class Goal extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool lifecycleStatus = false,
     bool achievementStatus = false,
     bool category = false,
     bool priority = false,
+    bool description = false,
+    bool subject = false,
     bool start = false,
     bool target = false,
     bool statusDate = false,
@@ -1200,205 +1127,115 @@ class Goal extends DomainResource {
     bool outcomeCode = false,
     bool outcomeReference = false,
   }) {
-    return Goal(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      lifecycleStatus: lifecycleStatus,
-      achievementStatus: achievementStatus ? null : this.achievementStatus,
-      category: category ? null : this.category,
-      priority: priority ? null : this.priority,
-      description: description,
-      subject: subject,
-      startX: start ? null : startX,
-      target: target ? null : this.target,
-      statusDate: statusDate ? null : this.statusDate,
-      statusReason: statusReason ? null : this.statusReason,
-      expressedBy: expressedBy ? null : this.expressedBy,
-      addresses: addresses ? null : this.addresses,
-      note: note ? null : this.note,
-      outcomeCode: outcomeCode ? null : this.outcomeCode,
-      outcomeReference: outcomeReference ? null : this.outcomeReference,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (lifecycleStatus) this.lifecycleStatus = null;
+    if (achievementStatus) this.achievementStatus = null;
+    if (category) this.category = null;
+    if (priority) this.priority = null;
+    if (description) this.description = null;
+    if (subject) this.subject = null;
+    if (start) this.startX = null;
+    if (target) this.target = null;
+    if (statusDate) this.statusDate = null;
+    if (statusReason) this.statusReason = null;
+    if (expressedBy) this.expressedBy = null;
+    if (addresses) this.addresses = null;
+    if (note) this.note = null;
+    if (outcomeCode) this.outcomeCode = null;
+    if (outcomeReference) this.outcomeReference = null;
   }
 
   @override
-  Goal clone() => throw UnimplementedError();
+  GoalBuilder clone() => throw UnimplementedError();
   @override
-  Goal copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    GoalLifecycleStatus? lifecycleStatus,
-    CodeableConcept? achievementStatus,
-    List<CodeableConcept>? category,
-    CodeableConcept? priority,
-    CodeableConcept? description,
-    Reference? subject,
-    StartXGoal? startX,
-    List<GoalTarget>? target,
-    FhirDate? statusDate,
-    FhirString? statusReason,
-    Reference? expressedBy,
-    List<Reference>? addresses,
-    List<Annotation>? note,
-    List<CodeableConcept>? outcomeCode,
-    List<Reference>? outcomeReference,
+  GoalBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    GoalLifecycleStatusBuilder? lifecycleStatus,
+    CodeableConceptBuilder? achievementStatus,
+    List<CodeableConceptBuilder>? category,
+    CodeableConceptBuilder? priority,
+    CodeableConceptBuilder? description,
+    ReferenceBuilder? subject,
+    StartXGoalBuilder? startX,
+    List<GoalTargetBuilder>? target,
+    FhirDateBuilder? statusDate,
+    FhirStringBuilder? statusReason,
+    ReferenceBuilder? expressedBy,
+    List<ReferenceBuilder>? addresses,
+    List<AnnotationBuilder>? note,
+    List<CodeableConceptBuilder>? outcomeCode,
+    List<ReferenceBuilder>? outcomeReference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Goal(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = GoalBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      lifecycleStatus: lifecycleStatus?.copyWith(
-            objectPath: '$newObjectPath.lifecycleStatus',
-          ) ??
-          this.lifecycleStatus,
-      achievementStatus: achievementStatus?.copyWith(
-            objectPath: '$newObjectPath.achievementStatus',
-          ) ??
-          this.achievementStatus,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      startX: startX?.copyWith(
-            objectPath: '$newObjectPath.startX',
-          ) as StartXGoal? ??
-          this.startX,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
-      statusDate: statusDate?.copyWith(
-            objectPath: '$newObjectPath.statusDate',
-          ) ??
-          this.statusDate,
-      statusReason: statusReason?.copyWith(
-            objectPath: '$newObjectPath.statusReason',
-          ) ??
-          this.statusReason,
-      expressedBy: expressedBy?.copyWith(
-            objectPath: '$newObjectPath.expressedBy',
-          ) ??
-          this.expressedBy,
-      addresses: addresses
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.addresses',
-                ),
-              )
-              .toList() ??
-          this.addresses,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      outcomeCode: outcomeCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.outcomeCode',
-                ),
-              )
-              .toList() ??
-          this.outcomeCode,
-      outcomeReference: outcomeReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.outcomeReference',
-                ),
-              )
-              .toList() ??
-          this.outcomeReference,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      lifecycleStatus: lifecycleStatus ?? this.lifecycleStatus,
+      achievementStatus: achievementStatus ?? this.achievementStatus,
+      category: category ?? this.category,
+      priority: priority ?? this.priority,
+      description: description ?? this.description,
+      subject: subject ?? this.subject,
+      startX: startX ?? this.startX,
+      target: target ?? this.target,
+      statusDate: statusDate ?? this.statusDate,
+      statusReason: statusReason ?? this.statusReason,
+      expressedBy: expressedBy ?? this.expressedBy,
+      addresses: addresses ?? this.addresses,
+      note: note ?? this.note,
+      outcomeCode: outcomeCode ?? this.outcomeCode,
+      outcomeReference: outcomeReference ?? this.outcomeReference,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Goal) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GoalBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1433,25 +1270,25 @@ class Goal extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1469,7 +1306,7 @@ class Goal extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1499,7 +1336,7 @@ class Goal extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<GoalTarget>(
+    if (!listEquals<GoalTargetBuilder>(
       target,
       o.target,
     )) {
@@ -1523,25 +1360,25 @@ class Goal extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       addresses,
       o.addresses,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       outcomeCode,
       o.outcomeCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       outcomeReference,
       o.outcomeReference,
     )) {
@@ -1551,13 +1388,13 @@ class Goal extends DomainResource {
   }
 }
 
-/// [GoalTarget]
+/// [GoalTargetBuilder]
 /// Indicates what should be done by when.
-class GoalTarget extends BackboneElement {
+class GoalTargetBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [GoalTarget]
+  /// [GoalTargetBuilder]
 
-  const GoalTarget({
+  GoalTargetBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1570,25 +1407,24 @@ class GoalTarget extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GoalTarget.empty() => const GoalTarget();
+  /// For Builder classes, no fields are required
+  factory GoalTargetBuilder.empty() => GoalTargetBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GoalTarget.fromJson(
+  factory GoalTargetBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Goal.target';
-    return GoalTarget(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GoalTargetBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1597,8 +1433,8 @@ class GoalTarget extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1606,52 +1442,52 @@ class GoalTarget extends BackboneElement {
             ),
           )
           .toList(),
-      measure: JsonParser.parseObject<CodeableConcept>(
+      measure: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'measure',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.measure',
       ),
-      detailX: JsonParser.parsePolymorphic<DetailXGoalTarget>(
+      detailX: JsonParser.parsePolymorphic<DetailXGoalTargetBuilder>(
         json,
         {
-          'detailQuantity': Quantity.fromJson,
-          'detailRange': Range.fromJson,
-          'detailCodeableConcept': CodeableConcept.fromJson,
-          'detailString': FhirString.fromJson,
-          'detailBoolean': FhirBoolean.fromJson,
-          'detailInteger': FhirInteger.fromJson,
-          'detailRatio': Ratio.fromJson,
+          'detailQuantity': QuantityBuilder.fromJson,
+          'detailRange': RangeBuilder.fromJson,
+          'detailCodeableConcept': CodeableConceptBuilder.fromJson,
+          'detailString': FhirStringBuilder.fromJson,
+          'detailBoolean': FhirBooleanBuilder.fromJson,
+          'detailInteger': FhirIntegerBuilder.fromJson,
+          'detailRatio': RatioBuilder.fromJson,
         },
         objectPath,
       ),
-      dueX: JsonParser.parsePolymorphic<DueXGoalTarget>(
+      dueX: JsonParser.parsePolymorphic<DueXGoalTargetBuilder>(
         json,
         {
-          'dueDate': FhirDate.fromJson,
-          'dueDuration': FhirDuration.fromJson,
+          'dueDate': FhirDateBuilder.fromJson,
+          'dueDuration': FhirDurationBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [GoalTarget]
+  /// Deserialize [GoalTargetBuilder]
   /// from a [String] or [YamlMap] object
-  factory GoalTarget.fromYaml(
+  factory GoalTargetBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return GoalTarget.fromJson(
+      return GoalTargetBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return GoalTarget.fromJson(
+      return GoalTargetBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'GoalTarget '
+        'GoalTargetBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1659,16 +1495,16 @@ class GoalTarget extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [GoalTarget]
+  /// [GoalTargetBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GoalTarget.fromJsonString(
+  factory GoalTargetBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return GoalTarget.fromJson(json);
+      return GoalTargetBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1681,7 +1517,7 @@ class GoalTarget extends BackboneElement {
   /// [measure]
   /// The parameter whose value is being tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.
-  final CodeableConcept? measure;
+  CodeableConceptBuilder? measure;
 
   /// [detailX]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -1690,56 +1526,56 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final DetailXGoalTarget? detailX;
+  DetailXGoalTargetBuilder? detailX;
 
-  /// Getter for [detailQuantity] as a Quantity
-  Quantity? get detailQuantity => detailX?.isAs<Quantity>();
+  /// Getter for [detailQuantity] as a QuantityBuilder
+  QuantityBuilder? get detailQuantity => detailX?.isAs<QuantityBuilder>();
 
-  /// Getter for [detailRange] as a Range
-  Range? get detailRange => detailX?.isAs<Range>();
+  /// Getter for [detailRange] as a RangeBuilder
+  RangeBuilder? get detailRange => detailX?.isAs<RangeBuilder>();
 
-  /// Getter for [detailCodeableConcept] as a CodeableConcept
-  CodeableConcept? get detailCodeableConcept =>
-      detailX?.isAs<CodeableConcept>();
+  /// Getter for [detailCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get detailCodeableConcept =>
+      detailX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [detailString] as a FhirString
-  FhirString? get detailString => detailX?.isAs<FhirString>();
+  /// Getter for [detailString] as a FhirStringBuilder
+  FhirStringBuilder? get detailString => detailX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [detailBoolean] as a FhirBoolean
-  FhirBoolean? get detailBoolean => detailX?.isAs<FhirBoolean>();
+  /// Getter for [detailBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get detailBoolean => detailX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [detailInteger] as a FhirInteger
-  FhirInteger? get detailInteger => detailX?.isAs<FhirInteger>();
+  /// Getter for [detailInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get detailInteger => detailX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [detailRatio] as a Ratio
-  Ratio? get detailRatio => detailX?.isAs<Ratio>();
+  /// Getter for [detailRatio] as a RatioBuilder
+  RatioBuilder? get detailRatio => detailX?.isAs<RatioBuilder>();
 
   /// [dueX]
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  final DueXGoalTarget? dueX;
+  DueXGoalTargetBuilder? dueX;
 
-  /// Getter for [dueDate] as a FhirDate
-  FhirDate? get dueDate => dueX?.isAs<FhirDate>();
+  /// Getter for [dueDate] as a FhirDateBuilder
+  FhirDateBuilder? get dueDate => dueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [dueDuration] as a FhirDuration
-  FhirDuration? get dueDuration => dueX?.isAs<FhirDuration>();
+  /// Getter for [dueDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get dueDuration => dueX?.isAs<FhirDurationBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1748,41 +1584,23 @@ class GoalTarget extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'measure',
-      measure,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('measure', measure);
     if (detailX != null) {
       final fhirType = detailX!.fhirType;
-      addField(
-        'detail${fhirType.capitalize()}',
-        detailX,
-      );
+      addField('detail${fhirType.capitalize()}', detailX);
     }
 
     if (dueX != null) {
       final fhirType = dueX!.fhirType;
-      addField(
-        'due${fhirType.capitalize()}',
-        dueX,
-      );
+      addField('due${fhirType.capitalize()}', dueX);
     }
 
     return json;
@@ -1804,11 +1622,11 @@ class GoalTarget extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1827,47 +1645,55 @@ class GoalTarget extends BackboneElement {
           fields.add(measure!);
         }
       case 'detail':
-        fields.add(detailX!);
+        if (detailX != null) {
+          fields.add(detailX!);
+        }
       case 'detailX':
-        fields.add(detailX!);
+        if (detailX != null) {
+          fields.add(detailX!);
+        }
       case 'detailQuantity':
-        if (detailX is Quantity) {
+        if (detailX is QuantityBuilder) {
           fields.add(detailX!);
         }
       case 'detailRange':
-        if (detailX is Range) {
+        if (detailX is RangeBuilder) {
           fields.add(detailX!);
         }
       case 'detailCodeableConcept':
-        if (detailX is CodeableConcept) {
+        if (detailX is CodeableConceptBuilder) {
           fields.add(detailX!);
         }
       case 'detailString':
-        if (detailX is FhirString) {
+        if (detailX is FhirStringBuilder) {
           fields.add(detailX!);
         }
       case 'detailBoolean':
-        if (detailX is FhirBoolean) {
+        if (detailX is FhirBooleanBuilder) {
           fields.add(detailX!);
         }
       case 'detailInteger':
-        if (detailX is FhirInteger) {
+        if (detailX is FhirIntegerBuilder) {
           fields.add(detailX!);
         }
       case 'detailRatio':
-        if (detailX is Ratio) {
+        if (detailX is RatioBuilder) {
           fields.add(detailX!);
         }
       case 'due':
-        fields.add(dueX!);
+        if (dueX != null) {
+          fields.add(dueX!);
+        }
       case 'dueX':
-        fields.add(dueX!);
+        if (dueX != null) {
+          fields.add(dueX!);
+        }
       case 'dueDate':
-        if (dueX is FhirDate) {
+        if (dueX is FhirDateBuilder) {
           fields.add(dueX!);
         }
       case 'dueDuration':
-        if (dueX is FhirDuration) {
+        if (dueX is FhirDurationBuilder) {
           fields.add(dueX!);
         }
       default:
@@ -1880,7 +1706,7 @@ class GoalTarget extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1889,172 +1715,193 @@ class GoalTarget extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measure':
         {
-          if (child is CodeableConcept) {
-            return copyWith(measure: child);
+          if (child is CodeableConceptBuilder) {
+            measure = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detailX':
         {
-          if (child is DetailXGoalTarget) {
-            return copyWith(detailX: child);
+          if (child is DetailXGoalTargetBuilder) {
+            detailX = child;
+            return;
           } else {
-            if (child is Quantity) {
-              return copyWith(detailX: child);
+            if (child is QuantityBuilder) {
+              detailX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(detailX: child);
+            if (child is RangeBuilder) {
+              detailX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(detailX: child);
+            if (child is CodeableConceptBuilder) {
+              detailX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(detailX: child);
+            if (child is FhirStringBuilder) {
+              detailX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(detailX: child);
+            if (child is FhirBooleanBuilder) {
+              detailX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(detailX: child);
+            if (child is FhirIntegerBuilder) {
+              detailX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(detailX: child);
+            if (child is RatioBuilder) {
+              detailX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'detailQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(detailX: child);
+          if (child is QuantityBuilder) {
+            detailX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detailRange':
         {
-          if (child is Range) {
-            return copyWith(detailX: child);
+          if (child is RangeBuilder) {
+            detailX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detailCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(detailX: child);
+          if (child is CodeableConceptBuilder) {
+            detailX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'detailFhirString':
+      case 'detailString':
         {
-          if (child is FhirString) {
-            return copyWith(detailX: child);
+          if (child is FhirStringBuilder) {
+            detailX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'detailFhirBoolean':
+      case 'detailBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(detailX: child);
+          if (child is FhirBooleanBuilder) {
+            detailX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'detailFhirInteger':
+      case 'detailInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(detailX: child);
+          if (child is FhirIntegerBuilder) {
+            detailX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detailRatio':
         {
-          if (child is Ratio) {
-            return copyWith(detailX: child);
+          if (child is RatioBuilder) {
+            detailX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dueX':
         {
-          if (child is DueXGoalTarget) {
-            return copyWith(dueX: child);
+          if (child is DueXGoalTargetBuilder) {
+            dueX = child;
+            return;
           } else {
-            if (child is FhirDate) {
-              return copyWith(dueX: child);
+            if (child is FhirDateBuilder) {
+              dueX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(dueX: child);
+            if (child is FhirDurationBuilder) {
+              dueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'dueFhirDate':
+      case 'dueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(dueX: child);
+          if (child is FhirDateBuilder) {
+            dueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'dueFhirDuration':
+      case 'dueDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(dueX: child);
+          if (child is FhirDurationBuilder) {
+            dueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2070,140 +1917,123 @@ class GoalTarget extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'measure':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'detail':
       case 'detailX':
         return [
-          'Quantity',
-          'Range',
-          'CodeableConcept',
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'Ratio',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'CodeableConceptBuilder',
+          'FhirStringBuilder',
+          'FhirBooleanBuilder',
+          'FhirIntegerBuilder',
+          'RatioBuilder'
         ];
       case 'detailQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'detailRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'detailCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'detailString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'detailBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'detailInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'detailRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'due':
       case 'dueX':
-        return ['FhirDate', 'FhirDuration'];
+        return ['FhirDateBuilder', 'FhirDurationBuilder'];
       case 'dueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'dueDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [GoalTarget]
+  /// Creates a new [GoalTargetBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  GoalTarget createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'measure':
         {
-          return copyWith(
-            measure: CodeableConcept.empty(),
-          );
+          measure = CodeableConceptBuilder.empty();
+          return;
         }
       case 'detail':
       case 'detailX':
       case 'detailQuantity':
         {
-          return copyWith(
-            detailX: Quantity.empty(),
-          );
+          detailX = QuantityBuilder.empty();
+          return;
         }
       case 'detailRange':
         {
-          return copyWith(
-            detailX: Range.empty(),
-          );
+          detailX = RangeBuilder.empty();
+          return;
         }
       case 'detailCodeableConcept':
         {
-          return copyWith(
-            detailX: CodeableConcept.empty(),
-          );
+          detailX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'detailString':
         {
-          return copyWith(
-            detailX: FhirString.empty(),
-          );
+          detailX = FhirStringBuilder.empty();
+          return;
         }
       case 'detailBoolean':
         {
-          return copyWith(
-            detailX: FhirBoolean.empty(),
-          );
+          detailX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'detailInteger':
         {
-          return copyWith(
-            detailX: FhirInteger.empty(),
-          );
+          detailX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'detailRatio':
         {
-          return copyWith(
-            detailX: Ratio.empty(),
-          );
+          detailX = RatioBuilder.empty();
+          return;
         }
       case 'due':
       case 'dueX':
       case 'dueDate':
         {
-          return copyWith(
-            dueX: FhirDate.empty(),
-          );
+          dueX = FhirDateBuilder.empty();
+          return;
         }
       case 'dueDuration':
         {
-          return copyWith(
-            dueX: FhirDuration.empty(),
-          );
+          dueX = FhirDurationBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2212,7 +2042,7 @@ class GoalTarget extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  GoalTarget clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2220,26 +2050,24 @@ class GoalTarget extends BackboneElement {
     bool detail = false,
     bool due = false,
   }) {
-    return GoalTarget(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      measure: measure ? null : this.measure,
-      detailX: detail ? null : detailX,
-      dueX: due ? null : dueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (measure) this.measure = null;
+    if (detail) this.detailX = null;
+    if (due) this.dueX = null;
   }
 
   @override
-  GoalTarget clone() => throw UnimplementedError();
+  GoalTargetBuilder clone() => throw UnimplementedError();
   @override
-  GoalTarget copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? measure,
-    DetailXGoalTarget? detailX,
-    DueXGoalTarget? dueX,
+  GoalTargetBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? measure,
+    DetailXGoalTargetBuilder? detailX,
+    DueXGoalTargetBuilder? dueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2247,46 +2075,37 @@ class GoalTarget extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return GoalTarget(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      measure: measure?.copyWith(
-            objectPath: '$newObjectPath.measure',
-          ) ??
-          this.measure,
-      detailX: detailX?.copyWith(
-            objectPath: '$newObjectPath.detailX',
-          ) as DetailXGoalTarget? ??
-          this.detailX,
-      dueX: dueX?.copyWith(
-            objectPath: '$newObjectPath.dueX',
-          ) as DueXGoalTarget? ??
-          this.dueX,
+    final newResult = GoalTargetBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      measure: measure ?? this.measure,
+      detailX: detailX ?? this.detailX,
+      dueX: dueX ?? this.dueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! GoalTarget) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GoalTargetBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2297,13 +2116,13 @@ class GoalTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

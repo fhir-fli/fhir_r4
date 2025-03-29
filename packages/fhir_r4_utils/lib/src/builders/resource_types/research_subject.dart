@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ResearchSubject]
+/// [ResearchSubjectBuilder]
 /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
-class ResearchSubject extends DomainResource {
+class ResearchSubjectBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [ResearchSubject]
+  /// [ResearchSubjectBuilder]
 
-  const ResearchSubject({
+  ResearchSubjectBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -19,10 +21,10 @@ class ResearchSubject extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
+    this.status,
     this.period,
-    required this.study,
-    required this.individual,
+    this.study,
+    this.individual,
     this.assignedArm,
     this.actualArm,
     this.consent,
@@ -32,53 +34,48 @@ class ResearchSubject extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ResearchSubject.empty() => ResearchSubject(
-        status: ResearchSubjectStatus.values.first,
-        study: Reference.empty(),
-        individual: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ResearchSubjectBuilder.empty() => ResearchSubjectBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchSubject.fromJson(
+  factory ResearchSubjectBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ResearchSubject';
-    return ResearchSubject(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ResearchSubjectBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -87,8 +84,8 @@ class ResearchSubject extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -97,8 +94,8 @@ class ResearchSubject extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -107,8 +104,8 @@ class ResearchSubject extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -116,67 +113,67 @@ class ResearchSubject extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<ResearchSubjectStatus>(
+      status: JsonParser.parsePrimitive<ResearchSubjectStatusBuilder>(
         json,
         'status',
-        ResearchSubjectStatus.fromJson,
+        ResearchSubjectStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      period: JsonParser.parseObject<Period>(
+      ),
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      study: JsonParser.parseObject<Reference>(
+      study: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'study',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.study',
-      )!,
-      individual: JsonParser.parseObject<Reference>(
+      ),
+      individual: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'individual',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.individual',
-      )!,
-      assignedArm: JsonParser.parsePrimitive<FhirString>(
+      ),
+      assignedArm: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'assignedArm',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.assignedArm',
       ),
-      actualArm: JsonParser.parsePrimitive<FhirString>(
+      actualArm: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'actualArm',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.actualArm',
       ),
-      consent: JsonParser.parseObject<Reference>(
+      consent: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'consent',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.consent',
       ),
     );
   }
 
-  /// Deserialize [ResearchSubject]
+  /// Deserialize [ResearchSubjectBuilder]
   /// from a [String] or [YamlMap] object
-  factory ResearchSubject.fromYaml(
+  factory ResearchSubjectBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ResearchSubject.fromJson(
+      return ResearchSubjectBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ResearchSubject.fromJson(
+      return ResearchSubjectBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ResearchSubject '
+        'ResearchSubjectBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -184,16 +181,16 @@ class ResearchSubject extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [ResearchSubject]
+  /// [ResearchSubjectBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchSubject.fromJsonString(
+  factory ResearchSubjectBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ResearchSubject.fromJson(json);
+      return ResearchSubjectBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -205,54 +202,54 @@ class ResearchSubject extends DomainResource {
 
   /// [identifier]
   /// Identifiers assigned to this research subject for a study.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// The current state of the subject.
-  final ResearchSubjectStatus status;
+  ResearchSubjectStatusBuilder? status;
 
   /// [period]
   /// The dates the subject began and ended their participation in the study.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [study]
   /// Reference to the study the subject is participating in.
-  final Reference study;
+  ReferenceBuilder? study;
 
   /// [individual]
   /// The record of the person or animal who is involved in the study.
-  final Reference individual;
+  ReferenceBuilder? individual;
 
   /// [assignedArm]
   /// The name of the arm in the study the subject is expected to follow as
   /// part of this study.
-  final FhirString? assignedArm;
+  FhirStringBuilder? assignedArm;
 
   /// [actualArm]
   /// The name of the arm in the study the subject actually followed as part
   /// of this study.
-  final FhirString? actualArm;
+  FhirStringBuilder? actualArm;
 
   /// [consent]
   /// A record of the patient's informed agreement to participate in the
   /// study.
-  final Reference? consent;
+  ReferenceBuilder? consent;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -261,76 +258,28 @@ class ResearchSubject extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'study',
-      study,
-    );
-    addField(
-      'individual',
-      individual,
-    );
-    addField(
-      'assignedArm',
-      assignedArm,
-    );
-    addField(
-      'actualArm',
-      actualArm,
-    );
-    addField(
-      'consent',
-      consent,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('period', period);
+    addField('study', study);
+    addField('individual', individual);
+    addField('assignedArm', assignedArm);
+    addField('actualArm', actualArm);
+    addField('consent', consent);
     return json;
   }
 
@@ -360,11 +309,11 @@ class ResearchSubject extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -403,15 +352,21 @@ class ResearchSubject extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'period':
         if (period != null) {
           fields.add(period!);
         }
       case 'study':
-        fields.add(study);
+        if (study != null) {
+          fields.add(study!);
+        }
       case 'individual':
-        fields.add(individual);
+        if (individual != null) {
+          fields.add(individual!);
+        }
       case 'assignedArm':
         if (assignedArm != null) {
           fields.add(assignedArm!);
@@ -434,7 +389,7 @@ class ResearchSubject extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -443,165 +398,176 @@ class ResearchSubject extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ResearchSubjectStatus) {
-            return copyWith(status: child);
+          if (child is ResearchSubjectStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'study':
         {
-          if (child is Reference) {
-            return copyWith(study: child);
+          if (child is ReferenceBuilder) {
+            study = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'individual':
         {
-          if (child is Reference) {
-            return copyWith(individual: child);
+          if (child is ReferenceBuilder) {
+            individual = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'assignedArm':
         {
-          if (child is FhirString) {
-            return copyWith(assignedArm: child);
+          if (child is FhirStringBuilder) {
+            assignedArm = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actualArm':
         {
-          if (child is FhirString) {
-            return copyWith(actualArm: child);
+          if (child is FhirStringBuilder) {
+            actualArm = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'consent':
         {
-          if (child is Reference) {
-            return copyWith(consent: child);
+          if (child is ReferenceBuilder) {
+            consent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -617,146 +583,126 @@ class ResearchSubject extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'study':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'individual':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'assignedArm':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'actualArm':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'consent':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ResearchSubject]
+  /// Creates a new [ResearchSubjectBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ResearchSubject createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ResearchSubjectStatus.empty(),
-          );
+          status = ResearchSubjectStatusBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'study':
         {
-          return copyWith(
-            study: Reference.empty(),
-          );
+          study = ReferenceBuilder.empty();
+          return;
         }
       case 'individual':
         {
-          return copyWith(
-            individual: Reference.empty(),
-          );
+          individual = ReferenceBuilder.empty();
+          return;
         }
       case 'assignedArm':
         {
-          return copyWith(
-            assignedArm: FhirString.empty(),
-          );
+          assignedArm = FhirStringBuilder.empty();
+          return;
         }
       case 'actualArm':
         {
-          return copyWith(
-            actualArm: FhirString.empty(),
-          );
+          actualArm = FhirStringBuilder.empty();
+          return;
         }
       case 'consent':
         {
-          return copyWith(
-            consent: Reference.empty(),
-          );
+          consent = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -765,7 +711,7 @@ class ResearchSubject extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  ResearchSubject clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -775,138 +721,99 @@ class ResearchSubject extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
     bool period = false,
+    bool study = false,
+    bool individual = false,
     bool assignedArm = false,
     bool actualArm = false,
     bool consent = false,
   }) {
-    return ResearchSubject(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      period: period ? null : this.period,
-      study: study,
-      individual: individual,
-      assignedArm: assignedArm ? null : this.assignedArm,
-      actualArm: actualArm ? null : this.actualArm,
-      consent: consent ? null : this.consent,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (period) this.period = null;
+    if (study) this.study = null;
+    if (individual) this.individual = null;
+    if (assignedArm) this.assignedArm = null;
+    if (actualArm) this.actualArm = null;
+    if (consent) this.consent = null;
   }
 
   @override
-  ResearchSubject clone() => throw UnimplementedError();
+  ResearchSubjectBuilder clone() => throw UnimplementedError();
   @override
-  ResearchSubject copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    ResearchSubjectStatus? status,
-    Period? period,
-    Reference? study,
-    Reference? individual,
-    FhirString? assignedArm,
-    FhirString? actualArm,
-    Reference? consent,
+  ResearchSubjectBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    ResearchSubjectStatusBuilder? status,
+    PeriodBuilder? period,
+    ReferenceBuilder? study,
+    ReferenceBuilder? individual,
+    FhirStringBuilder? assignedArm,
+    FhirStringBuilder? actualArm,
+    ReferenceBuilder? consent,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return ResearchSubject(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ResearchSubjectBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      study: study?.copyWith(
-            objectPath: '$newObjectPath.study',
-          ) ??
-          this.study,
-      individual: individual?.copyWith(
-            objectPath: '$newObjectPath.individual',
-          ) ??
-          this.individual,
-      assignedArm: assignedArm?.copyWith(
-            objectPath: '$newObjectPath.assignedArm',
-          ) ??
-          this.assignedArm,
-      actualArm: actualArm?.copyWith(
-            objectPath: '$newObjectPath.actualArm',
-          ) ??
-          this.actualArm,
-      consent: consent?.copyWith(
-            objectPath: '$newObjectPath.consent',
-          ) ??
-          this.consent,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      period: period ?? this.period,
+      study: study ?? this.study,
+      individual: individual ?? this.individual,
+      assignedArm: assignedArm ?? this.assignedArm,
+      actualArm: actualArm ?? this.actualArm,
+      consent: consent ?? this.consent,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ResearchSubject) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ResearchSubjectBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -941,25 +848,25 @@ class ResearchSubject extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {

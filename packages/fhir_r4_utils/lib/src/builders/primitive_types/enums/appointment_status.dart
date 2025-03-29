@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The free/busy status of an appointment.
-class AppointmentStatus extends FhirCodeEnum {
+class AppointmentStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  AppointmentStatus._({
+  AppointmentStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory AppointmentStatus(
+  factory AppointmentStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return AppointmentStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return AppointmentStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,113 +43,115 @@ class AppointmentStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [AppointmentStatus] with element only
-  factory AppointmentStatus.empty() => AppointmentStatus._(validatedValue: '');
+  /// Create empty [AppointmentStatusBuilder] with element only
+  factory AppointmentStatusBuilder.empty() =>
+      AppointmentStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AppointmentStatus] from JSON.
-  factory AppointmentStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AppointmentStatusBuilder] from JSON.
+  factory AppointmentStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AppointmentStatus.elementOnly.withElement(element);
+      return AppointmentStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AppointmentStatus cannot be constructed from JSON.',
+        'AppointmentStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return AppointmentStatus._(
+    return AppointmentStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// proposed
-  static final AppointmentStatus proposed = AppointmentStatus._(
+  static AppointmentStatusBuilder proposed = AppointmentStatusBuilder._(
     validatedValue: 'proposed',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Proposed'.toFhirStringBuilder,
   );
 
   /// pending
-  static final AppointmentStatus pending = AppointmentStatus._(
+  static AppointmentStatusBuilder pending = AppointmentStatusBuilder._(
     validatedValue: 'pending',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Pending'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Pending'.toFhirStringBuilder,
   );
 
   /// booked
-  static final AppointmentStatus booked = AppointmentStatus._(
+  static AppointmentStatusBuilder booked = AppointmentStatusBuilder._(
     validatedValue: 'booked',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Booked'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Booked'.toFhirStringBuilder,
   );
 
   /// arrived
-  static final AppointmentStatus arrived = AppointmentStatus._(
+  static AppointmentStatusBuilder arrived = AppointmentStatusBuilder._(
     validatedValue: 'arrived',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Arrived'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Arrived'.toFhirStringBuilder,
   );
 
   /// fulfilled
-  static final AppointmentStatus fulfilled = AppointmentStatus._(
+  static AppointmentStatusBuilder fulfilled = AppointmentStatusBuilder._(
     validatedValue: 'fulfilled',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fulfilled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Fulfilled'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final AppointmentStatus cancelled = AppointmentStatus._(
+  static AppointmentStatusBuilder cancelled = AppointmentStatusBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Cancelled'.toFhirStringBuilder,
   );
 
   /// noshow
-  static final AppointmentStatus noshow = AppointmentStatus._(
+  static AppointmentStatusBuilder noshow = AppointmentStatusBuilder._(
     validatedValue: 'noshow',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'No Show'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'No Show'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final AppointmentStatus entered_in_error = AppointmentStatus._(
+  static AppointmentStatusBuilder entered_in_error = AppointmentStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in error'.toFhirStringBuilder,
   );
 
   /// checked_in
-  static final AppointmentStatus checked_in = AppointmentStatus._(
+  static AppointmentStatusBuilder checked_in = AppointmentStatusBuilder._(
     validatedValue: 'checked-in',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Checked In'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Checked In'.toFhirStringBuilder,
   );
 
   /// waitlist
-  static final AppointmentStatus waitlist = AppointmentStatus._(
+  static AppointmentStatusBuilder waitlist = AppointmentStatusBuilder._(
     validatedValue: 'waitlist',
-    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Waitlisted'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Waitlisted'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final AppointmentStatus elementOnly =
-      AppointmentStatus._(validatedValue: '');
+  static AppointmentStatusBuilder elementOnly =
+      AppointmentStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<AppointmentStatus> values = [
+  static List<AppointmentStatusBuilder> values = [
     proposed,
     pending,
     booked,
@@ -164,14 +166,15 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  AppointmentStatus clone() => AppointmentStatus._(
+  AppointmentStatusBuilder clone() => AppointmentStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  AppointmentStatus withElement(Element? newElement) {
-    return AppointmentStatus._(validatedValue: value, element: newElement);
+  AppointmentStatusBuilder withElement(ElementBuilder? newElement) {
+    return AppointmentStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -187,11 +190,11 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  AppointmentStatus copyWith({
+  AppointmentStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -202,7 +205,7 @@ class AppointmentStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return AppointmentStatus._(
+    return AppointmentStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -212,7 +215,7 @@ class AppointmentStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The outcome of the processing.
-class RemittanceOutcome extends FhirCodeEnum {
+class RemittanceOutcomeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  RemittanceOutcome._({
+  RemittanceOutcomeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class RemittanceOutcome extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory RemittanceOutcome(
+  factory RemittanceOutcomeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return RemittanceOutcome._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return RemittanceOutcomeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class RemittanceOutcome extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [RemittanceOutcome] with element only
-  factory RemittanceOutcome.empty() => RemittanceOutcome._(validatedValue: '');
+  /// Create empty [RemittanceOutcomeBuilder] with element only
+  factory RemittanceOutcomeBuilder.empty() =>
+      RemittanceOutcomeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RemittanceOutcome] from JSON.
-  factory RemittanceOutcome.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RemittanceOutcomeBuilder] from JSON.
+  factory RemittanceOutcomeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RemittanceOutcome.elementOnly.withElement(element);
+      return RemittanceOutcomeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'RemittanceOutcome cannot be constructed from JSON.',
+        'RemittanceOutcomeBuilder cannot be constructed from JSON.',
       );
     }
-    return RemittanceOutcome._(
+    return RemittanceOutcomeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// queued
-  static final RemittanceOutcome queued = RemittanceOutcome._(
+  static RemittanceOutcomeBuilder queued = RemittanceOutcomeBuilder._(
     validatedValue: 'queued',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Queued'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Queued'.toFhirStringBuilder,
   );
 
   /// complete
-  static final RemittanceOutcome complete = RemittanceOutcome._(
+  static RemittanceOutcomeBuilder complete = RemittanceOutcomeBuilder._(
     validatedValue: 'complete',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Complete'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Complete'.toFhirStringBuilder,
   );
 
   /// error
-  static final RemittanceOutcome error = RemittanceOutcome._(
+  static RemittanceOutcomeBuilder error = RemittanceOutcomeBuilder._(
     validatedValue: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Error'.toFhirStringBuilder,
   );
 
   /// partial
-  static final RemittanceOutcome partial = RemittanceOutcome._(
+  static RemittanceOutcomeBuilder partial = RemittanceOutcomeBuilder._(
     validatedValue: 'partial',
-    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Partial'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Partial'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final RemittanceOutcome elementOnly =
-      RemittanceOutcome._(validatedValue: '');
+  static RemittanceOutcomeBuilder elementOnly =
+      RemittanceOutcomeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<RemittanceOutcome> values = [
+  static List<RemittanceOutcomeBuilder> values = [
     queued,
     complete,
     error,
@@ -110,14 +112,15 @@ class RemittanceOutcome extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  RemittanceOutcome clone() => RemittanceOutcome._(
+  RemittanceOutcomeBuilder clone() => RemittanceOutcomeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  RemittanceOutcome withElement(Element? newElement) {
-    return RemittanceOutcome._(validatedValue: value, element: newElement);
+  RemittanceOutcomeBuilder withElement(ElementBuilder? newElement) {
+    return RemittanceOutcomeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +136,11 @@ class RemittanceOutcome extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  RemittanceOutcome copyWith({
+  RemittanceOutcomeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +151,7 @@ class RemittanceOutcome extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return RemittanceOutcome._(
+    return RemittanceOutcomeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +161,7 @@ class RemittanceOutcome extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

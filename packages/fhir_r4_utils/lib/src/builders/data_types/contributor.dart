@@ -1,57 +1,55 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Contributor]
+/// [ContributorBuilder]
 /// A contributor to the content of a knowledge asset, including authors,
 /// editors, reviewers, and endorsers.
-class Contributor extends DataType
+class ContributorBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Contributor]
+  /// [ContributorBuilder]
 
-  const Contributor({
+  ContributorBuilder({
     super.id,
     super.extension_,
-    required this.type,
-    required this.name,
+    this.type,
+    this.name,
     this.contact,
     super.disallowExtensions,
-    super.objectPath = 'Contributor',
+    super.objectPath = 'ContributorBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Contributor.empty() => Contributor(
-        type: ContributorType.values.first,
-        name: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContributorBuilder.empty() => ContributorBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Contributor.fromJson(
+  factory ContributorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Contributor';
-    return Contributor(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContributorBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -59,21 +57,21 @@ class Contributor extends DataType
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<ContributorType>(
+      type: JsonParser.parsePrimitive<ContributorTypeBuilder>(
         json,
         'type',
-        ContributorType.fromJson,
+        ContributorTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      name: JsonParser.parsePrimitive<FhirString>(
+      ),
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
+      ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -84,22 +82,22 @@ class Contributor extends DataType
     );
   }
 
-  /// Deserialize [Contributor]
+  /// Deserialize [ContributorBuilder]
   /// from a [String] or [YamlMap] object
-  factory Contributor.fromYaml(
+  factory ContributorBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Contributor.fromJson(
+      return ContributorBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Contributor.fromJson(
+      return ContributorBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Contributor '
+        'ContributorBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -107,16 +105,16 @@ class Contributor extends DataType
   }
 
   /// Factory constructor for
-  /// [Contributor]
+  /// [ContributorBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Contributor.fromJsonString(
+  factory ContributorBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Contributor.fromJson(json);
+      return ContributorBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -128,33 +126,33 @@ class Contributor extends DataType
 
   /// [type]
   /// The type of contributor.
-  final ContributorType type;
+  ContributorTypeBuilder? type;
 
   /// [name]
   /// The name of the individual or organization responsible for the
   /// contribution.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// contributor.
-  final List<ContactDetail>? contact;
+  List<ContactDetailBuilder>? contact;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -163,31 +161,16 @@ class Contributor extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'contact',
-      contact,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('type', type);
+    addField('name', name);
+    addField('contact', contact);
     return json;
   }
 
@@ -206,11 +189,11 @@ class Contributor extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -221,9 +204,13 @@ class Contributor extends DataType
           fields.addAll(extension_!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'contact':
         if (contact != null) {
           fields.addAll(contact!);
@@ -238,7 +225,7 @@ class Contributor extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -247,65 +234,67 @@ class Contributor extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is ContributorType) {
-            return copyWith(type: child);
+          if (child is ContributorTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -321,58 +310,49 @@ class Contributor extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Contributor]
+  /// Creates a new [ContributorBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Contributor createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: ContributorType.empty(),
-          );
+          type = ContributorTypeBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -381,29 +361,29 @@ class Contributor extends DataType
 
   /// Clears specific fields in this object
   @override
-  Contributor clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool type = false,
+    bool name = false,
     bool contact = false,
   }) {
-    return Contributor(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      name: name,
-      contact: contact ? null : this.contact,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (type) this.type = null;
+    if (name) this.name = null;
+    if (contact) this.contact = null;
   }
 
   @override
-  Contributor clone() => throw UnimplementedError();
+  ContributorBuilder clone() => throw UnimplementedError();
   @override
-  Contributor copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    ContributorType? type,
-    FhirString? name,
-    List<ContactDetail>? contact,
+  ContributorBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    ContributorTypeBuilder? type,
+    FhirStringBuilder? name,
+    List<ContactDetailBuilder>? contact,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -411,42 +391,36 @@ class Contributor extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Contributor(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
+    final newResult = ContributorBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      type: type ?? this.type,
+      name: name ?? this.name,
+      contact: contact ?? this.contact,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Contributor) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContributorBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -457,7 +431,7 @@ class Contributor extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -475,7 +449,7 @@ class Contributor extends DataType
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {

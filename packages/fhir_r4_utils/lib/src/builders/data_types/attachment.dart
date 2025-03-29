@@ -1,44 +1,46 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Attachment]
+/// [AttachmentBuilder]
 /// For referring to data content defined in other formats.
-class Attachment extends DataType
+class AttachmentBuilder extends DataTypeBuilder
     implements
-        ValueXAdministrableProductDefinitionProperty,
-        TargetXCitationRelatesTo,
-        TargetXCitationRelatesTo1,
-        ValueXClaimSupportingInfo,
-        ContentXCommunicationPayload,
-        ContentXCommunicationRequestPayload,
-        SourceXConsent,
-        LegallyBindingXContract,
-        ValueXContractAnswer,
-        ContentXContractFriendly,
-        ContentXContractLegal,
-        ContentXContractRule,
-        ValueXExplanationOfBenefitSupportingInfo,
-        ValueXManufacturedItemDefinitionProperty,
-        ValueXMedicinalProductDefinitionCharacteristic,
-        ValueXNutritionProductProductCharacteristic,
-        ValueXPackagedProductDefinitionProperty,
-        ValueXParametersParameter,
-        ValueXQuestionnaireInitial,
-        ValueXQuestionnaireResponseAnswer,
-        DefaultValueXStructureMapSource,
-        ValueXSubstanceDefinitionProperty,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXAdministrableProductDefinitionPropertyBuilder,
+        TargetXCitationRelatesToBuilder,
+        TargetXCitationRelatesTo1Builder,
+        ValueXClaimSupportingInfoBuilder,
+        ContentXCommunicationPayloadBuilder,
+        ContentXCommunicationRequestPayloadBuilder,
+        SourceXConsentBuilder,
+        LegallyBindingXContractBuilder,
+        ValueXContractAnswerBuilder,
+        ContentXContractFriendlyBuilder,
+        ContentXContractLegalBuilder,
+        ContentXContractRuleBuilder,
+        ValueXExplanationOfBenefitSupportingInfoBuilder,
+        ValueXManufacturedItemDefinitionPropertyBuilder,
+        ValueXMedicinalProductDefinitionCharacteristicBuilder,
+        ValueXNutritionProductProductCharacteristicBuilder,
+        ValueXPackagedProductDefinitionPropertyBuilder,
+        ValueXParametersParameterBuilder,
+        ValueXQuestionnaireInitialBuilder,
+        ValueXQuestionnaireResponseAnswerBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXSubstanceDefinitionPropertyBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Attachment]
+  /// [AttachmentBuilder]
 
-  const Attachment({
+  AttachmentBuilder({
     super.id,
     super.extension_,
     this.contentType,
@@ -50,29 +52,28 @@ class Attachment extends DataType
     this.title,
     this.creation,
     super.disallowExtensions,
-    super.objectPath = 'Attachment',
+    super.objectPath = 'AttachmentBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Attachment.empty() => const Attachment();
+  /// For Builder classes, no fields are required
+  factory AttachmentBuilder.empty() => AttachmentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Attachment.fromJson(
+  factory AttachmentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Attachment';
-    return Attachment(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AttachmentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -80,73 +81,73 @@ class Attachment extends DataType
             ),
           )
           .toList(),
-      contentType: JsonParser.parsePrimitive<FhirCode>(
+      contentType: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'contentType',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.contentType',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      data: JsonParser.parsePrimitive<FhirBase64Binary>(
+      data: JsonParser.parsePrimitive<FhirBase64BinaryBuilder>(
         json,
         'data',
-        FhirBase64Binary.fromJson,
+        FhirBase64BinaryBuilder.fromJson,
         '$objectPath.data',
       ),
-      url: JsonParser.parsePrimitive<FhirUrl>(
+      url: JsonParser.parsePrimitive<FhirUrlBuilder>(
         json,
         'url',
-        FhirUrl.fromJson,
+        FhirUrlBuilder.fromJson,
         '$objectPath.url',
       ),
-      size: JsonParser.parsePrimitive<FhirUnsignedInt>(
+      size: JsonParser.parsePrimitive<FhirUnsignedIntBuilder>(
         json,
         'size',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.size',
       ),
-      hash: JsonParser.parsePrimitive<FhirBase64Binary>(
+      hash: JsonParser.parsePrimitive<FhirBase64BinaryBuilder>(
         json,
         'hash',
-        FhirBase64Binary.fromJson,
+        FhirBase64BinaryBuilder.fromJson,
         '$objectPath.hash',
       ),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      creation: JsonParser.parsePrimitive<FhirDateTime>(
+      creation: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'creation',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.creation',
       ),
     );
   }
 
-  /// Deserialize [Attachment]
+  /// Deserialize [AttachmentBuilder]
   /// from a [String] or [YamlMap] object
-  factory Attachment.fromYaml(
+  factory AttachmentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Attachment.fromJson(
+      return AttachmentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Attachment.fromJson(
+      return AttachmentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Attachment '
+        'AttachmentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -154,16 +155,16 @@ class Attachment extends DataType
   }
 
   /// Factory constructor for
-  /// [Attachment]
+  /// [AttachmentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Attachment.fromJsonString(
+  factory AttachmentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Attachment.fromJson(json);
+      return AttachmentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -177,54 +178,54 @@ class Attachment extends DataType
   /// Identifies the type of the data in the attachment and allows a method
   /// to be chosen to interpret or render the data. Includes mime type
   /// parameters such as charset where appropriate.
-  final FhirCode? contentType;
+  FhirCodeBuilder? contentType;
 
   /// [language]
   /// The human language of the content. The value can be any valid value
   /// according to BCP 47.
-  final CommonLanguages? language;
+  CommonLanguagesBuilder? language;
 
   /// [data]
   /// The actual data of the attachment - a sequence of bytes, base64
   /// encoded.
-  final FhirBase64Binary? data;
+  FhirBase64BinaryBuilder? data;
 
   /// [url]
   /// A location where the data can be accessed.
-  final FhirUrl? url;
+  FhirUrlBuilder? url;
 
   /// [size]
   /// The number of bytes of data that make up this attachment (before base64
   /// encoding, if that is done).
-  final FhirUnsignedInt? size;
+  FhirUnsignedIntBuilder? size;
 
   /// [hash]
   /// The calculated hash of the data using SHA-1. Represented using base64.
-  final FhirBase64Binary? hash;
+  FhirBase64BinaryBuilder? hash;
 
   /// [title]
   /// A label or set of text to display in place of the data.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [creation]
   /// The date that the attachment was first created.
-  final FhirDateTime? creation;
+  FhirDateTimeBuilder? creation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -233,51 +234,21 @@ class Attachment extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'contentType',
-      contentType,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'data',
-      data,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'size',
-      size,
-    );
-    addField(
-      'hash',
-      hash,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'creation',
-      creation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('contentType', contentType);
+    addField('language', language);
+    addField('data', data);
+    addField('url', url);
+    addField('size', size);
+    addField('hash', hash);
+    addField('title', title);
+    addField('creation', creation);
     return json;
   }
 
@@ -301,11 +272,11 @@ class Attachment extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -357,7 +328,7 @@ class Attachment extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -366,99 +337,107 @@ class Attachment extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentType':
         {
-          if (child is FhirCode) {
-            return copyWith(contentType: child);
+          if (child is FhirCodeBuilder) {
+            contentType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(data: child);
+          if (child is FhirBase64BinaryBuilder) {
+            data = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUrl) {
-            return copyWith(url: child);
+          if (child is FhirUrlBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'size':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(size: child);
+          if (child is FhirUnsignedIntBuilder) {
+            size = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'hash':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(hash: child);
+          if (child is FhirBase64BinaryBuilder) {
+            hash = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'creation':
         {
-          if (child is FhirDateTime) {
-            return copyWith(creation: child);
+          if (child is FhirDateTimeBuilder) {
+            creation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -474,98 +453,84 @@ class Attachment extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'contentType':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'data':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'url':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'size':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'hash':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'creation':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Attachment]
+  /// Creates a new [AttachmentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Attachment createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'contentType':
         {
-          return copyWith(
-            contentType: FhirCode.empty(),
-          );
+          contentType = FhirCodeBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'data':
         {
-          return copyWith(
-            data: FhirBase64Binary.empty(),
-          );
+          data = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUrl.empty(),
-          );
+          url = FhirUrlBuilder.empty();
+          return;
         }
       case 'size':
         {
-          return copyWith(
-            size: FhirUnsignedInt.empty(),
-          );
+          size = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'hash':
         {
-          return copyWith(
-            hash: FhirBase64Binary.empty(),
-          );
+          hash = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'creation':
         {
-          return copyWith(
-            creation: FhirDateTime.empty(),
-          );
+          creation = FhirDateTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -574,7 +539,7 @@ class Attachment extends DataType
 
   /// Clears specific fields in this object
   @override
-  Attachment clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool contentType = false,
@@ -586,34 +551,32 @@ class Attachment extends DataType
     bool title = false,
     bool creation = false,
   }) {
-    return Attachment(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      contentType: contentType ? null : this.contentType,
-      language: language ? null : this.language,
-      data: data ? null : this.data,
-      url: url ? null : this.url,
-      size: size ? null : this.size,
-      hash: hash ? null : this.hash,
-      title: title ? null : this.title,
-      creation: creation ? null : this.creation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (contentType) this.contentType = null;
+    if (language) this.language = null;
+    if (data) this.data = null;
+    if (url) this.url = null;
+    if (size) this.size = null;
+    if (hash) this.hash = null;
+    if (title) this.title = null;
+    if (creation) this.creation = null;
   }
 
   @override
-  Attachment clone() => throw UnimplementedError();
+  AttachmentBuilder clone() => throw UnimplementedError();
   @override
-  Attachment copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirCode? contentType,
-    CommonLanguages? language,
-    FhirBase64Binary? data,
-    FhirUrl? url,
-    FhirUnsignedInt? size,
-    FhirBase64Binary? hash,
-    FhirString? title,
-    FhirDateTime? creation,
+  AttachmentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirCodeBuilder? contentType,
+    CommonLanguagesBuilder? language,
+    FhirBase64BinaryBuilder? data,
+    FhirUrlBuilder? url,
+    FhirUnsignedIntBuilder? size,
+    FhirBase64BinaryBuilder? hash,
+    FhirStringBuilder? title,
+    FhirDateTimeBuilder? creation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -621,58 +584,41 @@ class Attachment extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Attachment(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      contentType: contentType?.copyWith(
-            objectPath: '$newObjectPath.contentType',
-          ) ??
-          this.contentType,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      data: data?.copyWith(
-            objectPath: '$newObjectPath.data',
-          ) ??
-          this.data,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      size: size?.copyWith(
-            objectPath: '$newObjectPath.size',
-          ) ??
-          this.size,
-      hash: hash?.copyWith(
-            objectPath: '$newObjectPath.hash',
-          ) ??
-          this.hash,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      creation: creation?.copyWith(
-            objectPath: '$newObjectPath.creation',
-          ) ??
-          this.creation,
+    final newResult = AttachmentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      contentType: contentType ?? this.contentType,
+      language: language ?? this.language,
+      data: data ?? this.data,
+      url: url ?? this.url,
+      size: size ?? this.size,
+      hash: hash ?? this.hash,
+      title: title ?? this.title,
+      creation: creation ?? this.creation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Attachment) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AttachmentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -683,7 +629,7 @@ class Attachment extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

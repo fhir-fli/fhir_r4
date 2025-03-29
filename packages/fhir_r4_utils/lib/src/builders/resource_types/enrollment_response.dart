@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [EnrollmentResponse]
+/// [EnrollmentResponseBuilder]
 /// This resource provides enrollment and plan details from the processing
 /// of an EnrollmentRequest resource.
-class EnrollmentResponse extends DomainResource {
+class EnrollmentResponseBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [EnrollmentResponse]
+  /// [EnrollmentResponseBuilder]
 
-  const EnrollmentResponse({
+  EnrollmentResponseBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -32,49 +34,48 @@ class EnrollmentResponse extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory EnrollmentResponse.empty() => const EnrollmentResponse();
+  /// For Builder classes, no fields are required
+  factory EnrollmentResponseBuilder.empty() => EnrollmentResponseBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EnrollmentResponse.fromJson(
+  factory EnrollmentResponseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'EnrollmentResponse';
-    return EnrollmentResponse(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return EnrollmentResponseBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -83,8 +84,8 @@ class EnrollmentResponse extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -93,8 +94,8 @@ class EnrollmentResponse extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -103,8 +104,8 @@ class EnrollmentResponse extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -112,67 +113,67 @@ class EnrollmentResponse extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<FinancialResourceStatusCodes>(
+      status: JsonParser.parsePrimitive<FinancialResourceStatusCodesBuilder>(
         json,
         'status',
-        FinancialResourceStatusCodes.fromJson,
+        FinancialResourceStatusCodesBuilder.fromJson,
         '$objectPath.status',
       ),
-      request: JsonParser.parseObject<Reference>(
+      request: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'request',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.request',
       ),
-      outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
+      outcome: JsonParser.parsePrimitive<RemittanceOutcomeBuilder>(
         json,
         'outcome',
-        RemittanceOutcome.fromJson,
+        RemittanceOutcomeBuilder.fromJson,
         '$objectPath.outcome',
       ),
-      disposition: JsonParser.parsePrimitive<FhirString>(
+      disposition: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'disposition',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.disposition',
       ),
-      created: JsonParser.parsePrimitive<FhirDateTime>(
+      created: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'created',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.created',
       ),
-      organization: JsonParser.parseObject<Reference>(
+      organization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'organization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.organization',
       ),
-      requestProvider: JsonParser.parseObject<Reference>(
+      requestProvider: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'requestProvider',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.requestProvider',
       ),
     );
   }
 
-  /// Deserialize [EnrollmentResponse]
+  /// Deserialize [EnrollmentResponseBuilder]
   /// from a [String] or [YamlMap] object
-  factory EnrollmentResponse.fromYaml(
+  factory EnrollmentResponseBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return EnrollmentResponse.fromJson(
+      return EnrollmentResponseBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return EnrollmentResponse.fromJson(
+      return EnrollmentResponseBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EnrollmentResponse '
+        'EnrollmentResponseBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -180,16 +181,16 @@ class EnrollmentResponse extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [EnrollmentResponse]
+  /// [EnrollmentResponseBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EnrollmentResponse.fromJsonString(
+  factory EnrollmentResponseBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return EnrollmentResponse.fromJson(json);
+      return EnrollmentResponseBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -201,53 +202,53 @@ class EnrollmentResponse extends DomainResource {
 
   /// [identifier]
   /// The Response business identifier.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final FinancialResourceStatusCodes? status;
+  FinancialResourceStatusCodesBuilder? status;
 
   /// [request]
   /// Original request resource reference.
-  final Reference? request;
+  ReferenceBuilder? request;
 
   /// [outcome]
   /// Processing status: error, complete.
-  final RemittanceOutcome? outcome;
+  RemittanceOutcomeBuilder? outcome;
 
   /// [disposition]
   /// A description of the status of the adjudication.
-  final FhirString? disposition;
+  FhirStringBuilder? disposition;
 
   /// [created]
   /// The date when the enclosed suite of services were performed or
   /// completed.
-  final FhirDateTime? created;
+  FhirDateTimeBuilder? created;
 
   /// [organization]
   /// The Insurer who produced this adjudicated response.
-  final Reference? organization;
+  ReferenceBuilder? organization;
 
   /// [requestProvider]
   /// The practitioner who is responsible for the services rendered to the
   /// patient.
-  final Reference? requestProvider;
+  ReferenceBuilder? requestProvider;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -256,76 +257,28 @@ class EnrollmentResponse extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'request',
-      request,
-    );
-    addField(
-      'outcome',
-      outcome,
-    );
-    addField(
-      'disposition',
-      disposition,
-    );
-    addField(
-      'created',
-      created,
-    );
-    addField(
-      'organization',
-      organization,
-    );
-    addField(
-      'requestProvider',
-      requestProvider,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('request', request);
+    addField('outcome', outcome);
+    addField('disposition', disposition);
+    addField('created', created);
+    addField('organization', organization);
+    addField('requestProvider', requestProvider);
     return json;
   }
 
@@ -355,11 +308,11 @@ class EnrollmentResponse extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -435,7 +388,7 @@ class EnrollmentResponse extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -444,165 +397,176 @@ class EnrollmentResponse extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is FinancialResourceStatusCodes) {
-            return copyWith(status: child);
+          if (child is FinancialResourceStatusCodesBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'request':
         {
-          if (child is Reference) {
-            return copyWith(request: child);
+          if (child is ReferenceBuilder) {
+            request = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
         {
-          if (child is RemittanceOutcome) {
-            return copyWith(outcome: child);
+          if (child is RemittanceOutcomeBuilder) {
+            outcome = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'disposition':
         {
-          if (child is FhirString) {
-            return copyWith(disposition: child);
+          if (child is FhirStringBuilder) {
+            disposition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'created':
         {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
+          if (child is FhirDateTimeBuilder) {
+            created = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
         {
-          if (child is Reference) {
-            return copyWith(organization: child);
+          if (child is ReferenceBuilder) {
+            organization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requestProvider':
         {
-          if (child is Reference) {
-            return copyWith(requestProvider: child);
+          if (child is ReferenceBuilder) {
+            requestProvider = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -618,146 +582,126 @@ class EnrollmentResponse extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'request':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'outcome':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'disposition':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'created':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'organization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'requestProvider':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [EnrollmentResponse]
+  /// Creates a new [EnrollmentResponseBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  EnrollmentResponse createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: FinancialResourceStatusCodes.empty(),
-          );
+          status = FinancialResourceStatusCodesBuilder.empty();
+          return;
         }
       case 'request':
         {
-          return copyWith(
-            request: Reference.empty(),
-          );
+          request = ReferenceBuilder.empty();
+          return;
         }
       case 'outcome':
         {
-          return copyWith(
-            outcome: RemittanceOutcome.empty(),
-          );
+          outcome = RemittanceOutcomeBuilder.empty();
+          return;
         }
       case 'disposition':
         {
-          return copyWith(
-            disposition: FhirString.empty(),
-          );
+          disposition = FhirStringBuilder.empty();
+          return;
         }
       case 'created':
         {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
+          created = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'organization':
         {
-          return copyWith(
-            organization: Reference.empty(),
-          );
+          organization = ReferenceBuilder.empty();
+          return;
         }
       case 'requestProvider':
         {
-          return copyWith(
-            requestProvider: Reference.empty(),
-          );
+          requestProvider = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -766,7 +710,7 @@ class EnrollmentResponse extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  EnrollmentResponse clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -784,133 +728,91 @@ class EnrollmentResponse extends DomainResource {
     bool organization = false,
     bool requestProvider = false,
   }) {
-    return EnrollmentResponse(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status ? null : this.status,
-      request: request ? null : this.request,
-      outcome: outcome ? null : this.outcome,
-      disposition: disposition ? null : this.disposition,
-      created: created ? null : this.created,
-      organization: organization ? null : this.organization,
-      requestProvider: requestProvider ? null : this.requestProvider,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (request) this.request = null;
+    if (outcome) this.outcome = null;
+    if (disposition) this.disposition = null;
+    if (created) this.created = null;
+    if (organization) this.organization = null;
+    if (requestProvider) this.requestProvider = null;
   }
 
   @override
-  EnrollmentResponse clone() => throw UnimplementedError();
+  EnrollmentResponseBuilder clone() => throw UnimplementedError();
   @override
-  EnrollmentResponse copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FinancialResourceStatusCodes? status,
-    Reference? request,
-    RemittanceOutcome? outcome,
-    FhirString? disposition,
-    FhirDateTime? created,
-    Reference? organization,
-    Reference? requestProvider,
+  EnrollmentResponseBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FinancialResourceStatusCodesBuilder? status,
+    ReferenceBuilder? request,
+    RemittanceOutcomeBuilder? outcome,
+    FhirStringBuilder? disposition,
+    FhirDateTimeBuilder? created,
+    ReferenceBuilder? organization,
+    ReferenceBuilder? requestProvider,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return EnrollmentResponse(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = EnrollmentResponseBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      request: request?.copyWith(
-            objectPath: '$newObjectPath.request',
-          ) ??
-          this.request,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      disposition: disposition?.copyWith(
-            objectPath: '$newObjectPath.disposition',
-          ) ??
-          this.disposition,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      organization: organization?.copyWith(
-            objectPath: '$newObjectPath.organization',
-          ) ??
-          this.organization,
-      requestProvider: requestProvider?.copyWith(
-            objectPath: '$newObjectPath.requestProvider',
-          ) ??
-          this.requestProvider,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      request: request ?? this.request,
+      outcome: outcome ?? this.outcome,
+      disposition: disposition ?? this.disposition,
+      created: created ?? this.created,
+      organization: organization ?? this.organization,
+      requestProvider: requestProvider ?? this.requestProvider,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! EnrollmentResponse) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! EnrollmentResponseBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -945,25 +847,25 @@ class EnrollmentResponse extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {

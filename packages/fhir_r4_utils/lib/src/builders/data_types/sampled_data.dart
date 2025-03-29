@@ -1,64 +1,61 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [SampledData]
+/// [SampledDataBuilder]
 /// A series of measurements taken by a device, with upper and lower
 /// limits. There may be more than one dimension in the data.
-class SampledData extends DataType
+class SampledDataBuilder extends DataTypeBuilder
     implements
-        ValueXObservation,
-        ValueXObservationComponent,
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXObservationBuilder,
+        ValueXObservationComponentBuilder,
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [SampledData]
+  /// [SampledDataBuilder]
 
-  const SampledData({
+  SampledDataBuilder({
     super.id,
     super.extension_,
-    required this.origin,
-    required this.period,
+    this.origin,
+    this.period,
     this.factor,
     this.lowerLimit,
     this.upperLimit,
-    required this.dimensions,
+    this.dimensions,
     this.data,
     super.disallowExtensions,
-    super.objectPath = 'SampledData',
+    super.objectPath = 'SampledDataBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SampledData.empty() => SampledData(
-        origin: Quantity.empty(),
-        period: FhirDecimal.empty(),
-        dimensions: FhirPositiveInt.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SampledDataBuilder.empty() => SampledDataBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SampledData.fromJson(
+  factory SampledDataBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'SampledData';
-    return SampledData(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SampledDataBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -66,67 +63,67 @@ class SampledData extends DataType
             ),
           )
           .toList(),
-      origin: JsonParser.parseObject<Quantity>(
+      origin: JsonParser.parseObject<QuantityBuilder>(
         json,
         'origin',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.origin',
-      )!,
-      period: JsonParser.parsePrimitive<FhirDecimal>(
+      ),
+      period: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'period',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.period',
-      )!,
-      factor: JsonParser.parsePrimitive<FhirDecimal>(
+      ),
+      factor: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'factor',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.factor',
       ),
-      lowerLimit: JsonParser.parsePrimitive<FhirDecimal>(
+      lowerLimit: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'lowerLimit',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.lowerLimit',
       ),
-      upperLimit: JsonParser.parsePrimitive<FhirDecimal>(
+      upperLimit: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'upperLimit',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.upperLimit',
       ),
-      dimensions: JsonParser.parsePrimitive<FhirPositiveInt>(
+      dimensions: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'dimensions',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.dimensions',
-      )!,
-      data: JsonParser.parsePrimitive<FhirString>(
+      ),
+      data: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'data',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.data',
       ),
     );
   }
 
-  /// Deserialize [SampledData]
+  /// Deserialize [SampledDataBuilder]
   /// from a [String] or [YamlMap] object
-  factory SampledData.fromYaml(
+  factory SampledDataBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SampledData.fromJson(
+      return SampledDataBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SampledData.fromJson(
+      return SampledDataBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SampledData '
+        'SampledDataBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -134,16 +131,16 @@ class SampledData extends DataType
   }
 
   /// Factory constructor for
-  /// [SampledData]
+  /// [SampledDataBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SampledData.fromJsonString(
+  factory SampledDataBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SampledData.fromJson(json);
+      return SampledDataBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -156,56 +153,56 @@ class SampledData extends DataType
   /// [origin]
   /// The base quantity that a measured value of zero represents. In
   /// addition, this provides the units of the entire measurement series.
-  final Quantity origin;
+  QuantityBuilder? origin;
 
   /// [period]
   /// The length of time between sampling times, measured in milliseconds.
-  final FhirDecimal period;
+  FhirDecimalBuilder? period;
 
   /// [factor]
   /// A correction factor that is applied to the sampled data points before
   /// they are added to the origin.
-  final FhirDecimal? factor;
+  FhirDecimalBuilder? factor;
 
   /// [lowerLimit]
   /// The lower limit of detection of the measured points. This is needed if
   /// any of the data points have the value "L" (lower than detection limit).
-  final FhirDecimal? lowerLimit;
+  FhirDecimalBuilder? lowerLimit;
 
   /// [upperLimit]
   /// The upper limit of detection of the measured points. This is needed if
   /// any of the data points have the value "U" (higher than detection
   /// limit).
-  final FhirDecimal? upperLimit;
+  FhirDecimalBuilder? upperLimit;
 
   /// [dimensions]
   /// The number of sample points at each time point. If this value is
   /// greater than one, then the dimensions will be interlaced - all the
   /// sample points for a point in time will be recorded at once.
-  final FhirPositiveInt dimensions;
+  FhirPositiveIntBuilder? dimensions;
 
   /// [data]
   /// A series of data points which are decimal values separated by a single
   /// space (character u20). The special values "E" (error), "L" (below
   /// detection limit) and "U" (above detection limit) can also be used in
   /// place of a decimal value.
-  final FhirString? data;
+  FhirStringBuilder? data;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -214,47 +211,20 @@ class SampledData extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'origin',
-      origin,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'factor',
-      factor,
-    );
-    addField(
-      'lowerLimit',
-      lowerLimit,
-    );
-    addField(
-      'upperLimit',
-      upperLimit,
-    );
-    addField(
-      'dimensions',
-      dimensions,
-    );
-    addField(
-      'data',
-      data,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('origin', origin);
+    addField('period', period);
+    addField('factor', factor);
+    addField('lowerLimit', lowerLimit);
+    addField('upperLimit', upperLimit);
+    addField('dimensions', dimensions);
+    addField('data', data);
     return json;
   }
 
@@ -277,11 +247,11 @@ class SampledData extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -292,9 +262,13 @@ class SampledData extends DataType
           fields.addAll(extension_!);
         }
       case 'origin':
-        fields.add(origin);
+        if (origin != null) {
+          fields.add(origin!);
+        }
       case 'period':
-        fields.add(period);
+        if (period != null) {
+          fields.add(period!);
+        }
       case 'factor':
         if (factor != null) {
           fields.add(factor!);
@@ -308,7 +282,9 @@ class SampledData extends DataType
           fields.add(upperLimit!);
         }
       case 'dimensions':
-        fields.add(dimensions);
+        if (dimensions != null) {
+          fields.add(dimensions!);
+        }
       case 'data':
         if (data != null) {
           fields.add(data!);
@@ -323,7 +299,7 @@ class SampledData extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -332,91 +308,98 @@ class SampledData extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'origin':
         {
-          if (child is Quantity) {
-            return copyWith(origin: child);
+          if (child is QuantityBuilder) {
+            origin = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is FhirDecimal) {
-            return copyWith(period: child);
+          if (child is FhirDecimalBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'factor':
         {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
+          if (child is FhirDecimalBuilder) {
+            factor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lowerLimit':
         {
-          if (child is FhirDecimal) {
-            return copyWith(lowerLimit: child);
+          if (child is FhirDecimalBuilder) {
+            lowerLimit = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'upperLimit':
         {
-          if (child is FhirDecimal) {
-            return copyWith(upperLimit: child);
+          if (child is FhirDecimalBuilder) {
+            upperLimit = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dimensions':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(dimensions: child);
+          if (child is FhirPositiveIntBuilder) {
+            dimensions = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
         {
-          if (child is FhirString) {
-            return copyWith(data: child);
+          if (child is FhirStringBuilder) {
+            data = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -432,90 +415,77 @@ class SampledData extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'origin':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'period':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'factor':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'lowerLimit':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'upperLimit':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'dimensions':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'data':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SampledData]
+  /// Creates a new [SampledDataBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SampledData createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'origin':
         {
-          return copyWith(
-            origin: Quantity.empty(),
-          );
+          origin = QuantityBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: FhirDecimal.empty(),
-          );
+          period = FhirDecimalBuilder.empty();
+          return;
         }
       case 'factor':
         {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
+          factor = FhirDecimalBuilder.empty();
+          return;
         }
       case 'lowerLimit':
         {
-          return copyWith(
-            lowerLimit: FhirDecimal.empty(),
-          );
+          lowerLimit = FhirDecimalBuilder.empty();
+          return;
         }
       case 'upperLimit':
         {
-          return copyWith(
-            upperLimit: FhirDecimal.empty(),
-          );
+          upperLimit = FhirDecimalBuilder.empty();
+          return;
         }
       case 'dimensions':
         {
-          return copyWith(
-            dimensions: FhirPositiveInt.empty(),
-          );
+          dimensions = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'data':
         {
-          return copyWith(
-            data: FhirString.empty(),
-          );
+          data = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -524,40 +494,41 @@ class SampledData extends DataType
 
   /// Clears specific fields in this object
   @override
-  SampledData clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool origin = false,
+    bool period = false,
     bool factor = false,
     bool lowerLimit = false,
     bool upperLimit = false,
+    bool dimensions = false,
     bool data = false,
   }) {
-    return SampledData(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      origin: origin,
-      period: period,
-      factor: factor ? null : this.factor,
-      lowerLimit: lowerLimit ? null : this.lowerLimit,
-      upperLimit: upperLimit ? null : this.upperLimit,
-      dimensions: dimensions,
-      data: data ? null : this.data,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (origin) this.origin = null;
+    if (period) this.period = null;
+    if (factor) this.factor = null;
+    if (lowerLimit) this.lowerLimit = null;
+    if (upperLimit) this.upperLimit = null;
+    if (dimensions) this.dimensions = null;
+    if (data) this.data = null;
   }
 
   @override
-  SampledData clone() => throw UnimplementedError();
+  SampledDataBuilder clone() => throw UnimplementedError();
   @override
-  SampledData copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Quantity? origin,
-    FhirDecimal? period,
-    FhirDecimal? factor,
-    FhirDecimal? lowerLimit,
-    FhirDecimal? upperLimit,
-    FhirPositiveInt? dimensions,
-    FhirString? data,
+  SampledDataBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    QuantityBuilder? origin,
+    FhirDecimalBuilder? period,
+    FhirDecimalBuilder? factor,
+    FhirDecimalBuilder? lowerLimit,
+    FhirDecimalBuilder? upperLimit,
+    FhirPositiveIntBuilder? dimensions,
+    FhirStringBuilder? data,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -565,54 +536,40 @@ class SampledData extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return SampledData(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      origin: origin?.copyWith(
-            objectPath: '$newObjectPath.origin',
-          ) ??
-          this.origin,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      lowerLimit: lowerLimit?.copyWith(
-            objectPath: '$newObjectPath.lowerLimit',
-          ) ??
-          this.lowerLimit,
-      upperLimit: upperLimit?.copyWith(
-            objectPath: '$newObjectPath.upperLimit',
-          ) ??
-          this.upperLimit,
-      dimensions: dimensions?.copyWith(
-            objectPath: '$newObjectPath.dimensions',
-          ) ??
-          this.dimensions,
-      data: data?.copyWith(
-            objectPath: '$newObjectPath.data',
-          ) ??
-          this.data,
+    final newResult = SampledDataBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      origin: origin ?? this.origin,
+      period: period ?? this.period,
+      factor: factor ?? this.factor,
+      lowerLimit: lowerLimit ?? this.lowerLimit,
+      upperLimit: upperLimit ?? this.upperLimit,
+      dimensions: dimensions ?? this.dimensions,
+      data: data ?? this.data,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SampledData) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SampledDataBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -623,7 +580,7 @@ class SampledData extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The presentation types of notes.
-class NoteType extends FhirCodeEnum {
+class NoteTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  NoteType._({
+  NoteTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class NoteType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory NoteType(
+  factory NoteTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return NoteType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return NoteTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,56 +43,57 @@ class NoteType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [NoteType] with element only
-  factory NoteType.empty() => NoteType._(validatedValue: '');
+  /// Create empty [NoteTypeBuilder] with element only
+  factory NoteTypeBuilder.empty() => NoteTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [NoteType] from JSON.
-  factory NoteType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NoteTypeBuilder] from JSON.
+  factory NoteTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NoteType.elementOnly.withElement(element);
+      return NoteTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'NoteType cannot be constructed from JSON.',
+        'NoteTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return NoteType._(
+    return NoteTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// display_
-  static final NoteType display_ = NoteType._(
+  static NoteTypeBuilder display_ = NoteTypeBuilder._(
     validatedValue: 'display',
-    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Display'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Display'.toFhirStringBuilder,
   );
 
   /// print
-  static final NoteType print = NoteType._(
+  static NoteTypeBuilder print = NoteTypeBuilder._(
     validatedValue: 'print',
-    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Print (Form)'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Print (Form)'.toFhirStringBuilder,
   );
 
   /// printoper
-  static final NoteType printoper = NoteType._(
+  static NoteTypeBuilder printoper = NoteTypeBuilder._(
     validatedValue: 'printoper',
-    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Print (Operator)'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Print (Operator)'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final NoteType elementOnly = NoteType._(validatedValue: '');
+  static NoteTypeBuilder elementOnly = NoteTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<NoteType> values = [
+  static List<NoteTypeBuilder> values = [
     display_,
     print,
     printoper,
@@ -100,14 +101,14 @@ class NoteType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  NoteType clone() => NoteType._(
+  NoteTypeBuilder clone() => NoteTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  NoteType withElement(Element? newElement) {
-    return NoteType._(validatedValue: value, element: newElement);
+  NoteTypeBuilder withElement(ElementBuilder? newElement) {
+    return NoteTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,11 +124,11 @@ class NoteType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  NoteType copyWith({
+  NoteTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -138,7 +139,7 @@ class NoteType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return NoteType._(
+    return NoteTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -148,7 +149,7 @@ class NoteType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

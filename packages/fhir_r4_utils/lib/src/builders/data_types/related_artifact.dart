@@ -1,28 +1,30 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [RelatedArtifact]
+/// [RelatedArtifactBuilder]
 /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
-class RelatedArtifact extends DataType
+class RelatedArtifactBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [RelatedArtifact]
+  /// [RelatedArtifactBuilder]
 
-  const RelatedArtifact({
+  RelatedArtifactBuilder({
     super.id,
     super.extension_,
-    required this.type,
+    this.type,
     this.label,
     this.display,
     this.citation,
@@ -30,31 +32,28 @@ class RelatedArtifact extends DataType
     this.document,
     this.resource,
     super.disallowExtensions,
-    super.objectPath = 'RelatedArtifact',
+    super.objectPath = 'RelatedArtifactBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RelatedArtifact.empty() => RelatedArtifact(
-        type: RelatedArtifactType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory RelatedArtifactBuilder.empty() => RelatedArtifactBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RelatedArtifact.fromJson(
+  factory RelatedArtifactBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'RelatedArtifact';
-    return RelatedArtifact(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RelatedArtifactBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -62,67 +61,67 @@ class RelatedArtifact extends DataType
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<RelatedArtifactType>(
+      type: JsonParser.parsePrimitive<RelatedArtifactTypeBuilder>(
         json,
         'type',
-        RelatedArtifactType.fromJson,
+        RelatedArtifactTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      label: JsonParser.parsePrimitive<FhirString>(
+      ),
+      label: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'label',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.label',
       ),
-      display: JsonParser.parsePrimitive<FhirString>(
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
-      citation: JsonParser.parsePrimitive<FhirMarkdown>(
+      citation: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'citation',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.citation',
       ),
-      url: JsonParser.parsePrimitive<FhirUrl>(
+      url: JsonParser.parsePrimitive<FhirUrlBuilder>(
         json,
         'url',
-        FhirUrl.fromJson,
+        FhirUrlBuilder.fromJson,
         '$objectPath.url',
       ),
-      document: JsonParser.parseObject<Attachment>(
+      document: JsonParser.parseObject<AttachmentBuilder>(
         json,
         'document',
-        Attachment.fromJson,
+        AttachmentBuilder.fromJson,
         '$objectPath.document',
       ),
-      resource: JsonParser.parsePrimitive<FhirCanonical>(
+      resource: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'resource',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.resource',
       ),
     );
   }
 
-  /// Deserialize [RelatedArtifact]
+  /// Deserialize [RelatedArtifactBuilder]
   /// from a [String] or [YamlMap] object
-  factory RelatedArtifact.fromYaml(
+  factory RelatedArtifactBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RelatedArtifact.fromJson(
+      return RelatedArtifactBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RelatedArtifact.fromJson(
+      return RelatedArtifactBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RelatedArtifact '
+        'RelatedArtifactBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -130,16 +129,16 @@ class RelatedArtifact extends DataType
   }
 
   /// Factory constructor for
-  /// [RelatedArtifact]
+  /// [RelatedArtifactBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RelatedArtifact.fromJsonString(
+  factory RelatedArtifactBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RelatedArtifact.fromJson(json);
+      return RelatedArtifactBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -151,53 +150,53 @@ class RelatedArtifact extends DataType
 
   /// [type]
   /// The type of relationship to the related artifact.
-  final RelatedArtifactType type;
+  RelatedArtifactTypeBuilder? type;
 
   /// [label]
   /// A short label that can be used to reference the citation from elsewhere
   /// in the containing artifact, such as a footnote index.
-  final FhirString? label;
+  FhirStringBuilder? label;
 
   /// [display]
   /// A brief description of the document or knowledge resource being
   /// referenced, suitable for display to a consumer.
-  final FhirString? display;
+  FhirStringBuilder? display;
 
   /// [citation]
   /// A bibliographic citation for the related artifact. This text SHOULD be
   /// formatted according to an accepted citation format.
-  final FhirMarkdown? citation;
+  FhirMarkdownBuilder? citation;
 
   /// [url]
   /// A url for the artifact that can be followed to access the actual
   /// content.
-  final FhirUrl? url;
+  FhirUrlBuilder? url;
 
   /// [document]
   /// The document being referenced, represented as an attachment. This is
   /// exclusive with the resource element.
-  final Attachment? document;
+  AttachmentBuilder? document;
 
   /// [resource]
   /// The related resource, such as a library, value set, profile, or other
   /// knowledge resource.
-  final FhirCanonical? resource;
+  FhirCanonicalBuilder? resource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -206,47 +205,20 @@ class RelatedArtifact extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'label',
-      label,
-    );
-    addField(
-      'display',
-      display,
-    );
-    addField(
-      'citation',
-      citation,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'document',
-      document,
-    );
-    addField(
-      'resource',
-      resource,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('type', type);
+    addField('label', label);
+    addField('display', display);
+    addField('citation', citation);
+    addField('url', url);
+    addField('document', document);
+    addField('resource', resource);
     return json;
   }
 
@@ -269,11 +241,11 @@ class RelatedArtifact extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -284,7 +256,9 @@ class RelatedArtifact extends DataType
           fields.addAll(extension_!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'label':
         if (label != null) {
           fields.add(label!);
@@ -319,7 +293,7 @@ class RelatedArtifact extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -328,91 +302,98 @@ class RelatedArtifact extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is RelatedArtifactType) {
-            return copyWith(type: child);
+          if (child is RelatedArtifactTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'label':
         {
-          if (child is FhirString) {
-            return copyWith(label: child);
+          if (child is FhirStringBuilder) {
+            label = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'citation':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(citation: child);
+          if (child is FhirMarkdownBuilder) {
+            citation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUrl) {
-            return copyWith(url: child);
+          if (child is FhirUrlBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'document':
         {
-          if (child is Attachment) {
-            return copyWith(document: child);
+          if (child is AttachmentBuilder) {
+            document = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'resource':
         {
-          if (child is FhirCanonical) {
-            return copyWith(resource: child);
+          if (child is FhirCanonicalBuilder) {
+            resource = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -428,90 +409,77 @@ class RelatedArtifact extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'label':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'citation':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'url':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'document':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'resource':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RelatedArtifact]
+  /// Creates a new [RelatedArtifactBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RelatedArtifact createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: RelatedArtifactType.empty(),
-          );
+          type = RelatedArtifactTypeBuilder.empty();
+          return;
         }
       case 'label':
         {
-          return copyWith(
-            label: FhirString.empty(),
-          );
+          label = FhirStringBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       case 'citation':
         {
-          return copyWith(
-            citation: FhirMarkdown.empty(),
-          );
+          citation = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUrl.empty(),
-          );
+          url = FhirUrlBuilder.empty();
+          return;
         }
       case 'document':
         {
-          return copyWith(
-            document: Attachment.empty(),
-          );
+          document = AttachmentBuilder.empty();
+          return;
         }
       case 'resource':
         {
-          return copyWith(
-            resource: FhirCanonical.empty(),
-          );
+          resource = FhirCanonicalBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -520,9 +488,10 @@ class RelatedArtifact extends DataType
 
   /// Clears specific fields in this object
   @override
-  RelatedArtifact clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool type = false,
     bool label = false,
     bool display = false,
     bool citation = false,
@@ -530,32 +499,30 @@ class RelatedArtifact extends DataType
     bool document = false,
     bool resource = false,
   }) {
-    return RelatedArtifact(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      label: label ? null : this.label,
-      display: display ? null : this.display,
-      citation: citation ? null : this.citation,
-      url: url ? null : this.url,
-      document: document ? null : this.document,
-      resource: resource ? null : this.resource,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (type) this.type = null;
+    if (label) this.label = null;
+    if (display) this.display = null;
+    if (citation) this.citation = null;
+    if (url) this.url = null;
+    if (document) this.document = null;
+    if (resource) this.resource = null;
   }
 
   @override
-  RelatedArtifact clone() => throw UnimplementedError();
+  RelatedArtifactBuilder clone() => throw UnimplementedError();
   @override
-  RelatedArtifact copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    RelatedArtifactType? type,
-    FhirString? label,
-    FhirString? display,
-    FhirMarkdown? citation,
-    FhirUrl? url,
-    Attachment? document,
-    FhirCanonical? resource,
+  RelatedArtifactBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    RelatedArtifactTypeBuilder? type,
+    FhirStringBuilder? label,
+    FhirStringBuilder? display,
+    FhirMarkdownBuilder? citation,
+    FhirUrlBuilder? url,
+    AttachmentBuilder? document,
+    FhirCanonicalBuilder? resource,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -563,54 +530,40 @@ class RelatedArtifact extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return RelatedArtifact(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      label: label?.copyWith(
-            objectPath: '$newObjectPath.label',
-          ) ??
-          this.label,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      citation: citation?.copyWith(
-            objectPath: '$newObjectPath.citation',
-          ) ??
-          this.citation,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      document: document?.copyWith(
-            objectPath: '$newObjectPath.document',
-          ) ??
-          this.document,
-      resource: resource?.copyWith(
-            objectPath: '$newObjectPath.resource',
-          ) ??
-          this.resource,
+    final newResult = RelatedArtifactBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      type: type ?? this.type,
+      label: label ?? this.label,
+      display: display ?? this.display,
+      citation: citation ?? this.citation,
+      url: url ?? this.url,
+      document: document ?? this.document,
+      resource: resource ?? this.resource,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RelatedArtifact) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RelatedArtifactBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -621,7 +574,7 @@ class RelatedArtifact extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

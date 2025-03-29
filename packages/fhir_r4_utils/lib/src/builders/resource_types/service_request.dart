@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ServiceRequest]
+/// [ServiceRequestBuilder]
 /// A record of a request for service such as diagnostic investigations,
 /// treatments, or operations to be performed.
-class ServiceRequest extends DomainResource {
+class ServiceRequestBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [ServiceRequest]
+  /// [ServiceRequestBuilder]
 
-  const ServiceRequest({
+  ServiceRequestBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -24,15 +26,15 @@ class ServiceRequest extends DomainResource {
     this.basedOn,
     this.replaces,
     this.requisition,
-    required this.status,
-    required this.intent,
+    this.status,
+    this.intent,
     this.category,
     this.priority,
     this.doNotPerform,
     this.code,
     this.orderDetail,
     this.quantityX,
-    required this.subject,
+    this.subject,
     this.encounter,
     this.occurrenceX,
     this.asNeededX,
@@ -57,53 +59,48 @@ class ServiceRequest extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ServiceRequest.empty() => ServiceRequest(
-        status: RequestStatus.values.first,
-        intent: RequestIntent.values.first,
-        subject: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ServiceRequestBuilder.empty() => ServiceRequestBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ServiceRequest.fromJson(
+  factory ServiceRequestBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ServiceRequest';
-    return ServiceRequest(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ServiceRequestBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -112,8 +109,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -122,8 +119,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -132,8 +129,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -141,21 +138,22 @@ class ServiceRequest extends DomainResource {
             ),
           )
           .toList(),
-      instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
+      instantiatesCanonical:
+          JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'instantiatesCanonical',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.instantiatesCanonical',
       ),
-      instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
+      instantiatesUri: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'instantiatesUri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -164,8 +162,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       replaces: (json['replaces'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.replaces',
@@ -173,27 +171,27 @@ class ServiceRequest extends DomainResource {
             ),
           )
           .toList(),
-      requisition: JsonParser.parseObject<Identifier>(
+      requisition: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'requisition',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.requisition',
       ),
-      status: JsonParser.parsePrimitive<RequestStatus>(
+      status: JsonParser.parsePrimitive<RequestStatusBuilder>(
         json,
         'status',
-        RequestStatus.fromJson,
+        RequestStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      intent: JsonParser.parsePrimitive<RequestIntent>(
+      ),
+      intent: JsonParser.parsePrimitive<RequestIntentBuilder>(
         json,
         'intent',
-        RequestIntent.fromJson,
+        RequestIntentBuilder.fromJson,
         '$objectPath.intent',
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -201,27 +199,27 @@ class ServiceRequest extends DomainResource {
             ),
           )
           .toList(),
-      priority: JsonParser.parsePrimitive<RequestPriority>(
+      priority: JsonParser.parsePrimitive<RequestPriorityBuilder>(
         json,
         'priority',
-        RequestPriority.fromJson,
+        RequestPriorityBuilder.fromJson,
         '$objectPath.priority',
       ),
-      doNotPerform: JsonParser.parsePrimitive<FhirBoolean>(
+      doNotPerform: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'doNotPerform',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.doNotPerform',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
       orderDetail: (json['orderDetail'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.orderDetail',
@@ -229,65 +227,66 @@ class ServiceRequest extends DomainResource {
             ),
           )
           .toList(),
-      quantityX: JsonParser.parsePolymorphic<QuantityXServiceRequest>(
+      quantityX: JsonParser.parsePolymorphic<QuantityXServiceRequestBuilder>(
         json,
         {
-          'quantityQuantity': Quantity.fromJson,
-          'quantityRatio': Ratio.fromJson,
-          'quantityRange': Range.fromJson,
+          'quantityQuantity': QuantityBuilder.fromJson,
+          'quantityRatio': RatioBuilder.fromJson,
+          'quantityRange': RangeBuilder.fromJson,
         },
         objectPath,
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXServiceRequest>(
+      occurrenceX:
+          JsonParser.parsePolymorphic<OccurrenceXServiceRequestBuilder>(
         json,
         {
-          'occurrenceDateTime': FhirDateTime.fromJson,
-          'occurrencePeriod': Period.fromJson,
-          'occurrenceTiming': Timing.fromJson,
+          'occurrenceDateTime': FhirDateTimeBuilder.fromJson,
+          'occurrencePeriod': PeriodBuilder.fromJson,
+          'occurrenceTiming': TimingBuilder.fromJson,
         },
         objectPath,
       ),
-      asNeededX: JsonParser.parsePolymorphic<AsNeededXServiceRequest>(
+      asNeededX: JsonParser.parsePolymorphic<AsNeededXServiceRequestBuilder>(
         json,
         {
-          'asNeededBoolean': FhirBoolean.fromJson,
-          'asNeededCodeableConcept': CodeableConcept.fromJson,
+          'asNeededBoolean': FhirBooleanBuilder.fromJson,
+          'asNeededCodeableConcept': CodeableConceptBuilder.fromJson,
         },
         objectPath,
       ),
-      authoredOn: JsonParser.parsePrimitive<FhirDateTime>(
+      authoredOn: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'authoredOn',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.authoredOn',
       ),
-      requester: JsonParser.parseObject<Reference>(
+      requester: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'requester',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.requester',
       ),
-      performerType: JsonParser.parseObject<CodeableConcept>(
+      performerType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'performerType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.performerType',
       ),
       performer: (json['performer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performer',
@@ -296,8 +295,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       locationCode: (json['locationCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.locationCode',
@@ -306,8 +305,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       locationReference: (json['locationReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.locationReference',
@@ -316,8 +315,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -326,8 +325,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -336,8 +335,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       insurance: (json['insurance'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.insurance',
@@ -346,8 +345,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.supportingInfo',
@@ -356,8 +355,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       specimen: (json['specimen'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specimen',
@@ -366,8 +365,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       bodySite: (json['bodySite'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.bodySite',
@@ -376,8 +375,8 @@ class ServiceRequest extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -385,15 +384,15 @@ class ServiceRequest extends DomainResource {
             ),
           )
           .toList(),
-      patientInstruction: JsonParser.parsePrimitive<FhirString>(
+      patientInstruction: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'patientInstruction',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.patientInstruction',
       ),
       relevantHistory: (json['relevantHistory'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relevantHistory',
@@ -404,22 +403,22 @@ class ServiceRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [ServiceRequest]
+  /// Deserialize [ServiceRequestBuilder]
   /// from a [String] or [YamlMap] object
-  factory ServiceRequest.fromYaml(
+  factory ServiceRequestBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ServiceRequest.fromJson(
+      return ServiceRequestBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ServiceRequest.fromJson(
+      return ServiceRequestBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ServiceRequest '
+        'ServiceRequestBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -427,16 +426,16 @@ class ServiceRequest extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [ServiceRequest]
+  /// [ServiceRequestBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ServiceRequest.fromJsonString(
+  factory ServiceRequestBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ServiceRequest.fromJson(json);
+      return ServiceRequestBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -449,64 +448,64 @@ class ServiceRequest extends DomainResource {
   /// [identifier]
   /// Identifiers assigned to this order instance by the orderer and/or the
   /// receiver and/or order fulfiller.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this
   /// ServiceRequest.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonicalBuilder>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this ServiceRequest.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUriBuilder>? instantiatesUri;
 
   /// [basedOn]
   /// Plan/proposal/order fulfilled by this request.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [replaces]
   /// The request takes the place of the referenced completed or terminated
   /// request(s).
-  final List<Reference>? replaces;
+  List<ReferenceBuilder>? replaces;
 
   /// [requisition]
   /// A shared identifier common to all service requests that were authorized
   /// more or less simultaneously by a single author, representing the
   /// composite or group identifier.
-  final Identifier? requisition;
+  IdentifierBuilder? requisition;
 
   /// [status]
   /// The status of the order.
-  final RequestStatus status;
+  RequestStatusBuilder? status;
 
   /// [intent]
   /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
-  final RequestIntent intent;
+  RequestIntentBuilder? intent;
 
   /// [category]
   /// A code that classifies the service for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [priority]
   /// Indicates how quickly the ServiceRequest should be addressed with
   /// respect to other requests.
-  final RequestPriority? priority;
+  RequestPriorityBuilder? priority;
 
   /// [doNotPerform]
   /// Set this to true if the record is saying that the service/procedure
   /// should NOT be performed.
-  final FhirBoolean? doNotPerform;
+  FhirBooleanBuilder? doNotPerform;
 
   /// [code]
   /// A code that identifies a particular service (i.e., procedure,
   /// diagnostic investigation, or panel of investigations) that have been
   /// requested.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [orderDetail]
   /// Additional details and instructions about the how the services are to
@@ -514,105 +513,107 @@ class ServiceRequest extends DomainResource {
   /// order detail for an external or indwelling catheter, or an order for a
   /// bandage may require additional instructions specifying how the bandage
   /// should be applied.
-  final List<CodeableConcept>? orderDetail;
+  List<CodeableConceptBuilder>? orderDetail;
 
   /// [quantityX]
   /// An amount of service being requested which can be a quantity ( for
   /// example $1,500 home modification), a ratio ( for example, 20 half day
   /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  final QuantityXServiceRequest? quantityX;
+  QuantityXServiceRequestBuilder? quantityX;
 
-  /// Getter for [quantityQuantity] as a Quantity
-  Quantity? get quantityQuantity => quantityX?.isAs<Quantity>();
+  /// Getter for [quantityQuantity] as a QuantityBuilder
+  QuantityBuilder? get quantityQuantity => quantityX?.isAs<QuantityBuilder>();
 
-  /// Getter for [quantityRatio] as a Ratio
-  Ratio? get quantityRatio => quantityX?.isAs<Ratio>();
+  /// Getter for [quantityRatio] as a RatioBuilder
+  RatioBuilder? get quantityRatio => quantityX?.isAs<RatioBuilder>();
 
-  /// Getter for [quantityRange] as a Range
-  Range? get quantityRange => quantityX?.isAs<Range>();
+  /// Getter for [quantityRange] as a RangeBuilder
+  RangeBuilder? get quantityRange => quantityX?.isAs<RangeBuilder>();
 
   /// [subject]
   /// On whom or what the service is to be performed. This is usually a human
   /// patient, but can also be requested on animals, groups of humans or
   /// animals, devices such as dialysis machines, or even locations
   /// (typically for environmental scans).
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// An encounter that provides additional information about the healthcare
   /// context in which this request is made.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [occurrenceX]
   /// The date/time at which the requested service should occur.
-  final OccurrenceXServiceRequest? occurrenceX;
+  OccurrenceXServiceRequestBuilder? occurrenceX;
 
-  /// Getter for [occurrenceDateTime] as a FhirDateTime
-  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+  /// Getter for [occurrenceDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get occurrenceDateTime =>
+      occurrenceX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [occurrencePeriod] as a Period
-  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+  /// Getter for [occurrencePeriod] as a PeriodBuilder
+  PeriodBuilder? get occurrencePeriod => occurrenceX?.isAs<PeriodBuilder>();
 
-  /// Getter for [occurrenceTiming] as a Timing
-  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
+  /// Getter for [occurrenceTiming] as a TimingBuilder
+  TimingBuilder? get occurrenceTiming => occurrenceX?.isAs<TimingBuilder>();
 
   /// [asNeededX]
   /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
-  final AsNeededXServiceRequest? asNeededX;
+  AsNeededXServiceRequestBuilder? asNeededX;
 
-  /// Getter for [asNeededBoolean] as a FhirBoolean
-  FhirBoolean? get asNeededBoolean => asNeededX?.isAs<FhirBoolean>();
+  /// Getter for [asNeededBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get asNeededBoolean =>
+      asNeededX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [asNeededCodeableConcept] as a CodeableConcept
-  CodeableConcept? get asNeededCodeableConcept =>
-      asNeededX?.isAs<CodeableConcept>();
+  /// Getter for [asNeededCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get asNeededCodeableConcept =>
+      asNeededX?.isAs<CodeableConceptBuilder>();
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
-  final FhirDateTime? authoredOn;
+  FhirDateTimeBuilder? authoredOn;
 
   /// [requester]
   /// The individual who initiated the request and has responsibility for its
   /// activation.
-  final Reference? requester;
+  ReferenceBuilder? requester;
 
   /// [performerType]
   /// Desired type of performer for doing the requested service.
-  final CodeableConcept? performerType;
+  CodeableConceptBuilder? performerType;
 
   /// [performer]
   /// The desired performer for doing the requested service. For example, the
   /// surgeon, dermatopathologist, endoscopist, etc.
-  final List<Reference>? performer;
+  List<ReferenceBuilder>? performer;
 
   /// [locationCode]
   /// The preferred location(s) where the procedure should actually happen in
   /// coded or free text form. E.g. at home or nursing day care center.
-  final List<CodeableConcept>? locationCode;
+  List<CodeableConceptBuilder>? locationCode;
 
   /// [locationReference]
   /// A reference to the the preferred location(s) where the procedure should
   /// actually happen. E.g. at home or nursing day care center.
-  final List<Reference>? locationReference;
+  List<ReferenceBuilder>? locationReference;
 
   /// [reasonCode]
   /// An explanation or justification for why this service is being requested
   /// in coded or textual form. This is often for billing purposes. May
   /// relate to the resources referred to in `supportingInfo`.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource that provides a justification for why this
   /// service is being requested. May relate to the resources referred to in
   /// `supportingInfo`.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [insurance]
   /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be needed for delivering the requested
   /// service.
-  final List<Reference>? insurance;
+  List<ReferenceBuilder>? insurance;
 
   /// [supportingInfo]
   /// Additional clinical information about the patient or specimen that may
@@ -623,45 +624,45 @@ class ServiceRequest extends DomainResource {
   /// requested by the producer (filler) to provide context or supporting
   /// information needed to complete the order. For example, reporting the
   /// amount of inspired oxygen for blood gas measurements.
-  final List<Reference>? supportingInfo;
+  List<ReferenceBuilder>? supportingInfo;
 
   /// [specimen]
   /// One or more specimens that the laboratory procedure will use.
-  final List<Reference>? specimen;
+  List<ReferenceBuilder>? specimen;
 
   /// [bodySite]
   /// Anatomic location where the procedure should be performed. This is the
   /// target site.
-  final List<CodeableConcept>? bodySite;
+  List<CodeableConceptBuilder>? bodySite;
 
   /// [note]
   /// Any other notes and comments made about the service request. For
   /// example, internal billing notes.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [patientInstruction]
   /// Instructions in terms that are understood by the patient or consumer.
-  final FhirString? patientInstruction;
+  FhirStringBuilder? patientInstruction;
 
   /// [relevantHistory]
   /// Key events in the history of the request.
-  final List<Reference>? relevantHistory;
+  List<ReferenceBuilder>? relevantHistory;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -670,188 +671,65 @@ class ServiceRequest extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'instantiatesCanonical',
-      instantiatesCanonical,
-    );
-    addField(
-      'instantiatesUri',
-      instantiatesUri,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'replaces',
-      replaces,
-    );
-    addField(
-      'requisition',
-      requisition,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'intent',
-      intent,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'priority',
-      priority,
-    );
-    addField(
-      'doNotPerform',
-      doNotPerform,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'orderDetail',
-      orderDetail,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('instantiatesCanonical', instantiatesCanonical);
+    addField('instantiatesUri', instantiatesUri);
+    addField('basedOn', basedOn);
+    addField('replaces', replaces);
+    addField('requisition', requisition);
+    addField('status', status);
+    addField('intent', intent);
+    addField('category', category);
+    addField('priority', priority);
+    addField('doNotPerform', doNotPerform);
+    addField('code', code);
+    addField('orderDetail', orderDetail);
     if (quantityX != null) {
       final fhirType = quantityX!.fhirType;
-      addField(
-        'quantity${fhirType.capitalize()}',
-        quantityX,
-      );
+      addField('quantity${fhirType.capitalize()}', quantityX);
     }
 
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('subject', subject);
+    addField('encounter', encounter);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField(
-        'occurrence${fhirType.capitalize()}',
-        occurrenceX,
-      );
+      addField('occurrence${fhirType.capitalize()}', occurrenceX);
     }
 
     if (asNeededX != null) {
       final fhirType = asNeededX!.fhirType;
-      addField(
-        'asNeeded${fhirType.capitalize()}',
-        asNeededX,
-      );
+      addField('asNeeded${fhirType.capitalize()}', asNeededX);
     }
 
-    addField(
-      'authoredOn',
-      authoredOn,
-    );
-    addField(
-      'requester',
-      requester,
-    );
-    addField(
-      'performerType',
-      performerType,
-    );
-    addField(
-      'performer',
-      performer,
-    );
-    addField(
-      'locationCode',
-      locationCode,
-    );
-    addField(
-      'locationReference',
-      locationReference,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'insurance',
-      insurance,
-    );
-    addField(
-      'supportingInfo',
-      supportingInfo,
-    );
-    addField(
-      'specimen',
-      specimen,
-    );
-    addField(
-      'bodySite',
-      bodySite,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'patientInstruction',
-      patientInstruction,
-    );
-    addField(
-      'relevantHistory',
-      relevantHistory,
-    );
+    addField('authoredOn', authoredOn);
+    addField('requester', requester);
+    addField('performerType', performerType);
+    addField('performer', performer);
+    addField('locationCode', locationCode);
+    addField('locationReference', locationReference);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('insurance', insurance);
+    addField('supportingInfo', supportingInfo);
+    addField('specimen', specimen);
+    addField('bodySite', bodySite);
+    addField('note', note);
+    addField('patientInstruction', patientInstruction);
+    addField('relevantHistory', relevantHistory);
     return json;
   }
 
@@ -906,11 +784,11 @@ class ServiceRequest extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -969,9 +847,13 @@ class ServiceRequest extends DomainResource {
           fields.add(requisition!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'intent':
-        fields.add(intent);
+        if (intent != null) {
+          fields.add(intent!);
+        }
       case 'category':
         if (category != null) {
           fields.addAll(category!);
@@ -993,53 +875,67 @@ class ServiceRequest extends DomainResource {
           fields.addAll(orderDetail!);
         }
       case 'quantity':
-        fields.add(quantityX!);
+        if (quantityX != null) {
+          fields.add(quantityX!);
+        }
       case 'quantityX':
-        fields.add(quantityX!);
+        if (quantityX != null) {
+          fields.add(quantityX!);
+        }
       case 'quantityQuantity':
-        if (quantityX is Quantity) {
+        if (quantityX is QuantityBuilder) {
           fields.add(quantityX!);
         }
       case 'quantityRatio':
-        if (quantityX is Ratio) {
+        if (quantityX is RatioBuilder) {
           fields.add(quantityX!);
         }
       case 'quantityRange':
-        if (quantityX is Range) {
+        if (quantityX is RangeBuilder) {
           fields.add(quantityX!);
         }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
         }
       case 'occurrence':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceX':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceDateTime':
-        if (occurrenceX is FhirDateTime) {
+        if (occurrenceX is FhirDateTimeBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrencePeriod':
-        if (occurrenceX is Period) {
+        if (occurrenceX is PeriodBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrenceTiming':
-        if (occurrenceX is Timing) {
+        if (occurrenceX is TimingBuilder) {
           fields.add(occurrenceX!);
         }
       case 'asNeeded':
-        fields.add(asNeededX!);
+        if (asNeededX != null) {
+          fields.add(asNeededX!);
+        }
       case 'asNeededX':
-        fields.add(asNeededX!);
+        if (asNeededX != null) {
+          fields.add(asNeededX!);
+        }
       case 'asNeededBoolean':
-        if (asNeededX is FhirBoolean) {
+        if (asNeededX is FhirBooleanBuilder) {
           fields.add(asNeededX!);
         }
       case 'asNeededCodeableConcept':
-        if (asNeededX is CodeableConcept) {
+        if (asNeededX is CodeableConceptBuilder) {
           fields.add(asNeededX!);
         }
       case 'authoredOn':
@@ -1112,7 +1008,7 @@ class ServiceRequest extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1121,555 +1017,590 @@ class ServiceRequest extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            instantiatesCanonical = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
-            return copyWith(instantiatesCanonical: newList);
+            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            instantiatesUri = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
-            return copyWith(instantiatesUri: newList);
+            instantiatesUri = [...(instantiatesUri ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'replaces':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?replaces, ...child];
-            return copyWith(replaces: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            replaces = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?replaces, child];
-            return copyWith(replaces: newList);
+            replaces = [...(replaces ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requisition':
         {
-          if (child is Identifier) {
-            return copyWith(requisition: child);
+          if (child is IdentifierBuilder) {
+            requisition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is RequestStatus) {
-            return copyWith(status: child);
+          if (child is RequestStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'intent':
         {
-          if (child is RequestIntent) {
-            return copyWith(intent: child);
+          if (child is RequestIntentBuilder) {
+            intent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'priority':
         {
-          if (child is RequestPriority) {
-            return copyWith(priority: child);
+          if (child is RequestPriorityBuilder) {
+            priority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doNotPerform':
         {
-          if (child is FhirBoolean) {
-            return copyWith(doNotPerform: child);
+          if (child is FhirBooleanBuilder) {
+            doNotPerform = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'orderDetail':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?orderDetail, ...child];
-            return copyWith(orderDetail: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            orderDetail = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?orderDetail, child];
-            return copyWith(orderDetail: newList);
+            orderDetail = [...(orderDetail ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantityX':
         {
-          if (child is QuantityXServiceRequest) {
-            return copyWith(quantityX: child);
+          if (child is QuantityXServiceRequestBuilder) {
+            quantityX = child;
+            return;
           } else {
-            if (child is Quantity) {
-              return copyWith(quantityX: child);
+            if (child is QuantityBuilder) {
+              quantityX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(quantityX: child);
+            if (child is RatioBuilder) {
+              quantityX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(quantityX: child);
+            if (child is RangeBuilder) {
+              quantityX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'quantityQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(quantityX: child);
+          if (child is QuantityBuilder) {
+            quantityX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantityRatio':
         {
-          if (child is Ratio) {
-            return copyWith(quantityX: child);
+          if (child is RatioBuilder) {
+            quantityX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantityRange':
         {
-          if (child is Range) {
-            return copyWith(quantityX: child);
+          if (child is RangeBuilder) {
+            quantityX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceX':
         {
-          if (child is OccurrenceXServiceRequest) {
-            return copyWith(occurrenceX: child);
+          if (child is OccurrenceXServiceRequestBuilder) {
+            occurrenceX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(occurrenceX: child);
+            if (child is FhirDateTimeBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(occurrenceX: child);
+            if (child is PeriodBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(occurrenceX: child);
+            if (child is TimingBuilder) {
+              occurrenceX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'occurrenceFhirDateTime':
+      case 'occurrenceDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(occurrenceX: child);
+          if (child is FhirDateTimeBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrencePeriod':
         {
-          if (child is Period) {
-            return copyWith(occurrenceX: child);
+          if (child is PeriodBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceTiming':
         {
-          if (child is Timing) {
-            return copyWith(occurrenceX: child);
+          if (child is TimingBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asNeededX':
         {
-          if (child is AsNeededXServiceRequest) {
-            return copyWith(asNeededX: child);
+          if (child is AsNeededXServiceRequestBuilder) {
+            asNeededX = child;
+            return;
           } else {
-            if (child is FhirBoolean) {
-              return copyWith(asNeededX: child);
+            if (child is FhirBooleanBuilder) {
+              asNeededX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(asNeededX: child);
+            if (child is CodeableConceptBuilder) {
+              asNeededX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'asNeededFhirBoolean':
+      case 'asNeededBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(asNeededX: child);
+          if (child is FhirBooleanBuilder) {
+            asNeededX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asNeededCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(asNeededX: child);
+          if (child is CodeableConceptBuilder) {
+            asNeededX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authoredOn':
         {
-          if (child is FhirDateTime) {
-            return copyWith(authoredOn: child);
+          if (child is FhirDateTimeBuilder) {
+            authoredOn = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requester':
         {
-          if (child is Reference) {
-            return copyWith(requester: child);
+          if (child is ReferenceBuilder) {
+            requester = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performerType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(performerType: child);
+          if (child is CodeableConceptBuilder) {
+            performerType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            performer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
-            return copyWith(performer: newList);
+            performer = [...(performer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'locationCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?locationCode, ...child];
-            return copyWith(locationCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            locationCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?locationCode, child];
-            return copyWith(locationCode: newList);
+            locationCode = [...(locationCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'locationReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?locationReference, ...child];
-            return copyWith(locationReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            locationReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?locationReference, child];
-            return copyWith(locationReference: newList);
+            locationReference = [...(locationReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'insurance':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?insurance, ...child];
-            return copyWith(insurance: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            insurance = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?insurance, child];
-            return copyWith(insurance: newList);
+            insurance = [...(insurance ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportingInfo':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInfo, ...child];
-            return copyWith(supportingInfo: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            supportingInfo = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInfo, child];
-            return copyWith(supportingInfo: newList);
+            supportingInfo = [...(supportingInfo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specimen':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?specimen, ...child];
-            return copyWith(specimen: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            specimen = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specimen, child];
-            return copyWith(specimen: newList);
+            specimen = [...(specimen ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?bodySite, ...child];
-            return copyWith(bodySite: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            bodySite = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?bodySite, child];
-            return copyWith(bodySite: newList);
+            bodySite = [...(bodySite ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patientInstruction':
         {
-          if (child is FhirString) {
-            return copyWith(patientInstruction: child);
+          if (child is FhirStringBuilder) {
+            patientInstruction = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relevantHistory':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?relevantHistory, ...child];
-            return copyWith(relevantHistory: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            relevantHistory = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relevantHistory, child];
-            return copyWith(relevantHistory: newList);
+            relevantHistory = [...(relevantHistory ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1685,401 +1616,351 @@ class ServiceRequest extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'instantiatesCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'instantiatesUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'replaces':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'requisition':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'intent':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'priority':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'doNotPerform':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'orderDetail':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'quantity':
       case 'quantityX':
-        return ['Quantity', 'Ratio', 'Range'];
+        return ['QuantityBuilder', 'RatioBuilder', 'RangeBuilder'];
       case 'quantityQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'quantityRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'quantityRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTime', 'Period', 'Timing'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder', 'TimingBuilder'];
       case 'occurrenceDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'occurrencePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'occurrenceTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'asNeeded':
       case 'asNeededX':
-        return ['FhirBoolean', 'CodeableConcept'];
+        return ['FhirBooleanBuilder', 'CodeableConceptBuilder'];
       case 'asNeededBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'asNeededCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'authoredOn':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'requester':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'performerType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'performer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'locationCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'locationReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'insurance':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'supportingInfo':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'specimen':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'bodySite':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'patientInstruction':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'relevantHistory':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ServiceRequest]
+  /// Creates a new [ServiceRequestBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ServiceRequest createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
+          instantiatesCanonical = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'instantiatesUri':
         {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
+          instantiatesUri = <FhirUriBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'replaces':
         {
-          return copyWith(
-            replaces: <Reference>[],
-          );
+          replaces = <ReferenceBuilder>[];
+          return;
         }
       case 'requisition':
         {
-          return copyWith(
-            requisition: Identifier.empty(),
-          );
+          requisition = IdentifierBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: RequestStatus.empty(),
-          );
+          status = RequestStatusBuilder.empty();
+          return;
         }
       case 'intent':
         {
-          return copyWith(
-            intent: RequestIntent.empty(),
-          );
+          intent = RequestIntentBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'priority':
         {
-          return copyWith(
-            priority: RequestPriority.empty(),
-          );
+          priority = RequestPriorityBuilder.empty();
+          return;
         }
       case 'doNotPerform':
         {
-          return copyWith(
-            doNotPerform: FhirBoolean.empty(),
-          );
+          doNotPerform = FhirBooleanBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'orderDetail':
         {
-          return copyWith(
-            orderDetail: <CodeableConcept>[],
-          );
+          orderDetail = <CodeableConceptBuilder>[];
+          return;
         }
       case 'quantity':
       case 'quantityX':
       case 'quantityQuantity':
         {
-          return copyWith(
-            quantityX: Quantity.empty(),
-          );
+          quantityX = QuantityBuilder.empty();
+          return;
         }
       case 'quantityRatio':
         {
-          return copyWith(
-            quantityX: Ratio.empty(),
-          );
+          quantityX = RatioBuilder.empty();
+          return;
         }
       case 'quantityRange':
         {
-          return copyWith(
-            quantityX: Range.empty(),
-          );
+          quantityX = RangeBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'occurrence':
       case 'occurrenceX':
       case 'occurrenceDateTime':
         {
-          return copyWith(
-            occurrenceX: FhirDateTime.empty(),
-          );
+          occurrenceX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'occurrencePeriod':
         {
-          return copyWith(
-            occurrenceX: Period.empty(),
-          );
+          occurrenceX = PeriodBuilder.empty();
+          return;
         }
       case 'occurrenceTiming':
         {
-          return copyWith(
-            occurrenceX: Timing.empty(),
-          );
+          occurrenceX = TimingBuilder.empty();
+          return;
         }
       case 'asNeeded':
       case 'asNeededX':
       case 'asNeededBoolean':
         {
-          return copyWith(
-            asNeededX: FhirBoolean.empty(),
-          );
+          asNeededX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'asNeededCodeableConcept':
         {
-          return copyWith(
-            asNeededX: CodeableConcept.empty(),
-          );
+          asNeededX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'authoredOn':
         {
-          return copyWith(
-            authoredOn: FhirDateTime.empty(),
-          );
+          authoredOn = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'requester':
         {
-          return copyWith(
-            requester: Reference.empty(),
-          );
+          requester = ReferenceBuilder.empty();
+          return;
         }
       case 'performerType':
         {
-          return copyWith(
-            performerType: CodeableConcept.empty(),
-          );
+          performerType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: <Reference>[],
-          );
+          performer = <ReferenceBuilder>[];
+          return;
         }
       case 'locationCode':
         {
-          return copyWith(
-            locationCode: <CodeableConcept>[],
-          );
+          locationCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'locationReference':
         {
-          return copyWith(
-            locationReference: <Reference>[],
-          );
+          locationReference = <ReferenceBuilder>[];
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'insurance':
         {
-          return copyWith(
-            insurance: <Reference>[],
-          );
+          insurance = <ReferenceBuilder>[];
+          return;
         }
       case 'supportingInfo':
         {
-          return copyWith(
-            supportingInfo: <Reference>[],
-          );
+          supportingInfo = <ReferenceBuilder>[];
+          return;
         }
       case 'specimen':
         {
-          return copyWith(
-            specimen: <Reference>[],
-          );
+          specimen = <ReferenceBuilder>[];
+          return;
         }
       case 'bodySite':
         {
-          return copyWith(
-            bodySite: <CodeableConcept>[],
-          );
+          bodySite = <CodeableConceptBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'patientInstruction':
         {
-          return copyWith(
-            patientInstruction: FhirString.empty(),
-          );
+          patientInstruction = FhirStringBuilder.empty();
+          return;
         }
       case 'relevantHistory':
         {
-          return copyWith(
-            relevantHistory: <Reference>[],
-          );
+          relevantHistory = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2088,7 +1969,7 @@ class ServiceRequest extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  ServiceRequest clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -2103,12 +1984,15 @@ class ServiceRequest extends DomainResource {
     bool basedOn = false,
     bool replaces = false,
     bool requisition = false,
+    bool status = false,
+    bool intent = false,
     bool category = false,
     bool priority = false,
     bool doNotPerform = false,
     bool code = false,
     bool orderDetail = false,
     bool quantity = false,
+    bool subject = false,
     bool encounter = false,
     bool occurrence = false,
     bool asNeeded = false,
@@ -2128,352 +2012,167 @@ class ServiceRequest extends DomainResource {
     bool patientInstruction = false,
     bool relevantHistory = false,
   }) {
-    return ServiceRequest(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      basedOn: basedOn ? null : this.basedOn,
-      replaces: replaces ? null : this.replaces,
-      requisition: requisition ? null : this.requisition,
-      status: status,
-      intent: intent,
-      category: category ? null : this.category,
-      priority: priority ? null : this.priority,
-      doNotPerform: doNotPerform ? null : this.doNotPerform,
-      code: code ? null : this.code,
-      orderDetail: orderDetail ? null : this.orderDetail,
-      quantityX: quantity ? null : quantityX,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      occurrenceX: occurrence ? null : occurrenceX,
-      asNeededX: asNeeded ? null : asNeededX,
-      authoredOn: authoredOn ? null : this.authoredOn,
-      requester: requester ? null : this.requester,
-      performerType: performerType ? null : this.performerType,
-      performer: performer ? null : this.performer,
-      locationCode: locationCode ? null : this.locationCode,
-      locationReference: locationReference ? null : this.locationReference,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      insurance: insurance ? null : this.insurance,
-      supportingInfo: supportingInfo ? null : this.supportingInfo,
-      specimen: specimen ? null : this.specimen,
-      bodySite: bodySite ? null : this.bodySite,
-      note: note ? null : this.note,
-      patientInstruction: patientInstruction ? null : this.patientInstruction,
-      relevantHistory: relevantHistory ? null : this.relevantHistory,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (instantiatesCanonical) this.instantiatesCanonical = null;
+    if (instantiatesUri) this.instantiatesUri = null;
+    if (basedOn) this.basedOn = null;
+    if (replaces) this.replaces = null;
+    if (requisition) this.requisition = null;
+    if (status) this.status = null;
+    if (intent) this.intent = null;
+    if (category) this.category = null;
+    if (priority) this.priority = null;
+    if (doNotPerform) this.doNotPerform = null;
+    if (code) this.code = null;
+    if (orderDetail) this.orderDetail = null;
+    if (quantity) this.quantityX = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (occurrence) this.occurrenceX = null;
+    if (asNeeded) this.asNeededX = null;
+    if (authoredOn) this.authoredOn = null;
+    if (requester) this.requester = null;
+    if (performerType) this.performerType = null;
+    if (performer) this.performer = null;
+    if (locationCode) this.locationCode = null;
+    if (locationReference) this.locationReference = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (insurance) this.insurance = null;
+    if (supportingInfo) this.supportingInfo = null;
+    if (specimen) this.specimen = null;
+    if (bodySite) this.bodySite = null;
+    if (note) this.note = null;
+    if (patientInstruction) this.patientInstruction = null;
+    if (relevantHistory) this.relevantHistory = null;
   }
 
   @override
-  ServiceRequest clone() => throw UnimplementedError();
+  ServiceRequestBuilder clone() => throw UnimplementedError();
   @override
-  ServiceRequest copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    List<Reference>? basedOn,
-    List<Reference>? replaces,
-    Identifier? requisition,
-    RequestStatus? status,
-    RequestIntent? intent,
-    List<CodeableConcept>? category,
-    RequestPriority? priority,
-    FhirBoolean? doNotPerform,
-    CodeableConcept? code,
-    List<CodeableConcept>? orderDetail,
-    QuantityXServiceRequest? quantityX,
-    Reference? subject,
-    Reference? encounter,
-    OccurrenceXServiceRequest? occurrenceX,
-    AsNeededXServiceRequest? asNeededX,
-    FhirDateTime? authoredOn,
-    Reference? requester,
-    CodeableConcept? performerType,
-    List<Reference>? performer,
-    List<CodeableConcept>? locationCode,
-    List<Reference>? locationReference,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Reference>? insurance,
-    List<Reference>? supportingInfo,
-    List<Reference>? specimen,
-    List<CodeableConcept>? bodySite,
-    List<Annotation>? note,
-    FhirString? patientInstruction,
-    List<Reference>? relevantHistory,
+  ServiceRequestBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<FhirCanonicalBuilder>? instantiatesCanonical,
+    List<FhirUriBuilder>? instantiatesUri,
+    List<ReferenceBuilder>? basedOn,
+    List<ReferenceBuilder>? replaces,
+    IdentifierBuilder? requisition,
+    RequestStatusBuilder? status,
+    RequestIntentBuilder? intent,
+    List<CodeableConceptBuilder>? category,
+    RequestPriorityBuilder? priority,
+    FhirBooleanBuilder? doNotPerform,
+    CodeableConceptBuilder? code,
+    List<CodeableConceptBuilder>? orderDetail,
+    QuantityXServiceRequestBuilder? quantityX,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    OccurrenceXServiceRequestBuilder? occurrenceX,
+    AsNeededXServiceRequestBuilder? asNeededX,
+    FhirDateTimeBuilder? authoredOn,
+    ReferenceBuilder? requester,
+    CodeableConceptBuilder? performerType,
+    List<ReferenceBuilder>? performer,
+    List<CodeableConceptBuilder>? locationCode,
+    List<ReferenceBuilder>? locationReference,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<ReferenceBuilder>? insurance,
+    List<ReferenceBuilder>? supportingInfo,
+    List<ReferenceBuilder>? specimen,
+    List<CodeableConceptBuilder>? bodySite,
+    List<AnnotationBuilder>? note,
+    FhirStringBuilder? patientInstruction,
+    List<ReferenceBuilder>? relevantHistory,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return ServiceRequest(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ServiceRequestBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      replaces: replaces
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.replaces',
-                ),
-              )
-              .toList() ??
-          this.replaces,
-      requisition: requisition?.copyWith(
-            objectPath: '$newObjectPath.requisition',
-          ) ??
-          this.requisition,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      intent: intent?.copyWith(
-            objectPath: '$newObjectPath.intent',
-          ) ??
-          this.intent,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      priority: priority?.copyWith(
-            objectPath: '$newObjectPath.priority',
-          ) ??
-          this.priority,
-      doNotPerform: doNotPerform?.copyWith(
-            objectPath: '$newObjectPath.doNotPerform',
-          ) ??
-          this.doNotPerform,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      orderDetail: orderDetail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.orderDetail',
-                ),
-              )
-              .toList() ??
-          this.orderDetail,
-      quantityX: quantityX?.copyWith(
-            objectPath: '$newObjectPath.quantityX',
-          ) as QuantityXServiceRequest? ??
-          this.quantityX,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      occurrenceX: occurrenceX?.copyWith(
-            objectPath: '$newObjectPath.occurrenceX',
-          ) as OccurrenceXServiceRequest? ??
-          this.occurrenceX,
-      asNeededX: asNeededX?.copyWith(
-            objectPath: '$newObjectPath.asNeededX',
-          ) as AsNeededXServiceRequest? ??
-          this.asNeededX,
-      authoredOn: authoredOn?.copyWith(
-            objectPath: '$newObjectPath.authoredOn',
-          ) ??
-          this.authoredOn,
-      requester: requester?.copyWith(
-            objectPath: '$newObjectPath.requester',
-          ) ??
-          this.requester,
-      performerType: performerType?.copyWith(
-            objectPath: '$newObjectPath.performerType',
-          ) ??
-          this.performerType,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      locationCode: locationCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.locationCode',
-                ),
-              )
-              .toList() ??
-          this.locationCode,
-      locationReference: locationReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.locationReference',
-                ),
-              )
-              .toList() ??
-          this.locationReference,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      insurance: insurance
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.insurance',
-                ),
-              )
-              .toList() ??
-          this.insurance,
-      supportingInfo: supportingInfo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInfo',
-                ),
-              )
-              .toList() ??
-          this.supportingInfo,
-      specimen: specimen
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specimen',
-                ),
-              )
-              .toList() ??
-          this.specimen,
-      bodySite: bodySite
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.bodySite',
-                ),
-              )
-              .toList() ??
-          this.bodySite,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      patientInstruction: patientInstruction?.copyWith(
-            objectPath: '$newObjectPath.patientInstruction',
-          ) ??
-          this.patientInstruction,
-      relevantHistory: relevantHistory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relevantHistory',
-                ),
-              )
-              .toList() ??
-          this.relevantHistory,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ?? this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
+      basedOn: basedOn ?? this.basedOn,
+      replaces: replaces ?? this.replaces,
+      requisition: requisition ?? this.requisition,
+      status: status ?? this.status,
+      intent: intent ?? this.intent,
+      category: category ?? this.category,
+      priority: priority ?? this.priority,
+      doNotPerform: doNotPerform ?? this.doNotPerform,
+      code: code ?? this.code,
+      orderDetail: orderDetail ?? this.orderDetail,
+      quantityX: quantityX ?? this.quantityX,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
+      asNeededX: asNeededX ?? this.asNeededX,
+      authoredOn: authoredOn ?? this.authoredOn,
+      requester: requester ?? this.requester,
+      performerType: performerType ?? this.performerType,
+      performer: performer ?? this.performer,
+      locationCode: locationCode ?? this.locationCode,
+      locationReference: locationReference ?? this.locationReference,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      insurance: insurance ?? this.insurance,
+      supportingInfo: supportingInfo ?? this.supportingInfo,
+      specimen: specimen ?? this.specimen,
+      bodySite: bodySite ?? this.bodySite,
+      note: note ?? this.note,
+      patientInstruction: patientInstruction ?? this.patientInstruction,
+      relevantHistory: relevantHistory ?? this.relevantHistory,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ServiceRequest) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ServiceRequestBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2508,49 +2207,49 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       instantiatesCanonical,
       o.instantiatesCanonical,
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       instantiatesUri,
       o.instantiatesUri,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       replaces,
       o.replaces,
     )) {
@@ -2574,7 +2273,7 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -2598,7 +2297,7 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       orderDetail,
       o.orderDetail,
     )) {
@@ -2652,61 +2351,61 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       performer,
       o.performer,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       locationCode,
       o.locationCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       locationReference,
       o.locationReference,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       insurance,
       o.insurance,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       supportingInfo,
       o.supportingInfo,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       specimen,
       o.specimen,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       bodySite,
       o.bodySite,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -2718,7 +2417,7 @@ class ServiceRequest extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       relevantHistory,
       o.relevantHistory,
     )) {

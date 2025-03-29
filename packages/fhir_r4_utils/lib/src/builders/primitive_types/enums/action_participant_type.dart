@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of participant for the action.
-class ActionParticipantType extends FhirCodeEnum {
+class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ActionParticipantType._({
+  ActionParticipantTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ActionParticipantType(
+  factory ActionParticipantTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ActionParticipantType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ActionParticipantTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,73 @@ class ActionParticipantType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ActionParticipantType] with element only
-  factory ActionParticipantType.empty() =>
-      ActionParticipantType._(validatedValue: '');
+  /// Create empty [ActionParticipantTypeBuilder] with element only
+  factory ActionParticipantTypeBuilder.empty() =>
+      ActionParticipantTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionParticipantType] from JSON.
-  factory ActionParticipantType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionParticipantTypeBuilder] from JSON.
+  factory ActionParticipantTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionParticipantType.elementOnly.withElement(element);
+      return ActionParticipantTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ActionParticipantType cannot be constructed from JSON.',
+        'ActionParticipantTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return ActionParticipantType._(
+    return ActionParticipantTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// patient
-  static final ActionParticipantType patient = ActionParticipantType._(
+  static ActionParticipantTypeBuilder patient = ActionParticipantTypeBuilder._(
     validatedValue: 'patient',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Patient'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Patient'.toFhirStringBuilder,
   );
 
   /// practitioner
-  static final ActionParticipantType practitioner = ActionParticipantType._(
+  static ActionParticipantTypeBuilder practitioner =
+      ActionParticipantTypeBuilder._(
     validatedValue: 'practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Practitioner'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Practitioner'.toFhirStringBuilder,
   );
 
   /// related_person
-  static final ActionParticipantType related_person = ActionParticipantType._(
+  static ActionParticipantTypeBuilder related_person =
+      ActionParticipantTypeBuilder._(
     validatedValue: 'related-person',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Related Person'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Related Person'.toFhirStringBuilder,
   );
 
   /// device
-  static final ActionParticipantType device = ActionParticipantType._(
+  static ActionParticipantTypeBuilder device = ActionParticipantTypeBuilder._(
     validatedValue: 'device',
-    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Device'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Device'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ActionParticipantType elementOnly =
-      ActionParticipantType._(validatedValue: '');
+  static ActionParticipantTypeBuilder elementOnly =
+      ActionParticipantTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ActionParticipantType> values = [
+  static List<ActionParticipantTypeBuilder> values = [
     patient,
     practitioner,
     related_person,
@@ -111,14 +118,15 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ActionParticipantType clone() => ActionParticipantType._(
+  ActionParticipantTypeBuilder clone() => ActionParticipantTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ActionParticipantType withElement(Element? newElement) {
-    return ActionParticipantType._(validatedValue: value, element: newElement);
+  ActionParticipantTypeBuilder withElement(ElementBuilder? newElement) {
+    return ActionParticipantTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,11 +142,11 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ActionParticipantType copyWith({
+  ActionParticipantTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -149,7 +157,7 @@ class ActionParticipantType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ActionParticipantType._(
+    return ActionParticipantTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -159,7 +167,7 @@ class ActionParticipantType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

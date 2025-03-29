@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// A code that indicates how the server supports conditional delete.
-class ConditionalDeleteStatus extends FhirCodeEnum {
+class ConditionalDeleteStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ConditionalDeleteStatus._({
+  ConditionalDeleteStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ConditionalDeleteStatus(
+  factory ConditionalDeleteStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ConditionalDeleteStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ConditionalDeleteStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,59 +43,65 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ConditionalDeleteStatus] with element only
-  factory ConditionalDeleteStatus.empty() =>
-      ConditionalDeleteStatus._(validatedValue: '');
+  /// Create empty [ConditionalDeleteStatusBuilder] with element only
+  factory ConditionalDeleteStatusBuilder.empty() =>
+      ConditionalDeleteStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConditionalDeleteStatus] from JSON.
-  factory ConditionalDeleteStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConditionalDeleteStatusBuilder] from JSON.
+  factory ConditionalDeleteStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionalDeleteStatus.elementOnly.withElement(element);
+      return ConditionalDeleteStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ConditionalDeleteStatus cannot be constructed from JSON.',
+        'ConditionalDeleteStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return ConditionalDeleteStatus._(
+    return ConditionalDeleteStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// not_supported
-  static final ConditionalDeleteStatus not_supported =
-      ConditionalDeleteStatus._(
+  static ConditionalDeleteStatusBuilder not_supported =
+      ConditionalDeleteStatusBuilder._(
     validatedValue: 'not-supported',
-    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Supported'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not Supported'.toFhirStringBuilder,
   );
 
   /// single
-  static final ConditionalDeleteStatus single = ConditionalDeleteStatus._(
+  static ConditionalDeleteStatusBuilder single =
+      ConditionalDeleteStatusBuilder._(
     validatedValue: 'single',
-    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Single Deletes Supported'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Single Deletes Supported'.toFhirStringBuilder,
   );
 
   /// multiple
-  static final ConditionalDeleteStatus multiple = ConditionalDeleteStatus._(
+  static ConditionalDeleteStatusBuilder multiple =
+      ConditionalDeleteStatusBuilder._(
     validatedValue: 'multiple',
-    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Multiple Deletes Supported'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Multiple Deletes Supported'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ConditionalDeleteStatus elementOnly =
-      ConditionalDeleteStatus._(validatedValue: '');
+  static ConditionalDeleteStatusBuilder elementOnly =
+      ConditionalDeleteStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ConditionalDeleteStatus> values = [
+  static List<ConditionalDeleteStatusBuilder> values = [
     not_supported,
     single,
     multiple,
@@ -103,15 +109,15 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ConditionalDeleteStatus clone() => ConditionalDeleteStatus._(
+  ConditionalDeleteStatusBuilder clone() => ConditionalDeleteStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ConditionalDeleteStatus withElement(Element? newElement) {
-    return ConditionalDeleteStatus._(
-        validatedValue: value, element: newElement,);
+  ConditionalDeleteStatusBuilder withElement(ElementBuilder? newElement) {
+    return ConditionalDeleteStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -127,11 +133,11 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ConditionalDeleteStatus copyWith({
+  ConditionalDeleteStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -142,7 +148,7 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ConditionalDeleteStatus._(
+    return ConditionalDeleteStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -152,7 +158,7 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// MedicationRequest Status Codes
-class MedicationrequestStatus extends FhirCodeEnum {
+class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  MedicationrequestStatus._({
+  MedicationrequestStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory MedicationrequestStatus(
+  factory MedicationrequestStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return MedicationrequestStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return MedicationrequestStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,99 +43,115 @@ class MedicationrequestStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [MedicationrequestStatus] with element only
-  factory MedicationrequestStatus.empty() =>
-      MedicationrequestStatus._(validatedValue: '');
+  /// Create empty [MedicationrequestStatusBuilder] with element only
+  factory MedicationrequestStatusBuilder.empty() =>
+      MedicationrequestStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MedicationrequestStatus] from JSON.
-  factory MedicationrequestStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MedicationrequestStatusBuilder] from JSON.
+  factory MedicationrequestStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationrequestStatus.elementOnly.withElement(element);
+      return MedicationrequestStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MedicationrequestStatus cannot be constructed from JSON.',
+        'MedicationrequestStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return MedicationrequestStatus._(
+    return MedicationrequestStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// active
-  static final MedicationrequestStatus active = MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder active =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// on_hold
-  static final MedicationrequestStatus on_hold = MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder on_hold =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'On Hold'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final MedicationrequestStatus cancelled = MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder cancelled =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Cancelled'.toFhirStringBuilder,
   );
 
   /// completed
-  static final MedicationrequestStatus completed = MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder completed =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final MedicationrequestStatus entered_in_error =
-      MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder entered_in_error =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// stopped
-  static final MedicationrequestStatus stopped = MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder stopped =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Stopped'.toFhirStringBuilder,
   );
 
   /// draft
-  static final MedicationrequestStatus draft = MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder draft =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Draft'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Draft'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final MedicationrequestStatus unknown = MedicationrequestStatus._(
+  static MedicationrequestStatusBuilder unknown =
+      MedicationrequestStatusBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final MedicationrequestStatus elementOnly =
-      MedicationrequestStatus._(validatedValue: '');
+  static MedicationrequestStatusBuilder elementOnly =
+      MedicationrequestStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<MedicationrequestStatus> values = [
+  static List<MedicationrequestStatusBuilder> values = [
     active,
     on_hold,
     cancelled,
@@ -148,15 +164,15 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  MedicationrequestStatus clone() => MedicationrequestStatus._(
+  MedicationrequestStatusBuilder clone() => MedicationrequestStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  MedicationrequestStatus withElement(Element? newElement) {
-    return MedicationrequestStatus._(
-        validatedValue: value, element: newElement,);
+  MedicationrequestStatusBuilder withElement(ElementBuilder? newElement) {
+    return MedicationrequestStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -172,11 +188,11 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  MedicationrequestStatus copyWith({
+  MedicationrequestStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -187,7 +203,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return MedicationrequestStatus._(
+    return MedicationrequestStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -197,7 +213,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

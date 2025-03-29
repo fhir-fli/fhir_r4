@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Codes indicating the kind of the price component.
-class InvoicePriceComponentType extends FhirCodeEnum {
+class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  InvoicePriceComponentType._({
+  InvoicePriceComponentTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class InvoicePriceComponentType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory InvoicePriceComponentType(
+  factory InvoicePriceComponentTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return InvoicePriceComponentType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return InvoicePriceComponentTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,85 +43,95 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [InvoicePriceComponentType] with element only
-  factory InvoicePriceComponentType.empty() =>
-      InvoicePriceComponentType._(validatedValue: '');
+  /// Create empty [InvoicePriceComponentTypeBuilder] with element only
+  factory InvoicePriceComponentTypeBuilder.empty() =>
+      InvoicePriceComponentTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [InvoicePriceComponentType] from JSON.
-  factory InvoicePriceComponentType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [InvoicePriceComponentTypeBuilder] from JSON.
+  factory InvoicePriceComponentTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvoicePriceComponentType.elementOnly.withElement(element);
+      return InvoicePriceComponentTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'InvoicePriceComponentType cannot be constructed from JSON.',
+        'InvoicePriceComponentTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return InvoicePriceComponentType._(
+    return InvoicePriceComponentTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// base
-  static final InvoicePriceComponentType base = InvoicePriceComponentType._(
+  static InvoicePriceComponentTypeBuilder base =
+      InvoicePriceComponentTypeBuilder._(
     validatedValue: 'base',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'base price'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'base price'.toFhirStringBuilder,
   );
 
   /// surcharge
-  static final InvoicePriceComponentType surcharge =
-      InvoicePriceComponentType._(
+  static InvoicePriceComponentTypeBuilder surcharge =
+      InvoicePriceComponentTypeBuilder._(
     validatedValue: 'surcharge',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'surcharge'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'surcharge'.toFhirStringBuilder,
   );
 
   /// deduction
-  static final InvoicePriceComponentType deduction =
-      InvoicePriceComponentType._(
+  static InvoicePriceComponentTypeBuilder deduction =
+      InvoicePriceComponentTypeBuilder._(
     validatedValue: 'deduction',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'deduction'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'deduction'.toFhirStringBuilder,
   );
 
   /// discount
-  static final InvoicePriceComponentType discount = InvoicePriceComponentType._(
+  static InvoicePriceComponentTypeBuilder discount =
+      InvoicePriceComponentTypeBuilder._(
     validatedValue: 'discount',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'discount'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'discount'.toFhirStringBuilder,
   );
 
   /// tax
-  static final InvoicePriceComponentType tax = InvoicePriceComponentType._(
+  static InvoicePriceComponentTypeBuilder tax =
+      InvoicePriceComponentTypeBuilder._(
     validatedValue: 'tax',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'tax'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'tax'.toFhirStringBuilder,
   );
 
   /// informational
-  static final InvoicePriceComponentType informational =
-      InvoicePriceComponentType._(
+  static InvoicePriceComponentTypeBuilder informational =
+      InvoicePriceComponentTypeBuilder._(
     validatedValue: 'informational',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'informational'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'informational'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final InvoicePriceComponentType elementOnly =
-      InvoicePriceComponentType._(validatedValue: '');
+  static InvoicePriceComponentTypeBuilder elementOnly =
+      InvoicePriceComponentTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<InvoicePriceComponentType> values = [
+  static List<InvoicePriceComponentTypeBuilder> values = [
     base,
     surcharge,
     deduction,
@@ -132,15 +142,16 @@ class InvoicePriceComponentType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  InvoicePriceComponentType clone() => InvoicePriceComponentType._(
+  InvoicePriceComponentTypeBuilder clone() =>
+      InvoicePriceComponentTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  InvoicePriceComponentType withElement(Element? newElement) {
-    return InvoicePriceComponentType._(
-        validatedValue: value, element: newElement,);
+  InvoicePriceComponentTypeBuilder withElement(ElementBuilder? newElement) {
+    return InvoicePriceComponentTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -156,11 +167,11 @@ class InvoicePriceComponentType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  InvoicePriceComponentType copyWith({
+  InvoicePriceComponentTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -171,7 +182,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return InvoicePriceComponentType._(
+    return InvoicePriceComponentTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -181,7 +192,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

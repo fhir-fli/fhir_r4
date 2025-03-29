@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [GraphDefinition]
+/// [GraphDefinitionBuilder]
 /// A formal computable definition of a graph of resources - that is, a
 /// coherent set of resources that form a graph by following references.
 /// The Graph Definition resource defines a set and makes rules about the
 /// set.
-class GraphDefinition extends CanonicalResource {
+class GraphDefinitionBuilder extends CanonicalResourceBuilder {
   /// Primary constructor for
-  /// [GraphDefinition]
+  /// [GraphDefinitionBuilder]
 
-  const GraphDefinition({
+  GraphDefinitionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -22,8 +24,8 @@ class GraphDefinition extends CanonicalResource {
     super.modifierExtension,
     super.url,
     super.version,
-    required this.name,
-    required super.status,
+    this.name,
+    super.status,
     super.experimental,
     super.date,
     super.publisher,
@@ -32,7 +34,7 @@ class GraphDefinition extends CanonicalResource {
     super.useContext,
     super.jurisdiction,
     this.purpose,
-    required this.start,
+    this.start,
     this.profile,
     this.link,
   }) : super(
@@ -41,53 +43,48 @@ class GraphDefinition extends CanonicalResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GraphDefinition.empty() => GraphDefinition(
-        name: FhirString.empty(),
-        status: PublicationStatus.values.first,
-        start: FhirCode.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory GraphDefinitionBuilder.empty() => GraphDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinition.fromJson(
+  factory GraphDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'GraphDefinition';
-    return GraphDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GraphDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -96,8 +93,8 @@ class GraphDefinition extends CanonicalResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -106,8 +103,8 @@ class GraphDefinition extends CanonicalResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -115,51 +112,51 @@ class GraphDefinition extends CanonicalResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      ),
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+      experimental: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'experimental',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.experimental',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -167,15 +164,15 @@ class GraphDefinition extends CanonicalResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -184,8 +181,8 @@ class GraphDefinition extends CanonicalResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -193,27 +190,27 @@ class GraphDefinition extends CanonicalResource {
             ),
           )
           .toList(),
-      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+      purpose: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'purpose',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      start: JsonParser.parsePrimitive<FhirCode>(
+      start: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'start',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.start',
-      )!,
-      profile: JsonParser.parsePrimitive<FhirCanonical>(
+      ),
+      profile: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'profile',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.profile',
       ),
       link: (json['link'] as List<dynamic>?)
-          ?.map<GraphDefinitionLink>(
-            (v) => GraphDefinitionLink.fromJson(
+          ?.map<GraphDefinitionLinkBuilder>(
+            (v) => GraphDefinitionLinkBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.link',
@@ -224,22 +221,22 @@ class GraphDefinition extends CanonicalResource {
     );
   }
 
-  /// Deserialize [GraphDefinition]
+  /// Deserialize [GraphDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory GraphDefinition.fromYaml(
+  factory GraphDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return GraphDefinition.fromJson(
+      return GraphDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return GraphDefinition.fromJson(
+      return GraphDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'GraphDefinition '
+        'GraphDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -247,16 +244,16 @@ class GraphDefinition extends CanonicalResource {
   }
 
   /// Factory constructor for
-  /// [GraphDefinition]
+  /// [GraphDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinition.fromJsonString(
+  factory GraphDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return GraphDefinition.fromJson(json);
+      return GraphDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -270,40 +267,40 @@ class GraphDefinition extends CanonicalResource {
   /// A natural language name identifying the graph definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [purpose]
   /// Explanation of why this graph definition is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdownBuilder? purpose;
 
   /// [start]
   /// The type of FHIR resource at which instances of this graph start.
-  final FhirCode start;
+  FhirCodeBuilder? start;
 
   /// [profile]
   /// The profile that describes the use of the base resource.
-  final FhirCanonical? profile;
+  FhirCanonicalBuilder? profile;
 
   /// [link]
   /// Links this graph makes rules about.
-  final List<GraphDefinitionLink>? link;
+  List<GraphDefinitionLinkBuilder>? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -312,104 +309,35 @@ class GraphDefinition extends CanonicalResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'start',
-      start,
-    );
-    addField(
-      'profile',
-      profile,
-    );
-    addField(
-      'link',
-      link,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('version', version);
+    addField('name', name);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('start', start);
+    addField('profile', profile);
+    addField('link', link);
     return json;
   }
 
@@ -446,11 +374,11 @@ class GraphDefinition extends CanonicalResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -493,7 +421,9 @@ class GraphDefinition extends CanonicalResource {
           fields.add(version!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'status':
         if (status != null) {
           fields.add(status!);
@@ -531,7 +461,9 @@ class GraphDefinition extends CanonicalResource {
           fields.add(purpose!);
         }
       case 'start':
-        fields.add(start);
+        if (start != null) {
+          fields.add(start!);
+        }
       case 'profile':
         if (profile != null) {
           fields.add(profile!);
@@ -550,7 +482,7 @@ class GraphDefinition extends CanonicalResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -559,239 +491,254 @@ class GraphDefinition extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
         {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
+          if (child is FhirBooleanBuilder) {
+            experimental = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
+          if (child is FhirMarkdownBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
         {
-          if (child is FhirCode) {
-            return copyWith(start: child);
+          if (child is FhirCodeBuilder) {
+            start = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
         {
-          if (child is FhirCanonical) {
-            return copyWith(profile: child);
+          if (child is FhirCanonicalBuilder) {
+            profile = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
-          if (child is List<GraphDefinitionLink>) {
-            // Add all elements from passed list
-            final newList = [...?link, ...child];
-            return copyWith(link: newList);
-          } else if (child is GraphDefinitionLink) {
+          if (child is List<GraphDefinitionLinkBuilder>) {
+            // Replace or create new list
+            link = child;
+            return;
+          } else if (child is GraphDefinitionLinkBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
-            return copyWith(link: newList);
+            link = [...(link ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -807,202 +754,175 @@ class GraphDefinition extends CanonicalResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'experimental':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'purpose':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'start':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'profile':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'link':
-        return ['GraphDefinitionLink'];
+        return ['GraphDefinitionLinkBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [GraphDefinition]
+  /// Creates a new [GraphDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'experimental':
         {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
+          experimental = FhirBooleanBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
+          purpose = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'start':
         {
-          return copyWith(
-            start: FhirCode.empty(),
-          );
+          start = FhirCodeBuilder.empty();
+          return;
         }
       case 'profile':
         {
-          return copyWith(
-            profile: FhirCanonical.empty(),
-          );
+          profile = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'link':
         {
-          return copyWith(
-            link: <GraphDefinitionLink>[],
-          );
+          link = <GraphDefinitionLinkBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1011,7 +931,7 @@ class GraphDefinition extends CanonicalResource {
 
   /// Clears specific fields in this object
   @override
-  GraphDefinition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1022,6 +942,8 @@ class GraphDefinition extends CanonicalResource {
     bool modifierExtension = false,
     bool url = false,
     bool version = false,
+    bool name = false,
+    bool status = false,
     bool experimental = false,
     bool date = false,
     bool publisher = false,
@@ -1030,190 +952,116 @@ class GraphDefinition extends CanonicalResource {
     bool useContext = false,
     bool jurisdiction = false,
     bool purpose = false,
+    bool start = false,
     bool profile = false,
     bool link = false,
   }) {
-    return GraphDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      version: version ? null : this.version,
-      name: name,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      start: start,
-      profile: profile ? null : this.profile,
-      link: link ? null : this.link,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (version) this.version = null;
+    if (name) this.name = null;
+    if (status) this.status = null;
+    if (experimental) this.experimental = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (description) this.description = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (purpose) this.purpose = null;
+    if (start) this.start = null;
+    if (profile) this.profile = null;
+    if (link) this.link = null;
   }
 
   @override
-  GraphDefinition clone() => throw UnimplementedError();
+  GraphDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  GraphDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    FhirString? version,
-    FhirString? name,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirCode? start,
-    FhirCanonical? profile,
-    List<GraphDefinitionLink>? link,
+  GraphDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? url,
+    FhirStringBuilder? version,
+    FhirStringBuilder? name,
+    PublicationStatusBuilder? status,
+    FhirBooleanBuilder? experimental,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirMarkdownBuilder? description,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirMarkdownBuilder? purpose,
+    FhirCodeBuilder? start,
+    FhirCanonicalBuilder? profile,
+    List<GraphDefinitionLinkBuilder>? link,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return GraphDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = GraphDefinitionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      start: start?.copyWith(
-            objectPath: '$newObjectPath.start',
-          ) ??
-          this.start,
-      profile: profile?.copyWith(
-            objectPath: '$newObjectPath.profile',
-          ) ??
-          this.profile,
-      link: link
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.link',
-                ),
-              )
-              .toList() ??
-          this.link,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      version: version ?? this.version,
+      name: name ?? this.name,
+      status: status ?? this.status,
+      experimental: experimental ?? this.experimental,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      description: description ?? this.description,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      purpose: purpose ?? this.purpose,
+      start: start ?? this.start,
+      profile: profile ?? this.profile,
+      link: link ?? this.link,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! GraphDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GraphDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1248,19 +1096,19 @@ class GraphDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1308,7 +1156,7 @@ class GraphDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -1320,13 +1168,13 @@ class GraphDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -1350,7 +1198,7 @@ class GraphDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<GraphDefinitionLink>(
+    if (!listEquals<GraphDefinitionLinkBuilder>(
       link,
       o.link,
     )) {
@@ -1360,13 +1208,13 @@ class GraphDefinition extends CanonicalResource {
   }
 }
 
-/// [GraphDefinitionLink]
+/// [GraphDefinitionLinkBuilder]
 /// Links this graph makes rules about.
-class GraphDefinitionLink extends BackboneElement {
+class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [GraphDefinitionLink]
+  /// [GraphDefinitionLinkBuilder]
 
-  const GraphDefinitionLink({
+  GraphDefinitionLinkBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1382,25 +1230,24 @@ class GraphDefinitionLink extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GraphDefinitionLink.empty() => const GraphDefinitionLink();
+  /// For Builder classes, no fields are required
+  factory GraphDefinitionLinkBuilder.empty() => GraphDefinitionLinkBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinitionLink.fromJson(
+  factory GraphDefinitionLinkBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'GraphDefinition.link';
-    return GraphDefinitionLink(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GraphDefinitionLinkBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1409,8 +1256,8 @@ class GraphDefinitionLink extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1418,39 +1265,39 @@ class GraphDefinitionLink extends BackboneElement {
             ),
           )
           .toList(),
-      path: JsonParser.parsePrimitive<FhirString>(
+      path: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'path',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.path',
       ),
-      sliceName: JsonParser.parsePrimitive<FhirString>(
+      sliceName: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'sliceName',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.sliceName',
       ),
-      min: JsonParser.parsePrimitive<FhirInteger>(
+      min: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'min',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.min',
       ),
-      max: JsonParser.parsePrimitive<FhirString>(
+      max: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'max',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.max',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
       target: (json['target'] as List<dynamic>?)
-          ?.map<GraphDefinitionTarget>(
-            (v) => GraphDefinitionTarget.fromJson(
+          ?.map<GraphDefinitionTargetBuilder>(
+            (v) => GraphDefinitionTargetBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.target',
@@ -1461,22 +1308,22 @@ class GraphDefinitionLink extends BackboneElement {
     );
   }
 
-  /// Deserialize [GraphDefinitionLink]
+  /// Deserialize [GraphDefinitionLinkBuilder]
   /// from a [String] or [YamlMap] object
-  factory GraphDefinitionLink.fromYaml(
+  factory GraphDefinitionLinkBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return GraphDefinitionLink.fromJson(
+      return GraphDefinitionLinkBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return GraphDefinitionLink.fromJson(
+      return GraphDefinitionLinkBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'GraphDefinitionLink '
+        'GraphDefinitionLinkBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1484,16 +1331,16 @@ class GraphDefinitionLink extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [GraphDefinitionLink]
+  /// [GraphDefinitionLinkBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinitionLink.fromJsonString(
+  factory GraphDefinitionLinkBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return GraphDefinitionLink.fromJson(json);
+      return GraphDefinitionLinkBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1506,44 +1353,44 @@ class GraphDefinitionLink extends BackboneElement {
   /// [path]
   /// A FHIR expression that identifies one of FHIR References to other
   /// resources.
-  final FhirString? path;
+  FhirStringBuilder? path;
 
   /// [sliceName]
   /// Which slice (if profiled).
-  final FhirString? sliceName;
+  FhirStringBuilder? sliceName;
 
   /// [min]
   /// Minimum occurrences for this link.
-  final FhirInteger? min;
+  FhirIntegerBuilder? min;
 
   /// [max]
   /// Maximum occurrences for this link.
-  final FhirString? max;
+  FhirStringBuilder? max;
 
   /// [description]
   /// Information about why this link is of interest in this graph
   /// definition.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [target]
   /// Potential target for the link.
-  final List<GraphDefinitionTarget>? target;
+  List<GraphDefinitionTargetBuilder>? target;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1552,47 +1399,20 @@ class GraphDefinitionLink extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'path',
-      path,
-    );
-    addField(
-      'sliceName',
-      sliceName,
-    );
-    addField(
-      'min',
-      min,
-    );
-    addField(
-      'max',
-      max,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'target',
-      target,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('path', path);
+    addField('sliceName', sliceName);
+    addField('min', min);
+    addField('max', max);
+    addField('description', description);
+    addField('target', target);
     return json;
   }
 
@@ -1615,11 +1435,11 @@ class GraphDefinitionLink extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1667,7 +1487,7 @@ class GraphDefinitionLink extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1676,103 +1496,108 @@ class GraphDefinitionLink extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
         {
-          if (child is FhirString) {
-            return copyWith(path: child);
+          if (child is FhirStringBuilder) {
+            path = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sliceName':
         {
-          if (child is FhirString) {
-            return copyWith(sliceName: child);
+          if (child is FhirStringBuilder) {
+            sliceName = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
         {
-          if (child is FhirInteger) {
-            return copyWith(min: child);
+          if (child is FhirIntegerBuilder) {
+            min = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
         {
-          if (child is FhirString) {
-            return copyWith(max: child);
+          if (child is FhirStringBuilder) {
+            max = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is List<GraphDefinitionTarget>) {
-            // Add all elements from passed list
-            final newList = [...?target, ...child];
-            return copyWith(target: newList);
-          } else if (child is GraphDefinitionTarget) {
+          if (child is List<GraphDefinitionTargetBuilder>) {
+            // Replace or create new list
+            target = child;
+            return;
+          } else if (child is GraphDefinitionTargetBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
-            return copyWith(target: newList);
+            target = [...(target ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1788,90 +1613,77 @@ class GraphDefinitionLink extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'path':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'sliceName':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'min':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'max':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'target':
-        return ['GraphDefinitionTarget'];
+        return ['GraphDefinitionTargetBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [GraphDefinitionLink]
+  /// Creates a new [GraphDefinitionLinkBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinitionLink createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'path':
         {
-          return copyWith(
-            path: FhirString.empty(),
-          );
+          path = FhirStringBuilder.empty();
+          return;
         }
       case 'sliceName':
         {
-          return copyWith(
-            sliceName: FhirString.empty(),
-          );
+          sliceName = FhirStringBuilder.empty();
+          return;
         }
       case 'min':
         {
-          return copyWith(
-            min: FhirInteger.empty(),
-          );
+          min = FhirIntegerBuilder.empty();
+          return;
         }
       case 'max':
         {
-          return copyWith(
-            max: FhirString.empty(),
-          );
+          max = FhirStringBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: <GraphDefinitionTarget>[],
-          );
+          target = <GraphDefinitionTargetBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1880,7 +1692,7 @@ class GraphDefinitionLink extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  GraphDefinitionLink clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -1891,32 +1703,30 @@ class GraphDefinitionLink extends BackboneElement {
     bool description = false,
     bool target = false,
   }) {
-    return GraphDefinitionLink(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      path: path ? null : this.path,
-      sliceName: sliceName ? null : this.sliceName,
-      min: min ? null : this.min,
-      max: max ? null : this.max,
-      description: description ? null : this.description,
-      target: target ? null : this.target,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (path) this.path = null;
+    if (sliceName) this.sliceName = null;
+    if (min) this.min = null;
+    if (max) this.max = null;
+    if (description) this.description = null;
+    if (target) this.target = null;
   }
 
   @override
-  GraphDefinitionLink clone() => throw UnimplementedError();
+  GraphDefinitionLinkBuilder clone() => throw UnimplementedError();
   @override
-  GraphDefinitionLink copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? path,
-    FhirString? sliceName,
-    FhirInteger? min,
-    FhirString? max,
-    FhirString? description,
-    List<GraphDefinitionTarget>? target,
+  GraphDefinitionLinkBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? path,
+    FhirStringBuilder? sliceName,
+    FhirIntegerBuilder? min,
+    FhirStringBuilder? max,
+    FhirStringBuilder? description,
+    List<GraphDefinitionTargetBuilder>? target,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1924,62 +1734,40 @@ class GraphDefinitionLink extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return GraphDefinitionLink(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      path: path?.copyWith(
-            objectPath: '$newObjectPath.path',
-          ) ??
-          this.path,
-      sliceName: sliceName?.copyWith(
-            objectPath: '$newObjectPath.sliceName',
-          ) ??
-          this.sliceName,
-      min: min?.copyWith(
-            objectPath: '$newObjectPath.min',
-          ) ??
-          this.min,
-      max: max?.copyWith(
-            objectPath: '$newObjectPath.max',
-          ) ??
-          this.max,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
+    final newResult = GraphDefinitionLinkBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      path: path ?? this.path,
+      sliceName: sliceName ?? this.sliceName,
+      min: min ?? this.min,
+      max: max ?? this.max,
+      description: description ?? this.description,
+      target: target ?? this.target,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! GraphDefinitionLink) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GraphDefinitionLinkBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1990,13 +1778,13 @@ class GraphDefinitionLink extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2032,7 +1820,7 @@ class GraphDefinitionLink extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<GraphDefinitionTarget>(
+    if (!listEquals<GraphDefinitionTargetBuilder>(
       target,
       o.target,
     )) {
@@ -2042,17 +1830,17 @@ class GraphDefinitionLink extends BackboneElement {
   }
 }
 
-/// [GraphDefinitionTarget]
+/// [GraphDefinitionTargetBuilder]
 /// Potential target for the link.
-class GraphDefinitionTarget extends BackboneElement {
+class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [GraphDefinitionTarget]
+  /// [GraphDefinitionTargetBuilder]
 
-  const GraphDefinitionTarget({
+  GraphDefinitionTargetBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.params,
     this.profile,
     this.compartment,
@@ -2063,27 +1851,25 @@ class GraphDefinitionTarget extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GraphDefinitionTarget.empty() => GraphDefinitionTarget(
-        type: FhirCode.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory GraphDefinitionTargetBuilder.empty() =>
+      GraphDefinitionTargetBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinitionTarget.fromJson(
+  factory GraphDefinitionTargetBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'GraphDefinition.link.target';
-    return GraphDefinitionTarget(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GraphDefinitionTargetBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2092,8 +1878,8 @@ class GraphDefinitionTarget extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2101,27 +1887,27 @@ class GraphDefinitionTarget extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<FhirCode>(
+      type: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'type',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      params: JsonParser.parsePrimitive<FhirString>(
+      ),
+      params: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'params',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.params',
       ),
-      profile: JsonParser.parsePrimitive<FhirCanonical>(
+      profile: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'profile',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.profile',
       ),
       compartment: (json['compartment'] as List<dynamic>?)
-          ?.map<GraphDefinitionCompartment>(
-            (v) => GraphDefinitionCompartment.fromJson(
+          ?.map<GraphDefinitionCompartmentBuilder>(
+            (v) => GraphDefinitionCompartmentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.compartment',
@@ -2130,8 +1916,8 @@ class GraphDefinitionTarget extends BackboneElement {
           )
           .toList(),
       link: (json['link'] as List<dynamic>?)
-          ?.map<GraphDefinitionLink>(
-            (v) => GraphDefinitionLink.fromJson(
+          ?.map<GraphDefinitionLinkBuilder>(
+            (v) => GraphDefinitionLinkBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.link',
@@ -2142,22 +1928,22 @@ class GraphDefinitionTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [GraphDefinitionTarget]
+  /// Deserialize [GraphDefinitionTargetBuilder]
   /// from a [String] or [YamlMap] object
-  factory GraphDefinitionTarget.fromYaml(
+  factory GraphDefinitionTargetBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return GraphDefinitionTarget.fromJson(
+      return GraphDefinitionTargetBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return GraphDefinitionTarget.fromJson(
+      return GraphDefinitionTargetBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'GraphDefinitionTarget '
+        'GraphDefinitionTargetBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2165,16 +1951,16 @@ class GraphDefinitionTarget extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [GraphDefinitionTarget]
+  /// [GraphDefinitionTargetBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinitionTarget.fromJsonString(
+  factory GraphDefinitionTargetBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return GraphDefinitionTarget.fromJson(json);
+      return GraphDefinitionTargetBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2186,39 +1972,39 @@ class GraphDefinitionTarget extends BackboneElement {
 
   /// [type]
   /// Type of resource this link refers to.
-  final FhirCode type;
+  FhirCodeBuilder? type;
 
   /// [params]
   /// A set of parameters to look up.
-  final FhirString? params;
+  FhirStringBuilder? params;
 
   /// [profile]
   /// Profile for the target resource.
-  final FhirCanonical? profile;
+  FhirCanonicalBuilder? profile;
 
   /// [compartment]
   /// Compartment Consistency Rules.
-  final List<GraphDefinitionCompartment>? compartment;
+  List<GraphDefinitionCompartmentBuilder>? compartment;
 
   /// [link]
   /// Additional links from target resource.
-  final List<GraphDefinitionLink>? link;
+  List<GraphDefinitionLinkBuilder>? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2227,43 +2013,19 @@ class GraphDefinitionTarget extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'params',
-      params,
-    );
-    addField(
-      'profile',
-      profile,
-    );
-    addField(
-      'compartment',
-      compartment,
-    );
-    addField(
-      'link',
-      link,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('params', params);
+    addField('profile', profile);
+    addField('compartment', compartment);
+    addField('link', link);
     return json;
   }
 
@@ -2285,11 +2047,11 @@ class GraphDefinitionTarget extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2304,7 +2066,9 @@ class GraphDefinitionTarget extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'params':
         if (params != null) {
           fields.add(params!);
@@ -2331,7 +2095,7 @@ class GraphDefinitionTarget extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2340,101 +2104,104 @@ class GraphDefinitionTarget extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is FhirCode) {
-            return copyWith(type: child);
+          if (child is FhirCodeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'params':
         {
-          if (child is FhirString) {
-            return copyWith(params: child);
+          if (child is FhirStringBuilder) {
+            params = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
         {
-          if (child is FhirCanonical) {
-            return copyWith(profile: child);
+          if (child is FhirCanonicalBuilder) {
+            profile = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'compartment':
         {
-          if (child is List<GraphDefinitionCompartment>) {
-            // Add all elements from passed list
-            final newList = [...?compartment, ...child];
-            return copyWith(compartment: newList);
-          } else if (child is GraphDefinitionCompartment) {
+          if (child is List<GraphDefinitionCompartmentBuilder>) {
+            // Replace or create new list
+            compartment = child;
+            return;
+          } else if (child is GraphDefinitionCompartmentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?compartment, child];
-            return copyWith(compartment: newList);
+            compartment = [...(compartment ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
-          if (child is List<GraphDefinitionLink>) {
-            // Add all elements from passed list
-            final newList = [...?link, ...child];
-            return copyWith(link: newList);
-          } else if (child is GraphDefinitionLink) {
+          if (child is List<GraphDefinitionLinkBuilder>) {
+            // Replace or create new list
+            link = child;
+            return;
+          } else if (child is GraphDefinitionLinkBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
-            return copyWith(link: newList);
+            link = [...(link ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2450,82 +2217,70 @@ class GraphDefinitionTarget extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'params':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'profile':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'compartment':
-        return ['GraphDefinitionCompartment'];
+        return ['GraphDefinitionCompartmentBuilder'];
       case 'link':
-        return ['GraphDefinitionLink'];
+        return ['GraphDefinitionLinkBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [GraphDefinitionTarget]
+  /// Creates a new [GraphDefinitionTargetBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinitionTarget createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: FhirCode.empty(),
-          );
+          type = FhirCodeBuilder.empty();
+          return;
         }
       case 'params':
         {
-          return copyWith(
-            params: FhirString.empty(),
-          );
+          params = FhirStringBuilder.empty();
+          return;
         }
       case 'profile':
         {
-          return copyWith(
-            profile: FhirCanonical.empty(),
-          );
+          profile = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'compartment':
         {
-          return copyWith(
-            compartment: <GraphDefinitionCompartment>[],
-          );
+          compartment = <GraphDefinitionCompartmentBuilder>[];
+          return;
         }
       case 'link':
         {
-          return copyWith(
-            link: <GraphDefinitionLink>[],
-          );
+          link = <GraphDefinitionLinkBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2534,39 +2289,38 @@ class GraphDefinitionTarget extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  GraphDefinitionTarget clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool params = false,
     bool profile = false,
     bool compartment = false,
     bool link = false,
   }) {
-    return GraphDefinitionTarget(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      params: params ? null : this.params,
-      profile: profile ? null : this.profile,
-      compartment: compartment ? null : this.compartment,
-      link: link ? null : this.link,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (params) this.params = null;
+    if (profile) this.profile = null;
+    if (compartment) this.compartment = null;
+    if (link) this.link = null;
   }
 
   @override
-  GraphDefinitionTarget clone() => throw UnimplementedError();
+  GraphDefinitionTargetBuilder clone() => throw UnimplementedError();
   @override
-  GraphDefinitionTarget copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? type,
-    FhirString? params,
-    FhirCanonical? profile,
-    List<GraphDefinitionCompartment>? compartment,
-    List<GraphDefinitionLink>? link,
+  GraphDefinitionTargetBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirCodeBuilder? type,
+    FhirStringBuilder? params,
+    FhirCanonicalBuilder? profile,
+    List<GraphDefinitionCompartmentBuilder>? compartment,
+    List<GraphDefinitionLinkBuilder>? link,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2574,62 +2328,39 @@ class GraphDefinitionTarget extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return GraphDefinitionTarget(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      params: params?.copyWith(
-            objectPath: '$newObjectPath.params',
-          ) ??
-          this.params,
-      profile: profile?.copyWith(
-            objectPath: '$newObjectPath.profile',
-          ) ??
-          this.profile,
-      compartment: compartment
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.compartment',
-                ),
-              )
-              .toList() ??
-          this.compartment,
-      link: link
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.link',
-                ),
-              )
-              .toList() ??
-          this.link,
+    final newResult = GraphDefinitionTargetBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      params: params ?? this.params,
+      profile: profile ?? this.profile,
+      compartment: compartment ?? this.compartment,
+      link: link ?? this.link,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! GraphDefinitionTarget) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GraphDefinitionTargetBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2640,13 +2371,13 @@ class GraphDefinitionTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2670,13 +2401,13 @@ class GraphDefinitionTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<GraphDefinitionCompartment>(
+    if (!listEquals<GraphDefinitionCompartmentBuilder>(
       compartment,
       o.compartment,
     )) {
       return false;
     }
-    if (!listEquals<GraphDefinitionLink>(
+    if (!listEquals<GraphDefinitionLinkBuilder>(
       link,
       o.link,
     )) {
@@ -2686,19 +2417,19 @@ class GraphDefinitionTarget extends BackboneElement {
   }
 }
 
-/// [GraphDefinitionCompartment]
+/// [GraphDefinitionCompartmentBuilder]
 /// Compartment Consistency Rules.
-class GraphDefinitionCompartment extends BackboneElement {
+class GraphDefinitionCompartmentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [GraphDefinitionCompartment]
+  /// [GraphDefinitionCompartmentBuilder]
 
-  const GraphDefinitionCompartment({
+  GraphDefinitionCompartmentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.use,
-    required this.code,
-    required this.rule,
+    this.use,
+    this.code,
+    this.rule,
     this.expression,
     this.description,
     super.disallowExtensions,
@@ -2707,29 +2438,25 @@ class GraphDefinitionCompartment extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GraphDefinitionCompartment.empty() => GraphDefinitionCompartment(
-        use: GraphCompartmentUse.values.first,
-        code: CompartmentType.values.first,
-        rule: GraphCompartmentRule.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory GraphDefinitionCompartmentBuilder.empty() =>
+      GraphDefinitionCompartmentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinitionCompartment.fromJson(
+  factory GraphDefinitionCompartmentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'GraphDefinition.link.target.compartment';
-    return GraphDefinitionCompartment(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GraphDefinitionCompartmentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2738,8 +2465,8 @@ class GraphDefinitionCompartment extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2747,55 +2474,55 @@ class GraphDefinitionCompartment extends BackboneElement {
             ),
           )
           .toList(),
-      use: JsonParser.parsePrimitive<GraphCompartmentUse>(
+      use: JsonParser.parsePrimitive<GraphCompartmentUseBuilder>(
         json,
         'use',
-        GraphCompartmentUse.fromJson,
+        GraphCompartmentUseBuilder.fromJson,
         '$objectPath.use',
-      )!,
-      code: JsonParser.parsePrimitive<CompartmentType>(
+      ),
+      code: JsonParser.parsePrimitive<CompartmentTypeBuilder>(
         json,
         'code',
-        CompartmentType.fromJson,
+        CompartmentTypeBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      rule: JsonParser.parsePrimitive<GraphCompartmentRule>(
+      ),
+      rule: JsonParser.parsePrimitive<GraphCompartmentRuleBuilder>(
         json,
         'rule',
-        GraphCompartmentRule.fromJson,
+        GraphCompartmentRuleBuilder.fromJson,
         '$objectPath.rule',
-      )!,
-      expression: JsonParser.parsePrimitive<FhirString>(
+      ),
+      expression: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'expression',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.expression',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
     );
   }
 
-  /// Deserialize [GraphDefinitionCompartment]
+  /// Deserialize [GraphDefinitionCompartmentBuilder]
   /// from a [String] or [YamlMap] object
-  factory GraphDefinitionCompartment.fromYaml(
+  factory GraphDefinitionCompartmentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return GraphDefinitionCompartment.fromJson(
+      return GraphDefinitionCompartmentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return GraphDefinitionCompartment.fromJson(
+      return GraphDefinitionCompartmentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'GraphDefinitionCompartment '
+        'GraphDefinitionCompartmentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2803,16 +2530,16 @@ class GraphDefinitionCompartment extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [GraphDefinitionCompartment]
+  /// [GraphDefinitionCompartmentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinitionCompartment.fromJsonString(
+  factory GraphDefinitionCompartmentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return GraphDefinitionCompartment.fromJson(json);
+      return GraphDefinitionCompartmentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2826,39 +2553,39 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// Defines how the compartment rule is used - whether it it is used to
   /// test whether resources are subject to the rule, or whether it is a rule
   /// that must be followed.
-  final GraphCompartmentUse use;
+  GraphCompartmentUseBuilder? use;
 
   /// [code]
   /// Identifies the compartment.
-  final CompartmentType code;
+  CompartmentTypeBuilder? code;
 
   /// [rule]
   /// identical | matching | different | no-rule | custom.
-  final GraphCompartmentRule rule;
+  GraphCompartmentRuleBuilder? rule;
 
   /// [expression]
   /// Custom rule, as a FHIRPath expression.
-  final FhirString? expression;
+  FhirStringBuilder? expression;
 
   /// [description]
   /// Documentation for FHIRPath expression.
-  final FhirString? description;
+  FhirStringBuilder? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2867,43 +2594,19 @@ class GraphDefinitionCompartment extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'rule',
-      rule,
-    );
-    addField(
-      'expression',
-      expression,
-    );
-    addField(
-      'description',
-      description,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('use', use);
+    addField('code', code);
+    addField('rule', rule);
+    addField('expression', expression);
+    addField('description', description);
     return json;
   }
 
@@ -2925,11 +2628,11 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2944,11 +2647,17 @@ class GraphDefinitionCompartment extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'use':
-        fields.add(use);
+        if (use != null) {
+          fields.add(use!);
+        }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'rule':
-        fields.add(rule);
+        if (rule != null) {
+          fields.add(rule!);
+        }
       case 'expression':
         if (expression != null) {
           fields.add(expression!);
@@ -2967,7 +2676,7 @@ class GraphDefinitionCompartment extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2976,89 +2685,94 @@ class GraphDefinitionCompartment extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
         {
-          if (child is GraphCompartmentUse) {
-            return copyWith(use: child);
+          if (child is GraphCompartmentUseBuilder) {
+            use = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CompartmentType) {
-            return copyWith(code: child);
+          if (child is CompartmentTypeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rule':
         {
-          if (child is GraphCompartmentRule) {
-            return copyWith(rule: child);
+          if (child is GraphCompartmentRuleBuilder) {
+            rule = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
         {
-          if (child is FhirString) {
-            return copyWith(expression: child);
+          if (child is FhirStringBuilder) {
+            expression = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3074,82 +2788,70 @@ class GraphDefinitionCompartment extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'use':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'rule':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'expression':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [GraphDefinitionCompartment]
+  /// Creates a new [GraphDefinitionCompartmentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinitionCompartment createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'use':
         {
-          return copyWith(
-            use: GraphCompartmentUse.empty(),
-          );
+          use = GraphCompartmentUseBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CompartmentType.empty(),
-          );
+          code = CompartmentTypeBuilder.empty();
+          return;
         }
       case 'rule':
         {
-          return copyWith(
-            rule: GraphCompartmentRule.empty(),
-          );
+          rule = GraphCompartmentRuleBuilder.empty();
+          return;
         }
       case 'expression':
         {
-          return copyWith(
-            expression: FhirString.empty(),
-          );
+          expression = FhirStringBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3158,37 +2860,38 @@ class GraphDefinitionCompartment extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  GraphDefinitionCompartment clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool use = false,
+    bool code = false,
+    bool rule = false,
     bool expression = false,
     bool description = false,
   }) {
-    return GraphDefinitionCompartment(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      use: use,
-      code: code,
-      rule: rule,
-      expression: expression ? null : this.expression,
-      description: description ? null : this.description,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (use) this.use = null;
+    if (code) this.code = null;
+    if (rule) this.rule = null;
+    if (expression) this.expression = null;
+    if (description) this.description = null;
   }
 
   @override
-  GraphDefinitionCompartment clone() => throw UnimplementedError();
+  GraphDefinitionCompartmentBuilder clone() => throw UnimplementedError();
   @override
-  GraphDefinitionCompartment copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    GraphCompartmentUse? use,
-    CompartmentType? code,
-    GraphCompartmentRule? rule,
-    FhirString? expression,
-    FhirString? description,
+  GraphDefinitionCompartmentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    GraphCompartmentUseBuilder? use,
+    CompartmentTypeBuilder? code,
+    GraphCompartmentRuleBuilder? rule,
+    FhirStringBuilder? expression,
+    FhirStringBuilder? description,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3196,54 +2899,39 @@ class GraphDefinitionCompartment extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return GraphDefinitionCompartment(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      rule: rule?.copyWith(
-            objectPath: '$newObjectPath.rule',
-          ) ??
-          this.rule,
-      expression: expression?.copyWith(
-            objectPath: '$newObjectPath.expression',
-          ) ??
-          this.expression,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
+    final newResult = GraphDefinitionCompartmentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      use: use ?? this.use,
+      code: code ?? this.code,
+      rule: rule ?? this.rule,
+      expression: expression ?? this.expression,
+      description: description ?? this.description,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! GraphDefinitionCompartment) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GraphDefinitionCompartmentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3254,13 +2942,13 @@ class GraphDefinitionCompartment extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

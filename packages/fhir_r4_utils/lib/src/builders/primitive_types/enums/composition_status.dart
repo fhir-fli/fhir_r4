@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The workflow/clinical status of the composition.
-class CompositionStatus extends FhirCodeEnum {
+class CompositionStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  CompositionStatus._({
+  CompositionStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class CompositionStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory CompositionStatus(
+  factory CompositionStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return CompositionStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return CompositionStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class CompositionStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [CompositionStatus] with element only
-  factory CompositionStatus.empty() => CompositionStatus._(validatedValue: '');
+  /// Create empty [CompositionStatusBuilder] with element only
+  factory CompositionStatusBuilder.empty() =>
+      CompositionStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CompositionStatus] from JSON.
-  factory CompositionStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CompositionStatusBuilder] from JSON.
+  factory CompositionStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompositionStatus.elementOnly.withElement(element);
+      return CompositionStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CompositionStatus cannot be constructed from JSON.',
+        'CompositionStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return CompositionStatus._(
+    return CompositionStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// preliminary
-  static final CompositionStatus preliminary = CompositionStatus._(
+  static CompositionStatusBuilder preliminary = CompositionStatusBuilder._(
     validatedValue: 'preliminary',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preliminary'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Preliminary'.toFhirStringBuilder,
   );
 
   /// final_
-  static final CompositionStatus final_ = CompositionStatus._(
+  static CompositionStatusBuilder final_ = CompositionStatusBuilder._(
     validatedValue: 'final',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Final'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Final'.toFhirStringBuilder,
   );
 
   /// amended
-  static final CompositionStatus amended = CompositionStatus._(
+  static CompositionStatusBuilder amended = CompositionStatusBuilder._(
     validatedValue: 'amended',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Amended'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final CompositionStatus entered_in_error = CompositionStatus._(
+  static CompositionStatusBuilder entered_in_error = CompositionStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final CompositionStatus elementOnly =
-      CompositionStatus._(validatedValue: '');
+  static CompositionStatusBuilder elementOnly =
+      CompositionStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<CompositionStatus> values = [
+  static List<CompositionStatusBuilder> values = [
     preliminary,
     final_,
     amended,
@@ -110,14 +112,15 @@ class CompositionStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  CompositionStatus clone() => CompositionStatus._(
+  CompositionStatusBuilder clone() => CompositionStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  CompositionStatus withElement(Element? newElement) {
-    return CompositionStatus._(validatedValue: value, element: newElement);
+  CompositionStatusBuilder withElement(ElementBuilder? newElement) {
+    return CompositionStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +136,11 @@ class CompositionStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  CompositionStatus copyWith({
+  CompositionStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +151,7 @@ class CompositionStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return CompositionStatus._(
+    return CompositionStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +161,7 @@ class CompositionStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

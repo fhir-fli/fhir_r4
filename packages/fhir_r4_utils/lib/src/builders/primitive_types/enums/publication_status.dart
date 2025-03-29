@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The lifecycle status of an artifact.
-class PublicationStatus extends FhirCodeEnum {
+class PublicationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  PublicationStatus._({
+  PublicationStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class PublicationStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory PublicationStatus(
+  factory PublicationStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return PublicationStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return PublicationStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class PublicationStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [PublicationStatus] with element only
-  factory PublicationStatus.empty() => PublicationStatus._(validatedValue: '');
+  /// Create empty [PublicationStatusBuilder] with element only
+  factory PublicationStatusBuilder.empty() =>
+      PublicationStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [PublicationStatus] from JSON.
-  factory PublicationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [PublicationStatusBuilder] from JSON.
+  factory PublicationStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PublicationStatus.elementOnly.withElement(element);
+      return PublicationStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'PublicationStatus cannot be constructed from JSON.',
+        'PublicationStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return PublicationStatus._(
+    return PublicationStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// draft
-  static final PublicationStatus draft = PublicationStatus._(
+  static PublicationStatusBuilder draft = PublicationStatusBuilder._(
     validatedValue: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Draft'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Draft'.toFhirStringBuilder,
   );
 
   /// active
-  static final PublicationStatus active = PublicationStatus._(
+  static PublicationStatusBuilder active = PublicationStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// retired
-  static final PublicationStatus retired = PublicationStatus._(
+  static PublicationStatusBuilder retired = PublicationStatusBuilder._(
     validatedValue: 'retired',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Retired'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Retired'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final PublicationStatus unknown = PublicationStatus._(
+  static PublicationStatusBuilder unknown = PublicationStatusBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final PublicationStatus elementOnly =
-      PublicationStatus._(validatedValue: '');
+  static PublicationStatusBuilder elementOnly =
+      PublicationStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<PublicationStatus> values = [
+  static List<PublicationStatusBuilder> values = [
     draft,
     active,
     retired,
@@ -110,14 +112,15 @@ class PublicationStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  PublicationStatus clone() => PublicationStatus._(
+  PublicationStatusBuilder clone() => PublicationStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  PublicationStatus withElement(Element? newElement) {
-    return PublicationStatus._(validatedValue: value, element: newElement);
+  PublicationStatusBuilder withElement(ElementBuilder? newElement) {
+    return PublicationStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +136,11 @@ class PublicationStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  PublicationStatus copyWith({
+  PublicationStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +151,7 @@ class PublicationStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return PublicationStatus._(
+    return PublicationStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +161,7 @@ class PublicationStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

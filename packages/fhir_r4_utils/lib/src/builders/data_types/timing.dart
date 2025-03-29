@@ -1,44 +1,46 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Timing]
+/// [TimingBuilder]
 /// Specifies an event that may occur multiple times. Timing schedules are
 /// used to record when things are planned, expected or requested to occur.
 /// The most common usage is in dosage instructions for medications. They
 /// are also used when planning care of various kinds, and may be used for
 /// reporting the schedule to which past regular activities were carried
 /// out.
-class Timing extends BackboneType
+class TimingBuilder extends BackboneTypeBuilder
     implements
-        TimingXActivityDefinition,
-        ScheduledXCarePlanDetail,
-        OccurrenceXChargeItem,
-        OccurrenceXContractAction,
-        OccurrenceXDeviceRequest,
-        TimingXDeviceUseStatement,
-        EffectiveXObservation,
-        ValueXParametersParameter,
-        TimingXPlanDefinitionAction,
-        TimingXRequestGroupAction,
-        StudyEffectiveXResearchElementDefinitionCharacteristic,
-        ParticipantEffectiveXResearchElementDefinitionCharacteristic,
-        OccurrenceXServiceRequest,
-        DefaultValueXStructureMapSource,
-        OccurrenceXSupplyDelivery,
-        OccurrenceXSupplyRequest,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension,
-        TimingXTriggerDefinition {
+        TimingXActivityDefinitionBuilder,
+        ScheduledXCarePlanDetailBuilder,
+        OccurrenceXChargeItemBuilder,
+        OccurrenceXContractActionBuilder,
+        OccurrenceXDeviceRequestBuilder,
+        TimingXDeviceUseStatementBuilder,
+        EffectiveXObservationBuilder,
+        ValueXParametersParameterBuilder,
+        TimingXPlanDefinitionActionBuilder,
+        TimingXRequestGroupActionBuilder,
+        StudyEffectiveXResearchElementDefinitionCharacteristicBuilder,
+        ParticipantEffectiveXResearchElementDefinitionCharacteristicBuilder,
+        OccurrenceXServiceRequestBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        OccurrenceXSupplyDeliveryBuilder,
+        OccurrenceXSupplyRequestBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder,
+        TimingXTriggerDefinitionBuilder {
   /// Primary constructor for
-  /// [Timing]
+  /// [TimingBuilder]
 
-  const Timing({
+  TimingBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -46,29 +48,28 @@ class Timing extends BackboneType
     this.repeat,
     this.code,
     super.disallowExtensions,
-    super.objectPath = 'Timing',
+    super.objectPath = 'TimingBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Timing.empty() => const Timing();
+  /// For Builder classes, no fields are required
+  factory TimingBuilder.empty() => TimingBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Timing.fromJson(
+  factory TimingBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Timing';
-    return Timing(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TimingBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -77,8 +78,8 @@ class Timing extends BackboneType
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -86,43 +87,43 @@ class Timing extends BackboneType
             ),
           )
           .toList(),
-      event: JsonParser.parsePrimitiveList<FhirDateTime>(
+      event: JsonParser.parsePrimitiveList<FhirDateTimeBuilder>(
         json,
         'event',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.event',
       ),
-      repeat: JsonParser.parseObject<TimingRepeat>(
+      repeat: JsonParser.parseObject<TimingRepeatBuilder>(
         json,
         'repeat',
-        TimingRepeat.fromJson,
+        TimingRepeatBuilder.fromJson,
         '$objectPath.repeat',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
     );
   }
 
-  /// Deserialize [Timing]
+  /// Deserialize [TimingBuilder]
   /// from a [String] or [YamlMap] object
-  factory Timing.fromYaml(
+  factory TimingBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Timing.fromJson(
+      return TimingBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Timing.fromJson(
+      return TimingBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Timing '
+        'TimingBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -130,16 +131,16 @@ class Timing extends BackboneType
   }
 
   /// Factory constructor for
-  /// [Timing]
+  /// [TimingBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Timing.fromJsonString(
+  factory TimingBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Timing.fromJson(json);
+      return TimingBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -151,11 +152,11 @@ class Timing extends BackboneType
 
   /// [event]
   /// Identifies specific times when the event occurs.
-  final List<FhirDateTime>? event;
+  List<FhirDateTimeBuilder>? event;
 
   /// [repeat]
   /// A set of rules that describe when the event is scheduled.
-  final TimingRepeat? repeat;
+  TimingRepeatBuilder? repeat;
 
   /// [code]
   /// A code for the timing schedule (or just text in code.text). Some codes
@@ -165,23 +166,23 @@ class Timing extends BackboneType
   /// data, and either the code or the data may be used to interpret the
   /// Timing, with the exception that .repeat.bounds still applies over the
   /// code (and is not contained in the code).
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -190,35 +191,17 @@ class Timing extends BackboneType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'event',
-      event,
-    );
-    addField(
-      'repeat',
-      repeat,
-    );
-    addField(
-      'code',
-      code,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('event', event);
+    addField('repeat', repeat);
+    addField('code', code);
     return json;
   }
 
@@ -238,11 +221,11 @@ class Timing extends BackboneType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -278,7 +261,7 @@ class Timing extends BackboneType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -287,79 +270,81 @@ class Timing extends BackboneType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'event':
         {
-          if (child is List<FhirDateTime>) {
-            // Add all elements from passed list
-            final newList = [...?event, ...child];
-            return copyWith(event: newList);
-          } else if (child is FhirDateTime) {
+          if (child is List<FhirDateTimeBuilder>) {
+            // Replace or create new list
+            event = child;
+            return;
+          } else if (child is FhirDateTimeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?event, child];
-            return copyWith(event: newList);
+            event = [...(event ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'repeat':
         {
-          if (child is TimingRepeat) {
-            return copyWith(repeat: child);
+          if (child is TimingRepeatBuilder) {
+            repeat = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -375,66 +360,56 @@ class Timing extends BackboneType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'event':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'repeat':
-        return ['TimingRepeat'];
+        return ['TimingRepeatBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Timing]
+  /// Creates a new [TimingBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Timing createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'event':
         {
-          return copyWith(
-            event: <FhirDateTime>[],
-          );
+          event = <FhirDateTimeBuilder>[];
+          return;
         }
       case 'repeat':
         {
-          return copyWith(
-            repeat: TimingRepeat.empty(),
-          );
+          repeat = TimingRepeatBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -443,7 +418,7 @@ class Timing extends BackboneType
 
   /// Clears specific fields in this object
   @override
-  Timing clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -451,26 +426,24 @@ class Timing extends BackboneType
     bool repeat = false,
     bool code = false,
   }) {
-    return Timing(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      event: event ? null : this.event,
-      repeat: repeat ? null : this.repeat,
-      code: code ? null : this.code,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (event) this.event = null;
+    if (repeat) this.repeat = null;
+    if (code) this.code = null;
   }
 
   @override
-  Timing clone() => throw UnimplementedError();
+  TimingBuilder clone() => throw UnimplementedError();
   @override
-  Timing copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<FhirDateTime>? event,
-    TimingRepeat? repeat,
-    CodeableConcept? code,
+  TimingBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<FhirDateTimeBuilder>? event,
+    TimingRepeatBuilder? repeat,
+    CodeableConceptBuilder? code,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -478,50 +451,37 @@ class Timing extends BackboneType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Timing(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      event: event
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.event',
-                ),
-              )
-              .toList() ??
-          this.event,
-      repeat: repeat?.copyWith(
-            objectPath: '$newObjectPath.repeat',
-          ) ??
-          this.repeat,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
+    final newResult = TimingBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      event: event ?? this.event,
+      repeat: repeat ?? this.repeat,
+      code: code ?? this.code,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Timing) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TimingBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -532,19 +492,19 @@ class Timing extends BackboneType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<FhirDateTime>(
+    if (!listEquals<FhirDateTimeBuilder>(
       event,
       o.event,
     )) {
@@ -566,13 +526,13 @@ class Timing extends BackboneType
   }
 }
 
-/// [TimingRepeat]
+/// [TimingRepeatBuilder]
 /// A set of rules that describe when the event is scheduled.
-class TimingRepeat extends Element {
+class TimingRepeatBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [TimingRepeat]
+  /// [TimingRepeatBuilder]
 
-  const TimingRepeat({
+  TimingRepeatBuilder({
     super.id,
     super.extension_,
     this.boundsX,
@@ -591,29 +551,28 @@ class TimingRepeat extends Element {
     this.when,
     this.offset,
     super.disallowExtensions,
-    super.objectPath = 'TimingRepeat',
+    super.objectPath = 'TimingRepeatBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TimingRepeat.empty() => const TimingRepeat();
+  /// For Builder classes, no fields are required
+  factory TimingRepeatBuilder.empty() => TimingRepeatBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TimingRepeat.fromJson(
+  factory TimingRepeatBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'TimingRepeat';
-    return TimingRepeat(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return TimingRepeatBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -621,118 +580,118 @@ class TimingRepeat extends Element {
             ),
           )
           .toList(),
-      boundsX: JsonParser.parsePolymorphic<BoundsXTimingRepeat>(
+      boundsX: JsonParser.parsePolymorphic<BoundsXTimingRepeatBuilder>(
         json,
         {
-          'boundsDuration': FhirDuration.fromJson,
-          'boundsRange': Range.fromJson,
-          'boundsPeriod': Period.fromJson,
+          'boundsDuration': FhirDurationBuilder.fromJson,
+          'boundsRange': RangeBuilder.fromJson,
+          'boundsPeriod': PeriodBuilder.fromJson,
         },
         objectPath,
       ),
-      count: JsonParser.parsePrimitive<FhirPositiveInt>(
+      count: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'count',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.count',
       ),
-      countMax: JsonParser.parsePrimitive<FhirPositiveInt>(
+      countMax: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'countMax',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.countMax',
       ),
-      duration: JsonParser.parsePrimitive<FhirDecimal>(
+      duration: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'duration',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.duration',
       ),
-      durationMax: JsonParser.parsePrimitive<FhirDecimal>(
+      durationMax: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'durationMax',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.durationMax',
       ),
-      durationUnit: JsonParser.parsePrimitive<UnitsOfTime>(
+      durationUnit: JsonParser.parsePrimitive<UnitsOfTimeBuilder>(
         json,
         'durationUnit',
-        UnitsOfTime.fromJson,
+        UnitsOfTimeBuilder.fromJson,
         '$objectPath.durationUnit',
       ),
-      frequency: JsonParser.parsePrimitive<FhirPositiveInt>(
+      frequency: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'frequency',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.frequency',
       ),
-      frequencyMax: JsonParser.parsePrimitive<FhirPositiveInt>(
+      frequencyMax: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'frequencyMax',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.frequencyMax',
       ),
-      period: JsonParser.parsePrimitive<FhirDecimal>(
+      period: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'period',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.period',
       ),
-      periodMax: JsonParser.parsePrimitive<FhirDecimal>(
+      periodMax: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'periodMax',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.periodMax',
       ),
-      periodUnit: JsonParser.parsePrimitive<UnitsOfTime>(
+      periodUnit: JsonParser.parsePrimitive<UnitsOfTimeBuilder>(
         json,
         'periodUnit',
-        UnitsOfTime.fromJson,
+        UnitsOfTimeBuilder.fromJson,
         '$objectPath.periodUnit',
       ),
-      dayOfWeek: JsonParser.parsePrimitiveList<DaysOfWeek>(
+      dayOfWeek: JsonParser.parsePrimitiveList<DaysOfWeekBuilder>(
         json,
         'dayOfWeek',
-        DaysOfWeek.fromJson,
+        DaysOfWeekBuilder.fromJson,
         '$objectPath.dayOfWeek',
       ),
-      timeOfDay: JsonParser.parsePrimitiveList<FhirTime>(
+      timeOfDay: JsonParser.parsePrimitiveList<FhirTimeBuilder>(
         json,
         'timeOfDay',
-        FhirTime.fromJson,
+        FhirTimeBuilder.fromJson,
         '$objectPath.timeOfDay',
       ),
-      when: JsonParser.parsePrimitiveList<EventTiming>(
+      when: JsonParser.parsePrimitiveList<EventTimingBuilder>(
         json,
         'when',
-        EventTiming.fromJson,
+        EventTimingBuilder.fromJson,
         '$objectPath.when',
       ),
-      offset: JsonParser.parsePrimitive<FhirUnsignedInt>(
+      offset: JsonParser.parsePrimitive<FhirUnsignedIntBuilder>(
         json,
         'offset',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.offset',
       ),
     );
   }
 
-  /// Deserialize [TimingRepeat]
+  /// Deserialize [TimingRepeatBuilder]
   /// from a [String] or [YamlMap] object
-  factory TimingRepeat.fromYaml(
+  factory TimingRepeatBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return TimingRepeat.fromJson(
+      return TimingRepeatBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return TimingRepeat.fromJson(
+      return TimingRepeatBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'TimingRepeat '
+        'TimingRepeatBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -740,16 +699,16 @@ class TimingRepeat extends Element {
   }
 
   /// Factory constructor for
-  /// [TimingRepeat]
+  /// [TimingRepeatBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TimingRepeat.fromJsonString(
+  factory TimingRepeatBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return TimingRepeat.fromJson(json);
+      return TimingRepeatBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -763,107 +722,108 @@ class TimingRepeat extends Element {
   /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the
   /// timing schedule.
-  final BoundsXTimingRepeat? boundsX;
+  BoundsXTimingRepeatBuilder? boundsX;
 
-  /// Getter for [boundsDuration] as a FhirDuration
-  FhirDuration? get boundsDuration => boundsX?.isAs<FhirDuration>();
+  /// Getter for [boundsDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get boundsDuration =>
+      boundsX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [boundsRange] as a Range
-  Range? get boundsRange => boundsX?.isAs<Range>();
+  /// Getter for [boundsRange] as a RangeBuilder
+  RangeBuilder? get boundsRange => boundsX?.isAs<RangeBuilder>();
 
-  /// Getter for [boundsPeriod] as a Period
-  Period? get boundsPeriod => boundsX?.isAs<Period>();
+  /// Getter for [boundsPeriod] as a PeriodBuilder
+  PeriodBuilder? get boundsPeriod => boundsX?.isAs<PeriodBuilder>();
 
   /// [count]
   /// A total count of the desired number of repetitions across the duration
   /// of the entire timing specification. If countMax is present, this
   /// element indicates the lower bound of the allowed range of count values.
-  final FhirPositiveInt? count;
+  FhirPositiveIntBuilder? count;
 
   /// [countMax]
   /// If present, indicates that the count is a range - so to perform the
   /// action between [count] and [countMax] times.
-  final FhirPositiveInt? countMax;
+  FhirPositiveIntBuilder? countMax;
 
   /// [duration]
   /// How long this thing happens for when it happens. If durationMax is
   /// present, this element indicates the lower bound of the allowed range of
   /// the duration.
-  final FhirDecimal? duration;
+  FhirDecimalBuilder? duration;
 
   /// [durationMax]
   /// If present, indicates that the duration is a range - so to perform the
   /// action between [duration] and [durationMax] time length.
-  final FhirDecimal? durationMax;
+  FhirDecimalBuilder? durationMax;
 
   /// [durationUnit]
   /// The units of time for the duration, in UCUM units.
-  final UnitsOfTime? durationUnit;
+  UnitsOfTimeBuilder? durationUnit;
 
   /// [frequency]
   /// The number of times to repeat the action within the specified period.
   /// If frequencyMax is present, this element indicates the lower bound of
   /// the allowed range of the frequency.
-  final FhirPositiveInt? frequency;
+  FhirPositiveIntBuilder? frequency;
 
   /// [frequencyMax]
   /// If present, indicates that the frequency is a range - so to repeat
   /// between [frequency] and [frequencyMax] times within the period or
   /// period range.
-  final FhirPositiveInt? frequencyMax;
+  FhirPositiveIntBuilder? frequencyMax;
 
   /// [period]
   /// Indicates the duration of time over which repetitions are to occur;
   /// e.g. to express "3 times per day", 3 would be the frequency and "1 day"
   /// would be the period. If periodMax is present, this element indicates
   /// the lower bound of the allowed range of the period length.
-  final FhirDecimal? period;
+  FhirDecimalBuilder? period;
 
   /// [periodMax]
   /// If present, indicates that the period is a range from [period] to
   /// [periodMax], allowing expressing concepts such as "do this once every
   /// 3-5 days.
-  final FhirDecimal? periodMax;
+  FhirDecimalBuilder? periodMax;
 
   /// [periodUnit]
   /// The units of time for the period in UCUM units.
-  final UnitsOfTime? periodUnit;
+  UnitsOfTimeBuilder? periodUnit;
 
   /// [dayOfWeek]
   /// If one or more days of week is provided, then the action happens only
   /// on the specified day(s).
-  final List<DaysOfWeek>? dayOfWeek;
+  List<DaysOfWeekBuilder>? dayOfWeek;
 
   /// [timeOfDay]
   /// Specified time of day for action to take place.
-  final List<FhirTime>? timeOfDay;
+  List<FhirTimeBuilder>? timeOfDay;
 
   /// [when]
   /// An approximate time period during the day, potentially linked to an
   /// event of daily living that indicates when the action should occur.
-  final List<EventTiming>? when;
+  List<EventTimingBuilder>? when;
 
   /// [offset]
   /// The number of minutes from the event. If the event code does not
   /// indicate whether the minutes is before or after the event, then the
   /// offset is assumed to be after the event.
-  final FhirUnsignedInt? offset;
+  FhirUnsignedIntBuilder? offset;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -872,83 +832,32 @@ class TimingRepeat extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
+    addField('id', id);
+    addField('extension', extension_);
     if (boundsX != null) {
       final fhirType = boundsX!.fhirType;
-      addField(
-        'bounds${fhirType.capitalize()}',
-        boundsX,
-      );
+      addField('bounds${fhirType.capitalize()}', boundsX);
     }
 
-    addField(
-      'count',
-      count,
-    );
-    addField(
-      'countMax',
-      countMax,
-    );
-    addField(
-      'duration',
-      duration,
-    );
-    addField(
-      'durationMax',
-      durationMax,
-    );
-    addField(
-      'durationUnit',
-      durationUnit,
-    );
-    addField(
-      'frequency',
-      frequency,
-    );
-    addField(
-      'frequencyMax',
-      frequencyMax,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'periodMax',
-      periodMax,
-    );
-    addField(
-      'periodUnit',
-      periodUnit,
-    );
-    addField(
-      'dayOfWeek',
-      dayOfWeek,
-    );
-    addField(
-      'timeOfDay',
-      timeOfDay,
-    );
-    addField(
-      'when',
-      when,
-    );
-    addField(
-      'offset',
-      offset,
-    );
+    addField('count', count);
+    addField('countMax', countMax);
+    addField('duration', duration);
+    addField('durationMax', durationMax);
+    addField('durationUnit', durationUnit);
+    addField('frequency', frequency);
+    addField('frequencyMax', frequencyMax);
+    addField('period', period);
+    addField('periodMax', periodMax);
+    addField('periodUnit', periodUnit);
+    addField('dayOfWeek', dayOfWeek);
+    addField('timeOfDay', timeOfDay);
+    addField('when', when);
+    addField('offset', offset);
     return json;
   }
 
@@ -979,11 +888,11 @@ class TimingRepeat extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -994,19 +903,23 @@ class TimingRepeat extends Element {
           fields.addAll(extension_!);
         }
       case 'bounds':
-        fields.add(boundsX!);
+        if (boundsX != null) {
+          fields.add(boundsX!);
+        }
       case 'boundsX':
-        fields.add(boundsX!);
+        if (boundsX != null) {
+          fields.add(boundsX!);
+        }
       case 'boundsDuration':
-        if (boundsX is FhirDuration) {
+        if (boundsX is FhirDurationBuilder) {
           fields.add(boundsX!);
         }
       case 'boundsRange':
-        if (boundsX is Range) {
+        if (boundsX is RangeBuilder) {
           fields.add(boundsX!);
         }
       case 'boundsPeriod':
-        if (boundsX is Period) {
+        if (boundsX is PeriodBuilder) {
           fields.add(boundsX!);
         }
       case 'count':
@@ -1075,7 +988,7 @@ class TimingRepeat extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1084,206 +997,224 @@ class TimingRepeat extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'boundsX':
         {
-          if (child is BoundsXTimingRepeat) {
-            return copyWith(boundsX: child);
+          if (child is BoundsXTimingRepeatBuilder) {
+            boundsX = child;
+            return;
           } else {
-            if (child is FhirDuration) {
-              return copyWith(boundsX: child);
+            if (child is FhirDurationBuilder) {
+              boundsX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(boundsX: child);
+            if (child is RangeBuilder) {
+              boundsX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(boundsX: child);
+            if (child is PeriodBuilder) {
+              boundsX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'boundsFhirDuration':
+      case 'boundsDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(boundsX: child);
+          if (child is FhirDurationBuilder) {
+            boundsX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'boundsRange':
         {
-          if (child is Range) {
-            return copyWith(boundsX: child);
+          if (child is RangeBuilder) {
+            boundsX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'boundsPeriod':
         {
-          if (child is Period) {
-            return copyWith(boundsX: child);
+          if (child is PeriodBuilder) {
+            boundsX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'count':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(count: child);
+          if (child is FhirPositiveIntBuilder) {
+            count = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'countMax':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(countMax: child);
+          if (child is FhirPositiveIntBuilder) {
+            countMax = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'duration':
         {
-          if (child is FhirDecimal) {
-            return copyWith(duration: child);
+          if (child is FhirDecimalBuilder) {
+            duration = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'durationMax':
         {
-          if (child is FhirDecimal) {
-            return copyWith(durationMax: child);
+          if (child is FhirDecimalBuilder) {
+            durationMax = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'durationUnit':
         {
-          if (child is UnitsOfTime) {
-            return copyWith(durationUnit: child);
+          if (child is UnitsOfTimeBuilder) {
+            durationUnit = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'frequency':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(frequency: child);
+          if (child is FhirPositiveIntBuilder) {
+            frequency = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'frequencyMax':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(frequencyMax: child);
+          if (child is FhirPositiveIntBuilder) {
+            frequencyMax = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is FhirDecimal) {
-            return copyWith(period: child);
+          if (child is FhirDecimalBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'periodMax':
         {
-          if (child is FhirDecimal) {
-            return copyWith(periodMax: child);
+          if (child is FhirDecimalBuilder) {
+            periodMax = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'periodUnit':
         {
-          if (child is UnitsOfTime) {
-            return copyWith(periodUnit: child);
+          if (child is UnitsOfTimeBuilder) {
+            periodUnit = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dayOfWeek':
         {
-          if (child is List<DaysOfWeek>) {
-            // Add all elements from passed list
-            final newList = [...?dayOfWeek, ...child];
-            return copyWith(dayOfWeek: newList);
-          } else if (child is DaysOfWeek) {
+          if (child is List<DaysOfWeekBuilder>) {
+            // Replace or create new list
+            dayOfWeek = child;
+            return;
+          } else if (child is DaysOfWeekBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?dayOfWeek, child];
-            return copyWith(dayOfWeek: newList);
+            dayOfWeek = [...(dayOfWeek ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timeOfDay':
         {
-          if (child is List<FhirTime>) {
-            // Add all elements from passed list
-            final newList = [...?timeOfDay, ...child];
-            return copyWith(timeOfDay: newList);
-          } else if (child is FhirTime) {
+          if (child is List<FhirTimeBuilder>) {
+            // Replace or create new list
+            timeOfDay = child;
+            return;
+          } else if (child is FhirTimeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?timeOfDay, child];
-            return copyWith(timeOfDay: newList);
+            timeOfDay = [...(timeOfDay ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'when':
         {
-          if (child is List<EventTiming>) {
-            // Add all elements from passed list
-            final newList = [...?when, ...child];
-            return copyWith(when: newList);
-          } else if (child is EventTiming) {
+          if (child is List<EventTimingBuilder>) {
+            // Replace or create new list
+            when = child;
+            return;
+          } else if (child is EventTimingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?when, child];
-            return copyWith(when: newList);
+            when = [...(when ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'offset':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(offset: child);
+          if (child is FhirUnsignedIntBuilder) {
+            offset = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1299,175 +1230,152 @@ class TimingRepeat extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'bounds':
       case 'boundsX':
-        return ['FhirDuration', 'Range', 'Period'];
+        return ['FhirDurationBuilder', 'RangeBuilder', 'PeriodBuilder'];
       case 'boundsDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'boundsRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'boundsPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'count':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'countMax':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'duration':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'durationMax':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'durationUnit':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'frequency':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'frequencyMax':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'period':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'periodMax':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'periodUnit':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'dayOfWeek':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'timeOfDay':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'when':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'offset':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [TimingRepeat]
+  /// Creates a new [TimingRepeatBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  TimingRepeat createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'bounds':
       case 'boundsX':
       case 'boundsDuration':
         {
-          return copyWith(
-            boundsX: FhirDuration.empty(),
-          );
+          boundsX = FhirDurationBuilder.empty();
+          return;
         }
       case 'boundsRange':
         {
-          return copyWith(
-            boundsX: Range.empty(),
-          );
+          boundsX = RangeBuilder.empty();
+          return;
         }
       case 'boundsPeriod':
         {
-          return copyWith(
-            boundsX: Period.empty(),
-          );
+          boundsX = PeriodBuilder.empty();
+          return;
         }
       case 'count':
         {
-          return copyWith(
-            count: FhirPositiveInt.empty(),
-          );
+          count = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'countMax':
         {
-          return copyWith(
-            countMax: FhirPositiveInt.empty(),
-          );
+          countMax = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'duration':
         {
-          return copyWith(
-            duration: FhirDecimal.empty(),
-          );
+          duration = FhirDecimalBuilder.empty();
+          return;
         }
       case 'durationMax':
         {
-          return copyWith(
-            durationMax: FhirDecimal.empty(),
-          );
+          durationMax = FhirDecimalBuilder.empty();
+          return;
         }
       case 'durationUnit':
         {
-          return copyWith(
-            durationUnit: UnitsOfTime.empty(),
-          );
+          durationUnit = UnitsOfTimeBuilder.empty();
+          return;
         }
       case 'frequency':
         {
-          return copyWith(
-            frequency: FhirPositiveInt.empty(),
-          );
+          frequency = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'frequencyMax':
         {
-          return copyWith(
-            frequencyMax: FhirPositiveInt.empty(),
-          );
+          frequencyMax = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: FhirDecimal.empty(),
-          );
+          period = FhirDecimalBuilder.empty();
+          return;
         }
       case 'periodMax':
         {
-          return copyWith(
-            periodMax: FhirDecimal.empty(),
-          );
+          periodMax = FhirDecimalBuilder.empty();
+          return;
         }
       case 'periodUnit':
         {
-          return copyWith(
-            periodUnit: UnitsOfTime.empty(),
-          );
+          periodUnit = UnitsOfTimeBuilder.empty();
+          return;
         }
       case 'dayOfWeek':
         {
-          return copyWith(
-            dayOfWeek: <DaysOfWeek>[],
-          );
+          dayOfWeek = <DaysOfWeekBuilder>[];
+          return;
         }
       case 'timeOfDay':
         {
-          return copyWith(
-            timeOfDay: <FhirTime>[],
-          );
+          timeOfDay = <FhirTimeBuilder>[];
+          return;
         }
       case 'when':
         {
-          return copyWith(
-            when: <EventTiming>[],
-          );
+          when = <EventTimingBuilder>[];
+          return;
         }
       case 'offset':
         {
-          return copyWith(
-            offset: FhirUnsignedInt.empty(),
-          );
+          offset = FhirUnsignedIntBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1476,7 +1384,7 @@ class TimingRepeat extends Element {
 
   /// Clears specific fields in this object
   @override
-  TimingRepeat clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool bounds = false,
@@ -1495,48 +1403,46 @@ class TimingRepeat extends Element {
     bool when = false,
     bool offset = false,
   }) {
-    return TimingRepeat(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      boundsX: bounds ? null : boundsX,
-      count: count ? null : this.count,
-      countMax: countMax ? null : this.countMax,
-      duration: duration ? null : this.duration,
-      durationMax: durationMax ? null : this.durationMax,
-      durationUnit: durationUnit ? null : this.durationUnit,
-      frequency: frequency ? null : this.frequency,
-      frequencyMax: frequencyMax ? null : this.frequencyMax,
-      period: period ? null : this.period,
-      periodMax: periodMax ? null : this.periodMax,
-      periodUnit: periodUnit ? null : this.periodUnit,
-      dayOfWeek: dayOfWeek ? null : this.dayOfWeek,
-      timeOfDay: timeOfDay ? null : this.timeOfDay,
-      when: when ? null : this.when,
-      offset: offset ? null : this.offset,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (bounds) this.boundsX = null;
+    if (count) this.count = null;
+    if (countMax) this.countMax = null;
+    if (duration) this.duration = null;
+    if (durationMax) this.durationMax = null;
+    if (durationUnit) this.durationUnit = null;
+    if (frequency) this.frequency = null;
+    if (frequencyMax) this.frequencyMax = null;
+    if (period) this.period = null;
+    if (periodMax) this.periodMax = null;
+    if (periodUnit) this.periodUnit = null;
+    if (dayOfWeek) this.dayOfWeek = null;
+    if (timeOfDay) this.timeOfDay = null;
+    if (when) this.when = null;
+    if (offset) this.offset = null;
   }
 
   @override
-  TimingRepeat clone() => throw UnimplementedError();
+  TimingRepeatBuilder clone() => throw UnimplementedError();
   @override
-  TimingRepeat copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    BoundsXTimingRepeat? boundsX,
-    FhirPositiveInt? count,
-    FhirPositiveInt? countMax,
-    FhirDecimal? duration,
-    FhirDecimal? durationMax,
-    UnitsOfTime? durationUnit,
-    FhirPositiveInt? frequency,
-    FhirPositiveInt? frequencyMax,
-    FhirDecimal? period,
-    FhirDecimal? periodMax,
-    UnitsOfTime? periodUnit,
-    List<DaysOfWeek>? dayOfWeek,
-    List<FhirTime>? timeOfDay,
-    List<EventTiming>? when,
-    FhirUnsignedInt? offset,
+  TimingRepeatBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    BoundsXTimingRepeatBuilder? boundsX,
+    FhirPositiveIntBuilder? count,
+    FhirPositiveIntBuilder? countMax,
+    FhirDecimalBuilder? duration,
+    FhirDecimalBuilder? durationMax,
+    UnitsOfTimeBuilder? durationUnit,
+    FhirPositiveIntBuilder? frequency,
+    FhirPositiveIntBuilder? frequencyMax,
+    FhirDecimalBuilder? period,
+    FhirDecimalBuilder? periodMax,
+    UnitsOfTimeBuilder? periodUnit,
+    List<DaysOfWeekBuilder>? dayOfWeek,
+    List<FhirTimeBuilder>? timeOfDay,
+    List<EventTimingBuilder>? when,
+    FhirUnsignedIntBuilder? offset,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1544,98 +1450,48 @@ class TimingRepeat extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return TimingRepeat(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      boundsX: boundsX?.copyWith(
-            objectPath: '$newObjectPath.boundsX',
-          ) as BoundsXTimingRepeat? ??
-          this.boundsX,
-      count: count?.copyWith(
-            objectPath: '$newObjectPath.count',
-          ) ??
-          this.count,
-      countMax: countMax?.copyWith(
-            objectPath: '$newObjectPath.countMax',
-          ) ??
-          this.countMax,
-      duration: duration?.copyWith(
-            objectPath: '$newObjectPath.duration',
-          ) ??
-          this.duration,
-      durationMax: durationMax?.copyWith(
-            objectPath: '$newObjectPath.durationMax',
-          ) ??
-          this.durationMax,
-      durationUnit: durationUnit?.copyWith(
-            objectPath: '$newObjectPath.durationUnit',
-          ) ??
-          this.durationUnit,
-      frequency: frequency?.copyWith(
-            objectPath: '$newObjectPath.frequency',
-          ) ??
-          this.frequency,
-      frequencyMax: frequencyMax?.copyWith(
-            objectPath: '$newObjectPath.frequencyMax',
-          ) ??
-          this.frequencyMax,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      periodMax: periodMax?.copyWith(
-            objectPath: '$newObjectPath.periodMax',
-          ) ??
-          this.periodMax,
-      periodUnit: periodUnit?.copyWith(
-            objectPath: '$newObjectPath.periodUnit',
-          ) ??
-          this.periodUnit,
-      dayOfWeek: dayOfWeek
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dayOfWeek',
-                ),
-              )
-              .toList() ??
-          this.dayOfWeek,
-      timeOfDay: timeOfDay
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.timeOfDay',
-                ),
-              )
-              .toList() ??
-          this.timeOfDay,
-      when: when
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.when',
-                ),
-              )
-              .toList() ??
-          this.when,
-      offset: offset?.copyWith(
-            objectPath: '$newObjectPath.offset',
-          ) ??
-          this.offset,
+    final newResult = TimingRepeatBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      boundsX: boundsX ?? this.boundsX,
+      count: count ?? this.count,
+      countMax: countMax ?? this.countMax,
+      duration: duration ?? this.duration,
+      durationMax: durationMax ?? this.durationMax,
+      durationUnit: durationUnit ?? this.durationUnit,
+      frequency: frequency ?? this.frequency,
+      frequencyMax: frequencyMax ?? this.frequencyMax,
+      period: period ?? this.period,
+      periodMax: periodMax ?? this.periodMax,
+      periodUnit: periodUnit ?? this.periodUnit,
+      dayOfWeek: dayOfWeek ?? this.dayOfWeek,
+      timeOfDay: timeOfDay ?? this.timeOfDay,
+      when: when ?? this.when,
+      offset: offset ?? this.offset,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! TimingRepeat) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! TimingRepeatBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1646,7 +1502,7 @@ class TimingRepeat extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -1718,19 +1574,19 @@ class TimingRepeat extends Element {
     )) {
       return false;
     }
-    if (!listEquals<DaysOfWeek>(
+    if (!listEquals<DaysOfWeekBuilder>(
       dayOfWeek,
       o.dayOfWeek,
     )) {
       return false;
     }
-    if (!listEquals<FhirTime>(
+    if (!listEquals<FhirTimeBuilder>(
       timeOfDay,
       o.timeOfDay,
     )) {
       return false;
     }
-    if (!listEquals<EventTiming>(
+    if (!listEquals<EventTimingBuilder>(
       when,
       o.when,
     )) {

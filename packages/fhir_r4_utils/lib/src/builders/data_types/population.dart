@@ -1,14 +1,16 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Population]
+/// [PopulationBuilder]
 /// A populatioof people with some set of grouping criteria.
-class Population extends BackboneType {
+class PopulationBuilder extends BackboneTypeBuilder {
   /// Primary constructor for
-  /// [Population]
+  /// [PopulationBuilder]
 
-  const Population({
+  PopulationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -17,29 +19,28 @@ class Population extends BackboneType {
     this.race,
     this.physiologicalCondition,
     super.disallowExtensions,
-    super.objectPath = 'Population',
+    super.objectPath = 'PopulationBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Population.empty() => const Population();
+  /// For Builder classes, no fields are required
+  factory PopulationBuilder.empty() => PopulationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Population.fromJson(
+  factory PopulationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Population';
-    return Population(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PopulationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -48,8 +49,8 @@ class Population extends BackboneType {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -57,51 +58,51 @@ class Population extends BackboneType {
             ),
           )
           .toList(),
-      ageX: JsonParser.parsePolymorphic<AgeXPopulation>(
+      ageX: JsonParser.parsePolymorphic<AgeXPopulationBuilder>(
         json,
         {
-          'ageRange': Range.fromJson,
-          'ageCodeableConcept': CodeableConcept.fromJson,
+          'ageRange': RangeBuilder.fromJson,
+          'ageCodeableConcept': CodeableConceptBuilder.fromJson,
         },
         objectPath,
       ),
-      gender: JsonParser.parseObject<CodeableConcept>(
+      gender: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'gender',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.gender',
       ),
-      race: JsonParser.parseObject<CodeableConcept>(
+      race: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'race',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.race',
       ),
-      physiologicalCondition: JsonParser.parseObject<CodeableConcept>(
+      physiologicalCondition: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'physiologicalCondition',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.physiologicalCondition',
       ),
     );
   }
 
-  /// Deserialize [Population]
+  /// Deserialize [PopulationBuilder]
   /// from a [String] or [YamlMap] object
-  factory Population.fromYaml(
+  factory PopulationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Population.fromJson(
+      return PopulationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Population.fromJson(
+      return PopulationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Population '
+        'PopulationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -109,16 +110,16 @@ class Population extends BackboneType {
   }
 
   /// Factory constructor for
-  /// [Population]
+  /// [PopulationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Population.fromJsonString(
+  factory PopulationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Population.fromJson(json);
+      return PopulationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -130,42 +131,43 @@ class Population extends BackboneType {
 
   /// [ageX]
   /// The age of the specific population.
-  final AgeXPopulation? ageX;
+  AgeXPopulationBuilder? ageX;
 
-  /// Getter for [ageRange] as a Range
-  Range? get ageRange => ageX?.isAs<Range>();
+  /// Getter for [ageRange] as a RangeBuilder
+  RangeBuilder? get ageRange => ageX?.isAs<RangeBuilder>();
 
-  /// Getter for [ageCodeableConcept] as a CodeableConcept
-  CodeableConcept? get ageCodeableConcept => ageX?.isAs<CodeableConcept>();
+  /// Getter for [ageCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get ageCodeableConcept =>
+      ageX?.isAs<CodeableConceptBuilder>();
 
   /// [gender]
   /// The gender of the specific population.
-  final CodeableConcept? gender;
+  CodeableConceptBuilder? gender;
 
   /// [race]
   /// Race of the specific population.
-  final CodeableConcept? race;
+  CodeableConceptBuilder? race;
 
   /// [physiologicalCondition]
   /// The existing physiological conditions of the specific population to
   /// which this applies.
-  final CodeableConcept? physiologicalCondition;
+  CodeableConceptBuilder? physiologicalCondition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -174,43 +176,22 @@ class Population extends BackboneType {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
     if (ageX != null) {
       final fhirType = ageX!.fhirType;
-      addField(
-        'age${fhirType.capitalize()}',
-        ageX,
-      );
+      addField('age${fhirType.capitalize()}', ageX);
     }
 
-    addField(
-      'gender',
-      gender,
-    );
-    addField(
-      'race',
-      race,
-    );
-    addField(
-      'physiologicalCondition',
-      physiologicalCondition,
-    );
+    addField('gender', gender);
+    addField('race', race);
+    addField('physiologicalCondition', physiologicalCondition);
     return json;
   }
 
@@ -231,11 +212,11 @@ class Population extends BackboneType {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -250,15 +231,19 @@ class Population extends BackboneType {
           fields.addAll(modifierExtension!);
         }
       case 'age':
-        fields.add(ageX!);
+        if (ageX != null) {
+          fields.add(ageX!);
+        }
       case 'ageX':
-        fields.add(ageX!);
+        if (ageX != null) {
+          fields.add(ageX!);
+        }
       case 'ageRange':
-        if (ageX is Range) {
+        if (ageX is RangeBuilder) {
           fields.add(ageX!);
         }
       case 'ageCodeableConcept':
-        if (ageX is CodeableConcept) {
+        if (ageX is CodeableConceptBuilder) {
           fields.add(ageX!);
         }
       case 'gender':
@@ -283,7 +268,7 @@ class Population extends BackboneType {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -292,103 +277,111 @@ class Population extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'ageX':
         {
-          if (child is AgeXPopulation) {
-            return copyWith(ageX: child);
+          if (child is AgeXPopulationBuilder) {
+            ageX = child;
+            return;
           } else {
-            if (child is Range) {
-              return copyWith(ageX: child);
+            if (child is RangeBuilder) {
+              ageX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(ageX: child);
+            if (child is CodeableConceptBuilder) {
+              ageX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'ageRange':
         {
-          if (child is Range) {
-            return copyWith(ageX: child);
+          if (child is RangeBuilder) {
+            ageX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'ageCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(ageX: child);
+          if (child is CodeableConceptBuilder) {
+            ageX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'gender':
         {
-          if (child is CodeableConcept) {
-            return copyWith(gender: child);
+          if (child is CodeableConceptBuilder) {
+            gender = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'race':
         {
-          if (child is CodeableConcept) {
-            return copyWith(race: child);
+          if (child is CodeableConceptBuilder) {
+            race = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'physiologicalCondition':
         {
-          if (child is CodeableConcept) {
-            return copyWith(physiologicalCondition: child);
+          if (child is CodeableConceptBuilder) {
+            physiologicalCondition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -404,87 +397,75 @@ class Population extends BackboneType {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'age':
       case 'ageX':
-        return ['Range', 'CodeableConcept'];
+        return ['RangeBuilder', 'CodeableConceptBuilder'];
       case 'ageRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'ageCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'gender':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'race':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'physiologicalCondition':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Population]
+  /// Creates a new [PopulationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Population createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'age':
       case 'ageX':
       case 'ageRange':
         {
-          return copyWith(
-            ageX: Range.empty(),
-          );
+          ageX = RangeBuilder.empty();
+          return;
         }
       case 'ageCodeableConcept':
         {
-          return copyWith(
-            ageX: CodeableConcept.empty(),
-          );
+          ageX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'gender':
         {
-          return copyWith(
-            gender: CodeableConcept.empty(),
-          );
+          gender = CodeableConceptBuilder.empty();
+          return;
         }
       case 'race':
         {
-          return copyWith(
-            race: CodeableConcept.empty(),
-          );
+          race = CodeableConceptBuilder.empty();
+          return;
         }
       case 'physiologicalCondition':
         {
-          return copyWith(
-            physiologicalCondition: CodeableConcept.empty(),
-          );
+          physiologicalCondition = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -493,7 +474,7 @@ class Population extends BackboneType {
 
   /// Clears specific fields in this object
   @override
-  Population clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -502,29 +483,26 @@ class Population extends BackboneType {
     bool race = false,
     bool physiologicalCondition = false,
   }) {
-    return Population(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      ageX: age ? null : ageX,
-      gender: gender ? null : this.gender,
-      race: race ? null : this.race,
-      physiologicalCondition:
-          physiologicalCondition ? null : this.physiologicalCondition,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (age) this.ageX = null;
+    if (gender) this.gender = null;
+    if (race) this.race = null;
+    if (physiologicalCondition) this.physiologicalCondition = null;
   }
 
   @override
-  Population clone() => throw UnimplementedError();
+  PopulationBuilder clone() => throw UnimplementedError();
   @override
-  Population copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    AgeXPopulation? ageX,
-    CodeableConcept? gender,
-    CodeableConcept? race,
-    CodeableConcept? physiologicalCondition,
+  PopulationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    AgeXPopulationBuilder? ageX,
+    CodeableConceptBuilder? gender,
+    CodeableConceptBuilder? race,
+    CodeableConceptBuilder? physiologicalCondition,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -532,50 +510,39 @@ class Population extends BackboneType {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Population(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      ageX: ageX?.copyWith(
-            objectPath: '$newObjectPath.ageX',
-          ) as AgeXPopulation? ??
-          this.ageX,
-      gender: gender?.copyWith(
-            objectPath: '$newObjectPath.gender',
-          ) ??
-          this.gender,
-      race: race?.copyWith(
-            objectPath: '$newObjectPath.race',
-          ) ??
-          this.race,
-      physiologicalCondition: physiologicalCondition?.copyWith(
-            objectPath: '$newObjectPath.physiologicalCondition',
-          ) ??
-          this.physiologicalCondition,
+    final newResult = PopulationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      ageX: ageX ?? this.ageX,
+      gender: gender ?? this.gender,
+      race: race ?? this.race,
+      physiologicalCondition:
+          physiologicalCondition ?? this.physiologicalCondition,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Population) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PopulationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -586,13 +553,13 @@ class Population extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

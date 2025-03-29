@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [FhirEndpoint]
+/// [FhirEndpointBuilder]
 /// The technical details of an endpoint that can be used for electronic
 /// services, such as for web services providing XDS.b or a REST endpoint
 /// for another FHIR server. This may include any security context
 /// information.
-class FhirEndpoint extends DomainResource {
+class FhirEndpointBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [FhirEndpoint]
+  /// [FhirEndpointBuilder]
 
-  const FhirEndpoint({
+  FhirEndpointBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,15 +23,15 @@ class FhirEndpoint extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
-    required this.connectionType,
+    this.status,
+    this.connectionType,
     this.name,
     this.managingOrganization,
     this.contact,
     this.period,
-    required this.payloadType,
+    this.payloadType,
     this.payloadMimeType,
-    required this.address,
+    this.address,
     this.header,
   }) : super(
           objectPath: 'Endpoint',
@@ -37,54 +39,48 @@ class FhirEndpoint extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FhirEndpoint.empty() => FhirEndpoint(
-        status: EndpointStatus.values.first,
-        connectionType: Coding.empty(),
-        payloadType: <CodeableConcept>[],
-        address: FhirUrl.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory FhirEndpointBuilder.empty() => FhirEndpointBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirEndpoint.fromJson(
+  factory FhirEndpointBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Endpoint';
-    return FhirEndpoint(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return FhirEndpointBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -93,8 +89,8 @@ class FhirEndpoint extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -103,8 +99,8 @@ class FhirEndpoint extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -113,8 +109,8 @@ class FhirEndpoint extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -122,33 +118,33 @@ class FhirEndpoint extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<EndpointStatus>(
+      status: JsonParser.parsePrimitive<EndpointStatusBuilder>(
         json,
         'status',
-        EndpointStatus.fromJson,
+        EndpointStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      connectionType: JsonParser.parseObject<Coding>(
+      ),
+      connectionType: JsonParser.parseObject<CodingBuilder>(
         json,
         'connectionType',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.connectionType',
-      )!,
-      name: JsonParser.parsePrimitive<FhirString>(
+      ),
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      managingOrganization: JsonParser.parseObject<Reference>(
+      managingOrganization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'managingOrganization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.managingOrganization',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -156,15 +152,15 @@ class FhirEndpoint extends DomainResource {
             ),
           )
           .toList(),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      payloadType: (json['payloadType'] as List<dynamic>)
-          .map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+      payloadType: (json['payloadType'] as List<dynamic>?)
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.payloadType',
@@ -172,43 +168,43 @@ class FhirEndpoint extends DomainResource {
             ),
           )
           .toList(),
-      payloadMimeType: JsonParser.parsePrimitiveList<FhirCode>(
+      payloadMimeType: JsonParser.parsePrimitiveList<FhirCodeBuilder>(
         json,
         'payloadMimeType',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.payloadMimeType',
       ),
-      address: JsonParser.parsePrimitive<FhirUrl>(
+      address: JsonParser.parsePrimitive<FhirUrlBuilder>(
         json,
         'address',
-        FhirUrl.fromJson,
+        FhirUrlBuilder.fromJson,
         '$objectPath.address',
-      )!,
-      header: JsonParser.parsePrimitiveList<FhirString>(
+      ),
+      header: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'header',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.header',
       ),
     );
   }
 
-  /// Deserialize [FhirEndpoint]
+  /// Deserialize [FhirEndpointBuilder]
   /// from a [String] or [YamlMap] object
-  factory FhirEndpoint.fromYaml(
+  factory FhirEndpointBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return FhirEndpoint.fromJson(
+      return FhirEndpointBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return FhirEndpoint.fromJson(
+      return FhirEndpointBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'FhirEndpoint '
+        'FhirEndpointBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -216,16 +212,16 @@ class FhirEndpoint extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [FhirEndpoint]
+  /// [FhirEndpointBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirEndpoint.fromJsonString(
+  factory FhirEndpointBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FhirEndpoint.fromJson(json);
+      return FhirEndpointBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -238,72 +234,72 @@ class FhirEndpoint extends DomainResource {
   /// [identifier]
   /// Identifier for the organization that is used to identify the endpoint
   /// across multiple disparate systems.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// active | suspended | error | off | test.
-  final EndpointStatus status;
+  EndpointStatusBuilder? status;
 
   /// [connectionType]
   /// A coded value that represents the technical details of the usage of
   /// this endpoint, such as what WSDLs should be used in what way. (e.g.
   /// XDS.b/DICOM/cds-hook).
-  final Coding connectionType;
+  CodingBuilder? connectionType;
 
   /// [name]
   /// A friendly name that this endpoint can be referred to with.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [managingOrganization]
   /// The organization that manages this endpoint (even if technically
   /// another organization is hosting this in the cloud, it is the
   /// organization associated with the data).
-  final Reference? managingOrganization;
+  ReferenceBuilder? managingOrganization;
 
   /// [contact]
   /// Contact details for a human to contact about the subscription. The
   /// primary use of this for system administrator troubleshooting.
-  final List<ContactPoint>? contact;
+  List<ContactPointBuilder>? contact;
 
   /// [period]
   /// The interval during which the endpoint is expected to be operational.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [payloadType]
   /// The payload type describes the acceptable content that can be
   /// communicated on the endpoint.
-  final List<CodeableConcept> payloadType;
+  List<CodeableConceptBuilder>? payloadType;
 
   /// [payloadMimeType]
   /// The mime type to send the payload in - e.g. application/fhir+xml,
   /// application/fhir+json. If the mime type is not specified, then the
   /// sender could send any content (including no content depending on the
   /// connectionType).
-  final List<FhirCode>? payloadMimeType;
+  List<FhirCodeBuilder>? payloadMimeType;
 
   /// [address]
   /// The uri that describes the actual end-point to connect to.
-  final FhirUrl address;
+  FhirUrlBuilder? address;
 
   /// [header]
   /// Additional headers / information to send as part of the notification.
-  final List<FhirString>? header;
+  List<FhirStringBuilder>? header;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -312,88 +308,31 @@ class FhirEndpoint extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'connectionType',
-      connectionType,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'managingOrganization',
-      managingOrganization,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'payloadType',
-      payloadType,
-    );
-    addField(
-      'payloadMimeType',
-      payloadMimeType,
-    );
-    addField(
-      'address',
-      address,
-    );
-    addField(
-      'header',
-      header,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('connectionType', connectionType);
+    addField('name', name);
+    addField('managingOrganization', managingOrganization);
+    addField('contact', contact);
+    addField('period', period);
+    addField('payloadType', payloadType);
+    addField('payloadMimeType', payloadMimeType);
+    addField('address', address);
+    addField('header', header);
     return json;
   }
 
@@ -426,11 +365,11 @@ class FhirEndpoint extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -469,9 +408,13 @@ class FhirEndpoint extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'connectionType':
-        fields.add(connectionType);
+        if (connectionType != null) {
+          fields.add(connectionType!);
+        }
       case 'name':
         if (name != null) {
           fields.add(name!);
@@ -489,13 +432,17 @@ class FhirEndpoint extends DomainResource {
           fields.add(period!);
         }
       case 'payloadType':
-        fields.addAll(payloadType);
+        if (payloadType != null) {
+          fields.addAll(payloadType!);
+        }
       case 'payloadMimeType':
         if (payloadMimeType != null) {
           fields.addAll(payloadMimeType!);
         }
       case 'address':
-        fields.add(address);
+        if (address != null) {
+          fields.add(address!);
+        }
       case 'header':
         if (header != null) {
           fields.addAll(header!);
@@ -510,7 +457,7 @@ class FhirEndpoint extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -519,213 +466,223 @@ class FhirEndpoint extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is EndpointStatus) {
-            return copyWith(status: child);
+          if (child is EndpointStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'connectionType':
         {
-          if (child is Coding) {
-            return copyWith(connectionType: child);
+          if (child is CodingBuilder) {
+            connectionType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'managingOrganization':
         {
-          if (child is Reference) {
-            return copyWith(managingOrganization: child);
+          if (child is ReferenceBuilder) {
+            managingOrganization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'payloadType':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...payloadType, ...child];
-            return copyWith(payloadType: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            payloadType = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...payloadType, child];
-            return copyWith(payloadType: newList);
+            payloadType = [...(payloadType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'payloadMimeType':
         {
-          if (child is List<FhirCode>) {
-            // Add all elements from passed list
-            final newList = [...?payloadMimeType, ...child];
-            return copyWith(payloadMimeType: newList);
-          } else if (child is FhirCode) {
+          if (child is List<FhirCodeBuilder>) {
+            // Replace or create new list
+            payloadMimeType = child;
+            return;
+          } else if (child is FhirCodeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?payloadMimeType, child];
-            return copyWith(payloadMimeType: newList);
+            payloadMimeType = [...(payloadMimeType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
         {
-          if (child is FhirUrl) {
-            return copyWith(address: child);
+          if (child is FhirUrlBuilder) {
+            address = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'header':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?header, ...child];
-            return copyWith(header: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            header = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?header, child];
-            return copyWith(header: newList);
+            header = [...(header ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -741,170 +698,147 @@ class FhirEndpoint extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'connectionType':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'managingOrganization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'contact':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'payloadType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'payloadMimeType':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'address':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'header':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [FhirEndpoint]
+  /// Creates a new [FhirEndpointBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  FhirEndpoint createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: EndpointStatus.empty(),
-          );
+          status = EndpointStatusBuilder.empty();
+          return;
         }
       case 'connectionType':
         {
-          return copyWith(
-            connectionType: Coding.empty(),
-          );
+          connectionType = CodingBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'managingOrganization':
         {
-          return copyWith(
-            managingOrganization: Reference.empty(),
-          );
+          managingOrganization = ReferenceBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactPoint>[],
-          );
+          contact = <ContactPointBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'payloadType':
         {
-          return copyWith(
-            payloadType: <CodeableConcept>[],
-          );
+          payloadType = <CodeableConceptBuilder>[];
+          return;
         }
       case 'payloadMimeType':
         {
-          return copyWith(
-            payloadMimeType: <FhirCode>[],
-          );
+          payloadMimeType = <FhirCodeBuilder>[];
+          return;
         }
       case 'address':
         {
-          return copyWith(
-            address: FhirUrl.empty(),
-          );
+          address = FhirUrlBuilder.empty();
+          return;
         }
       case 'header':
         {
-          return copyWith(
-            header: <FhirString>[],
-          );
+          header = <FhirStringBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -913,7 +847,7 @@ class FhirEndpoint extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  FhirEndpoint clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -923,175 +857,111 @@ class FhirEndpoint extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
+    bool connectionType = false,
     bool name = false,
     bool managingOrganization = false,
     bool contact = false,
     bool period = false,
+    bool payloadType = false,
     bool payloadMimeType = false,
+    bool address = false,
     bool header = false,
   }) {
-    return FhirEndpoint(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      connectionType: connectionType,
-      name: name ? null : this.name,
-      managingOrganization:
-          managingOrganization ? null : this.managingOrganization,
-      contact: contact ? null : this.contact,
-      period: period ? null : this.period,
-      payloadType: payloadType,
-      payloadMimeType: payloadMimeType ? null : this.payloadMimeType,
-      address: address,
-      header: header ? null : this.header,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (connectionType) this.connectionType = null;
+    if (name) this.name = null;
+    if (managingOrganization) this.managingOrganization = null;
+    if (contact) this.contact = null;
+    if (period) this.period = null;
+    if (payloadType) this.payloadType = null;
+    if (payloadMimeType) this.payloadMimeType = null;
+    if (address) this.address = null;
+    if (header) this.header = null;
   }
 
   @override
-  FhirEndpoint clone() => throw UnimplementedError();
+  FhirEndpointBuilder clone() => throw UnimplementedError();
   @override
-  FhirEndpoint copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    EndpointStatus? status,
-    Coding? connectionType,
-    FhirString? name,
-    Reference? managingOrganization,
-    List<ContactPoint>? contact,
-    Period? period,
-    List<CodeableConcept>? payloadType,
-    List<FhirCode>? payloadMimeType,
-    FhirUrl? address,
-    List<FhirString>? header,
+  FhirEndpointBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    EndpointStatusBuilder? status,
+    CodingBuilder? connectionType,
+    FhirStringBuilder? name,
+    ReferenceBuilder? managingOrganization,
+    List<ContactPointBuilder>? contact,
+    PeriodBuilder? period,
+    List<CodeableConceptBuilder>? payloadType,
+    List<FhirCodeBuilder>? payloadMimeType,
+    FhirUrlBuilder? address,
+    List<FhirStringBuilder>? header,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return FhirEndpoint(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = FhirEndpointBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      connectionType: connectionType?.copyWith(
-            objectPath: '$newObjectPath.connectionType',
-          ) ??
-          this.connectionType,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      managingOrganization: managingOrganization?.copyWith(
-            objectPath: '$newObjectPath.managingOrganization',
-          ) ??
-          this.managingOrganization,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      payloadType: payloadType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.payloadType',
-                ),
-              )
-              .toList() ??
-          this.payloadType,
-      payloadMimeType: payloadMimeType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.payloadMimeType',
-                ),
-              )
-              .toList() ??
-          this.payloadMimeType,
-      address: address?.copyWith(
-            objectPath: '$newObjectPath.address',
-          ) ??
-          this.address,
-      header: header
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.header',
-                ),
-              )
-              .toList() ??
-          this.header,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      connectionType: connectionType ?? this.connectionType,
+      name: name ?? this.name,
+      managingOrganization: managingOrganization ?? this.managingOrganization,
+      contact: contact ?? this.contact,
+      period: period ?? this.period,
+      payloadType: payloadType ?? this.payloadType,
+      payloadMimeType: payloadMimeType ?? this.payloadMimeType,
+      address: address ?? this.address,
+      header: header ?? this.header,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! FhirEndpoint) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! FhirEndpointBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1126,25 +996,25 @@ class FhirEndpoint extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1174,7 +1044,7 @@ class FhirEndpoint extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       contact,
       o.contact,
     )) {
@@ -1186,13 +1056,13 @@ class FhirEndpoint extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       payloadType,
       o.payloadType,
     )) {
       return false;
     }
-    if (!listEquals<FhirCode>(
+    if (!listEquals<FhirCodeBuilder>(
       payloadMimeType,
       o.payloadMimeType,
     )) {
@@ -1204,7 +1074,7 @@ class FhirEndpoint extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       header,
       o.header,
     )) {

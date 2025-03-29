@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How the referenced structure is used in this mapping.
-class StructureMapModelMode extends FhirCodeEnum {
+class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  StructureMapModelMode._({
+  StructureMapModelModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class StructureMapModelMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory StructureMapModelMode(
+  factory StructureMapModelModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return StructureMapModelMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return StructureMapModelModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,67 @@ class StructureMapModelMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [StructureMapModelMode] with element only
-  factory StructureMapModelMode.empty() =>
-      StructureMapModelMode._(validatedValue: '');
+  /// Create empty [StructureMapModelModeBuilder] with element only
+  factory StructureMapModelModeBuilder.empty() =>
+      StructureMapModelModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureMapModelMode] from JSON.
-  factory StructureMapModelMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapModelModeBuilder] from JSON.
+  factory StructureMapModelModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapModelMode.elementOnly.withElement(element);
+      return StructureMapModelModeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureMapModelMode cannot be constructed from JSON.',
+        'StructureMapModelModeBuilder cannot be constructed from JSON.',
       );
     }
-    return StructureMapModelMode._(
+    return StructureMapModelModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// source
-  static final StructureMapModelMode source = StructureMapModelMode._(
+  static StructureMapModelModeBuilder source = StructureMapModelModeBuilder._(
     validatedValue: 'source',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Source Structure Definition'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Source Structure Definition'.toFhirStringBuilder,
   );
 
   /// queried
-  static final StructureMapModelMode queried = StructureMapModelMode._(
+  static StructureMapModelModeBuilder queried = StructureMapModelModeBuilder._(
     validatedValue: 'queried',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Queried Structure Definition'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Queried Structure Definition'.toFhirStringBuilder,
   );
 
   /// target
-  static final StructureMapModelMode target = StructureMapModelMode._(
+  static StructureMapModelModeBuilder target = StructureMapModelModeBuilder._(
     validatedValue: 'target',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Target Structure Definition'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Target Structure Definition'.toFhirStringBuilder,
   );
 
   /// produced
-  static final StructureMapModelMode produced = StructureMapModelMode._(
+  static StructureMapModelModeBuilder produced = StructureMapModelModeBuilder._(
     validatedValue: 'produced',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Produced Structure Definition'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Produced Structure Definition'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final StructureMapModelMode elementOnly =
-      StructureMapModelMode._(validatedValue: '');
+  static StructureMapModelModeBuilder elementOnly =
+      StructureMapModelModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<StructureMapModelMode> values = [
+  static List<StructureMapModelModeBuilder> values = [
     source,
     queried,
     target,
@@ -111,14 +112,15 @@ class StructureMapModelMode extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  StructureMapModelMode clone() => StructureMapModelMode._(
+  StructureMapModelModeBuilder clone() => StructureMapModelModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  StructureMapModelMode withElement(Element? newElement) {
-    return StructureMapModelMode._(validatedValue: value, element: newElement);
+  StructureMapModelModeBuilder withElement(ElementBuilder? newElement) {
+    return StructureMapModelModeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,11 +136,11 @@ class StructureMapModelMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  StructureMapModelMode copyWith({
+  StructureMapModelModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -149,7 +151,7 @@ class StructureMapModelMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return StructureMapModelMode._(
+    return StructureMapModelModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -159,7 +161,7 @@ class StructureMapModelMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

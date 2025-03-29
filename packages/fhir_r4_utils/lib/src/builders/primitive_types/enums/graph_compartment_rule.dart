@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How a compartment must be linked.
-class GraphCompartmentRule extends FhirCodeEnum {
+class GraphCompartmentRuleBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  GraphCompartmentRule._({
+  GraphCompartmentRuleBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class GraphCompartmentRule extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory GraphCompartmentRule(
+  factory GraphCompartmentRuleBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return GraphCompartmentRule._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return GraphCompartmentRuleBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,71 @@ class GraphCompartmentRule extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [GraphCompartmentRule] with element only
-  factory GraphCompartmentRule.empty() =>
-      GraphCompartmentRule._(validatedValue: '');
+  /// Create empty [GraphCompartmentRuleBuilder] with element only
+  factory GraphCompartmentRuleBuilder.empty() =>
+      GraphCompartmentRuleBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GraphCompartmentRule] from JSON.
-  factory GraphCompartmentRule.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GraphCompartmentRuleBuilder] from JSON.
+  factory GraphCompartmentRuleBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GraphCompartmentRule.elementOnly.withElement(element);
+      return GraphCompartmentRuleBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'GraphCompartmentRule cannot be constructed from JSON.',
+        'GraphCompartmentRuleBuilder cannot be constructed from JSON.',
       );
     }
-    return GraphCompartmentRule._(
+    return GraphCompartmentRuleBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// identical
-  static final GraphCompartmentRule identical = GraphCompartmentRule._(
+  static GraphCompartmentRuleBuilder identical = GraphCompartmentRuleBuilder._(
     validatedValue: 'identical',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Identical'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Identical'.toFhirStringBuilder,
   );
 
   /// matching
-  static final GraphCompartmentRule matching = GraphCompartmentRule._(
+  static GraphCompartmentRuleBuilder matching = GraphCompartmentRuleBuilder._(
     validatedValue: 'matching',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Matching'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Matching'.toFhirStringBuilder,
   );
 
   /// different
-  static final GraphCompartmentRule different = GraphCompartmentRule._(
+  static GraphCompartmentRuleBuilder different = GraphCompartmentRuleBuilder._(
     validatedValue: 'different',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Different'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Different'.toFhirStringBuilder,
   );
 
   /// custom
-  static final GraphCompartmentRule custom = GraphCompartmentRule._(
+  static GraphCompartmentRuleBuilder custom = GraphCompartmentRuleBuilder._(
     validatedValue: 'custom',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Custom'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Custom'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final GraphCompartmentRule elementOnly =
-      GraphCompartmentRule._(validatedValue: '');
+  static GraphCompartmentRuleBuilder elementOnly =
+      GraphCompartmentRuleBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<GraphCompartmentRule> values = [
+  static List<GraphCompartmentRuleBuilder> values = [
     identical,
     matching,
     different,
@@ -111,14 +116,15 @@ class GraphCompartmentRule extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  GraphCompartmentRule clone() => GraphCompartmentRule._(
+  GraphCompartmentRuleBuilder clone() => GraphCompartmentRuleBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  GraphCompartmentRule withElement(Element? newElement) {
-    return GraphCompartmentRule._(validatedValue: value, element: newElement);
+  GraphCompartmentRuleBuilder withElement(ElementBuilder? newElement) {
+    return GraphCompartmentRuleBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,11 +140,11 @@ class GraphCompartmentRule extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  GraphCompartmentRule copyWith({
+  GraphCompartmentRuleBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -149,7 +155,7 @@ class GraphCompartmentRule extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return GraphCompartmentRule._(
+    return GraphCompartmentRuleBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -159,7 +165,7 @@ class GraphCompartmentRule extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

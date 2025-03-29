@@ -3,7 +3,7 @@ part of 'primitive_types.dart';
 /// Extension to convert a [num] to a [FhirUnsignedIntBuilder].
 extension FhirUnsignedIntBuilderExtension on num {
   /// Converts a [num] to a [FhirUnsignedIntBuilder].
-  FhirUnsignedIntBuilder get toFhirUnsignedInt => this is int
+  FhirUnsignedIntBuilder get toFhirUnsignedIntBuilder => this is int
       ? FhirUnsignedIntBuilder(this as int)
       : int.tryParse(toString()) != null
           ? FhirUnsignedIntBuilder(int.parse(toString()))
@@ -27,7 +27,7 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
         MinValueXElementDefinitionBuilder,
         MaxValueXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
-        ValueXExtension {
+        ValueXExtensionBuilder {
   /// Private underscore constructor
   FhirUnsignedIntBuilder._({
     required int? validatedValue,

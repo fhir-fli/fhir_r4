@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The possible sort directions, ascending or descending.
-class SortDirection extends FhirCodeEnum {
+class SortDirectionBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  SortDirection._({
+  SortDirectionBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class SortDirection extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory SortDirection(
+  factory SortDirectionBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return SortDirection._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return SortDirectionBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,62 +43,65 @@ class SortDirection extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [SortDirection] with element only
-  factory SortDirection.empty() => SortDirection._(validatedValue: '');
+  /// Create empty [SortDirectionBuilder] with element only
+  factory SortDirectionBuilder.empty() =>
+      SortDirectionBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SortDirection] from JSON.
-  factory SortDirection.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SortDirectionBuilder] from JSON.
+  factory SortDirectionBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SortDirection.elementOnly.withElement(element);
+      return SortDirectionBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SortDirection cannot be constructed from JSON.',
+        'SortDirectionBuilder cannot be constructed from JSON.',
       );
     }
-    return SortDirection._(
+    return SortDirectionBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// ascending
-  static final SortDirection ascending = SortDirection._(
+  static SortDirectionBuilder ascending = SortDirectionBuilder._(
     validatedValue: 'ascending',
-    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Ascending'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Ascending'.toFhirStringBuilder,
   );
 
   /// descending
-  static final SortDirection descending = SortDirection._(
+  static SortDirectionBuilder descending = SortDirectionBuilder._(
     validatedValue: 'descending',
-    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Descending'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Descending'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final SortDirection elementOnly = SortDirection._(validatedValue: '');
+  static SortDirectionBuilder elementOnly =
+      SortDirectionBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<SortDirection> values = [
+  static List<SortDirectionBuilder> values = [
     ascending,
     descending,
   ];
 
   /// Clones the current instance
   @override
-  SortDirection clone() => SortDirection._(
+  SortDirectionBuilder clone() => SortDirectionBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  SortDirection withElement(Element? newElement) {
-    return SortDirection._(validatedValue: value, element: newElement);
+  SortDirectionBuilder withElement(ElementBuilder? newElement) {
+    return SortDirectionBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,11 +117,11 @@ class SortDirection extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  SortDirection copyWith({
+  SortDirectionBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -129,7 +132,7 @@ class SortDirection extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return SortDirection._(
+    return SortDirectionBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -139,7 +142,7 @@ class SortDirection extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

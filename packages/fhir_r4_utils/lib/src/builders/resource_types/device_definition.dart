@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [DeviceDefinition]
+/// [DeviceDefinitionBuilder]
 /// The characteristics, operational status and capabilities of a
 /// medical-related component of a medical device.
-class DeviceDefinition extends DomainResource {
+class DeviceDefinitionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [DeviceDefinition]
+  /// [DeviceDefinitionBuilder]
 
-  const DeviceDefinition({
+  DeviceDefinitionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -46,49 +48,48 @@ class DeviceDefinition extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinition.empty() => const DeviceDefinition();
+  /// For Builder classes, no fields are required
+  factory DeviceDefinitionBuilder.empty() => DeviceDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinition.fromJson(
+  factory DeviceDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceDefinition';
-    return DeviceDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -97,8 +98,8 @@ class DeviceDefinition extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -107,8 +108,8 @@ class DeviceDefinition extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -117,8 +118,8 @@ class DeviceDefinition extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -127,8 +128,8 @@ class DeviceDefinition extends DomainResource {
           )
           .toList(),
       udiDeviceIdentifier: (json['udiDeviceIdentifier'] as List<dynamic>?)
-          ?.map<DeviceDefinitionUdiDeviceIdentifier>(
-            (v) => DeviceDefinitionUdiDeviceIdentifier.fromJson(
+          ?.map<DeviceDefinitionUdiDeviceIdentifierBuilder>(
+            (v) => DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.udiDeviceIdentifier',
@@ -136,17 +137,18 @@ class DeviceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      manufacturerX: JsonParser.parsePolymorphic<ManufacturerXDeviceDefinition>(
+      manufacturerX:
+          JsonParser.parsePolymorphic<ManufacturerXDeviceDefinitionBuilder>(
         json,
         {
-          'manufacturerString': FhirString.fromJson,
-          'manufacturerReference': Reference.fromJson,
+          'manufacturerString': FhirStringBuilder.fromJson,
+          'manufacturerReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
       deviceName: (json['deviceName'] as List<dynamic>?)
-          ?.map<DeviceDefinitionDeviceName>(
-            (v) => DeviceDefinitionDeviceName.fromJson(
+          ?.map<DeviceDefinitionDeviceNameBuilder>(
+            (v) => DeviceDefinitionDeviceNameBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.deviceName',
@@ -154,21 +156,21 @@ class DeviceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      modelNumber: JsonParser.parsePrimitive<FhirString>(
+      modelNumber: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'modelNumber',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.modelNumber',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       specialization: (json['specialization'] as List<dynamic>?)
-          ?.map<DeviceDefinitionSpecialization>(
-            (v) => DeviceDefinitionSpecialization.fromJson(
+          ?.map<DeviceDefinitionSpecializationBuilder>(
+            (v) => DeviceDefinitionSpecializationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specialization',
@@ -176,15 +178,15 @@ class DeviceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      version: JsonParser.parsePrimitiveList<FhirString>(
+      version: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
       safety: (json['safety'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.safety',
@@ -193,8 +195,8 @@ class DeviceDefinition extends DomainResource {
           )
           .toList(),
       shelfLifeStorage: (json['shelfLifeStorage'] as List<dynamic>?)
-          ?.map<ProductShelfLife>(
-            (v) => ProductShelfLife.fromJson(
+          ?.map<ProductShelfLifeBuilder>(
+            (v) => ProductShelfLifeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.shelfLifeStorage',
@@ -202,15 +204,16 @@ class DeviceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      physicalCharacteristics: JsonParser.parseObject<ProdCharacteristic>(
+      physicalCharacteristics:
+          JsonParser.parseObject<ProdCharacteristicBuilder>(
         json,
         'physicalCharacteristics',
-        ProdCharacteristic.fromJson,
+        ProdCharacteristicBuilder.fromJson,
         '$objectPath.physicalCharacteristics',
       ),
       languageCode: (json['languageCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.languageCode',
@@ -219,8 +222,8 @@ class DeviceDefinition extends DomainResource {
           )
           .toList(),
       capability: (json['capability'] as List<dynamic>?)
-          ?.map<DeviceDefinitionCapability>(
-            (v) => DeviceDefinitionCapability.fromJson(
+          ?.map<DeviceDefinitionCapabilityBuilder>(
+            (v) => DeviceDefinitionCapabilityBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.capability',
@@ -229,8 +232,8 @@ class DeviceDefinition extends DomainResource {
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
-          ?.map<DeviceDefinitionProperty>(
-            (v) => DeviceDefinitionProperty.fromJson(
+          ?.map<DeviceDefinitionPropertyBuilder>(
+            (v) => DeviceDefinitionPropertyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.property',
@@ -238,15 +241,15 @@ class DeviceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      owner: JsonParser.parseObject<Reference>(
+      owner: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'owner',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.owner',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -254,21 +257,21 @@ class DeviceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
-      onlineInformation: JsonParser.parsePrimitive<FhirUri>(
+      onlineInformation: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'onlineInformation',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.onlineInformation',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -276,21 +279,21 @@ class DeviceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      quantity: JsonParser.parseObject<Quantity>(
+      quantity: JsonParser.parseObject<QuantityBuilder>(
         json,
         'quantity',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.quantity',
       ),
-      parentDevice: JsonParser.parseObject<Reference>(
+      parentDevice: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'parentDevice',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.parentDevice',
       ),
       material: (json['material'] as List<dynamic>?)
-          ?.map<DeviceDefinitionMaterial>(
-            (v) => DeviceDefinitionMaterial.fromJson(
+          ?.map<DeviceDefinitionMaterialBuilder>(
+            (v) => DeviceDefinitionMaterialBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.material',
@@ -301,22 +304,22 @@ class DeviceDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceDefinition]
+  /// Deserialize [DeviceDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceDefinition.fromYaml(
+  factory DeviceDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceDefinition.fromJson(
+      return DeviceDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceDefinition.fromJson(
+      return DeviceDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceDefinition '
+        'DeviceDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -324,16 +327,16 @@ class DeviceDefinition extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [DeviceDefinition]
+  /// [DeviceDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinition.fromJsonString(
+  factory DeviceDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceDefinition.fromJson(json);
+      return DeviceDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -346,125 +349,127 @@ class DeviceDefinition extends DomainResource {
   /// [identifier]
   /// Unique instance identifiers assigned to a device by the software,
   /// manufacturers, other organizations or owners. For example: handle ID.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [udiDeviceIdentifier]
   /// Unique device identifier (UDI) assigned to device label or package.
   /// Note that the Device may include multiple udiCarriers as it either may
   /// include just the udiCarrier for the jurisdiction it is sold, or for
   /// multiple jurisdictions it could have been sold.
-  final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
+  List<DeviceDefinitionUdiDeviceIdentifierBuilder>? udiDeviceIdentifier;
 
   /// [manufacturerX]
   /// A name of the manufacturer.
-  final ManufacturerXDeviceDefinition? manufacturerX;
+  ManufacturerXDeviceDefinitionBuilder? manufacturerX;
 
-  /// Getter for [manufacturerString] as a FhirString
-  FhirString? get manufacturerString => manufacturerX?.isAs<FhirString>();
+  /// Getter for [manufacturerString] as a FhirStringBuilder
+  FhirStringBuilder? get manufacturerString =>
+      manufacturerX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [manufacturerReference] as a Reference
-  Reference? get manufacturerReference => manufacturerX?.isAs<Reference>();
+  /// Getter for [manufacturerReference] as a ReferenceBuilder
+  ReferenceBuilder? get manufacturerReference =>
+      manufacturerX?.isAs<ReferenceBuilder>();
 
   /// [deviceName]
   /// A name given to the device to identify it.
-  final List<DeviceDefinitionDeviceName>? deviceName;
+  List<DeviceDefinitionDeviceNameBuilder>? deviceName;
 
   /// [modelNumber]
   /// The model number for the device.
-  final FhirString? modelNumber;
+  FhirStringBuilder? modelNumber;
 
   /// [type]
   /// What kind of device or device system this is.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [specialization]
   /// The capabilities supported on a device, the standards to which the
   /// device conforms for a particular purpose, and used for the
   /// communication.
-  final List<DeviceDefinitionSpecialization>? specialization;
+  List<DeviceDefinitionSpecializationBuilder>? specialization;
 
   /// [version]
   /// The available versions of the device, e.g., software versions.
-  final List<FhirString>? version;
+  List<FhirStringBuilder>? version;
 
   /// [safety]
   /// Safety characteristics of the device.
-  final List<CodeableConcept>? safety;
+  List<CodeableConceptBuilder>? safety;
 
   /// [shelfLifeStorage]
   /// Shelf Life and storage information.
-  final List<ProductShelfLife>? shelfLifeStorage;
+  List<ProductShelfLifeBuilder>? shelfLifeStorage;
 
   /// [physicalCharacteristics]
   /// Dimensions, color etc.
-  final ProdCharacteristic? physicalCharacteristics;
+  ProdCharacteristicBuilder? physicalCharacteristics;
 
   /// [languageCode]
   /// Language code for the human-readable text strings produced by the
   /// device (all supported).
-  final List<CodeableConcept>? languageCode;
+  List<CodeableConceptBuilder>? languageCode;
 
   /// [capability]
   /// Device capabilities.
-  final List<DeviceDefinitionCapability>? capability;
+  List<DeviceDefinitionCapabilityBuilder>? capability;
 
   /// [property]
   /// The actual configuration settings of a device as it actually operates,
   /// e.g., regulation status, time properties.
-  final List<DeviceDefinitionProperty>? property;
+  List<DeviceDefinitionPropertyBuilder>? property;
 
   /// [owner]
   /// An organization that is responsible for the provision and ongoing
   /// maintenance of the device.
-  final Reference? owner;
+  ReferenceBuilder? owner;
 
   /// [contact]
   /// Contact details for an organization or a particular human that is
   /// responsible for the device.
-  final List<ContactPoint>? contact;
+  List<ContactPointBuilder>? contact;
 
   /// [url]
   /// A network address on which the device may be contacted directly.
-  final FhirUri? url;
+  FhirUriBuilder? url;
 
   /// [onlineInformation]
   /// Access to on-line information about the device.
-  final FhirUri? onlineInformation;
+  FhirUriBuilder? onlineInformation;
 
   /// [note]
   /// Descriptive information, usage information or implantation information
   /// that is not captured in an existing element.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [quantity]
   /// The quantity of the device present in the packaging (e.g. the number of
   /// devices present in a pack, or the number of devices in the same package
   /// of the medicinal product).
-  final Quantity? quantity;
+  QuantityBuilder? quantity;
 
   /// [parentDevice]
   /// The parent device it can be part of.
-  final Reference? parentDevice;
+  ReferenceBuilder? parentDevice;
 
   /// [material]
   /// A substance used to create the material(s) of which the device is made.
-  final List<DeviceDefinitionMaterial>? material;
+  List<DeviceDefinitionMaterialBuilder>? material;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -473,136 +478,46 @@ class DeviceDefinition extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'udiDeviceIdentifier',
-      udiDeviceIdentifier,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('udiDeviceIdentifier', udiDeviceIdentifier);
     if (manufacturerX != null) {
       final fhirType = manufacturerX!.fhirType;
-      addField(
-        'manufacturer${fhirType.capitalize()}',
-        manufacturerX,
-      );
+      addField('manufacturer${fhirType.capitalize()}', manufacturerX);
     }
 
-    addField(
-      'deviceName',
-      deviceName,
-    );
-    addField(
-      'modelNumber',
-      modelNumber,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'specialization',
-      specialization,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'safety',
-      safety,
-    );
-    addField(
-      'shelfLifeStorage',
-      shelfLifeStorage,
-    );
-    addField(
-      'physicalCharacteristics',
-      physicalCharacteristics,
-    );
-    addField(
-      'languageCode',
-      languageCode,
-    );
-    addField(
-      'capability',
-      capability,
-    );
-    addField(
-      'property',
-      property,
-    );
-    addField(
-      'owner',
-      owner,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'onlineInformation',
-      onlineInformation,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'quantity',
-      quantity,
-    );
-    addField(
-      'parentDevice',
-      parentDevice,
-    );
-    addField(
-      'material',
-      material,
-    );
+    addField('deviceName', deviceName);
+    addField('modelNumber', modelNumber);
+    addField('type', type);
+    addField('specialization', specialization);
+    addField('version', version);
+    addField('safety', safety);
+    addField('shelfLifeStorage', shelfLifeStorage);
+    addField('physicalCharacteristics', physicalCharacteristics);
+    addField('languageCode', languageCode);
+    addField('capability', capability);
+    addField('property', property);
+    addField('owner', owner);
+    addField('contact', contact);
+    addField('url', url);
+    addField('onlineInformation', onlineInformation);
+    addField('note', note);
+    addField('quantity', quantity);
+    addField('parentDevice', parentDevice);
+    addField('material', material);
     return json;
   }
 
@@ -646,11 +561,11 @@ class DeviceDefinition extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -693,15 +608,19 @@ class DeviceDefinition extends DomainResource {
           fields.addAll(udiDeviceIdentifier!);
         }
       case 'manufacturer':
-        fields.add(manufacturerX!);
+        if (manufacturerX != null) {
+          fields.add(manufacturerX!);
+        }
       case 'manufacturerX':
-        fields.add(manufacturerX!);
+        if (manufacturerX != null) {
+          fields.add(manufacturerX!);
+        }
       case 'manufacturerString':
-        if (manufacturerX is FhirString) {
+        if (manufacturerX is FhirStringBuilder) {
           fields.add(manufacturerX!);
         }
       case 'manufacturerReference':
-        if (manufacturerX is Reference) {
+        if (manufacturerX is ReferenceBuilder) {
           fields.add(manufacturerX!);
         }
       case 'deviceName':
@@ -790,7 +709,7 @@ class DeviceDefinition extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -799,371 +718,388 @@ class DeviceDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'udiDeviceIdentifier':
         {
-          if (child is List<DeviceDefinitionUdiDeviceIdentifier>) {
-            // Add all elements from passed list
-            final newList = [...?udiDeviceIdentifier, ...child];
-            return copyWith(udiDeviceIdentifier: newList);
-          } else if (child is DeviceDefinitionUdiDeviceIdentifier) {
+          if (child is List<DeviceDefinitionUdiDeviceIdentifierBuilder>) {
+            // Replace or create new list
+            udiDeviceIdentifier = child;
+            return;
+          } else if (child is DeviceDefinitionUdiDeviceIdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?udiDeviceIdentifier, child];
-            return copyWith(udiDeviceIdentifier: newList);
+            udiDeviceIdentifier = [...(udiDeviceIdentifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturerX':
         {
-          if (child is ManufacturerXDeviceDefinition) {
-            return copyWith(manufacturerX: child);
+          if (child is ManufacturerXDeviceDefinitionBuilder) {
+            manufacturerX = child;
+            return;
           } else {
-            if (child is FhirString) {
-              return copyWith(manufacturerX: child);
+            if (child is FhirStringBuilder) {
+              manufacturerX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(manufacturerX: child);
+            if (child is ReferenceBuilder) {
+              manufacturerX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'manufacturerFhirString':
+      case 'manufacturerString':
         {
-          if (child is FhirString) {
-            return copyWith(manufacturerX: child);
+          if (child is FhirStringBuilder) {
+            manufacturerX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturerReference':
         {
-          if (child is Reference) {
-            return copyWith(manufacturerX: child);
+          if (child is ReferenceBuilder) {
+            manufacturerX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deviceName':
         {
-          if (child is List<DeviceDefinitionDeviceName>) {
-            // Add all elements from passed list
-            final newList = [...?deviceName, ...child];
-            return copyWith(deviceName: newList);
-          } else if (child is DeviceDefinitionDeviceName) {
+          if (child is List<DeviceDefinitionDeviceNameBuilder>) {
+            // Replace or create new list
+            deviceName = child;
+            return;
+          } else if (child is DeviceDefinitionDeviceNameBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?deviceName, child];
-            return copyWith(deviceName: newList);
+            deviceName = [...(deviceName ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modelNumber':
         {
-          if (child is FhirString) {
-            return copyWith(modelNumber: child);
+          if (child is FhirStringBuilder) {
+            modelNumber = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialization':
         {
-          if (child is List<DeviceDefinitionSpecialization>) {
-            // Add all elements from passed list
-            final newList = [...?specialization, ...child];
-            return copyWith(specialization: newList);
-          } else if (child is DeviceDefinitionSpecialization) {
+          if (child is List<DeviceDefinitionSpecializationBuilder>) {
+            // Replace or create new list
+            specialization = child;
+            return;
+          } else if (child is DeviceDefinitionSpecializationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialization, child];
-            return copyWith(specialization: newList);
+            specialization = [...(specialization ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?version, ...child];
-            return copyWith(version: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            version = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?version, child];
-            return copyWith(version: newList);
+            version = [...(version ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'safety':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?safety, ...child];
-            return copyWith(safety: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            safety = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?safety, child];
-            return copyWith(safety: newList);
+            safety = [...(safety ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'shelfLifeStorage':
         {
-          if (child is List<ProductShelfLife>) {
-            // Add all elements from passed list
-            final newList = [...?shelfLifeStorage, ...child];
-            return copyWith(shelfLifeStorage: newList);
-          } else if (child is ProductShelfLife) {
+          if (child is List<ProductShelfLifeBuilder>) {
+            // Replace or create new list
+            shelfLifeStorage = child;
+            return;
+          } else if (child is ProductShelfLifeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?shelfLifeStorage, child];
-            return copyWith(shelfLifeStorage: newList);
+            shelfLifeStorage = [...(shelfLifeStorage ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'physicalCharacteristics':
         {
-          if (child is ProdCharacteristic) {
-            return copyWith(physicalCharacteristics: child);
+          if (child is ProdCharacteristicBuilder) {
+            physicalCharacteristics = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'languageCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?languageCode, ...child];
-            return copyWith(languageCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            languageCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?languageCode, child];
-            return copyWith(languageCode: newList);
+            languageCode = [...(languageCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'capability':
         {
-          if (child is List<DeviceDefinitionCapability>) {
-            // Add all elements from passed list
-            final newList = [...?capability, ...child];
-            return copyWith(capability: newList);
-          } else if (child is DeviceDefinitionCapability) {
+          if (child is List<DeviceDefinitionCapabilityBuilder>) {
+            // Replace or create new list
+            capability = child;
+            return;
+          } else if (child is DeviceDefinitionCapabilityBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?capability, child];
-            return copyWith(capability: newList);
+            capability = [...(capability ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
         {
-          if (child is List<DeviceDefinitionProperty>) {
-            // Add all elements from passed list
-            final newList = [...?property, ...child];
-            return copyWith(property: newList);
-          } else if (child is DeviceDefinitionProperty) {
+          if (child is List<DeviceDefinitionPropertyBuilder>) {
+            // Replace or create new list
+            property = child;
+            return;
+          } else if (child is DeviceDefinitionPropertyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?property, child];
-            return copyWith(property: newList);
+            property = [...(property ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'owner':
         {
-          if (child is Reference) {
-            return copyWith(owner: child);
+          if (child is ReferenceBuilder) {
+            owner = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onlineInformation':
         {
-          if (child is FhirUri) {
-            return copyWith(onlineInformation: child);
+          if (child is FhirUriBuilder) {
+            onlineInformation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
         {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
+          if (child is QuantityBuilder) {
+            quantity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'parentDevice':
         {
-          if (child is Reference) {
-            return copyWith(parentDevice: child);
+          if (child is ReferenceBuilder) {
+            parentDevice = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'material':
         {
-          if (child is List<DeviceDefinitionMaterial>) {
-            // Add all elements from passed list
-            final newList = [...?material, ...child];
-            return copyWith(material: newList);
-          } else if (child is DeviceDefinitionMaterial) {
+          if (child is List<DeviceDefinitionMaterialBuilder>) {
+            // Replace or create new list
+            material = child;
+            return;
+          } else if (child is DeviceDefinitionMaterialBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?material, child];
-            return copyWith(material: newList);
+            material = [...(material ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1179,271 +1115,236 @@ class DeviceDefinition extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'udiDeviceIdentifier':
-        return ['DeviceDefinitionUdiDeviceIdentifier'];
+        return ['DeviceDefinitionUdiDeviceIdentifierBuilder'];
       case 'manufacturer':
       case 'manufacturerX':
-        return ['FhirString', 'Reference'];
+        return ['FhirStringBuilder', 'ReferenceBuilder'];
       case 'manufacturerString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'manufacturerReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'deviceName':
-        return ['DeviceDefinitionDeviceName'];
+        return ['DeviceDefinitionDeviceNameBuilder'];
       case 'modelNumber':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'specialization':
-        return ['DeviceDefinitionSpecialization'];
+        return ['DeviceDefinitionSpecializationBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'safety':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'shelfLifeStorage':
-        return ['ProductShelfLife'];
+        return ['ProductShelfLifeBuilder'];
       case 'physicalCharacteristics':
-        return ['ProdCharacteristic'];
+        return ['ProdCharacteristicBuilder'];
       case 'languageCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'capability':
-        return ['DeviceDefinitionCapability'];
+        return ['DeviceDefinitionCapabilityBuilder'];
       case 'property':
-        return ['DeviceDefinitionProperty'];
+        return ['DeviceDefinitionPropertyBuilder'];
       case 'owner':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'contact':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'onlineInformation':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'quantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'parentDevice':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'material':
-        return ['DeviceDefinitionMaterial'];
+        return ['DeviceDefinitionMaterialBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceDefinition]
+  /// Creates a new [DeviceDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'udiDeviceIdentifier':
         {
-          return copyWith(
-            udiDeviceIdentifier: <DeviceDefinitionUdiDeviceIdentifier>[],
-          );
+          udiDeviceIdentifier = <DeviceDefinitionUdiDeviceIdentifierBuilder>[];
+          return;
         }
       case 'manufacturer':
       case 'manufacturerX':
       case 'manufacturerString':
         {
-          return copyWith(
-            manufacturerX: FhirString.empty(),
-          );
+          manufacturerX = FhirStringBuilder.empty();
+          return;
         }
       case 'manufacturerReference':
         {
-          return copyWith(
-            manufacturerX: Reference.empty(),
-          );
+          manufacturerX = ReferenceBuilder.empty();
+          return;
         }
       case 'deviceName':
         {
-          return copyWith(
-            deviceName: <DeviceDefinitionDeviceName>[],
-          );
+          deviceName = <DeviceDefinitionDeviceNameBuilder>[];
+          return;
         }
       case 'modelNumber':
         {
-          return copyWith(
-            modelNumber: FhirString.empty(),
-          );
+          modelNumber = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'specialization':
         {
-          return copyWith(
-            specialization: <DeviceDefinitionSpecialization>[],
-          );
+          specialization = <DeviceDefinitionSpecializationBuilder>[];
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: <FhirString>[],
-          );
+          version = <FhirStringBuilder>[];
+          return;
         }
       case 'safety':
         {
-          return copyWith(
-            safety: <CodeableConcept>[],
-          );
+          safety = <CodeableConceptBuilder>[];
+          return;
         }
       case 'shelfLifeStorage':
         {
-          return copyWith(
-            shelfLifeStorage: <ProductShelfLife>[],
-          );
+          shelfLifeStorage = <ProductShelfLifeBuilder>[];
+          return;
         }
       case 'physicalCharacteristics':
         {
-          return copyWith(
-            physicalCharacteristics: ProdCharacteristic.empty(),
-          );
+          physicalCharacteristics = ProdCharacteristicBuilder.empty();
+          return;
         }
       case 'languageCode':
         {
-          return copyWith(
-            languageCode: <CodeableConcept>[],
-          );
+          languageCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'capability':
         {
-          return copyWith(
-            capability: <DeviceDefinitionCapability>[],
-          );
+          capability = <DeviceDefinitionCapabilityBuilder>[];
+          return;
         }
       case 'property':
         {
-          return copyWith(
-            property: <DeviceDefinitionProperty>[],
-          );
+          property = <DeviceDefinitionPropertyBuilder>[];
+          return;
         }
       case 'owner':
         {
-          return copyWith(
-            owner: Reference.empty(),
-          );
+          owner = ReferenceBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactPoint>[],
-          );
+          contact = <ContactPointBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'onlineInformation':
         {
-          return copyWith(
-            onlineInformation: FhirUri.empty(),
-          );
+          onlineInformation = FhirUriBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'quantity':
         {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
+          quantity = QuantityBuilder.empty();
+          return;
         }
       case 'parentDevice':
         {
-          return copyWith(
-            parentDevice: Reference.empty(),
-          );
+          parentDevice = ReferenceBuilder.empty();
+          return;
         }
       case 'material':
         {
-          return copyWith(
-            material: <DeviceDefinitionMaterial>[],
-          );
+          material = <DeviceDefinitionMaterialBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1452,7 +1353,7 @@ class DeviceDefinition extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  DeviceDefinition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1484,267 +1385,134 @@ class DeviceDefinition extends DomainResource {
     bool parentDevice = false,
     bool material = false,
   }) {
-    return DeviceDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      udiDeviceIdentifier:
-          udiDeviceIdentifier ? null : this.udiDeviceIdentifier,
-      manufacturerX: manufacturer ? null : manufacturerX,
-      deviceName: deviceName ? null : this.deviceName,
-      modelNumber: modelNumber ? null : this.modelNumber,
-      type: type ? null : this.type,
-      specialization: specialization ? null : this.specialization,
-      version: version ? null : this.version,
-      safety: safety ? null : this.safety,
-      shelfLifeStorage: shelfLifeStorage ? null : this.shelfLifeStorage,
-      physicalCharacteristics:
-          physicalCharacteristics ? null : this.physicalCharacteristics,
-      languageCode: languageCode ? null : this.languageCode,
-      capability: capability ? null : this.capability,
-      property: property ? null : this.property,
-      owner: owner ? null : this.owner,
-      contact: contact ? null : this.contact,
-      url: url ? null : this.url,
-      onlineInformation: onlineInformation ? null : this.onlineInformation,
-      note: note ? null : this.note,
-      quantity: quantity ? null : this.quantity,
-      parentDevice: parentDevice ? null : this.parentDevice,
-      material: material ? null : this.material,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (udiDeviceIdentifier) this.udiDeviceIdentifier = null;
+    if (manufacturer) this.manufacturerX = null;
+    if (deviceName) this.deviceName = null;
+    if (modelNumber) this.modelNumber = null;
+    if (type) this.type = null;
+    if (specialization) this.specialization = null;
+    if (version) this.version = null;
+    if (safety) this.safety = null;
+    if (shelfLifeStorage) this.shelfLifeStorage = null;
+    if (physicalCharacteristics) this.physicalCharacteristics = null;
+    if (languageCode) this.languageCode = null;
+    if (capability) this.capability = null;
+    if (property) this.property = null;
+    if (owner) this.owner = null;
+    if (contact) this.contact = null;
+    if (url) this.url = null;
+    if (onlineInformation) this.onlineInformation = null;
+    if (note) this.note = null;
+    if (quantity) this.quantity = null;
+    if (parentDevice) this.parentDevice = null;
+    if (material) this.material = null;
   }
 
   @override
-  DeviceDefinition clone() => throw UnimplementedError();
+  DeviceDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  DeviceDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier,
-    ManufacturerXDeviceDefinition? manufacturerX,
-    List<DeviceDefinitionDeviceName>? deviceName,
-    FhirString? modelNumber,
-    CodeableConcept? type,
-    List<DeviceDefinitionSpecialization>? specialization,
-    List<FhirString>? version,
-    List<CodeableConcept>? safety,
-    List<ProductShelfLife>? shelfLifeStorage,
-    ProdCharacteristic? physicalCharacteristics,
-    List<CodeableConcept>? languageCode,
-    List<DeviceDefinitionCapability>? capability,
-    List<DeviceDefinitionProperty>? property,
-    Reference? owner,
-    List<ContactPoint>? contact,
-    FhirUri? url,
-    FhirUri? onlineInformation,
-    List<Annotation>? note,
-    Quantity? quantity,
-    Reference? parentDevice,
-    List<DeviceDefinitionMaterial>? material,
+  DeviceDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<DeviceDefinitionUdiDeviceIdentifierBuilder>? udiDeviceIdentifier,
+    ManufacturerXDeviceDefinitionBuilder? manufacturerX,
+    List<DeviceDefinitionDeviceNameBuilder>? deviceName,
+    FhirStringBuilder? modelNumber,
+    CodeableConceptBuilder? type,
+    List<DeviceDefinitionSpecializationBuilder>? specialization,
+    List<FhirStringBuilder>? version,
+    List<CodeableConceptBuilder>? safety,
+    List<ProductShelfLifeBuilder>? shelfLifeStorage,
+    ProdCharacteristicBuilder? physicalCharacteristics,
+    List<CodeableConceptBuilder>? languageCode,
+    List<DeviceDefinitionCapabilityBuilder>? capability,
+    List<DeviceDefinitionPropertyBuilder>? property,
+    ReferenceBuilder? owner,
+    List<ContactPointBuilder>? contact,
+    FhirUriBuilder? url,
+    FhirUriBuilder? onlineInformation,
+    List<AnnotationBuilder>? note,
+    QuantityBuilder? quantity,
+    ReferenceBuilder? parentDevice,
+    List<DeviceDefinitionMaterialBuilder>? material,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return DeviceDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = DeviceDefinitionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      udiDeviceIdentifier: udiDeviceIdentifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.udiDeviceIdentifier',
-                ),
-              )
-              .toList() ??
-          this.udiDeviceIdentifier,
-      manufacturerX: manufacturerX?.copyWith(
-            objectPath: '$newObjectPath.manufacturerX',
-          ) as ManufacturerXDeviceDefinition? ??
-          this.manufacturerX,
-      deviceName: deviceName
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.deviceName',
-                ),
-              )
-              .toList() ??
-          this.deviceName,
-      modelNumber: modelNumber?.copyWith(
-            objectPath: '$newObjectPath.modelNumber',
-          ) ??
-          this.modelNumber,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      specialization: specialization
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialization',
-                ),
-              )
-              .toList() ??
-          this.specialization,
-      version: version
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.version',
-                ),
-              )
-              .toList() ??
-          this.version,
-      safety: safety
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.safety',
-                ),
-              )
-              .toList() ??
-          this.safety,
-      shelfLifeStorage: shelfLifeStorage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.shelfLifeStorage',
-                ),
-              )
-              .toList() ??
-          this.shelfLifeStorage,
-      physicalCharacteristics: physicalCharacteristics?.copyWith(
-            objectPath: '$newObjectPath.physicalCharacteristics',
-          ) ??
-          this.physicalCharacteristics,
-      languageCode: languageCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.languageCode',
-                ),
-              )
-              .toList() ??
-          this.languageCode,
-      capability: capability
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.capability',
-                ),
-              )
-              .toList() ??
-          this.capability,
-      property: property
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.property',
-                ),
-              )
-              .toList() ??
-          this.property,
-      owner: owner?.copyWith(
-            objectPath: '$newObjectPath.owner',
-          ) ??
-          this.owner,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      onlineInformation: onlineInformation?.copyWith(
-            objectPath: '$newObjectPath.onlineInformation',
-          ) ??
-          this.onlineInformation,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      parentDevice: parentDevice?.copyWith(
-            objectPath: '$newObjectPath.parentDevice',
-          ) ??
-          this.parentDevice,
-      material: material
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.material',
-                ),
-              )
-              .toList() ??
-          this.material,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      udiDeviceIdentifier: udiDeviceIdentifier ?? this.udiDeviceIdentifier,
+      manufacturerX: manufacturerX ?? this.manufacturerX,
+      deviceName: deviceName ?? this.deviceName,
+      modelNumber: modelNumber ?? this.modelNumber,
+      type: type ?? this.type,
+      specialization: specialization ?? this.specialization,
+      version: version ?? this.version,
+      safety: safety ?? this.safety,
+      shelfLifeStorage: shelfLifeStorage ?? this.shelfLifeStorage,
+      physicalCharacteristics:
+          physicalCharacteristics ?? this.physicalCharacteristics,
+      languageCode: languageCode ?? this.languageCode,
+      capability: capability ?? this.capability,
+      property: property ?? this.property,
+      owner: owner ?? this.owner,
+      contact: contact ?? this.contact,
+      url: url ?? this.url,
+      onlineInformation: onlineInformation ?? this.onlineInformation,
+      note: note ?? this.note,
+      quantity: quantity ?? this.quantity,
+      parentDevice: parentDevice ?? this.parentDevice,
+      material: material ?? this.material,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1779,31 +1547,31 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<DeviceDefinitionUdiDeviceIdentifier>(
+    if (!listEquals<DeviceDefinitionUdiDeviceIdentifierBuilder>(
       udiDeviceIdentifier,
       o.udiDeviceIdentifier,
     )) {
@@ -1815,7 +1583,7 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<DeviceDefinitionDeviceName>(
+    if (!listEquals<DeviceDefinitionDeviceNameBuilder>(
       deviceName,
       o.deviceName,
     )) {
@@ -1833,25 +1601,25 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<DeviceDefinitionSpecialization>(
+    if (!listEquals<DeviceDefinitionSpecializationBuilder>(
       specialization,
       o.specialization,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       version,
       o.version,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       safety,
       o.safety,
     )) {
       return false;
     }
-    if (!listEquals<ProductShelfLife>(
+    if (!listEquals<ProductShelfLifeBuilder>(
       shelfLifeStorage,
       o.shelfLifeStorage,
     )) {
@@ -1863,19 +1631,19 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       languageCode,
       o.languageCode,
     )) {
       return false;
     }
-    if (!listEquals<DeviceDefinitionCapability>(
+    if (!listEquals<DeviceDefinitionCapabilityBuilder>(
       capability,
       o.capability,
     )) {
       return false;
     }
-    if (!listEquals<DeviceDefinitionProperty>(
+    if (!listEquals<DeviceDefinitionPropertyBuilder>(
       property,
       o.property,
     )) {
@@ -1887,7 +1655,7 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       contact,
       o.contact,
     )) {
@@ -1905,7 +1673,7 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -1923,7 +1691,7 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<DeviceDefinitionMaterial>(
+    if (!listEquals<DeviceDefinitionMaterialBuilder>(
       material,
       o.material,
     )) {
@@ -1933,52 +1701,48 @@ class DeviceDefinition extends DomainResource {
   }
 }
 
-/// [DeviceDefinitionUdiDeviceIdentifier]
+/// [DeviceDefinitionUdiDeviceIdentifierBuilder]
 /// Unique device identifier (UDI) assigned to device label or package.
 /// Note that the Device may include multiple udiCarriers as it either may
 /// include just the udiCarrier for the jurisdiction it is sold, or for
 /// multiple jurisdictions it could have been sold.
-class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
+class DeviceDefinitionUdiDeviceIdentifierBuilder
+    extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DeviceDefinitionUdiDeviceIdentifier]
+  /// [DeviceDefinitionUdiDeviceIdentifierBuilder]
 
-  const DeviceDefinitionUdiDeviceIdentifier({
+  DeviceDefinitionUdiDeviceIdentifierBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.deviceIdentifier,
-    required this.issuer,
-    required this.jurisdiction,
+    this.deviceIdentifier,
+    this.issuer,
+    this.jurisdiction,
     super.disallowExtensions,
   }) : super(
           objectPath: 'DeviceDefinition.udiDeviceIdentifier',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinitionUdiDeviceIdentifier.empty() =>
-      DeviceDefinitionUdiDeviceIdentifier(
-        deviceIdentifier: FhirString.empty(),
-        issuer: FhirUri.empty(),
-        jurisdiction: FhirUri.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceDefinitionUdiDeviceIdentifierBuilder.empty() =>
+      DeviceDefinitionUdiDeviceIdentifierBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionUdiDeviceIdentifier.fromJson(
+  factory DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceDefinition.udiDeviceIdentifier';
-    return DeviceDefinitionUdiDeviceIdentifier(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceDefinitionUdiDeviceIdentifierBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1987,8 +1751,8 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1996,43 +1760,43 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
             ),
           )
           .toList(),
-      deviceIdentifier: JsonParser.parsePrimitive<FhirString>(
+      deviceIdentifier: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'deviceIdentifier',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.deviceIdentifier',
-      )!,
-      issuer: JsonParser.parsePrimitive<FhirUri>(
+      ),
+      issuer: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'issuer',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.issuer',
-      )!,
-      jurisdiction: JsonParser.parsePrimitive<FhirUri>(
+      ),
+      jurisdiction: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'jurisdiction',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.jurisdiction',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [DeviceDefinitionUdiDeviceIdentifier]
+  /// Deserialize [DeviceDefinitionUdiDeviceIdentifierBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceDefinitionUdiDeviceIdentifier.fromYaml(
+  factory DeviceDefinitionUdiDeviceIdentifierBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceDefinitionUdiDeviceIdentifier.fromJson(
+      return DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceDefinitionUdiDeviceIdentifier.fromJson(
+      return DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceDefinitionUdiDeviceIdentifier '
+        'DeviceDefinitionUdiDeviceIdentifierBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2040,16 +1804,16 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DeviceDefinitionUdiDeviceIdentifier]
+  /// [DeviceDefinitionUdiDeviceIdentifierBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionUdiDeviceIdentifier.fromJsonString(
+  factory DeviceDefinitionUdiDeviceIdentifierBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceDefinitionUdiDeviceIdentifier.fromJson(json);
+      return DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2063,31 +1827,31 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// The identifier that is to be associated with every Device that
   /// references this DeviceDefintiion for the issuer and jurisdication
   /// porvided in the DeviceDefinition.udiDeviceIdentifier.
-  final FhirString deviceIdentifier;
+  FhirStringBuilder? deviceIdentifier;
 
   /// [issuer]
   /// The organization that assigns the identifier algorithm.
-  final FhirUri issuer;
+  FhirUriBuilder? issuer;
 
   /// [jurisdiction]
   /// The jurisdiction to which the deviceIdentifier applies.
-  final FhirUri jurisdiction;
+  FhirUriBuilder? jurisdiction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2096,35 +1860,17 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'deviceIdentifier',
-      deviceIdentifier,
-    );
-    addField(
-      'issuer',
-      issuer,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('deviceIdentifier', deviceIdentifier);
+    addField('issuer', issuer);
+    addField('jurisdiction', jurisdiction);
     return json;
   }
 
@@ -2144,11 +1890,11 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2163,11 +1909,17 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'deviceIdentifier':
-        fields.add(deviceIdentifier);
+        if (deviceIdentifier != null) {
+          fields.add(deviceIdentifier!);
+        }
       case 'issuer':
-        fields.add(issuer);
+        if (issuer != null) {
+          fields.add(issuer!);
+        }
       case 'jurisdiction':
-        fields.add(jurisdiction);
+        if (jurisdiction != null) {
+          fields.add(jurisdiction!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2178,7 +1930,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2187,73 +1939,76 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deviceIdentifier':
         {
-          if (child is FhirString) {
-            return copyWith(deviceIdentifier: child);
+          if (child is FhirStringBuilder) {
+            deviceIdentifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issuer':
         {
-          if (child is FhirUri) {
-            return copyWith(issuer: child);
+          if (child is FhirUriBuilder) {
+            issuer = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is FhirUri) {
-            return copyWith(jurisdiction: child);
+          if (child is FhirUriBuilder) {
+            jurisdiction = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2269,66 +2024,56 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'deviceIdentifier':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'issuer':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'jurisdiction':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceDefinitionUdiDeviceIdentifier]
+  /// Creates a new [DeviceDefinitionUdiDeviceIdentifierBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionUdiDeviceIdentifier createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'deviceIdentifier':
         {
-          return copyWith(
-            deviceIdentifier: FhirString.empty(),
-          );
+          deviceIdentifier = FhirStringBuilder.empty();
+          return;
         }
       case 'issuer':
         {
-          return copyWith(
-            issuer: FhirUri.empty(),
-          );
+          issuer = FhirUriBuilder.empty();
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: FhirUri.empty(),
-          );
+          jurisdiction = FhirUriBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2337,31 +2082,33 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DeviceDefinitionUdiDeviceIdentifier clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool deviceIdentifier = false,
+    bool issuer = false,
+    bool jurisdiction = false,
   }) {
-    return DeviceDefinitionUdiDeviceIdentifier(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      deviceIdentifier: deviceIdentifier,
-      issuer: issuer,
-      jurisdiction: jurisdiction,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (deviceIdentifier) this.deviceIdentifier = null;
+    if (issuer) this.issuer = null;
+    if (jurisdiction) this.jurisdiction = null;
   }
 
   @override
-  DeviceDefinitionUdiDeviceIdentifier clone() => throw UnimplementedError();
+  DeviceDefinitionUdiDeviceIdentifierBuilder clone() =>
+      throw UnimplementedError();
   @override
-  DeviceDefinitionUdiDeviceIdentifier copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? deviceIdentifier,
-    FhirUri? issuer,
-    FhirUri? jurisdiction,
+  DeviceDefinitionUdiDeviceIdentifierBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? deviceIdentifier,
+    FhirUriBuilder? issuer,
+    FhirUriBuilder? jurisdiction,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2369,46 +2116,37 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DeviceDefinitionUdiDeviceIdentifier(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      deviceIdentifier: deviceIdentifier?.copyWith(
-            objectPath: '$newObjectPath.deviceIdentifier',
-          ) ??
-          this.deviceIdentifier,
-      issuer: issuer?.copyWith(
-            objectPath: '$newObjectPath.issuer',
-          ) ??
-          this.issuer,
-      jurisdiction: jurisdiction?.copyWith(
-            objectPath: '$newObjectPath.jurisdiction',
-          ) ??
-          this.jurisdiction,
+    final newResult = DeviceDefinitionUdiDeviceIdentifierBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      deviceIdentifier: deviceIdentifier ?? this.deviceIdentifier,
+      issuer: issuer ?? this.issuer,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceDefinitionUdiDeviceIdentifier) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceDefinitionUdiDeviceIdentifierBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2419,13 +2157,13 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2453,46 +2191,43 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   }
 }
 
-/// [DeviceDefinitionDeviceName]
+/// [DeviceDefinitionDeviceNameBuilder]
 /// A name given to the device to identify it.
-class DeviceDefinitionDeviceName extends BackboneElement {
+class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DeviceDefinitionDeviceName]
+  /// [DeviceDefinitionDeviceNameBuilder]
 
-  const DeviceDefinitionDeviceName({
+  DeviceDefinitionDeviceNameBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
-    required this.type,
+    this.name,
+    this.type,
     super.disallowExtensions,
   }) : super(
           objectPath: 'DeviceDefinition.deviceName',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinitionDeviceName.empty() => DeviceDefinitionDeviceName(
-        name: FhirString.empty(),
-        type: DeviceNameType.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceDefinitionDeviceNameBuilder.empty() =>
+      DeviceDefinitionDeviceNameBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionDeviceName.fromJson(
+  factory DeviceDefinitionDeviceNameBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceDefinition.deviceName';
-    return DeviceDefinitionDeviceName(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceDefinitionDeviceNameBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2501,8 +2236,8 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2510,37 +2245,37 @@ class DeviceDefinitionDeviceName extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      type: JsonParser.parsePrimitive<DeviceNameType>(
+      ),
+      type: JsonParser.parsePrimitive<DeviceNameTypeBuilder>(
         json,
         'type',
-        DeviceNameType.fromJson,
+        DeviceNameTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [DeviceDefinitionDeviceName]
+  /// Deserialize [DeviceDefinitionDeviceNameBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceDefinitionDeviceName.fromYaml(
+  factory DeviceDefinitionDeviceNameBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceDefinitionDeviceName.fromJson(
+      return DeviceDefinitionDeviceNameBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceDefinitionDeviceName.fromJson(
+      return DeviceDefinitionDeviceNameBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceDefinitionDeviceName '
+        'DeviceDefinitionDeviceNameBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2548,16 +2283,16 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DeviceDefinitionDeviceName]
+  /// [DeviceDefinitionDeviceNameBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionDeviceName.fromJsonString(
+  factory DeviceDefinitionDeviceNameBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceDefinitionDeviceName.fromJson(json);
+      return DeviceDefinitionDeviceNameBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2569,29 +2304,29 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
   /// [name]
   /// The name of the device.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [type]
   /// The type of deviceName.
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
-  final DeviceNameType type;
+  DeviceNameTypeBuilder? type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2600,31 +2335,16 @@ class DeviceDefinitionDeviceName extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('type', type);
     return json;
   }
 
@@ -2643,11 +2363,11 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2662,9 +2382,13 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2675,7 +2399,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2684,65 +2408,67 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is DeviceNameType) {
-            return copyWith(type: child);
+          if (child is DeviceNameTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2758,58 +2484,49 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceDefinitionDeviceName]
+  /// Creates a new [DeviceDefinitionDeviceNameBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionDeviceName createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: DeviceNameType.empty(),
-          );
+          type = DeviceNameTypeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2818,29 +2535,29 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DeviceDefinitionDeviceName clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
+    bool type = false,
   }) {
-    return DeviceDefinitionDeviceName(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      type: type,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (type) this.type = null;
   }
 
   @override
-  DeviceDefinitionDeviceName clone() => throw UnimplementedError();
+  DeviceDefinitionDeviceNameBuilder clone() => throw UnimplementedError();
   @override
-  DeviceDefinitionDeviceName copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    DeviceNameType? type,
+  DeviceDefinitionDeviceNameBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? name,
+    DeviceNameTypeBuilder? type,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2848,42 +2565,36 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DeviceDefinitionDeviceName(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
+    final newResult = DeviceDefinitionDeviceNameBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      type: type ?? this.type,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceDefinitionDeviceName) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceDefinitionDeviceNameBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2894,13 +2605,13 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2922,19 +2633,19 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   }
 }
 
-/// [DeviceDefinitionSpecialization]
+/// [DeviceDefinitionSpecializationBuilder]
 /// The capabilities supported on a device, the standards to which the
 /// device conforms for a particular purpose, and used for the
 /// communication.
-class DeviceDefinitionSpecialization extends BackboneElement {
+class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DeviceDefinitionSpecialization]
+  /// [DeviceDefinitionSpecializationBuilder]
 
-  const DeviceDefinitionSpecialization({
+  DeviceDefinitionSpecializationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.systemType,
+    this.systemType,
     this.version,
     super.disallowExtensions,
   }) : super(
@@ -2942,28 +2653,25 @@ class DeviceDefinitionSpecialization extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinitionSpecialization.empty() =>
-      DeviceDefinitionSpecialization(
-        systemType: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceDefinitionSpecializationBuilder.empty() =>
+      DeviceDefinitionSpecializationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionSpecialization.fromJson(
+  factory DeviceDefinitionSpecializationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceDefinition.specialization';
-    return DeviceDefinitionSpecialization(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceDefinitionSpecializationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2972,8 +2680,8 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2981,37 +2689,37 @@ class DeviceDefinitionSpecialization extends BackboneElement {
             ),
           )
           .toList(),
-      systemType: JsonParser.parsePrimitive<FhirString>(
+      systemType: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'systemType',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.systemType',
-      )!,
-      version: JsonParser.parsePrimitive<FhirString>(
+      ),
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
     );
   }
 
-  /// Deserialize [DeviceDefinitionSpecialization]
+  /// Deserialize [DeviceDefinitionSpecializationBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceDefinitionSpecialization.fromYaml(
+  factory DeviceDefinitionSpecializationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceDefinitionSpecialization.fromJson(
+      return DeviceDefinitionSpecializationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceDefinitionSpecialization.fromJson(
+      return DeviceDefinitionSpecializationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceDefinitionSpecialization '
+        'DeviceDefinitionSpecializationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3019,16 +2727,16 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DeviceDefinitionSpecialization]
+  /// [DeviceDefinitionSpecializationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionSpecialization.fromJsonString(
+  factory DeviceDefinitionSpecializationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceDefinitionSpecialization.fromJson(json);
+      return DeviceDefinitionSpecializationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3040,27 +2748,27 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   /// [systemType]
   /// The standard that is used to operate and communicate.
-  final FhirString systemType;
+  FhirStringBuilder? systemType;
 
   /// [version]
   /// The version of the standard that is used to operate and communicate.
-  final FhirString? version;
+  FhirStringBuilder? version;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3069,31 +2777,16 @@ class DeviceDefinitionSpecialization extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'systemType',
-      systemType,
-    );
-    addField(
-      'version',
-      version,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('systemType', systemType);
+    addField('version', version);
     return json;
   }
 
@@ -3112,11 +2805,11 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3131,7 +2824,9 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'systemType':
-        fields.add(systemType);
+        if (systemType != null) {
+          fields.add(systemType!);
+        }
       case 'version':
         if (version != null) {
           fields.add(version!);
@@ -3146,7 +2841,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3155,65 +2850,67 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'systemType':
         {
-          if (child is FhirString) {
-            return copyWith(systemType: child);
+          if (child is FhirStringBuilder) {
+            systemType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3229,58 +2926,49 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'systemType':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceDefinitionSpecialization]
+  /// Creates a new [DeviceDefinitionSpecializationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionSpecialization createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'systemType':
         {
-          return copyWith(
-            systemType: FhirString.empty(),
-          );
+          systemType = FhirStringBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3289,30 +2977,29 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DeviceDefinitionSpecialization clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool systemType = false,
     bool version = false,
   }) {
-    return DeviceDefinitionSpecialization(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      systemType: systemType,
-      version: version ? null : this.version,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (systemType) this.systemType = null;
+    if (version) this.version = null;
   }
 
   @override
-  DeviceDefinitionSpecialization clone() => throw UnimplementedError();
+  DeviceDefinitionSpecializationBuilder clone() => throw UnimplementedError();
   @override
-  DeviceDefinitionSpecialization copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? systemType,
-    FhirString? version,
+  DeviceDefinitionSpecializationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? systemType,
+    FhirStringBuilder? version,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3320,42 +3007,36 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DeviceDefinitionSpecialization(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      systemType: systemType?.copyWith(
-            objectPath: '$newObjectPath.systemType',
-          ) ??
-          this.systemType,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
+    final newResult = DeviceDefinitionSpecializationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      systemType: systemType ?? this.systemType,
+      version: version ?? this.version,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceDefinitionSpecialization) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceDefinitionSpecializationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3366,13 +3047,13 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3394,17 +3075,17 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   }
 }
 
-/// [DeviceDefinitionCapability]
+/// [DeviceDefinitionCapabilityBuilder]
 /// Device capabilities.
-class DeviceDefinitionCapability extends BackboneElement {
+class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DeviceDefinitionCapability]
+  /// [DeviceDefinitionCapabilityBuilder]
 
-  const DeviceDefinitionCapability({
+  DeviceDefinitionCapabilityBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.description,
     super.disallowExtensions,
   }) : super(
@@ -3412,27 +3093,25 @@ class DeviceDefinitionCapability extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinitionCapability.empty() => DeviceDefinitionCapability(
-        type: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceDefinitionCapabilityBuilder.empty() =>
+      DeviceDefinitionCapabilityBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionCapability.fromJson(
+  factory DeviceDefinitionCapabilityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceDefinition.capability';
-    return DeviceDefinitionCapability(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceDefinitionCapabilityBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3441,8 +3120,8 @@ class DeviceDefinitionCapability extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3450,15 +3129,15 @@ class DeviceDefinitionCapability extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
+      ),
       description: (json['description'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.description',
@@ -3469,22 +3148,22 @@ class DeviceDefinitionCapability extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionCapability]
+  /// Deserialize [DeviceDefinitionCapabilityBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceDefinitionCapability.fromYaml(
+  factory DeviceDefinitionCapabilityBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceDefinitionCapability.fromJson(
+      return DeviceDefinitionCapabilityBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceDefinitionCapability.fromJson(
+      return DeviceDefinitionCapabilityBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceDefinitionCapability '
+        'DeviceDefinitionCapabilityBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3492,16 +3171,16 @@ class DeviceDefinitionCapability extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DeviceDefinitionCapability]
+  /// [DeviceDefinitionCapabilityBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionCapability.fromJsonString(
+  factory DeviceDefinitionCapabilityBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceDefinitionCapability.fromJson(json);
+      return DeviceDefinitionCapabilityBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3513,27 +3192,27 @@ class DeviceDefinitionCapability extends BackboneElement {
 
   /// [type]
   /// Type of capability.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [description]
   /// Description of capability.
-  final List<CodeableConcept>? description;
+  List<CodeableConceptBuilder>? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3542,31 +3221,16 @@ class DeviceDefinitionCapability extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'description',
-      description,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('description', description);
     return json;
   }
 
@@ -3585,11 +3249,11 @@ class DeviceDefinitionCapability extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3604,7 +3268,9 @@ class DeviceDefinitionCapability extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'description':
         if (description != null) {
           fields.addAll(description!);
@@ -3619,7 +3285,7 @@ class DeviceDefinitionCapability extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3628,71 +3294,72 @@ class DeviceDefinitionCapability extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?description, ...child];
-            return copyWith(description: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            description = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?description, child];
-            return copyWith(description: newList);
+            description = [...(description ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3708,58 +3375,49 @@ class DeviceDefinitionCapability extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceDefinitionCapability]
+  /// Creates a new [DeviceDefinitionCapabilityBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionCapability createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: <CodeableConcept>[],
-          );
+          description = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3768,30 +3426,29 @@ class DeviceDefinitionCapability extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DeviceDefinitionCapability clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool description = false,
   }) {
-    return DeviceDefinitionCapability(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      description: description ? null : this.description,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (description) this.description = null;
   }
 
   @override
-  DeviceDefinitionCapability clone() => throw UnimplementedError();
+  DeviceDefinitionCapabilityBuilder clone() => throw UnimplementedError();
   @override
-  DeviceDefinitionCapability copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? description,
+  DeviceDefinitionCapabilityBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? description,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3799,46 +3456,36 @@ class DeviceDefinitionCapability extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DeviceDefinitionCapability(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      description: description
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.description',
-                ),
-              )
-              .toList() ??
-          this.description,
+    final newResult = DeviceDefinitionCapabilityBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      description: description ?? this.description,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceDefinitionCapability) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceDefinitionCapabilityBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3849,13 +3496,13 @@ class DeviceDefinitionCapability extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3867,7 +3514,7 @@ class DeviceDefinitionCapability extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       description,
       o.description,
     )) {
@@ -3877,18 +3524,18 @@ class DeviceDefinitionCapability extends BackboneElement {
   }
 }
 
-/// [DeviceDefinitionProperty]
+/// [DeviceDefinitionPropertyBuilder]
 /// The actual configuration settings of a device as it actually operates,
 /// e.g., regulation status, time properties.
-class DeviceDefinitionProperty extends BackboneElement {
+class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DeviceDefinitionProperty]
+  /// [DeviceDefinitionPropertyBuilder]
 
-  const DeviceDefinitionProperty({
+  DeviceDefinitionPropertyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.valueQuantity,
     this.valueCode,
     super.disallowExtensions,
@@ -3897,27 +3544,25 @@ class DeviceDefinitionProperty extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinitionProperty.empty() => DeviceDefinitionProperty(
-        type: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceDefinitionPropertyBuilder.empty() =>
+      DeviceDefinitionPropertyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionProperty.fromJson(
+  factory DeviceDefinitionPropertyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceDefinition.property';
-    return DeviceDefinitionProperty(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceDefinitionPropertyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3926,8 +3571,8 @@ class DeviceDefinitionProperty extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3935,15 +3580,15 @@ class DeviceDefinitionProperty extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
+      ),
       valueQuantity: (json['valueQuantity'] as List<dynamic>?)
-          ?.map<Quantity>(
-            (v) => Quantity.fromJson(
+          ?.map<QuantityBuilder>(
+            (v) => QuantityBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.valueQuantity',
@@ -3952,8 +3597,8 @@ class DeviceDefinitionProperty extends BackboneElement {
           )
           .toList(),
       valueCode: (json['valueCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.valueCode',
@@ -3964,22 +3609,22 @@ class DeviceDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionProperty]
+  /// Deserialize [DeviceDefinitionPropertyBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceDefinitionProperty.fromYaml(
+  factory DeviceDefinitionPropertyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceDefinitionProperty.fromJson(
+      return DeviceDefinitionPropertyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceDefinitionProperty.fromJson(
+      return DeviceDefinitionPropertyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceDefinitionProperty '
+        'DeviceDefinitionPropertyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3987,16 +3632,16 @@ class DeviceDefinitionProperty extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DeviceDefinitionProperty]
+  /// [DeviceDefinitionPropertyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionProperty.fromJsonString(
+  factory DeviceDefinitionPropertyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceDefinitionProperty.fromJson(json);
+      return DeviceDefinitionPropertyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4009,31 +3654,31 @@ class DeviceDefinitionProperty extends BackboneElement {
   /// [type]
   /// Code that specifies the property DeviceDefinitionPropetyCode
   /// (Extensible).
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [valueQuantity]
   /// Property value as a quantity.
-  final List<Quantity>? valueQuantity;
+  List<QuantityBuilder>? valueQuantity;
 
   /// [valueCode]
   /// Property value as a code, e.g., NTP4 (synced to NTP).
-  final List<CodeableConcept>? valueCode;
+  List<CodeableConceptBuilder>? valueCode;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4042,35 +3687,17 @@ class DeviceDefinitionProperty extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'valueQuantity',
-      valueQuantity,
-    );
-    addField(
-      'valueCode',
-      valueCode,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('valueQuantity', valueQuantity);
+    addField('valueCode', valueCode);
     return json;
   }
 
@@ -4090,11 +3717,11 @@ class DeviceDefinitionProperty extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4109,7 +3736,9 @@ class DeviceDefinitionProperty extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'valueQuantity':
         if (valueQuantity != null) {
           fields.addAll(valueQuantity!);
@@ -4128,7 +3757,7 @@ class DeviceDefinitionProperty extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4137,85 +3766,86 @@ class DeviceDefinitionProperty extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is List<Quantity>) {
-            // Add all elements from passed list
-            final newList = [...?valueQuantity, ...child];
-            return copyWith(valueQuantity: newList);
-          } else if (child is Quantity) {
+          if (child is List<QuantityBuilder>) {
+            // Replace or create new list
+            valueQuantity = child;
+            return;
+          } else if (child is QuantityBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?valueQuantity, child];
-            return copyWith(valueQuantity: newList);
+            valueQuantity = [...(valueQuantity ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?valueCode, ...child];
-            return copyWith(valueCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            valueCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?valueCode, child];
-            return copyWith(valueCode: newList);
+            valueCode = [...(valueCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4231,66 +3861,56 @@ class DeviceDefinitionProperty extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceDefinitionProperty]
+  /// Creates a new [DeviceDefinitionPropertyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionProperty createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueQuantity: <Quantity>[],
-          );
+          valueQuantity = <QuantityBuilder>[];
+          return;
         }
       case 'valueCode':
         {
-          return copyWith(
-            valueCode: <CodeableConcept>[],
-          );
+          valueCode = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4299,33 +3919,32 @@ class DeviceDefinitionProperty extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DeviceDefinitionProperty clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool valueQuantity = false,
     bool valueCode = false,
   }) {
-    return DeviceDefinitionProperty(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      valueQuantity: valueQuantity ? null : this.valueQuantity,
-      valueCode: valueCode ? null : this.valueCode,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (valueQuantity) this.valueQuantity = null;
+    if (valueCode) this.valueCode = null;
   }
 
   @override
-  DeviceDefinitionProperty clone() => throw UnimplementedError();
+  DeviceDefinitionPropertyBuilder clone() => throw UnimplementedError();
   @override
-  DeviceDefinitionProperty copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<Quantity>? valueQuantity,
-    List<CodeableConcept>? valueCode,
+  DeviceDefinitionPropertyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    List<QuantityBuilder>? valueQuantity,
+    List<CodeableConceptBuilder>? valueCode,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4333,54 +3952,37 @@ class DeviceDefinitionProperty extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DeviceDefinitionProperty(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      valueQuantity: valueQuantity
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.valueQuantity',
-                ),
-              )
-              .toList() ??
-          this.valueQuantity,
-      valueCode: valueCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.valueCode',
-                ),
-              )
-              .toList() ??
-          this.valueCode,
+    final newResult = DeviceDefinitionPropertyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      valueQuantity: valueQuantity ?? this.valueQuantity,
+      valueCode: valueCode ?? this.valueCode,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceDefinitionProperty) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceDefinitionPropertyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4391,13 +3993,13 @@ class DeviceDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4409,13 +4011,13 @@ class DeviceDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Quantity>(
+    if (!listEquals<QuantityBuilder>(
       valueQuantity,
       o.valueQuantity,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       valueCode,
       o.valueCode,
     )) {
@@ -4425,17 +4027,17 @@ class DeviceDefinitionProperty extends BackboneElement {
   }
 }
 
-/// [DeviceDefinitionMaterial]
+/// [DeviceDefinitionMaterialBuilder]
 /// A substance used to create the material(s) of which the device is made.
-class DeviceDefinitionMaterial extends BackboneElement {
+class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DeviceDefinitionMaterial]
+  /// [DeviceDefinitionMaterialBuilder]
 
-  const DeviceDefinitionMaterial({
+  DeviceDefinitionMaterialBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.substance,
+    this.substance,
     this.alternate,
     this.allergenicIndicator,
     super.disallowExtensions,
@@ -4444,27 +4046,25 @@ class DeviceDefinitionMaterial extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DeviceDefinitionMaterial.empty() => DeviceDefinitionMaterial(
-        substance: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DeviceDefinitionMaterialBuilder.empty() =>
+      DeviceDefinitionMaterialBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionMaterial.fromJson(
+  factory DeviceDefinitionMaterialBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DeviceDefinition.material';
-    return DeviceDefinitionMaterial(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DeviceDefinitionMaterialBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4473,8 +4073,8 @@ class DeviceDefinitionMaterial extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4482,43 +4082,43 @@ class DeviceDefinitionMaterial extends BackboneElement {
             ),
           )
           .toList(),
-      substance: JsonParser.parseObject<CodeableConcept>(
+      substance: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'substance',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.substance',
-      )!,
-      alternate: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      alternate: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'alternate',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.alternate',
       ),
-      allergenicIndicator: JsonParser.parsePrimitive<FhirBoolean>(
+      allergenicIndicator: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'allergenicIndicator',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.allergenicIndicator',
       ),
     );
   }
 
-  /// Deserialize [DeviceDefinitionMaterial]
+  /// Deserialize [DeviceDefinitionMaterialBuilder]
   /// from a [String] or [YamlMap] object
-  factory DeviceDefinitionMaterial.fromYaml(
+  factory DeviceDefinitionMaterialBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DeviceDefinitionMaterial.fromJson(
+      return DeviceDefinitionMaterialBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DeviceDefinitionMaterial.fromJson(
+      return DeviceDefinitionMaterialBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DeviceDefinitionMaterial '
+        'DeviceDefinitionMaterialBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4526,16 +4126,16 @@ class DeviceDefinitionMaterial extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DeviceDefinitionMaterial]
+  /// [DeviceDefinitionMaterialBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionMaterial.fromJsonString(
+  factory DeviceDefinitionMaterialBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DeviceDefinitionMaterial.fromJson(json);
+      return DeviceDefinitionMaterialBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4547,31 +4147,31 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   /// [substance]
   /// The substance.
-  final CodeableConcept substance;
+  CodeableConceptBuilder? substance;
 
   /// [alternate]
   /// Indicates an alternative material of the device.
-  final FhirBoolean? alternate;
+  FhirBooleanBuilder? alternate;
 
   /// [allergenicIndicator]
   /// Whether the substance is a known or suspected allergen.
-  final FhirBoolean? allergenicIndicator;
+  FhirBooleanBuilder? allergenicIndicator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4580,35 +4180,17 @@ class DeviceDefinitionMaterial extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'substance',
-      substance,
-    );
-    addField(
-      'alternate',
-      alternate,
-    );
-    addField(
-      'allergenicIndicator',
-      allergenicIndicator,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('substance', substance);
+    addField('alternate', alternate);
+    addField('allergenicIndicator', allergenicIndicator);
     return json;
   }
 
@@ -4628,11 +4210,11 @@ class DeviceDefinitionMaterial extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4647,7 +4229,9 @@ class DeviceDefinitionMaterial extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'substance':
-        fields.add(substance);
+        if (substance != null) {
+          fields.add(substance!);
+        }
       case 'alternate':
         if (alternate != null) {
           fields.add(alternate!);
@@ -4666,7 +4250,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4675,73 +4259,76 @@ class DeviceDefinitionMaterial extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
         {
-          if (child is CodeableConcept) {
-            return copyWith(substance: child);
+          if (child is CodeableConceptBuilder) {
+            substance = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'alternate':
         {
-          if (child is FhirBoolean) {
-            return copyWith(alternate: child);
+          if (child is FhirBooleanBuilder) {
+            alternate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'allergenicIndicator':
         {
-          if (child is FhirBoolean) {
-            return copyWith(allergenicIndicator: child);
+          if (child is FhirBooleanBuilder) {
+            allergenicIndicator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4757,66 +4344,56 @@ class DeviceDefinitionMaterial extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'substance':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'alternate':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'allergenicIndicator':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DeviceDefinitionMaterial]
+  /// Creates a new [DeviceDefinitionMaterialBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionMaterial createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'substance':
         {
-          return copyWith(
-            substance: CodeableConcept.empty(),
-          );
+          substance = CodeableConceptBuilder.empty();
+          return;
         }
       case 'alternate':
         {
-          return copyWith(
-            alternate: FhirBoolean.empty(),
-          );
+          alternate = FhirBooleanBuilder.empty();
+          return;
         }
       case 'allergenicIndicator':
         {
-          return copyWith(
-            allergenicIndicator: FhirBoolean.empty(),
-          );
+          allergenicIndicator = FhirBooleanBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4825,34 +4402,32 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DeviceDefinitionMaterial clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool substance = false,
     bool alternate = false,
     bool allergenicIndicator = false,
   }) {
-    return DeviceDefinitionMaterial(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      substance: substance,
-      alternate: alternate ? null : this.alternate,
-      allergenicIndicator:
-          allergenicIndicator ? null : this.allergenicIndicator,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (substance) this.substance = null;
+    if (alternate) this.alternate = null;
+    if (allergenicIndicator) this.allergenicIndicator = null;
   }
 
   @override
-  DeviceDefinitionMaterial clone() => throw UnimplementedError();
+  DeviceDefinitionMaterialBuilder clone() => throw UnimplementedError();
   @override
-  DeviceDefinitionMaterial copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? substance,
-    FhirBoolean? alternate,
-    FhirBoolean? allergenicIndicator,
+  DeviceDefinitionMaterialBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? substance,
+    FhirBooleanBuilder? alternate,
+    FhirBooleanBuilder? allergenicIndicator,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4860,46 +4435,37 @@ class DeviceDefinitionMaterial extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DeviceDefinitionMaterial(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      substance: substance?.copyWith(
-            objectPath: '$newObjectPath.substance',
-          ) ??
-          this.substance,
-      alternate: alternate?.copyWith(
-            objectPath: '$newObjectPath.alternate',
-          ) ??
-          this.alternate,
-      allergenicIndicator: allergenicIndicator?.copyWith(
-            objectPath: '$newObjectPath.allergenicIndicator',
-          ) ??
-          this.allergenicIndicator,
+    final newResult = DeviceDefinitionMaterialBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      substance: substance ?? this.substance,
+      alternate: alternate ?? this.alternate,
+      allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DeviceDefinitionMaterial) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DeviceDefinitionMaterialBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4910,13 +4476,13 @@ class DeviceDefinitionMaterial extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

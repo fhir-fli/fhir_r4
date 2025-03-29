@@ -42,7 +42,7 @@ class FhirBase64BinaryBuilder extends PrimitiveTypeBuilder<String?>
   factory FhirBase64BinaryBuilder(
     dynamic rawInput, {
     ElementBuilder? element,
-    FhirString? id,
+    FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Base64Binary',
@@ -241,7 +241,7 @@ class FhirBase64BinaryBuilder extends PrimitiveTypeBuilder<String?>
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirBase64BinaryBuilder &&
-      other!.value == value &&
+      other.value == value &&
       other.element == element;
 
   @override

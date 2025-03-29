@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [RiskAssessment]
+/// [RiskAssessmentBuilder]
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
-class RiskAssessment extends DomainResource {
+class RiskAssessmentBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [RiskAssessment]
+  /// [RiskAssessmentBuilder]
 
-  const RiskAssessment({
+  RiskAssessmentBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,10 +23,10 @@ class RiskAssessment extends DomainResource {
     this.identifier,
     this.basedOn,
     this.parent,
-    required this.status,
+    this.status,
     this.method,
     this.code,
-    required this.subject,
+    this.subject,
     this.encounter,
     this.occurrenceX,
     this.condition,
@@ -41,52 +43,48 @@ class RiskAssessment extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RiskAssessment.empty() => RiskAssessment(
-        status: ObservationStatus.values.first,
-        subject: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory RiskAssessmentBuilder.empty() => RiskAssessmentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RiskAssessment.fromJson(
+  factory RiskAssessmentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RiskAssessment';
-    return RiskAssessment(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RiskAssessmentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -95,8 +93,8 @@ class RiskAssessment extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -105,8 +103,8 @@ class RiskAssessment extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -115,8 +113,8 @@ class RiskAssessment extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -124,71 +122,72 @@ class RiskAssessment extends DomainResource {
             ),
           )
           .toList(),
-      basedOn: JsonParser.parseObject<Reference>(
+      basedOn: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'basedOn',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.basedOn',
       ),
-      parent: JsonParser.parseObject<Reference>(
+      parent: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'parent',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.parent',
       ),
-      status: JsonParser.parsePrimitive<ObservationStatus>(
+      status: JsonParser.parsePrimitive<ObservationStatusBuilder>(
         json,
         'status',
-        ObservationStatus.fromJson,
+        ObservationStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      method: JsonParser.parseObject<CodeableConcept>(
+      ),
+      method: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'method',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.method',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXRiskAssessment>(
+      occurrenceX:
+          JsonParser.parsePolymorphic<OccurrenceXRiskAssessmentBuilder>(
         json,
         {
-          'occurrenceDateTime': FhirDateTime.fromJson,
-          'occurrencePeriod': Period.fromJson,
+          'occurrenceDateTime': FhirDateTimeBuilder.fromJson,
+          'occurrencePeriod': PeriodBuilder.fromJson,
         },
         objectPath,
       ),
-      condition: JsonParser.parseObject<Reference>(
+      condition: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'condition',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.condition',
       ),
-      performer: JsonParser.parseObject<Reference>(
+      performer: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'performer',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.performer',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -197,8 +196,8 @@ class RiskAssessment extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -207,8 +206,8 @@ class RiskAssessment extends DomainResource {
           )
           .toList(),
       basis: (json['basis'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basis',
@@ -217,8 +216,8 @@ class RiskAssessment extends DomainResource {
           )
           .toList(),
       prediction: (json['prediction'] as List<dynamic>?)
-          ?.map<RiskAssessmentPrediction>(
-            (v) => RiskAssessmentPrediction.fromJson(
+          ?.map<RiskAssessmentPredictionBuilder>(
+            (v) => RiskAssessmentPredictionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.prediction',
@@ -226,15 +225,15 @@ class RiskAssessment extends DomainResource {
             ),
           )
           .toList(),
-      mitigation: JsonParser.parsePrimitive<FhirString>(
+      mitigation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'mitigation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.mitigation',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -245,22 +244,22 @@ class RiskAssessment extends DomainResource {
     );
   }
 
-  /// Deserialize [RiskAssessment]
+  /// Deserialize [RiskAssessmentBuilder]
   /// from a [String] or [YamlMap] object
-  factory RiskAssessment.fromYaml(
+  factory RiskAssessmentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RiskAssessment.fromJson(
+      return RiskAssessmentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RiskAssessment.fromJson(
+      return RiskAssessmentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RiskAssessment '
+        'RiskAssessmentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -268,16 +267,16 @@ class RiskAssessment extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [RiskAssessment]
+  /// [RiskAssessmentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RiskAssessment.fromJsonString(
+  factory RiskAssessmentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RiskAssessment.fromJson(json);
+      return RiskAssessmentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -289,98 +288,99 @@ class RiskAssessment extends DomainResource {
 
   /// [identifier]
   /// Business identifier assigned to the risk assessment.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [basedOn]
   /// A reference to the request that is fulfilled by this risk assessment.
-  final Reference? basedOn;
+  ReferenceBuilder? basedOn;
 
   /// [parent]
   /// A reference to a resource that this risk assessment is part of, such as
   /// a Procedure.
-  final Reference? parent;
+  ReferenceBuilder? parent;
 
   /// [status]
   /// The status of the RiskAssessment, using the same statuses as an
   /// Observation.
-  final ObservationStatus status;
+  ObservationStatusBuilder? status;
 
   /// [method]
   /// The algorithm, process or mechanism used to evaluate the risk.
-  final CodeableConcept? method;
+  CodeableConceptBuilder? method;
 
   /// [code]
   /// The type of the risk assessment performed.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [subject]
   /// The patient or group the risk assessment applies to.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The encounter where the assessment was performed.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [occurrenceX]
   /// The date (and possibly time) the risk assessment was performed.
-  final OccurrenceXRiskAssessment? occurrenceX;
+  OccurrenceXRiskAssessmentBuilder? occurrenceX;
 
-  /// Getter for [occurrenceDateTime] as a FhirDateTime
-  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+  /// Getter for [occurrenceDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get occurrenceDateTime =>
+      occurrenceX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [occurrencePeriod] as a Period
-  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+  /// Getter for [occurrencePeriod] as a PeriodBuilder
+  PeriodBuilder? get occurrencePeriod => occurrenceX?.isAs<PeriodBuilder>();
 
   /// [condition]
   /// For assessments or prognosis specific to a particular condition,
   /// indicates the condition being assessed.
-  final Reference? condition;
+  ReferenceBuilder? condition;
 
   /// [performer]
   /// The provider or software application that performed the assessment.
-  final Reference? performer;
+  ReferenceBuilder? performer;
 
   /// [reasonCode]
   /// The reason the risk assessment was performed.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Resources supporting the reason the risk assessment was performed.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [basis]
   /// Indicates the source data considered as part of the assessment (for
   /// example, FamilyHistory, Observations, Procedures, Conditions, etc.).
-  final List<Reference>? basis;
+  List<ReferenceBuilder>? basis;
 
   /// [prediction]
   /// Describes the expected outcome for the subject.
-  final List<RiskAssessmentPrediction>? prediction;
+  List<RiskAssessmentPredictionBuilder>? prediction;
 
   /// [mitigation]
   /// A description of the steps that might be taken to reduce the identified
   /// risk(s).
-  final FhirString? mitigation;
+  FhirStringBuilder? mitigation;
 
   /// [note]
   /// Additional comments about the risk assessment.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -389,116 +389,41 @@ class RiskAssessment extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'parent',
-      parent,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'method',
-      method,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('basedOn', basedOn);
+    addField('parent', parent);
+    addField('status', status);
+    addField('method', method);
+    addField('code', code);
+    addField('subject', subject);
+    addField('encounter', encounter);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField(
-        'occurrence${fhirType.capitalize()}',
-        occurrenceX,
-      );
+      addField('occurrence${fhirType.capitalize()}', occurrenceX);
     }
 
-    addField(
-      'condition',
-      condition,
-    );
-    addField(
-      'performer',
-      performer,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'basis',
-      basis,
-    );
-    addField(
-      'prediction',
-      prediction,
-    );
-    addField(
-      'mitigation',
-      mitigation,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('condition', condition);
+    addField('performer', performer);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('basis', basis);
+    addField('prediction', prediction);
+    addField('mitigation', mitigation);
+    addField('note', note);
     return json;
   }
 
@@ -537,11 +462,11 @@ class RiskAssessment extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -588,7 +513,9 @@ class RiskAssessment extends DomainResource {
           fields.add(parent!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'method':
         if (method != null) {
           fields.add(method!);
@@ -598,21 +525,27 @@ class RiskAssessment extends DomainResource {
           fields.add(code!);
         }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
         }
       case 'occurrence':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceX':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceDateTime':
-        if (occurrenceX is FhirDateTime) {
+        if (occurrenceX is FhirDateTimeBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrencePeriod':
-        if (occurrenceX is Period) {
+        if (occurrenceX is PeriodBuilder) {
           fields.add(occurrenceX!);
         }
       case 'condition':
@@ -657,7 +590,7 @@ class RiskAssessment extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -666,289 +599,308 @@ class RiskAssessment extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is Reference) {
-            return copyWith(basedOn: child);
+          if (child is ReferenceBuilder) {
+            basedOn = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'parent':
         {
-          if (child is Reference) {
-            return copyWith(parent: child);
+          if (child is ReferenceBuilder) {
+            parent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ObservationStatus) {
-            return copyWith(status: child);
+          if (child is ObservationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
         {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
+          if (child is CodeableConceptBuilder) {
+            method = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceX':
         {
-          if (child is OccurrenceXRiskAssessment) {
-            return copyWith(occurrenceX: child);
+          if (child is OccurrenceXRiskAssessmentBuilder) {
+            occurrenceX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(occurrenceX: child);
+            if (child is FhirDateTimeBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(occurrenceX: child);
+            if (child is PeriodBuilder) {
+              occurrenceX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'occurrenceFhirDateTime':
+      case 'occurrenceDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(occurrenceX: child);
+          if (child is FhirDateTimeBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrencePeriod':
         {
-          if (child is Period) {
-            return copyWith(occurrenceX: child);
+          if (child is PeriodBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is Reference) {
-            return copyWith(condition: child);
+          if (child is ReferenceBuilder) {
+            condition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is Reference) {
-            return copyWith(performer: child);
+          if (child is ReferenceBuilder) {
+            performer = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basis':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basis, ...child];
-            return copyWith(basis: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basis = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basis, child];
-            return copyWith(basis: newList);
+            basis = [...(basis ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'prediction':
         {
-          if (child is List<RiskAssessmentPrediction>) {
-            // Add all elements from passed list
-            final newList = [...?prediction, ...child];
-            return copyWith(prediction: newList);
-          } else if (child is RiskAssessmentPrediction) {
+          if (child is List<RiskAssessmentPredictionBuilder>) {
+            // Replace or create new list
+            prediction = child;
+            return;
+          } else if (child is RiskAssessmentPredictionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?prediction, child];
-            return copyWith(prediction: newList);
+            prediction = [...(prediction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mitigation':
         {
-          if (child is FhirString) {
-            return copyWith(mitigation: child);
+          if (child is FhirStringBuilder) {
+            mitigation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -964,231 +916,201 @@ class RiskAssessment extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'parent':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'method':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTime', 'Period'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
       case 'occurrenceDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'occurrencePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'condition':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'performer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'basis':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'prediction':
-        return ['RiskAssessmentPrediction'];
+        return ['RiskAssessmentPredictionBuilder'];
       case 'mitigation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RiskAssessment]
+  /// Creates a new [RiskAssessmentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RiskAssessment createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: Reference.empty(),
-          );
+          basedOn = ReferenceBuilder.empty();
+          return;
         }
       case 'parent':
         {
-          return copyWith(
-            parent: Reference.empty(),
-          );
+          parent = ReferenceBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ObservationStatus.empty(),
-          );
+          status = ObservationStatusBuilder.empty();
+          return;
         }
       case 'method':
         {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
+          method = CodeableConceptBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'occurrence':
       case 'occurrenceX':
       case 'occurrenceDateTime':
         {
-          return copyWith(
-            occurrenceX: FhirDateTime.empty(),
-          );
+          occurrenceX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'occurrencePeriod':
         {
-          return copyWith(
-            occurrenceX: Period.empty(),
-          );
+          occurrenceX = PeriodBuilder.empty();
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: Reference.empty(),
-          );
+          condition = ReferenceBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: Reference.empty(),
-          );
+          performer = ReferenceBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'basis':
         {
-          return copyWith(
-            basis: <Reference>[],
-          );
+          basis = <ReferenceBuilder>[];
+          return;
         }
       case 'prediction':
         {
-          return copyWith(
-            prediction: <RiskAssessmentPrediction>[],
-          );
+          prediction = <RiskAssessmentPredictionBuilder>[];
+          return;
         }
       case 'mitigation':
         {
-          return copyWith(
-            mitigation: FhirString.empty(),
-          );
+          mitigation = FhirStringBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1197,7 +1119,7 @@ class RiskAssessment extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  RiskAssessment clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1209,8 +1131,10 @@ class RiskAssessment extends DomainResource {
     bool identifier = false,
     bool basedOn = false,
     bool parent = false,
+    bool status = false,
     bool method = false,
     bool code = false,
+    bool subject = false,
     bool encounter = false,
     bool occurrence = false,
     bool condition = false,
@@ -1222,207 +1146,118 @@ class RiskAssessment extends DomainResource {
     bool mitigation = false,
     bool note = false,
   }) {
-    return RiskAssessment(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      parent: parent ? null : this.parent,
-      status: status,
-      method: method ? null : this.method,
-      code: code ? null : this.code,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      occurrenceX: occurrence ? null : occurrenceX,
-      condition: condition ? null : this.condition,
-      performer: performer ? null : this.performer,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      basis: basis ? null : this.basis,
-      prediction: prediction ? null : this.prediction,
-      mitigation: mitigation ? null : this.mitigation,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (basedOn) this.basedOn = null;
+    if (parent) this.parent = null;
+    if (status) this.status = null;
+    if (method) this.method = null;
+    if (code) this.code = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (occurrence) this.occurrenceX = null;
+    if (condition) this.condition = null;
+    if (performer) this.performer = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (basis) this.basis = null;
+    if (prediction) this.prediction = null;
+    if (mitigation) this.mitigation = null;
+    if (note) this.note = null;
   }
 
   @override
-  RiskAssessment clone() => throw UnimplementedError();
+  RiskAssessmentBuilder clone() => throw UnimplementedError();
   @override
-  RiskAssessment copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    Reference? basedOn,
-    Reference? parent,
-    ObservationStatus? status,
-    CodeableConcept? method,
-    CodeableConcept? code,
-    Reference? subject,
-    Reference? encounter,
-    OccurrenceXRiskAssessment? occurrenceX,
-    Reference? condition,
-    Reference? performer,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Reference>? basis,
-    List<RiskAssessmentPrediction>? prediction,
-    FhirString? mitigation,
-    List<Annotation>? note,
+  RiskAssessmentBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    ReferenceBuilder? basedOn,
+    ReferenceBuilder? parent,
+    ObservationStatusBuilder? status,
+    CodeableConceptBuilder? method,
+    CodeableConceptBuilder? code,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    OccurrenceXRiskAssessmentBuilder? occurrenceX,
+    ReferenceBuilder? condition,
+    ReferenceBuilder? performer,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<ReferenceBuilder>? basis,
+    List<RiskAssessmentPredictionBuilder>? prediction,
+    FhirStringBuilder? mitigation,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return RiskAssessment(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = RiskAssessmentBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn?.copyWith(
-            objectPath: '$newObjectPath.basedOn',
-          ) ??
-          this.basedOn,
-      parent: parent?.copyWith(
-            objectPath: '$newObjectPath.parent',
-          ) ??
-          this.parent,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      occurrenceX: occurrenceX?.copyWith(
-            objectPath: '$newObjectPath.occurrenceX',
-          ) as OccurrenceXRiskAssessment? ??
-          this.occurrenceX,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
-      performer: performer?.copyWith(
-            objectPath: '$newObjectPath.performer',
-          ) ??
-          this.performer,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      basis: basis
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basis',
-                ),
-              )
-              .toList() ??
-          this.basis,
-      prediction: prediction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.prediction',
-                ),
-              )
-              .toList() ??
-          this.prediction,
-      mitigation: mitigation?.copyWith(
-            objectPath: '$newObjectPath.mitigation',
-          ) ??
-          this.mitigation,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      basedOn: basedOn ?? this.basedOn,
+      parent: parent ?? this.parent,
+      status: status ?? this.status,
+      method: method ?? this.method,
+      code: code ?? this.code,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
+      condition: condition ?? this.condition,
+      performer: performer ?? this.performer,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      basis: basis ?? this.basis,
+      prediction: prediction ?? this.prediction,
+      mitigation: mitigation ?? this.mitigation,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RiskAssessment) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RiskAssessmentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1457,25 +1292,25 @@ class RiskAssessment extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1541,25 +1376,25 @@ class RiskAssessment extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basis,
       o.basis,
     )) {
       return false;
     }
-    if (!listEquals<RiskAssessmentPrediction>(
+    if (!listEquals<RiskAssessmentPredictionBuilder>(
       prediction,
       o.prediction,
     )) {
@@ -1571,7 +1406,7 @@ class RiskAssessment extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -1581,13 +1416,13 @@ class RiskAssessment extends DomainResource {
   }
 }
 
-/// [RiskAssessmentPrediction]
+/// [RiskAssessmentPredictionBuilder]
 /// Describes the expected outcome for the subject.
-class RiskAssessmentPrediction extends BackboneElement {
+class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [RiskAssessmentPrediction]
+  /// [RiskAssessmentPredictionBuilder]
 
-  const RiskAssessmentPrediction({
+  RiskAssessmentPredictionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1603,25 +1438,25 @@ class RiskAssessmentPrediction extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RiskAssessmentPrediction.empty() => const RiskAssessmentPrediction();
+  /// For Builder classes, no fields are required
+  factory RiskAssessmentPredictionBuilder.empty() =>
+      RiskAssessmentPredictionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RiskAssessmentPrediction.fromJson(
+  factory RiskAssessmentPredictionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'RiskAssessment.prediction';
-    return RiskAssessmentPrediction(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RiskAssessmentPredictionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1630,8 +1465,8 @@ class RiskAssessmentPrediction extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1639,66 +1474,66 @@ class RiskAssessmentPrediction extends BackboneElement {
             ),
           )
           .toList(),
-      outcome: JsonParser.parseObject<CodeableConcept>(
+      outcome: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'outcome',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.outcome',
       ),
-      probabilityX:
-          JsonParser.parsePolymorphic<ProbabilityXRiskAssessmentPrediction>(
+      probabilityX: JsonParser.parsePolymorphic<
+          ProbabilityXRiskAssessmentPredictionBuilder>(
         json,
         {
-          'probabilityDecimal': FhirDecimal.fromJson,
-          'probabilityRange': Range.fromJson,
+          'probabilityDecimal': FhirDecimalBuilder.fromJson,
+          'probabilityRange': RangeBuilder.fromJson,
         },
         objectPath,
       ),
-      qualitativeRisk: JsonParser.parseObject<CodeableConcept>(
+      qualitativeRisk: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'qualitativeRisk',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.qualitativeRisk',
       ),
-      relativeRisk: JsonParser.parsePrimitive<FhirDecimal>(
+      relativeRisk: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'relativeRisk',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.relativeRisk',
       ),
-      whenX: JsonParser.parsePolymorphic<WhenXRiskAssessmentPrediction>(
+      whenX: JsonParser.parsePolymorphic<WhenXRiskAssessmentPredictionBuilder>(
         json,
         {
-          'whenPeriod': Period.fromJson,
-          'whenRange': Range.fromJson,
+          'whenPeriod': PeriodBuilder.fromJson,
+          'whenRange': RangeBuilder.fromJson,
         },
         objectPath,
       ),
-      rationale: JsonParser.parsePrimitive<FhirString>(
+      rationale: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'rationale',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.rationale',
       ),
     );
   }
 
-  /// Deserialize [RiskAssessmentPrediction]
+  /// Deserialize [RiskAssessmentPredictionBuilder]
   /// from a [String] or [YamlMap] object
-  factory RiskAssessmentPrediction.fromYaml(
+  factory RiskAssessmentPredictionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RiskAssessmentPrediction.fromJson(
+      return RiskAssessmentPredictionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RiskAssessmentPrediction.fromJson(
+      return RiskAssessmentPredictionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RiskAssessmentPrediction '
+        'RiskAssessmentPredictionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1706,16 +1541,16 @@ class RiskAssessmentPrediction extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [RiskAssessmentPrediction]
+  /// [RiskAssessmentPredictionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RiskAssessmentPrediction.fromJsonString(
+  factory RiskAssessmentPredictionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RiskAssessmentPrediction.fromJson(json);
+      return RiskAssessmentPredictionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1728,60 +1563,61 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// [outcome]
   /// One of the potential outcomes for the patient (e.g. remission, death, a
   /// particular condition).
-  final CodeableConcept? outcome;
+  CodeableConceptBuilder? outcome;
 
   /// [probabilityX]
   /// Indicates how likely the outcome is (in the specified timeframe).
-  final ProbabilityXRiskAssessmentPrediction? probabilityX;
+  ProbabilityXRiskAssessmentPredictionBuilder? probabilityX;
 
-  /// Getter for [probabilityDecimal] as a FhirDecimal
-  FhirDecimal? get probabilityDecimal => probabilityX?.isAs<FhirDecimal>();
+  /// Getter for [probabilityDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get probabilityDecimal =>
+      probabilityX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [probabilityRange] as a Range
-  Range? get probabilityRange => probabilityX?.isAs<Range>();
+  /// Getter for [probabilityRange] as a RangeBuilder
+  RangeBuilder? get probabilityRange => probabilityX?.isAs<RangeBuilder>();
 
   /// [qualitativeRisk]
   /// Indicates how likely the outcome is (in the specified timeframe),
   /// expressed as a qualitative value (e.g. low, medium, or high).
-  final CodeableConcept? qualitativeRisk;
+  CodeableConceptBuilder? qualitativeRisk;
 
   /// [relativeRisk]
   /// Indicates the risk for this particular subject (with their specific
   /// characteristics) divided by the risk of the population in general.
   /// (Numbers greater than 1 = higher risk than the population, numbers less
   /// than 1 = lower risk.).
-  final FhirDecimal? relativeRisk;
+  FhirDecimalBuilder? relativeRisk;
 
   /// [whenX]
   /// Indicates the period of time or age range of the subject to which the
   /// specified probability applies.
-  final WhenXRiskAssessmentPrediction? whenX;
+  WhenXRiskAssessmentPredictionBuilder? whenX;
 
-  /// Getter for [whenPeriod] as a Period
-  Period? get whenPeriod => whenX?.isAs<Period>();
+  /// Getter for [whenPeriod] as a PeriodBuilder
+  PeriodBuilder? get whenPeriod => whenX?.isAs<PeriodBuilder>();
 
-  /// Getter for [whenRange] as a Range
-  Range? get whenRange => whenX?.isAs<Range>();
+  /// Getter for [whenRange] as a RangeBuilder
+  RangeBuilder? get whenRange => whenX?.isAs<RangeBuilder>();
 
   /// [rationale]
   /// Additional information explaining the basis for the prediction.
-  final FhirString? rationale;
+  FhirStringBuilder? rationale;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1790,55 +1626,28 @@ class RiskAssessmentPrediction extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'outcome',
-      outcome,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('outcome', outcome);
     if (probabilityX != null) {
       final fhirType = probabilityX!.fhirType;
-      addField(
-        'probability${fhirType.capitalize()}',
-        probabilityX,
-      );
+      addField('probability${fhirType.capitalize()}', probabilityX);
     }
 
-    addField(
-      'qualitativeRisk',
-      qualitativeRisk,
-    );
-    addField(
-      'relativeRisk',
-      relativeRisk,
-    );
+    addField('qualitativeRisk', qualitativeRisk);
+    addField('relativeRisk', relativeRisk);
     if (whenX != null) {
       final fhirType = whenX!.fhirType;
-      addField(
-        'when${fhirType.capitalize()}',
-        whenX,
-      );
+      addField('when${fhirType.capitalize()}', whenX);
     }
 
-    addField(
-      'rationale',
-      rationale,
-    );
+    addField('rationale', rationale);
     return json;
   }
 
@@ -1861,11 +1670,11 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1884,15 +1693,19 @@ class RiskAssessmentPrediction extends BackboneElement {
           fields.add(outcome!);
         }
       case 'probability':
-        fields.add(probabilityX!);
+        if (probabilityX != null) {
+          fields.add(probabilityX!);
+        }
       case 'probabilityX':
-        fields.add(probabilityX!);
+        if (probabilityX != null) {
+          fields.add(probabilityX!);
+        }
       case 'probabilityDecimal':
-        if (probabilityX is FhirDecimal) {
+        if (probabilityX is FhirDecimalBuilder) {
           fields.add(probabilityX!);
         }
       case 'probabilityRange':
-        if (probabilityX is Range) {
+        if (probabilityX is RangeBuilder) {
           fields.add(probabilityX!);
         }
       case 'qualitativeRisk':
@@ -1904,15 +1717,19 @@ class RiskAssessmentPrediction extends BackboneElement {
           fields.add(relativeRisk!);
         }
       case 'when':
-        fields.add(whenX!);
+        if (whenX != null) {
+          fields.add(whenX!);
+        }
       case 'whenX':
-        fields.add(whenX!);
+        if (whenX != null) {
+          fields.add(whenX!);
+        }
       case 'whenPeriod':
-        if (whenX is Period) {
+        if (whenX is PeriodBuilder) {
           fields.add(whenX!);
         }
       case 'whenRange':
-        if (whenX is Range) {
+        if (whenX is RangeBuilder) {
           fields.add(whenX!);
         }
       case 'rationale':
@@ -1929,7 +1746,7 @@ class RiskAssessmentPrediction extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1938,141 +1755,155 @@ class RiskAssessmentPrediction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
         {
-          if (child is CodeableConcept) {
-            return copyWith(outcome: child);
+          if (child is CodeableConceptBuilder) {
+            outcome = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'probabilityX':
         {
-          if (child is ProbabilityXRiskAssessmentPrediction) {
-            return copyWith(probabilityX: child);
+          if (child is ProbabilityXRiskAssessmentPredictionBuilder) {
+            probabilityX = child;
+            return;
           } else {
-            if (child is FhirDecimal) {
-              return copyWith(probabilityX: child);
+            if (child is FhirDecimalBuilder) {
+              probabilityX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(probabilityX: child);
+            if (child is RangeBuilder) {
+              probabilityX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'probabilityFhirDecimal':
+      case 'probabilityDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(probabilityX: child);
+          if (child is FhirDecimalBuilder) {
+            probabilityX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'probabilityRange':
         {
-          if (child is Range) {
-            return copyWith(probabilityX: child);
+          if (child is RangeBuilder) {
+            probabilityX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'qualitativeRisk':
         {
-          if (child is CodeableConcept) {
-            return copyWith(qualitativeRisk: child);
+          if (child is CodeableConceptBuilder) {
+            qualitativeRisk = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relativeRisk':
         {
-          if (child is FhirDecimal) {
-            return copyWith(relativeRisk: child);
+          if (child is FhirDecimalBuilder) {
+            relativeRisk = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'whenX':
         {
-          if (child is WhenXRiskAssessmentPrediction) {
-            return copyWith(whenX: child);
+          if (child is WhenXRiskAssessmentPredictionBuilder) {
+            whenX = child;
+            return;
           } else {
-            if (child is Period) {
-              return copyWith(whenX: child);
+            if (child is PeriodBuilder) {
+              whenX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(whenX: child);
+            if (child is RangeBuilder) {
+              whenX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'whenPeriod':
         {
-          if (child is Period) {
-            return copyWith(whenX: child);
+          if (child is PeriodBuilder) {
+            whenX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'whenRange':
         {
-          if (child is Range) {
-            return copyWith(whenX: child);
+          if (child is RangeBuilder) {
+            whenX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rationale':
         {
-          if (child is FhirString) {
-            return copyWith(rationale: child);
+          if (child is FhirStringBuilder) {
+            rationale = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2088,116 +1919,101 @@ class RiskAssessmentPrediction extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'outcome':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'probability':
       case 'probabilityX':
-        return ['FhirDecimal', 'Range'];
+        return ['FhirDecimalBuilder', 'RangeBuilder'];
       case 'probabilityDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'probabilityRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'qualitativeRisk':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'relativeRisk':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'when':
       case 'whenX':
-        return ['Period', 'Range'];
+        return ['PeriodBuilder', 'RangeBuilder'];
       case 'whenPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'whenRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'rationale':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RiskAssessmentPrediction]
+  /// Creates a new [RiskAssessmentPredictionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RiskAssessmentPrediction createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'outcome':
         {
-          return copyWith(
-            outcome: CodeableConcept.empty(),
-          );
+          outcome = CodeableConceptBuilder.empty();
+          return;
         }
       case 'probability':
       case 'probabilityX':
       case 'probabilityDecimal':
         {
-          return copyWith(
-            probabilityX: FhirDecimal.empty(),
-          );
+          probabilityX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'probabilityRange':
         {
-          return copyWith(
-            probabilityX: Range.empty(),
-          );
+          probabilityX = RangeBuilder.empty();
+          return;
         }
       case 'qualitativeRisk':
         {
-          return copyWith(
-            qualitativeRisk: CodeableConcept.empty(),
-          );
+          qualitativeRisk = CodeableConceptBuilder.empty();
+          return;
         }
       case 'relativeRisk':
         {
-          return copyWith(
-            relativeRisk: FhirDecimal.empty(),
-          );
+          relativeRisk = FhirDecimalBuilder.empty();
+          return;
         }
       case 'when':
       case 'whenX':
       case 'whenPeriod':
         {
-          return copyWith(
-            whenX: Period.empty(),
-          );
+          whenX = PeriodBuilder.empty();
+          return;
         }
       case 'whenRange':
         {
-          return copyWith(
-            whenX: Range.empty(),
-          );
+          whenX = RangeBuilder.empty();
+          return;
         }
       case 'rationale':
         {
-          return copyWith(
-            rationale: FhirString.empty(),
-          );
+          rationale = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2206,7 +2022,7 @@ class RiskAssessmentPrediction extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  RiskAssessmentPrediction clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2217,32 +2033,30 @@ class RiskAssessmentPrediction extends BackboneElement {
     bool when = false,
     bool rationale = false,
   }) {
-    return RiskAssessmentPrediction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      outcome: outcome ? null : this.outcome,
-      probabilityX: probability ? null : probabilityX,
-      qualitativeRisk: qualitativeRisk ? null : this.qualitativeRisk,
-      relativeRisk: relativeRisk ? null : this.relativeRisk,
-      whenX: when ? null : whenX,
-      rationale: rationale ? null : this.rationale,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (outcome) this.outcome = null;
+    if (probability) this.probabilityX = null;
+    if (qualitativeRisk) this.qualitativeRisk = null;
+    if (relativeRisk) this.relativeRisk = null;
+    if (when) this.whenX = null;
+    if (rationale) this.rationale = null;
   }
 
   @override
-  RiskAssessmentPrediction clone() => throw UnimplementedError();
+  RiskAssessmentPredictionBuilder clone() => throw UnimplementedError();
   @override
-  RiskAssessmentPrediction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? outcome,
-    ProbabilityXRiskAssessmentPrediction? probabilityX,
-    CodeableConcept? qualitativeRisk,
-    FhirDecimal? relativeRisk,
-    WhenXRiskAssessmentPrediction? whenX,
-    FhirString? rationale,
+  RiskAssessmentPredictionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? outcome,
+    ProbabilityXRiskAssessmentPredictionBuilder? probabilityX,
+    CodeableConceptBuilder? qualitativeRisk,
+    FhirDecimalBuilder? relativeRisk,
+    WhenXRiskAssessmentPredictionBuilder? whenX,
+    FhirStringBuilder? rationale,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2250,58 +2064,40 @@ class RiskAssessmentPrediction extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return RiskAssessmentPrediction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      probabilityX: probabilityX?.copyWith(
-            objectPath: '$newObjectPath.probabilityX',
-          ) as ProbabilityXRiskAssessmentPrediction? ??
-          this.probabilityX,
-      qualitativeRisk: qualitativeRisk?.copyWith(
-            objectPath: '$newObjectPath.qualitativeRisk',
-          ) ??
-          this.qualitativeRisk,
-      relativeRisk: relativeRisk?.copyWith(
-            objectPath: '$newObjectPath.relativeRisk',
-          ) ??
-          this.relativeRisk,
-      whenX: whenX?.copyWith(
-            objectPath: '$newObjectPath.whenX',
-          ) as WhenXRiskAssessmentPrediction? ??
-          this.whenX,
-      rationale: rationale?.copyWith(
-            objectPath: '$newObjectPath.rationale',
-          ) ??
-          this.rationale,
+    final newResult = RiskAssessmentPredictionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      outcome: outcome ?? this.outcome,
+      probabilityX: probabilityX ?? this.probabilityX,
+      qualitativeRisk: qualitativeRisk ?? this.qualitativeRisk,
+      relativeRisk: relativeRisk ?? this.relativeRisk,
+      whenX: whenX ?? this.whenX,
+      rationale: rationale ?? this.rationale,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RiskAssessmentPrediction) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RiskAssessmentPredictionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2312,13 +2108,13 @@ class RiskAssessmentPrediction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

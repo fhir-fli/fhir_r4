@@ -1,121 +1,122 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [CodeableConcept]
+/// [CodeableConceptBuilder]
 /// A concept that may be defined by a formal reference to a terminology or
 /// ontology or may be provided by text.
-class CodeableConcept extends DataType
+class CodeableConceptBuilder extends DataTypeBuilder
     implements
-        SubjectXActivityDefinition,
-        ProductXActivityDefinition,
-        ValueXAdministrableProductDefinitionProperty,
-        ProductXCarePlanDetail,
-        ProductXChargeItem,
-        DiagnosisXClaimDiagnosis,
-        ProcedureXClaimProcedure,
-        LocationXClaimItem,
-        LocationXClaimResponseAddItem,
-        ItemXClinicalUseDefinitionInteractant,
-        TopicXContract,
-        TopicXContractTerm,
-        EntityXContractValuedItem,
-        DiagnosisXCoverageEligibilityRequestDiagnosis,
-        CodeXDeviceRequest,
-        ValueXDeviceRequestParameter,
-        SubjectXEventDefinition,
-        ValueXEvidenceReportCharacteristic,
-        DefinitionXEvidenceVariableCharacteristic,
-        ValueXEvidenceVariableCategory,
-        DiagnosisXExplanationOfBenefitDiagnosis,
-        ProcedureXExplanationOfBenefitProcedure,
-        LocationXExplanationOfBenefitItem,
-        LocationXExplanationOfBenefitAddItem,
-        StartXGoal,
-        DetailXGoalTarget,
-        ValueXGroupCharacteristic,
-        ModuleXGuidanceResponse,
-        ChargeItemXInvoiceLineItem,
-        SubjectXLibrary,
-        ValueXManufacturedItemDefinitionProperty,
-        SubjectXMeasure,
-        ItemXMedicationIngredient,
-        MedicationXMedicationAdministration,
-        StatusReasonXMedicationDispense,
-        MedicationXMedicationDispense,
-        ItemXMedicationKnowledgeIngredient,
-        IndicationXMedicationKnowledgeAdministrationGuidelines,
-        CharacteristicXMedicationKnowledgePatientCharacteristics,
-        ValueXMedicationKnowledgeDrugCharacteristic,
-        MedicationXMedicationRequest,
-        AllowedXMedicationRequestSubstitution,
-        MedicationXMedicationStatement,
-        ValueXMedicinalProductDefinitionCharacteristic,
-        ValueXNutritionProductProductCharacteristic,
-        ValueXObservation,
-        ValueXObservationComponent,
-        ValueXPackagedProductDefinitionProperty,
-        ValueXParametersParameter,
-        SubjectXPlanDefinition,
-        DetailXPlanDefinitionTarget,
-        SubjectXPlanDefinitionAction,
-        SubjectXResearchDefinition,
-        SubjectXResearchElementDefinition,
-        DefinitionXResearchElementDefinitionCharacteristic,
-        AsNeededXServiceRequest,
-        FastingStatusXSpecimenCollection,
-        AdditiveXSpecimenContainer,
-        AdditiveXSpecimenDefinitionAdditive,
-        DefaultValueXStructureMapSource,
-        SubstanceXSubstanceIngredient,
-        ValueXSubstanceDefinitionProperty,
-        SubstanceDefinitionXSubstanceDefinitionRelationship,
-        ItemXSupplyDeliverySuppliedItem,
-        ItemXSupplyRequest,
-        ValueXSupplyRequestParameter,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        SubjectXDataRequirement,
-        AsNeededXDosage,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension,
-        AgeXPopulation,
-        ValueXUsageContext {
+        SubjectXActivityDefinitionBuilder,
+        ProductXActivityDefinitionBuilder,
+        ValueXAdministrableProductDefinitionPropertyBuilder,
+        ProductXCarePlanDetailBuilder,
+        ProductXChargeItemBuilder,
+        DiagnosisXClaimDiagnosisBuilder,
+        ProcedureXClaimProcedureBuilder,
+        LocationXClaimItemBuilder,
+        LocationXClaimResponseAddItemBuilder,
+        ItemXClinicalUseDefinitionInteractantBuilder,
+        TopicXContractBuilder,
+        TopicXContractTermBuilder,
+        EntityXContractValuedItemBuilder,
+        DiagnosisXCoverageEligibilityRequestDiagnosisBuilder,
+        CodeXDeviceRequestBuilder,
+        ValueXDeviceRequestParameterBuilder,
+        SubjectXEventDefinitionBuilder,
+        ValueXEvidenceReportCharacteristicBuilder,
+        DefinitionXEvidenceVariableCharacteristicBuilder,
+        ValueXEvidenceVariableCategoryBuilder,
+        DiagnosisXExplanationOfBenefitDiagnosisBuilder,
+        ProcedureXExplanationOfBenefitProcedureBuilder,
+        LocationXExplanationOfBenefitItemBuilder,
+        LocationXExplanationOfBenefitAddItemBuilder,
+        StartXGoalBuilder,
+        DetailXGoalTargetBuilder,
+        ValueXGroupCharacteristicBuilder,
+        ModuleXGuidanceResponseBuilder,
+        ChargeItemXInvoiceLineItemBuilder,
+        SubjectXLibraryBuilder,
+        ValueXManufacturedItemDefinitionPropertyBuilder,
+        SubjectXMeasureBuilder,
+        ItemXMedicationIngredientBuilder,
+        MedicationXMedicationAdministrationBuilder,
+        StatusReasonXMedicationDispenseBuilder,
+        MedicationXMedicationDispenseBuilder,
+        ItemXMedicationKnowledgeIngredientBuilder,
+        IndicationXMedicationKnowledgeAdministrationGuidelinesBuilder,
+        CharacteristicXMedicationKnowledgePatientCharacteristicsBuilder,
+        ValueXMedicationKnowledgeDrugCharacteristicBuilder,
+        MedicationXMedicationRequestBuilder,
+        AllowedXMedicationRequestSubstitutionBuilder,
+        MedicationXMedicationStatementBuilder,
+        ValueXMedicinalProductDefinitionCharacteristicBuilder,
+        ValueXNutritionProductProductCharacteristicBuilder,
+        ValueXObservationBuilder,
+        ValueXObservationComponentBuilder,
+        ValueXPackagedProductDefinitionPropertyBuilder,
+        ValueXParametersParameterBuilder,
+        SubjectXPlanDefinitionBuilder,
+        DetailXPlanDefinitionTargetBuilder,
+        SubjectXPlanDefinitionActionBuilder,
+        SubjectXResearchDefinitionBuilder,
+        SubjectXResearchElementDefinitionBuilder,
+        DefinitionXResearchElementDefinitionCharacteristicBuilder,
+        AsNeededXServiceRequestBuilder,
+        FastingStatusXSpecimenCollectionBuilder,
+        AdditiveXSpecimenContainerBuilder,
+        AdditiveXSpecimenDefinitionAdditiveBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        SubstanceXSubstanceIngredientBuilder,
+        ValueXSubstanceDefinitionPropertyBuilder,
+        SubstanceDefinitionXSubstanceDefinitionRelationshipBuilder,
+        ItemXSupplyDeliverySuppliedItemBuilder,
+        ItemXSupplyRequestBuilder,
+        ValueXSupplyRequestParameterBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        SubjectXDataRequirementBuilder,
+        AsNeededXDosageBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder,
+        AgeXPopulationBuilder,
+        ValueXUsageContextBuilder {
   /// Primary constructor for
-  /// [CodeableConcept]
+  /// [CodeableConceptBuilder]
 
-  const CodeableConcept({
+  CodeableConceptBuilder({
     super.id,
     super.extension_,
     this.coding,
     this.text,
     super.disallowExtensions,
-    super.objectPath = 'CodeableConcept',
+    super.objectPath = 'CodeableConceptBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CodeableConcept.empty() => const CodeableConcept();
+  /// For Builder classes, no fields are required
+  factory CodeableConceptBuilder.empty() => CodeableConceptBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeableConcept.fromJson(
+  factory CodeableConceptBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'CodeableConcept';
-    return CodeableConcept(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CodeableConceptBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -124,8 +125,8 @@ class CodeableConcept extends DataType
           )
           .toList(),
       coding: (json['coding'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.coding',
@@ -133,31 +134,31 @@ class CodeableConcept extends DataType
             ),
           )
           .toList(),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
     );
   }
 
-  /// Deserialize [CodeableConcept]
+  /// Deserialize [CodeableConceptBuilder]
   /// from a [String] or [YamlMap] object
-  factory CodeableConcept.fromYaml(
+  factory CodeableConceptBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CodeableConcept.fromJson(
+      return CodeableConceptBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CodeableConcept.fromJson(
+      return CodeableConceptBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CodeableConcept '
+        'CodeableConceptBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -165,16 +166,16 @@ class CodeableConcept extends DataType
   }
 
   /// Factory constructor for
-  /// [CodeableConcept]
+  /// [CodeableConceptBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeableConcept.fromJsonString(
+  factory CodeableConceptBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CodeableConcept.fromJson(json);
+      return CodeableConceptBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -186,29 +187,29 @@ class CodeableConcept extends DataType
 
   /// [coding]
   /// A reference to a code defined by a terminology system.
-  final List<Coding>? coding;
+  List<CodingBuilder>? coding;
 
   /// [text]
   /// A human language representation of the concept as seen/selected/uttered
   /// by the user who entered the data and/or which represents the intended
   /// meaning of the user.
-  final FhirString? text;
+  FhirStringBuilder? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -217,27 +218,15 @@ class CodeableConcept extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'coding',
-      coding,
-    );
-    addField(
-      'text',
-      text,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('coding', coding);
+    addField('text', text);
     return json;
   }
 
@@ -255,11 +244,11 @@ class CodeableConcept extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -287,7 +276,7 @@ class CodeableConcept extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -296,57 +285,58 @@ class CodeableConcept extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'coding':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?coding, ...child];
-            return copyWith(coding: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            coding = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?coding, child];
-            return copyWith(coding: newList);
+            coding = [...(coding ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -362,50 +352,42 @@ class CodeableConcept extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'coding':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CodeableConcept]
+  /// Creates a new [CodeableConceptBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CodeableConcept createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'coding':
         {
-          return copyWith(
-            coding: <Coding>[],
-          );
+          coding = <CodingBuilder>[];
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -414,28 +396,26 @@ class CodeableConcept extends DataType
 
   /// Clears specific fields in this object
   @override
-  CodeableConcept clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool coding = false,
     bool text = false,
   }) {
-    return CodeableConcept(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      coding: coding ? null : this.coding,
-      text: text ? null : this.text,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (coding) this.coding = null;
+    if (text) this.text = null;
   }
 
   @override
-  CodeableConcept clone() => throw UnimplementedError();
+  CodeableConceptBuilder clone() => throw UnimplementedError();
   @override
-  CodeableConcept copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<Coding>? coding,
-    FhirString? text,
+  CodeableConceptBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<CodingBuilder>? coding,
+    FhirStringBuilder? text,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -443,38 +423,35 @@ class CodeableConcept extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return CodeableConcept(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      coding: coding
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.coding',
-                ),
-              )
-              .toList() ??
-          this.coding,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CodeableConceptBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      coding: coding ?? this.coding,
+      text: text ?? this.text,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CodeableConcept) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CodeableConceptBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -485,13 +462,13 @@ class CodeableConcept extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       coding,
       o.coding,
     )) {

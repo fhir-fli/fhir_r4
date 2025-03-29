@@ -44,7 +44,7 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Markdown',
+    String? objectPath = 'Markdown',
   }) {
     final validated = _validateMarkdown(input);
     return FhirMarkdownBuilder._(
@@ -122,7 +122,7 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Returns the FHIR type as 'markdown'.
   @override

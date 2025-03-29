@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// Codes that reflect the current state of a goal and whether the goal is
 /// still being targeted.
-class GoalLifecycleStatus extends FhirCodeEnum {
+class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  GoalLifecycleStatus._({
+  GoalLifecycleStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory GoalLifecycleStatus(
+  factory GoalLifecycleStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return GoalLifecycleStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return GoalLifecycleStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,106 +44,108 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [GoalLifecycleStatus] with element only
-  factory GoalLifecycleStatus.empty() =>
-      GoalLifecycleStatus._(validatedValue: '');
+  /// Create empty [GoalLifecycleStatusBuilder] with element only
+  factory GoalLifecycleStatusBuilder.empty() =>
+      GoalLifecycleStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GoalLifecycleStatus] from JSON.
-  factory GoalLifecycleStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GoalLifecycleStatusBuilder] from JSON.
+  factory GoalLifecycleStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalLifecycleStatus.elementOnly.withElement(element);
+      return GoalLifecycleStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'GoalLifecycleStatus cannot be constructed from JSON.',
+        'GoalLifecycleStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return GoalLifecycleStatus._(
+    return GoalLifecycleStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// proposed
-  static final GoalLifecycleStatus proposed = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder proposed = GoalLifecycleStatusBuilder._(
     validatedValue: 'proposed',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Proposed'.toFhirStringBuilder,
   );
 
   /// planned
-  static final GoalLifecycleStatus planned = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder planned = GoalLifecycleStatusBuilder._(
     validatedValue: 'planned',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Planned'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Planned'.toFhirStringBuilder,
   );
 
   /// accepted
-  static final GoalLifecycleStatus accepted = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder accepted = GoalLifecycleStatusBuilder._(
     validatedValue: 'accepted',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Accepted'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Accepted'.toFhirStringBuilder,
   );
 
   /// active
-  static final GoalLifecycleStatus active = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder active = GoalLifecycleStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// on_hold
-  static final GoalLifecycleStatus on_hold = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder on_hold = GoalLifecycleStatusBuilder._(
     validatedValue: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'On Hold'.toFhirStringBuilder,
   );
 
   /// completed
-  static final GoalLifecycleStatus completed = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder completed = GoalLifecycleStatusBuilder._(
     validatedValue: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final GoalLifecycleStatus cancelled = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder cancelled = GoalLifecycleStatusBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Cancelled'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final GoalLifecycleStatus entered_in_error = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder entered_in_error =
+      GoalLifecycleStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// rejected
-  static final GoalLifecycleStatus rejected = GoalLifecycleStatus._(
+  static GoalLifecycleStatusBuilder rejected = GoalLifecycleStatusBuilder._(
     validatedValue: 'rejected',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Rejected'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Rejected'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final GoalLifecycleStatus elementOnly =
-      GoalLifecycleStatus._(validatedValue: '');
+  static GoalLifecycleStatusBuilder elementOnly =
+      GoalLifecycleStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<GoalLifecycleStatus> values = [
+  static List<GoalLifecycleStatusBuilder> values = [
     proposed,
     planned,
     accepted,
@@ -157,14 +159,15 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  GoalLifecycleStatus clone() => GoalLifecycleStatus._(
+  GoalLifecycleStatusBuilder clone() => GoalLifecycleStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  GoalLifecycleStatus withElement(Element? newElement) {
-    return GoalLifecycleStatus._(validatedValue: value, element: newElement);
+  GoalLifecycleStatusBuilder withElement(ElementBuilder? newElement) {
+    return GoalLifecycleStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -180,11 +183,11 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  GoalLifecycleStatus copyWith({
+  GoalLifecycleStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -195,7 +198,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return GoalLifecycleStatus._(
+    return GoalLifecycleStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -205,7 +208,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

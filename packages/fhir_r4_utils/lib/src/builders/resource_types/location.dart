@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Location]
+/// [LocationBuilder]
 /// Details and position information for a physical place where services
 /// are provided and resources and participants may be stored, found,
 /// contained, or accommodated.
-class Location extends DomainResource {
+class LocationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Location]
+  /// [LocationBuilder]
 
-  const Location({
+  LocationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -42,49 +44,48 @@ class Location extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Location.empty() => const Location();
+  /// For Builder classes, no fields are required
+  factory LocationBuilder.empty() => LocationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Location.fromJson(
+  factory LocationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Location';
-    return Location(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return LocationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -93,8 +94,8 @@ class Location extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -103,8 +104,8 @@ class Location extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -113,8 +114,8 @@ class Location extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -122,45 +123,45 @@ class Location extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<LocationStatus>(
+      status: JsonParser.parsePrimitive<LocationStatusBuilder>(
         json,
         'status',
-        LocationStatus.fromJson,
+        LocationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      operationalStatus: JsonParser.parseObject<Coding>(
+      operationalStatus: JsonParser.parseObject<CodingBuilder>(
         json,
         'operationalStatus',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.operationalStatus',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      alias: JsonParser.parsePrimitiveList<FhirString>(
+      alias: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'alias',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.alias',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      mode: JsonParser.parsePrimitive<LocationMode>(
+      mode: JsonParser.parsePrimitive<LocationModeBuilder>(
         json,
         'mode',
-        LocationMode.fromJson,
+        LocationModeBuilder.fromJson,
         '$objectPath.mode',
       ),
       type: (json['type'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -169,8 +170,8 @@ class Location extends DomainResource {
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -178,39 +179,39 @@ class Location extends DomainResource {
             ),
           )
           .toList(),
-      address: JsonParser.parseObject<Address>(
+      address: JsonParser.parseObject<AddressBuilder>(
         json,
         'address',
-        Address.fromJson,
+        AddressBuilder.fromJson,
         '$objectPath.address',
       ),
-      physicalType: JsonParser.parseObject<CodeableConcept>(
+      physicalType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'physicalType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.physicalType',
       ),
-      position: JsonParser.parseObject<LocationPosition>(
+      position: JsonParser.parseObject<LocationPositionBuilder>(
         json,
         'position',
-        LocationPosition.fromJson,
+        LocationPositionBuilder.fromJson,
         '$objectPath.position',
       ),
-      managingOrganization: JsonParser.parseObject<Reference>(
+      managingOrganization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'managingOrganization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.managingOrganization',
       ),
-      partOf: JsonParser.parseObject<Reference>(
+      partOf: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'partOf',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.partOf',
       ),
       hoursOfOperation: (json['hoursOfOperation'] as List<dynamic>?)
-          ?.map<LocationHoursOfOperation>(
-            (v) => LocationHoursOfOperation.fromJson(
+          ?.map<LocationHoursOfOperationBuilder>(
+            (v) => LocationHoursOfOperationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.hoursOfOperation',
@@ -218,15 +219,15 @@ class Location extends DomainResource {
             ),
           )
           .toList(),
-      availabilityExceptions: JsonParser.parsePrimitive<FhirString>(
+      availabilityExceptions: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'availabilityExceptions',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.availabilityExceptions',
       ),
       endpoint: (json['endpoint'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.endpoint',
@@ -237,22 +238,22 @@ class Location extends DomainResource {
     );
   }
 
-  /// Deserialize [Location]
+  /// Deserialize [LocationBuilder]
   /// from a [String] or [YamlMap] object
-  factory Location.fromYaml(
+  factory LocationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Location.fromJson(
+      return LocationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Location.fromJson(
+      return LocationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Location '
+        'LocationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -260,16 +261,16 @@ class Location extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Location]
+  /// [LocationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Location.fromJsonString(
+  factory LocationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Location.fromJson(json);
+      return LocationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -281,103 +282,103 @@ class Location extends DomainResource {
 
   /// [identifier]
   /// Unique code or number identifying the location to its users.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// The status property covers the general availability of the resource,
   /// not the current value which may be covered by the operationStatus, or
   /// by a schedule/slots if they are configured for the location.
-  final LocationStatus? status;
+  LocationStatusBuilder? status;
 
   /// [operationalStatus]
   /// The operational status covers operation values most relevant to beds
   /// (but can also apply to rooms/units/chairs/etc. such as an isolation
   /// unit/dialysis chair). This typically covers concepts such as
   /// contamination, housekeeping, and other activities like maintenance.
-  final Coding? operationalStatus;
+  CodingBuilder? operationalStatus;
 
   /// [name]
   /// Name of the location as used by humans. Does not need to be unique.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [alias]
   /// A list of alternate names that the location is known as, or was known
   /// as, in the past.
-  final List<FhirString>? alias;
+  List<FhirStringBuilder>? alias;
 
   /// [description]
   /// Description of the Location, which helps in finding or referencing the
   /// place.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [mode]
   /// Indicates whether a resource instance represents a specific location or
   /// a class of locations.
-  final LocationMode? mode;
+  LocationModeBuilder? mode;
 
   /// [type]
   /// Indicates the type of function performed at the location.
-  final List<CodeableConcept>? type;
+  List<CodeableConceptBuilder>? type;
 
   /// [telecom]
   /// The contact details of communication devices available at the location.
   /// This can include phone numbers, fax numbers, mobile numbers, email
   /// addresses and web sites.
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [address]
   /// Physical location.
-  final Address? address;
+  AddressBuilder? address;
 
   /// [physicalType]
   /// Physical form of the location, e.g. building, room, vehicle, road.
-  final CodeableConcept? physicalType;
+  CodeableConceptBuilder? physicalType;
 
   /// [position]
   /// The absolute geographic location of the Location, expressed using the
   /// WGS84 datum (This is the same co-ordinate system used in KML).
-  final LocationPosition? position;
+  LocationPositionBuilder? position;
 
   /// [managingOrganization]
   /// The organization responsible for the provisioning and upkeep of the
   /// location.
-  final Reference? managingOrganization;
+  ReferenceBuilder? managingOrganization;
 
   /// [partOf]
   /// Another Location of which this Location is physically a part of.
-  final Reference? partOf;
+  ReferenceBuilder? partOf;
 
   /// [hoursOfOperation]
   /// What days/times during a week is this location usually open.
-  final List<LocationHoursOfOperation>? hoursOfOperation;
+  List<LocationHoursOfOperationBuilder>? hoursOfOperation;
 
   /// [availabilityExceptions]
   /// A description of when the locations opening ours are different to
   /// normal, e.g. public holiday availability. Succinctly describing all
   /// possible exceptions to normal site availability as detailed in the
   /// opening hours Times.
-  final FhirString? availabilityExceptions;
+  FhirStringBuilder? availabilityExceptions;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// location.
-  final List<Reference>? endpoint;
+  List<ReferenceBuilder>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -386,112 +387,37 @@ class Location extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'operationalStatus',
-      operationalStatus,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'alias',
-      alias,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'mode',
-      mode,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'address',
-      address,
-    );
-    addField(
-      'physicalType',
-      physicalType,
-    );
-    addField(
-      'position',
-      position,
-    );
-    addField(
-      'managingOrganization',
-      managingOrganization,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'hoursOfOperation',
-      hoursOfOperation,
-    );
-    addField(
-      'availabilityExceptions',
-      availabilityExceptions,
-    );
-    addField(
-      'endpoint',
-      endpoint,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('operationalStatus', operationalStatus);
+    addField('name', name);
+    addField('alias', alias);
+    addField('description', description);
+    addField('mode', mode);
+    addField('type', type);
+    addField('telecom', telecom);
+    addField('address', address);
+    addField('physicalType', physicalType);
+    addField('position', position);
+    addField('managingOrganization', managingOrganization);
+    addField('partOf', partOf);
+    addField('hoursOfOperation', hoursOfOperation);
+    addField('availabilityExceptions', availabilityExceptions);
+    addField('endpoint', endpoint);
     return json;
   }
 
@@ -530,11 +456,11 @@ class Location extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -646,7 +572,7 @@ class Location extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -655,267 +581,282 @@ class Location extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is LocationStatus) {
-            return copyWith(status: child);
+          if (child is LocationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'operationalStatus':
         {
-          if (child is Coding) {
-            return copyWith(operationalStatus: child);
+          if (child is CodingBuilder) {
+            operationalStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'alias':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?alias, ...child];
-            return copyWith(alias: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            alias = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?alias, child];
-            return copyWith(alias: newList);
+            alias = [...(alias ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
         {
-          if (child is LocationMode) {
-            return copyWith(mode: child);
+          if (child is LocationModeBuilder) {
+            mode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
         {
-          if (child is Address) {
-            return copyWith(address: child);
+          if (child is AddressBuilder) {
+            address = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'physicalType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(physicalType: child);
+          if (child is CodeableConceptBuilder) {
+            physicalType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'position':
         {
-          if (child is LocationPosition) {
-            return copyWith(position: child);
+          if (child is LocationPositionBuilder) {
+            position = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'managingOrganization':
         {
-          if (child is Reference) {
-            return copyWith(managingOrganization: child);
+          if (child is ReferenceBuilder) {
+            managingOrganization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is Reference) {
-            return copyWith(partOf: child);
+          if (child is ReferenceBuilder) {
+            partOf = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'hoursOfOperation':
         {
-          if (child is List<LocationHoursOfOperation>) {
-            // Add all elements from passed list
-            final newList = [...?hoursOfOperation, ...child];
-            return copyWith(hoursOfOperation: newList);
-          } else if (child is LocationHoursOfOperation) {
+          if (child is List<LocationHoursOfOperationBuilder>) {
+            // Replace or create new list
+            hoursOfOperation = child;
+            return;
+          } else if (child is LocationHoursOfOperationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?hoursOfOperation, child];
-            return copyWith(hoursOfOperation: newList);
+            hoursOfOperation = [...(hoursOfOperation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'availabilityExceptions':
         {
-          if (child is FhirString) {
-            return copyWith(availabilityExceptions: child);
+          if (child is FhirStringBuilder) {
+            availabilityExceptions = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?endpoint, ...child];
-            return copyWith(endpoint: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            endpoint = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
-            return copyWith(endpoint: newList);
+            endpoint = [...(endpoint ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -931,218 +872,189 @@ class Location extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'operationalStatus':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'alias':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'mode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'address':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'physicalType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'position':
-        return ['LocationPosition'];
+        return ['LocationPositionBuilder'];
       case 'managingOrganization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'hoursOfOperation':
-        return ['LocationHoursOfOperation'];
+        return ['LocationHoursOfOperationBuilder'];
       case 'availabilityExceptions':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'endpoint':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Location]
+  /// Creates a new [LocationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Location createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: LocationStatus.empty(),
-          );
+          status = LocationStatusBuilder.empty();
+          return;
         }
       case 'operationalStatus':
         {
-          return copyWith(
-            operationalStatus: Coding.empty(),
-          );
+          operationalStatus = CodingBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'alias':
         {
-          return copyWith(
-            alias: <FhirString>[],
-          );
+          alias = <FhirStringBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'mode':
         {
-          return copyWith(
-            mode: LocationMode.empty(),
-          );
+          mode = LocationModeBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
+          type = <CodeableConceptBuilder>[];
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'address':
         {
-          return copyWith(
-            address: Address.empty(),
-          );
+          address = AddressBuilder.empty();
+          return;
         }
       case 'physicalType':
         {
-          return copyWith(
-            physicalType: CodeableConcept.empty(),
-          );
+          physicalType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'position':
         {
-          return copyWith(
-            position: LocationPosition.empty(),
-          );
+          position = LocationPositionBuilder.empty();
+          return;
         }
       case 'managingOrganization':
         {
-          return copyWith(
-            managingOrganization: Reference.empty(),
-          );
+          managingOrganization = ReferenceBuilder.empty();
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: Reference.empty(),
-          );
+          partOf = ReferenceBuilder.empty();
+          return;
         }
       case 'hoursOfOperation':
         {
-          return copyWith(
-            hoursOfOperation: <LocationHoursOfOperation>[],
-          );
+          hoursOfOperation = <LocationHoursOfOperationBuilder>[];
+          return;
         }
       case 'availabilityExceptions':
         {
-          return copyWith(
-            availabilityExceptions: FhirString.empty(),
-          );
+          availabilityExceptions = FhirStringBuilder.empty();
+          return;
         }
       case 'endpoint':
         {
-          return copyWith(
-            endpoint: <Reference>[],
-          );
+          endpoint = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1151,7 +1063,7 @@ class Location extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Location clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1178,209 +1090,119 @@ class Location extends DomainResource {
     bool availabilityExceptions = false,
     bool endpoint = false,
   }) {
-    return Location(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status ? null : this.status,
-      operationalStatus: operationalStatus ? null : this.operationalStatus,
-      name: name ? null : this.name,
-      alias: alias ? null : this.alias,
-      description: description ? null : this.description,
-      mode: mode ? null : this.mode,
-      type: type ? null : this.type,
-      telecom: telecom ? null : this.telecom,
-      address: address ? null : this.address,
-      physicalType: physicalType ? null : this.physicalType,
-      position: position ? null : this.position,
-      managingOrganization:
-          managingOrganization ? null : this.managingOrganization,
-      partOf: partOf ? null : this.partOf,
-      hoursOfOperation: hoursOfOperation ? null : this.hoursOfOperation,
-      availabilityExceptions:
-          availabilityExceptions ? null : this.availabilityExceptions,
-      endpoint: endpoint ? null : this.endpoint,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (operationalStatus) this.operationalStatus = null;
+    if (name) this.name = null;
+    if (alias) this.alias = null;
+    if (description) this.description = null;
+    if (mode) this.mode = null;
+    if (type) this.type = null;
+    if (telecom) this.telecom = null;
+    if (address) this.address = null;
+    if (physicalType) this.physicalType = null;
+    if (position) this.position = null;
+    if (managingOrganization) this.managingOrganization = null;
+    if (partOf) this.partOf = null;
+    if (hoursOfOperation) this.hoursOfOperation = null;
+    if (availabilityExceptions) this.availabilityExceptions = null;
+    if (endpoint) this.endpoint = null;
   }
 
   @override
-  Location clone() => throw UnimplementedError();
+  LocationBuilder clone() => throw UnimplementedError();
   @override
-  Location copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    LocationStatus? status,
-    Coding? operationalStatus,
-    FhirString? name,
-    List<FhirString>? alias,
-    FhirString? description,
-    LocationMode? mode,
-    List<CodeableConcept>? type,
-    List<ContactPoint>? telecom,
-    Address? address,
-    CodeableConcept? physicalType,
-    LocationPosition? position,
-    Reference? managingOrganization,
-    Reference? partOf,
-    List<LocationHoursOfOperation>? hoursOfOperation,
-    FhirString? availabilityExceptions,
-    List<Reference>? endpoint,
+  LocationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    LocationStatusBuilder? status,
+    CodingBuilder? operationalStatus,
+    FhirStringBuilder? name,
+    List<FhirStringBuilder>? alias,
+    FhirStringBuilder? description,
+    LocationModeBuilder? mode,
+    List<CodeableConceptBuilder>? type,
+    List<ContactPointBuilder>? telecom,
+    AddressBuilder? address,
+    CodeableConceptBuilder? physicalType,
+    LocationPositionBuilder? position,
+    ReferenceBuilder? managingOrganization,
+    ReferenceBuilder? partOf,
+    List<LocationHoursOfOperationBuilder>? hoursOfOperation,
+    FhirStringBuilder? availabilityExceptions,
+    List<ReferenceBuilder>? endpoint,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Location(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = LocationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      operationalStatus: operationalStatus?.copyWith(
-            objectPath: '$newObjectPath.operationalStatus',
-          ) ??
-          this.operationalStatus,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      alias: alias
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.alias',
-                ),
-              )
-              .toList() ??
-          this.alias,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      address: address?.copyWith(
-            objectPath: '$newObjectPath.address',
-          ) ??
-          this.address,
-      physicalType: physicalType?.copyWith(
-            objectPath: '$newObjectPath.physicalType',
-          ) ??
-          this.physicalType,
-      position: position?.copyWith(
-            objectPath: '$newObjectPath.position',
-          ) ??
-          this.position,
-      managingOrganization: managingOrganization?.copyWith(
-            objectPath: '$newObjectPath.managingOrganization',
-          ) ??
-          this.managingOrganization,
-      partOf: partOf?.copyWith(
-            objectPath: '$newObjectPath.partOf',
-          ) ??
-          this.partOf,
-      hoursOfOperation: hoursOfOperation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.hoursOfOperation',
-                ),
-              )
-              .toList() ??
-          this.hoursOfOperation,
-      availabilityExceptions: availabilityExceptions?.copyWith(
-            objectPath: '$newObjectPath.availabilityExceptions',
-          ) ??
-          this.availabilityExceptions,
-      endpoint: endpoint
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endpoint',
-                ),
-              )
-              .toList() ??
-          this.endpoint,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      operationalStatus: operationalStatus ?? this.operationalStatus,
+      name: name ?? this.name,
+      alias: alias ?? this.alias,
+      description: description ?? this.description,
+      mode: mode ?? this.mode,
+      type: type ?? this.type,
+      telecom: telecom ?? this.telecom,
+      address: address ?? this.address,
+      physicalType: physicalType ?? this.physicalType,
+      position: position ?? this.position,
+      managingOrganization: managingOrganization ?? this.managingOrganization,
+      partOf: partOf ?? this.partOf,
+      hoursOfOperation: hoursOfOperation ?? this.hoursOfOperation,
+      availabilityExceptions:
+          availabilityExceptions ?? this.availabilityExceptions,
+      endpoint: endpoint ?? this.endpoint,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Location) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! LocationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1415,25 +1237,25 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1457,7 +1279,7 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       alias,
       o.alias,
     )) {
@@ -1475,13 +1297,13 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       type,
       o.type,
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {
@@ -1517,7 +1339,7 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<LocationHoursOfOperation>(
+    if (!listEquals<LocationHoursOfOperationBuilder>(
       hoursOfOperation,
       o.hoursOfOperation,
     )) {
@@ -1529,7 +1351,7 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       endpoint,
       o.endpoint,
     )) {
@@ -1539,19 +1361,19 @@ class Location extends DomainResource {
   }
 }
 
-/// [LocationPosition]
+/// [LocationPositionBuilder]
 /// The absolute geographic location of the Location, expressed using the
 /// WGS84 datum (This is the same co-ordinate system used in KML).
-class LocationPosition extends BackboneElement {
+class LocationPositionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [LocationPosition]
+  /// [LocationPositionBuilder]
 
-  const LocationPosition({
+  LocationPositionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.longitude,
-    required this.latitude,
+    this.longitude,
+    this.latitude,
     this.altitude,
     super.disallowExtensions,
   }) : super(
@@ -1559,28 +1381,24 @@ class LocationPosition extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory LocationPosition.empty() => LocationPosition(
-        longitude: FhirDecimal.empty(),
-        latitude: FhirDecimal.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory LocationPositionBuilder.empty() => LocationPositionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory LocationPosition.fromJson(
+  factory LocationPositionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Location.position';
-    return LocationPosition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return LocationPositionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1589,8 +1407,8 @@ class LocationPosition extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1598,43 +1416,43 @@ class LocationPosition extends BackboneElement {
             ),
           )
           .toList(),
-      longitude: JsonParser.parsePrimitive<FhirDecimal>(
+      longitude: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'longitude',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.longitude',
-      )!,
-      latitude: JsonParser.parsePrimitive<FhirDecimal>(
+      ),
+      latitude: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'latitude',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.latitude',
-      )!,
-      altitude: JsonParser.parsePrimitive<FhirDecimal>(
+      ),
+      altitude: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'altitude',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.altitude',
       ),
     );
   }
 
-  /// Deserialize [LocationPosition]
+  /// Deserialize [LocationPositionBuilder]
   /// from a [String] or [YamlMap] object
-  factory LocationPosition.fromYaml(
+  factory LocationPositionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return LocationPosition.fromJson(
+      return LocationPositionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return LocationPosition.fromJson(
+      return LocationPositionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'LocationPosition '
+        'LocationPositionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1642,16 +1460,16 @@ class LocationPosition extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [LocationPosition]
+  /// [LocationPositionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory LocationPosition.fromJsonString(
+  factory LocationPositionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return LocationPosition.fromJson(json);
+      return LocationPositionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1664,33 +1482,33 @@ class LocationPosition extends BackboneElement {
   /// [longitude]
   /// Longitude. The value domain and the interpretation are the same as for
   /// the text of the longitude element in KML (see notes below).
-  final FhirDecimal longitude;
+  FhirDecimalBuilder? longitude;
 
   /// [latitude]
   /// Latitude. The value domain and the interpretation are the same as for
   /// the text of the latitude element in KML (see notes below).
-  final FhirDecimal latitude;
+  FhirDecimalBuilder? latitude;
 
   /// [altitude]
   /// Altitude. The value domain and the interpretation are the same as for
   /// the text of the altitude element in KML (see notes below).
-  final FhirDecimal? altitude;
+  FhirDecimalBuilder? altitude;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1699,35 +1517,17 @@ class LocationPosition extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'longitude',
-      longitude,
-    );
-    addField(
-      'latitude',
-      latitude,
-    );
-    addField(
-      'altitude',
-      altitude,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('longitude', longitude);
+    addField('latitude', latitude);
+    addField('altitude', altitude);
     return json;
   }
 
@@ -1747,11 +1547,11 @@ class LocationPosition extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1766,9 +1566,13 @@ class LocationPosition extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'longitude':
-        fields.add(longitude);
+        if (longitude != null) {
+          fields.add(longitude!);
+        }
       case 'latitude':
-        fields.add(latitude);
+        if (latitude != null) {
+          fields.add(latitude!);
+        }
       case 'altitude':
         if (altitude != null) {
           fields.add(altitude!);
@@ -1783,7 +1587,7 @@ class LocationPosition extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1792,73 +1596,76 @@ class LocationPosition extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'longitude':
         {
-          if (child is FhirDecimal) {
-            return copyWith(longitude: child);
+          if (child is FhirDecimalBuilder) {
+            longitude = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'latitude':
         {
-          if (child is FhirDecimal) {
-            return copyWith(latitude: child);
+          if (child is FhirDecimalBuilder) {
+            latitude = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'altitude':
         {
-          if (child is FhirDecimal) {
-            return copyWith(altitude: child);
+          if (child is FhirDecimalBuilder) {
+            altitude = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1874,66 +1681,56 @@ class LocationPosition extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'longitude':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'latitude':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'altitude':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [LocationPosition]
+  /// Creates a new [LocationPositionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  LocationPosition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'longitude':
         {
-          return copyWith(
-            longitude: FhirDecimal.empty(),
-          );
+          longitude = FhirDecimalBuilder.empty();
+          return;
         }
       case 'latitude':
         {
-          return copyWith(
-            latitude: FhirDecimal.empty(),
-          );
+          latitude = FhirDecimalBuilder.empty();
+          return;
         }
       case 'altitude':
         {
-          return copyWith(
-            altitude: FhirDecimal.empty(),
-          );
+          altitude = FhirDecimalBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1942,32 +1739,32 @@ class LocationPosition extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  LocationPosition clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool longitude = false,
+    bool latitude = false,
     bool altitude = false,
   }) {
-    return LocationPosition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      longitude: longitude,
-      latitude: latitude,
-      altitude: altitude ? null : this.altitude,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (longitude) this.longitude = null;
+    if (latitude) this.latitude = null;
+    if (altitude) this.altitude = null;
   }
 
   @override
-  LocationPosition clone() => throw UnimplementedError();
+  LocationPositionBuilder clone() => throw UnimplementedError();
   @override
-  LocationPosition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirDecimal? longitude,
-    FhirDecimal? latitude,
-    FhirDecimal? altitude,
+  LocationPositionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirDecimalBuilder? longitude,
+    FhirDecimalBuilder? latitude,
+    FhirDecimalBuilder? altitude,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1975,46 +1772,37 @@ class LocationPosition extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return LocationPosition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      longitude: longitude?.copyWith(
-            objectPath: '$newObjectPath.longitude',
-          ) ??
-          this.longitude,
-      latitude: latitude?.copyWith(
-            objectPath: '$newObjectPath.latitude',
-          ) ??
-          this.latitude,
-      altitude: altitude?.copyWith(
-            objectPath: '$newObjectPath.altitude',
-          ) ??
-          this.altitude,
+    final newResult = LocationPositionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      longitude: longitude ?? this.longitude,
+      latitude: latitude ?? this.latitude,
+      altitude: altitude ?? this.altitude,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! LocationPosition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! LocationPositionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2025,13 +1813,13 @@ class LocationPosition extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2059,13 +1847,13 @@ class LocationPosition extends BackboneElement {
   }
 }
 
-/// [LocationHoursOfOperation]
+/// [LocationHoursOfOperationBuilder]
 /// What days/times during a week is this location usually open.
-class LocationHoursOfOperation extends BackboneElement {
+class LocationHoursOfOperationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [LocationHoursOfOperation]
+  /// [LocationHoursOfOperationBuilder]
 
-  const LocationHoursOfOperation({
+  LocationHoursOfOperationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2079,25 +1867,25 @@ class LocationHoursOfOperation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory LocationHoursOfOperation.empty() => const LocationHoursOfOperation();
+  /// For Builder classes, no fields are required
+  factory LocationHoursOfOperationBuilder.empty() =>
+      LocationHoursOfOperationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory LocationHoursOfOperation.fromJson(
+  factory LocationHoursOfOperationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Location.hoursOfOperation';
-    return LocationHoursOfOperation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return LocationHoursOfOperationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2106,8 +1894,8 @@ class LocationHoursOfOperation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2115,49 +1903,49 @@ class LocationHoursOfOperation extends BackboneElement {
             ),
           )
           .toList(),
-      daysOfWeek: JsonParser.parsePrimitiveList<DaysOfWeek>(
+      daysOfWeek: JsonParser.parsePrimitiveList<DaysOfWeekBuilder>(
         json,
         'daysOfWeek',
-        DaysOfWeek.fromJson,
+        DaysOfWeekBuilder.fromJson,
         '$objectPath.daysOfWeek',
       ),
-      allDay: JsonParser.parsePrimitive<FhirBoolean>(
+      allDay: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'allDay',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.allDay',
       ),
-      openingTime: JsonParser.parsePrimitive<FhirTime>(
+      openingTime: JsonParser.parsePrimitive<FhirTimeBuilder>(
         json,
         'openingTime',
-        FhirTime.fromJson,
+        FhirTimeBuilder.fromJson,
         '$objectPath.openingTime',
       ),
-      closingTime: JsonParser.parsePrimitive<FhirTime>(
+      closingTime: JsonParser.parsePrimitive<FhirTimeBuilder>(
         json,
         'closingTime',
-        FhirTime.fromJson,
+        FhirTimeBuilder.fromJson,
         '$objectPath.closingTime',
       ),
     );
   }
 
-  /// Deserialize [LocationHoursOfOperation]
+  /// Deserialize [LocationHoursOfOperationBuilder]
   /// from a [String] or [YamlMap] object
-  factory LocationHoursOfOperation.fromYaml(
+  factory LocationHoursOfOperationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return LocationHoursOfOperation.fromJson(
+      return LocationHoursOfOperationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return LocationHoursOfOperation.fromJson(
+      return LocationHoursOfOperationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'LocationHoursOfOperation '
+        'LocationHoursOfOperationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2165,16 +1953,16 @@ class LocationHoursOfOperation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [LocationHoursOfOperation]
+  /// [LocationHoursOfOperationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory LocationHoursOfOperation.fromJsonString(
+  factory LocationHoursOfOperationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return LocationHoursOfOperation.fromJson(json);
+      return LocationHoursOfOperationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2187,35 +1975,35 @@ class LocationHoursOfOperation extends BackboneElement {
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
   /// end Times.
-  final List<DaysOfWeek>? daysOfWeek;
+  List<DaysOfWeekBuilder>? daysOfWeek;
 
   /// [allDay]
   /// The Location is open all day.
-  final FhirBoolean? allDay;
+  FhirBooleanBuilder? allDay;
 
   /// [openingTime]
   /// Time that the Location opens.
-  final FhirTime? openingTime;
+  FhirTimeBuilder? openingTime;
 
   /// [closingTime]
   /// Time that the Location closes.
-  final FhirTime? closingTime;
+  FhirTimeBuilder? closingTime;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2224,39 +2012,18 @@ class LocationHoursOfOperation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'daysOfWeek',
-      daysOfWeek,
-    );
-    addField(
-      'allDay',
-      allDay,
-    );
-    addField(
-      'openingTime',
-      openingTime,
-    );
-    addField(
-      'closingTime',
-      closingTime,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('daysOfWeek', daysOfWeek);
+    addField('allDay', allDay);
+    addField('openingTime', openingTime);
+    addField('closingTime', closingTime);
     return json;
   }
 
@@ -2277,11 +2044,11 @@ class LocationHoursOfOperation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2321,7 +2088,7 @@ class LocationHoursOfOperation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2330,87 +2097,90 @@ class LocationHoursOfOperation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'daysOfWeek':
         {
-          if (child is List<DaysOfWeek>) {
-            // Add all elements from passed list
-            final newList = [...?daysOfWeek, ...child];
-            return copyWith(daysOfWeek: newList);
-          } else if (child is DaysOfWeek) {
+          if (child is List<DaysOfWeekBuilder>) {
+            // Replace or create new list
+            daysOfWeek = child;
+            return;
+          } else if (child is DaysOfWeekBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?daysOfWeek, child];
-            return copyWith(daysOfWeek: newList);
+            daysOfWeek = [...(daysOfWeek ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'allDay':
         {
-          if (child is FhirBoolean) {
-            return copyWith(allDay: child);
+          if (child is FhirBooleanBuilder) {
+            allDay = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'openingTime':
         {
-          if (child is FhirTime) {
-            return copyWith(openingTime: child);
+          if (child is FhirTimeBuilder) {
+            openingTime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'closingTime':
         {
-          if (child is FhirTime) {
-            return copyWith(closingTime: child);
+          if (child is FhirTimeBuilder) {
+            closingTime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2426,74 +2196,63 @@ class LocationHoursOfOperation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'daysOfWeek':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'allDay':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'openingTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'closingTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [LocationHoursOfOperation]
+  /// Creates a new [LocationHoursOfOperationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  LocationHoursOfOperation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'daysOfWeek':
         {
-          return copyWith(
-            daysOfWeek: <DaysOfWeek>[],
-          );
+          daysOfWeek = <DaysOfWeekBuilder>[];
+          return;
         }
       case 'allDay':
         {
-          return copyWith(
-            allDay: FhirBoolean.empty(),
-          );
+          allDay = FhirBooleanBuilder.empty();
+          return;
         }
       case 'openingTime':
         {
-          return copyWith(
-            openingTime: FhirTime.empty(),
-          );
+          openingTime = FhirTimeBuilder.empty();
+          return;
         }
       case 'closingTime':
         {
-          return copyWith(
-            closingTime: FhirTime.empty(),
-          );
+          closingTime = FhirTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2502,7 +2261,7 @@ class LocationHoursOfOperation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  LocationHoursOfOperation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2511,28 +2270,26 @@ class LocationHoursOfOperation extends BackboneElement {
     bool openingTime = false,
     bool closingTime = false,
   }) {
-    return LocationHoursOfOperation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      daysOfWeek: daysOfWeek ? null : this.daysOfWeek,
-      allDay: allDay ? null : this.allDay,
-      openingTime: openingTime ? null : this.openingTime,
-      closingTime: closingTime ? null : this.closingTime,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (daysOfWeek) this.daysOfWeek = null;
+    if (allDay) this.allDay = null;
+    if (openingTime) this.openingTime = null;
+    if (closingTime) this.closingTime = null;
   }
 
   @override
-  LocationHoursOfOperation clone() => throw UnimplementedError();
+  LocationHoursOfOperationBuilder clone() => throw UnimplementedError();
   @override
-  LocationHoursOfOperation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<DaysOfWeek>? daysOfWeek,
-    FhirBoolean? allDay,
-    FhirTime? openingTime,
-    FhirTime? closingTime,
+  LocationHoursOfOperationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<DaysOfWeekBuilder>? daysOfWeek,
+    FhirBooleanBuilder? allDay,
+    FhirTimeBuilder? openingTime,
+    FhirTimeBuilder? closingTime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2540,54 +2297,38 @@ class LocationHoursOfOperation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return LocationHoursOfOperation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      daysOfWeek: daysOfWeek
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.daysOfWeek',
-                ),
-              )
-              .toList() ??
-          this.daysOfWeek,
-      allDay: allDay?.copyWith(
-            objectPath: '$newObjectPath.allDay',
-          ) ??
-          this.allDay,
-      openingTime: openingTime?.copyWith(
-            objectPath: '$newObjectPath.openingTime',
-          ) ??
-          this.openingTime,
-      closingTime: closingTime?.copyWith(
-            objectPath: '$newObjectPath.closingTime',
-          ) ??
-          this.closingTime,
+    final newResult = LocationHoursOfOperationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      daysOfWeek: daysOfWeek ?? this.daysOfWeek,
+      allDay: allDay ?? this.allDay,
+      openingTime: openingTime ?? this.openingTime,
+      closingTime: closingTime ?? this.closingTime,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! LocationHoursOfOperation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! LocationHoursOfOperationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2598,19 +2339,19 @@ class LocationHoursOfOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<DaysOfWeek>(
+    if (!listEquals<DaysOfWeekBuilder>(
       daysOfWeek,
       o.daysOfWeek,
     )) {

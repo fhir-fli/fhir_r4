@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
-class SequenceType extends FhirCodeEnum {
+class SequenceTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  SequenceType._({
+  SequenceTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class SequenceType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory SequenceType(
+  factory SequenceTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return SequenceType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return SequenceTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,56 +43,59 @@ class SequenceType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [SequenceType] with element only
-  factory SequenceType.empty() => SequenceType._(validatedValue: '');
+  /// Create empty [SequenceTypeBuilder] with element only
+  factory SequenceTypeBuilder.empty() =>
+      SequenceTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SequenceType] from JSON.
-  factory SequenceType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SequenceTypeBuilder] from JSON.
+  factory SequenceTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SequenceType.elementOnly.withElement(element);
+      return SequenceTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SequenceType cannot be constructed from JSON.',
+        'SequenceTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return SequenceType._(
+    return SequenceTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// aa
-  static final SequenceType aa = SequenceType._(
+  static SequenceTypeBuilder aa = SequenceTypeBuilder._(
     validatedValue: 'aa',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AA Sequence'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'AA Sequence'.toFhirStringBuilder,
   );
 
   /// dna
-  static final SequenceType dna = SequenceType._(
+  static SequenceTypeBuilder dna = SequenceTypeBuilder._(
     validatedValue: 'dna',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DNA Sequence'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'DNA Sequence'.toFhirStringBuilder,
   );
 
   /// rna
-  static final SequenceType rna = SequenceType._(
+  static SequenceTypeBuilder rna = SequenceTypeBuilder._(
     validatedValue: 'rna',
-    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RNA Sequence'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'RNA Sequence'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final SequenceType elementOnly = SequenceType._(validatedValue: '');
+  static SequenceTypeBuilder elementOnly =
+      SequenceTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<SequenceType> values = [
+  static List<SequenceTypeBuilder> values = [
     aa,
     dna,
     rna,
@@ -100,14 +103,14 @@ class SequenceType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  SequenceType clone() => SequenceType._(
+  SequenceTypeBuilder clone() => SequenceTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  SequenceType withElement(Element? newElement) {
-    return SequenceType._(validatedValue: value, element: newElement);
+  SequenceTypeBuilder withElement(ElementBuilder? newElement) {
+    return SequenceTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,11 +126,11 @@ class SequenceType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  SequenceType copyWith({
+  SequenceTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -138,7 +141,7 @@ class SequenceType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return SequenceType._(
+    return SequenceTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -148,7 +151,7 @@ class SequenceType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

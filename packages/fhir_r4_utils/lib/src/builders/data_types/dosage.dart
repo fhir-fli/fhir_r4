@@ -1,25 +1,27 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Dosage]
+/// [DosageBuilder]
 /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
-class Dosage extends BackboneType
+class DosageBuilder extends BackboneTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Dosage]
+  /// [DosageBuilder]
 
-  const Dosage({
+  DosageBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -37,29 +39,28 @@ class Dosage extends BackboneType
     this.maxDosePerAdministration,
     this.maxDosePerLifetime,
     super.disallowExtensions,
-    super.objectPath = 'Dosage',
+    super.objectPath = 'DosageBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Dosage.empty() => const Dosage();
+  /// For Builder classes, no fields are required
+  factory DosageBuilder.empty() => DosageBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Dosage.fromJson(
+  factory DosageBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Dosage';
-    return Dosage(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DosageBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -68,8 +69,8 @@ class Dosage extends BackboneType
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -77,21 +78,21 @@ class Dosage extends BackboneType
             ),
           )
           .toList(),
-      sequence: JsonParser.parsePrimitive<FhirInteger>(
+      sequence: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'sequence',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.sequence',
       ),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
       additionalInstruction: (json['additionalInstruction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.additionalInstruction',
@@ -99,47 +100,47 @@ class Dosage extends BackboneType
             ),
           )
           .toList(),
-      patientInstruction: JsonParser.parsePrimitive<FhirString>(
+      patientInstruction: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'patientInstruction',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.patientInstruction',
       ),
-      timing: JsonParser.parseObject<Timing>(
+      timing: JsonParser.parseObject<TimingBuilder>(
         json,
         'timing',
-        Timing.fromJson,
+        TimingBuilder.fromJson,
         '$objectPath.timing',
       ),
-      asNeededX: JsonParser.parsePolymorphic<AsNeededXDosage>(
+      asNeededX: JsonParser.parsePolymorphic<AsNeededXDosageBuilder>(
         json,
         {
-          'asNeededBoolean': FhirBoolean.fromJson,
-          'asNeededCodeableConcept': CodeableConcept.fromJson,
+          'asNeededBoolean': FhirBooleanBuilder.fromJson,
+          'asNeededCodeableConcept': CodeableConceptBuilder.fromJson,
         },
         objectPath,
       ),
-      site: JsonParser.parseObject<CodeableConcept>(
+      site: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'site',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.site',
       ),
-      route: JsonParser.parseObject<CodeableConcept>(
+      route: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'route',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.route',
       ),
-      method: JsonParser.parseObject<CodeableConcept>(
+      method: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'method',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.method',
       ),
       doseAndRate: (json['doseAndRate'] as List<dynamic>?)
-          ?.map<DosageDoseAndRate>(
-            (v) => DosageDoseAndRate.fromJson(
+          ?.map<DosageDoseAndRateBuilder>(
+            (v) => DosageDoseAndRateBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.doseAndRate',
@@ -147,43 +148,43 @@ class Dosage extends BackboneType
             ),
           )
           .toList(),
-      maxDosePerPeriod: JsonParser.parseObject<Ratio>(
+      maxDosePerPeriod: JsonParser.parseObject<RatioBuilder>(
         json,
         'maxDosePerPeriod',
-        Ratio.fromJson,
+        RatioBuilder.fromJson,
         '$objectPath.maxDosePerPeriod',
       ),
-      maxDosePerAdministration: JsonParser.parseObject<Quantity>(
+      maxDosePerAdministration: JsonParser.parseObject<QuantityBuilder>(
         json,
         'maxDosePerAdministration',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.maxDosePerAdministration',
       ),
-      maxDosePerLifetime: JsonParser.parseObject<Quantity>(
+      maxDosePerLifetime: JsonParser.parseObject<QuantityBuilder>(
         json,
         'maxDosePerLifetime',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.maxDosePerLifetime',
       ),
     );
   }
 
-  /// Deserialize [Dosage]
+  /// Deserialize [DosageBuilder]
   /// from a [String] or [YamlMap] object
-  factory Dosage.fromYaml(
+  factory DosageBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Dosage.fromJson(
+      return DosageBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Dosage.fromJson(
+      return DosageBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Dosage '
+        'DosageBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -191,16 +192,16 @@ class Dosage extends BackboneType
   }
 
   /// Factory constructor for
-  /// [Dosage]
+  /// [DosageBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Dosage.fromJsonString(
+  factory DosageBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Dosage.fromJson(json);
+      return DosageBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -213,83 +214,84 @@ class Dosage extends BackboneType
   /// [sequence]
   /// Indicates the order in which the dosage instructions should be applied
   /// or interpreted.
-  final FhirInteger? sequence;
+  FhirIntegerBuilder? sequence;
 
   /// [text]
   /// Free text dosage instructions e.g. SIG.
-  final FhirString? text;
+  FhirStringBuilder? text;
 
   /// [additionalInstruction]
   /// Supplemental instructions to the patient on how to take the medication
   /// (e.g. "with meals" or"take half to one hour before food") or warnings
   /// for the patient about the medication (e.g. "may cause drowsiness" or
   /// "avoid exposure of skin to direct sunlight or sunlamps").
-  final List<CodeableConcept>? additionalInstruction;
+  List<CodeableConceptBuilder>? additionalInstruction;
 
   /// [patientInstruction]
   /// Instructions in terms that are understood by the patient or consumer.
-  final FhirString? patientInstruction;
+  FhirStringBuilder? patientInstruction;
 
   /// [timing]
   /// When medication should be administered.
-  final Timing? timing;
+  TimingBuilder? timing;
 
   /// [asNeededX]
   /// Indicates whether the Medication is only taken when needed within a
   /// specific dosing schedule (Boolean option), or it indicates the
   /// precondition for taking the Medication (CodeableConcept).
-  final AsNeededXDosage? asNeededX;
+  AsNeededXDosageBuilder? asNeededX;
 
-  /// Getter for [asNeededBoolean] as a FhirBoolean
-  FhirBoolean? get asNeededBoolean => asNeededX?.isAs<FhirBoolean>();
+  /// Getter for [asNeededBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get asNeededBoolean =>
+      asNeededX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [asNeededCodeableConcept] as a CodeableConcept
-  CodeableConcept? get asNeededCodeableConcept =>
-      asNeededX?.isAs<CodeableConcept>();
+  /// Getter for [asNeededCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get asNeededCodeableConcept =>
+      asNeededX?.isAs<CodeableConceptBuilder>();
 
   /// [site]
   /// Body site to administer to.
-  final CodeableConcept? site;
+  CodeableConceptBuilder? site;
 
   /// [route]
   /// How drug should enter body.
-  final CodeableConcept? route;
+  CodeableConceptBuilder? route;
 
   /// [method]
   /// Technique for administering medication.
-  final CodeableConcept? method;
+  CodeableConceptBuilder? method;
 
   /// [doseAndRate]
   /// The amount of medication administered.
-  final List<DosageDoseAndRate>? doseAndRate;
+  List<DosageDoseAndRateBuilder>? doseAndRate;
 
   /// [maxDosePerPeriod]
   /// Upper limit on medication per unit of time.
-  final Ratio? maxDosePerPeriod;
+  RatioBuilder? maxDosePerPeriod;
 
   /// [maxDosePerAdministration]
   /// Upper limit on medication per administration.
-  final Quantity? maxDosePerAdministration;
+  QuantityBuilder? maxDosePerAdministration;
 
   /// [maxDosePerLifetime]
   /// Upper limit on medication per lifetime of the patient.
-  final Quantity? maxDosePerLifetime;
+  QuantityBuilder? maxDosePerLifetime;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -298,79 +300,31 @@ class Dosage extends BackboneType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'sequence',
-      sequence,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'additionalInstruction',
-      additionalInstruction,
-    );
-    addField(
-      'patientInstruction',
-      patientInstruction,
-    );
-    addField(
-      'timing',
-      timing,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('sequence', sequence);
+    addField('text', text);
+    addField('additionalInstruction', additionalInstruction);
+    addField('patientInstruction', patientInstruction);
+    addField('timing', timing);
     if (asNeededX != null) {
       final fhirType = asNeededX!.fhirType;
-      addField(
-        'asNeeded${fhirType.capitalize()}',
-        asNeededX,
-      );
+      addField('asNeeded${fhirType.capitalize()}', asNeededX);
     }
 
-    addField(
-      'site',
-      site,
-    );
-    addField(
-      'route',
-      route,
-    );
-    addField(
-      'method',
-      method,
-    );
-    addField(
-      'doseAndRate',
-      doseAndRate,
-    );
-    addField(
-      'maxDosePerPeriod',
-      maxDosePerPeriod,
-    );
-    addField(
-      'maxDosePerAdministration',
-      maxDosePerAdministration,
-    );
-    addField(
-      'maxDosePerLifetime',
-      maxDosePerLifetime,
-    );
+    addField('site', site);
+    addField('route', route);
+    addField('method', method);
+    addField('doseAndRate', doseAndRate);
+    addField('maxDosePerPeriod', maxDosePerPeriod);
+    addField('maxDosePerAdministration', maxDosePerAdministration);
+    addField('maxDosePerLifetime', maxDosePerLifetime);
     return json;
   }
 
@@ -400,11 +354,11 @@ class Dosage extends BackboneType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -439,15 +393,19 @@ class Dosage extends BackboneType
           fields.add(timing!);
         }
       case 'asNeeded':
-        fields.add(asNeededX!);
+        if (asNeededX != null) {
+          fields.add(asNeededX!);
+        }
       case 'asNeededX':
-        fields.add(asNeededX!);
+        if (asNeededX != null) {
+          fields.add(asNeededX!);
+        }
       case 'asNeededBoolean':
-        if (asNeededX is FhirBoolean) {
+        if (asNeededX is FhirBooleanBuilder) {
           fields.add(asNeededX!);
         }
       case 'asNeededCodeableConcept':
-        if (asNeededX is CodeableConcept) {
+        if (asNeededX is CodeableConceptBuilder) {
           fields.add(asNeededX!);
         }
       case 'site':
@@ -488,7 +446,7 @@ class Dosage extends BackboneType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -497,187 +455,202 @@ class Dosage extends BackboneType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sequence':
         {
-          if (child is FhirInteger) {
-            return copyWith(sequence: child);
+          if (child is FhirIntegerBuilder) {
+            sequence = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'additionalInstruction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?additionalInstruction, ...child];
-            return copyWith(additionalInstruction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            additionalInstruction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalInstruction, child];
-            return copyWith(additionalInstruction: newList);
+            additionalInstruction = [...(additionalInstruction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patientInstruction':
         {
-          if (child is FhirString) {
-            return copyWith(patientInstruction: child);
+          if (child is FhirStringBuilder) {
+            patientInstruction = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'timing':
         {
-          if (child is Timing) {
-            return copyWith(timing: child);
+          if (child is TimingBuilder) {
+            timing = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asNeededX':
         {
-          if (child is AsNeededXDosage) {
-            return copyWith(asNeededX: child);
+          if (child is AsNeededXDosageBuilder) {
+            asNeededX = child;
+            return;
           } else {
-            if (child is FhirBoolean) {
-              return copyWith(asNeededX: child);
+            if (child is FhirBooleanBuilder) {
+              asNeededX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(asNeededX: child);
+            if (child is CodeableConceptBuilder) {
+              asNeededX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'asNeededFhirBoolean':
+      case 'asNeededBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(asNeededX: child);
+          if (child is FhirBooleanBuilder) {
+            asNeededX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asNeededCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(asNeededX: child);
+          if (child is CodeableConceptBuilder) {
+            asNeededX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'site':
         {
-          if (child is CodeableConcept) {
-            return copyWith(site: child);
+          if (child is CodeableConceptBuilder) {
+            site = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'route':
         {
-          if (child is CodeableConcept) {
-            return copyWith(route: child);
+          if (child is CodeableConceptBuilder) {
+            route = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
         {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
+          if (child is CodeableConceptBuilder) {
+            method = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseAndRate':
         {
-          if (child is List<DosageDoseAndRate>) {
-            // Add all elements from passed list
-            final newList = [...?doseAndRate, ...child];
-            return copyWith(doseAndRate: newList);
-          } else if (child is DosageDoseAndRate) {
+          if (child is List<DosageDoseAndRateBuilder>) {
+            // Replace or create new list
+            doseAndRate = child;
+            return;
+          } else if (child is DosageDoseAndRateBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?doseAndRate, child];
-            return copyWith(doseAndRate: newList);
+            doseAndRate = [...(doseAndRate ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDosePerPeriod':
         {
-          if (child is Ratio) {
-            return copyWith(maxDosePerPeriod: child);
+          if (child is RatioBuilder) {
+            maxDosePerPeriod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDosePerAdministration':
         {
-          if (child is Quantity) {
-            return copyWith(maxDosePerAdministration: child);
+          if (child is QuantityBuilder) {
+            maxDosePerAdministration = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDosePerLifetime':
         {
-          if (child is Quantity) {
-            return copyWith(maxDosePerLifetime: child);
+          if (child is QuantityBuilder) {
+            maxDosePerLifetime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -693,159 +666,138 @@ class Dosage extends BackboneType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'sequence':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'additionalInstruction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'patientInstruction':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'timing':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'asNeeded':
       case 'asNeededX':
-        return ['FhirBoolean', 'CodeableConcept'];
+        return ['FhirBooleanBuilder', 'CodeableConceptBuilder'];
       case 'asNeededBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'asNeededCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'site':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'route':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'method':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'doseAndRate':
-        return ['DosageDoseAndRate'];
+        return ['DosageDoseAndRateBuilder'];
       case 'maxDosePerPeriod':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'maxDosePerAdministration':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'maxDosePerLifetime':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Dosage]
+  /// Creates a new [DosageBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Dosage createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'sequence':
         {
-          return copyWith(
-            sequence: FhirInteger.empty(),
-          );
+          sequence = FhirIntegerBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       case 'additionalInstruction':
         {
-          return copyWith(
-            additionalInstruction: <CodeableConcept>[],
-          );
+          additionalInstruction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'patientInstruction':
         {
-          return copyWith(
-            patientInstruction: FhirString.empty(),
-          );
+          patientInstruction = FhirStringBuilder.empty();
+          return;
         }
       case 'timing':
         {
-          return copyWith(
-            timing: Timing.empty(),
-          );
+          timing = TimingBuilder.empty();
+          return;
         }
       case 'asNeeded':
       case 'asNeededX':
       case 'asNeededBoolean':
         {
-          return copyWith(
-            asNeededX: FhirBoolean.empty(),
-          );
+          asNeededX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'asNeededCodeableConcept':
         {
-          return copyWith(
-            asNeededX: CodeableConcept.empty(),
-          );
+          asNeededX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'site':
         {
-          return copyWith(
-            site: CodeableConcept.empty(),
-          );
+          site = CodeableConceptBuilder.empty();
+          return;
         }
       case 'route':
         {
-          return copyWith(
-            route: CodeableConcept.empty(),
-          );
+          route = CodeableConceptBuilder.empty();
+          return;
         }
       case 'method':
         {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
+          method = CodeableConceptBuilder.empty();
+          return;
         }
       case 'doseAndRate':
         {
-          return copyWith(
-            doseAndRate: <DosageDoseAndRate>[],
-          );
+          doseAndRate = <DosageDoseAndRateBuilder>[];
+          return;
         }
       case 'maxDosePerPeriod':
         {
-          return copyWith(
-            maxDosePerPeriod: Ratio.empty(),
-          );
+          maxDosePerPeriod = RatioBuilder.empty();
+          return;
         }
       case 'maxDosePerAdministration':
         {
-          return copyWith(
-            maxDosePerAdministration: Quantity.empty(),
-          );
+          maxDosePerAdministration = QuantityBuilder.empty();
+          return;
         }
       case 'maxDosePerLifetime':
         {
-          return copyWith(
-            maxDosePerLifetime: Quantity.empty(),
-          );
+          maxDosePerLifetime = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -854,7 +806,7 @@ class Dosage extends BackboneType
 
   /// Clears specific fields in this object
   @override
-  Dosage clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -872,48 +824,44 @@ class Dosage extends BackboneType
     bool maxDosePerAdministration = false,
     bool maxDosePerLifetime = false,
   }) {
-    return Dosage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence ? null : this.sequence,
-      text: text ? null : this.text,
-      additionalInstruction:
-          additionalInstruction ? null : this.additionalInstruction,
-      patientInstruction: patientInstruction ? null : this.patientInstruction,
-      timing: timing ? null : this.timing,
-      asNeededX: asNeeded ? null : asNeededX,
-      site: site ? null : this.site,
-      route: route ? null : this.route,
-      method: method ? null : this.method,
-      doseAndRate: doseAndRate ? null : this.doseAndRate,
-      maxDosePerPeriod: maxDosePerPeriod ? null : this.maxDosePerPeriod,
-      maxDosePerAdministration:
-          maxDosePerAdministration ? null : this.maxDosePerAdministration,
-      maxDosePerLifetime: maxDosePerLifetime ? null : this.maxDosePerLifetime,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (sequence) this.sequence = null;
+    if (text) this.text = null;
+    if (additionalInstruction) this.additionalInstruction = null;
+    if (patientInstruction) this.patientInstruction = null;
+    if (timing) this.timing = null;
+    if (asNeeded) this.asNeededX = null;
+    if (site) this.site = null;
+    if (route) this.route = null;
+    if (method) this.method = null;
+    if (doseAndRate) this.doseAndRate = null;
+    if (maxDosePerPeriod) this.maxDosePerPeriod = null;
+    if (maxDosePerAdministration) this.maxDosePerAdministration = null;
+    if (maxDosePerLifetime) this.maxDosePerLifetime = null;
   }
 
   @override
-  Dosage clone() => throw UnimplementedError();
+  DosageBuilder clone() => throw UnimplementedError();
   @override
-  Dosage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirInteger? sequence,
-    FhirString? text,
-    List<CodeableConcept>? additionalInstruction,
-    FhirString? patientInstruction,
-    Timing? timing,
-    AsNeededXDosage? asNeededX,
-    CodeableConcept? site,
-    CodeableConcept? route,
-    CodeableConcept? method,
-    List<DosageDoseAndRate>? doseAndRate,
-    Ratio? maxDosePerPeriod,
-    Quantity? maxDosePerAdministration,
-    Quantity? maxDosePerLifetime,
+  DosageBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIntegerBuilder? sequence,
+    FhirStringBuilder? text,
+    List<CodeableConceptBuilder>? additionalInstruction,
+    FhirStringBuilder? patientInstruction,
+    TimingBuilder? timing,
+    AsNeededXDosageBuilder? asNeededX,
+    CodeableConceptBuilder? site,
+    CodeableConceptBuilder? route,
+    CodeableConceptBuilder? method,
+    List<DosageDoseAndRateBuilder>? doseAndRate,
+    RatioBuilder? maxDosePerPeriod,
+    QuantityBuilder? maxDosePerAdministration,
+    QuantityBuilder? maxDosePerLifetime,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -921,94 +869,49 @@ class Dosage extends BackboneType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Dosage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      additionalInstruction: additionalInstruction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.additionalInstruction',
-                ),
-              )
-              .toList() ??
-          this.additionalInstruction,
-      patientInstruction: patientInstruction?.copyWith(
-            objectPath: '$newObjectPath.patientInstruction',
-          ) ??
-          this.patientInstruction,
-      timing: timing?.copyWith(
-            objectPath: '$newObjectPath.timing',
-          ) ??
-          this.timing,
-      asNeededX: asNeededX?.copyWith(
-            objectPath: '$newObjectPath.asNeededX',
-          ) as AsNeededXDosage? ??
-          this.asNeededX,
-      site: site?.copyWith(
-            objectPath: '$newObjectPath.site',
-          ) ??
-          this.site,
-      route: route?.copyWith(
-            objectPath: '$newObjectPath.route',
-          ) ??
-          this.route,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      doseAndRate: doseAndRate
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.doseAndRate',
-                ),
-              )
-              .toList() ??
-          this.doseAndRate,
-      maxDosePerPeriod: maxDosePerPeriod?.copyWith(
-            objectPath: '$newObjectPath.maxDosePerPeriod',
-          ) ??
-          this.maxDosePerPeriod,
-      maxDosePerAdministration: maxDosePerAdministration?.copyWith(
-            objectPath: '$newObjectPath.maxDosePerAdministration',
-          ) ??
-          this.maxDosePerAdministration,
-      maxDosePerLifetime: maxDosePerLifetime?.copyWith(
-            objectPath: '$newObjectPath.maxDosePerLifetime',
-          ) ??
-          this.maxDosePerLifetime,
+    final newResult = DosageBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      sequence: sequence ?? this.sequence,
+      text: text ?? this.text,
+      additionalInstruction:
+          additionalInstruction ?? this.additionalInstruction,
+      patientInstruction: patientInstruction ?? this.patientInstruction,
+      timing: timing ?? this.timing,
+      asNeededX: asNeededX ?? this.asNeededX,
+      site: site ?? this.site,
+      route: route ?? this.route,
+      method: method ?? this.method,
+      doseAndRate: doseAndRate ?? this.doseAndRate,
+      maxDosePerPeriod: maxDosePerPeriod ?? this.maxDosePerPeriod,
+      maxDosePerAdministration:
+          maxDosePerAdministration ?? this.maxDosePerAdministration,
+      maxDosePerLifetime: maxDosePerLifetime ?? this.maxDosePerLifetime,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Dosage) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DosageBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1019,13 +922,13 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1043,7 +946,7 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       additionalInstruction,
       o.additionalInstruction,
     )) {
@@ -1085,7 +988,7 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (!listEquals<DosageDoseAndRate>(
+    if (!listEquals<DosageDoseAndRateBuilder>(
       doseAndRate,
       o.doseAndRate,
     )) {
@@ -1113,42 +1016,41 @@ class Dosage extends BackboneType
   }
 }
 
-/// [DosageDoseAndRate]
+/// [DosageDoseAndRateBuilder]
 /// The amount of medication administered.
-class DosageDoseAndRate extends Element {
+class DosageDoseAndRateBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [DosageDoseAndRate]
+  /// [DosageDoseAndRateBuilder]
 
-  const DosageDoseAndRate({
+  DosageDoseAndRateBuilder({
     super.id,
     super.extension_,
     this.type,
     this.doseX,
     this.rateX,
     super.disallowExtensions,
-    super.objectPath = 'DosageDoseAndRate',
+    super.objectPath = 'DosageDoseAndRateBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DosageDoseAndRate.empty() => const DosageDoseAndRate();
+  /// For Builder classes, no fields are required
+  factory DosageDoseAndRateBuilder.empty() => DosageDoseAndRateBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DosageDoseAndRate.fromJson(
+  factory DosageDoseAndRateBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'DosageDoseAndRate';
-    return DosageDoseAndRate(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DosageDoseAndRateBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1156,48 +1058,48 @@ class DosageDoseAndRate extends Element {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      doseX: JsonParser.parsePolymorphic<DoseXDosageDoseAndRate>(
+      doseX: JsonParser.parsePolymorphic<DoseXDosageDoseAndRateBuilder>(
         json,
         {
-          'doseRange': Range.fromJson,
-          'doseQuantity': Quantity.fromJson,
+          'doseRange': RangeBuilder.fromJson,
+          'doseQuantity': QuantityBuilder.fromJson,
         },
         objectPath,
       ),
-      rateX: JsonParser.parsePolymorphic<RateXDosageDoseAndRate>(
+      rateX: JsonParser.parsePolymorphic<RateXDosageDoseAndRateBuilder>(
         json,
         {
-          'rateRatio': Ratio.fromJson,
-          'rateRange': Range.fromJson,
-          'rateQuantity': Quantity.fromJson,
+          'rateRatio': RatioBuilder.fromJson,
+          'rateRange': RangeBuilder.fromJson,
+          'rateQuantity': QuantityBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [DosageDoseAndRate]
+  /// Deserialize [DosageDoseAndRateBuilder]
   /// from a [String] or [YamlMap] object
-  factory DosageDoseAndRate.fromYaml(
+  factory DosageDoseAndRateBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DosageDoseAndRate.fromJson(
+      return DosageDoseAndRateBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DosageDoseAndRate.fromJson(
+      return DosageDoseAndRateBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DosageDoseAndRate '
+        'DosageDoseAndRateBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1205,16 +1107,16 @@ class DosageDoseAndRate extends Element {
   }
 
   /// Factory constructor for
-  /// [DosageDoseAndRate]
+  /// [DosageDoseAndRateBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DosageDoseAndRate.fromJsonString(
+  factory DosageDoseAndRateBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DosageDoseAndRate.fromJson(json);
+      return DosageDoseAndRateBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1226,46 +1128,46 @@ class DosageDoseAndRate extends Element {
 
   /// [type]
   /// The kind of dose or rate specified, for example, ordered or calculated.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [doseX]
   /// Amount of medication per dose.
-  final DoseXDosageDoseAndRate? doseX;
+  DoseXDosageDoseAndRateBuilder? doseX;
 
-  /// Getter for [doseRange] as a Range
-  Range? get doseRange => doseX?.isAs<Range>();
+  /// Getter for [doseRange] as a RangeBuilder
+  RangeBuilder? get doseRange => doseX?.isAs<RangeBuilder>();
 
-  /// Getter for [doseQuantity] as a Quantity
-  Quantity? get doseQuantity => doseX?.isAs<Quantity>();
+  /// Getter for [doseQuantity] as a QuantityBuilder
+  QuantityBuilder? get doseQuantity => doseX?.isAs<QuantityBuilder>();
 
   /// [rateX]
   /// Amount of medication per unit of time.
-  final RateXDosageDoseAndRate? rateX;
+  RateXDosageDoseAndRateBuilder? rateX;
 
-  /// Getter for [rateRatio] as a Ratio
-  Ratio? get rateRatio => rateX?.isAs<Ratio>();
+  /// Getter for [rateRatio] as a RatioBuilder
+  RatioBuilder? get rateRatio => rateX?.isAs<RatioBuilder>();
 
-  /// Getter for [rateRange] as a Range
-  Range? get rateRange => rateX?.isAs<Range>();
+  /// Getter for [rateRange] as a RangeBuilder
+  RangeBuilder? get rateRange => rateX?.isAs<RangeBuilder>();
 
-  /// Getter for [rateQuantity] as a Quantity
-  Quantity? get rateQuantity => rateX?.isAs<Quantity>();
+  /// Getter for [rateQuantity] as a QuantityBuilder
+  QuantityBuilder? get rateQuantity => rateX?.isAs<QuantityBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1274,37 +1176,22 @@ class DosageDoseAndRate extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('type', type);
     if (doseX != null) {
       final fhirType = doseX!.fhirType;
-      addField(
-        'dose${fhirType.capitalize()}',
-        doseX,
-      );
+      addField('dose${fhirType.capitalize()}', doseX);
     }
 
     if (rateX != null) {
       final fhirType = rateX!.fhirType;
-      addField(
-        'rate${fhirType.capitalize()}',
-        rateX,
-      );
+      addField('rate${fhirType.capitalize()}', rateX);
     }
 
     return json;
@@ -1325,11 +1212,11 @@ class DosageDoseAndRate extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1344,31 +1231,39 @@ class DosageDoseAndRate extends Element {
           fields.add(type!);
         }
       case 'dose':
-        fields.add(doseX!);
+        if (doseX != null) {
+          fields.add(doseX!);
+        }
       case 'doseX':
-        fields.add(doseX!);
+        if (doseX != null) {
+          fields.add(doseX!);
+        }
       case 'doseRange':
-        if (doseX is Range) {
+        if (doseX is RangeBuilder) {
           fields.add(doseX!);
         }
       case 'doseQuantity':
-        if (doseX is Quantity) {
+        if (doseX is QuantityBuilder) {
           fields.add(doseX!);
         }
       case 'rate':
-        fields.add(rateX!);
+        if (rateX != null) {
+          fields.add(rateX!);
+        }
       case 'rateX':
-        fields.add(rateX!);
+        if (rateX != null) {
+          fields.add(rateX!);
+        }
       case 'rateRatio':
-        if (rateX is Ratio) {
+        if (rateX is RatioBuilder) {
           fields.add(rateX!);
         }
       case 'rateRange':
-        if (rateX is Range) {
+        if (rateX is RangeBuilder) {
           fields.add(rateX!);
         }
       case 'rateQuantity':
-        if (rateX is Quantity) {
+        if (rateX is QuantityBuilder) {
           fields.add(rateX!);
         }
       default:
@@ -1381,7 +1276,7 @@ class DosageDoseAndRate extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1390,114 +1285,127 @@ class DosageDoseAndRate extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseX':
         {
-          if (child is DoseXDosageDoseAndRate) {
-            return copyWith(doseX: child);
+          if (child is DoseXDosageDoseAndRateBuilder) {
+            doseX = child;
+            return;
           } else {
-            if (child is Range) {
-              return copyWith(doseX: child);
+            if (child is RangeBuilder) {
+              doseX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(doseX: child);
+            if (child is QuantityBuilder) {
+              doseX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'doseRange':
         {
-          if (child is Range) {
-            return copyWith(doseX: child);
+          if (child is RangeBuilder) {
+            doseX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(doseX: child);
+          if (child is QuantityBuilder) {
+            doseX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateX':
         {
-          if (child is RateXDosageDoseAndRate) {
-            return copyWith(rateX: child);
+          if (child is RateXDosageDoseAndRateBuilder) {
+            rateX = child;
+            return;
           } else {
-            if (child is Ratio) {
-              return copyWith(rateX: child);
+            if (child is RatioBuilder) {
+              rateX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(rateX: child);
+            if (child is RangeBuilder) {
+              rateX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(rateX: child);
+            if (child is QuantityBuilder) {
+              rateX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'rateRatio':
         {
-          if (child is Ratio) {
-            return copyWith(rateX: child);
+          if (child is RatioBuilder) {
+            rateX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateRange':
         {
-          if (child is Range) {
-            return copyWith(rateX: child);
+          if (child is RangeBuilder) {
+            rateX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(rateX: child);
+          if (child is QuantityBuilder) {
+            rateX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1513,92 +1421,80 @@ class DosageDoseAndRate extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'dose':
       case 'doseX':
-        return ['Range', 'Quantity'];
+        return ['RangeBuilder', 'QuantityBuilder'];
       case 'doseRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'doseQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'rate':
       case 'rateX':
-        return ['Ratio', 'Range', 'Quantity'];
+        return ['RatioBuilder', 'RangeBuilder', 'QuantityBuilder'];
       case 'rateRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'rateRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'rateQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DosageDoseAndRate]
+  /// Creates a new [DosageDoseAndRateBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DosageDoseAndRate createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'dose':
       case 'doseX':
       case 'doseRange':
         {
-          return copyWith(
-            doseX: Range.empty(),
-          );
+          doseX = RangeBuilder.empty();
+          return;
         }
       case 'doseQuantity':
         {
-          return copyWith(
-            doseX: Quantity.empty(),
-          );
+          doseX = QuantityBuilder.empty();
+          return;
         }
       case 'rate':
       case 'rateX':
       case 'rateRatio':
         {
-          return copyWith(
-            rateX: Ratio.empty(),
-          );
+          rateX = RatioBuilder.empty();
+          return;
         }
       case 'rateRange':
         {
-          return copyWith(
-            rateX: Range.empty(),
-          );
+          rateX = RangeBuilder.empty();
+          return;
         }
       case 'rateQuantity':
         {
-          return copyWith(
-            rateX: Quantity.empty(),
-          );
+          rateX = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1607,31 +1503,29 @@ class DosageDoseAndRate extends Element {
 
   /// Clears specific fields in this object
   @override
-  DosageDoseAndRate clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool type = false,
     bool dose = false,
     bool rate = false,
   }) {
-    return DosageDoseAndRate(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type ? null : this.type,
-      doseX: dose ? null : doseX,
-      rateX: rate ? null : rateX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (type) this.type = null;
+    if (dose) this.doseX = null;
+    if (rate) this.rateX = null;
   }
 
   @override
-  DosageDoseAndRate clone() => throw UnimplementedError();
+  DosageDoseAndRateBuilder clone() => throw UnimplementedError();
   @override
-  DosageDoseAndRate copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    CodeableConcept? type,
-    DoseXDosageDoseAndRate? doseX,
-    RateXDosageDoseAndRate? rateX,
+  DosageDoseAndRateBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    CodeableConceptBuilder? type,
+    DoseXDosageDoseAndRateBuilder? doseX,
+    RateXDosageDoseAndRateBuilder? rateX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1639,38 +1533,36 @@ class DosageDoseAndRate extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return DosageDoseAndRate(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      doseX: doseX?.copyWith(
-            objectPath: '$newObjectPath.doseX',
-          ) as DoseXDosageDoseAndRate? ??
-          this.doseX,
-      rateX: rateX?.copyWith(
-            objectPath: '$newObjectPath.rateX',
-          ) as RateXDosageDoseAndRate? ??
-          this.rateX,
+    final newResult = DosageDoseAndRateBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      type: type ?? this.type,
+      doseX: doseX ?? this.doseX,
+      rateX: rateX ?? this.rateX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DosageDoseAndRate) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DosageDoseAndRateBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1681,7 +1573,7 @@ class DosageDoseAndRate extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

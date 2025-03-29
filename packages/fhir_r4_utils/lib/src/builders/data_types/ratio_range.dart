@@ -1,53 +1,54 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [RatioRange]
+/// [RatioRangeBuilder]
 /// A range of ratios expressed as a low and high numerator and a
 /// denominator.
-class RatioRange extends DataType
+class RatioRangeBuilder extends DataTypeBuilder
     implements
-        PresentationXIngredientStrength,
-        ConcentrationXIngredientStrength,
-        StrengthXIngredientReferenceStrength,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        PresentationXIngredientStrengthBuilder,
+        ConcentrationXIngredientStrengthBuilder,
+        StrengthXIngredientReferenceStrengthBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [RatioRange]
+  /// [RatioRangeBuilder]
 
-  const RatioRange({
+  RatioRangeBuilder({
     super.id,
     super.extension_,
     this.lowNumerator,
     this.highNumerator,
     this.denominator,
     super.disallowExtensions,
-    super.objectPath = 'RatioRange',
+    super.objectPath = 'RatioRangeBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RatioRange.empty() => const RatioRange();
+  /// For Builder classes, no fields are required
+  factory RatioRangeBuilder.empty() => RatioRangeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RatioRange.fromJson(
+  factory RatioRangeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'RatioRange';
-    return RatioRange(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return RatioRangeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -55,43 +56,43 @@ class RatioRange extends DataType
             ),
           )
           .toList(),
-      lowNumerator: JsonParser.parseObject<Quantity>(
+      lowNumerator: JsonParser.parseObject<QuantityBuilder>(
         json,
         'lowNumerator',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.lowNumerator',
       ),
-      highNumerator: JsonParser.parseObject<Quantity>(
+      highNumerator: JsonParser.parseObject<QuantityBuilder>(
         json,
         'highNumerator',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.highNumerator',
       ),
-      denominator: JsonParser.parseObject<Quantity>(
+      denominator: JsonParser.parseObject<QuantityBuilder>(
         json,
         'denominator',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.denominator',
       ),
     );
   }
 
-  /// Deserialize [RatioRange]
+  /// Deserialize [RatioRangeBuilder]
   /// from a [String] or [YamlMap] object
-  factory RatioRange.fromYaml(
+  factory RatioRangeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return RatioRange.fromJson(
+      return RatioRangeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return RatioRange.fromJson(
+      return RatioRangeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RatioRange '
+        'RatioRangeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -99,16 +100,16 @@ class RatioRange extends DataType
   }
 
   /// Factory constructor for
-  /// [RatioRange]
+  /// [RatioRangeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RatioRange.fromJsonString(
+  factory RatioRangeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return RatioRange.fromJson(json);
+      return RatioRangeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -120,31 +121,31 @@ class RatioRange extends DataType
 
   /// [lowNumerator]
   /// The value of the low limit numerator.
-  final Quantity? lowNumerator;
+  QuantityBuilder? lowNumerator;
 
   /// [highNumerator]
   /// The value of the high limit numerator.
-  final Quantity? highNumerator;
+  QuantityBuilder? highNumerator;
 
   /// [denominator]
   /// The value of the denominator.
-  final Quantity? denominator;
+  QuantityBuilder? denominator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -153,31 +154,16 @@ class RatioRange extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'lowNumerator',
-      lowNumerator,
-    );
-    addField(
-      'highNumerator',
-      highNumerator,
-    );
-    addField(
-      'denominator',
-      denominator,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('lowNumerator', lowNumerator);
+    addField('highNumerator', highNumerator);
+    addField('denominator', denominator);
     return json;
   }
 
@@ -196,11 +182,11 @@ class RatioRange extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -232,7 +218,7 @@ class RatioRange extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -241,59 +227,62 @@ class RatioRange extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lowNumerator':
         {
-          if (child is Quantity) {
-            return copyWith(lowNumerator: child);
+          if (child is QuantityBuilder) {
+            lowNumerator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'highNumerator':
         {
-          if (child is Quantity) {
-            return copyWith(highNumerator: child);
+          if (child is QuantityBuilder) {
+            highNumerator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'denominator':
         {
-          if (child is Quantity) {
-            return copyWith(denominator: child);
+          if (child is QuantityBuilder) {
+            denominator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -309,58 +298,49 @@ class RatioRange extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'lowNumerator':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'highNumerator':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'denominator':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [RatioRange]
+  /// Creates a new [RatioRangeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  RatioRange createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'lowNumerator':
         {
-          return copyWith(
-            lowNumerator: Quantity.empty(),
-          );
+          lowNumerator = QuantityBuilder.empty();
+          return;
         }
       case 'highNumerator':
         {
-          return copyWith(
-            highNumerator: Quantity.empty(),
-          );
+          highNumerator = QuantityBuilder.empty();
+          return;
         }
       case 'denominator':
         {
-          return copyWith(
-            denominator: Quantity.empty(),
-          );
+          denominator = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -369,31 +349,29 @@ class RatioRange extends DataType
 
   /// Clears specific fields in this object
   @override
-  RatioRange clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool lowNumerator = false,
     bool highNumerator = false,
     bool denominator = false,
   }) {
-    return RatioRange(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      lowNumerator: lowNumerator ? null : this.lowNumerator,
-      highNumerator: highNumerator ? null : this.highNumerator,
-      denominator: denominator ? null : this.denominator,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (lowNumerator) this.lowNumerator = null;
+    if (highNumerator) this.highNumerator = null;
+    if (denominator) this.denominator = null;
   }
 
   @override
-  RatioRange clone() => throw UnimplementedError();
+  RatioRangeBuilder clone() => throw UnimplementedError();
   @override
-  RatioRange copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Quantity? lowNumerator,
-    Quantity? highNumerator,
-    Quantity? denominator,
+  RatioRangeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    QuantityBuilder? lowNumerator,
+    QuantityBuilder? highNumerator,
+    QuantityBuilder? denominator,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -401,38 +379,36 @@ class RatioRange extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return RatioRange(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      lowNumerator: lowNumerator?.copyWith(
-            objectPath: '$newObjectPath.lowNumerator',
-          ) ??
-          this.lowNumerator,
-      highNumerator: highNumerator?.copyWith(
-            objectPath: '$newObjectPath.highNumerator',
-          ) ??
-          this.highNumerator,
-      denominator: denominator?.copyWith(
-            objectPath: '$newObjectPath.denominator',
-          ) ??
-          this.denominator,
+    final newResult = RatioRangeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      lowNumerator: lowNumerator ?? this.lowNumerator,
+      highNumerator: highNumerator ?? this.highNumerator,
+      denominator: denominator ?? this.denominator,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! RatioRange) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! RatioRangeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -443,7 +419,7 @@ class RatioRange extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

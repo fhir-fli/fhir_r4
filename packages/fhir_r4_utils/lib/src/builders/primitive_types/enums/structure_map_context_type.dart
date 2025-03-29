@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How to interpret the context.
-class StructureMapContextType extends FhirCodeEnum {
+class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  StructureMapContextType._({
+  StructureMapContextTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class StructureMapContextType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory StructureMapContextType(
+  factory StructureMapContextTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return StructureMapContextType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return StructureMapContextTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class StructureMapContextType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [StructureMapContextType] with element only
-  factory StructureMapContextType.empty() =>
-      StructureMapContextType._(validatedValue: '');
+  /// Create empty [StructureMapContextTypeBuilder] with element only
+  factory StructureMapContextTypeBuilder.empty() =>
+      StructureMapContextTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureMapContextType] from JSON.
-  factory StructureMapContextType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapContextTypeBuilder] from JSON.
+  factory StructureMapContextTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapContextType.elementOnly.withElement(element);
+      return StructureMapContextTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureMapContextType cannot be constructed from JSON.',
+        'StructureMapContextTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return StructureMapContextType._(
+    return StructureMapContextTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// type
-  static final StructureMapContextType type = StructureMapContextType._(
+  static StructureMapContextTypeBuilder type = StructureMapContextTypeBuilder._(
     validatedValue: 'type',
-    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Type'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Type'.toFhirStringBuilder,
   );
 
   /// variable
-  static final StructureMapContextType variable = StructureMapContextType._(
+  static StructureMapContextTypeBuilder variable =
+      StructureMapContextTypeBuilder._(
     validatedValue: 'variable',
-    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Variable'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Variable'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final StructureMapContextType elementOnly =
-      StructureMapContextType._(validatedValue: '');
+  static StructureMapContextTypeBuilder elementOnly =
+      StructureMapContextTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<StructureMapContextType> values = [
+  static List<StructureMapContextTypeBuilder> values = [
     type,
     variable,
   ];
 
   /// Clones the current instance
   @override
-  StructureMapContextType clone() => StructureMapContextType._(
+  StructureMapContextTypeBuilder clone() => StructureMapContextTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  StructureMapContextType withElement(Element? newElement) {
-    return StructureMapContextType._(
-        validatedValue: value, element: newElement,);
+  StructureMapContextTypeBuilder withElement(ElementBuilder? newElement) {
+    return StructureMapContextTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -117,11 +119,11 @@ class StructureMapContextType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  StructureMapContextType copyWith({
+  StructureMapContextTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -132,7 +134,7 @@ class StructureMapContextType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return StructureMapContextType._(
+    return StructureMapContextTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -142,7 +144,7 @@ class StructureMapContextType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

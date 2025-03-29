@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How resource references can be aggregated.
-class AggregationMode extends FhirCodeEnum {
+class AggregationModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  AggregationMode._({
+  AggregationModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class AggregationMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory AggregationMode(
+  factory AggregationModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return AggregationMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return AggregationModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,57 +43,62 @@ class AggregationMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [AggregationMode] with element only
-  factory AggregationMode.empty() => AggregationMode._(validatedValue: '');
+  /// Create empty [AggregationModeBuilder] with element only
+  factory AggregationModeBuilder.empty() =>
+      AggregationModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AggregationMode] from JSON.
-  factory AggregationMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AggregationModeBuilder] from JSON.
+  factory AggregationModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AggregationMode.elementOnly.withElement(element);
+      return AggregationModeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AggregationMode cannot be constructed from JSON.',
+        'AggregationModeBuilder cannot be constructed from JSON.',
       );
     }
-    return AggregationMode._(
+    return AggregationModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// contained
-  static final AggregationMode contained = AggregationMode._(
+  static AggregationModeBuilder contained = AggregationModeBuilder._(
     validatedValue: 'contained',
-    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Contained'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Contained'.toFhirStringBuilder,
   );
 
   /// referenced
-  static final AggregationMode referenced = AggregationMode._(
+  static AggregationModeBuilder referenced = AggregationModeBuilder._(
     validatedValue: 'referenced',
-    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Referenced'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Referenced'.toFhirStringBuilder,
   );
 
   /// bundled
-  static final AggregationMode bundled = AggregationMode._(
+  static AggregationModeBuilder bundled = AggregationModeBuilder._(
     validatedValue: 'bundled',
-    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Bundled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Bundled'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final AggregationMode elementOnly =
-      AggregationMode._(validatedValue: '');
+  static AggregationModeBuilder elementOnly =
+      AggregationModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<AggregationMode> values = [
+  static List<AggregationModeBuilder> values = [
     contained,
     referenced,
     bundled,
@@ -101,14 +106,14 @@ class AggregationMode extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  AggregationMode clone() => AggregationMode._(
+  AggregationModeBuilder clone() => AggregationModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  AggregationMode withElement(Element? newElement) {
-    return AggregationMode._(validatedValue: value, element: newElement);
+  AggregationModeBuilder withElement(ElementBuilder? newElement) {
+    return AggregationModeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,11 +129,11 @@ class AggregationMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  AggregationMode copyWith({
+  AggregationModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -139,7 +144,7 @@ class AggregationMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return AggregationMode._(
+    return AggregationModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -149,7 +154,7 @@ class AggregationMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

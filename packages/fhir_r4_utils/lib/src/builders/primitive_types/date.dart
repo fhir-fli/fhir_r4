@@ -79,7 +79,7 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Date',
+    String? objectPath = 'Date',
   }) {
     return FhirDateBuilder._(
       validatedValue: value,
@@ -173,7 +173,7 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Creates empty [FhirDateBuilder] object
   factory FhirDateBuilder.empty() => FhirDateBuilder.fromBase(

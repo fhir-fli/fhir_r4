@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Describes the category of the metric.
-class DeviceMetricCategory extends FhirCodeEnum {
+class DeviceMetricCategoryBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  DeviceMetricCategory._({
+  DeviceMetricCategoryBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class DeviceMetricCategory extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory DeviceMetricCategory(
+  factory DeviceMetricCategoryBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return DeviceMetricCategory._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return DeviceMetricCategoryBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,70 @@ class DeviceMetricCategory extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [DeviceMetricCategory] with element only
-  factory DeviceMetricCategory.empty() =>
-      DeviceMetricCategory._(validatedValue: '');
+  /// Create empty [DeviceMetricCategoryBuilder] with element only
+  factory DeviceMetricCategoryBuilder.empty() =>
+      DeviceMetricCategoryBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DeviceMetricCategory] from JSON.
-  factory DeviceMetricCategory.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceMetricCategoryBuilder] from JSON.
+  factory DeviceMetricCategoryBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCategory.elementOnly.withElement(element);
+      return DeviceMetricCategoryBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DeviceMetricCategory cannot be constructed from JSON.',
+        'DeviceMetricCategoryBuilder cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricCategory._(
+    return DeviceMetricCategoryBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// measurement
-  static final DeviceMetricCategory measurement = DeviceMetricCategory._(
+  static DeviceMetricCategoryBuilder measurement =
+      DeviceMetricCategoryBuilder._(
     validatedValue: 'measurement',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Measurement'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Measurement'.toFhirStringBuilder,
   );
 
   /// setting
-  static final DeviceMetricCategory setting = DeviceMetricCategory._(
+  static DeviceMetricCategoryBuilder setting = DeviceMetricCategoryBuilder._(
     validatedValue: 'setting',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Setting'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Setting'.toFhirStringBuilder,
   );
 
   /// calculation
-  static final DeviceMetricCategory calculation = DeviceMetricCategory._(
+  static DeviceMetricCategoryBuilder calculation =
+      DeviceMetricCategoryBuilder._(
     validatedValue: 'calculation',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Calculation'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Calculation'.toFhirStringBuilder,
   );
 
   /// unspecified
-  static final DeviceMetricCategory unspecified = DeviceMetricCategory._(
+  static DeviceMetricCategoryBuilder unspecified =
+      DeviceMetricCategoryBuilder._(
     validatedValue: 'unspecified',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unspecified'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unspecified'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final DeviceMetricCategory elementOnly =
-      DeviceMetricCategory._(validatedValue: '');
+  static DeviceMetricCategoryBuilder elementOnly =
+      DeviceMetricCategoryBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<DeviceMetricCategory> values = [
+  static List<DeviceMetricCategoryBuilder> values = [
     measurement,
     setting,
     calculation,
@@ -111,14 +115,15 @@ class DeviceMetricCategory extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  DeviceMetricCategory clone() => DeviceMetricCategory._(
+  DeviceMetricCategoryBuilder clone() => DeviceMetricCategoryBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  DeviceMetricCategory withElement(Element? newElement) {
-    return DeviceMetricCategory._(validatedValue: value, element: newElement);
+  DeviceMetricCategoryBuilder withElement(ElementBuilder? newElement) {
+    return DeviceMetricCategoryBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,11 +139,11 @@ class DeviceMetricCategory extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  DeviceMetricCategory copyWith({
+  DeviceMetricCategoryBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -149,7 +154,7 @@ class DeviceMetricCategory extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return DeviceMetricCategory._(
+    return DeviceMetricCategoryBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -159,7 +164,7 @@ class DeviceMetricCategory extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of actor - system or human.
-class ExampleScenarioActorType extends FhirCodeEnum {
+class ExampleScenarioActorTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ExampleScenarioActorType._({
+  ExampleScenarioActorTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ExampleScenarioActorType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ExampleScenarioActorType(
+  factory ExampleScenarioActorTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ExampleScenarioActorType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ExampleScenarioActorTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,70 @@ class ExampleScenarioActorType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ExampleScenarioActorType] with element only
-  factory ExampleScenarioActorType.empty() =>
-      ExampleScenarioActorType._(validatedValue: '');
+  /// Create empty [ExampleScenarioActorTypeBuilder] with element only
+  factory ExampleScenarioActorTypeBuilder.empty() =>
+      ExampleScenarioActorTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ExampleScenarioActorType] from JSON.
-  factory ExampleScenarioActorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ExampleScenarioActorTypeBuilder] from JSON.
+  factory ExampleScenarioActorTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleScenarioActorType.elementOnly.withElement(element);
+      return ExampleScenarioActorTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ExampleScenarioActorType cannot be constructed from JSON.',
+        'ExampleScenarioActorTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return ExampleScenarioActorType._(
+    return ExampleScenarioActorTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// person
-  static final ExampleScenarioActorType person = ExampleScenarioActorType._(
+  static ExampleScenarioActorTypeBuilder person =
+      ExampleScenarioActorTypeBuilder._(
     validatedValue: 'person',
-    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Person'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Person'.toFhirStringBuilder,
   );
 
   /// entity
-  static final ExampleScenarioActorType entity = ExampleScenarioActorType._(
+  static ExampleScenarioActorTypeBuilder entity =
+      ExampleScenarioActorTypeBuilder._(
     validatedValue: 'entity',
-    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'System'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'System'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ExampleScenarioActorType elementOnly =
-      ExampleScenarioActorType._(validatedValue: '');
+  static ExampleScenarioActorTypeBuilder elementOnly =
+      ExampleScenarioActorTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ExampleScenarioActorType> values = [
+  static List<ExampleScenarioActorTypeBuilder> values = [
     person,
     entity,
   ];
 
   /// Clones the current instance
   @override
-  ExampleScenarioActorType clone() => ExampleScenarioActorType._(
+  ExampleScenarioActorTypeBuilder clone() => ExampleScenarioActorTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ExampleScenarioActorType withElement(Element? newElement) {
-    return ExampleScenarioActorType._(
-        validatedValue: value, element: newElement,);
+  ExampleScenarioActorTypeBuilder withElement(ElementBuilder? newElement) {
+    return ExampleScenarioActorTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -117,11 +122,11 @@ class ExampleScenarioActorType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ExampleScenarioActorType copyWith({
+  ExampleScenarioActorTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -132,7 +137,7 @@ class ExampleScenarioActorType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ExampleScenarioActorType._(
+    return ExampleScenarioActorTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -142,7 +147,7 @@ class ExampleScenarioActorType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// Used to distinguish different roles a resource can play within a set of
 /// linked resources.
-class LinkageType extends FhirCodeEnum {
+class LinkageTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  LinkageType._({
+  LinkageTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class LinkageType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory LinkageType(
+  factory LinkageTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return LinkageType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return LinkageTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,56 +44,59 @@ class LinkageType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [LinkageType] with element only
-  factory LinkageType.empty() => LinkageType._(validatedValue: '');
+  /// Create empty [LinkageTypeBuilder] with element only
+  factory LinkageTypeBuilder.empty() =>
+      LinkageTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [LinkageType] from JSON.
-  factory LinkageType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [LinkageTypeBuilder] from JSON.
+  factory LinkageTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkageType.elementOnly.withElement(element);
+      return LinkageTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'LinkageType cannot be constructed from JSON.',
+        'LinkageTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return LinkageType._(
+    return LinkageTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// source
-  static final LinkageType source = LinkageType._(
+  static LinkageTypeBuilder source = LinkageTypeBuilder._(
     validatedValue: 'source',
-    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Source of Truth'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Source of Truth'.toFhirStringBuilder,
   );
 
   /// alternate
-  static final LinkageType alternate = LinkageType._(
+  static LinkageTypeBuilder alternate = LinkageTypeBuilder._(
     validatedValue: 'alternate',
-    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Alternate Record'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Alternate Record'.toFhirStringBuilder,
   );
 
   /// historical
-  static final LinkageType historical = LinkageType._(
+  static LinkageTypeBuilder historical = LinkageTypeBuilder._(
     validatedValue: 'historical',
-    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Historical/Obsolete Record'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Historical/Obsolete Record'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final LinkageType elementOnly = LinkageType._(validatedValue: '');
+  static LinkageTypeBuilder elementOnly =
+      LinkageTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<LinkageType> values = [
+  static List<LinkageTypeBuilder> values = [
     source,
     alternate,
     historical,
@@ -101,14 +104,14 @@ class LinkageType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  LinkageType clone() => LinkageType._(
+  LinkageTypeBuilder clone() => LinkageTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  LinkageType withElement(Element? newElement) {
-    return LinkageType._(validatedValue: value, element: newElement);
+  LinkageTypeBuilder withElement(ElementBuilder? newElement) {
+    return LinkageTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,11 +127,11 @@ class LinkageType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  LinkageType copyWith({
+  LinkageTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -139,7 +142,7 @@ class LinkageType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return LinkageType._(
+    return LinkageTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -149,7 +152,7 @@ class LinkageType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

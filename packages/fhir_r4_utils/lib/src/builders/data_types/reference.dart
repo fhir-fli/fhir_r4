@@ -1,96 +1,98 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Reference]
+/// [ReferenceBuilder]
 /// A reference from one resource to another.
-class Reference extends DataType
+class ReferenceBuilder extends DataTypeBuilder
     implements
-        SubjectXActivityDefinition,
-        ProductXActivityDefinition,
-        ProductXCarePlanDetail,
-        ProductXChargeItem,
-        TargetXCitationRelatesTo,
-        TargetXCitationRelatesTo1,
-        ValueXClaimSupportingInfo,
-        DiagnosisXClaimDiagnosis,
-        ProcedureXClaimProcedure,
-        LocationXClaimAccident,
-        LocationXClaimItem,
-        LocationXClaimResponseAddItem,
-        ItemXClinicalUseDefinitionInteractant,
-        ContentXCommunicationPayload,
-        ContentXCommunicationRequestPayload,
-        TargetXCompositionRelatesTo,
-        SourceXConsent,
-        TopicXContract,
-        LegallyBindingXContract,
-        TopicXContractTerm,
-        ValueXContractAnswer,
-        EntityXContractValuedItem,
-        ContentXContractFriendly,
-        ContentXContractLegal,
-        ContentXContractRule,
-        DiagnosisXCoverageEligibilityRequestDiagnosis,
-        ManufacturerXDeviceDefinition,
-        CodeXDeviceRequest,
-        SubjectXEventDefinition,
-        CiteAsXEvidence,
-        CiteAsXEvidenceReport,
-        ValueXEvidenceReportCharacteristic,
-        TargetXEvidenceReportRelatesTo,
-        DefinitionXEvidenceVariableCharacteristic,
-        ValueXExplanationOfBenefitSupportingInfo,
-        DiagnosisXExplanationOfBenefitDiagnosis,
-        ProcedureXExplanationOfBenefitProcedure,
-        LocationXExplanationOfBenefitAccident,
-        LocationXExplanationOfBenefitItem,
-        LocationXExplanationOfBenefitAddItem,
-        ValueXGroupCharacteristic,
-        NameXImplementationGuidePage,
-        ChargeItemXInvoiceLineItem,
-        SubjectXLibrary,
-        SubjectXMeasure,
-        ItemXMedicationIngredient,
-        MedicationXMedicationAdministration,
-        StatusReasonXMedicationDispense,
-        MedicationXMedicationDispense,
-        ItemXMedicationKnowledgeIngredient,
-        IndicationXMedicationKnowledgeAdministrationGuidelines,
-        ReportedXMedicationRequest,
-        MedicationXMedicationRequest,
-        MedicationXMedicationStatement,
-        ValueXParametersParameter,
-        SubjectXPlanDefinition,
-        SubjectXPlanDefinitionAction,
-        AnswerXQuestionnaireEnableWhen,
-        ValueXQuestionnaireAnswerOption,
-        ValueXQuestionnaireInitial,
-        ValueXQuestionnaireResponseAnswer,
-        SubjectXResearchDefinition,
-        SubjectXResearchElementDefinition,
-        AdditiveXSpecimenContainer,
-        AdditiveXSpecimenDefinitionAdditive,
-        DefaultValueXStructureMapSource,
-        SubstanceXSubstanceIngredient,
-        SubstanceDefinitionXSubstanceDefinitionRelationship,
-        ItemXSupplyDeliverySuppliedItem,
-        ItemXSupplyRequest,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        AuthorXAnnotation,
-        SubjectXDataRequirement,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension,
-        TimingXTriggerDefinition,
-        ValueXUsageContext {
+        SubjectXActivityDefinitionBuilder,
+        ProductXActivityDefinitionBuilder,
+        ProductXCarePlanDetailBuilder,
+        ProductXChargeItemBuilder,
+        TargetXCitationRelatesToBuilder,
+        TargetXCitationRelatesTo1Builder,
+        ValueXClaimSupportingInfoBuilder,
+        DiagnosisXClaimDiagnosisBuilder,
+        ProcedureXClaimProcedureBuilder,
+        LocationXClaimAccidentBuilder,
+        LocationXClaimItemBuilder,
+        LocationXClaimResponseAddItemBuilder,
+        ItemXClinicalUseDefinitionInteractantBuilder,
+        ContentXCommunicationPayloadBuilder,
+        ContentXCommunicationRequestPayloadBuilder,
+        TargetXCompositionRelatesToBuilder,
+        SourceXConsentBuilder,
+        TopicXContractBuilder,
+        LegallyBindingXContractBuilder,
+        TopicXContractTermBuilder,
+        ValueXContractAnswerBuilder,
+        EntityXContractValuedItemBuilder,
+        ContentXContractFriendlyBuilder,
+        ContentXContractLegalBuilder,
+        ContentXContractRuleBuilder,
+        DiagnosisXCoverageEligibilityRequestDiagnosisBuilder,
+        ManufacturerXDeviceDefinitionBuilder,
+        CodeXDeviceRequestBuilder,
+        SubjectXEventDefinitionBuilder,
+        CiteAsXEvidenceBuilder,
+        CiteAsXEvidenceReportBuilder,
+        ValueXEvidenceReportCharacteristicBuilder,
+        TargetXEvidenceReportRelatesToBuilder,
+        DefinitionXEvidenceVariableCharacteristicBuilder,
+        ValueXExplanationOfBenefitSupportingInfoBuilder,
+        DiagnosisXExplanationOfBenefitDiagnosisBuilder,
+        ProcedureXExplanationOfBenefitProcedureBuilder,
+        LocationXExplanationOfBenefitAccidentBuilder,
+        LocationXExplanationOfBenefitItemBuilder,
+        LocationXExplanationOfBenefitAddItemBuilder,
+        ValueXGroupCharacteristicBuilder,
+        NameXImplementationGuidePageBuilder,
+        ChargeItemXInvoiceLineItemBuilder,
+        SubjectXLibraryBuilder,
+        SubjectXMeasureBuilder,
+        ItemXMedicationIngredientBuilder,
+        MedicationXMedicationAdministrationBuilder,
+        StatusReasonXMedicationDispenseBuilder,
+        MedicationXMedicationDispenseBuilder,
+        ItemXMedicationKnowledgeIngredientBuilder,
+        IndicationXMedicationKnowledgeAdministrationGuidelinesBuilder,
+        ReportedXMedicationRequestBuilder,
+        MedicationXMedicationRequestBuilder,
+        MedicationXMedicationStatementBuilder,
+        ValueXParametersParameterBuilder,
+        SubjectXPlanDefinitionBuilder,
+        SubjectXPlanDefinitionActionBuilder,
+        AnswerXQuestionnaireEnableWhenBuilder,
+        ValueXQuestionnaireAnswerOptionBuilder,
+        ValueXQuestionnaireInitialBuilder,
+        ValueXQuestionnaireResponseAnswerBuilder,
+        SubjectXResearchDefinitionBuilder,
+        SubjectXResearchElementDefinitionBuilder,
+        AdditiveXSpecimenContainerBuilder,
+        AdditiveXSpecimenDefinitionAdditiveBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        SubstanceXSubstanceIngredientBuilder,
+        SubstanceDefinitionXSubstanceDefinitionRelationshipBuilder,
+        ItemXSupplyDeliverySuppliedItemBuilder,
+        ItemXSupplyRequestBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        AuthorXAnnotationBuilder,
+        SubjectXDataRequirementBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder,
+        TimingXTriggerDefinitionBuilder,
+        ValueXUsageContextBuilder {
   /// Primary constructor for
-  /// [Reference]
+  /// [ReferenceBuilder]
 
-  const Reference({
+  ReferenceBuilder({
     super.id,
     super.extension_,
     this.reference,
@@ -98,29 +100,28 @@ class Reference extends DataType
     this.identifier,
     this.display,
     super.disallowExtensions,
-    super.objectPath = 'Reference',
+    super.objectPath = 'ReferenceBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Reference.empty() => const Reference();
+  /// For Builder classes, no fields are required
+  factory ReferenceBuilder.empty() => ReferenceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Reference.fromJson(
+  factory ReferenceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Reference';
-    return Reference(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ReferenceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -128,49 +129,49 @@ class Reference extends DataType
             ),
           )
           .toList(),
-      reference: JsonParser.parsePrimitive<FhirString>(
+      reference: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'reference',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.reference',
       ),
-      type: JsonParser.parsePrimitive<FhirUri>(
+      type: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'type',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.type',
       ),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      display: JsonParser.parsePrimitive<FhirString>(
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
     );
   }
 
-  /// Deserialize [Reference]
+  /// Deserialize [ReferenceBuilder]
   /// from a [String] or [YamlMap] object
-  factory Reference.fromYaml(
+  factory ReferenceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Reference.fromJson(
+      return ReferenceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Reference.fromJson(
+      return ReferenceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Reference '
+        'ReferenceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -178,16 +179,16 @@ class Reference extends DataType
   }
 
   /// Factory constructor for
-  /// [Reference]
+  /// [ReferenceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Reference.fromJsonString(
+  factory ReferenceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Reference.fromJson(json);
+      return ReferenceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -205,7 +206,7 @@ class Reference extends DataType
   /// not. If the reference is not to a FHIR RESTful server, then it should
   /// be assumed to be version specific. Internal fragment references (start
   /// with '#') refer to contained resources.
-  final FhirString? reference;
+  FhirStringBuilder? reference;
 
   /// [type]
   /// The expected type of the target of the reference. If both
@@ -218,7 +219,7 @@ class Reference extends DataType
   /// to http://hl7.org/fhir/StructureDefinition/Patient. Absolute URLs are
   /// only allowed for logical models (and can only be used in references in
   /// logical models, not resources).
-  final FhirUri? type;
+  FhirUriBuilder? type;
 
   /// [identifier]
   /// An identifier for the target resource. This is used when there is no
@@ -230,28 +231,28 @@ class Reference extends DataType
   /// FHIR instance, but it SHALL point to a business concept that would be
   /// expected to be exposed as a FHIR instance, and that instance would need
   /// to be of a FHIR resource type allowed by the reference.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [display]
   /// Plain text narrative that identifies the resource in addition to the
   /// resource reference.
-  final FhirString? display;
+  FhirStringBuilder? display;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -260,35 +261,17 @@ class Reference extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'reference',
-      reference,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'display',
-      display,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('reference', reference);
+    addField('type', type);
+    addField('identifier', identifier);
+    addField('display', display);
     return json;
   }
 
@@ -308,11 +291,11 @@ class Reference extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -348,7 +331,7 @@ class Reference extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -357,67 +340,71 @@ class Reference extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is FhirString) {
-            return copyWith(reference: child);
+          if (child is FhirStringBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is FhirUri) {
-            return copyWith(type: child);
+          if (child is FhirUriBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -433,66 +420,56 @@ class Reference extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'reference':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Reference]
+  /// Creates a new [ReferenceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Reference createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: FhirString.empty(),
-          );
+          reference = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: FhirUri.empty(),
-          );
+          type = FhirUriBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -501,7 +478,7 @@ class Reference extends DataType
 
   /// Clears specific fields in this object
   @override
-  Reference clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool reference = false,
@@ -509,26 +486,24 @@ class Reference extends DataType
     bool identifier = false,
     bool display = false,
   }) {
-    return Reference(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      reference: reference ? null : this.reference,
-      type: type ? null : this.type,
-      identifier: identifier ? null : this.identifier,
-      display: display ? null : this.display,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (reference) this.reference = null;
+    if (type) this.type = null;
+    if (identifier) this.identifier = null;
+    if (display) this.display = null;
   }
 
   @override
-  Reference clone() => throw UnimplementedError();
+  ReferenceBuilder clone() => throw UnimplementedError();
   @override
-  Reference copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? reference,
-    FhirUri? type,
-    Identifier? identifier,
-    FhirString? display,
+  ReferenceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirStringBuilder? reference,
+    FhirUriBuilder? type,
+    IdentifierBuilder? identifier,
+    FhirStringBuilder? display,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -536,42 +511,37 @@ class Reference extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Reference(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
+    final newResult = ReferenceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      reference: reference ?? this.reference,
+      type: type ?? this.type,
+      identifier: identifier ?? this.identifier,
+      display: display ?? this.display,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Reference) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ReferenceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -582,7 +552,7 @@ class Reference extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ConceptMap]
+/// [ConceptMapBuilder]
 /// A statement of relationships from one set of concepts to one or more
 /// other concepts - either concepts in code systems, or data element/data
 /// element concepts, or classes in class models.
-class ConceptMap extends CanonicalResource {
+class ConceptMapBuilder extends CanonicalResourceBuilder {
   /// Primary constructor for
-  /// [ConceptMap]
+  /// [ConceptMapBuilder]
 
-  const ConceptMap({
+  ConceptMapBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -24,7 +26,7 @@ class ConceptMap extends CanonicalResource {
     super.version,
     this.name,
     this.title,
-    required super.status,
+    super.status,
     super.experimental,
     super.date,
     super.publisher,
@@ -43,51 +45,48 @@ class ConceptMap extends CanonicalResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConceptMap.empty() => ConceptMap(
-        status: PublicationStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ConceptMapBuilder.empty() => ConceptMapBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMap.fromJson(
+  factory ConceptMapBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ConceptMap';
-    return ConceptMap(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConceptMapBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -96,8 +95,8 @@ class ConceptMap extends CanonicalResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -106,8 +105,8 @@ class ConceptMap extends CanonicalResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -115,63 +114,63 @@ class ConceptMap extends CanonicalResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+      experimental: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'experimental',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.experimental',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -179,15 +178,15 @@ class ConceptMap extends CanonicalResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -196,8 +195,8 @@ class ConceptMap extends CanonicalResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -205,37 +204,37 @@ class ConceptMap extends CanonicalResource {
             ),
           )
           .toList(),
-      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+      purpose: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'purpose',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
-      sourceX: JsonParser.parsePolymorphic<SourceXConceptMap>(
+      sourceX: JsonParser.parsePolymorphic<SourceXConceptMapBuilder>(
         json,
         {
-          'sourceUri': FhirUri.fromJson,
-          'sourceCanonical': FhirCanonical.fromJson,
+          'sourceUri': FhirUriBuilder.fromJson,
+          'sourceCanonical': FhirCanonicalBuilder.fromJson,
         },
         objectPath,
       ),
-      targetX: JsonParser.parsePolymorphic<TargetXConceptMap>(
+      targetX: JsonParser.parsePolymorphic<TargetXConceptMapBuilder>(
         json,
         {
-          'targetUri': FhirUri.fromJson,
-          'targetCanonical': FhirCanonical.fromJson,
+          'targetUri': FhirUriBuilder.fromJson,
+          'targetCanonical': FhirCanonicalBuilder.fromJson,
         },
         objectPath,
       ),
       group: (json['group'] as List<dynamic>?)
-          ?.map<ConceptMapGroup>(
-            (v) => ConceptMapGroup.fromJson(
+          ?.map<ConceptMapGroupBuilder>(
+            (v) => ConceptMapGroupBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.group',
@@ -246,22 +245,22 @@ class ConceptMap extends CanonicalResource {
     );
   }
 
-  /// Deserialize [ConceptMap]
+  /// Deserialize [ConceptMapBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConceptMap.fromYaml(
+  factory ConceptMapBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConceptMap.fromJson(
+      return ConceptMapBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConceptMap.fromJson(
+      return ConceptMapBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConceptMap '
+        'ConceptMapBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -269,16 +268,16 @@ class ConceptMap extends CanonicalResource {
   }
 
   /// Factory constructor for
-  /// [ConceptMap]
+  /// [ConceptMapBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMap.fromJsonString(
+  factory ConceptMapBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConceptMap.fromJson(json);
+      return ConceptMapBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -292,72 +291,74 @@ class ConceptMap extends CanonicalResource {
   /// A formal identifier that is used to identify this concept map when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [name]
   /// A natural language name identifying the concept map. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the concept map.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [purpose]
   /// Explanation of why this concept map is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdownBuilder? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the concept map and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the concept map.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
 
   /// [sourceX]
   /// Identifier for the source value set that contains the concepts that are
   /// being mapped and provides context for the mappings.
-  final SourceXConceptMap? sourceX;
+  SourceXConceptMapBuilder? sourceX;
 
-  /// Getter for [sourceUri] as a FhirUri
-  FhirUri? get sourceUri => sourceX?.isAs<FhirUri>();
+  /// Getter for [sourceUri] as a FhirUriBuilder
+  FhirUriBuilder? get sourceUri => sourceX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [sourceCanonical] as a FhirCanonical
-  FhirCanonical? get sourceCanonical => sourceX?.isAs<FhirCanonical>();
+  /// Getter for [sourceCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get sourceCanonical =>
+      sourceX?.isAs<FhirCanonicalBuilder>();
 
   /// [targetX]
   /// The target value set provides context for the mappings. Note that the
   /// mapping is made between concepts, not between value sets, but the value
   /// set provides important context about how the concept mapping choices
   /// are made.
-  final TargetXConceptMap? targetX;
+  TargetXConceptMapBuilder? targetX;
 
-  /// Getter for [targetUri] as a FhirUri
-  FhirUri? get targetUri => targetX?.isAs<FhirUri>();
+  /// Getter for [targetUri] as a FhirUriBuilder
+  FhirUriBuilder? get targetUri => targetX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [targetCanonical] as a FhirCanonical
-  FhirCanonical? get targetCanonical => targetX?.isAs<FhirCanonical>();
+  /// Getter for [targetCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get targetCanonical =>
+      targetX?.isAs<FhirCanonicalBuilder>();
 
   /// [group]
   /// A group of mappings that all have the same source and target system.
-  final List<ConceptMapGroup>? group;
+  List<ConceptMapGroupBuilder>? group;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -366,124 +367,46 @@ class ConceptMap extends CanonicalResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('identifier', identifier);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('copyright', copyright);
     if (sourceX != null) {
       final fhirType = sourceX!.fhirType;
-      addField(
-        'source${fhirType.capitalize()}',
-        sourceX,
-      );
+      addField('source${fhirType.capitalize()}', sourceX);
     }
 
     if (targetX != null) {
       final fhirType = targetX!.fhirType;
-      addField(
-        'target${fhirType.capitalize()}',
-        targetX,
-      );
+      addField('target${fhirType.capitalize()}', targetX);
     }
 
-    addField(
-      'group',
-      group,
-    );
+    addField('group', group);
     return json;
   }
 
@@ -523,11 +446,11 @@ class ConceptMap extends CanonicalResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -622,27 +545,35 @@ class ConceptMap extends CanonicalResource {
           fields.add(copyright!);
         }
       case 'source':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceX':
-        fields.add(sourceX!);
+        if (sourceX != null) {
+          fields.add(sourceX!);
+        }
       case 'sourceUri':
-        if (sourceX is FhirUri) {
+        if (sourceX is FhirUriBuilder) {
           fields.add(sourceX!);
         }
       case 'sourceCanonical':
-        if (sourceX is FhirCanonical) {
+        if (sourceX is FhirCanonicalBuilder) {
           fields.add(sourceX!);
         }
       case 'target':
-        fields.add(targetX!);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetX':
-        fields.add(targetX!);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetUri':
-        if (targetX is FhirUri) {
+        if (targetX is FhirUriBuilder) {
           fields.add(targetX!);
         }
       case 'targetCanonical':
-        if (targetX is FhirCanonical) {
+        if (targetX is FhirCanonicalBuilder) {
           fields.add(targetX!);
         }
       case 'group':
@@ -659,7 +590,7 @@ class ConceptMap extends CanonicalResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -668,307 +599,333 @@ class ConceptMap extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
         {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
+          if (child is FhirBooleanBuilder) {
+            experimental = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
+          if (child is FhirMarkdownBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceX':
         {
-          if (child is SourceXConceptMap) {
-            return copyWith(sourceX: child);
+          if (child is SourceXConceptMapBuilder) {
+            sourceX = child;
+            return;
           } else {
-            if (child is FhirUri) {
-              return copyWith(sourceX: child);
+            if (child is FhirUriBuilder) {
+              sourceX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(sourceX: child);
+            if (child is FhirCanonicalBuilder) {
+              sourceX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'sourceFhirUri':
+      case 'sourceUri':
         {
-          if (child is FhirUri) {
-            return copyWith(sourceX: child);
+          if (child is FhirUriBuilder) {
+            sourceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'sourceFhirCanonical':
+      case 'sourceCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(sourceX: child);
+          if (child is FhirCanonicalBuilder) {
+            sourceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetX':
         {
-          if (child is TargetXConceptMap) {
-            return copyWith(targetX: child);
+          if (child is TargetXConceptMapBuilder) {
+            targetX = child;
+            return;
           } else {
-            if (child is FhirUri) {
-              return copyWith(targetX: child);
+            if (child is FhirUriBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(targetX: child);
+            if (child is FhirCanonicalBuilder) {
+              targetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'targetFhirUri':
+      case 'targetUri':
         {
-          if (child is FhirUri) {
-            return copyWith(targetX: child);
+          if (child is FhirUriBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'targetFhirCanonical':
+      case 'targetCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(targetX: child);
+          if (child is FhirCanonicalBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'group':
         {
-          if (child is List<ConceptMapGroup>) {
-            // Add all elements from passed list
-            final newList = [...?group, ...child];
-            return copyWith(group: newList);
-          } else if (child is ConceptMapGroup) {
+          if (child is List<ConceptMapGroupBuilder>) {
+            // Replace or create new list
+            group = child;
+            return;
+          } else if (child is ConceptMapGroupBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?group, child];
-            return copyWith(group: newList);
+            group = [...(group ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -984,252 +941,220 @@ class ConceptMap extends CanonicalResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'experimental':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'purpose':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'source':
       case 'sourceX':
-        return ['FhirUri', 'FhirCanonical'];
+        return ['FhirUriBuilder', 'FhirCanonicalBuilder'];
       case 'sourceUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'sourceCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'target':
       case 'targetX':
-        return ['FhirUri', 'FhirCanonical'];
+        return ['FhirUriBuilder', 'FhirCanonicalBuilder'];
       case 'targetUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'targetCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'group':
-        return ['ConceptMapGroup'];
+        return ['ConceptMapGroupBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConceptMap]
+  /// Creates a new [ConceptMapBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMap createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'experimental':
         {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
+          experimental = FhirBooleanBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
+          purpose = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'source':
       case 'sourceX':
       case 'sourceUri':
         {
-          return copyWith(
-            sourceX: FhirUri.empty(),
-          );
+          sourceX = FhirUriBuilder.empty();
+          return;
         }
       case 'sourceCanonical':
         {
-          return copyWith(
-            sourceX: FhirCanonical.empty(),
-          );
+          sourceX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'target':
       case 'targetX':
       case 'targetUri':
         {
-          return copyWith(
-            targetX: FhirUri.empty(),
-          );
+          targetX = FhirUriBuilder.empty();
+          return;
         }
       case 'targetCanonical':
         {
-          return copyWith(
-            targetX: FhirCanonical.empty(),
-          );
+          targetX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'group':
         {
-          return copyWith(
-            group: <ConceptMapGroup>[],
-          );
+          group = <ConceptMapGroupBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1238,7 +1163,7 @@ class ConceptMap extends CanonicalResource {
 
   /// Clears specific fields in this object
   @override
-  ConceptMap clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1252,6 +1177,7 @@ class ConceptMap extends CanonicalResource {
     bool version = false,
     bool name = false,
     bool title = false,
+    bool status = false,
     bool experimental = false,
     bool date = false,
     bool publisher = false,
@@ -1265,205 +1191,121 @@ class ConceptMap extends CanonicalResource {
     bool target = false,
     bool group = false,
   }) {
-    return ConceptMap(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      copyright: copyright ? null : this.copyright,
-      sourceX: source ? null : sourceX,
-      targetX: target ? null : targetX,
-      group: group ? null : this.group,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (identifier) this.identifier = null;
+    if (version) this.version = null;
+    if (name) this.name = null;
+    if (title) this.title = null;
+    if (status) this.status = null;
+    if (experimental) this.experimental = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (description) this.description = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (purpose) this.purpose = null;
+    if (copyright) this.copyright = null;
+    if (source) this.sourceX = null;
+    if (target) this.targetX = null;
+    if (group) this.group = null;
   }
 
   @override
-  ConceptMap clone() => throw UnimplementedError();
+  ConceptMapBuilder clone() => throw UnimplementedError();
   @override
-  ConceptMap copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    Identifier? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirMarkdown? copyright,
-    SourceXConceptMap? sourceX,
-    TargetXConceptMap? targetX,
-    List<ConceptMapGroup>? group,
+  ConceptMapBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? url,
+    IdentifierBuilder? identifier,
+    FhirStringBuilder? version,
+    FhirStringBuilder? name,
+    FhirStringBuilder? title,
+    PublicationStatusBuilder? status,
+    FhirBooleanBuilder? experimental,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirMarkdownBuilder? description,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirMarkdownBuilder? purpose,
+    FhirMarkdownBuilder? copyright,
+    SourceXConceptMapBuilder? sourceX,
+    TargetXConceptMapBuilder? targetX,
+    List<ConceptMapGroupBuilder>? group,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return ConceptMap(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ConceptMapBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      sourceX: sourceX?.copyWith(
-            objectPath: '$newObjectPath.sourceX',
-          ) as SourceXConceptMap? ??
-          this.sourceX,
-      targetX: targetX?.copyWith(
-            objectPath: '$newObjectPath.targetX',
-          ) as TargetXConceptMap? ??
-          this.targetX,
-      group: group
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.group',
-                ),
-              )
-              .toList() ??
-          this.group,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      identifier: identifier ?? this.identifier,
+      version: version ?? this.version,
+      name: name ?? this.name,
+      title: title ?? this.title,
+      status: status ?? this.status,
+      experimental: experimental ?? this.experimental,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      description: description ?? this.description,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      purpose: purpose ?? this.purpose,
+      copyright: copyright ?? this.copyright,
+      sourceX: sourceX ?? this.sourceX,
+      targetX: targetX ?? this.targetX,
+      group: group ?? this.group,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConceptMap) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConceptMapBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1498,19 +1340,19 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1570,7 +1412,7 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -1582,13 +1424,13 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -1618,7 +1460,7 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<ConceptMapGroup>(
+    if (!listEquals<ConceptMapGroupBuilder>(
       group,
       o.group,
     )) {
@@ -1628,13 +1470,13 @@ class ConceptMap extends CanonicalResource {
   }
 }
 
-/// [ConceptMapGroup]
+/// [ConceptMapGroupBuilder]
 /// A group of mappings that all have the same source and target system.
-class ConceptMapGroup extends BackboneElement {
+class ConceptMapGroupBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConceptMapGroup]
+  /// [ConceptMapGroupBuilder]
 
-  const ConceptMapGroup({
+  ConceptMapGroupBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1642,7 +1484,7 @@ class ConceptMapGroup extends BackboneElement {
     this.sourceVersion,
     this.target,
     this.targetVersion,
-    required this.element,
+    this.element,
     this.unmapped,
     super.disallowExtensions,
   }) : super(
@@ -1650,27 +1492,24 @@ class ConceptMapGroup extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConceptMapGroup.empty() => const ConceptMapGroup(
-        element: <ConceptMapElement>[],
-      );
+  /// For Builder classes, no fields are required
+  factory ConceptMapGroupBuilder.empty() => ConceptMapGroupBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapGroup.fromJson(
+  factory ConceptMapGroupBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ConceptMap.group';
-    return ConceptMapGroup(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConceptMapGroupBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1679,8 +1518,8 @@ class ConceptMapGroup extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1688,33 +1527,33 @@ class ConceptMapGroup extends BackboneElement {
             ),
           )
           .toList(),
-      source: JsonParser.parsePrimitive<FhirUri>(
+      source: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'source',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.source',
       ),
-      sourceVersion: JsonParser.parsePrimitive<FhirString>(
+      sourceVersion: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'sourceVersion',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.sourceVersion',
       ),
-      target: JsonParser.parsePrimitive<FhirUri>(
+      target: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'target',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.target',
       ),
-      targetVersion: JsonParser.parsePrimitive<FhirString>(
+      targetVersion: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'targetVersion',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.targetVersion',
       ),
-      element: (json['element'] as List<dynamic>)
-          .map<ConceptMapElement>(
-            (v) => ConceptMapElement.fromJson(
+      element: (json['element'] as List<dynamic>?)
+          ?.map<ConceptMapElementBuilder>(
+            (v) => ConceptMapElementBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.element',
@@ -1722,31 +1561,31 @@ class ConceptMapGroup extends BackboneElement {
             ),
           )
           .toList(),
-      unmapped: JsonParser.parseObject<ConceptMapUnmapped>(
+      unmapped: JsonParser.parseObject<ConceptMapUnmappedBuilder>(
         json,
         'unmapped',
-        ConceptMapUnmapped.fromJson,
+        ConceptMapUnmappedBuilder.fromJson,
         '$objectPath.unmapped',
       ),
     );
   }
 
-  /// Deserialize [ConceptMapGroup]
+  /// Deserialize [ConceptMapGroupBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConceptMapGroup.fromYaml(
+  factory ConceptMapGroupBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConceptMapGroup.fromJson(
+      return ConceptMapGroupBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConceptMapGroup.fromJson(
+      return ConceptMapGroupBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConceptMapGroup '
+        'ConceptMapGroupBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1754,16 +1593,16 @@ class ConceptMapGroup extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConceptMapGroup]
+  /// [ConceptMapGroupBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapGroup.fromJsonString(
+  factory ConceptMapGroupBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConceptMapGroup.fromJson(json);
+      return ConceptMapGroupBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1776,49 +1615,49 @@ class ConceptMapGroup extends BackboneElement {
   /// [source]
   /// An absolute URI that identifies the source system where the concepts to
   /// be mapped are defined.
-  final FhirUri? source;
+  FhirUriBuilder? source;
 
   /// [sourceVersion]
   /// The specific version of the code system, as determined by the code
   /// system authority.
-  final FhirString? sourceVersion;
+  FhirStringBuilder? sourceVersion;
 
   /// [target]
   /// An absolute URI that identifies the target system that the concepts
   /// will be mapped to.
-  final FhirUri? target;
+  FhirUriBuilder? target;
 
   /// [targetVersion]
   /// The specific version of the code system, as determined by the code
   /// system authority.
-  final FhirString? targetVersion;
+  FhirStringBuilder? targetVersion;
 
   /// [element]
   /// Mappings for an individual concept in the source to one or more
   /// concepts in the target.
-  final List<ConceptMapElement> element;
+  List<ConceptMapElementBuilder>? element;
 
   /// [unmapped]
   /// What to do when there is no mapping for the source concept. "Unmapped"
   /// does not include codes that are unmatched, and the unmapped element is
   /// ignored in a code is specified to have equivalence = unmatched.
-  final ConceptMapUnmapped? unmapped;
+  ConceptMapUnmappedBuilder? unmapped;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1827,47 +1666,20 @@ class ConceptMapGroup extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'sourceVersion',
-      sourceVersion,
-    );
-    addField(
-      'target',
-      target,
-    );
-    addField(
-      'targetVersion',
-      targetVersion,
-    );
-    addField(
-      'element',
-      element,
-    );
-    addField(
-      'unmapped',
-      unmapped,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('source', source);
+    addField('sourceVersion', sourceVersion);
+    addField('target', target);
+    addField('targetVersion', targetVersion);
+    addField('element', element);
+    addField('unmapped', unmapped);
     return json;
   }
 
@@ -1890,11 +1702,11 @@ class ConceptMapGroup extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1925,7 +1737,9 @@ class ConceptMapGroup extends BackboneElement {
           fields.add(targetVersion!);
         }
       case 'element':
-        fields.addAll(element);
+        if (element != null) {
+          fields.addAll(element!);
+        }
       case 'unmapped':
         if (unmapped != null) {
           fields.add(unmapped!);
@@ -1940,7 +1754,7 @@ class ConceptMapGroup extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1949,103 +1763,108 @@ class ConceptMapGroup extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is FhirUri) {
-            return copyWith(source: child);
+          if (child is FhirUriBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceVersion':
         {
-          if (child is FhirString) {
-            return copyWith(sourceVersion: child);
+          if (child is FhirStringBuilder) {
+            sourceVersion = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is FhirUri) {
-            return copyWith(target: child);
+          if (child is FhirUriBuilder) {
+            target = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetVersion':
         {
-          if (child is FhirString) {
-            return copyWith(targetVersion: child);
+          if (child is FhirStringBuilder) {
+            targetVersion = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'element':
         {
-          if (child is List<ConceptMapElement>) {
-            // Add all elements from passed list
-            final newList = [...element, ...child];
-            return copyWith(element: newList);
-          } else if (child is ConceptMapElement) {
+          if (child is List<ConceptMapElementBuilder>) {
+            // Replace or create new list
+            element = child;
+            return;
+          } else if (child is ConceptMapElementBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...element, child];
-            return copyWith(element: newList);
+            element = [...(element ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'unmapped':
         {
-          if (child is ConceptMapUnmapped) {
-            return copyWith(unmapped: child);
+          if (child is ConceptMapUnmappedBuilder) {
+            unmapped = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2061,90 +1880,77 @@ class ConceptMapGroup extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'source':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'sourceVersion':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'target':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'targetVersion':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'element':
-        return ['ConceptMapElement'];
+        return ['ConceptMapElementBuilder'];
       case 'unmapped':
-        return ['ConceptMapUnmapped'];
+        return ['ConceptMapUnmappedBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConceptMapGroup]
+  /// Creates a new [ConceptMapGroupBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapGroup createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: FhirUri.empty(),
-          );
+          source = FhirUriBuilder.empty();
+          return;
         }
       case 'sourceVersion':
         {
-          return copyWith(
-            sourceVersion: FhirString.empty(),
-          );
+          sourceVersion = FhirStringBuilder.empty();
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: FhirUri.empty(),
-          );
+          target = FhirUriBuilder.empty();
+          return;
         }
       case 'targetVersion':
         {
-          return copyWith(
-            targetVersion: FhirString.empty(),
-          );
+          targetVersion = FhirStringBuilder.empty();
+          return;
         }
       case 'element':
         {
-          return copyWith(
-            element: <ConceptMapElement>[],
-          );
+          element = <ConceptMapElementBuilder>[];
+          return;
         }
       case 'unmapped':
         {
-          return copyWith(
-            unmapped: ConceptMapUnmapped.empty(),
-          );
+          unmapped = ConceptMapUnmappedBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2153,7 +1959,7 @@ class ConceptMapGroup extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConceptMapGroup clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2161,34 +1967,33 @@ class ConceptMapGroup extends BackboneElement {
     bool sourceVersion = false,
     bool target = false,
     bool targetVersion = false,
+    bool element = false,
     bool unmapped = false,
   }) {
-    return ConceptMapGroup(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      source: source ? null : this.source,
-      sourceVersion: sourceVersion ? null : this.sourceVersion,
-      target: target ? null : this.target,
-      targetVersion: targetVersion ? null : this.targetVersion,
-      element: element,
-      unmapped: unmapped ? null : this.unmapped,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (source) this.source = null;
+    if (sourceVersion) this.sourceVersion = null;
+    if (target) this.target = null;
+    if (targetVersion) this.targetVersion = null;
+    if (element) this.element = null;
+    if (unmapped) this.unmapped = null;
   }
 
   @override
-  ConceptMapGroup clone() => throw UnimplementedError();
+  ConceptMapGroupBuilder clone() => throw UnimplementedError();
   @override
-  ConceptMapGroup copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? source,
-    FhirString? sourceVersion,
-    FhirUri? target,
-    FhirString? targetVersion,
-    List<ConceptMapElement>? element,
-    ConceptMapUnmapped? unmapped,
+  ConceptMapGroupBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? source,
+    FhirStringBuilder? sourceVersion,
+    FhirUriBuilder? target,
+    FhirStringBuilder? targetVersion,
+    List<ConceptMapElementBuilder>? element,
+    ConceptMapUnmappedBuilder? unmapped,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2196,62 +2001,40 @@ class ConceptMapGroup extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConceptMapGroup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      sourceVersion: sourceVersion?.copyWith(
-            objectPath: '$newObjectPath.sourceVersion',
-          ) ??
-          this.sourceVersion,
-      target: target?.copyWith(
-            objectPath: '$newObjectPath.target',
-          ) ??
-          this.target,
-      targetVersion: targetVersion?.copyWith(
-            objectPath: '$newObjectPath.targetVersion',
-          ) ??
-          this.targetVersion,
-      element: element
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.element',
-                ),
-              )
-              .toList() ??
-          this.element,
-      unmapped: unmapped?.copyWith(
-            objectPath: '$newObjectPath.unmapped',
-          ) ??
-          this.unmapped,
+    final newResult = ConceptMapGroupBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      source: source ?? this.source,
+      sourceVersion: sourceVersion ?? this.sourceVersion,
+      target: target ?? this.target,
+      targetVersion: targetVersion ?? this.targetVersion,
+      element: element ?? this.element,
+      unmapped: unmapped ?? this.unmapped,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConceptMapGroup) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConceptMapGroupBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2262,13 +2045,13 @@ class ConceptMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2298,7 +2081,7 @@ class ConceptMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ConceptMapElement>(
+    if (!listEquals<ConceptMapElementBuilder>(
       element,
       o.element,
     )) {
@@ -2314,14 +2097,14 @@ class ConceptMapGroup extends BackboneElement {
   }
 }
 
-/// [ConceptMapElement]
+/// [ConceptMapElementBuilder]
 /// Mappings for an individual concept in the source to one or more
 /// concepts in the target.
-class ConceptMapElement extends BackboneElement {
+class ConceptMapElementBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConceptMapElement]
+  /// [ConceptMapElementBuilder]
 
-  const ConceptMapElement({
+  ConceptMapElementBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2334,25 +2117,24 @@ class ConceptMapElement extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConceptMapElement.empty() => const ConceptMapElement();
+  /// For Builder classes, no fields are required
+  factory ConceptMapElementBuilder.empty() => ConceptMapElementBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapElement.fromJson(
+  factory ConceptMapElementBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ConceptMap.group.element';
-    return ConceptMapElement(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConceptMapElementBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2361,8 +2143,8 @@ class ConceptMapElement extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2370,21 +2152,21 @@ class ConceptMapElement extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parsePrimitive<FhirCode>(
+      code: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'code',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.code',
       ),
-      display: JsonParser.parsePrimitive<FhirString>(
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
       target: (json['target'] as List<dynamic>?)
-          ?.map<ConceptMapTarget>(
-            (v) => ConceptMapTarget.fromJson(
+          ?.map<ConceptMapTargetBuilder>(
+            (v) => ConceptMapTargetBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.target',
@@ -2395,22 +2177,22 @@ class ConceptMapElement extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConceptMapElement]
+  /// Deserialize [ConceptMapElementBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConceptMapElement.fromYaml(
+  factory ConceptMapElementBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConceptMapElement.fromJson(
+      return ConceptMapElementBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConceptMapElement.fromJson(
+      return ConceptMapElementBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConceptMapElement '
+        'ConceptMapElementBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2418,16 +2200,16 @@ class ConceptMapElement extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConceptMapElement]
+  /// [ConceptMapElementBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapElement.fromJsonString(
+  factory ConceptMapElementBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConceptMapElement.fromJson(json);
+      return ConceptMapElementBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2439,32 +2221,32 @@ class ConceptMapElement extends BackboneElement {
 
   /// [code]
   /// Identity (code or path) or the element/item being mapped.
-  final FhirCode? code;
+  FhirCodeBuilder? code;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirStringBuilder? display;
 
   /// [target]
   /// A concept from the target value set that this concept maps to.
-  final List<ConceptMapTarget>? target;
+  List<ConceptMapTargetBuilder>? target;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2473,35 +2255,17 @@ class ConceptMapElement extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'display',
-      display,
-    );
-    addField(
-      'target',
-      target,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('display', display);
+    addField('target', target);
     return json;
   }
 
@@ -2521,11 +2285,11 @@ class ConceptMapElement extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2561,7 +2325,7 @@ class ConceptMapElement extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2570,79 +2334,81 @@ class ConceptMapElement extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirCode) {
-            return copyWith(code: child);
+          if (child is FhirCodeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is List<ConceptMapTarget>) {
-            // Add all elements from passed list
-            final newList = [...?target, ...child];
-            return copyWith(target: newList);
-          } else if (child is ConceptMapTarget) {
+          if (child is List<ConceptMapTargetBuilder>) {
+            // Replace or create new list
+            target = child;
+            return;
+          } else if (child is ConceptMapTargetBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
-            return copyWith(target: newList);
+            target = [...(target ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2658,66 +2424,56 @@ class ConceptMapElement extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'target':
-        return ['ConceptMapTarget'];
+        return ['ConceptMapTargetBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConceptMapElement]
+  /// Creates a new [ConceptMapElementBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapElement createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
+          code = FhirCodeBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: <ConceptMapTarget>[],
-          );
+          target = <ConceptMapTargetBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2726,7 +2482,7 @@ class ConceptMapElement extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConceptMapElement clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2734,26 +2490,24 @@ class ConceptMapElement extends BackboneElement {
     bool display = false,
     bool target = false,
   }) {
-    return ConceptMapElement(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      display: display ? null : this.display,
-      target: target ? null : this.target,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (display) this.display = null;
+    if (target) this.target = null;
   }
 
   @override
-  ConceptMapElement clone() => throw UnimplementedError();
+  ConceptMapElementBuilder clone() => throw UnimplementedError();
   @override
-  ConceptMapElement copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? code,
-    FhirString? display,
-    List<ConceptMapTarget>? target,
+  ConceptMapElementBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirCodeBuilder? code,
+    FhirStringBuilder? display,
+    List<ConceptMapTargetBuilder>? target,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2761,50 +2515,37 @@ class ConceptMapElement extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConceptMapElement(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
+    final newResult = ConceptMapElementBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      display: display ?? this.display,
+      target: target ?? this.target,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConceptMapElement) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConceptMapElementBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2815,13 +2556,13 @@ class ConceptMapElement extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2839,7 +2580,7 @@ class ConceptMapElement extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ConceptMapTarget>(
+    if (!listEquals<ConceptMapTargetBuilder>(
       target,
       o.target,
     )) {
@@ -2849,19 +2590,19 @@ class ConceptMapElement extends BackboneElement {
   }
 }
 
-/// [ConceptMapTarget]
+/// [ConceptMapTargetBuilder]
 /// A concept from the target value set that this concept maps to.
-class ConceptMapTarget extends BackboneElement {
+class ConceptMapTargetBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConceptMapTarget]
+  /// [ConceptMapTargetBuilder]
 
-  const ConceptMapTarget({
+  ConceptMapTargetBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.display,
-    required this.equivalence,
+    this.equivalence,
     this.comment,
     this.dependsOn,
     this.product,
@@ -2871,27 +2612,24 @@ class ConceptMapTarget extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConceptMapTarget.empty() => ConceptMapTarget(
-        equivalence: ConceptMapEquivalence.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ConceptMapTargetBuilder.empty() => ConceptMapTargetBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapTarget.fromJson(
+  factory ConceptMapTargetBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ConceptMap.group.element.target';
-    return ConceptMapTarget(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConceptMapTargetBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2900,8 +2638,8 @@ class ConceptMapTarget extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2909,33 +2647,33 @@ class ConceptMapTarget extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parsePrimitive<FhirCode>(
+      code: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'code',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.code',
       ),
-      display: JsonParser.parsePrimitive<FhirString>(
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
-      equivalence: JsonParser.parsePrimitive<ConceptMapEquivalence>(
+      equivalence: JsonParser.parsePrimitive<ConceptMapEquivalenceBuilder>(
         json,
         'equivalence',
-        ConceptMapEquivalence.fromJson,
+        ConceptMapEquivalenceBuilder.fromJson,
         '$objectPath.equivalence',
-      )!,
-      comment: JsonParser.parsePrimitive<FhirString>(
+      ),
+      comment: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'comment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.comment',
       ),
       dependsOn: (json['dependsOn'] as List<dynamic>?)
-          ?.map<ConceptMapDependsOn>(
-            (v) => ConceptMapDependsOn.fromJson(
+          ?.map<ConceptMapDependsOnBuilder>(
+            (v) => ConceptMapDependsOnBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.dependsOn',
@@ -2944,8 +2682,8 @@ class ConceptMapTarget extends BackboneElement {
           )
           .toList(),
       product: (json['product'] as List<dynamic>?)
-          ?.map<ConceptMapDependsOn>(
-            (v) => ConceptMapDependsOn.fromJson(
+          ?.map<ConceptMapDependsOnBuilder>(
+            (v) => ConceptMapDependsOnBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.product',
@@ -2956,22 +2694,22 @@ class ConceptMapTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConceptMapTarget]
+  /// Deserialize [ConceptMapTargetBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConceptMapTarget.fromYaml(
+  factory ConceptMapTargetBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConceptMapTarget.fromJson(
+      return ConceptMapTargetBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConceptMapTarget.fromJson(
+      return ConceptMapTargetBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConceptMapTarget '
+        'ConceptMapTargetBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2979,16 +2717,16 @@ class ConceptMapTarget extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConceptMapTarget]
+  /// [ConceptMapTargetBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapTarget.fromJsonString(
+  factory ConceptMapTargetBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConceptMapTarget.fromJson(json);
+      return ConceptMapTargetBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3000,29 +2738,29 @@ class ConceptMapTarget extends BackboneElement {
 
   /// [code]
   /// Identity (code or path) or the element/item that the map refers to.
-  final FhirCode? code;
+  FhirCodeBuilder? code;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirStringBuilder? display;
 
   /// [equivalence]
   /// The equivalence between the source and target concepts (counting for
   /// the dependencies and products). The equivalence is read from target to
   /// source (e.g. the target is 'wider' than the source).
-  final ConceptMapEquivalence equivalence;
+  ConceptMapEquivalenceBuilder? equivalence;
 
   /// [comment]
   /// A description of status/issues in mapping that conveys additional
   /// information not represented in the structured data.
-  final FhirString? comment;
+  FhirStringBuilder? comment;
 
   /// [dependsOn]
   /// A set of additional dependencies for this mapping to hold. This mapping
   /// is only applicable if the specified element can be resolved, and it has
   /// the specified value.
-  final List<ConceptMapDependsOn>? dependsOn;
+  List<ConceptMapDependsOnBuilder>? dependsOn;
 
   /// [product]
   /// A set of additional outcomes from this mapping to other elements. To
@@ -3030,23 +2768,23 @@ class ConceptMapTarget extends BackboneElement {
   /// some data element or source that is in context. The mapping may still
   /// be useful without a place for the additional data elements, but the
   /// equivalence cannot be relied on.
-  final List<ConceptMapDependsOn>? product;
+  List<ConceptMapDependsOnBuilder>? product;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3055,47 +2793,20 @@ class ConceptMapTarget extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'display',
-      display,
-    );
-    addField(
-      'equivalence',
-      equivalence,
-    );
-    addField(
-      'comment',
-      comment,
-    );
-    addField(
-      'dependsOn',
-      dependsOn,
-    );
-    addField(
-      'product',
-      product,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('display', display);
+    addField('equivalence', equivalence);
+    addField('comment', comment);
+    addField('dependsOn', dependsOn);
+    addField('product', product);
     return json;
   }
 
@@ -3118,11 +2829,11 @@ class ConceptMapTarget extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3145,7 +2856,9 @@ class ConceptMapTarget extends BackboneElement {
           fields.add(display!);
         }
       case 'equivalence':
-        fields.add(equivalence);
+        if (equivalence != null) {
+          fields.add(equivalence!);
+        }
       case 'comment':
         if (comment != null) {
           fields.add(comment!);
@@ -3168,7 +2881,7 @@ class ConceptMapTarget extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3177,109 +2890,113 @@ class ConceptMapTarget extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirCode) {
-            return copyWith(code: child);
+          if (child is FhirCodeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'equivalence':
         {
-          if (child is ConceptMapEquivalence) {
-            return copyWith(equivalence: child);
+          if (child is ConceptMapEquivalenceBuilder) {
+            equivalence = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is FhirString) {
-            return copyWith(comment: child);
+          if (child is FhirStringBuilder) {
+            comment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dependsOn':
         {
-          if (child is List<ConceptMapDependsOn>) {
-            // Add all elements from passed list
-            final newList = [...?dependsOn, ...child];
-            return copyWith(dependsOn: newList);
-          } else if (child is ConceptMapDependsOn) {
+          if (child is List<ConceptMapDependsOnBuilder>) {
+            // Replace or create new list
+            dependsOn = child;
+            return;
+          } else if (child is ConceptMapDependsOnBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?dependsOn, child];
-            return copyWith(dependsOn: newList);
+            dependsOn = [...(dependsOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'product':
         {
-          if (child is List<ConceptMapDependsOn>) {
-            // Add all elements from passed list
-            final newList = [...?product, ...child];
-            return copyWith(product: newList);
-          } else if (child is ConceptMapDependsOn) {
+          if (child is List<ConceptMapDependsOnBuilder>) {
+            // Replace or create new list
+            product = child;
+            return;
+          } else if (child is ConceptMapDependsOnBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?product, child];
-            return copyWith(product: newList);
+            product = [...(product ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3295,90 +3012,77 @@ class ConceptMapTarget extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'equivalence':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'comment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'dependsOn':
-        return ['ConceptMapDependsOn'];
+        return ['ConceptMapDependsOnBuilder'];
       case 'product':
-        return ['ConceptMapDependsOn'];
+        return ['ConceptMapDependsOnBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConceptMapTarget]
+  /// Creates a new [ConceptMapTargetBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapTarget createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
+          code = FhirCodeBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       case 'equivalence':
         {
-          return copyWith(
-            equivalence: ConceptMapEquivalence.empty(),
-          );
+          equivalence = ConceptMapEquivalenceBuilder.empty();
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
+          comment = FhirStringBuilder.empty();
+          return;
         }
       case 'dependsOn':
         {
-          return copyWith(
-            dependsOn: <ConceptMapDependsOn>[],
-          );
+          dependsOn = <ConceptMapDependsOnBuilder>[];
+          return;
         }
       case 'product':
         {
-          return copyWith(
-            product: <ConceptMapDependsOn>[],
-          );
+          product = <ConceptMapDependsOnBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3387,42 +3091,41 @@ class ConceptMapTarget extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConceptMapTarget clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool code = false,
     bool display = false,
+    bool equivalence = false,
     bool comment = false,
     bool dependsOn = false,
     bool product = false,
   }) {
-    return ConceptMapTarget(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      display: display ? null : this.display,
-      equivalence: equivalence,
-      comment: comment ? null : this.comment,
-      dependsOn: dependsOn ? null : this.dependsOn,
-      product: product ? null : this.product,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (display) this.display = null;
+    if (equivalence) this.equivalence = null;
+    if (comment) this.comment = null;
+    if (dependsOn) this.dependsOn = null;
+    if (product) this.product = null;
   }
 
   @override
-  ConceptMapTarget clone() => throw UnimplementedError();
+  ConceptMapTargetBuilder clone() => throw UnimplementedError();
   @override
-  ConceptMapTarget copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCode? code,
-    FhirString? display,
-    ConceptMapEquivalence? equivalence,
-    FhirString? comment,
-    List<ConceptMapDependsOn>? dependsOn,
-    List<ConceptMapDependsOn>? product,
+  ConceptMapTargetBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirCodeBuilder? code,
+    FhirStringBuilder? display,
+    ConceptMapEquivalenceBuilder? equivalence,
+    FhirStringBuilder? comment,
+    List<ConceptMapDependsOnBuilder>? dependsOn,
+    List<ConceptMapDependsOnBuilder>? product,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3430,66 +3133,40 @@ class ConceptMapTarget extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConceptMapTarget(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      equivalence: equivalence?.copyWith(
-            objectPath: '$newObjectPath.equivalence',
-          ) ??
-          this.equivalence,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
-      dependsOn: dependsOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dependsOn',
-                ),
-              )
-              .toList() ??
-          this.dependsOn,
-      product: product
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.product',
-                ),
-              )
-              .toList() ??
-          this.product,
+    final newResult = ConceptMapTargetBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      display: display ?? this.display,
+      equivalence: equivalence ?? this.equivalence,
+      comment: comment ?? this.comment,
+      dependsOn: dependsOn ?? this.dependsOn,
+      product: product ?? this.product,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConceptMapTarget) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConceptMapTargetBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3500,13 +3177,13 @@ class ConceptMapTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3536,13 +3213,13 @@ class ConceptMapTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ConceptMapDependsOn>(
+    if (!listEquals<ConceptMapDependsOnBuilder>(
       dependsOn,
       o.dependsOn,
     )) {
       return false;
     }
-    if (!listEquals<ConceptMapDependsOn>(
+    if (!listEquals<ConceptMapDependsOnBuilder>(
       product,
       o.product,
     )) {
@@ -3552,21 +3229,21 @@ class ConceptMapTarget extends BackboneElement {
   }
 }
 
-/// [ConceptMapDependsOn]
+/// [ConceptMapDependsOnBuilder]
 /// A set of additional dependencies for this mapping to hold. This mapping
 /// is only applicable if the specified element can be resolved, and it has
 /// the specified value.
-class ConceptMapDependsOn extends BackboneElement {
+class ConceptMapDependsOnBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConceptMapDependsOn]
+  /// [ConceptMapDependsOnBuilder]
 
-  const ConceptMapDependsOn({
+  ConceptMapDependsOnBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.property,
+    this.property,
     this.system,
-    required this.value,
+    this.value,
     this.display,
     super.disallowExtensions,
   }) : super(
@@ -3574,28 +3251,24 @@ class ConceptMapDependsOn extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConceptMapDependsOn.empty() => ConceptMapDependsOn(
-        property: FhirUri.empty(),
-        value: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ConceptMapDependsOnBuilder.empty() => ConceptMapDependsOnBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapDependsOn.fromJson(
+  factory ConceptMapDependsOnBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ConceptMap.group.element.target.dependsOn';
-    return ConceptMapDependsOn(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConceptMapDependsOnBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3604,8 +3277,8 @@ class ConceptMapDependsOn extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3613,49 +3286,49 @@ class ConceptMapDependsOn extends BackboneElement {
             ),
           )
           .toList(),
-      property: JsonParser.parsePrimitive<FhirUri>(
+      property: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'property',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.property',
-      )!,
-      system: JsonParser.parsePrimitive<FhirCanonical>(
+      ),
+      system: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'system',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.system',
       ),
-      value: JsonParser.parsePrimitive<FhirString>(
+      value: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'value',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.value',
-      )!,
-      display: JsonParser.parsePrimitive<FhirString>(
+      ),
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
     );
   }
 
-  /// Deserialize [ConceptMapDependsOn]
+  /// Deserialize [ConceptMapDependsOnBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConceptMapDependsOn.fromYaml(
+  factory ConceptMapDependsOnBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConceptMapDependsOn.fromJson(
+      return ConceptMapDependsOnBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConceptMapDependsOn.fromJson(
+      return ConceptMapDependsOnBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConceptMapDependsOn '
+        'ConceptMapDependsOnBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3663,16 +3336,16 @@ class ConceptMapDependsOn extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConceptMapDependsOn]
+  /// [ConceptMapDependsOnBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapDependsOn.fromJsonString(
+  factory ConceptMapDependsOnBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConceptMapDependsOn.fromJson(json);
+      return ConceptMapDependsOnBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3687,38 +3360,38 @@ class ConceptMapDependsOn extends BackboneElement {
   /// a code system property. The idea is that the information model carries
   /// an element somewhere that is labeled to correspond with a code system
   /// property.
-  final FhirUri property;
+  FhirUriBuilder? property;
 
   /// [system]
   /// An absolute URI that identifies the code system of the dependency code
   /// (if the source/dependency is a value set that crosses code systems).
-  final FhirCanonical? system;
+  FhirCanonicalBuilder? system;
 
   /// [value]
   /// Identity (code or path) or the element/item/ValueSet/text that the map
   /// depends on / refers to.
-  final FhirString value;
+  FhirStringBuilder? value;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirStringBuilder? display;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3727,39 +3400,18 @@ class ConceptMapDependsOn extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'property',
-      property,
-    );
-    addField(
-      'system',
-      system,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'display',
-      display,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('property', property);
+    addField('system', system);
+    addField('value', value);
+    addField('display', display);
     return json;
   }
 
@@ -3780,11 +3432,11 @@ class ConceptMapDependsOn extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3799,13 +3451,17 @@ class ConceptMapDependsOn extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'property':
-        fields.add(property);
+        if (property != null) {
+          fields.add(property!);
+        }
       case 'system':
         if (system != null) {
           fields.add(system!);
         }
       case 'value':
-        fields.add(value);
+        if (value != null) {
+          fields.add(value!);
+        }
       case 'display':
         if (display != null) {
           fields.add(display!);
@@ -3820,7 +3476,7 @@ class ConceptMapDependsOn extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3829,81 +3485,85 @@ class ConceptMapDependsOn extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
         {
-          if (child is FhirUri) {
-            return copyWith(property: child);
+          if (child is FhirUriBuilder) {
+            property = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'system':
         {
-          if (child is FhirCanonical) {
-            return copyWith(system: child);
+          if (child is FhirCanonicalBuilder) {
+            system = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirString) {
-            return copyWith(value: child);
+          if (child is FhirStringBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3919,74 +3579,63 @@ class ConceptMapDependsOn extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'property':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'system':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'value':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConceptMapDependsOn]
+  /// Creates a new [ConceptMapDependsOnBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapDependsOn createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'property':
         {
-          return copyWith(
-            property: FhirUri.empty(),
-          );
+          property = FhirUriBuilder.empty();
+          return;
         }
       case 'system':
         {
-          return copyWith(
-            system: FhirCanonical.empty(),
-          );
+          system = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirString.empty(),
-          );
+          value = FhirStringBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3995,35 +3644,35 @@ class ConceptMapDependsOn extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConceptMapDependsOn clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool property = false,
     bool system = false,
+    bool value = false,
     bool display = false,
   }) {
-    return ConceptMapDependsOn(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      property: property,
-      system: system ? null : this.system,
-      value: value,
-      display: display ? null : this.display,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (property) this.property = null;
+    if (system) this.system = null;
+    if (value) this.value = null;
+    if (display) this.display = null;
   }
 
   @override
-  ConceptMapDependsOn clone() => throw UnimplementedError();
+  ConceptMapDependsOnBuilder clone() => throw UnimplementedError();
   @override
-  ConceptMapDependsOn copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? property,
-    FhirCanonical? system,
-    FhirString? value,
-    FhirString? display,
+  ConceptMapDependsOnBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? property,
+    FhirCanonicalBuilder? system,
+    FhirStringBuilder? value,
+    FhirStringBuilder? display,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4031,50 +3680,38 @@ class ConceptMapDependsOn extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConceptMapDependsOn(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      property: property?.copyWith(
-            objectPath: '$newObjectPath.property',
-          ) ??
-          this.property,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
+    final newResult = ConceptMapDependsOnBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      property: property ?? this.property,
+      system: system ?? this.system,
+      value: value ?? this.value,
+      display: display ?? this.display,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConceptMapDependsOn) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConceptMapDependsOnBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4085,13 +3722,13 @@ class ConceptMapDependsOn extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4125,19 +3762,19 @@ class ConceptMapDependsOn extends BackboneElement {
   }
 }
 
-/// [ConceptMapUnmapped]
+/// [ConceptMapUnmappedBuilder]
 /// What to do when there is no mapping for the source concept. "Unmapped"
 /// does not include codes that are unmatched, and the unmapped element is
 /// ignored in a code is specified to have equivalence = unmatched.
-class ConceptMapUnmapped extends BackboneElement {
+class ConceptMapUnmappedBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ConceptMapUnmapped]
+  /// [ConceptMapUnmappedBuilder]
 
-  const ConceptMapUnmapped({
+  ConceptMapUnmappedBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.mode,
+    this.mode,
     this.code,
     this.display,
     this.url,
@@ -4147,27 +3784,24 @@ class ConceptMapUnmapped extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ConceptMapUnmapped.empty() => ConceptMapUnmapped(
-        mode: ConceptMapGroupUnmappedMode.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ConceptMapUnmappedBuilder.empty() => ConceptMapUnmappedBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapUnmapped.fromJson(
+  factory ConceptMapUnmappedBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ConceptMap.group.unmapped';
-    return ConceptMapUnmapped(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ConceptMapUnmappedBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4176,8 +3810,8 @@ class ConceptMapUnmapped extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4185,49 +3819,49 @@ class ConceptMapUnmapped extends BackboneElement {
             ),
           )
           .toList(),
-      mode: JsonParser.parsePrimitive<ConceptMapGroupUnmappedMode>(
+      mode: JsonParser.parsePrimitive<ConceptMapGroupUnmappedModeBuilder>(
         json,
         'mode',
-        ConceptMapGroupUnmappedMode.fromJson,
+        ConceptMapGroupUnmappedModeBuilder.fromJson,
         '$objectPath.mode',
-      )!,
-      code: JsonParser.parsePrimitive<FhirCode>(
+      ),
+      code: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'code',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.code',
       ),
-      display: JsonParser.parsePrimitive<FhirString>(
+      display: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'display',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.display',
       ),
-      url: JsonParser.parsePrimitive<FhirCanonical>(
+      url: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'url',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.url',
       ),
     );
   }
 
-  /// Deserialize [ConceptMapUnmapped]
+  /// Deserialize [ConceptMapUnmappedBuilder]
   /// from a [String] or [YamlMap] object
-  factory ConceptMapUnmapped.fromYaml(
+  factory ConceptMapUnmappedBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ConceptMapUnmapped.fromJson(
+      return ConceptMapUnmappedBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ConceptMapUnmapped.fromJson(
+      return ConceptMapUnmappedBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ConceptMapUnmapped '
+        'ConceptMapUnmappedBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4235,16 +3869,16 @@ class ConceptMapUnmapped extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ConceptMapUnmapped]
+  /// [ConceptMapUnmappedBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapUnmapped.fromJsonString(
+  factory ConceptMapUnmappedBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ConceptMapUnmapped.fromJson(json);
+      return ConceptMapUnmappedBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4261,39 +3895,39 @@ class ConceptMapUnmapped extends BackboneElement {
   /// mapping between versions, and only a few codes have changed), use a
   /// fixed code (a default code), or alternatively, a reference to a
   /// different concept map can be provided (by canonical URL).
-  final ConceptMapGroupUnmappedMode mode;
+  ConceptMapGroupUnmappedModeBuilder? mode;
 
   /// [code]
   /// The fixed code to use when the mode = 'fixed' - all unmapped codes are
   /// mapped to a single fixed code.
-  final FhirCode? code;
+  FhirCodeBuilder? code;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirStringBuilder? display;
 
   /// [url]
   /// The canonical reference to an additional ConceptMap resource instance
   /// to use for mapping if this ConceptMap resource contains no matching
   /// mapping for the source concept.
-  final FhirCanonical? url;
+  FhirCanonicalBuilder? url;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4302,39 +3936,18 @@ class ConceptMapUnmapped extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'mode',
-      mode,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'display',
-      display,
-    );
-    addField(
-      'url',
-      url,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('mode', mode);
+    addField('code', code);
+    addField('display', display);
+    addField('url', url);
     return json;
   }
 
@@ -4355,11 +3968,11 @@ class ConceptMapUnmapped extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4374,7 +3987,9 @@ class ConceptMapUnmapped extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'mode':
-        fields.add(mode);
+        if (mode != null) {
+          fields.add(mode!);
+        }
       case 'code':
         if (code != null) {
           fields.add(code!);
@@ -4397,7 +4012,7 @@ class ConceptMapUnmapped extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4406,81 +4021,85 @@ class ConceptMapUnmapped extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
         {
-          if (child is ConceptMapGroupUnmappedMode) {
-            return copyWith(mode: child);
+          if (child is ConceptMapGroupUnmappedModeBuilder) {
+            mode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirCode) {
-            return copyWith(code: child);
+          if (child is FhirCodeBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
         {
-          if (child is FhirString) {
-            return copyWith(display: child);
+          if (child is FhirStringBuilder) {
+            display = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirCanonical) {
-            return copyWith(url: child);
+          if (child is FhirCanonicalBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4496,74 +4115,63 @@ class ConceptMapUnmapped extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'mode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'code':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'display':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'url':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ConceptMapUnmapped]
+  /// Creates a new [ConceptMapUnmappedBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapUnmapped createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'mode':
         {
-          return copyWith(
-            mode: ConceptMapGroupUnmappedMode.empty(),
-          );
+          mode = ConceptMapGroupUnmappedModeBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
+          code = FhirCodeBuilder.empty();
+          return;
         }
       case 'display':
         {
-          return copyWith(
-            display: FhirString.empty(),
-          );
+          display = FhirStringBuilder.empty();
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirCanonical.empty(),
-          );
+          url = FhirCanonicalBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4572,36 +4180,35 @@ class ConceptMapUnmapped extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ConceptMapUnmapped clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool mode = false,
     bool code = false,
     bool display = false,
     bool url = false,
   }) {
-    return ConceptMapUnmapped(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      mode: mode,
-      code: code ? null : this.code,
-      display: display ? null : this.display,
-      url: url ? null : this.url,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (mode) this.mode = null;
+    if (code) this.code = null;
+    if (display) this.display = null;
+    if (url) this.url = null;
   }
 
   @override
-  ConceptMapUnmapped clone() => throw UnimplementedError();
+  ConceptMapUnmappedBuilder clone() => throw UnimplementedError();
   @override
-  ConceptMapUnmapped copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ConceptMapGroupUnmappedMode? mode,
-    FhirCode? code,
-    FhirString? display,
-    FhirCanonical? url,
+  ConceptMapUnmappedBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ConceptMapGroupUnmappedModeBuilder? mode,
+    FhirCodeBuilder? code,
+    FhirStringBuilder? display,
+    FhirCanonicalBuilder? url,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4609,50 +4216,38 @@ class ConceptMapUnmapped extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ConceptMapUnmapped(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
+    final newResult = ConceptMapUnmappedBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      mode: mode ?? this.mode,
+      code: code ?? this.code,
+      display: display ?? this.display,
+      url: url ?? this.url,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ConceptMapUnmapped) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ConceptMapUnmappedBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4663,13 +4258,13 @@ class ConceptMapUnmapped extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

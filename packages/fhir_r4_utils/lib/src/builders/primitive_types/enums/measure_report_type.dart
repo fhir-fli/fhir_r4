@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of the measure report.
-class MeasureReportType extends FhirCodeEnum {
+class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  MeasureReportType._({
+  MeasureReportTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class MeasureReportType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory MeasureReportType(
+  factory MeasureReportTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return MeasureReportType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return MeasureReportTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class MeasureReportType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [MeasureReportType] with element only
-  factory MeasureReportType.empty() => MeasureReportType._(validatedValue: '');
+  /// Create empty [MeasureReportTypeBuilder] with element only
+  factory MeasureReportTypeBuilder.empty() =>
+      MeasureReportTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MeasureReportType] from JSON.
-  factory MeasureReportType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MeasureReportTypeBuilder] from JSON.
+  factory MeasureReportTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportType.elementOnly.withElement(element);
+      return MeasureReportTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MeasureReportType cannot be constructed from JSON.',
+        'MeasureReportTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return MeasureReportType._(
+    return MeasureReportTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// individual
-  static final MeasureReportType individual = MeasureReportType._(
+  static MeasureReportTypeBuilder individual = MeasureReportTypeBuilder._(
     validatedValue: 'individual',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Individual'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Individual'.toFhirStringBuilder,
   );
 
   /// subject_list
-  static final MeasureReportType subject_list = MeasureReportType._(
+  static MeasureReportTypeBuilder subject_list = MeasureReportTypeBuilder._(
     validatedValue: 'subject-list',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Subject List'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Subject List'.toFhirStringBuilder,
   );
 
   /// summary
-  static final MeasureReportType summary = MeasureReportType._(
+  static MeasureReportTypeBuilder summary = MeasureReportTypeBuilder._(
     validatedValue: 'summary',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Summary'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Summary'.toFhirStringBuilder,
   );
 
   /// data_collection
-  static final MeasureReportType data_collection = MeasureReportType._(
+  static MeasureReportTypeBuilder data_collection = MeasureReportTypeBuilder._(
     validatedValue: 'data-collection',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Data Collection'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Data Collection'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final MeasureReportType elementOnly =
-      MeasureReportType._(validatedValue: '');
+  static MeasureReportTypeBuilder elementOnly =
+      MeasureReportTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<MeasureReportType> values = [
+  static List<MeasureReportTypeBuilder> values = [
     individual,
     subject_list,
     summary,
@@ -110,14 +112,15 @@ class MeasureReportType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  MeasureReportType clone() => MeasureReportType._(
+  MeasureReportTypeBuilder clone() => MeasureReportTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  MeasureReportType withElement(Element? newElement) {
-    return MeasureReportType._(validatedValue: value, element: newElement);
+  MeasureReportTypeBuilder withElement(ElementBuilder? newElement) {
+    return MeasureReportTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +136,11 @@ class MeasureReportType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  MeasureReportType copyWith({
+  MeasureReportTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +151,7 @@ class MeasureReportType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return MeasureReportType._(
+    return MeasureReportTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +161,7 @@ class MeasureReportType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

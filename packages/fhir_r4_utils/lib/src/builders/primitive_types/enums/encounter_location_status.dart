@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The status of the location.
-class EncounterLocationStatus extends FhirCodeEnum {
+class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  EncounterLocationStatus._({
+  EncounterLocationStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory EncounterLocationStatus(
+  factory EncounterLocationStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return EncounterLocationStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return EncounterLocationStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,75 @@ class EncounterLocationStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [EncounterLocationStatus] with element only
-  factory EncounterLocationStatus.empty() =>
-      EncounterLocationStatus._(validatedValue: '');
+  /// Create empty [EncounterLocationStatusBuilder] with element only
+  factory EncounterLocationStatusBuilder.empty() =>
+      EncounterLocationStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EncounterLocationStatus] from JSON.
-  factory EncounterLocationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EncounterLocationStatusBuilder] from JSON.
+  factory EncounterLocationStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EncounterLocationStatus.elementOnly.withElement(element);
+      return EncounterLocationStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EncounterLocationStatus cannot be constructed from JSON.',
+        'EncounterLocationStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return EncounterLocationStatus._(
+    return EncounterLocationStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// planned
-  static final EncounterLocationStatus planned = EncounterLocationStatus._(
+  static EncounterLocationStatusBuilder planned =
+      EncounterLocationStatusBuilder._(
     validatedValue: 'planned',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Planned'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Planned'.toFhirStringBuilder,
   );
 
   /// active
-  static final EncounterLocationStatus active = EncounterLocationStatus._(
+  static EncounterLocationStatusBuilder active =
+      EncounterLocationStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// reserved
-  static final EncounterLocationStatus reserved = EncounterLocationStatus._(
+  static EncounterLocationStatusBuilder reserved =
+      EncounterLocationStatusBuilder._(
     validatedValue: 'reserved',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reserved'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Reserved'.toFhirStringBuilder,
   );
 
   /// completed
-  static final EncounterLocationStatus completed = EncounterLocationStatus._(
+  static EncounterLocationStatusBuilder completed =
+      EncounterLocationStatusBuilder._(
     validatedValue: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final EncounterLocationStatus elementOnly =
-      EncounterLocationStatus._(validatedValue: '');
+  static EncounterLocationStatusBuilder elementOnly =
+      EncounterLocationStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<EncounterLocationStatus> values = [
+  static List<EncounterLocationStatusBuilder> values = [
     planned,
     active,
     reserved,
@@ -111,15 +120,15 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  EncounterLocationStatus clone() => EncounterLocationStatus._(
+  EncounterLocationStatusBuilder clone() => EncounterLocationStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  EncounterLocationStatus withElement(Element? newElement) {
-    return EncounterLocationStatus._(
-        validatedValue: value, element: newElement,);
+  EncounterLocationStatusBuilder withElement(ElementBuilder? newElement) {
+    return EncounterLocationStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,11 +144,11 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  EncounterLocationStatus copyWith({
+  EncounterLocationStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -150,7 +159,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return EncounterLocationStatus._(
+    return EncounterLocationStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -160,7 +169,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

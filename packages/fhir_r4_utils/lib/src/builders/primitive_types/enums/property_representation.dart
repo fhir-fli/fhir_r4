@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How a property is represented when serialized.
-class PropertyRepresentation extends FhirCodeEnum {
+class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  PropertyRepresentation._({
+  PropertyRepresentationBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory PropertyRepresentation(
+  factory PropertyRepresentationBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return PropertyRepresentation._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return PropertyRepresentationBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,74 +43,84 @@ class PropertyRepresentation extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [PropertyRepresentation] with element only
-  factory PropertyRepresentation.empty() =>
-      PropertyRepresentation._(validatedValue: '');
+  /// Create empty [PropertyRepresentationBuilder] with element only
+  factory PropertyRepresentationBuilder.empty() =>
+      PropertyRepresentationBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [PropertyRepresentation] from JSON.
-  factory PropertyRepresentation.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [PropertyRepresentationBuilder] from JSON.
+  factory PropertyRepresentationBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyRepresentation.elementOnly.withElement(element);
+      return PropertyRepresentationBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'PropertyRepresentation cannot be constructed from JSON.',
+        'PropertyRepresentationBuilder cannot be constructed from JSON.',
       );
     }
-    return PropertyRepresentation._(
+    return PropertyRepresentationBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// xmlAttr
-  static final PropertyRepresentation xmlAttr = PropertyRepresentation._(
+  static PropertyRepresentationBuilder xmlAttr =
+      PropertyRepresentationBuilder._(
     validatedValue: 'xmlAttr',
-    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'XML Attribute'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'XML Attribute'.toFhirStringBuilder,
   );
 
   /// xmlText
-  static final PropertyRepresentation xmlText = PropertyRepresentation._(
+  static PropertyRepresentationBuilder xmlText =
+      PropertyRepresentationBuilder._(
     validatedValue: 'xmlText',
-    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'XML Text'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'XML Text'.toFhirStringBuilder,
   );
 
   /// typeAttr
-  static final PropertyRepresentation typeAttr = PropertyRepresentation._(
+  static PropertyRepresentationBuilder typeAttr =
+      PropertyRepresentationBuilder._(
     validatedValue: 'typeAttr',
-    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Type Attribute'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Type Attribute'.toFhirStringBuilder,
   );
 
   /// cdaText
-  static final PropertyRepresentation cdaText = PropertyRepresentation._(
+  static PropertyRepresentationBuilder cdaText =
+      PropertyRepresentationBuilder._(
     validatedValue: 'cdaText',
-    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CDA Text Format'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'CDA Text Format'.toFhirStringBuilder,
   );
 
   /// xhtml
-  static final PropertyRepresentation xhtml = PropertyRepresentation._(
+  static PropertyRepresentationBuilder xhtml = PropertyRepresentationBuilder._(
     validatedValue: 'xhtml',
-    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'XHTML'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'XHTML'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final PropertyRepresentation elementOnly =
-      PropertyRepresentation._(validatedValue: '');
+  static PropertyRepresentationBuilder elementOnly =
+      PropertyRepresentationBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<PropertyRepresentation> values = [
+  static List<PropertyRepresentationBuilder> values = [
     xmlAttr,
     xmlText,
     typeAttr,
@@ -120,14 +130,15 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  PropertyRepresentation clone() => PropertyRepresentation._(
+  PropertyRepresentationBuilder clone() => PropertyRepresentationBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  PropertyRepresentation withElement(Element? newElement) {
-    return PropertyRepresentation._(validatedValue: value, element: newElement);
+  PropertyRepresentationBuilder withElement(ElementBuilder? newElement) {
+    return PropertyRepresentationBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,11 +154,11 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  PropertyRepresentation copyWith({
+  PropertyRepresentationBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -158,7 +169,7 @@ class PropertyRepresentation extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return PropertyRepresentation._(
+    return PropertyRepresentationBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -168,7 +179,7 @@ class PropertyRepresentation extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

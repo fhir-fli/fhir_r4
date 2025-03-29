@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Indicates whether the account is available to be used.
-class AccountStatus extends FhirCodeEnum {
+class AccountStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  AccountStatus._({
+  AccountStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class AccountStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory AccountStatus(
+  factory AccountStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return AccountStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return AccountStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,72 +43,75 @@ class AccountStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [AccountStatus] with element only
-  factory AccountStatus.empty() => AccountStatus._(validatedValue: '');
+  /// Create empty [AccountStatusBuilder] with element only
+  factory AccountStatusBuilder.empty() =>
+      AccountStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AccountStatus] from JSON.
-  factory AccountStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AccountStatusBuilder] from JSON.
+  factory AccountStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AccountStatus.elementOnly.withElement(element);
+      return AccountStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AccountStatus cannot be constructed from JSON.',
+        'AccountStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return AccountStatus._(
+    return AccountStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// active
-  static final AccountStatus active = AccountStatus._(
+  static AccountStatusBuilder active = AccountStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// inactive
-  static final AccountStatus inactive = AccountStatus._(
+  static AccountStatusBuilder inactive = AccountStatusBuilder._(
     validatedValue: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Inactive'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Inactive'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final AccountStatus entered_in_error = AccountStatus._(
+  static AccountStatusBuilder entered_in_error = AccountStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in error'.toFhirStringBuilder,
   );
 
   /// on_hold
-  static final AccountStatus on_hold = AccountStatus._(
+  static AccountStatusBuilder on_hold = AccountStatusBuilder._(
     validatedValue: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'On Hold'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final AccountStatus unknown = AccountStatus._(
+  static AccountStatusBuilder unknown = AccountStatusBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final AccountStatus elementOnly = AccountStatus._(validatedValue: '');
+  static AccountStatusBuilder elementOnly =
+      AccountStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<AccountStatus> values = [
+  static List<AccountStatusBuilder> values = [
     active,
     inactive,
     entered_in_error,
@@ -118,14 +121,14 @@ class AccountStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  AccountStatus clone() => AccountStatus._(
+  AccountStatusBuilder clone() => AccountStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  AccountStatus withElement(Element? newElement) {
-    return AccountStatus._(validatedValue: value, element: newElement);
+  AccountStatusBuilder withElement(ElementBuilder? newElement) {
+    return AccountStatusBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -141,11 +144,11 @@ class AccountStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  AccountStatus copyWith({
+  AccountStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -156,7 +159,7 @@ class AccountStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return AccountStatus._(
+    return AccountStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -166,7 +169,7 @@ class AccountStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

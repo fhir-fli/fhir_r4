@@ -1,63 +1,61 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ParameterDefinition]
+/// [ParameterDefinitionBuilder]
 /// The parameters to the module. This collection specifies both the input
 /// and output parameters. Input parameters are provided by the caller as
 /// part of the $evaluate operation. Output parameters are included in the
 /// GuidanceResponse.
-class ParameterDefinition extends DataType
+class ParameterDefinitionBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [ParameterDefinition]
+  /// [ParameterDefinitionBuilder]
 
-  const ParameterDefinition({
+  ParameterDefinitionBuilder({
     super.id,
     super.extension_,
     this.name,
-    required this.use,
+    this.use,
     this.min,
     this.max,
     this.documentation,
-    required this.type,
+    this.type,
     this.profile,
     super.disallowExtensions,
-    super.objectPath = 'ParameterDefinition',
+    super.objectPath = 'ParameterDefinitionBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ParameterDefinition.empty() => ParameterDefinition(
-        use: OperationParameterUse.values.first,
-        type: FHIRAllTypes.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ParameterDefinitionBuilder.empty() => ParameterDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ParameterDefinition.fromJson(
+  factory ParameterDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'ParameterDefinition';
-    return ParameterDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ParameterDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -65,67 +63,67 @@ class ParameterDefinition extends DataType
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirCode>(
+      name: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'name',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.name',
       ),
-      use: JsonParser.parsePrimitive<OperationParameterUse>(
+      use: JsonParser.parsePrimitive<OperationParameterUseBuilder>(
         json,
         'use',
-        OperationParameterUse.fromJson,
+        OperationParameterUseBuilder.fromJson,
         '$objectPath.use',
-      )!,
-      min: JsonParser.parsePrimitive<FhirInteger>(
+      ),
+      min: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'min',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.min',
       ),
-      max: JsonParser.parsePrimitive<FhirString>(
+      max: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'max',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.max',
       ),
-      documentation: JsonParser.parsePrimitive<FhirString>(
+      documentation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'documentation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.documentation',
       ),
-      type: JsonParser.parsePrimitive<FHIRAllTypes>(
+      type: JsonParser.parsePrimitive<FHIRAllTypesBuilder>(
         json,
         'type',
-        FHIRAllTypes.fromJson,
+        FHIRAllTypesBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      profile: JsonParser.parsePrimitive<FhirCanonical>(
+      ),
+      profile: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'profile',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.profile',
       ),
     );
   }
 
-  /// Deserialize [ParameterDefinition]
+  /// Deserialize [ParameterDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory ParameterDefinition.fromYaml(
+  factory ParameterDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ParameterDefinition.fromJson(
+      return ParameterDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ParameterDefinition.fromJson(
+      return ParameterDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ParameterDefinition '
+        'ParameterDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -133,16 +131,16 @@ class ParameterDefinition extends DataType
   }
 
   /// Factory constructor for
-  /// [ParameterDefinition]
+  /// [ParameterDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ParameterDefinition.fromJsonString(
+  factory ParameterDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ParameterDefinition.fromJson(json);
+      return ParameterDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -155,51 +153,51 @@ class ParameterDefinition extends DataType
   /// [name]
   /// The name of the parameter used to allow access to the value of the
   /// parameter in evaluation contexts.
-  final FhirCode? name;
+  FhirCodeBuilder? name;
 
   /// [use]
   /// Whether the parameter is input or output for the module.
-  final OperationParameterUse use;
+  OperationParameterUseBuilder? use;
 
   /// [min]
   /// The minimum number of times this parameter SHALL appear in the request
   /// or response.
-  final FhirInteger? min;
+  FhirIntegerBuilder? min;
 
   /// [max]
   /// The maximum number of times this element is permitted to appear in the
   /// request or response.
-  final FhirString? max;
+  FhirStringBuilder? max;
 
   /// [documentation]
   /// A brief discussion of what the parameter is for and how it is used by
   /// the module.
-  final FhirString? documentation;
+  FhirStringBuilder? documentation;
 
   /// [type]
   /// The type of the parameter.
-  final FHIRAllTypes type;
+  FHIRAllTypesBuilder? type;
 
   /// [profile]
   /// If specified, this indicates a profile that the input data must conform
   /// to, or that the output data will conform to.
-  final FhirCanonical? profile;
+  FhirCanonicalBuilder? profile;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -208,47 +206,20 @@ class ParameterDefinition extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'min',
-      min,
-    );
-    addField(
-      'max',
-      max,
-    );
-    addField(
-      'documentation',
-      documentation,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'profile',
-      profile,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('name', name);
+    addField('use', use);
+    addField('min', min);
+    addField('max', max);
+    addField('documentation', documentation);
+    addField('type', type);
+    addField('profile', profile);
     return json;
   }
 
@@ -271,11 +242,11 @@ class ParameterDefinition extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -290,7 +261,9 @@ class ParameterDefinition extends DataType
           fields.add(name!);
         }
       case 'use':
-        fields.add(use);
+        if (use != null) {
+          fields.add(use!);
+        }
       case 'min':
         if (min != null) {
           fields.add(min!);
@@ -304,7 +277,9 @@ class ParameterDefinition extends DataType
           fields.add(documentation!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'profile':
         if (profile != null) {
           fields.add(profile!);
@@ -319,7 +294,7 @@ class ParameterDefinition extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -328,91 +303,98 @@ class ParameterDefinition extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirCode) {
-            return copyWith(name: child);
+          if (child is FhirCodeBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
         {
-          if (child is OperationParameterUse) {
-            return copyWith(use: child);
+          if (child is OperationParameterUseBuilder) {
+            use = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
         {
-          if (child is FhirInteger) {
-            return copyWith(min: child);
+          if (child is FhirIntegerBuilder) {
+            min = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
         {
-          if (child is FhirString) {
-            return copyWith(max: child);
+          if (child is FhirStringBuilder) {
+            max = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
         {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
+          if (child is FhirStringBuilder) {
+            documentation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is FHIRAllTypes) {
-            return copyWith(type: child);
+          if (child is FHIRAllTypesBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
         {
-          if (child is FhirCanonical) {
-            return copyWith(profile: child);
+          if (child is FhirCanonicalBuilder) {
+            profile = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -428,90 +410,77 @@ class ParameterDefinition extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'use':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'min':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'max':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'documentation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'profile':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ParameterDefinition]
+  /// Creates a new [ParameterDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ParameterDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirCode.empty(),
-          );
+          name = FhirCodeBuilder.empty();
+          return;
         }
       case 'use':
         {
-          return copyWith(
-            use: OperationParameterUse.empty(),
-          );
+          use = OperationParameterUseBuilder.empty();
+          return;
         }
       case 'min':
         {
-          return copyWith(
-            min: FhirInteger.empty(),
-          );
+          min = FhirIntegerBuilder.empty();
+          return;
         }
       case 'max':
         {
-          return copyWith(
-            max: FhirString.empty(),
-          );
+          max = FhirStringBuilder.empty();
+          return;
         }
       case 'documentation':
         {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
+          documentation = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: FHIRAllTypes.empty(),
-          );
+          type = FHIRAllTypesBuilder.empty();
+          return;
         }
       case 'profile':
         {
-          return copyWith(
-            profile: FhirCanonical.empty(),
-          );
+          profile = FhirCanonicalBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -520,41 +489,41 @@ class ParameterDefinition extends DataType
 
   /// Clears specific fields in this object
   @override
-  ParameterDefinition clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool name = false,
+    bool use = false,
     bool min = false,
     bool max = false,
     bool documentation = false,
+    bool type = false,
     bool profile = false,
   }) {
-    return ParameterDefinition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      name: name ? null : this.name,
-      use: use,
-      min: min ? null : this.min,
-      max: max ? null : this.max,
-      documentation: documentation ? null : this.documentation,
-      type: type,
-      profile: profile ? null : this.profile,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (name) this.name = null;
+    if (use) this.use = null;
+    if (min) this.min = null;
+    if (max) this.max = null;
+    if (documentation) this.documentation = null;
+    if (type) this.type = null;
+    if (profile) this.profile = null;
   }
 
   @override
-  ParameterDefinition clone() => throw UnimplementedError();
+  ParameterDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  ParameterDefinition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirCode? name,
-    OperationParameterUse? use,
-    FhirInteger? min,
-    FhirString? max,
-    FhirString? documentation,
-    FHIRAllTypes? type,
-    FhirCanonical? profile,
+  ParameterDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirCodeBuilder? name,
+    OperationParameterUseBuilder? use,
+    FhirIntegerBuilder? min,
+    FhirStringBuilder? max,
+    FhirStringBuilder? documentation,
+    FHIRAllTypesBuilder? type,
+    FhirCanonicalBuilder? profile,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -562,54 +531,40 @@ class ParameterDefinition extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ParameterDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      min: min?.copyWith(
-            objectPath: '$newObjectPath.min',
-          ) ??
-          this.min,
-      max: max?.copyWith(
-            objectPath: '$newObjectPath.max',
-          ) ??
-          this.max,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      profile: profile?.copyWith(
-            objectPath: '$newObjectPath.profile',
-          ) ??
-          this.profile,
+    final newResult = ParameterDefinitionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      name: name ?? this.name,
+      use: use ?? this.use,
+      min: min ?? this.min,
+      max: max ?? this.max,
+      documentation: documentation ?? this.documentation,
+      type: type ?? this.type,
+      profile: profile ?? this.profile,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ParameterDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ParameterDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -620,7 +575,7 @@ class ParameterDefinition extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

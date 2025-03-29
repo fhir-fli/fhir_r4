@@ -52,7 +52,7 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder<BigInt?>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Integer64',
+    String? objectPath = 'Integer64',
   }) {
     final validated = input != null ? _validateInteger64(input) : null;
     return FhirInteger64Builder._(
@@ -191,7 +191,7 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder<BigInt?>
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Returns the FHIR type as 'integer64'.
   @override

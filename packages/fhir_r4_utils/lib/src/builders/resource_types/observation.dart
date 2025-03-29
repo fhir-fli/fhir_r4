@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Observation]
+/// [ObservationBuilder]
 /// Measurements and simple assertions made about a patient, device or
 /// other subject.
-class Observation extends DomainResource {
+class ObservationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Observation]
+  /// [ObservationBuilder]
 
-  const Observation({
+  ObservationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,9 +23,9 @@ class Observation extends DomainResource {
     this.identifier,
     this.basedOn,
     this.partOf,
-    required this.status,
+    this.status,
     this.category,
-    required this.code,
+    this.code,
     this.subject,
     this.focus,
     this.encounter,
@@ -48,52 +50,48 @@ class Observation extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Observation.empty() => Observation(
-        status: ObservationStatus.values.first,
-        code: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ObservationBuilder.empty() => ObservationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Observation.fromJson(
+  factory ObservationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Observation';
-    return Observation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ObservationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -102,8 +100,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -112,8 +110,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -122,8 +120,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -132,8 +130,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -142,8 +140,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.partOf',
@@ -151,15 +149,15 @@ class Observation extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<ObservationStatus>(
+      status: JsonParser.parsePrimitive<ObservationStatusBuilder>(
         json,
         'status',
-        ObservationStatus.fromJson,
+        ObservationStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -167,21 +165,21 @@ class Observation extends DomainResource {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      subject: JsonParser.parseObject<Reference>(
+      ),
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
       focus: (json['focus'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.focus',
@@ -189,31 +187,31 @@ class Observation extends DomainResource {
             ),
           )
           .toList(),
-      encounter: JsonParser.parseObject<Reference>(
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      effectiveX: JsonParser.parsePolymorphic<EffectiveXObservation>(
+      effectiveX: JsonParser.parsePolymorphic<EffectiveXObservationBuilder>(
         json,
         {
-          'effectiveDateTime': FhirDateTime.fromJson,
-          'effectivePeriod': Period.fromJson,
-          'effectiveTiming': Timing.fromJson,
-          'effectiveInstant': FhirInstant.fromJson,
+          'effectiveDateTime': FhirDateTimeBuilder.fromJson,
+          'effectivePeriod': PeriodBuilder.fromJson,
+          'effectiveTiming': TimingBuilder.fromJson,
+          'effectiveInstant': FhirInstantBuilder.fromJson,
         },
         objectPath,
       ),
-      issued: JsonParser.parsePrimitive<FhirInstant>(
+      issued: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'issued',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.issued',
       ),
       performer: (json['performer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performer',
@@ -221,32 +219,32 @@ class Observation extends DomainResource {
             ),
           )
           .toList(),
-      valueX: JsonParser.parsePolymorphic<ValueXObservation>(
+      valueX: JsonParser.parsePolymorphic<ValueXObservationBuilder>(
         json,
         {
-          'valueQuantity': Quantity.fromJson,
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueString': FhirString.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueInteger': FhirInteger.fromJson,
-          'valueRange': Range.fromJson,
-          'valueRatio': Ratio.fromJson,
-          'valueSampledData': SampledData.fromJson,
-          'valueTime': FhirTime.fromJson,
-          'valueDateTime': FhirDateTime.fromJson,
-          'valuePeriod': Period.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueString': FhirStringBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueInteger': FhirIntegerBuilder.fromJson,
+          'valueRange': RangeBuilder.fromJson,
+          'valueRatio': RatioBuilder.fromJson,
+          'valueSampledData': SampledDataBuilder.fromJson,
+          'valueTime': FhirTimeBuilder.fromJson,
+          'valueDateTime': FhirDateTimeBuilder.fromJson,
+          'valuePeriod': PeriodBuilder.fromJson,
         },
         objectPath,
       ),
-      dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
+      dataAbsentReason: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'dataAbsentReason',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.dataAbsentReason',
       ),
       interpretation: (json['interpretation'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.interpretation',
@@ -255,8 +253,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -264,33 +262,33 @@ class Observation extends DomainResource {
             ),
           )
           .toList(),
-      bodySite: JsonParser.parseObject<CodeableConcept>(
+      bodySite: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'bodySite',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.bodySite',
       ),
-      method: JsonParser.parseObject<CodeableConcept>(
+      method: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'method',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.method',
       ),
-      specimen: JsonParser.parseObject<Reference>(
+      specimen: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'specimen',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.specimen',
       ),
-      device: JsonParser.parseObject<Reference>(
+      device: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'device',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.device',
       ),
       referenceRange: (json['referenceRange'] as List<dynamic>?)
-          ?.map<ObservationReferenceRange>(
-            (v) => ObservationReferenceRange.fromJson(
+          ?.map<ObservationReferenceRangeBuilder>(
+            (v) => ObservationReferenceRangeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.referenceRange',
@@ -299,8 +297,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       hasMember: (json['hasMember'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.hasMember',
@@ -309,8 +307,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       derivedFrom: (json['derivedFrom'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.derivedFrom',
@@ -319,8 +317,8 @@ class Observation extends DomainResource {
           )
           .toList(),
       component: (json['component'] as List<dynamic>?)
-          ?.map<ObservationComponent>(
-            (v) => ObservationComponent.fromJson(
+          ?.map<ObservationComponentBuilder>(
+            (v) => ObservationComponentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.component',
@@ -331,22 +329,22 @@ class Observation extends DomainResource {
     );
   }
 
-  /// Deserialize [Observation]
+  /// Deserialize [ObservationBuilder]
   /// from a [String] or [YamlMap] object
-  factory Observation.fromYaml(
+  factory ObservationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Observation.fromJson(
+      return ObservationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Observation.fromJson(
+      return ObservationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Observation '
+        'ObservationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -354,16 +352,16 @@ class Observation extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Observation]
+  /// [ObservationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Observation.fromJsonString(
+  factory ObservationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Observation.fromJson(json);
+      return ObservationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -375,31 +373,31 @@ class Observation extends DomainResource {
 
   /// [identifier]
   /// A unique identifier assigned to this observation.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// event. For example, a MedicationRequest may require a patient to have
   /// laboratory test performed before it is dispensed.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [partOf]
   /// A larger event of which this particular Observation is a component or
   /// step. For example, an observation as part of a procedure.
-  final List<Reference>? partOf;
+  List<ReferenceBuilder>? partOf;
 
   /// [status]
   /// The status of the result value.
-  final ObservationStatus status;
+  ObservationStatusBuilder? status;
 
   /// [category]
   /// A code that classifies the general type of observation being made.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [code]
   /// Describes what was observed. Sometimes this is called the observation
   /// "name".
-  final CodeableConcept code;
+  CodeableConceptBuilder? code;
 
   /// [subject]
   /// The patient, or group of patients, location, or device this observation
@@ -407,7 +405,7 @@ class Observation extends DomainResource {
   /// focus of the observation is different from the subject (or a sample of,
   /// part, or region of the subject), the `focus` element or the `code`
   /// itself specifies the actual focus of the observation.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [focus]
   /// The actual focus of an observation when it is not the patient of record
@@ -420,12 +418,12 @@ class Observation extends DomainResource {
   /// whether the mother is trained to change her child's tracheostomy tube.
   /// In this example, the child is the patient of record and the mother is
   /// the focus.
-  final List<Reference>? focus;
+  List<ReferenceBuilder>? focus;
 
   /// [encounter]
   /// The healthcare event (e.g. a patient and healthcare provider
   /// interaction) during which this observation is made.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [effectiveX]
   /// The time or time-period the observed value is asserted as being true.
@@ -433,116 +431,120 @@ class Observation extends DomainResource {
   /// the "physiologically relevant time". This is usually either the time of
   /// the procedure or of specimen collection, but very often the source of
   /// the date/time is not known, only the date/time itself.
-  final EffectiveXObservation? effectiveX;
+  EffectiveXObservationBuilder? effectiveX;
 
-  /// Getter for [effectiveDateTime] as a FhirDateTime
-  FhirDateTime? get effectiveDateTime => effectiveX?.isAs<FhirDateTime>();
+  /// Getter for [effectiveDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get effectiveDateTime =>
+      effectiveX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [effectivePeriod] as a Period
-  Period? get effectivePeriod => effectiveX?.isAs<Period>();
+  /// Getter for [effectivePeriod] as a PeriodBuilder
+  PeriodBuilder? get effectivePeriod => effectiveX?.isAs<PeriodBuilder>();
 
-  /// Getter for [effectiveTiming] as a Timing
-  Timing? get effectiveTiming => effectiveX?.isAs<Timing>();
+  /// Getter for [effectiveTiming] as a TimingBuilder
+  TimingBuilder? get effectiveTiming => effectiveX?.isAs<TimingBuilder>();
 
-  /// Getter for [effectiveInstant] as a FhirInstant
-  FhirInstant? get effectiveInstant => effectiveX?.isAs<FhirInstant>();
+  /// Getter for [effectiveInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get effectiveInstant =>
+      effectiveX?.isAs<FhirInstantBuilder>();
 
   /// [issued]
   /// The date and time this version of the observation was made available to
   /// providers, typically after the results have been reviewed and verified.
-  final FhirInstant? issued;
+  FhirInstantBuilder? issued;
 
   /// [performer]
   /// Who was responsible for asserting the observed value as "true".
-  final List<Reference>? performer;
+  List<ReferenceBuilder>? performer;
 
   /// [valueX]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final ValueXObservation? valueX;
+  ValueXObservationBuilder? valueX;
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueString] as a FhirString
-  FhirString? get valueString => valueX?.isAs<FhirString>();
+  /// Getter for [valueString] as a FhirStringBuilder
+  FhirStringBuilder? get valueString => valueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueInteger] as a FhirInteger
-  FhirInteger? get valueInteger => valueX?.isAs<FhirInteger>();
+  /// Getter for [valueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get valueInteger => valueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [valueRange] as a Range
-  Range? get valueRange => valueX?.isAs<Range>();
+  /// Getter for [valueRange] as a RangeBuilder
+  RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// Getter for [valueRatio] as a Ratio
-  Ratio? get valueRatio => valueX?.isAs<Ratio>();
+  /// Getter for [valueRatio] as a RatioBuilder
+  RatioBuilder? get valueRatio => valueX?.isAs<RatioBuilder>();
 
-  /// Getter for [valueSampledData] as a SampledData
-  SampledData? get valueSampledData => valueX?.isAs<SampledData>();
+  /// Getter for [valueSampledData] as a SampledDataBuilder
+  SampledDataBuilder? get valueSampledData =>
+      valueX?.isAs<SampledDataBuilder>();
 
-  /// Getter for [valueTime] as a FhirTime
-  FhirTime? get valueTime => valueX?.isAs<FhirTime>();
+  /// Getter for [valueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get valueTime => valueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [valueDateTime] as a FhirDateTime
-  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
+  /// Getter for [valueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get valueDateTime => valueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [valuePeriod] as a Period
-  Period? get valuePeriod => valueX?.isAs<Period>();
+  /// Getter for [valuePeriod] as a PeriodBuilder
+  PeriodBuilder? get valuePeriod => valueX?.isAs<PeriodBuilder>();
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
   /// Observation.value[x] is missing.
-  final CodeableConcept? dataAbsentReason;
+  CodeableConceptBuilder? dataAbsentReason;
 
   /// [interpretation]
   /// A categorical assessment of an observation value. For example, high,
   /// low, normal.
-  final List<CodeableConcept>? interpretation;
+  List<CodeableConceptBuilder>? interpretation;
 
   /// [note]
   /// Comments about the observation or the results.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [bodySite]
   /// Indicates the site on the subject's body where the observation was made
   /// (i.e. the target site).
-  final CodeableConcept? bodySite;
+  CodeableConceptBuilder? bodySite;
 
   /// [method]
   /// Indicates the mechanism used to perform the observation.
-  final CodeableConcept? method;
+  CodeableConceptBuilder? method;
 
   /// [specimen]
   /// The specimen that was used when this observation was made.
-  final Reference? specimen;
+  ReferenceBuilder? specimen;
 
   /// [device]
   /// The device used to generate the observation data.
-  final Reference? device;
+  ReferenceBuilder? device;
 
   /// [referenceRange]
   /// Guidance on how to interpret the value by comparison to a normal or
   /// recommended range. Multiple reference ranges are interpreted as an
   /// "OR". In other words, to represent two distinct target populations, two
   /// `referenceRange` elements would be used.
-  final List<ObservationReferenceRange>? referenceRange;
+  List<ObservationReferenceRangeBuilder>? referenceRange;
 
   /// [hasMember]
   /// This observation is a group observation (e.g. a battery, a panel of
   /// tests, a set of vital sign measurements) that includes the target as a
   /// member of the group.
-  final List<Reference>? hasMember;
+  List<ReferenceBuilder>? hasMember;
 
   /// [derivedFrom]
   /// The target resource that represents a measurement from which this
   /// observation value is derived. For example, a calculated anion gap or a
   /// fetal measurement based on an ultrasound image.
-  final List<Reference>? derivedFrom;
+  List<ReferenceBuilder>? derivedFrom;
 
   /// [component]
   /// Some observations have multiple component observations. These component
@@ -550,23 +552,23 @@ class Observation extends DomainResource {
   /// same attributes. Examples include systolic and diastolic component
   /// observations for blood pressure measurement and multiple component
   /// observations for genetics observations.
-  final List<ObservationComponent>? component;
+  List<ObservationComponentBuilder>? component;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -575,148 +577,52 @@ class Observation extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'focus',
-      focus,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('basedOn', basedOn);
+    addField('partOf', partOf);
+    addField('status', status);
+    addField('category', category);
+    addField('code', code);
+    addField('subject', subject);
+    addField('focus', focus);
+    addField('encounter', encounter);
     if (effectiveX != null) {
       final fhirType = effectiveX!.fhirType;
-      addField(
-        'effective${fhirType.capitalize()}',
-        effectiveX,
-      );
+      addField('effective${fhirType.capitalize()}', effectiveX);
     }
 
-    addField(
-      'issued',
-      issued,
-    );
-    addField(
-      'performer',
-      performer,
-    );
+    addField('issued', issued);
+    addField('performer', performer);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField(
-        'value${fhirType.capitalize()}',
-        valueX,
-      );
+      addField('value${fhirType.capitalize()}', valueX);
     }
 
-    addField(
-      'dataAbsentReason',
-      dataAbsentReason,
-    );
-    addField(
-      'interpretation',
-      interpretation,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'bodySite',
-      bodySite,
-    );
-    addField(
-      'method',
-      method,
-    );
-    addField(
-      'specimen',
-      specimen,
-    );
-    addField(
-      'device',
-      device,
-    );
-    addField(
-      'referenceRange',
-      referenceRange,
-    );
-    addField(
-      'hasMember',
-      hasMember,
-    );
-    addField(
-      'derivedFrom',
-      derivedFrom,
-    );
-    addField(
-      'component',
-      component,
-    );
+    addField('dataAbsentReason', dataAbsentReason);
+    addField('interpretation', interpretation);
+    addField('note', note);
+    addField('bodySite', bodySite);
+    addField('method', method);
+    addField('specimen', specimen);
+    addField('device', device);
+    addField('referenceRange', referenceRange);
+    addField('hasMember', hasMember);
+    addField('derivedFrom', derivedFrom);
+    addField('component', component);
     return json;
   }
 
@@ -762,11 +668,11 @@ class Observation extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -813,13 +719,17 @@ class Observation extends DomainResource {
           fields.addAll(partOf!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'category':
         if (category != null) {
           fields.addAll(category!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'subject':
         if (subject != null) {
           fields.add(subject!);
@@ -833,23 +743,27 @@ class Observation extends DomainResource {
           fields.add(encounter!);
         }
       case 'effective':
-        fields.add(effectiveX!);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveX':
-        fields.add(effectiveX!);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveDateTime':
-        if (effectiveX is FhirDateTime) {
+        if (effectiveX is FhirDateTimeBuilder) {
           fields.add(effectiveX!);
         }
       case 'effectivePeriod':
-        if (effectiveX is Period) {
+        if (effectiveX is PeriodBuilder) {
           fields.add(effectiveX!);
         }
       case 'effectiveTiming':
-        if (effectiveX is Timing) {
+        if (effectiveX is TimingBuilder) {
           fields.add(effectiveX!);
         }
       case 'effectiveInstant':
-        if (effectiveX is FhirInstant) {
+        if (effectiveX is FhirInstantBuilder) {
           fields.add(effectiveX!);
         }
       case 'issued':
@@ -861,51 +775,55 @@ class Observation extends DomainResource {
           fields.addAll(performer!);
         }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueQuantity':
-        if (valueX is Quantity) {
+        if (valueX is QuantityBuilder) {
           fields.add(valueX!);
         }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
+        if (valueX is CodeableConceptBuilder) {
           fields.add(valueX!);
         }
       case 'valueString':
-        if (valueX is FhirString) {
+        if (valueX is FhirStringBuilder) {
           fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
+        if (valueX is FhirBooleanBuilder) {
           fields.add(valueX!);
         }
       case 'valueInteger':
-        if (valueX is FhirInteger) {
+        if (valueX is FhirIntegerBuilder) {
           fields.add(valueX!);
         }
       case 'valueRange':
-        if (valueX is Range) {
+        if (valueX is RangeBuilder) {
           fields.add(valueX!);
         }
       case 'valueRatio':
-        if (valueX is Ratio) {
+        if (valueX is RatioBuilder) {
           fields.add(valueX!);
         }
       case 'valueSampledData':
-        if (valueX is SampledData) {
+        if (valueX is SampledDataBuilder) {
           fields.add(valueX!);
         }
       case 'valueTime':
-        if (valueX is FhirTime) {
+        if (valueX is FhirTimeBuilder) {
           fields.add(valueX!);
         }
       case 'valueDateTime':
-        if (valueX is FhirDateTime) {
+        if (valueX is FhirDateTimeBuilder) {
           fields.add(valueX!);
         }
       case 'valuePeriod':
-        if (valueX is Period) {
+        if (valueX is PeriodBuilder) {
           fields.add(valueX!);
         }
       case 'dataAbsentReason':
@@ -962,7 +880,7 @@ class Observation extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -971,524 +889,570 @@ class Observation extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            partOf = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
-            return copyWith(partOf: newList);
+            partOf = [...(partOf ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ObservationStatus) {
-            return copyWith(status: child);
+          if (child is ObservationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'focus':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?focus, ...child];
-            return copyWith(focus: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            focus = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?focus, child];
-            return copyWith(focus: newList);
+            focus = [...(focus ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectiveX':
         {
-          if (child is EffectiveXObservation) {
-            return copyWith(effectiveX: child);
+          if (child is EffectiveXObservationBuilder) {
+            effectiveX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(effectiveX: child);
+            if (child is FhirDateTimeBuilder) {
+              effectiveX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(effectiveX: child);
+            if (child is PeriodBuilder) {
+              effectiveX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(effectiveX: child);
+            if (child is TimingBuilder) {
+              effectiveX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(effectiveX: child);
+            if (child is FhirInstantBuilder) {
+              effectiveX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'effectiveFhirDateTime':
+      case 'effectiveDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(effectiveX: child);
+          if (child is FhirDateTimeBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectivePeriod':
         {
-          if (child is Period) {
-            return copyWith(effectiveX: child);
+          if (child is PeriodBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectiveTiming':
         {
-          if (child is Timing) {
-            return copyWith(effectiveX: child);
+          if (child is TimingBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'effectiveFhirInstant':
+      case 'effectiveInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(effectiveX: child);
+          if (child is FhirInstantBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issued':
         {
-          if (child is FhirInstant) {
-            return copyWith(issued: child);
+          if (child is FhirInstantBuilder) {
+            issued = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            performer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
-            return copyWith(performer: newList);
+            performer = [...(performer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXObservation) {
-            return copyWith(valueX: child);
+          if (child is ValueXObservationBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
+            if (child is FhirStringBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
+            if (child is FhirIntegerBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(valueX: child);
+            if (child is RangeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(valueX: child);
+            if (child is RatioBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is SampledData) {
-              return copyWith(valueX: child);
+            if (child is SampledDataBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
+            if (child is FhirTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
+            if (child is FhirDateTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(valueX: child);
+            if (child is PeriodBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirString':
+      case 'valueString':
         {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
+          if (child is FhirStringBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirInteger':
+      case 'valueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
+          if (child is FhirIntegerBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRange':
         {
-          if (child is Range) {
-            return copyWith(valueX: child);
+          if (child is RangeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRatio':
         {
-          if (child is Ratio) {
-            return copyWith(valueX: child);
+          if (child is RatioBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSampledData':
         {
-          if (child is SampledData) {
-            return copyWith(valueX: child);
+          if (child is SampledDataBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirTime':
+      case 'valueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
+          if (child is FhirTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDateTime':
+      case 'valueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
+          if (child is FhirDateTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valuePeriod':
         {
-          if (child is Period) {
-            return copyWith(valueX: child);
+          if (child is PeriodBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dataAbsentReason':
         {
-          if (child is CodeableConcept) {
-            return copyWith(dataAbsentReason: child);
+          if (child is CodeableConceptBuilder) {
+            dataAbsentReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'interpretation':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?interpretation, ...child];
-            return copyWith(interpretation: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            interpretation = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?interpretation, child];
-            return copyWith(interpretation: newList);
+            interpretation = [...(interpretation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
         {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
+          if (child is CodeableConceptBuilder) {
+            bodySite = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
         {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
+          if (child is CodeableConceptBuilder) {
+            method = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specimen':
         {
-          if (child is Reference) {
-            return copyWith(specimen: child);
+          if (child is ReferenceBuilder) {
+            specimen = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'device':
         {
-          if (child is Reference) {
-            return copyWith(device: child);
+          if (child is ReferenceBuilder) {
+            device = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceRange':
         {
-          if (child is List<ObservationReferenceRange>) {
-            // Add all elements from passed list
-            final newList = [...?referenceRange, ...child];
-            return copyWith(referenceRange: newList);
-          } else if (child is ObservationReferenceRange) {
+          if (child is List<ObservationReferenceRangeBuilder>) {
+            // Replace or create new list
+            referenceRange = child;
+            return;
+          } else if (child is ObservationReferenceRangeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceRange, child];
-            return copyWith(referenceRange: newList);
+            referenceRange = [...(referenceRange ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'hasMember':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?hasMember, ...child];
-            return copyWith(hasMember: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            hasMember = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?hasMember, child];
-            return copyWith(hasMember: newList);
+            hasMember = [...(hasMember ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'derivedFrom':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?derivedFrom, ...child];
-            return copyWith(derivedFrom: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            derivedFrom = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?derivedFrom, child];
-            return copyWith(derivedFrom: newList);
+            derivedFrom = [...(derivedFrom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'component':
         {
-          if (child is List<ObservationComponent>) {
-            // Add all elements from passed list
-            final newList = [...?component, ...child];
-            return copyWith(component: newList);
-          } else if (child is ObservationComponent) {
+          if (child is List<ObservationComponentBuilder>) {
+            // Replace or create new list
+            component = child;
+            return;
+          } else if (child is ObservationComponentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?component, child];
-            return copyWith(component: newList);
+            component = [...(component ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1504,400 +1468,356 @@ class Observation extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'focus':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'effective':
       case 'effectiveX':
-        return ['FhirDateTime', 'Period', 'Timing', 'FhirInstant'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+          'TimingBuilder',
+          'FhirInstantBuilder'
+        ];
       case 'effectiveDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'effectivePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'effectiveTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'effectiveInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'issued':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'performer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'Quantity',
-          'CodeableConcept',
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'Range',
-          'Ratio',
-          'SampledData',
-          'FhirTime',
-          'FhirDateTime',
-          'Period',
+          'QuantityBuilder',
+          'CodeableConceptBuilder',
+          'FhirStringBuilder',
+          'FhirBooleanBuilder',
+          'FhirIntegerBuilder',
+          'RangeBuilder',
+          'RatioBuilder',
+          'SampledDataBuilder',
+          'FhirTimeBuilder',
+          'FhirDateTimeBuilder',
+          'PeriodBuilder'
         ];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'valueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'valueRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'valueSampledData':
-        return ['SampledData'];
+        return ['SampledDataBuilder'];
       case 'valueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'valueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'valuePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'dataAbsentReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'interpretation':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'bodySite':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'method':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'specimen':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'device':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'referenceRange':
-        return ['ObservationReferenceRange'];
+        return ['ObservationReferenceRangeBuilder'];
       case 'hasMember':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'derivedFrom':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'component':
-        return ['ObservationComponent'];
+        return ['ObservationComponentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Observation]
+  /// Creates a new [ObservationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Observation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: <Reference>[],
-          );
+          partOf = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ObservationStatus.empty(),
-          );
+          status = ObservationStatusBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'focus':
         {
-          return copyWith(
-            focus: <Reference>[],
-          );
+          focus = <ReferenceBuilder>[];
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'effective':
       case 'effectiveX':
       case 'effectiveDateTime':
         {
-          return copyWith(
-            effectiveX: FhirDateTime.empty(),
-          );
+          effectiveX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'effectivePeriod':
         {
-          return copyWith(
-            effectiveX: Period.empty(),
-          );
+          effectiveX = PeriodBuilder.empty();
+          return;
         }
       case 'effectiveTiming':
         {
-          return copyWith(
-            effectiveX: Timing.empty(),
-          );
+          effectiveX = TimingBuilder.empty();
+          return;
         }
       case 'effectiveInstant':
         {
-          return copyWith(
-            effectiveX: FhirInstant.empty(),
-          );
+          effectiveX = FhirInstantBuilder.empty();
+          return;
         }
       case 'issued':
         {
-          return copyWith(
-            issued: FhirInstant.empty(),
-          );
+          issued = FhirInstantBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: <Reference>[],
-          );
+          performer = <ReferenceBuilder>[];
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueString':
         {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
+          valueX = FhirStringBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueInteger':
         {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
+          valueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'valueRange':
         {
-          return copyWith(
-            valueX: Range.empty(),
-          );
+          valueX = RangeBuilder.empty();
+          return;
         }
       case 'valueRatio':
         {
-          return copyWith(
-            valueX: Ratio.empty(),
-          );
+          valueX = RatioBuilder.empty();
+          return;
         }
       case 'valueSampledData':
         {
-          return copyWith(
-            valueX: SampledData.empty(),
-          );
+          valueX = SampledDataBuilder.empty();
+          return;
         }
       case 'valueTime':
         {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
+          valueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'valueDateTime':
         {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
+          valueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'valuePeriod':
         {
-          return copyWith(
-            valueX: Period.empty(),
-          );
+          valueX = PeriodBuilder.empty();
+          return;
         }
       case 'dataAbsentReason':
         {
-          return copyWith(
-            dataAbsentReason: CodeableConcept.empty(),
-          );
+          dataAbsentReason = CodeableConceptBuilder.empty();
+          return;
         }
       case 'interpretation':
         {
-          return copyWith(
-            interpretation: <CodeableConcept>[],
-          );
+          interpretation = <CodeableConceptBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'bodySite':
         {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
+          bodySite = CodeableConceptBuilder.empty();
+          return;
         }
       case 'method':
         {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
+          method = CodeableConceptBuilder.empty();
+          return;
         }
       case 'specimen':
         {
-          return copyWith(
-            specimen: Reference.empty(),
-          );
+          specimen = ReferenceBuilder.empty();
+          return;
         }
       case 'device':
         {
-          return copyWith(
-            device: Reference.empty(),
-          );
+          device = ReferenceBuilder.empty();
+          return;
         }
       case 'referenceRange':
         {
-          return copyWith(
-            referenceRange: <ObservationReferenceRange>[],
-          );
+          referenceRange = <ObservationReferenceRangeBuilder>[];
+          return;
         }
       case 'hasMember':
         {
-          return copyWith(
-            hasMember: <Reference>[],
-          );
+          hasMember = <ReferenceBuilder>[];
+          return;
         }
       case 'derivedFrom':
         {
-          return copyWith(
-            derivedFrom: <Reference>[],
-          );
+          derivedFrom = <ReferenceBuilder>[];
+          return;
         }
       case 'component':
         {
-          return copyWith(
-            component: <ObservationComponent>[],
-          );
+          component = <ObservationComponentBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1906,7 +1826,7 @@ class Observation extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Observation clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1918,7 +1838,9 @@ class Observation extends DomainResource {
     bool identifier = false,
     bool basedOn = false,
     bool partOf = false,
+    bool status = false,
     bool category = false,
+    bool code = false,
     bool subject = false,
     bool focus = false,
     bool encounter = false,
@@ -1938,273 +1860,139 @@ class Observation extends DomainResource {
     bool derivedFrom = false,
     bool component = false,
   }) {
-    return Observation(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      category: category ? null : this.category,
-      code: code,
-      subject: subject ? null : this.subject,
-      focus: focus ? null : this.focus,
-      encounter: encounter ? null : this.encounter,
-      effectiveX: effective ? null : effectiveX,
-      issued: issued ? null : this.issued,
-      performer: performer ? null : this.performer,
-      valueX: value ? null : valueX,
-      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
-      interpretation: interpretation ? null : this.interpretation,
-      note: note ? null : this.note,
-      bodySite: bodySite ? null : this.bodySite,
-      method: method ? null : this.method,
-      specimen: specimen ? null : this.specimen,
-      device: device ? null : this.device,
-      referenceRange: referenceRange ? null : this.referenceRange,
-      hasMember: hasMember ? null : this.hasMember,
-      derivedFrom: derivedFrom ? null : this.derivedFrom,
-      component: component ? null : this.component,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (basedOn) this.basedOn = null;
+    if (partOf) this.partOf = null;
+    if (status) this.status = null;
+    if (category) this.category = null;
+    if (code) this.code = null;
+    if (subject) this.subject = null;
+    if (focus) this.focus = null;
+    if (encounter) this.encounter = null;
+    if (effective) this.effectiveX = null;
+    if (issued) this.issued = null;
+    if (performer) this.performer = null;
+    if (value) this.valueX = null;
+    if (dataAbsentReason) this.dataAbsentReason = null;
+    if (interpretation) this.interpretation = null;
+    if (note) this.note = null;
+    if (bodySite) this.bodySite = null;
+    if (method) this.method = null;
+    if (specimen) this.specimen = null;
+    if (device) this.device = null;
+    if (referenceRange) this.referenceRange = null;
+    if (hasMember) this.hasMember = null;
+    if (derivedFrom) this.derivedFrom = null;
+    if (component) this.component = null;
   }
 
   @override
-  Observation clone() => throw UnimplementedError();
+  ObservationBuilder clone() => throw UnimplementedError();
   @override
-  Observation copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? basedOn,
-    List<Reference>? partOf,
-    ObservationStatus? status,
-    List<CodeableConcept>? category,
-    CodeableConcept? code,
-    Reference? subject,
-    List<Reference>? focus,
-    Reference? encounter,
-    EffectiveXObservation? effectiveX,
-    FhirInstant? issued,
-    List<Reference>? performer,
-    ValueXObservation? valueX,
-    CodeableConcept? dataAbsentReason,
-    List<CodeableConcept>? interpretation,
-    List<Annotation>? note,
-    CodeableConcept? bodySite,
-    CodeableConcept? method,
-    Reference? specimen,
-    Reference? device,
-    List<ObservationReferenceRange>? referenceRange,
-    List<Reference>? hasMember,
-    List<Reference>? derivedFrom,
-    List<ObservationComponent>? component,
+  ObservationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<ReferenceBuilder>? basedOn,
+    List<ReferenceBuilder>? partOf,
+    ObservationStatusBuilder? status,
+    List<CodeableConceptBuilder>? category,
+    CodeableConceptBuilder? code,
+    ReferenceBuilder? subject,
+    List<ReferenceBuilder>? focus,
+    ReferenceBuilder? encounter,
+    EffectiveXObservationBuilder? effectiveX,
+    FhirInstantBuilder? issued,
+    List<ReferenceBuilder>? performer,
+    ValueXObservationBuilder? valueX,
+    CodeableConceptBuilder? dataAbsentReason,
+    List<CodeableConceptBuilder>? interpretation,
+    List<AnnotationBuilder>? note,
+    CodeableConceptBuilder? bodySite,
+    CodeableConceptBuilder? method,
+    ReferenceBuilder? specimen,
+    ReferenceBuilder? device,
+    List<ObservationReferenceRangeBuilder>? referenceRange,
+    List<ReferenceBuilder>? hasMember,
+    List<ReferenceBuilder>? derivedFrom,
+    List<ObservationComponentBuilder>? component,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Observation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ObservationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      focus: focus
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.focus',
-                ),
-              )
-              .toList() ??
-          this.focus,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      effectiveX: effectiveX?.copyWith(
-            objectPath: '$newObjectPath.effectiveX',
-          ) as EffectiveXObservation? ??
-          this.effectiveX,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXObservation? ??
-          this.valueX,
-      dataAbsentReason: dataAbsentReason?.copyWith(
-            objectPath: '$newObjectPath.dataAbsentReason',
-          ) ??
-          this.dataAbsentReason,
-      interpretation: interpretation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.interpretation',
-                ),
-              )
-              .toList() ??
-          this.interpretation,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      specimen: specimen?.copyWith(
-            objectPath: '$newObjectPath.specimen',
-          ) ??
-          this.specimen,
-      device: device?.copyWith(
-            objectPath: '$newObjectPath.device',
-          ) ??
-          this.device,
-      referenceRange: referenceRange
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referenceRange',
-                ),
-              )
-              .toList() ??
-          this.referenceRange,
-      hasMember: hasMember
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.hasMember',
-                ),
-              )
-              .toList() ??
-          this.hasMember,
-      derivedFrom: derivedFrom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.derivedFrom',
-                ),
-              )
-              .toList() ??
-          this.derivedFrom,
-      component: component
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.component',
-                ),
-              )
-              .toList() ??
-          this.component,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      basedOn: basedOn ?? this.basedOn,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      category: category ?? this.category,
+      code: code ?? this.code,
+      subject: subject ?? this.subject,
+      focus: focus ?? this.focus,
+      encounter: encounter ?? this.encounter,
+      effectiveX: effectiveX ?? this.effectiveX,
+      issued: issued ?? this.issued,
+      performer: performer ?? this.performer,
+      valueX: valueX ?? this.valueX,
+      dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
+      interpretation: interpretation ?? this.interpretation,
+      note: note ?? this.note,
+      bodySite: bodySite ?? this.bodySite,
+      method: method ?? this.method,
+      specimen: specimen ?? this.specimen,
+      device: device ?? this.device,
+      referenceRange: referenceRange ?? this.referenceRange,
+      hasMember: hasMember ?? this.hasMember,
+      derivedFrom: derivedFrom ?? this.derivedFrom,
+      component: component ?? this.component,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Observation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ObservationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2239,37 +2027,37 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       partOf,
       o.partOf,
     )) {
@@ -2281,7 +2069,7 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -2299,7 +2087,7 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       focus,
       o.focus,
     )) {
@@ -2323,7 +2111,7 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       performer,
       o.performer,
     )) {
@@ -2341,13 +2129,13 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       interpretation,
       o.interpretation,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -2377,25 +2165,25 @@ class Observation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ObservationReferenceRange>(
+    if (!listEquals<ObservationReferenceRangeBuilder>(
       referenceRange,
       o.referenceRange,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       hasMember,
       o.hasMember,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       derivedFrom,
       o.derivedFrom,
     )) {
       return false;
     }
-    if (!listEquals<ObservationComponent>(
+    if (!listEquals<ObservationComponentBuilder>(
       component,
       o.component,
     )) {
@@ -2405,16 +2193,16 @@ class Observation extends DomainResource {
   }
 }
 
-/// [ObservationReferenceRange]
+/// [ObservationReferenceRangeBuilder]
 /// Guidance on how to interpret the value by comparison to a normal or
 /// recommended range. Multiple reference ranges are interpreted as an
 /// "OR". In other words, to represent two distinct target populations, two
 /// `referenceRange` elements would be used.
-class ObservationReferenceRange extends BackboneElement {
+class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ObservationReferenceRange]
+  /// [ObservationReferenceRangeBuilder]
 
-  const ObservationReferenceRange({
+  ObservationReferenceRangeBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2430,26 +2218,25 @@ class ObservationReferenceRange extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ObservationReferenceRange.empty() =>
-      const ObservationReferenceRange();
+  /// For Builder classes, no fields are required
+  factory ObservationReferenceRangeBuilder.empty() =>
+      ObservationReferenceRangeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ObservationReferenceRange.fromJson(
+  factory ObservationReferenceRangeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Observation.referenceRange';
-    return ObservationReferenceRange(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ObservationReferenceRangeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2458,8 +2245,8 @@ class ObservationReferenceRange extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2467,27 +2254,27 @@ class ObservationReferenceRange extends BackboneElement {
             ),
           )
           .toList(),
-      low: JsonParser.parseObject<Quantity>(
+      low: JsonParser.parseObject<QuantityBuilder>(
         json,
         'low',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.low',
       ),
-      high: JsonParser.parseObject<Quantity>(
+      high: JsonParser.parseObject<QuantityBuilder>(
         json,
         'high',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.high',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       appliesTo: (json['appliesTo'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.appliesTo',
@@ -2495,37 +2282,37 @@ class ObservationReferenceRange extends BackboneElement {
             ),
           )
           .toList(),
-      age: JsonParser.parseObject<Range>(
+      age: JsonParser.parseObject<RangeBuilder>(
         json,
         'age',
-        Range.fromJson,
+        RangeBuilder.fromJson,
         '$objectPath.age',
       ),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
     );
   }
 
-  /// Deserialize [ObservationReferenceRange]
+  /// Deserialize [ObservationReferenceRangeBuilder]
   /// from a [String] or [YamlMap] object
-  factory ObservationReferenceRange.fromYaml(
+  factory ObservationReferenceRangeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ObservationReferenceRange.fromJson(
+      return ObservationReferenceRangeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ObservationReferenceRange.fromJson(
+      return ObservationReferenceRangeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ObservationReferenceRange '
+        'ObservationReferenceRangeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2533,16 +2320,16 @@ class ObservationReferenceRange extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ObservationReferenceRange]
+  /// [ObservationReferenceRangeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ObservationReferenceRange.fromJsonString(
+  factory ObservationReferenceRangeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ObservationReferenceRange.fromJson(json);
+      return ObservationReferenceRangeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2557,19 +2344,19 @@ class ObservationReferenceRange extends BackboneElement {
   /// reference range endpoint is inclusive of the value (e.g. reference
   /// range is >=5 - <=9). If the low bound is omitted, it is assumed to be
   /// meaningless (e.g. reference range is <=2.3).
-  final Quantity? low;
+  QuantityBuilder? low;
 
   /// [high]
   /// The value of the high bound of the reference range. The high bound of
   /// the reference range endpoint is inclusive of the value (e.g. reference
   /// range is >=5 - <=9). If the high bound is omitted, it is assumed to be
   /// meaningless (e.g. reference range is >= 2.3).
-  final Quantity? high;
+  QuantityBuilder? high;
 
   /// [type]
   /// Codes to indicate the what part of the targeted reference population it
   /// applies to. For example, the normal or therapeutic range.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [appliesTo]
   /// Codes to indicate the target population this reference range applies
@@ -2578,35 +2365,35 @@ class ObservationReferenceRange extends BackboneElement {
   /// interpreted as an "AND" of the target populations. For example, to
   /// represent a target population of African American females, both a code
   /// of female and a code for African American would be used.
-  final List<CodeableConcept>? appliesTo;
+  List<CodeableConceptBuilder>? appliesTo;
 
   /// [age]
   /// The age at which this reference range is applicable. This is a neonatal
   /// age (e.g. number of weeks at term) if the meaning says so.
-  final Range? age;
+  RangeBuilder? age;
 
   /// [text]
   /// Text based reference range in an observation which may be used when a
   /// quantitative range is not appropriate for an observation. An example
   /// would be a reference value of "Negative" or a list or table of
   /// "normals".
-  final FhirString? text;
+  FhirStringBuilder? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2615,47 +2402,20 @@ class ObservationReferenceRange extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'low',
-      low,
-    );
-    addField(
-      'high',
-      high,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'appliesTo',
-      appliesTo,
-    );
-    addField(
-      'age',
-      age,
-    );
-    addField(
-      'text',
-      text,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('low', low);
+    addField('high', high);
+    addField('type', type);
+    addField('appliesTo', appliesTo);
+    addField('age', age);
+    addField('text', text);
     return json;
   }
 
@@ -2678,11 +2438,11 @@ class ObservationReferenceRange extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2730,7 +2490,7 @@ class ObservationReferenceRange extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2739,103 +2499,108 @@ class ObservationReferenceRange extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'low':
         {
-          if (child is Quantity) {
-            return copyWith(low: child);
+          if (child is QuantityBuilder) {
+            low = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'high':
         {
-          if (child is Quantity) {
-            return copyWith(high: child);
+          if (child is QuantityBuilder) {
+            high = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'appliesTo':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?appliesTo, ...child];
-            return copyWith(appliesTo: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            appliesTo = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?appliesTo, child];
-            return copyWith(appliesTo: newList);
+            appliesTo = [...(appliesTo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'age':
         {
-          if (child is Range) {
-            return copyWith(age: child);
+          if (child is RangeBuilder) {
+            age = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2851,90 +2616,77 @@ class ObservationReferenceRange extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'low':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'high':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'appliesTo':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'age':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ObservationReferenceRange]
+  /// Creates a new [ObservationReferenceRangeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ObservationReferenceRange createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'low':
         {
-          return copyWith(
-            low: Quantity.empty(),
-          );
+          low = QuantityBuilder.empty();
+          return;
         }
       case 'high':
         {
-          return copyWith(
-            high: Quantity.empty(),
-          );
+          high = QuantityBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'appliesTo':
         {
-          return copyWith(
-            appliesTo: <CodeableConcept>[],
-          );
+          appliesTo = <CodeableConceptBuilder>[];
+          return;
         }
       case 'age':
         {
-          return copyWith(
-            age: Range.empty(),
-          );
+          age = RangeBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2943,7 +2695,7 @@ class ObservationReferenceRange extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ObservationReferenceRange clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2954,32 +2706,30 @@ class ObservationReferenceRange extends BackboneElement {
     bool age = false,
     bool text = false,
   }) {
-    return ObservationReferenceRange(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      low: low ? null : this.low,
-      high: high ? null : this.high,
-      type: type ? null : this.type,
-      appliesTo: appliesTo ? null : this.appliesTo,
-      age: age ? null : this.age,
-      text: text ? null : this.text,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (low) this.low = null;
+    if (high) this.high = null;
+    if (type) this.type = null;
+    if (appliesTo) this.appliesTo = null;
+    if (age) this.age = null;
+    if (text) this.text = null;
   }
 
   @override
-  ObservationReferenceRange clone() => throw UnimplementedError();
+  ObservationReferenceRangeBuilder clone() => throw UnimplementedError();
   @override
-  ObservationReferenceRange copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Quantity? low,
-    Quantity? high,
-    CodeableConcept? type,
-    List<CodeableConcept>? appliesTo,
-    Range? age,
-    FhirString? text,
+  ObservationReferenceRangeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    QuantityBuilder? low,
+    QuantityBuilder? high,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? appliesTo,
+    RangeBuilder? age,
+    FhirStringBuilder? text,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2987,62 +2737,40 @@ class ObservationReferenceRange extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ObservationReferenceRange(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      low: low?.copyWith(
-            objectPath: '$newObjectPath.low',
-          ) ??
-          this.low,
-      high: high?.copyWith(
-            objectPath: '$newObjectPath.high',
-          ) ??
-          this.high,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      appliesTo: appliesTo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.appliesTo',
-                ),
-              )
-              .toList() ??
-          this.appliesTo,
-      age: age?.copyWith(
-            objectPath: '$newObjectPath.age',
-          ) ??
-          this.age,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ObservationReferenceRangeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      low: low ?? this.low,
+      high: high ?? this.high,
+      type: type ?? this.type,
+      appliesTo: appliesTo ?? this.appliesTo,
+      age: age ?? this.age,
+      text: text ?? this.text,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ObservationReferenceRange) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ObservationReferenceRangeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3053,13 +2781,13 @@ class ObservationReferenceRange extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3083,7 +2811,7 @@ class ObservationReferenceRange extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       appliesTo,
       o.appliesTo,
     )) {
@@ -3105,21 +2833,21 @@ class ObservationReferenceRange extends BackboneElement {
   }
 }
 
-/// [ObservationComponent]
+/// [ObservationComponentBuilder]
 /// Some observations have multiple component observations. These component
 /// observations are expressed as separate code value pairs that share the
 /// same attributes. Examples include systolic and diastolic component
 /// observations for blood pressure measurement and multiple component
 /// observations for genetics observations.
-class ObservationComponent extends BackboneElement {
+class ObservationComponentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ObservationComponent]
+  /// [ObservationComponentBuilder]
 
-  const ObservationComponent({
+  ObservationComponentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
+    this.code,
     this.valueX,
     this.dataAbsentReason,
     this.interpretation,
@@ -3130,27 +2858,24 @@ class ObservationComponent extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ObservationComponent.empty() => ObservationComponent(
-        code: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ObservationComponentBuilder.empty() => ObservationComponentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ObservationComponent.fromJson(
+  factory ObservationComponentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Observation.component';
-    return ObservationComponent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ObservationComponentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3159,8 +2884,8 @@ class ObservationComponent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3168,38 +2893,38 @@ class ObservationComponent extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      valueX: JsonParser.parsePolymorphic<ValueXObservationComponent>(
+      ),
+      valueX: JsonParser.parsePolymorphic<ValueXObservationComponentBuilder>(
         json,
         {
-          'valueQuantity': Quantity.fromJson,
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueString': FhirString.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueInteger': FhirInteger.fromJson,
-          'valueRange': Range.fromJson,
-          'valueRatio': Ratio.fromJson,
-          'valueSampledData': SampledData.fromJson,
-          'valueTime': FhirTime.fromJson,
-          'valueDateTime': FhirDateTime.fromJson,
-          'valuePeriod': Period.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueString': FhirStringBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueInteger': FhirIntegerBuilder.fromJson,
+          'valueRange': RangeBuilder.fromJson,
+          'valueRatio': RatioBuilder.fromJson,
+          'valueSampledData': SampledDataBuilder.fromJson,
+          'valueTime': FhirTimeBuilder.fromJson,
+          'valueDateTime': FhirDateTimeBuilder.fromJson,
+          'valuePeriod': PeriodBuilder.fromJson,
         },
         objectPath,
       ),
-      dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
+      dataAbsentReason: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'dataAbsentReason',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.dataAbsentReason',
       ),
       interpretation: (json['interpretation'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.interpretation',
@@ -3208,8 +2933,8 @@ class ObservationComponent extends BackboneElement {
           )
           .toList(),
       referenceRange: (json['referenceRange'] as List<dynamic>?)
-          ?.map<ObservationReferenceRange>(
-            (v) => ObservationReferenceRange.fromJson(
+          ?.map<ObservationReferenceRangeBuilder>(
+            (v) => ObservationReferenceRangeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.referenceRange',
@@ -3220,22 +2945,22 @@ class ObservationComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [ObservationComponent]
+  /// Deserialize [ObservationComponentBuilder]
   /// from a [String] or [YamlMap] object
-  factory ObservationComponent.fromYaml(
+  factory ObservationComponentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ObservationComponent.fromJson(
+      return ObservationComponentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ObservationComponent.fromJson(
+      return ObservationComponentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ObservationComponent '
+        'ObservationComponentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3243,16 +2968,16 @@ class ObservationComponent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ObservationComponent]
+  /// [ObservationComponentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ObservationComponent.fromJsonString(
+  factory ObservationComponentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ObservationComponent.fromJson(json);
+      return ObservationComponentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3265,76 +2990,78 @@ class ObservationComponent extends BackboneElement {
   /// [code]
   /// Describes what was observed. Sometimes this is called the observation
   /// "code".
-  final CodeableConcept code;
+  CodeableConceptBuilder? code;
 
   /// [valueX]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final ValueXObservationComponent? valueX;
+  ValueXObservationComponentBuilder? valueX;
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueString] as a FhirString
-  FhirString? get valueString => valueX?.isAs<FhirString>();
+  /// Getter for [valueString] as a FhirStringBuilder
+  FhirStringBuilder? get valueString => valueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueInteger] as a FhirInteger
-  FhirInteger? get valueInteger => valueX?.isAs<FhirInteger>();
+  /// Getter for [valueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get valueInteger => valueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [valueRange] as a Range
-  Range? get valueRange => valueX?.isAs<Range>();
+  /// Getter for [valueRange] as a RangeBuilder
+  RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// Getter for [valueRatio] as a Ratio
-  Ratio? get valueRatio => valueX?.isAs<Ratio>();
+  /// Getter for [valueRatio] as a RatioBuilder
+  RatioBuilder? get valueRatio => valueX?.isAs<RatioBuilder>();
 
-  /// Getter for [valueSampledData] as a SampledData
-  SampledData? get valueSampledData => valueX?.isAs<SampledData>();
+  /// Getter for [valueSampledData] as a SampledDataBuilder
+  SampledDataBuilder? get valueSampledData =>
+      valueX?.isAs<SampledDataBuilder>();
 
-  /// Getter for [valueTime] as a FhirTime
-  FhirTime? get valueTime => valueX?.isAs<FhirTime>();
+  /// Getter for [valueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get valueTime => valueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [valueDateTime] as a FhirDateTime
-  FhirDateTime? get valueDateTime => valueX?.isAs<FhirDateTime>();
+  /// Getter for [valueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get valueDateTime => valueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [valuePeriod] as a Period
-  Period? get valuePeriod => valueX?.isAs<Period>();
+  /// Getter for [valuePeriod] as a PeriodBuilder
+  PeriodBuilder? get valuePeriod => valueX?.isAs<PeriodBuilder>();
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
   /// Observation.component.value[x] is missing.
-  final CodeableConcept? dataAbsentReason;
+  CodeableConceptBuilder? dataAbsentReason;
 
   /// [interpretation]
   /// A categorical assessment of an observation value. For example, high,
   /// low, normal.
-  final List<CodeableConcept>? interpretation;
+  List<CodeableConceptBuilder>? interpretation;
 
   /// [referenceRange]
   /// Guidance on how to interpret the value by comparison to a normal or
   /// recommended range.
-  final List<ObservationReferenceRange>? referenceRange;
+  List<ObservationReferenceRangeBuilder>? referenceRange;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3343,47 +3070,23 @@ class ObservationComponent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField(
-        'value${fhirType.capitalize()}',
-        valueX,
-      );
+      addField('value${fhirType.capitalize()}', valueX);
     }
 
-    addField(
-      'dataAbsentReason',
-      dataAbsentReason,
-    );
-    addField(
-      'interpretation',
-      interpretation,
-    );
-    addField(
-      'referenceRange',
-      referenceRange,
-    );
+    addField('dataAbsentReason', dataAbsentReason);
+    addField('interpretation', interpretation);
+    addField('referenceRange', referenceRange);
     return json;
   }
 
@@ -3405,11 +3108,11 @@ class ObservationComponent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3424,53 +3127,59 @@ class ObservationComponent extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueQuantity':
-        if (valueX is Quantity) {
+        if (valueX is QuantityBuilder) {
           fields.add(valueX!);
         }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
+        if (valueX is CodeableConceptBuilder) {
           fields.add(valueX!);
         }
       case 'valueString':
-        if (valueX is FhirString) {
+        if (valueX is FhirStringBuilder) {
           fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
+        if (valueX is FhirBooleanBuilder) {
           fields.add(valueX!);
         }
       case 'valueInteger':
-        if (valueX is FhirInteger) {
+        if (valueX is FhirIntegerBuilder) {
           fields.add(valueX!);
         }
       case 'valueRange':
-        if (valueX is Range) {
+        if (valueX is RangeBuilder) {
           fields.add(valueX!);
         }
       case 'valueRatio':
-        if (valueX is Ratio) {
+        if (valueX is RatioBuilder) {
           fields.add(valueX!);
         }
       case 'valueSampledData':
-        if (valueX is SampledData) {
+        if (valueX is SampledDataBuilder) {
           fields.add(valueX!);
         }
       case 'valueTime':
-        if (valueX is FhirTime) {
+        if (valueX is FhirTimeBuilder) {
           fields.add(valueX!);
         }
       case 'valueDateTime':
-        if (valueX is FhirDateTime) {
+        if (valueX is FhirDateTimeBuilder) {
           fields.add(valueX!);
         }
       case 'valuePeriod':
-        if (valueX is Period) {
+        if (valueX is PeriodBuilder) {
           fields.add(valueX!);
         }
       case 'dataAbsentReason':
@@ -3495,7 +3204,7 @@ class ObservationComponent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3504,222 +3213,247 @@ class ObservationComponent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXObservationComponent) {
-            return copyWith(valueX: child);
+          if (child is ValueXObservationComponentBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
+            if (child is FhirStringBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
+            if (child is FhirIntegerBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(valueX: child);
+            if (child is RangeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(valueX: child);
+            if (child is RatioBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is SampledData) {
-              return copyWith(valueX: child);
+            if (child is SampledDataBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
+            if (child is FhirTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
+            if (child is FhirDateTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(valueX: child);
+            if (child is PeriodBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirString':
+      case 'valueString':
         {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
+          if (child is FhirStringBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirInteger':
+      case 'valueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
+          if (child is FhirIntegerBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRange':
         {
-          if (child is Range) {
-            return copyWith(valueX: child);
+          if (child is RangeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRatio':
         {
-          if (child is Ratio) {
-            return copyWith(valueX: child);
+          if (child is RatioBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSampledData':
         {
-          if (child is SampledData) {
-            return copyWith(valueX: child);
+          if (child is SampledDataBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirTime':
+      case 'valueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
+          if (child is FhirTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDateTime':
+      case 'valueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
+          if (child is FhirDateTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valuePeriod':
         {
-          if (child is Period) {
-            return copyWith(valueX: child);
+          if (child is PeriodBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dataAbsentReason':
         {
-          if (child is CodeableConcept) {
-            return copyWith(dataAbsentReason: child);
+          if (child is CodeableConceptBuilder) {
+            dataAbsentReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'interpretation':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?interpretation, ...child];
-            return copyWith(interpretation: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            interpretation = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?interpretation, child];
-            return copyWith(interpretation: newList);
+            interpretation = [...(interpretation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceRange':
         {
-          if (child is List<ObservationReferenceRange>) {
-            // Add all elements from passed list
-            final newList = [...?referenceRange, ...child];
-            return copyWith(referenceRange: newList);
-          } else if (child is ObservationReferenceRange) {
+          if (child is List<ObservationReferenceRangeBuilder>) {
+            // Replace or create new list
+            referenceRange = child;
+            return;
+          } else if (child is ObservationReferenceRangeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceRange, child];
-            return copyWith(referenceRange: newList);
+            referenceRange = [...(referenceRange ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3735,179 +3469,157 @@ class ObservationComponent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'Quantity',
-          'CodeableConcept',
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'Range',
-          'Ratio',
-          'SampledData',
-          'FhirTime',
-          'FhirDateTime',
-          'Period',
+          'QuantityBuilder',
+          'CodeableConceptBuilder',
+          'FhirStringBuilder',
+          'FhirBooleanBuilder',
+          'FhirIntegerBuilder',
+          'RangeBuilder',
+          'RatioBuilder',
+          'SampledDataBuilder',
+          'FhirTimeBuilder',
+          'FhirDateTimeBuilder',
+          'PeriodBuilder'
         ];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'valueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'valueRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'valueSampledData':
-        return ['SampledData'];
+        return ['SampledDataBuilder'];
       case 'valueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'valueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'valuePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'dataAbsentReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'interpretation':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'referenceRange':
-        return ['ObservationReferenceRange'];
+        return ['ObservationReferenceRangeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ObservationComponent]
+  /// Creates a new [ObservationComponentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ObservationComponent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueString':
         {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
+          valueX = FhirStringBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueInteger':
         {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
+          valueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'valueRange':
         {
-          return copyWith(
-            valueX: Range.empty(),
-          );
+          valueX = RangeBuilder.empty();
+          return;
         }
       case 'valueRatio':
         {
-          return copyWith(
-            valueX: Ratio.empty(),
-          );
+          valueX = RatioBuilder.empty();
+          return;
         }
       case 'valueSampledData':
         {
-          return copyWith(
-            valueX: SampledData.empty(),
-          );
+          valueX = SampledDataBuilder.empty();
+          return;
         }
       case 'valueTime':
         {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
+          valueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'valueDateTime':
         {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
+          valueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'valuePeriod':
         {
-          return copyWith(
-            valueX: Period.empty(),
-          );
+          valueX = PeriodBuilder.empty();
+          return;
         }
       case 'dataAbsentReason':
         {
-          return copyWith(
-            dataAbsentReason: CodeableConcept.empty(),
-          );
+          dataAbsentReason = CodeableConceptBuilder.empty();
+          return;
         }
       case 'interpretation':
         {
-          return copyWith(
-            interpretation: <CodeableConcept>[],
-          );
+          interpretation = <CodeableConceptBuilder>[];
+          return;
         }
       case 'referenceRange':
         {
-          return copyWith(
-            referenceRange: <ObservationReferenceRange>[],
-          );
+          referenceRange = <ObservationReferenceRangeBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3916,39 +3628,38 @@ class ObservationComponent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ObservationComponent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
     bool value = false,
     bool dataAbsentReason = false,
     bool interpretation = false,
     bool referenceRange = false,
   }) {
-    return ObservationComponent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      valueX: value ? null : valueX,
-      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
-      interpretation: interpretation ? null : this.interpretation,
-      referenceRange: referenceRange ? null : this.referenceRange,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (value) this.valueX = null;
+    if (dataAbsentReason) this.dataAbsentReason = null;
+    if (interpretation) this.interpretation = null;
+    if (referenceRange) this.referenceRange = null;
   }
 
   @override
-  ObservationComponent clone() => throw UnimplementedError();
+  ObservationComponentBuilder clone() => throw UnimplementedError();
   @override
-  ObservationComponent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    ValueXObservationComponent? valueX,
-    CodeableConcept? dataAbsentReason,
-    List<CodeableConcept>? interpretation,
-    List<ObservationReferenceRange>? referenceRange,
+  ObservationComponentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    ValueXObservationComponentBuilder? valueX,
+    CodeableConceptBuilder? dataAbsentReason,
+    List<CodeableConceptBuilder>? interpretation,
+    List<ObservationReferenceRangeBuilder>? referenceRange,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3956,62 +3667,39 @@ class ObservationComponent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ObservationComponent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXObservationComponent? ??
-          this.valueX,
-      dataAbsentReason: dataAbsentReason?.copyWith(
-            objectPath: '$newObjectPath.dataAbsentReason',
-          ) ??
-          this.dataAbsentReason,
-      interpretation: interpretation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.interpretation',
-                ),
-              )
-              .toList() ??
-          this.interpretation,
-      referenceRange: referenceRange
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referenceRange',
-                ),
-              )
-              .toList() ??
-          this.referenceRange,
+    final newResult = ObservationComponentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      valueX: valueX ?? this.valueX,
+      dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
+      interpretation: interpretation ?? this.interpretation,
+      referenceRange: referenceRange ?? this.referenceRange,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ObservationComponent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ObservationComponentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4022,13 +3710,13 @@ class ObservationComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4052,13 +3740,13 @@ class ObservationComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       interpretation,
       o.interpretation,
     )) {
       return false;
     }
-    if (!listEquals<ObservationReferenceRange>(
+    if (!listEquals<ObservationReferenceRangeBuilder>(
       referenceRange,
       o.referenceRange,
     )) {

@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [FhirGroup]
+/// [FhirGroupBuilder]
 /// Represents a defined collection of entities that may be discussed or
 /// acted upon collectively but which are not expected to act collectively,
 /// and are not formally or legally recognized; i.e. a collection of
 /// entities that isn't an Organization.
-class FhirGroup extends DomainResource {
+class FhirGroupBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [FhirGroup]
+  /// [FhirGroupBuilder]
 
-  const FhirGroup({
+  FhirGroupBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -22,8 +24,8 @@ class FhirGroup extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.active,
-    required this.type,
-    required this.actual,
+    this.type,
+    this.actual,
     this.code,
     this.name,
     this.quantity,
@@ -36,52 +38,48 @@ class FhirGroup extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FhirGroup.empty() => FhirGroup(
-        type: GroupType.values.first,
-        actual: FhirBoolean.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory FhirGroupBuilder.empty() => FhirGroupBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirGroup.fromJson(
+  factory FhirGroupBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Group';
-    return FhirGroup(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return FhirGroupBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -90,8 +88,8 @@ class FhirGroup extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -100,8 +98,8 @@ class FhirGroup extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -110,8 +108,8 @@ class FhirGroup extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -119,51 +117,51 @@ class FhirGroup extends DomainResource {
             ),
           )
           .toList(),
-      active: JsonParser.parsePrimitive<FhirBoolean>(
+      active: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'active',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.active',
       ),
-      type: JsonParser.parsePrimitive<GroupType>(
+      type: JsonParser.parsePrimitive<GroupTypeBuilder>(
         json,
         'type',
-        GroupType.fromJson,
+        GroupTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      actual: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      actual: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'actual',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.actual',
-      )!,
-      code: JsonParser.parseObject<CodeableConcept>(
+      ),
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      quantity: JsonParser.parsePrimitive<FhirUnsignedInt>(
+      quantity: JsonParser.parsePrimitive<FhirUnsignedIntBuilder>(
         json,
         'quantity',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.quantity',
       ),
-      managingEntity: JsonParser.parseObject<Reference>(
+      managingEntity: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'managingEntity',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.managingEntity',
       ),
       characteristic: (json['characteristic'] as List<dynamic>?)
-          ?.map<GroupCharacteristic>(
-            (v) => GroupCharacteristic.fromJson(
+          ?.map<GroupCharacteristicBuilder>(
+            (v) => GroupCharacteristicBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.characteristic',
@@ -172,8 +170,8 @@ class FhirGroup extends DomainResource {
           )
           .toList(),
       member: (json['member'] as List<dynamic>?)
-          ?.map<GroupMember>(
-            (v) => GroupMember.fromJson(
+          ?.map<GroupMemberBuilder>(
+            (v) => GroupMemberBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.member',
@@ -184,22 +182,22 @@ class FhirGroup extends DomainResource {
     );
   }
 
-  /// Deserialize [FhirGroup]
+  /// Deserialize [FhirGroupBuilder]
   /// from a [String] or [YamlMap] object
-  factory FhirGroup.fromYaml(
+  factory FhirGroupBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return FhirGroup.fromJson(
+      return FhirGroupBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return FhirGroup.fromJson(
+      return FhirGroupBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'FhirGroup '
+        'FhirGroupBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -207,16 +205,16 @@ class FhirGroup extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [FhirGroup]
+  /// [FhirGroupBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirGroup.fromJsonString(
+  factory FhirGroupBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FhirGroup.fromJson(json);
+      return FhirGroupBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -228,66 +226,66 @@ class FhirGroup extends DomainResource {
 
   /// [identifier]
   /// A unique business identifier for this group.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [active]
   /// Indicates whether the record for the group is available for use or is
   /// merely being retained for historical purposes.
-  final FhirBoolean? active;
+  FhirBooleanBuilder? active;
 
   /// [type]
   /// Identifies the broad classification of the kind of resources the group
   /// includes.
-  final GroupType type;
+  GroupTypeBuilder? type;
 
   /// [actual]
   /// If true, indicates that the resource refers to a specific group of real
   /// individuals. If false, the group defines a set of intended individuals.
-  final FhirBoolean actual;
+  FhirBooleanBuilder? actual;
 
   /// [code]
   /// Provides a specific type of resource the group includes; e.g. "cow",
   /// "syringe", etc.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [name]
   /// A label assigned to the group for human identification and
   /// communication.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [quantity]
   /// A count of the number of resource instances that are part of the group.
-  final FhirUnsignedInt? quantity;
+  FhirUnsignedIntBuilder? quantity;
 
   /// [managingEntity]
   /// Entity responsible for defining and maintaining Group characteristics
   /// and/or registered members.
-  final Reference? managingEntity;
+  ReferenceBuilder? managingEntity;
 
   /// [characteristic]
   /// Identifies traits whose presence r absence is shared by members of the
   /// group.
-  final List<GroupCharacteristic>? characteristic;
+  List<GroupCharacteristicBuilder>? characteristic;
 
   /// [member]
   /// Identifies the resource instances that are members of the group.
-  final List<GroupMember>? member;
+  List<GroupMemberBuilder>? member;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -296,84 +294,30 @@ class FhirGroup extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'active',
-      active,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'actual',
-      actual,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'quantity',
-      quantity,
-    );
-    addField(
-      'managingEntity',
-      managingEntity,
-    );
-    addField(
-      'characteristic',
-      characteristic,
-    );
-    addField(
-      'member',
-      member,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('active', active);
+    addField('type', type);
+    addField('actual', actual);
+    addField('code', code);
+    addField('name', name);
+    addField('quantity', quantity);
+    addField('managingEntity', managingEntity);
+    addField('characteristic', characteristic);
+    addField('member', member);
     return json;
   }
 
@@ -405,11 +349,11 @@ class FhirGroup extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -452,9 +396,13 @@ class FhirGroup extends DomainResource {
           fields.add(active!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'actual':
-        fields.add(actual);
+        if (actual != null) {
+          fields.add(actual!);
+        }
       case 'code':
         if (code != null) {
           fields.add(code!);
@@ -489,7 +437,7 @@ class FhirGroup extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -498,193 +446,204 @@ class FhirGroup extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'active':
         {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
+          if (child is FhirBooleanBuilder) {
+            active = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is GroupType) {
-            return copyWith(type: child);
+          if (child is GroupTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actual':
         {
-          if (child is FhirBoolean) {
-            return copyWith(actual: child);
+          if (child is FhirBooleanBuilder) {
+            actual = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(quantity: child);
+          if (child is FhirUnsignedIntBuilder) {
+            quantity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'managingEntity':
         {
-          if (child is Reference) {
-            return copyWith(managingEntity: child);
+          if (child is ReferenceBuilder) {
+            managingEntity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'characteristic':
         {
-          if (child is List<GroupCharacteristic>) {
-            // Add all elements from passed list
-            final newList = [...?characteristic, ...child];
-            return copyWith(characteristic: newList);
-          } else if (child is GroupCharacteristic) {
+          if (child is List<GroupCharacteristicBuilder>) {
+            // Replace or create new list
+            characteristic = child;
+            return;
+          } else if (child is GroupCharacteristicBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?characteristic, child];
-            return copyWith(characteristic: newList);
+            characteristic = [...(characteristic ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'member':
         {
-          if (child is List<GroupMember>) {
-            // Add all elements from passed list
-            final newList = [...?member, ...child];
-            return copyWith(member: newList);
-          } else if (child is GroupMember) {
+          if (child is List<GroupMemberBuilder>) {
+            // Replace or create new list
+            member = child;
+            return;
+          } else if (child is GroupMemberBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?member, child];
-            return copyWith(member: newList);
+            member = [...(member ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -700,162 +659,140 @@ class FhirGroup extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'active':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'actual':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'quantity':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'managingEntity':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'characteristic':
-        return ['GroupCharacteristic'];
+        return ['GroupCharacteristicBuilder'];
       case 'member':
-        return ['GroupMember'];
+        return ['GroupMemberBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [FhirGroup]
+  /// Creates a new [FhirGroupBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  FhirGroup createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'active':
         {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
+          active = FhirBooleanBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: GroupType.empty(),
-          );
+          type = GroupTypeBuilder.empty();
+          return;
         }
       case 'actual':
         {
-          return copyWith(
-            actual: FhirBoolean.empty(),
-          );
+          actual = FhirBooleanBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'quantity':
         {
-          return copyWith(
-            quantity: FhirUnsignedInt.empty(),
-          );
+          quantity = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'managingEntity':
         {
-          return copyWith(
-            managingEntity: Reference.empty(),
-          );
+          managingEntity = ReferenceBuilder.empty();
+          return;
         }
       case 'characteristic':
         {
-          return copyWith(
-            characteristic: <GroupCharacteristic>[],
-          );
+          characteristic = <GroupCharacteristicBuilder>[];
+          return;
         }
       case 'member':
         {
-          return copyWith(
-            member: <GroupMember>[],
-          );
+          member = <GroupMemberBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -864,7 +801,7 @@ class FhirGroup extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  FhirGroup clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -875,6 +812,8 @@ class FhirGroup extends DomainResource {
     bool modifierExtension = false,
     bool identifier = false,
     bool active = false,
+    bool type = false,
+    bool actual = false,
     bool code = false,
     bool name = false,
     bool quantity = false,
@@ -882,153 +821,97 @@ class FhirGroup extends DomainResource {
     bool characteristic = false,
     bool member = false,
   }) {
-    return FhirGroup(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      active: active ? null : this.active,
-      type: type,
-      actual: actual,
-      code: code ? null : this.code,
-      name: name ? null : this.name,
-      quantity: quantity ? null : this.quantity,
-      managingEntity: managingEntity ? null : this.managingEntity,
-      characteristic: characteristic ? null : this.characteristic,
-      member: member ? null : this.member,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (active) this.active = null;
+    if (type) this.type = null;
+    if (actual) this.actual = null;
+    if (code) this.code = null;
+    if (name) this.name = null;
+    if (quantity) this.quantity = null;
+    if (managingEntity) this.managingEntity = null;
+    if (characteristic) this.characteristic = null;
+    if (member) this.member = null;
   }
 
   @override
-  FhirGroup clone() => throw UnimplementedError();
+  FhirGroupBuilder clone() => throw UnimplementedError();
   @override
-  FhirGroup copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirBoolean? active,
-    GroupType? type,
-    FhirBoolean? actual,
-    CodeableConcept? code,
-    FhirString? name,
-    FhirUnsignedInt? quantity,
-    Reference? managingEntity,
-    List<GroupCharacteristic>? characteristic,
-    List<GroupMember>? member,
+  FhirGroupBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirBooleanBuilder? active,
+    GroupTypeBuilder? type,
+    FhirBooleanBuilder? actual,
+    CodeableConceptBuilder? code,
+    FhirStringBuilder? name,
+    FhirUnsignedIntBuilder? quantity,
+    ReferenceBuilder? managingEntity,
+    List<GroupCharacteristicBuilder>? characteristic,
+    List<GroupMemberBuilder>? member,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return FhirGroup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = FhirGroupBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      actual: actual?.copyWith(
-            objectPath: '$newObjectPath.actual',
-          ) ??
-          this.actual,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      managingEntity: managingEntity?.copyWith(
-            objectPath: '$newObjectPath.managingEntity',
-          ) ??
-          this.managingEntity,
-      characteristic: characteristic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.characteristic',
-                ),
-              )
-              .toList() ??
-          this.characteristic,
-      member: member
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.member',
-                ),
-              )
-              .toList() ??
-          this.member,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      active: active ?? this.active,
+      type: type ?? this.type,
+      actual: actual ?? this.actual,
+      code: code ?? this.code,
+      name: name ?? this.name,
+      quantity: quantity ?? this.quantity,
+      managingEntity: managingEntity ?? this.managingEntity,
+      characteristic: characteristic ?? this.characteristic,
+      member: member ?? this.member,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! FhirGroup) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! FhirGroupBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1063,25 +946,25 @@ class FhirGroup extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1129,13 +1012,13 @@ class FhirGroup extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<GroupCharacteristic>(
+    if (!listEquals<GroupCharacteristicBuilder>(
       characteristic,
       o.characteristic,
     )) {
       return false;
     }
-    if (!listEquals<GroupMember>(
+    if (!listEquals<GroupMemberBuilder>(
       member,
       o.member,
     )) {
@@ -1145,20 +1028,20 @@ class FhirGroup extends DomainResource {
   }
 }
 
-/// [GroupCharacteristic]
+/// [GroupCharacteristicBuilder]
 /// Identifies traits whose presence r absence is shared by members of the
 /// group.
-class GroupCharacteristic extends BackboneElement {
+class GroupCharacteristicBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [GroupCharacteristic]
+  /// [GroupCharacteristicBuilder]
 
-  const GroupCharacteristic({
+  GroupCharacteristicBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
-    required this.valueX,
-    required this.exclude,
+    this.code,
+    this.valueX,
+    this.exclude,
     this.period,
     super.disallowExtensions,
   }) : super(
@@ -1166,29 +1049,24 @@ class GroupCharacteristic extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GroupCharacteristic.empty() => GroupCharacteristic(
-        code: CodeableConcept.empty(),
-        valueX: CodeableConcept.empty(),
-        exclude: FhirBoolean.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory GroupCharacteristicBuilder.empty() => GroupCharacteristicBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GroupCharacteristic.fromJson(
+  factory GroupCharacteristicBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Group.characteristic';
-    return GroupCharacteristic(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GroupCharacteristicBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1197,8 +1075,8 @@ class GroupCharacteristic extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1206,54 +1084,54 @@ class GroupCharacteristic extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      valueX: JsonParser.parsePolymorphic<ValueXGroupCharacteristic>(
+      ),
+      valueX: JsonParser.parsePolymorphic<ValueXGroupCharacteristicBuilder>(
         json,
         {
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueQuantity': Quantity.fromJson,
-          'valueRange': Range.fromJson,
-          'valueReference': Reference.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueRange': RangeBuilder.fromJson,
+          'valueReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
-      exclude: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      exclude: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'exclude',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.exclude',
-      )!,
-      period: JsonParser.parseObject<Period>(
+      ),
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
     );
   }
 
-  /// Deserialize [GroupCharacteristic]
+  /// Deserialize [GroupCharacteristicBuilder]
   /// from a [String] or [YamlMap] object
-  factory GroupCharacteristic.fromYaml(
+  factory GroupCharacteristicBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return GroupCharacteristic.fromJson(
+      return GroupCharacteristicBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return GroupCharacteristic.fromJson(
+      return GroupCharacteristicBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'GroupCharacteristic '
+        'GroupCharacteristicBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1261,16 +1139,16 @@ class GroupCharacteristic extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [GroupCharacteristic]
+  /// [GroupCharacteristicBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GroupCharacteristic.fromJsonString(
+  factory GroupCharacteristicBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return GroupCharacteristic.fromJson(json);
+      return GroupCharacteristicBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1282,53 +1160,54 @@ class GroupCharacteristic extends BackboneElement {
 
   /// [code]
   /// A code that identifies the kind of trait being asserted.
-  final CodeableConcept code;
+  CodeableConceptBuilder? code;
 
   /// [valueX]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final ValueXGroupCharacteristic valueX;
+  ValueXGroupCharacteristicBuilder? valueX;
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueRange] as a Range
-  Range? get valueRange => valueX.isAs<Range>();
+  /// Getter for [valueRange] as a RangeBuilder
+  RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// Getter for [valueReference] as a Reference
-  Reference? get valueReference => valueX.isAs<Reference>();
+  /// Getter for [valueReference] as a ReferenceBuilder
+  ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
 
   /// [exclude]
   /// If true, indicates the characteristic is one that is NOT held by
   /// members of the group.
-  final FhirBoolean exclude;
+  FhirBooleanBuilder? exclude;
 
   /// [period]
   /// The period over which the characteristic is tested; e.g. the patient
   /// had an operation during the month of June.
-  final Period? period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1337,41 +1216,22 @@ class GroupCharacteristic extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    final valueXFhirType = valueX.fhirType;
-    addField(
-      'value${valueXFhirType.capitalize()}',
-      valueX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    if (valueX != null) {
+      final fhirType = valueX!.fhirType;
+      addField('value${fhirType.capitalize()}', valueX);
+    }
 
-    addField(
-      'exclude',
-      exclude,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('exclude', exclude);
+    addField('period', period);
     return json;
   }
 
@@ -1392,11 +1252,11 @@ class GroupCharacteristic extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1411,33 +1271,41 @@ class GroupCharacteristic extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'value':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
-          fields.add(valueX);
+        if (valueX is CodeableConceptBuilder) {
+          fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
-          fields.add(valueX);
+        if (valueX is FhirBooleanBuilder) {
+          fields.add(valueX!);
         }
       case 'valueQuantity':
-        if (valueX is Quantity) {
-          fields.add(valueX);
+        if (valueX is QuantityBuilder) {
+          fields.add(valueX!);
         }
       case 'valueRange':
-        if (valueX is Range) {
-          fields.add(valueX);
+        if (valueX is RangeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueReference':
-        if (valueX is Reference) {
-          fields.add(valueX);
+        if (valueX is ReferenceBuilder) {
+          fields.add(valueX!);
         }
       case 'exclude':
-        fields.add(exclude);
+        if (exclude != null) {
+          fields.add(exclude!);
+        }
       case 'period':
         if (period != null) {
           fields.add(period!);
@@ -1452,7 +1320,7 @@ class GroupCharacteristic extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1461,136 +1329,150 @@ class GroupCharacteristic extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXGroupCharacteristic) {
-            return copyWith(valueX: child);
+          if (child is ValueXGroupCharacteristicBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(valueX: child);
+            if (child is RangeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(valueX: child);
+            if (child is ReferenceBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRange':
         {
-          if (child is Range) {
-            return copyWith(valueX: child);
+          if (child is RangeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueReference':
         {
-          if (child is Reference) {
-            return copyWith(valueX: child);
+          if (child is ReferenceBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'exclude':
         {
-          if (child is FhirBoolean) {
-            return copyWith(exclude: child);
+          if (child is FhirBooleanBuilder) {
+            exclude = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1606,117 +1488,102 @@ class GroupCharacteristic extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'CodeableConcept',
-          'FhirBoolean',
-          'Quantity',
-          'Range',
-          'Reference',
+          'CodeableConceptBuilder',
+          'FhirBooleanBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'ReferenceBuilder'
         ];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'valueReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'exclude':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [GroupCharacteristic]
+  /// Creates a new [GroupCharacteristicBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  GroupCharacteristic createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueRange':
         {
-          return copyWith(
-            valueX: Range.empty(),
-          );
+          valueX = RangeBuilder.empty();
+          return;
         }
       case 'valueReference':
         {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
+          valueX = ReferenceBuilder.empty();
+          return;
         }
       case 'exclude':
         {
-          return copyWith(
-            exclude: FhirBoolean.empty(),
-          );
+          exclude = FhirBooleanBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1725,34 +1592,35 @@ class GroupCharacteristic extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  GroupCharacteristic clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool code = false,
+    bool value = false,
+    bool exclude = false,
     bool period = false,
   }) {
-    return GroupCharacteristic(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      valueX: valueX,
-      exclude: exclude,
-      period: period ? null : this.period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (value) this.valueX = null;
+    if (exclude) this.exclude = null;
+    if (period) this.period = null;
   }
 
   @override
-  GroupCharacteristic clone() => throw UnimplementedError();
+  GroupCharacteristicBuilder clone() => throw UnimplementedError();
   @override
-  GroupCharacteristic copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    ValueXGroupCharacteristic? valueX,
-    FhirBoolean? exclude,
-    Period? period,
+  GroupCharacteristicBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    ValueXGroupCharacteristicBuilder? valueX,
+    FhirBooleanBuilder? exclude,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1760,50 +1628,38 @@ class GroupCharacteristic extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return GroupCharacteristic(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXGroupCharacteristic? ??
-          this.valueX,
-      exclude: exclude?.copyWith(
-            objectPath: '$newObjectPath.exclude',
-          ) ??
-          this.exclude,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = GroupCharacteristicBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      valueX: valueX ?? this.valueX,
+      exclude: exclude ?? this.exclude,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! GroupCharacteristic) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GroupCharacteristicBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1814,13 +1670,13 @@ class GroupCharacteristic extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1854,17 +1710,17 @@ class GroupCharacteristic extends BackboneElement {
   }
 }
 
-/// [GroupMember]
+/// [GroupMemberBuilder]
 /// Identifies the resource instances that are members of the group.
-class GroupMember extends BackboneElement {
+class GroupMemberBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [GroupMember]
+  /// [GroupMemberBuilder]
 
-  const GroupMember({
+  GroupMemberBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.entity,
+    this.entity,
     this.period,
     this.inactive,
     super.disallowExtensions,
@@ -1873,27 +1729,24 @@ class GroupMember extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GroupMember.empty() => GroupMember(
-        entity: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory GroupMemberBuilder.empty() => GroupMemberBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GroupMember.fromJson(
+  factory GroupMemberBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Group.member';
-    return GroupMember(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return GroupMemberBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1902,8 +1755,8 @@ class GroupMember extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1911,43 +1764,43 @@ class GroupMember extends BackboneElement {
             ),
           )
           .toList(),
-      entity: JsonParser.parseObject<Reference>(
+      entity: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'entity',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.entity',
-      )!,
-      period: JsonParser.parseObject<Period>(
+      ),
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      inactive: JsonParser.parsePrimitive<FhirBoolean>(
+      inactive: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'inactive',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.inactive',
       ),
     );
   }
 
-  /// Deserialize [GroupMember]
+  /// Deserialize [GroupMemberBuilder]
   /// from a [String] or [YamlMap] object
-  factory GroupMember.fromYaml(
+  factory GroupMemberBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return GroupMember.fromJson(
+      return GroupMemberBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return GroupMember.fromJson(
+      return GroupMemberBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'GroupMember '
+        'GroupMemberBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1955,16 +1808,16 @@ class GroupMember extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [GroupMember]
+  /// [GroupMemberBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GroupMember.fromJsonString(
+  factory GroupMemberBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return GroupMember.fromJson(json);
+      return GroupMemberBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1978,32 +1831,32 @@ class GroupMember extends BackboneElement {
   /// A reference to the entity that is a member of the group. Must be
   /// consistent with Group.type. If the entity is another group, then the
   /// type must be the same.
-  final Reference entity;
+  ReferenceBuilder? entity;
 
   /// [period]
   /// The period that the member was in the group, if known.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [inactive]
   /// A flag to indicate that the member is no longer in the group, but
   /// previously may have been a member.
-  final FhirBoolean? inactive;
+  FhirBooleanBuilder? inactive;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2012,35 +1865,17 @@ class GroupMember extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'entity',
-      entity,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'inactive',
-      inactive,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('entity', entity);
+    addField('period', period);
+    addField('inactive', inactive);
     return json;
   }
 
@@ -2060,11 +1895,11 @@ class GroupMember extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2079,7 +1914,9 @@ class GroupMember extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'entity':
-        fields.add(entity);
+        if (entity != null) {
+          fields.add(entity!);
+        }
       case 'period':
         if (period != null) {
           fields.add(period!);
@@ -2098,7 +1935,7 @@ class GroupMember extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2107,73 +1944,76 @@ class GroupMember extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'entity':
         {
-          if (child is Reference) {
-            return copyWith(entity: child);
+          if (child is ReferenceBuilder) {
+            entity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'inactive':
         {
-          if (child is FhirBoolean) {
-            return copyWith(inactive: child);
+          if (child is FhirBooleanBuilder) {
+            inactive = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2189,66 +2029,56 @@ class GroupMember extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'entity':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'inactive':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [GroupMember]
+  /// Creates a new [GroupMemberBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  GroupMember createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'entity':
         {
-          return copyWith(
-            entity: Reference.empty(),
-          );
+          entity = ReferenceBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'inactive':
         {
-          return copyWith(
-            inactive: FhirBoolean.empty(),
-          );
+          inactive = FhirBooleanBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2257,33 +2087,32 @@ class GroupMember extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  GroupMember clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool entity = false,
     bool period = false,
     bool inactive = false,
   }) {
-    return GroupMember(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      entity: entity,
-      period: period ? null : this.period,
-      inactive: inactive ? null : this.inactive,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (entity) this.entity = null;
+    if (period) this.period = null;
+    if (inactive) this.inactive = null;
   }
 
   @override
-  GroupMember clone() => throw UnimplementedError();
+  GroupMemberBuilder clone() => throw UnimplementedError();
   @override
-  GroupMember copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? entity,
-    Period? period,
-    FhirBoolean? inactive,
+  GroupMemberBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? entity,
+    PeriodBuilder? period,
+    FhirBooleanBuilder? inactive,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2291,46 +2120,37 @@ class GroupMember extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return GroupMember(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      entity: entity?.copyWith(
-            objectPath: '$newObjectPath.entity',
-          ) ??
-          this.entity,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      inactive: inactive?.copyWith(
-            objectPath: '$newObjectPath.inactive',
-          ) ??
-          this.inactive,
+    final newResult = GroupMemberBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      entity: entity ?? this.entity,
+      period: period ?? this.period,
+      inactive: inactive ?? this.inactive,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! GroupMember) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! GroupMemberBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2341,13 +2161,13 @@ class GroupMember extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

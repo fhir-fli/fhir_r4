@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Type for strand.
-class StrandType extends FhirCodeEnum {
+class StrandTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  StrandType._({
+  StrandTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class StrandType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory StrandType(
+  factory StrandTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return StrandType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return StrandTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,62 +43,64 @@ class StrandType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [StrandType] with element only
-  factory StrandType.empty() => StrandType._(validatedValue: '');
+  /// Create empty [StrandTypeBuilder] with element only
+  factory StrandTypeBuilder.empty() => StrandTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StrandType] from JSON.
-  factory StrandType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StrandTypeBuilder] from JSON.
+  factory StrandTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StrandType.elementOnly.withElement(element);
+      return StrandTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StrandType cannot be constructed from JSON.',
+        'StrandTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return StrandType._(
+    return StrandTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// watson
-  static final StrandType watson = StrandType._(
+  static StrandTypeBuilder watson = StrandTypeBuilder._(
     validatedValue: 'watson',
-    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Watson strand of referenceSeq'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Watson strand of referenceSeq'.toFhirStringBuilder,
   );
 
   /// crick
-  static final StrandType crick = StrandType._(
+  static StrandTypeBuilder crick = StrandTypeBuilder._(
     validatedValue: 'crick',
-    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Crick strand of referenceSeq'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Crick strand of referenceSeq'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final StrandType elementOnly = StrandType._(validatedValue: '');
+  static StrandTypeBuilder elementOnly =
+      StrandTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<StrandType> values = [
+  static List<StrandTypeBuilder> values = [
     watson,
     crick,
   ];
 
   /// Clones the current instance
   @override
-  StrandType clone() => StrandType._(
+  StrandTypeBuilder clone() => StrandTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  StrandType withElement(Element? newElement) {
-    return StrandType._(validatedValue: value, element: newElement);
+  StrandTypeBuilder withElement(ElementBuilder? newElement) {
+    return StrandTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,11 +116,11 @@ class StrandType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  StrandType copyWith({
+  StrandTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -129,7 +131,7 @@ class StrandType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return StrandType._(
+    return StrandTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -139,7 +141,7 @@ class StrandType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

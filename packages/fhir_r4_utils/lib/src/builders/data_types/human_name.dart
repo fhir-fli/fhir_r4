@@ -1,24 +1,26 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [HumanName]
+/// [HumanNameBuilder]
 /// A human's name with the ability to identify parts and usage.
-class HumanName extends DataType
+class HumanNameBuilder extends DataTypeBuilder
     implements
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [HumanName]
+  /// [HumanNameBuilder]
 
-  const HumanName({
+  HumanNameBuilder({
     super.id,
     super.extension_,
     this.use,
@@ -29,29 +31,28 @@ class HumanName extends DataType
     this.suffix,
     this.period,
     super.disallowExtensions,
-    super.objectPath = 'HumanName',
+    super.objectPath = 'HumanNameBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory HumanName.empty() => const HumanName();
+  /// For Builder classes, no fields are required
+  factory HumanNameBuilder.empty() => HumanNameBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory HumanName.fromJson(
+  factory HumanNameBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'HumanName';
-    return HumanName(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return HumanNameBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -59,67 +60,67 @@ class HumanName extends DataType
             ),
           )
           .toList(),
-      use: JsonParser.parsePrimitive<NameUse>(
+      use: JsonParser.parsePrimitive<NameUseBuilder>(
         json,
         'use',
-        NameUse.fromJson,
+        NameUseBuilder.fromJson,
         '$objectPath.use',
       ),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
-      family: JsonParser.parsePrimitive<FhirString>(
+      family: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'family',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.family',
       ),
-      given: JsonParser.parsePrimitiveList<FhirString>(
+      given: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'given',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.given',
       ),
-      prefix: JsonParser.parsePrimitiveList<FhirString>(
+      prefix: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'prefix',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.prefix',
       ),
-      suffix: JsonParser.parsePrimitiveList<FhirString>(
+      suffix: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'suffix',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.suffix',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
     );
   }
 
-  /// Deserialize [HumanName]
+  /// Deserialize [HumanNameBuilder]
   /// from a [String] or [YamlMap] object
-  factory HumanName.fromYaml(
+  factory HumanNameBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return HumanName.fromJson(
+      return HumanNameBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return HumanName.fromJson(
+      return HumanNameBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'HumanName '
+        'HumanNameBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -127,16 +128,16 @@ class HumanName extends DataType
   }
 
   /// Factory constructor for
-  /// [HumanName]
+  /// [HumanNameBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory HumanName.fromJsonString(
+  factory HumanNameBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return HumanName.fromJson(json);
+      return HumanNameBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -148,55 +149,55 @@ class HumanName extends DataType
 
   /// [use]
   /// Identifies the purpose for this name.
-  final NameUse? use;
+  NameUseBuilder? use;
 
   /// [text]
   /// Specifies the entire name as it should be displayed e.g. on an
   /// application UI. This may be provided instead of or as well as the
   /// specific parts.
-  final FhirString? text;
+  FhirStringBuilder? text;
 
   /// [family]
   /// The part of a name that links to the genealogy. In some cultures (e.g.
   /// Eritrea) the family name of a son is the first name of his father.
-  final FhirString? family;
+  FhirStringBuilder? family;
 
   /// [given]
   /// Given name.
-  final List<FhirString>? given;
+  List<FhirStringBuilder>? given;
 
   /// [prefix]
   /// Part of the name that is acquired as a title due to academic, legal,
   /// employment or nobility status, etc. and that appears at the start of
   /// the name.
-  final List<FhirString>? prefix;
+  List<FhirStringBuilder>? prefix;
 
   /// [suffix]
   /// Part of the name that is acquired as a title due to academic, legal,
   /// employment or nobility status, etc. and that appears at the end of the
   /// name.
-  final List<FhirString>? suffix;
+  List<FhirStringBuilder>? suffix;
 
   /// [period]
   /// Indicates the period of time when this name was valid for the named
   /// person.
-  final Period? period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -205,47 +206,20 @@ class HumanName extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'family',
-      family,
-    );
-    addField(
-      'given',
-      given,
-    );
-    addField(
-      'prefix',
-      prefix,
-    );
-    addField(
-      'suffix',
-      suffix,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('use', use);
+    addField('text', text);
+    addField('family', family);
+    addField('given', given);
+    addField('prefix', prefix);
+    addField('suffix', suffix);
+    addField('period', period);
     return json;
   }
 
@@ -268,11 +242,11 @@ class HumanName extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -320,7 +294,7 @@ class HumanName extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -329,109 +303,113 @@ class HumanName extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
         {
-          if (child is NameUse) {
-            return copyWith(use: child);
+          if (child is NameUseBuilder) {
+            use = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'family':
         {
-          if (child is FhirString) {
-            return copyWith(family: child);
+          if (child is FhirStringBuilder) {
+            family = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'given':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?given, ...child];
-            return copyWith(given: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            given = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?given, child];
-            return copyWith(given: newList);
+            given = [...(given ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'prefix':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?prefix, ...child];
-            return copyWith(prefix: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            prefix = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?prefix, child];
-            return copyWith(prefix: newList);
+            prefix = [...(prefix ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'suffix':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?suffix, ...child];
-            return copyWith(suffix: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            suffix = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?suffix, child];
-            return copyWith(suffix: newList);
+            suffix = [...(suffix ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -447,90 +425,77 @@ class HumanName extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'use':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'family':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'given':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'prefix':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'suffix':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [HumanName]
+  /// Creates a new [HumanNameBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  HumanName createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'use':
         {
-          return copyWith(
-            use: NameUse.empty(),
-          );
+          use = NameUseBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       case 'family':
         {
-          return copyWith(
-            family: FhirString.empty(),
-          );
+          family = FhirStringBuilder.empty();
+          return;
         }
       case 'given':
         {
-          return copyWith(
-            given: <FhirString>[],
-          );
+          given = <FhirStringBuilder>[];
+          return;
         }
       case 'prefix':
         {
-          return copyWith(
-            prefix: <FhirString>[],
-          );
+          prefix = <FhirStringBuilder>[];
+          return;
         }
       case 'suffix':
         {
-          return copyWith(
-            suffix: <FhirString>[],
-          );
+          suffix = <FhirStringBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -539,7 +504,7 @@ class HumanName extends DataType
 
   /// Clears specific fields in this object
   @override
-  HumanName clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool use = false,
@@ -550,32 +515,30 @@ class HumanName extends DataType
     bool suffix = false,
     bool period = false,
   }) {
-    return HumanName(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      use: use ? null : this.use,
-      text: text ? null : this.text,
-      family: family ? null : this.family,
-      given: given ? null : this.given,
-      prefix: prefix ? null : this.prefix,
-      suffix: suffix ? null : this.suffix,
-      period: period ? null : this.period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (use) this.use = null;
+    if (text) this.text = null;
+    if (family) this.family = null;
+    if (given) this.given = null;
+    if (prefix) this.prefix = null;
+    if (suffix) this.suffix = null;
+    if (period) this.period = null;
   }
 
   @override
-  HumanName clone() => throw UnimplementedError();
+  HumanNameBuilder clone() => throw UnimplementedError();
   @override
-  HumanName copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    NameUse? use,
-    FhirString? text,
-    FhirString? family,
-    List<FhirString>? given,
-    List<FhirString>? prefix,
-    List<FhirString>? suffix,
-    Period? period,
+  HumanNameBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    NameUseBuilder? use,
+    FhirStringBuilder? text,
+    FhirStringBuilder? family,
+    List<FhirStringBuilder>? given,
+    List<FhirStringBuilder>? prefix,
+    List<FhirStringBuilder>? suffix,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -583,66 +546,40 @@ class HumanName extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return HumanName(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      family: family?.copyWith(
-            objectPath: '$newObjectPath.family',
-          ) ??
-          this.family,
-      given: given
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.given',
-                ),
-              )
-              .toList() ??
-          this.given,
-      prefix: prefix
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.prefix',
-                ),
-              )
-              .toList() ??
-          this.prefix,
-      suffix: suffix
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.suffix',
-                ),
-              )
-              .toList() ??
-          this.suffix,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = HumanNameBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      use: use ?? this.use,
+      text: text ?? this.text,
+      family: family ?? this.family,
+      given: given ?? this.given,
+      prefix: prefix ?? this.prefix,
+      suffix: suffix ?? this.suffix,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! HumanName) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! HumanNameBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -653,7 +590,7 @@ class HumanName extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -677,19 +614,19 @@ class HumanName extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       given,
       o.given,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       prefix,
       o.prefix,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       suffix,
       o.suffix,
     )) {

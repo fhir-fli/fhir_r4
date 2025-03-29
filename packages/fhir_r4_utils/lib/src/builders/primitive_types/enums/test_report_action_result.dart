@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The results of executing an action.
-class TestReportActionResult extends FhirCodeEnum {
+class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  TestReportActionResult._({
+  TestReportActionResultBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class TestReportActionResult extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory TestReportActionResult(
+  factory TestReportActionResultBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return TestReportActionResult._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return TestReportActionResultBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,74 +43,81 @@ class TestReportActionResult extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [TestReportActionResult] with element only
-  factory TestReportActionResult.empty() =>
-      TestReportActionResult._(validatedValue: '');
+  /// Create empty [TestReportActionResultBuilder] with element only
+  factory TestReportActionResultBuilder.empty() =>
+      TestReportActionResultBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TestReportActionResult] from JSON.
-  factory TestReportActionResult.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TestReportActionResultBuilder] from JSON.
+  factory TestReportActionResultBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportActionResult.elementOnly.withElement(element);
+      return TestReportActionResultBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TestReportActionResult cannot be constructed from JSON.',
+        'TestReportActionResultBuilder cannot be constructed from JSON.',
       );
     }
-    return TestReportActionResult._(
+    return TestReportActionResultBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// pass
-  static final TestReportActionResult pass = TestReportActionResult._(
+  static TestReportActionResultBuilder pass = TestReportActionResultBuilder._(
     validatedValue: 'pass',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Pass'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Pass'.toFhirStringBuilder,
   );
 
   /// skip
-  static final TestReportActionResult skip = TestReportActionResult._(
+  static TestReportActionResultBuilder skip = TestReportActionResultBuilder._(
     validatedValue: 'skip',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Skip'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Skip'.toFhirStringBuilder,
   );
 
   /// fail
-  static final TestReportActionResult fail = TestReportActionResult._(
+  static TestReportActionResultBuilder fail = TestReportActionResultBuilder._(
     validatedValue: 'fail',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fail'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Fail'.toFhirStringBuilder,
   );
 
   /// warning
-  static final TestReportActionResult warning = TestReportActionResult._(
+  static TestReportActionResultBuilder warning =
+      TestReportActionResultBuilder._(
     validatedValue: 'warning',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Warning'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Warning'.toFhirStringBuilder,
   );
 
   /// error
-  static final TestReportActionResult error = TestReportActionResult._(
+  static TestReportActionResultBuilder error = TestReportActionResultBuilder._(
     validatedValue: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final TestReportActionResult elementOnly =
-      TestReportActionResult._(validatedValue: '');
+  static TestReportActionResultBuilder elementOnly =
+      TestReportActionResultBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<TestReportActionResult> values = [
+  static List<TestReportActionResultBuilder> values = [
     pass,
     skip,
     fail,
@@ -120,14 +127,15 @@ class TestReportActionResult extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  TestReportActionResult clone() => TestReportActionResult._(
+  TestReportActionResultBuilder clone() => TestReportActionResultBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  TestReportActionResult withElement(Element? newElement) {
-    return TestReportActionResult._(validatedValue: value, element: newElement);
+  TestReportActionResultBuilder withElement(ElementBuilder? newElement) {
+    return TestReportActionResultBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,11 +151,11 @@ class TestReportActionResult extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  TestReportActionResult copyWith({
+  TestReportActionResultBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -158,7 +166,7 @@ class TestReportActionResult extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return TestReportActionResult._(
+    return TestReportActionResultBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -168,7 +176,7 @@ class TestReportActionResult extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

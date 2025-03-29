@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The availability status of the device.
-class FHIRDeviceStatus extends FhirCodeEnum {
+class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  FHIRDeviceStatus._({
+  FHIRDeviceStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class FHIRDeviceStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory FHIRDeviceStatus(
+  factory FHIRDeviceStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return FHIRDeviceStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return FHIRDeviceStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,65 +43,67 @@ class FHIRDeviceStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [FHIRDeviceStatus] with element only
-  factory FHIRDeviceStatus.empty() => FHIRDeviceStatus._(validatedValue: '');
+  /// Create empty [FHIRDeviceStatusBuilder] with element only
+  factory FHIRDeviceStatusBuilder.empty() =>
+      FHIRDeviceStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FHIRDeviceStatus] from JSON.
-  factory FHIRDeviceStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FHIRDeviceStatusBuilder] from JSON.
+  factory FHIRDeviceStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRDeviceStatus.elementOnly.withElement(element);
+      return FHIRDeviceStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'FHIRDeviceStatus cannot be constructed from JSON.',
+        'FHIRDeviceStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return FHIRDeviceStatus._(
+    return FHIRDeviceStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// active
-  static final FHIRDeviceStatus active = FHIRDeviceStatus._(
+  static FHIRDeviceStatusBuilder active = FHIRDeviceStatusBuilder._(
     validatedValue: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Active'.toFhirStringBuilder,
   );
 
   /// inactive
-  static final FHIRDeviceStatus inactive = FHIRDeviceStatus._(
+  static FHIRDeviceStatusBuilder inactive = FHIRDeviceStatusBuilder._(
     validatedValue: 'inactive',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Inactive'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Inactive'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final FHIRDeviceStatus entered_in_error = FHIRDeviceStatus._(
+  static FHIRDeviceStatusBuilder entered_in_error = FHIRDeviceStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final FHIRDeviceStatus unknown = FHIRDeviceStatus._(
+  static FHIRDeviceStatusBuilder unknown = FHIRDeviceStatusBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final FHIRDeviceStatus elementOnly =
-      FHIRDeviceStatus._(validatedValue: '');
+  static FHIRDeviceStatusBuilder elementOnly =
+      FHIRDeviceStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<FHIRDeviceStatus> values = [
+  static List<FHIRDeviceStatusBuilder> values = [
     active,
     inactive,
     entered_in_error,
@@ -110,14 +112,15 @@ class FHIRDeviceStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  FHIRDeviceStatus clone() => FHIRDeviceStatus._(
+  FHIRDeviceStatusBuilder clone() => FHIRDeviceStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  FHIRDeviceStatus withElement(Element? newElement) {
-    return FHIRDeviceStatus._(validatedValue: value, element: newElement);
+  FHIRDeviceStatusBuilder withElement(ElementBuilder? newElement) {
+    return FHIRDeviceStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,11 +136,11 @@ class FHIRDeviceStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  FHIRDeviceStatus copyWith({
+  FHIRDeviceStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -148,7 +151,7 @@ class FHIRDeviceStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return FHIRDeviceStatus._(
+    return FHIRDeviceStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -158,7 +161,7 @@ class FHIRDeviceStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

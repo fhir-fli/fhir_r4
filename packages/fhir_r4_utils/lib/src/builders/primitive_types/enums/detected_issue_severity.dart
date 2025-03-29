@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// Indicates the potential degree of impact of the identified issue on the
 /// patient.
-class DetectedIssueSeverity extends FhirCodeEnum {
+class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  DetectedIssueSeverity._({
+  DetectedIssueSeverityBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class DetectedIssueSeverity extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory DetectedIssueSeverity(
+  factory DetectedIssueSeverityBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return DetectedIssueSeverity._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return DetectedIssueSeverityBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,58 +44,62 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [DetectedIssueSeverity] with element only
-  factory DetectedIssueSeverity.empty() =>
-      DetectedIssueSeverity._(validatedValue: '');
+  /// Create empty [DetectedIssueSeverityBuilder] with element only
+  factory DetectedIssueSeverityBuilder.empty() =>
+      DetectedIssueSeverityBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DetectedIssueSeverity] from JSON.
-  factory DetectedIssueSeverity.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DetectedIssueSeverityBuilder] from JSON.
+  factory DetectedIssueSeverityBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DetectedIssueSeverity.elementOnly.withElement(element);
+      return DetectedIssueSeverityBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DetectedIssueSeverity cannot be constructed from JSON.',
+        'DetectedIssueSeverityBuilder cannot be constructed from JSON.',
       );
     }
-    return DetectedIssueSeverity._(
+    return DetectedIssueSeverityBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// high
-  static final DetectedIssueSeverity high = DetectedIssueSeverity._(
+  static DetectedIssueSeverityBuilder high = DetectedIssueSeverityBuilder._(
     validatedValue: 'high',
-    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'High'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'High'.toFhirStringBuilder,
   );
 
   /// moderate
-  static final DetectedIssueSeverity moderate = DetectedIssueSeverity._(
+  static DetectedIssueSeverityBuilder moderate = DetectedIssueSeverityBuilder._(
     validatedValue: 'moderate',
-    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Moderate'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Moderate'.toFhirStringBuilder,
   );
 
   /// low
-  static final DetectedIssueSeverity low = DetectedIssueSeverity._(
+  static DetectedIssueSeverityBuilder low = DetectedIssueSeverityBuilder._(
     validatedValue: 'low',
-    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Low'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Low'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final DetectedIssueSeverity elementOnly =
-      DetectedIssueSeverity._(validatedValue: '');
+  static DetectedIssueSeverityBuilder elementOnly =
+      DetectedIssueSeverityBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<DetectedIssueSeverity> values = [
+  static List<DetectedIssueSeverityBuilder> values = [
     high,
     moderate,
     low,
@@ -103,14 +107,15 @@ class DetectedIssueSeverity extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  DetectedIssueSeverity clone() => DetectedIssueSeverity._(
+  DetectedIssueSeverityBuilder clone() => DetectedIssueSeverityBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  DetectedIssueSeverity withElement(Element? newElement) {
-    return DetectedIssueSeverity._(validatedValue: value, element: newElement);
+  DetectedIssueSeverityBuilder withElement(ElementBuilder? newElement) {
+    return DetectedIssueSeverityBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,11 +131,11 @@ class DetectedIssueSeverity extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  DetectedIssueSeverity copyWith({
+  DetectedIssueSeverityBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -141,7 +146,7 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return DetectedIssueSeverity._(
+    return DetectedIssueSeverityBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -151,7 +156,7 @@ class DetectedIssueSeverity extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

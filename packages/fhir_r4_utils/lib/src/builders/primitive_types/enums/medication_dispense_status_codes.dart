@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// MedicationDispense Status Codes
-class MedicationDispenseStatusCodes extends FhirCodeEnum {
+class MedicationDispenseStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  MedicationDispenseStatusCodes._({
+  MedicationDispenseStatusCodesBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory MedicationDispenseStatusCodes(
+  factory MedicationDispenseStatusCodesBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return MedicationDispenseStatusCodes._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return MedicationDispenseStatusCodesBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,115 +43,127 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [MedicationDispenseStatusCodes] with element only
-  factory MedicationDispenseStatusCodes.empty() =>
-      MedicationDispenseStatusCodes._(validatedValue: '');
+  /// Create empty [MedicationDispenseStatusCodesBuilder] with element only
+  factory MedicationDispenseStatusCodesBuilder.empty() =>
+      MedicationDispenseStatusCodesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MedicationDispenseStatusCodes] from JSON.
-  factory MedicationDispenseStatusCodes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MedicationDispenseStatusCodesBuilder] from JSON.
+  factory MedicationDispenseStatusCodesBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationDispenseStatusCodes.elementOnly.withElement(element);
+      return MedicationDispenseStatusCodesBuilder.elementOnly
+          .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MedicationDispenseStatusCodes cannot be constructed from JSON.',
+        'MedicationDispenseStatusCodesBuilder cannot be constructed from JSON.',
       );
     }
-    return MedicationDispenseStatusCodes._(
+    return MedicationDispenseStatusCodesBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// preparation
-  static final MedicationDispenseStatusCodes preparation =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder preparation =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'preparation',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preparation'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Preparation'.toFhirStringBuilder,
   );
 
   /// in_progress
-  static final MedicationDispenseStatusCodes in_progress =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder in_progress =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In Progress'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final MedicationDispenseStatusCodes cancelled =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder cancelled =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Cancelled'.toFhirStringBuilder,
   );
 
   /// on_hold
-  static final MedicationDispenseStatusCodes on_hold =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder on_hold =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'On Hold'.toFhirStringBuilder,
   );
 
   /// completed
-  static final MedicationDispenseStatusCodes completed =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder completed =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final MedicationDispenseStatusCodes entered_in_error =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder entered_in_error =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// stopped
-  static final MedicationDispenseStatusCodes stopped =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder stopped =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Stopped'.toFhirStringBuilder,
   );
 
   /// declined
-  static final MedicationDispenseStatusCodes declined =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder declined =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'declined',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Declined'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Declined'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final MedicationDispenseStatusCodes unknown =
-      MedicationDispenseStatusCodes._(
+  static MedicationDispenseStatusCodesBuilder unknown =
+      MedicationDispenseStatusCodesBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final MedicationDispenseStatusCodes elementOnly =
-      MedicationDispenseStatusCodes._(validatedValue: '');
+  static MedicationDispenseStatusCodesBuilder elementOnly =
+      MedicationDispenseStatusCodesBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<MedicationDispenseStatusCodes> values = [
+  static List<MedicationDispenseStatusCodesBuilder> values = [
     preparation,
     in_progress,
     cancelled,
@@ -165,15 +177,16 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  MedicationDispenseStatusCodes clone() => MedicationDispenseStatusCodes._(
+  MedicationDispenseStatusCodesBuilder clone() =>
+      MedicationDispenseStatusCodesBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  MedicationDispenseStatusCodes withElement(Element? newElement) {
-    return MedicationDispenseStatusCodes._(
-        validatedValue: value, element: newElement,);
+  MedicationDispenseStatusCodesBuilder withElement(ElementBuilder? newElement) {
+    return MedicationDispenseStatusCodesBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -189,11 +202,11 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  MedicationDispenseStatusCodes copyWith({
+  MedicationDispenseStatusCodesBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -204,7 +217,7 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return MedicationDispenseStatusCodes._(
+    return MedicationDispenseStatusCodesBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -214,7 +227,7 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

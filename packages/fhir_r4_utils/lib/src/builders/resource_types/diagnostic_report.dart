@@ -1,19 +1,21 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [DiagnosticReport]
+/// [DiagnosticReportBuilder]
 /// The findings and interpretation of diagnostic tests performed on
 /// patients, groups of patients, devices, and locations, and/or specimens
 /// derived from these. The report includes clinical context such as
 /// requesting and provider information, and some mix of atomic results,
 /// images, textual and coded interpretations, and formatted representation
 /// of diagnostic reports.
-class DiagnosticReport extends DomainResource {
+class DiagnosticReportBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [DiagnosticReport]
+  /// [DiagnosticReportBuilder]
 
-  const DiagnosticReport({
+  DiagnosticReportBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -24,9 +26,9 @@ class DiagnosticReport extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.basedOn,
-    required this.status,
+    this.status,
     this.category,
-    required this.code,
+    this.code,
     this.subject,
     this.encounter,
     this.effectiveX,
@@ -46,52 +48,48 @@ class DiagnosticReport extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DiagnosticReport.empty() => DiagnosticReport(
-        status: DiagnosticReportStatus.values.first,
-        code: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DiagnosticReportBuilder.empty() => DiagnosticReportBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DiagnosticReport.fromJson(
+  factory DiagnosticReportBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DiagnosticReport';
-    return DiagnosticReport(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DiagnosticReportBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -100,8 +98,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -110,8 +108,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -120,8 +118,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -130,8 +128,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -139,15 +137,15 @@ class DiagnosticReport extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<DiagnosticReportStatus>(
+      status: JsonParser.parsePrimitive<DiagnosticReportStatusBuilder>(
         json,
         'status',
-        DiagnosticReportStatus.fromJson,
+        DiagnosticReportStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -155,41 +153,42 @@ class DiagnosticReport extends DomainResource {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      subject: JsonParser.parseObject<Reference>(
+      ),
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      encounter: JsonParser.parseObject<Reference>(
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      effectiveX: JsonParser.parsePolymorphic<EffectiveXDiagnosticReport>(
+      effectiveX:
+          JsonParser.parsePolymorphic<EffectiveXDiagnosticReportBuilder>(
         json,
         {
-          'effectiveDateTime': FhirDateTime.fromJson,
-          'effectivePeriod': Period.fromJson,
+          'effectiveDateTime': FhirDateTimeBuilder.fromJson,
+          'effectivePeriod': PeriodBuilder.fromJson,
         },
         objectPath,
       ),
-      issued: JsonParser.parsePrimitive<FhirInstant>(
+      issued: JsonParser.parsePrimitive<FhirInstantBuilder>(
         json,
         'issued',
-        FhirInstant.fromJson,
+        FhirInstantBuilder.fromJson,
         '$objectPath.issued',
       ),
       performer: (json['performer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performer',
@@ -198,8 +197,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       resultsInterpreter: (json['resultsInterpreter'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.resultsInterpreter',
@@ -208,8 +207,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       specimen: (json['specimen'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.specimen',
@@ -218,8 +217,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       result: (json['result'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.result',
@@ -228,8 +227,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       imagingStudy: (json['imagingStudy'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.imagingStudy',
@@ -238,8 +237,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       media: (json['media'] as List<dynamic>?)
-          ?.map<DiagnosticReportMedia>(
-            (v) => DiagnosticReportMedia.fromJson(
+          ?.map<DiagnosticReportMediaBuilder>(
+            (v) => DiagnosticReportMediaBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.media',
@@ -247,15 +246,15 @@ class DiagnosticReport extends DomainResource {
             ),
           )
           .toList(),
-      conclusion: JsonParser.parsePrimitive<FhirString>(
+      conclusion: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'conclusion',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.conclusion',
       ),
       conclusionCode: (json['conclusionCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.conclusionCode',
@@ -264,8 +263,8 @@ class DiagnosticReport extends DomainResource {
           )
           .toList(),
       presentedForm: (json['presentedForm'] as List<dynamic>?)
-          ?.map<Attachment>(
-            (v) => Attachment.fromJson(
+          ?.map<AttachmentBuilder>(
+            (v) => AttachmentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.presentedForm',
@@ -276,22 +275,22 @@ class DiagnosticReport extends DomainResource {
     );
   }
 
-  /// Deserialize [DiagnosticReport]
+  /// Deserialize [DiagnosticReportBuilder]
   /// from a [String] or [YamlMap] object
-  factory DiagnosticReport.fromYaml(
+  factory DiagnosticReportBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DiagnosticReport.fromJson(
+      return DiagnosticReportBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DiagnosticReport.fromJson(
+      return DiagnosticReportBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DiagnosticReport '
+        'DiagnosticReportBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -299,16 +298,16 @@ class DiagnosticReport extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [DiagnosticReport]
+  /// [DiagnosticReportBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DiagnosticReport.fromJsonString(
+  factory DiagnosticReportBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DiagnosticReport.fromJson(json);
+      return DiagnosticReportBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -320,118 +319,119 @@ class DiagnosticReport extends DomainResource {
 
   /// [identifier]
   /// Identifiers assigned to this report by the performer or other systems.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [basedOn]
   /// Details concerning a service requested.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [status]
   /// The status of the diagnostic report.
-  final DiagnosticReportStatus status;
+  DiagnosticReportStatusBuilder? status;
 
   /// [category]
   /// A code that classifies the clinical discipline, department or
   /// diagnostic service that created the report (e.g. cardiology,
   /// biochemistry, hematology, MRI). This is used for searching, sorting and
   /// display purposes.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [code]
   /// A code or name that describes this diagnostic report.
-  final CodeableConcept code;
+  CodeableConceptBuilder? code;
 
   /// [subject]
   /// The subject of the report. Usually, but not always, this is a patient.
   /// However, diagnostic services also perform analyses on specimens
   /// collected from a variety of other sources.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The healthcare event (e.g. a patient and healthcare provider
   /// interaction) which this DiagnosticReport is about.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [effectiveX]
   /// The time or time-period the observed values are related to. When the
   /// subject of the report is a patient, this is usually either the time of
   /// the procedure or of specimen collection(s), but very often the source
   /// of the date/time is not known, only the date/time itself.
-  final EffectiveXDiagnosticReport? effectiveX;
+  EffectiveXDiagnosticReportBuilder? effectiveX;
 
-  /// Getter for [effectiveDateTime] as a FhirDateTime
-  FhirDateTime? get effectiveDateTime => effectiveX?.isAs<FhirDateTime>();
+  /// Getter for [effectiveDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get effectiveDateTime =>
+      effectiveX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [effectivePeriod] as a Period
-  Period? get effectivePeriod => effectiveX?.isAs<Period>();
+  /// Getter for [effectivePeriod] as a PeriodBuilder
+  PeriodBuilder? get effectivePeriod => effectiveX?.isAs<PeriodBuilder>();
 
   /// [issued]
   /// The date and time that this version of the report was made available to
   /// providers, typically after the report was reviewed and verified.
-  final FhirInstant? issued;
+  FhirInstantBuilder? issued;
 
   /// [performer]
   /// The diagnostic service that is responsible for issuing the report.
-  final List<Reference>? performer;
+  List<ReferenceBuilder>? performer;
 
   /// [resultsInterpreter]
   /// The practitioner or organization that is responsible for the report's
   /// conclusions and interpretations.
-  final List<Reference>? resultsInterpreter;
+  List<ReferenceBuilder>? resultsInterpreter;
 
   /// [specimen]
   /// Details about the specimens on which this diagnostic report is based.
-  final List<Reference>? specimen;
+  List<ReferenceBuilder>? specimen;
 
   /// [result]
   /// [Observations](observation.html) that are part of this diagnostic
   /// report.
-  final List<Reference>? result;
+  List<ReferenceBuilder>? result;
 
   /// [imagingStudy]
   /// One or more links to full details of any imaging performed during the
   /// diagnostic investigation. Typically, this is imaging performed by DICOM
   /// enabled modalities, but this is not required. A fully enabled PACS
   /// viewer can use this information to provide views of the source images.
-  final List<Reference>? imagingStudy;
+  List<ReferenceBuilder>? imagingStudy;
 
   /// [media]
   /// A list of key images associated with this report. The images are
   /// generally created during the diagnostic process, and may be directly of
   /// the patient, or of treated specimens (i.e. slides of interest).
-  final List<DiagnosticReportMedia>? media;
+  List<DiagnosticReportMediaBuilder>? media;
 
   /// [conclusion]
   /// Concise and clinically contextualized summary conclusion
   /// (interpretation/impression) of the diagnostic report.
-  final FhirString? conclusion;
+  FhirStringBuilder? conclusion;
 
   /// [conclusionCode]
   /// One or more codes that represent the summary conclusion
   /// (interpretation/impression) of the diagnostic report.
-  final List<CodeableConcept>? conclusionCode;
+  List<CodeableConceptBuilder>? conclusionCode;
 
   /// [presentedForm]
   /// Rich text representation of the entire result as issued by the
   /// diagnostic service. Multiple formats are allowed but they SHALL be
   /// semantically equivalent.
-  final List<Attachment>? presentedForm;
+  List<AttachmentBuilder>? presentedForm;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -440,120 +440,42 @@ class DiagnosticReport extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('basedOn', basedOn);
+    addField('status', status);
+    addField('category', category);
+    addField('code', code);
+    addField('subject', subject);
+    addField('encounter', encounter);
     if (effectiveX != null) {
       final fhirType = effectiveX!.fhirType;
-      addField(
-        'effective${fhirType.capitalize()}',
-        effectiveX,
-      );
+      addField('effective${fhirType.capitalize()}', effectiveX);
     }
 
-    addField(
-      'issued',
-      issued,
-    );
-    addField(
-      'performer',
-      performer,
-    );
-    addField(
-      'resultsInterpreter',
-      resultsInterpreter,
-    );
-    addField(
-      'specimen',
-      specimen,
-    );
-    addField(
-      'result',
-      result,
-    );
-    addField(
-      'imagingStudy',
-      imagingStudy,
-    );
-    addField(
-      'media',
-      media,
-    );
-    addField(
-      'conclusion',
-      conclusion,
-    );
-    addField(
-      'conclusionCode',
-      conclusionCode,
-    );
-    addField(
-      'presentedForm',
-      presentedForm,
-    );
+    addField('issued', issued);
+    addField('performer', performer);
+    addField('resultsInterpreter', resultsInterpreter);
+    addField('specimen', specimen);
+    addField('result', result);
+    addField('imagingStudy', imagingStudy);
+    addField('media', media);
+    addField('conclusion', conclusion);
+    addField('conclusionCode', conclusionCode);
+    addField('presentedForm', presentedForm);
     return json;
   }
 
@@ -593,11 +515,11 @@ class DiagnosticReport extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -640,13 +562,17 @@ class DiagnosticReport extends DomainResource {
           fields.addAll(basedOn!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'category':
         if (category != null) {
           fields.addAll(category!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'subject':
         if (subject != null) {
           fields.add(subject!);
@@ -656,15 +582,19 @@ class DiagnosticReport extends DomainResource {
           fields.add(encounter!);
         }
       case 'effective':
-        fields.add(effectiveX!);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveX':
-        fields.add(effectiveX!);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveDateTime':
-        if (effectiveX is FhirDateTime) {
+        if (effectiveX is FhirDateTimeBuilder) {
           fields.add(effectiveX!);
         }
       case 'effectivePeriod':
-        if (effectiveX is Period) {
+        if (effectiveX is PeriodBuilder) {
           fields.add(effectiveX!);
         }
       case 'issued':
@@ -717,7 +647,7 @@ class DiagnosticReport extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -726,327 +656,342 @@ class DiagnosticReport extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is DiagnosticReportStatus) {
-            return copyWith(status: child);
+          if (child is DiagnosticReportStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectiveX':
         {
-          if (child is EffectiveXDiagnosticReport) {
-            return copyWith(effectiveX: child);
+          if (child is EffectiveXDiagnosticReportBuilder) {
+            effectiveX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(effectiveX: child);
+            if (child is FhirDateTimeBuilder) {
+              effectiveX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(effectiveX: child);
+            if (child is PeriodBuilder) {
+              effectiveX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'effectiveFhirDateTime':
+      case 'effectiveDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(effectiveX: child);
+          if (child is FhirDateTimeBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectivePeriod':
         {
-          if (child is Period) {
-            return copyWith(effectiveX: child);
+          if (child is PeriodBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issued':
         {
-          if (child is FhirInstant) {
-            return copyWith(issued: child);
+          if (child is FhirInstantBuilder) {
+            issued = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            performer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
-            return copyWith(performer: newList);
+            performer = [...(performer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'resultsInterpreter':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?resultsInterpreter, ...child];
-            return copyWith(resultsInterpreter: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            resultsInterpreter = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?resultsInterpreter, child];
-            return copyWith(resultsInterpreter: newList);
+            resultsInterpreter = [...(resultsInterpreter ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specimen':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?specimen, ...child];
-            return copyWith(specimen: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            specimen = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specimen, child];
-            return copyWith(specimen: newList);
+            specimen = [...(specimen ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'result':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?result, ...child];
-            return copyWith(result: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            result = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?result, child];
-            return copyWith(result: newList);
+            result = [...(result ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'imagingStudy':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?imagingStudy, ...child];
-            return copyWith(imagingStudy: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            imagingStudy = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?imagingStudy, child];
-            return copyWith(imagingStudy: newList);
+            imagingStudy = [...(imagingStudy ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'media':
         {
-          if (child is List<DiagnosticReportMedia>) {
-            // Add all elements from passed list
-            final newList = [...?media, ...child];
-            return copyWith(media: newList);
-          } else if (child is DiagnosticReportMedia) {
+          if (child is List<DiagnosticReportMediaBuilder>) {
+            // Replace or create new list
+            media = child;
+            return;
+          } else if (child is DiagnosticReportMediaBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?media, child];
-            return copyWith(media: newList);
+            media = [...(media ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'conclusion':
         {
-          if (child is FhirString) {
-            return copyWith(conclusion: child);
+          if (child is FhirStringBuilder) {
+            conclusion = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'conclusionCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?conclusionCode, ...child];
-            return copyWith(conclusionCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            conclusionCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?conclusionCode, child];
-            return copyWith(conclusionCode: newList);
+            conclusionCode = [...(conclusionCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'presentedForm':
         {
-          if (child is List<Attachment>) {
-            // Add all elements from passed list
-            final newList = [...?presentedForm, ...child];
-            return copyWith(presentedForm: newList);
-          } else if (child is Attachment) {
+          if (child is List<AttachmentBuilder>) {
+            // Replace or create new list
+            presentedForm = child;
+            return;
+          } else if (child is AttachmentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?presentedForm, child];
-            return copyWith(presentedForm: newList);
+            presentedForm = [...(presentedForm ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1062,239 +1007,208 @@ class DiagnosticReport extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'effective':
       case 'effectiveX':
-        return ['FhirDateTime', 'Period'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
       case 'effectiveDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'effectivePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'issued':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'performer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'resultsInterpreter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'specimen':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'result':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'imagingStudy':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'media':
-        return ['DiagnosticReportMedia'];
+        return ['DiagnosticReportMediaBuilder'];
       case 'conclusion':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'conclusionCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'presentedForm':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DiagnosticReport]
+  /// Creates a new [DiagnosticReportBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DiagnosticReport createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: DiagnosticReportStatus.empty(),
-          );
+          status = DiagnosticReportStatusBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'effective':
       case 'effectiveX':
       case 'effectiveDateTime':
         {
-          return copyWith(
-            effectiveX: FhirDateTime.empty(),
-          );
+          effectiveX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'effectivePeriod':
         {
-          return copyWith(
-            effectiveX: Period.empty(),
-          );
+          effectiveX = PeriodBuilder.empty();
+          return;
         }
       case 'issued':
         {
-          return copyWith(
-            issued: FhirInstant.empty(),
-          );
+          issued = FhirInstantBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: <Reference>[],
-          );
+          performer = <ReferenceBuilder>[];
+          return;
         }
       case 'resultsInterpreter':
         {
-          return copyWith(
-            resultsInterpreter: <Reference>[],
-          );
+          resultsInterpreter = <ReferenceBuilder>[];
+          return;
         }
       case 'specimen':
         {
-          return copyWith(
-            specimen: <Reference>[],
-          );
+          specimen = <ReferenceBuilder>[];
+          return;
         }
       case 'result':
         {
-          return copyWith(
-            result: <Reference>[],
-          );
+          result = <ReferenceBuilder>[];
+          return;
         }
       case 'imagingStudy':
         {
-          return copyWith(
-            imagingStudy: <Reference>[],
-          );
+          imagingStudy = <ReferenceBuilder>[];
+          return;
         }
       case 'media':
         {
-          return copyWith(
-            media: <DiagnosticReportMedia>[],
-          );
+          media = <DiagnosticReportMediaBuilder>[];
+          return;
         }
       case 'conclusion':
         {
-          return copyWith(
-            conclusion: FhirString.empty(),
-          );
+          conclusion = FhirStringBuilder.empty();
+          return;
         }
       case 'conclusionCode':
         {
-          return copyWith(
-            conclusionCode: <CodeableConcept>[],
-          );
+          conclusionCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'presentedForm':
         {
-          return copyWith(
-            presentedForm: <Attachment>[],
-          );
+          presentedForm = <AttachmentBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1303,7 +1217,7 @@ class DiagnosticReport extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  DiagnosticReport clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1314,7 +1228,9 @@ class DiagnosticReport extends DomainResource {
     bool modifierExtension = false,
     bool identifier = false,
     bool basedOn = false,
+    bool status = false,
     bool category = false,
+    bool code = false,
     bool subject = false,
     bool encounter = false,
     bool effective = false,
@@ -1329,233 +1245,121 @@ class DiagnosticReport extends DomainResource {
     bool conclusionCode = false,
     bool presentedForm = false,
   }) {
-    return DiagnosticReport(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      status: status,
-      category: category ? null : this.category,
-      code: code,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      effectiveX: effective ? null : effectiveX,
-      issued: issued ? null : this.issued,
-      performer: performer ? null : this.performer,
-      resultsInterpreter: resultsInterpreter ? null : this.resultsInterpreter,
-      specimen: specimen ? null : this.specimen,
-      result: result ? null : this.result,
-      imagingStudy: imagingStudy ? null : this.imagingStudy,
-      media: media ? null : this.media,
-      conclusion: conclusion ? null : this.conclusion,
-      conclusionCode: conclusionCode ? null : this.conclusionCode,
-      presentedForm: presentedForm ? null : this.presentedForm,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (basedOn) this.basedOn = null;
+    if (status) this.status = null;
+    if (category) this.category = null;
+    if (code) this.code = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (effective) this.effectiveX = null;
+    if (issued) this.issued = null;
+    if (performer) this.performer = null;
+    if (resultsInterpreter) this.resultsInterpreter = null;
+    if (specimen) this.specimen = null;
+    if (result) this.result = null;
+    if (imagingStudy) this.imagingStudy = null;
+    if (media) this.media = null;
+    if (conclusion) this.conclusion = null;
+    if (conclusionCode) this.conclusionCode = null;
+    if (presentedForm) this.presentedForm = null;
   }
 
   @override
-  DiagnosticReport clone() => throw UnimplementedError();
+  DiagnosticReportBuilder clone() => throw UnimplementedError();
   @override
-  DiagnosticReport copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Reference>? basedOn,
-    DiagnosticReportStatus? status,
-    List<CodeableConcept>? category,
-    CodeableConcept? code,
-    Reference? subject,
-    Reference? encounter,
-    EffectiveXDiagnosticReport? effectiveX,
-    FhirInstant? issued,
-    List<Reference>? performer,
-    List<Reference>? resultsInterpreter,
-    List<Reference>? specimen,
-    List<Reference>? result,
-    List<Reference>? imagingStudy,
-    List<DiagnosticReportMedia>? media,
-    FhirString? conclusion,
-    List<CodeableConcept>? conclusionCode,
-    List<Attachment>? presentedForm,
+  DiagnosticReportBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<ReferenceBuilder>? basedOn,
+    DiagnosticReportStatusBuilder? status,
+    List<CodeableConceptBuilder>? category,
+    CodeableConceptBuilder? code,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    EffectiveXDiagnosticReportBuilder? effectiveX,
+    FhirInstantBuilder? issued,
+    List<ReferenceBuilder>? performer,
+    List<ReferenceBuilder>? resultsInterpreter,
+    List<ReferenceBuilder>? specimen,
+    List<ReferenceBuilder>? result,
+    List<ReferenceBuilder>? imagingStudy,
+    List<DiagnosticReportMediaBuilder>? media,
+    FhirStringBuilder? conclusion,
+    List<CodeableConceptBuilder>? conclusionCode,
+    List<AttachmentBuilder>? presentedForm,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return DiagnosticReport(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = DiagnosticReportBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      effectiveX: effectiveX?.copyWith(
-            objectPath: '$newObjectPath.effectiveX',
-          ) as EffectiveXDiagnosticReport? ??
-          this.effectiveX,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      resultsInterpreter: resultsInterpreter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.resultsInterpreter',
-                ),
-              )
-              .toList() ??
-          this.resultsInterpreter,
-      specimen: specimen
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specimen',
-                ),
-              )
-              .toList() ??
-          this.specimen,
-      result: result
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.result',
-                ),
-              )
-              .toList() ??
-          this.result,
-      imagingStudy: imagingStudy
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.imagingStudy',
-                ),
-              )
-              .toList() ??
-          this.imagingStudy,
-      media: media
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.media',
-                ),
-              )
-              .toList() ??
-          this.media,
-      conclusion: conclusion?.copyWith(
-            objectPath: '$newObjectPath.conclusion',
-          ) ??
-          this.conclusion,
-      conclusionCode: conclusionCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.conclusionCode',
-                ),
-              )
-              .toList() ??
-          this.conclusionCode,
-      presentedForm: presentedForm
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.presentedForm',
-                ),
-              )
-              .toList() ??
-          this.presentedForm,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      basedOn: basedOn ?? this.basedOn,
+      status: status ?? this.status,
+      category: category ?? this.category,
+      code: code ?? this.code,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      effectiveX: effectiveX ?? this.effectiveX,
+      issued: issued ?? this.issued,
+      performer: performer ?? this.performer,
+      resultsInterpreter: resultsInterpreter ?? this.resultsInterpreter,
+      specimen: specimen ?? this.specimen,
+      result: result ?? this.result,
+      imagingStudy: imagingStudy ?? this.imagingStudy,
+      media: media ?? this.media,
+      conclusion: conclusion ?? this.conclusion,
+      conclusionCode: conclusionCode ?? this.conclusionCode,
+      presentedForm: presentedForm ?? this.presentedForm,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DiagnosticReport) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DiagnosticReportBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1590,31 +1394,31 @@ class DiagnosticReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
@@ -1626,7 +1430,7 @@ class DiagnosticReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1662,37 +1466,37 @@ class DiagnosticReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       performer,
       o.performer,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       resultsInterpreter,
       o.resultsInterpreter,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       specimen,
       o.specimen,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       result,
       o.result,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       imagingStudy,
       o.imagingStudy,
     )) {
       return false;
     }
-    if (!listEquals<DiagnosticReportMedia>(
+    if (!listEquals<DiagnosticReportMediaBuilder>(
       media,
       o.media,
     )) {
@@ -1704,13 +1508,13 @@ class DiagnosticReport extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       conclusionCode,
       o.conclusionCode,
     )) {
       return false;
     }
-    if (!listEquals<Attachment>(
+    if (!listEquals<AttachmentBuilder>(
       presentedForm,
       o.presentedForm,
     )) {
@@ -1720,47 +1524,45 @@ class DiagnosticReport extends DomainResource {
   }
 }
 
-/// [DiagnosticReportMedia]
+/// [DiagnosticReportMediaBuilder]
 /// A list of key images associated with this report. The images are
 /// generally created during the diagnostic process, and may be directly of
 /// the patient, or of treated specimens (i.e. slides of interest).
-class DiagnosticReportMedia extends BackboneElement {
+class DiagnosticReportMediaBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [DiagnosticReportMedia]
+  /// [DiagnosticReportMediaBuilder]
 
-  const DiagnosticReportMedia({
+  DiagnosticReportMediaBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.comment,
-    required this.link,
+    this.link,
     super.disallowExtensions,
   }) : super(
           objectPath: 'DiagnosticReport.media',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory DiagnosticReportMedia.empty() => DiagnosticReportMedia(
-        link: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory DiagnosticReportMediaBuilder.empty() =>
+      DiagnosticReportMediaBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DiagnosticReportMedia.fromJson(
+  factory DiagnosticReportMediaBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'DiagnosticReport.media';
-    return DiagnosticReportMedia(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return DiagnosticReportMediaBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1769,8 +1571,8 @@ class DiagnosticReportMedia extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1778,37 +1580,37 @@ class DiagnosticReportMedia extends BackboneElement {
             ),
           )
           .toList(),
-      comment: JsonParser.parsePrimitive<FhirString>(
+      comment: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'comment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.comment',
       ),
-      link: JsonParser.parseObject<Reference>(
+      link: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'link',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.link',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [DiagnosticReportMedia]
+  /// Deserialize [DiagnosticReportMediaBuilder]
   /// from a [String] or [YamlMap] object
-  factory DiagnosticReportMedia.fromYaml(
+  factory DiagnosticReportMediaBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return DiagnosticReportMedia.fromJson(
+      return DiagnosticReportMediaBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return DiagnosticReportMedia.fromJson(
+      return DiagnosticReportMediaBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'DiagnosticReportMedia '
+        'DiagnosticReportMediaBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1816,16 +1618,16 @@ class DiagnosticReportMedia extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [DiagnosticReportMedia]
+  /// [DiagnosticReportMediaBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DiagnosticReportMedia.fromJsonString(
+  factory DiagnosticReportMediaBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return DiagnosticReportMedia.fromJson(json);
+      return DiagnosticReportMediaBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1839,27 +1641,27 @@ class DiagnosticReportMedia extends BackboneElement {
   /// A comment about the image. Typically, this is used to provide an
   /// explanation for why the image is included, or to draw the viewer's
   /// attention to important features.
-  final FhirString? comment;
+  FhirStringBuilder? comment;
 
   /// [link]
   /// Reference to the image source.
-  final Reference link;
+  ReferenceBuilder? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1868,31 +1670,16 @@ class DiagnosticReportMedia extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'comment',
-      comment,
-    );
-    addField(
-      'link',
-      link,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('comment', comment);
+    addField('link', link);
     return json;
   }
 
@@ -1911,11 +1698,11 @@ class DiagnosticReportMedia extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1934,7 +1721,9 @@ class DiagnosticReportMedia extends BackboneElement {
           fields.add(comment!);
         }
       case 'link':
-        fields.add(link);
+        if (link != null) {
+          fields.add(link!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1945,7 +1734,7 @@ class DiagnosticReportMedia extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1954,65 +1743,67 @@ class DiagnosticReportMedia extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is FhirString) {
-            return copyWith(comment: child);
+          if (child is FhirStringBuilder) {
+            comment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
-          if (child is Reference) {
-            return copyWith(link: child);
+          if (child is ReferenceBuilder) {
+            link = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2028,58 +1819,49 @@ class DiagnosticReportMedia extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'comment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'link':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [DiagnosticReportMedia]
+  /// Creates a new [DiagnosticReportMediaBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  DiagnosticReportMedia createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
+          comment = FhirStringBuilder.empty();
+          return;
         }
       case 'link':
         {
-          return copyWith(
-            link: Reference.empty(),
-          );
+          link = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2088,30 +1870,29 @@ class DiagnosticReportMedia extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  DiagnosticReportMedia clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool comment = false,
+    bool link = false,
   }) {
-    return DiagnosticReportMedia(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      comment: comment ? null : this.comment,
-      link: link,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (comment) this.comment = null;
+    if (link) this.link = null;
   }
 
   @override
-  DiagnosticReportMedia clone() => throw UnimplementedError();
+  DiagnosticReportMediaBuilder clone() => throw UnimplementedError();
   @override
-  DiagnosticReportMedia copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? comment,
-    Reference? link,
+  DiagnosticReportMediaBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? comment,
+    ReferenceBuilder? link,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2119,42 +1900,36 @@ class DiagnosticReportMedia extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return DiagnosticReportMedia(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
-      link: link?.copyWith(
-            objectPath: '$newObjectPath.link',
-          ) ??
-          this.link,
+    final newResult = DiagnosticReportMediaBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      comment: comment ?? this.comment,
+      link: link ?? this.link,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! DiagnosticReportMedia) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! DiagnosticReportMediaBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2165,13 +1940,13 @@ class DiagnosticReportMedia extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

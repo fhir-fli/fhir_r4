@@ -1,62 +1,61 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [FhirExpression]
+/// [FhirExpressionBuilder]
 /// A expression that is evaluated in a specified context and returns a
 /// value. The context of use of the expression must specify the context in
 /// which the expression is evaluated, and how the result of the expression
 /// is used.
-class FhirExpression extends DataType
+class FhirExpressionBuilder extends DataTypeBuilder
     implements
-        DefinitionXEvidenceVariableCharacteristic,
-        ValueXParametersParameter,
-        DefinitionXResearchElementDefinitionCharacteristic,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        DefinitionXEvidenceVariableCharacteristicBuilder,
+        ValueXParametersParameterBuilder,
+        DefinitionXResearchElementDefinitionCharacteristicBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [FhirExpression]
+  /// [FhirExpressionBuilder]
 
-  const FhirExpression({
+  FhirExpressionBuilder({
     super.id,
     super.extension_,
     this.description,
     this.name,
-    required this.language,
+    this.language,
     this.expression,
     this.reference,
     super.disallowExtensions,
-    super.objectPath = 'FhirExpression',
+    super.objectPath = 'FhirExpressionBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FhirExpression.empty() => FhirExpression(
-        language: ExpressionLanguage.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory FhirExpressionBuilder.empty() => FhirExpressionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirExpression.fromJson(
+  factory FhirExpressionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'FhirExpression';
-    return FhirExpression(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return FhirExpressionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -64,55 +63,55 @@ class FhirExpression extends DataType
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      name: JsonParser.parsePrimitive<FhirId>(
+      name: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'name',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.name',
       ),
-      language: JsonParser.parsePrimitive<ExpressionLanguage>(
+      language: JsonParser.parsePrimitive<ExpressionLanguageBuilder>(
         json,
         'language',
-        ExpressionLanguage.fromJson,
+        ExpressionLanguageBuilder.fromJson,
         '$objectPath.language',
-      )!,
-      expression: JsonParser.parsePrimitive<FhirString>(
+      ),
+      expression: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'expression',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.expression',
       ),
-      reference: JsonParser.parsePrimitive<FhirUri>(
+      reference: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'reference',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.reference',
       ),
     );
   }
 
-  /// Deserialize [FhirExpression]
+  /// Deserialize [FhirExpressionBuilder]
   /// from a [String] or [YamlMap] object
-  factory FhirExpression.fromYaml(
+  factory FhirExpressionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return FhirExpression.fromJson(
+      return FhirExpressionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return FhirExpression.fromJson(
+      return FhirExpressionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'FhirExpression '
+        'FhirExpressionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -120,16 +119,16 @@ class FhirExpression extends DataType
   }
 
   /// Factory constructor for
-  /// [FhirExpression]
+  /// [FhirExpressionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirExpression.fromJsonString(
+  factory FhirExpressionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FhirExpression.fromJson(json);
+      return FhirExpressionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -142,40 +141,40 @@ class FhirExpression extends DataType
   /// [description]
   /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [name]
   /// A short name assigned to the expression to allow for multiple reuse of
   /// the expression in the context where it is defined.
-  final FhirId? name;
+  FhirIdBuilder? name;
 
   /// [language]
   /// The media type of the language for the expression.
-  final ExpressionLanguage language;
+  ExpressionLanguageBuilder? language;
 
   /// [expression]
   /// An expression in the specified language that returns a value.
-  final FhirString? expression;
+  FhirStringBuilder? expression;
 
   /// [reference]
   /// A URI that defines where the expression is found.
-  final FhirUri? reference;
+  FhirUriBuilder? reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -184,39 +183,18 @@ class FhirExpression extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'expression',
-      expression,
-    );
-    addField(
-      'reference',
-      reference,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('description', description);
+    addField('name', name);
+    addField('language', language);
+    addField('expression', expression);
+    addField('reference', reference);
     return json;
   }
 
@@ -237,11 +215,11 @@ class FhirExpression extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -260,7 +238,9 @@ class FhirExpression extends DataType
           fields.add(name!);
         }
       case 'language':
-        fields.add(language);
+        if (language != null) {
+          fields.add(language!);
+        }
       case 'expression':
         if (expression != null) {
           fields.add(expression!);
@@ -279,7 +259,7 @@ class FhirExpression extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -288,75 +268,80 @@ class FhirExpression extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirId) {
-            return copyWith(name: child);
+          if (child is FhirIdBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is ExpressionLanguage) {
-            return copyWith(language: child);
+          if (child is ExpressionLanguageBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
         {
-          if (child is FhirString) {
-            return copyWith(expression: child);
+          if (child is FhirStringBuilder) {
+            expression = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is FhirUri) {
-            return copyWith(reference: child);
+          if (child is FhirUriBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -372,74 +357,63 @@ class FhirExpression extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'expression':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'reference':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [FhirExpression]
+  /// Creates a new [FhirExpressionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  FhirExpression createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirId.empty(),
-          );
+          name = FhirIdBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: ExpressionLanguage.empty(),
-          );
+          language = ExpressionLanguageBuilder.empty();
+          return;
         }
       case 'expression':
         {
-          return copyWith(
-            expression: FhirString.empty(),
-          );
+          expression = FhirStringBuilder.empty();
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: FhirUri.empty(),
-          );
+          reference = FhirUriBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -448,36 +422,35 @@ class FhirExpression extends DataType
 
   /// Clears specific fields in this object
   @override
-  FhirExpression clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool description = false,
     bool name = false,
+    bool language = false,
     bool expression = false,
     bool reference = false,
   }) {
-    return FhirExpression(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      description: description ? null : this.description,
-      name: name ? null : this.name,
-      language: language,
-      expression: expression ? null : this.expression,
-      reference: reference ? null : this.reference,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (description) this.description = null;
+    if (name) this.name = null;
+    if (language) this.language = null;
+    if (expression) this.expression = null;
+    if (reference) this.reference = null;
   }
 
   @override
-  FhirExpression clone() => throw UnimplementedError();
+  FhirExpressionBuilder clone() => throw UnimplementedError();
   @override
-  FhirExpression copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? description,
-    FhirId? name,
-    ExpressionLanguage? language,
-    FhirString? expression,
-    FhirUri? reference,
+  FhirExpressionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirStringBuilder? description,
+    FhirIdBuilder? name,
+    ExpressionLanguageBuilder? language,
+    FhirStringBuilder? expression,
+    FhirUriBuilder? reference,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -485,46 +458,38 @@ class FhirExpression extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return FhirExpression(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      expression: expression?.copyWith(
-            objectPath: '$newObjectPath.expression',
-          ) ??
-          this.expression,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
+    final newResult = FhirExpressionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      description: description ?? this.description,
+      name: name ?? this.name,
+      language: language ?? this.language,
+      expression: expression ?? this.expression,
+      reference: reference ?? this.reference,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! FhirExpression) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! FhirExpressionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -535,7 +500,7 @@ class FhirExpression extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

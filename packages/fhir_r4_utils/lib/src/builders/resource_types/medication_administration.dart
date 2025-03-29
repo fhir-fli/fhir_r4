@@ -1,18 +1,20 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [MedicationAdministration]
+/// [MedicationAdministrationBuilder]
 /// Describes the event of a patient consuming or otherwise being
 /// administered a medication. This may be as simple as swallowing a tablet
 /// or it may be a long running infusion. Related resources tie this event
 /// to the authorizing prescription, and the specific encounter between
 /// patient and health care practitioner.
-class MedicationAdministration extends DomainResource {
+class MedicationAdministrationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [MedicationAdministration]
+  /// [MedicationAdministrationBuilder]
 
-  const MedicationAdministration({
+  MedicationAdministrationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -24,14 +26,14 @@ class MedicationAdministration extends DomainResource {
     this.identifier,
     this.instantiates,
     this.partOf,
-    required this.status,
+    this.status,
     this.statusReason,
     this.category,
-    required this.medicationX,
-    required this.subject,
+    this.medicationX,
+    this.subject,
     this.context,
     this.supportingInformation,
-    required this.effectiveX,
+    this.effectiveX,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -46,54 +48,49 @@ class MedicationAdministration extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MedicationAdministration.empty() => MedicationAdministration(
-        status: MedicationAdministrationStatusCodes.values.first,
-        medicationX: CodeableConcept.empty(),
-        subject: Reference.empty(),
-        effectiveX: FhirDateTime.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory MedicationAdministrationBuilder.empty() =>
+      MedicationAdministrationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationAdministration.fromJson(
+  factory MedicationAdministrationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MedicationAdministration';
-    return MedicationAdministration(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MedicationAdministrationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -102,8 +99,8 @@ class MedicationAdministration extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -112,8 +109,8 @@ class MedicationAdministration extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -122,8 +119,8 @@ class MedicationAdministration extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -131,15 +128,15 @@ class MedicationAdministration extends DomainResource {
             ),
           )
           .toList(),
-      instantiates: JsonParser.parsePrimitiveList<FhirUri>(
+      instantiates: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'instantiates',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiates',
       ),
       partOf: (json['partOf'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.partOf',
@@ -147,15 +144,16 @@ class MedicationAdministration extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<MedicationAdministrationStatusCodes>(
+      status:
+          JsonParser.parsePrimitive<MedicationAdministrationStatusCodesBuilder>(
         json,
         'status',
-        MedicationAdministrationStatusCodes.fromJson,
+        MedicationAdministrationStatusCodesBuilder.fromJson,
         '$objectPath.status',
-      )!,
+      ),
       statusReason: (json['statusReason'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.statusReason',
@@ -163,36 +161,36 @@ class MedicationAdministration extends DomainResource {
             ),
           )
           .toList(),
-      category: JsonParser.parseObject<CodeableConcept>(
+      category: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'category',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.category',
       ),
-      medicationX:
-          JsonParser.parsePolymorphic<MedicationXMedicationAdministration>(
+      medicationX: JsonParser.parsePolymorphic<
+          MedicationXMedicationAdministrationBuilder>(
         json,
         {
-          'medicationCodeableConcept': CodeableConcept.fromJson,
-          'medicationReference': Reference.fromJson,
+          'medicationCodeableConcept': CodeableConceptBuilder.fromJson,
+          'medicationReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
-      subject: JsonParser.parseObject<Reference>(
+      ),
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      context: JsonParser.parseObject<Reference>(
+      ),
+      context: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'context',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.context',
       ),
       supportingInformation: (json['supportingInformation'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.supportingInformation',
@@ -200,18 +198,18 @@ class MedicationAdministration extends DomainResource {
             ),
           )
           .toList(),
-      effectiveX:
-          JsonParser.parsePolymorphic<EffectiveXMedicationAdministration>(
+      effectiveX: JsonParser.parsePolymorphic<
+          EffectiveXMedicationAdministrationBuilder>(
         json,
         {
-          'effectiveDateTime': FhirDateTime.fromJson,
-          'effectivePeriod': Period.fromJson,
+          'effectiveDateTime': FhirDateTimeBuilder.fromJson,
+          'effectivePeriod': PeriodBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
       performer: (json['performer'] as List<dynamic>?)
-          ?.map<MedicationAdministrationPerformer>(
-            (v) => MedicationAdministrationPerformer.fromJson(
+          ?.map<MedicationAdministrationPerformerBuilder>(
+            (v) => MedicationAdministrationPerformerBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performer',
@@ -220,8 +218,8 @@ class MedicationAdministration extends DomainResource {
           )
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -230,8 +228,8 @@ class MedicationAdministration extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -239,15 +237,15 @@ class MedicationAdministration extends DomainResource {
             ),
           )
           .toList(),
-      request: JsonParser.parseObject<Reference>(
+      request: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'request',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.request',
       ),
       device: (json['device'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.device',
@@ -256,8 +254,8 @@ class MedicationAdministration extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -265,15 +263,15 @@ class MedicationAdministration extends DomainResource {
             ),
           )
           .toList(),
-      dosage: JsonParser.parseObject<MedicationAdministrationDosage>(
+      dosage: JsonParser.parseObject<MedicationAdministrationDosageBuilder>(
         json,
         'dosage',
-        MedicationAdministrationDosage.fromJson,
+        MedicationAdministrationDosageBuilder.fromJson,
         '$objectPath.dosage',
       ),
       eventHistory: (json['eventHistory'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.eventHistory',
@@ -284,22 +282,22 @@ class MedicationAdministration extends DomainResource {
     );
   }
 
-  /// Deserialize [MedicationAdministration]
+  /// Deserialize [MedicationAdministrationBuilder]
   /// from a [String] or [YamlMap] object
-  factory MedicationAdministration.fromYaml(
+  factory MedicationAdministrationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MedicationAdministration.fromJson(
+      return MedicationAdministrationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MedicationAdministration.fromJson(
+      return MedicationAdministrationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MedicationAdministration '
+        'MedicationAdministrationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -307,16 +305,16 @@ class MedicationAdministration extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [MedicationAdministration]
+  /// [MedicationAdministrationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationAdministration.fromJsonString(
+  factory MedicationAdministrationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MedicationAdministration.fromJson(json);
+      return MedicationAdministrationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -333,128 +331,130 @@ class MedicationAdministration extends DomainResource {
   /// business identifiers assigned to this resource by the performer or
   /// other systems and remain constant as the resource is updated and
   /// propagates from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [instantiates]
   /// A protocol, guideline, orderset, or other definition that was adhered
   /// to in whole or in part by this event.
-  final List<FhirUri>? instantiates;
+  List<FhirUriBuilder>? instantiates;
 
   /// [partOf]
   /// A larger event of which this particular event is a component or step.
-  final List<Reference>? partOf;
+  List<ReferenceBuilder>? partOf;
 
   /// [status]
   /// Will generally be set to show that the administration has been
   /// completed. For some long running administrations such as infusions, it
   /// is possible for an administration to be started but not completed or it
   /// may be paused while some other process is under way.
-  final MedicationAdministrationStatusCodes status;
+  MedicationAdministrationStatusCodesBuilder? status;
 
   /// [statusReason]
   /// A code indicating why the administration was not performed.
-  final List<CodeableConcept>? statusReason;
+  List<CodeableConceptBuilder>? statusReason;
 
   /// [category]
   /// Indicates where the medication is expected to be consumed or
   /// administered.
-  final CodeableConcept? category;
+  CodeableConceptBuilder? category;
 
   /// [medicationX]
   /// Identifies the medication that was administered. This is either a link
   /// to a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final MedicationXMedicationAdministration medicationX;
+  MedicationXMedicationAdministrationBuilder? medicationX;
 
-  /// Getter for [medicationCodeableConcept] as a CodeableConcept
-  CodeableConcept? get medicationCodeableConcept =>
-      medicationX.isAs<CodeableConcept>();
+  /// Getter for [medicationCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get medicationCodeableConcept =>
+      medicationX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [medicationReference] as a Reference
-  Reference? get medicationReference => medicationX.isAs<Reference>();
+  /// Getter for [medicationReference] as a ReferenceBuilder
+  ReferenceBuilder? get medicationReference =>
+      medicationX?.isAs<ReferenceBuilder>();
 
   /// [subject]
   /// The person or animal or group receiving the medication.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [context]
   /// The visit, admission, or other contact between patient and health care
   /// provider during which the medication administration was performed.
-  final Reference? context;
+  ReferenceBuilder? context;
 
   /// [supportingInformation]
   /// Additional information (for example, patient height and weight) that
   /// supports the administration of the medication.
-  final List<Reference>? supportingInformation;
+  List<ReferenceBuilder>? supportingInformation;
 
   /// [effectiveX]
   /// A specific date/time or interval of time during which the
   /// administration took place (or did not take place, when the 'notGiven'
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
-  final EffectiveXMedicationAdministration effectiveX;
+  EffectiveXMedicationAdministrationBuilder? effectiveX;
 
-  /// Getter for [effectiveDateTime] as a FhirDateTime
-  FhirDateTime? get effectiveDateTime => effectiveX.isAs<FhirDateTime>();
+  /// Getter for [effectiveDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get effectiveDateTime =>
+      effectiveX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [effectivePeriod] as a Period
-  Period? get effectivePeriod => effectiveX.isAs<Period>();
+  /// Getter for [effectivePeriod] as a PeriodBuilder
+  PeriodBuilder? get effectivePeriod => effectiveX?.isAs<PeriodBuilder>();
 
   /// [performer]
   /// Indicates who or what performed the medication administration and how
   /// they were involved.
-  final List<MedicationAdministrationPerformer>? performer;
+  List<MedicationAdministrationPerformerBuilder>? performer;
 
   /// [reasonCode]
   /// A code indicating why the medication was given.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Condition or observation that supports why the medication was
   /// administered.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [request]
   /// The original request, instruction or authority to perform the
   /// administration.
-  final Reference? request;
+  ReferenceBuilder? request;
 
   /// [device]
   /// The device used in administering the medication to the patient. For
   /// example, a particular infusion pump.
-  final List<Reference>? device;
+  List<ReferenceBuilder>? device;
 
   /// [note]
   /// Extra information about the medication administration that is not
   /// conveyed by the other attributes.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [dosage]
   /// Describes the medication dosage information details e.g. dose, rate,
   /// site, route, etc.
-  final MedicationAdministrationDosage? dosage;
+  MedicationAdministrationDosageBuilder? dosage;
 
   /// [eventHistory]
   /// A summary of the events of interest that have occurred, such as when
   /// the administration was verified.
-  final List<Reference>? eventHistory;
+  List<ReferenceBuilder>? eventHistory;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -463,124 +463,47 @@ class MedicationAdministration extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'instantiates',
-      instantiates,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusReason',
-      statusReason,
-    );
-    addField(
-      'category',
-      category,
-    );
-    final medicationXFhirType = medicationX.fhirType;
-    addField(
-      'medication${medicationXFhirType.capitalize()}',
-      medicationX,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('instantiates', instantiates);
+    addField('partOf', partOf);
+    addField('status', status);
+    addField('statusReason', statusReason);
+    addField('category', category);
+    if (medicationX != null) {
+      final fhirType = medicationX!.fhirType;
+      addField('medication${fhirType.capitalize()}', medicationX);
+    }
 
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'context',
-      context,
-    );
-    addField(
-      'supportingInformation',
-      supportingInformation,
-    );
-    final effectiveXFhirType = effectiveX.fhirType;
-    addField(
-      'effective${effectiveXFhirType.capitalize()}',
-      effectiveX,
-    );
+    addField('subject', subject);
+    addField('context', context);
+    addField('supportingInformation', supportingInformation);
+    if (effectiveX != null) {
+      final fhirType = effectiveX!.fhirType;
+      addField('effective${fhirType.capitalize()}', effectiveX);
+    }
 
-    addField(
-      'performer',
-      performer,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'request',
-      request,
-    );
-    addField(
-      'device',
-      device,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'dosage',
-      dosage,
-    );
-    addField(
-      'eventHistory',
-      eventHistory,
-    );
+    addField('performer', performer);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('request', request);
+    addField('device', device);
+    addField('note', note);
+    addField('dosage', dosage);
+    addField('eventHistory', eventHistory);
     return json;
   }
 
@@ -621,11 +544,11 @@ class MedicationAdministration extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -672,7 +595,9 @@ class MedicationAdministration extends DomainResource {
           fields.addAll(partOf!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'statusReason':
         if (statusReason != null) {
           fields.addAll(statusReason!);
@@ -682,19 +607,25 @@ class MedicationAdministration extends DomainResource {
           fields.add(category!);
         }
       case 'medication':
-        fields.add(medicationX);
+        if (medicationX != null) {
+          fields.add(medicationX!);
+        }
       case 'medicationX':
-        fields.add(medicationX);
+        if (medicationX != null) {
+          fields.add(medicationX!);
+        }
       case 'medicationCodeableConcept':
-        if (medicationX is CodeableConcept) {
-          fields.add(medicationX);
+        if (medicationX is CodeableConceptBuilder) {
+          fields.add(medicationX!);
         }
       case 'medicationReference':
-        if (medicationX is Reference) {
-          fields.add(medicationX);
+        if (medicationX is ReferenceBuilder) {
+          fields.add(medicationX!);
         }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'context':
         if (context != null) {
           fields.add(context!);
@@ -704,16 +635,20 @@ class MedicationAdministration extends DomainResource {
           fields.addAll(supportingInformation!);
         }
       case 'effective':
-        fields.add(effectiveX);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveX':
-        fields.add(effectiveX);
+        if (effectiveX != null) {
+          fields.add(effectiveX!);
+        }
       case 'effectiveDateTime':
-        if (effectiveX is FhirDateTime) {
-          fields.add(effectiveX);
+        if (effectiveX is FhirDateTimeBuilder) {
+          fields.add(effectiveX!);
         }
       case 'effectivePeriod':
-        if (effectiveX is Period) {
-          fields.add(effectiveX);
+        if (effectiveX is PeriodBuilder) {
+          fields.add(effectiveX!);
         }
       case 'performer':
         if (performer != null) {
@@ -757,7 +692,7 @@ class MedicationAdministration extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -766,357 +701,377 @@ class MedicationAdministration extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiates':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiates, ...child];
-            return copyWith(instantiates: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            instantiates = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiates, child];
-            return copyWith(instantiates: newList);
+            instantiates = [...(instantiates ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            partOf = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
-            return copyWith(partOf: newList);
+            partOf = [...(partOf ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is MedicationAdministrationStatusCodes) {
-            return copyWith(status: child);
+          if (child is MedicationAdministrationStatusCodesBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusReason':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?statusReason, ...child];
-            return copyWith(statusReason: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            statusReason = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?statusReason, child];
-            return copyWith(statusReason: newList);
+            statusReason = [...(statusReason ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
+          if (child is CodeableConceptBuilder) {
+            category = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'medicationX':
         {
-          if (child is MedicationXMedicationAdministration) {
-            return copyWith(medicationX: child);
+          if (child is MedicationXMedicationAdministrationBuilder) {
+            medicationX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(medicationX: child);
+            if (child is CodeableConceptBuilder) {
+              medicationX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(medicationX: child);
+            if (child is ReferenceBuilder) {
+              medicationX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'medicationCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(medicationX: child);
+          if (child is CodeableConceptBuilder) {
+            medicationX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'medicationReference':
         {
-          if (child is Reference) {
-            return copyWith(medicationX: child);
+          if (child is ReferenceBuilder) {
+            medicationX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
         {
-          if (child is Reference) {
-            return copyWith(context: child);
+          if (child is ReferenceBuilder) {
+            context = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportingInformation':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInformation, ...child];
-            return copyWith(supportingInformation: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            supportingInformation = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInformation, child];
-            return copyWith(supportingInformation: newList);
+            supportingInformation = [...(supportingInformation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectiveX':
         {
-          if (child is EffectiveXMedicationAdministration) {
-            return copyWith(effectiveX: child);
+          if (child is EffectiveXMedicationAdministrationBuilder) {
+            effectiveX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(effectiveX: child);
+            if (child is FhirDateTimeBuilder) {
+              effectiveX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(effectiveX: child);
+            if (child is PeriodBuilder) {
+              effectiveX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'effectiveFhirDateTime':
+      case 'effectiveDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(effectiveX: child);
+          if (child is FhirDateTimeBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectivePeriod':
         {
-          if (child is Period) {
-            return copyWith(effectiveX: child);
+          if (child is PeriodBuilder) {
+            effectiveX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is List<MedicationAdministrationPerformer>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is MedicationAdministrationPerformer) {
+          if (child is List<MedicationAdministrationPerformerBuilder>) {
+            // Replace or create new list
+            performer = child;
+            return;
+          } else if (child is MedicationAdministrationPerformerBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
-            return copyWith(performer: newList);
+            performer = [...(performer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'request':
         {
-          if (child is Reference) {
-            return copyWith(request: child);
+          if (child is ReferenceBuilder) {
+            request = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'device':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?device, ...child];
-            return copyWith(device: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            device = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?device, child];
-            return copyWith(device: newList);
+            device = [...(device ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dosage':
         {
-          if (child is MedicationAdministrationDosage) {
-            return copyWith(dosage: child);
+          if (child is MedicationAdministrationDosageBuilder) {
+            dosage = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'eventHistory':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?eventHistory, ...child];
-            return copyWith(eventHistory: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            eventHistory = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?eventHistory, child];
-            return copyWith(eventHistory: newList);
+            eventHistory = [...(eventHistory ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1132,260 +1087,227 @@ class MedicationAdministration extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'instantiates':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'statusReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'medication':
       case 'medicationX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'medicationCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'medicationReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'context':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'supportingInformation':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'effective':
       case 'effectiveX':
-        return ['FhirDateTime', 'Period'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
       case 'effectiveDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'effectivePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'performer':
-        return ['MedicationAdministrationPerformer'];
+        return ['MedicationAdministrationPerformerBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'request':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'device':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'dosage':
-        return ['MedicationAdministrationDosage'];
+        return ['MedicationAdministrationDosageBuilder'];
       case 'eventHistory':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MedicationAdministration]
+  /// Creates a new [MedicationAdministrationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MedicationAdministration createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'instantiates':
         {
-          return copyWith(
-            instantiates: <FhirUri>[],
-          );
+          instantiates = <FhirUriBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: <Reference>[],
-          );
+          partOf = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: MedicationAdministrationStatusCodes.empty(),
-          );
+          status = MedicationAdministrationStatusCodesBuilder.empty();
+          return;
         }
       case 'statusReason':
         {
-          return copyWith(
-            statusReason: <CodeableConcept>[],
-          );
+          statusReason = <CodeableConceptBuilder>[];
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
+          category = CodeableConceptBuilder.empty();
+          return;
         }
       case 'medication':
       case 'medicationX':
       case 'medicationCodeableConcept':
         {
-          return copyWith(
-            medicationX: CodeableConcept.empty(),
-          );
+          medicationX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'medicationReference':
         {
-          return copyWith(
-            medicationX: Reference.empty(),
-          );
+          medicationX = ReferenceBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'context':
         {
-          return copyWith(
-            context: Reference.empty(),
-          );
+          context = ReferenceBuilder.empty();
+          return;
         }
       case 'supportingInformation':
         {
-          return copyWith(
-            supportingInformation: <Reference>[],
-          );
+          supportingInformation = <ReferenceBuilder>[];
+          return;
         }
       case 'effective':
       case 'effectiveX':
       case 'effectiveDateTime':
         {
-          return copyWith(
-            effectiveX: FhirDateTime.empty(),
-          );
+          effectiveX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'effectivePeriod':
         {
-          return copyWith(
-            effectiveX: Period.empty(),
-          );
+          effectiveX = PeriodBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: <MedicationAdministrationPerformer>[],
-          );
+          performer = <MedicationAdministrationPerformerBuilder>[];
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'request':
         {
-          return copyWith(
-            request: Reference.empty(),
-          );
+          request = ReferenceBuilder.empty();
+          return;
         }
       case 'device':
         {
-          return copyWith(
-            device: <Reference>[],
-          );
+          device = <ReferenceBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'dosage':
         {
-          return copyWith(
-            dosage: MedicationAdministrationDosage.empty(),
-          );
+          dosage = MedicationAdministrationDosageBuilder.empty();
+          return;
         }
       case 'eventHistory':
         {
-          return copyWith(
-            eventHistory: <Reference>[],
-          );
+          eventHistory = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1394,7 +1316,7 @@ class MedicationAdministration extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  MedicationAdministration clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1406,10 +1328,14 @@ class MedicationAdministration extends DomainResource {
     bool identifier = false,
     bool instantiates = false,
     bool partOf = false,
+    bool status = false,
     bool statusReason = false,
     bool category = false,
+    bool medication = false,
+    bool subject = false,
     bool context = false,
     bool supportingInformation = false,
+    bool effective = false,
     bool performer = false,
     bool reasonCode = false,
     bool reasonReference = false,
@@ -1419,240 +1345,125 @@ class MedicationAdministration extends DomainResource {
     bool dosage = false,
     bool eventHistory = false,
   }) {
-    return MedicationAdministration(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiates: instantiates ? null : this.instantiates,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      statusReason: statusReason ? null : this.statusReason,
-      category: category ? null : this.category,
-      medicationX: medicationX,
-      subject: subject,
-      context: context ? null : this.context,
-      supportingInformation:
-          supportingInformation ? null : this.supportingInformation,
-      effectiveX: effectiveX,
-      performer: performer ? null : this.performer,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      request: request ? null : this.request,
-      device: device ? null : this.device,
-      note: note ? null : this.note,
-      dosage: dosage ? null : this.dosage,
-      eventHistory: eventHistory ? null : this.eventHistory,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (instantiates) this.instantiates = null;
+    if (partOf) this.partOf = null;
+    if (status) this.status = null;
+    if (statusReason) this.statusReason = null;
+    if (category) this.category = null;
+    if (medication) this.medicationX = null;
+    if (subject) this.subject = null;
+    if (context) this.context = null;
+    if (supportingInformation) this.supportingInformation = null;
+    if (effective) this.effectiveX = null;
+    if (performer) this.performer = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (request) this.request = null;
+    if (device) this.device = null;
+    if (note) this.note = null;
+    if (dosage) this.dosage = null;
+    if (eventHistory) this.eventHistory = null;
   }
 
   @override
-  MedicationAdministration clone() => throw UnimplementedError();
+  MedicationAdministrationBuilder clone() => throw UnimplementedError();
   @override
-  MedicationAdministration copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirUri>? instantiates,
-    List<Reference>? partOf,
-    MedicationAdministrationStatusCodes? status,
-    List<CodeableConcept>? statusReason,
-    CodeableConcept? category,
-    MedicationXMedicationAdministration? medicationX,
-    Reference? subject,
-    Reference? context,
-    List<Reference>? supportingInformation,
-    EffectiveXMedicationAdministration? effectiveX,
-    List<MedicationAdministrationPerformer>? performer,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    Reference? request,
-    List<Reference>? device,
-    List<Annotation>? note,
-    MedicationAdministrationDosage? dosage,
-    List<Reference>? eventHistory,
+  MedicationAdministrationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<FhirUriBuilder>? instantiates,
+    List<ReferenceBuilder>? partOf,
+    MedicationAdministrationStatusCodesBuilder? status,
+    List<CodeableConceptBuilder>? statusReason,
+    CodeableConceptBuilder? category,
+    MedicationXMedicationAdministrationBuilder? medicationX,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? context,
+    List<ReferenceBuilder>? supportingInformation,
+    EffectiveXMedicationAdministrationBuilder? effectiveX,
+    List<MedicationAdministrationPerformerBuilder>? performer,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    ReferenceBuilder? request,
+    List<ReferenceBuilder>? device,
+    List<AnnotationBuilder>? note,
+    MedicationAdministrationDosageBuilder? dosage,
+    List<ReferenceBuilder>? eventHistory,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return MedicationAdministration(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = MedicationAdministrationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiates: instantiates
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiates',
-                ),
-              )
-              .toList() ??
-          this.instantiates,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusReason: statusReason
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.statusReason',
-                ),
-              )
-              .toList() ??
-          this.statusReason,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      medicationX: medicationX?.copyWith(
-            objectPath: '$newObjectPath.medicationX',
-          ) as MedicationXMedicationAdministration? ??
-          this.medicationX,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      context: context?.copyWith(
-            objectPath: '$newObjectPath.context',
-          ) ??
-          this.context,
-      supportingInformation: supportingInformation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInformation',
-                ),
-              )
-              .toList() ??
-          this.supportingInformation,
-      effectiveX: effectiveX?.copyWith(
-            objectPath: '$newObjectPath.effectiveX',
-          ) as EffectiveXMedicationAdministration? ??
-          this.effectiveX,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      request: request?.copyWith(
-            objectPath: '$newObjectPath.request',
-          ) ??
-          this.request,
-      device: device
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.device',
-                ),
-              )
-              .toList() ??
-          this.device,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      dosage: dosage?.copyWith(
-            objectPath: '$newObjectPath.dosage',
-          ) ??
-          this.dosage,
-      eventHistory: eventHistory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.eventHistory',
-                ),
-              )
-              .toList() ??
-          this.eventHistory,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      instantiates: instantiates ?? this.instantiates,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      statusReason: statusReason ?? this.statusReason,
+      category: category ?? this.category,
+      medicationX: medicationX ?? this.medicationX,
+      subject: subject ?? this.subject,
+      context: context ?? this.context,
+      supportingInformation:
+          supportingInformation ?? this.supportingInformation,
+      effectiveX: effectiveX ?? this.effectiveX,
+      performer: performer ?? this.performer,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      request: request ?? this.request,
+      device: device ?? this.device,
+      note: note ?? this.note,
+      dosage: dosage ?? this.dosage,
+      eventHistory: eventHistory ?? this.eventHistory,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MedicationAdministration) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MedicationAdministrationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1687,37 +1498,37 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       instantiates,
       o.instantiates,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       partOf,
       o.partOf,
     )) {
@@ -1729,7 +1540,7 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       statusReason,
       o.statusReason,
     )) {
@@ -1759,7 +1570,7 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       supportingInformation,
       o.supportingInformation,
     )) {
@@ -1771,19 +1582,19 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<MedicationAdministrationPerformer>(
+    if (!listEquals<MedicationAdministrationPerformerBuilder>(
       performer,
       o.performer,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
@@ -1795,13 +1606,13 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       device,
       o.device,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -1813,7 +1624,7 @@ class MedicationAdministration extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       eventHistory,
       o.eventHistory,
     )) {
@@ -1823,47 +1634,44 @@ class MedicationAdministration extends DomainResource {
   }
 }
 
-/// [MedicationAdministrationPerformer]
+/// [MedicationAdministrationPerformerBuilder]
 /// Indicates who or what performed the medication administration and how
 /// they were involved.
-class MedicationAdministrationPerformer extends BackboneElement {
+class MedicationAdministrationPerformerBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MedicationAdministrationPerformer]
+  /// [MedicationAdministrationPerformerBuilder]
 
-  const MedicationAdministrationPerformer({
+  MedicationAdministrationPerformerBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.function_,
-    required this.actor,
+    this.actor,
     super.disallowExtensions,
   }) : super(
           objectPath: 'MedicationAdministration.performer',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MedicationAdministrationPerformer.empty() =>
-      MedicationAdministrationPerformer(
-        actor: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory MedicationAdministrationPerformerBuilder.empty() =>
+      MedicationAdministrationPerformerBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationAdministrationPerformer.fromJson(
+  factory MedicationAdministrationPerformerBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MedicationAdministration.performer';
-    return MedicationAdministrationPerformer(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MedicationAdministrationPerformerBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1872,8 +1680,8 @@ class MedicationAdministrationPerformer extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1881,37 +1689,37 @@ class MedicationAdministrationPerformer extends BackboneElement {
             ),
           )
           .toList(),
-      function_: JsonParser.parseObject<CodeableConcept>(
+      function_: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'function',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.function',
       ),
-      actor: JsonParser.parseObject<Reference>(
+      actor: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'actor',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.actor',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [MedicationAdministrationPerformer]
+  /// Deserialize [MedicationAdministrationPerformerBuilder]
   /// from a [String] or [YamlMap] object
-  factory MedicationAdministrationPerformer.fromYaml(
+  factory MedicationAdministrationPerformerBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MedicationAdministrationPerformer.fromJson(
+      return MedicationAdministrationPerformerBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MedicationAdministrationPerformer.fromJson(
+      return MedicationAdministrationPerformerBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MedicationAdministrationPerformer '
+        'MedicationAdministrationPerformerBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1919,16 +1727,16 @@ class MedicationAdministrationPerformer extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MedicationAdministrationPerformer]
+  /// [MedicationAdministrationPerformerBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationAdministrationPerformer.fromJsonString(
+  factory MedicationAdministrationPerformerBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MedicationAdministrationPerformer.fromJson(json);
+      return MedicationAdministrationPerformerBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1941,27 +1749,27 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
   /// medication administration.
-  final CodeableConcept? function_;
+  CodeableConceptBuilder? function_;
 
   /// [actor]
   /// Indicates who or what performed the medication administration.
-  final Reference actor;
+  ReferenceBuilder? actor;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1970,31 +1778,16 @@ class MedicationAdministrationPerformer extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'function',
-      function_,
-    );
-    addField(
-      'actor',
-      actor,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('function', function_);
+    addField('actor', actor);
     return json;
   }
 
@@ -2013,11 +1806,11 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2036,7 +1829,9 @@ class MedicationAdministrationPerformer extends BackboneElement {
           fields.add(function_!);
         }
       case 'actor':
-        fields.add(actor);
+        if (actor != null) {
+          fields.add(actor!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2047,7 +1842,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2056,65 +1851,67 @@ class MedicationAdministrationPerformer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'function':
         {
-          if (child is CodeableConcept) {
-            return copyWith(function_: child);
+          if (child is CodeableConceptBuilder) {
+            function_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
         {
-          if (child is Reference) {
-            return copyWith(actor: child);
+          if (child is ReferenceBuilder) {
+            actor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2130,58 +1927,49 @@ class MedicationAdministrationPerformer extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'function':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'actor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MedicationAdministrationPerformer]
+  /// Creates a new [MedicationAdministrationPerformerBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MedicationAdministrationPerformer createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'function':
         {
-          return copyWith(
-            function_: CodeableConcept.empty(),
-          );
+          function_ = CodeableConceptBuilder.empty();
+          return;
         }
       case 'actor':
         {
-          return copyWith(
-            actor: Reference.empty(),
-          );
+          actor = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2190,30 +1978,30 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MedicationAdministrationPerformer clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool function_ = false,
+    bool actor = false,
   }) {
-    return MedicationAdministrationPerformer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      function_: function_ ? null : this.function_,
-      actor: actor,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (function_) this.function_ = null;
+    if (actor) this.actor = null;
   }
 
   @override
-  MedicationAdministrationPerformer clone() => throw UnimplementedError();
+  MedicationAdministrationPerformerBuilder clone() =>
+      throw UnimplementedError();
   @override
-  MedicationAdministrationPerformer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? function_,
-    Reference? actor,
+  MedicationAdministrationPerformerBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? function_,
+    ReferenceBuilder? actor,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2221,42 +2009,36 @@ class MedicationAdministrationPerformer extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MedicationAdministrationPerformer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      function_: function_?.copyWith(
-            objectPath: '$newObjectPath.function',
-          ) ??
-          this.function_,
-      actor: actor?.copyWith(
-            objectPath: '$newObjectPath.actor',
-          ) ??
-          this.actor,
+    final newResult = MedicationAdministrationPerformerBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      function_: function_ ?? this.function_,
+      actor: actor ?? this.actor,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MedicationAdministrationPerformer) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MedicationAdministrationPerformerBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2267,13 +2049,13 @@ class MedicationAdministrationPerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2295,14 +2077,14 @@ class MedicationAdministrationPerformer extends BackboneElement {
   }
 }
 
-/// [MedicationAdministrationDosage]
+/// [MedicationAdministrationDosageBuilder]
 /// Describes the medication dosage information details e.g. dose, rate,
 /// site, route, etc.
-class MedicationAdministrationDosage extends BackboneElement {
+class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [MedicationAdministrationDosage]
+  /// [MedicationAdministrationDosageBuilder]
 
-  const MedicationAdministrationDosage({
+  MedicationAdministrationDosageBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2318,26 +2100,25 @@ class MedicationAdministrationDosage extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MedicationAdministrationDosage.empty() =>
-      const MedicationAdministrationDosage();
+  /// For Builder classes, no fields are required
+  factory MedicationAdministrationDosageBuilder.empty() =>
+      MedicationAdministrationDosageBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationAdministrationDosage.fromJson(
+  factory MedicationAdministrationDosageBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'MedicationAdministration.dosage';
-    return MedicationAdministrationDosage(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MedicationAdministrationDosageBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2346,8 +2127,8 @@ class MedicationAdministrationDosage extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2355,63 +2136,64 @@ class MedicationAdministrationDosage extends BackboneElement {
             ),
           )
           .toList(),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
-      site: JsonParser.parseObject<CodeableConcept>(
+      site: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'site',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.site',
       ),
-      route: JsonParser.parseObject<CodeableConcept>(
+      route: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'route',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.route',
       ),
-      method: JsonParser.parseObject<CodeableConcept>(
+      method: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'method',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.method',
       ),
-      dose: JsonParser.parseObject<Quantity>(
+      dose: JsonParser.parseObject<QuantityBuilder>(
         json,
         'dose',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.dose',
       ),
-      rateX: JsonParser.parsePolymorphic<RateXMedicationAdministrationDosage>(
+      rateX: JsonParser.parsePolymorphic<
+          RateXMedicationAdministrationDosageBuilder>(
         json,
         {
-          'rateRatio': Ratio.fromJson,
-          'rateQuantity': Quantity.fromJson,
+          'rateRatio': RatioBuilder.fromJson,
+          'rateQuantity': QuantityBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [MedicationAdministrationDosage]
+  /// Deserialize [MedicationAdministrationDosageBuilder]
   /// from a [String] or [YamlMap] object
-  factory MedicationAdministrationDosage.fromYaml(
+  factory MedicationAdministrationDosageBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return MedicationAdministrationDosage.fromJson(
+      return MedicationAdministrationDosageBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return MedicationAdministrationDosage.fromJson(
+      return MedicationAdministrationDosageBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'MedicationAdministrationDosage '
+        'MedicationAdministrationDosageBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2419,16 +2201,16 @@ class MedicationAdministrationDosage extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [MedicationAdministrationDosage]
+  /// [MedicationAdministrationDosageBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationAdministrationDosage.fromJsonString(
+  factory MedicationAdministrationDosageBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return MedicationAdministrationDosage.fromJson(json);
+      return MedicationAdministrationDosageBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2443,31 +2225,31 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// too complex to code. When coded dosage is present, the free text dosage
   /// may still be present for display to humans. The dosage instructions
   /// should reflect the dosage of the medication that was administered.
-  final FhirString? text;
+  FhirStringBuilder? text;
 
   /// [site]
   /// A coded specification of the anatomic site where the medication first
   /// entered the body. For example, "left arm".
-  final CodeableConcept? site;
+  CodeableConceptBuilder? site;
 
   /// [route]
   /// A code specifying the route or physiological path of administration of
   /// a therapeutic agent into or onto the patient. For example, topical,
   /// intravenous, etc.
-  final CodeableConcept? route;
+  CodeableConceptBuilder? route;
 
   /// [method]
   /// A coded value indicating the method by which the medication is intended
   /// to be or was introduced into or on the body. This attribute will most
   /// often NOT be populated. It is most commonly used for injections. For
   /// example, Slow Push, Deep IV.
-  final CodeableConcept? method;
+  CodeableConceptBuilder? method;
 
   /// [dose]
   /// The amount of the medication given at one administration event. Use
   /// this value when the administration is essentially an instantaneous
   /// event such as a swallowing a tablet or giving an injection.
-  final Quantity? dose;
+  QuantityBuilder? dose;
 
   /// [rateX]
   /// Identifies the speed with which the medication was or will be
@@ -2475,29 +2257,29 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// 100 ml per 1 hour or 100 ml/hr. May also be expressed as a rate per
   /// unit of time, e.g. 500 ml per 2 hours. Other examples: 200 mcg/min or
   /// 200 mcg/1 minute; 1 liter/8 hours.
-  final RateXMedicationAdministrationDosage? rateX;
+  RateXMedicationAdministrationDosageBuilder? rateX;
 
-  /// Getter for [rateRatio] as a Ratio
-  Ratio? get rateRatio => rateX?.isAs<Ratio>();
+  /// Getter for [rateRatio] as a RatioBuilder
+  RatioBuilder? get rateRatio => rateX?.isAs<RatioBuilder>();
 
-  /// Getter for [rateQuantity] as a Quantity
-  Quantity? get rateQuantity => rateX?.isAs<Quantity>();
+  /// Getter for [rateQuantity] as a QuantityBuilder
+  QuantityBuilder? get rateQuantity => rateX?.isAs<QuantityBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2506,49 +2288,22 @@ class MedicationAdministrationDosage extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'site',
-      site,
-    );
-    addField(
-      'route',
-      route,
-    );
-    addField(
-      'method',
-      method,
-    );
-    addField(
-      'dose',
-      dose,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('text', text);
+    addField('site', site);
+    addField('route', route);
+    addField('method', method);
+    addField('dose', dose);
     if (rateX != null) {
       final fhirType = rateX!.fhirType;
-      addField(
-        'rate${fhirType.capitalize()}',
-        rateX,
-      );
+      addField('rate${fhirType.capitalize()}', rateX);
     }
 
     return json;
@@ -2573,11 +2328,11 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2612,15 +2367,19 @@ class MedicationAdministrationDosage extends BackboneElement {
           fields.add(dose!);
         }
       case 'rate':
-        fields.add(rateX!);
+        if (rateX != null) {
+          fields.add(rateX!);
+        }
       case 'rateX':
-        fields.add(rateX!);
+        if (rateX != null) {
+          fields.add(rateX!);
+        }
       case 'rateRatio':
-        if (rateX is Ratio) {
+        if (rateX is RatioBuilder) {
           fields.add(rateX!);
         }
       case 'rateQuantity':
-        if (rateX is Quantity) {
+        if (rateX is QuantityBuilder) {
           fields.add(rateX!);
         }
       default:
@@ -2633,7 +2392,7 @@ class MedicationAdministrationDosage extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2642,119 +2401,129 @@ class MedicationAdministrationDosage extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'site':
         {
-          if (child is CodeableConcept) {
-            return copyWith(site: child);
+          if (child is CodeableConceptBuilder) {
+            site = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'route':
         {
-          if (child is CodeableConcept) {
-            return copyWith(route: child);
+          if (child is CodeableConceptBuilder) {
+            route = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
         {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
+          if (child is CodeableConceptBuilder) {
+            method = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dose':
         {
-          if (child is Quantity) {
-            return copyWith(dose: child);
+          if (child is QuantityBuilder) {
+            dose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateX':
         {
-          if (child is RateXMedicationAdministrationDosage) {
-            return copyWith(rateX: child);
+          if (child is RateXMedicationAdministrationDosageBuilder) {
+            rateX = child;
+            return;
           } else {
-            if (child is Ratio) {
-              return copyWith(rateX: child);
+            if (child is RatioBuilder) {
+              rateX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(rateX: child);
+            if (child is QuantityBuilder) {
+              rateX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'rateRatio':
         {
-          if (child is Ratio) {
-            return copyWith(rateX: child);
+          if (child is RatioBuilder) {
+            rateX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(rateX: child);
+          if (child is QuantityBuilder) {
+            rateX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2770,103 +2539,89 @@ class MedicationAdministrationDosage extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'site':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'route':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'method':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'dose':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'rate':
       case 'rateX':
-        return ['Ratio', 'Quantity'];
+        return ['RatioBuilder', 'QuantityBuilder'];
       case 'rateRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'rateQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [MedicationAdministrationDosage]
+  /// Creates a new [MedicationAdministrationDosageBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  MedicationAdministrationDosage createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       case 'site':
         {
-          return copyWith(
-            site: CodeableConcept.empty(),
-          );
+          site = CodeableConceptBuilder.empty();
+          return;
         }
       case 'route':
         {
-          return copyWith(
-            route: CodeableConcept.empty(),
-          );
+          route = CodeableConceptBuilder.empty();
+          return;
         }
       case 'method':
         {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
+          method = CodeableConceptBuilder.empty();
+          return;
         }
       case 'dose':
         {
-          return copyWith(
-            dose: Quantity.empty(),
-          );
+          dose = QuantityBuilder.empty();
+          return;
         }
       case 'rate':
       case 'rateX':
       case 'rateRatio':
         {
-          return copyWith(
-            rateX: Ratio.empty(),
-          );
+          rateX = RatioBuilder.empty();
+          return;
         }
       case 'rateQuantity':
         {
-          return copyWith(
-            rateX: Quantity.empty(),
-          );
+          rateX = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2875,7 +2630,7 @@ class MedicationAdministrationDosage extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  MedicationAdministrationDosage clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2886,32 +2641,30 @@ class MedicationAdministrationDosage extends BackboneElement {
     bool dose = false,
     bool rate = false,
   }) {
-    return MedicationAdministrationDosage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      text: text ? null : this.text,
-      site: site ? null : this.site,
-      route: route ? null : this.route,
-      method: method ? null : this.method,
-      dose: dose ? null : this.dose,
-      rateX: rate ? null : rateX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (text) this.text = null;
+    if (site) this.site = null;
+    if (route) this.route = null;
+    if (method) this.method = null;
+    if (dose) this.dose = null;
+    if (rate) this.rateX = null;
   }
 
   @override
-  MedicationAdministrationDosage clone() => throw UnimplementedError();
+  MedicationAdministrationDosageBuilder clone() => throw UnimplementedError();
   @override
-  MedicationAdministrationDosage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? text,
-    CodeableConcept? site,
-    CodeableConcept? route,
-    CodeableConcept? method,
-    Quantity? dose,
-    RateXMedicationAdministrationDosage? rateX,
+  MedicationAdministrationDosageBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? text,
+    CodeableConceptBuilder? site,
+    CodeableConceptBuilder? route,
+    CodeableConceptBuilder? method,
+    QuantityBuilder? dose,
+    RateXMedicationAdministrationDosageBuilder? rateX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2919,58 +2672,40 @@ class MedicationAdministrationDosage extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return MedicationAdministrationDosage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      site: site?.copyWith(
-            objectPath: '$newObjectPath.site',
-          ) ??
-          this.site,
-      route: route?.copyWith(
-            objectPath: '$newObjectPath.route',
-          ) ??
-          this.route,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      dose: dose?.copyWith(
-            objectPath: '$newObjectPath.dose',
-          ) ??
-          this.dose,
-      rateX: rateX?.copyWith(
-            objectPath: '$newObjectPath.rateX',
-          ) as RateXMedicationAdministrationDosage? ??
-          this.rateX,
+    final newResult = MedicationAdministrationDosageBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      text: text ?? this.text,
+      site: site ?? this.site,
+      route: route ?? this.route,
+      method: method ?? this.method,
+      dose: dose ?? this.dose,
+      rateX: rateX ?? this.rateX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! MedicationAdministrationDosage) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MedicationAdministrationDosageBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2981,13 +2716,13 @@ class MedicationAdministrationDosage extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

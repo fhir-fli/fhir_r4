@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The meaning of the hierarchy of concepts in a code system.
-class CodeSystemHierarchyMeaning extends FhirCodeEnum {
+class CodeSystemHierarchyMeaningBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  CodeSystemHierarchyMeaning._({
+  CodeSystemHierarchyMeaningBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory CodeSystemHierarchyMeaning(
+  factory CodeSystemHierarchyMeaningBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return CodeSystemHierarchyMeaning._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return CodeSystemHierarchyMeaningBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,73 +43,76 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [CodeSystemHierarchyMeaning] with element only
-  factory CodeSystemHierarchyMeaning.empty() =>
-      CodeSystemHierarchyMeaning._(validatedValue: '');
+  /// Create empty [CodeSystemHierarchyMeaningBuilder] with element only
+  factory CodeSystemHierarchyMeaningBuilder.empty() =>
+      CodeSystemHierarchyMeaningBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
-  factory CodeSystemHierarchyMeaning.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CodeSystemHierarchyMeaningBuilder] from JSON.
+  factory CodeSystemHierarchyMeaningBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
+      return CodeSystemHierarchyMeaningBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CodeSystemHierarchyMeaning cannot be constructed from JSON.',
+        'CodeSystemHierarchyMeaningBuilder cannot be constructed from JSON.',
       );
     }
-    return CodeSystemHierarchyMeaning._(
+    return CodeSystemHierarchyMeaningBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// grouped_by
-  static final CodeSystemHierarchyMeaning grouped_by =
-      CodeSystemHierarchyMeaning._(
+  static CodeSystemHierarchyMeaningBuilder grouped_by =
+      CodeSystemHierarchyMeaningBuilder._(
     validatedValue: 'grouped-by',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Grouped By'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Grouped By'.toFhirStringBuilder,
   );
 
   /// is_a
-  static final CodeSystemHierarchyMeaning is_a = CodeSystemHierarchyMeaning._(
+  static CodeSystemHierarchyMeaningBuilder is_a =
+      CodeSystemHierarchyMeaningBuilder._(
     validatedValue: 'is-a',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Is-A'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Is-A'.toFhirStringBuilder,
   );
 
   /// part_of
-  static final CodeSystemHierarchyMeaning part_of =
-      CodeSystemHierarchyMeaning._(
+  static CodeSystemHierarchyMeaningBuilder part_of =
+      CodeSystemHierarchyMeaningBuilder._(
     validatedValue: 'part-of',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Part Of'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Part Of'.toFhirStringBuilder,
   );
 
   /// classified_with
-  static final CodeSystemHierarchyMeaning classified_with =
-      CodeSystemHierarchyMeaning._(
+  static CodeSystemHierarchyMeaningBuilder classified_with =
+      CodeSystemHierarchyMeaningBuilder._(
     validatedValue: 'classified-with',
-    system:
-        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Classified With'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Classified With'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final CodeSystemHierarchyMeaning elementOnly =
-      CodeSystemHierarchyMeaning._(validatedValue: '');
+  static CodeSystemHierarchyMeaningBuilder elementOnly =
+      CodeSystemHierarchyMeaningBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<CodeSystemHierarchyMeaning> values = [
+  static List<CodeSystemHierarchyMeaningBuilder> values = [
     grouped_by,
     is_a,
     part_of,
@@ -118,15 +121,16 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  CodeSystemHierarchyMeaning clone() => CodeSystemHierarchyMeaning._(
+  CodeSystemHierarchyMeaningBuilder clone() =>
+      CodeSystemHierarchyMeaningBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  CodeSystemHierarchyMeaning withElement(Element? newElement) {
-    return CodeSystemHierarchyMeaning._(
-        validatedValue: value, element: newElement,);
+  CodeSystemHierarchyMeaningBuilder withElement(ElementBuilder? newElement) {
+    return CodeSystemHierarchyMeaningBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -142,11 +146,11 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  CodeSystemHierarchyMeaning copyWith({
+  CodeSystemHierarchyMeaningBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -157,7 +161,7 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return CodeSystemHierarchyMeaning._(
+    return CodeSystemHierarchyMeaningBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -167,7 +171,7 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

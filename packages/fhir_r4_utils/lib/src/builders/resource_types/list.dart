@@ -1,14 +1,16 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [FhirList]
+/// [FhirListBuilder]
 /// A list is a curated collection of resources.
-class FhirList extends DomainResource {
+class FhirListBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [FhirList]
+  /// [FhirListBuilder]
 
-  const FhirList({
+  FhirListBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -18,8 +20,8 @@ class FhirList extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
-    required this.mode,
+    this.status,
+    this.mode,
     this.title,
     this.code,
     this.subject,
@@ -36,52 +38,48 @@ class FhirList extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FhirList.empty() => FhirList(
-        status: ListStatus.values.first,
-        mode: ListMode.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory FhirListBuilder.empty() => FhirListBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirList.fromJson(
+  factory FhirListBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'List';
-    return FhirList(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return FhirListBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -90,8 +88,8 @@ class FhirList extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -100,8 +98,8 @@ class FhirList extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -110,8 +108,8 @@ class FhirList extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -119,63 +117,63 @@ class FhirList extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<ListStatus>(
+      status: JsonParser.parsePrimitive<ListStatusBuilder>(
         json,
         'status',
-        ListStatus.fromJson,
+        ListStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      mode: JsonParser.parsePrimitive<ListMode>(
+      ),
+      mode: JsonParser.parsePrimitive<ListModeBuilder>(
         json,
         'mode',
-        ListMode.fromJson,
+        ListModeBuilder.fromJson,
         '$objectPath.mode',
-      )!,
-      title: JsonParser.parsePrimitive<FhirString>(
+      ),
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
       ),
-      encounter: JsonParser.parseObject<Reference>(
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      source: JsonParser.parseObject<Reference>(
+      source: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'source',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.source',
       ),
-      orderedBy: JsonParser.parseObject<CodeableConcept>(
+      orderedBy: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'orderedBy',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.orderedBy',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -184,8 +182,8 @@ class FhirList extends DomainResource {
           )
           .toList(),
       entry: (json['entry'] as List<dynamic>?)
-          ?.map<ListEntry>(
-            (v) => ListEntry.fromJson(
+          ?.map<ListEntryBuilder>(
+            (v) => ListEntryBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.entry',
@@ -193,31 +191,31 @@ class FhirList extends DomainResource {
             ),
           )
           .toList(),
-      emptyReason: JsonParser.parseObject<CodeableConcept>(
+      emptyReason: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'emptyReason',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.emptyReason',
       ),
     );
   }
 
-  /// Deserialize [FhirList]
+  /// Deserialize [FhirListBuilder]
   /// from a [String] or [YamlMap] object
-  factory FhirList.fromYaml(
+  factory FhirListBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return FhirList.fromJson(
+      return FhirListBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return FhirList.fromJson(
+      return FhirListBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'FhirList '
+        'FhirListBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -225,16 +223,16 @@ class FhirList extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [FhirList]
+  /// [FhirListBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirList.fromJsonString(
+  factory FhirListBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return FhirList.fromJson(json);
+      return FhirListBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -247,77 +245,77 @@ class FhirList extends DomainResource {
   /// [identifier]
   /// Identifier for the List assigned for business purposes outside the
   /// context of FHIR.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// Indicates the current state of this list.
-  final ListStatus status;
+  ListStatusBuilder? status;
 
   /// [mode]
   /// How this list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents
   /// a snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
-  final ListMode mode;
+  ListModeBuilder? mode;
 
   /// [title]
   /// A label for the list assigned by the author.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [code]
   /// This code defines the purpose of the list - why it was created.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [subject]
   /// The common subject (or patient) of the resources that are in the list
   /// if there is one.
-  final Reference? subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The encounter that is the context in which this list was created.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [date]
   /// The date that the list was prepared.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [source]
   /// The entity responsible for deciding what the contents of the list were.
   /// Where the list was created by a human, this is the same as the author
   /// of the list.
-  final Reference? source;
+  ReferenceBuilder? source;
 
   /// [orderedBy]
   /// What order applies to the items in the list.
-  final CodeableConcept? orderedBy;
+  CodeableConceptBuilder? orderedBy;
 
   /// [note]
   /// Comments that apply to the overall list.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [entry]
   /// Entries in this list.
-  final List<ListEntry>? entry;
+  List<ListEntryBuilder>? entry;
 
   /// [emptyReason]
   /// If the list is empty, why the list is empty.
-  final CodeableConcept? emptyReason;
+  CodeableConceptBuilder? emptyReason;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -326,96 +324,33 @@ class FhirList extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'mode',
-      mode,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'orderedBy',
-      orderedBy,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'entry',
-      entry,
-    );
-    addField(
-      'emptyReason',
-      emptyReason,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('mode', mode);
+    addField('title', title);
+    addField('code', code);
+    addField('subject', subject);
+    addField('encounter', encounter);
+    addField('date', date);
+    addField('source', source);
+    addField('orderedBy', orderedBy);
+    addField('note', note);
+    addField('entry', entry);
+    addField('emptyReason', emptyReason);
     return json;
   }
 
@@ -450,11 +385,11 @@ class FhirList extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -493,9 +428,13 @@ class FhirList extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'mode':
-        fields.add(mode);
+        if (mode != null) {
+          fields.add(mode!);
+        }
       case 'title':
         if (title != null) {
           fields.add(title!);
@@ -546,7 +485,7 @@ class FhirList extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -555,217 +494,231 @@ class FhirList extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ListStatus) {
-            return copyWith(status: child);
+          if (child is ListStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
         {
-          if (child is ListMode) {
-            return copyWith(mode: child);
+          if (child is ListModeBuilder) {
+            mode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is Reference) {
-            return copyWith(source: child);
+          if (child is ReferenceBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'orderedBy':
         {
-          if (child is CodeableConcept) {
-            return copyWith(orderedBy: child);
+          if (child is CodeableConceptBuilder) {
+            orderedBy = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'entry':
         {
-          if (child is List<ListEntry>) {
-            // Add all elements from passed list
-            final newList = [...?entry, ...child];
-            return copyWith(entry: newList);
-          } else if (child is ListEntry) {
+          if (child is List<ListEntryBuilder>) {
+            // Replace or create new list
+            entry = child;
+            return;
+          } else if (child is ListEntryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?entry, child];
-            return copyWith(entry: newList);
+            entry = [...(entry ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'emptyReason':
         {
-          if (child is CodeableConcept) {
-            return copyWith(emptyReason: child);
+          if (child is CodeableConceptBuilder) {
+            emptyReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -781,186 +734,161 @@ class FhirList extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'mode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'source':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'orderedBy':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'entry':
-        return ['ListEntry'];
+        return ['ListEntryBuilder'];
       case 'emptyReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [FhirList]
+  /// Creates a new [FhirListBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  FhirList createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ListStatus.empty(),
-          );
+          status = ListStatusBuilder.empty();
+          return;
         }
       case 'mode':
         {
-          return copyWith(
-            mode: ListMode.empty(),
-          );
+          mode = ListModeBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: Reference.empty(),
-          );
+          source = ReferenceBuilder.empty();
+          return;
         }
       case 'orderedBy':
         {
-          return copyWith(
-            orderedBy: CodeableConcept.empty(),
-          );
+          orderedBy = CodeableConceptBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'entry':
         {
-          return copyWith(
-            entry: <ListEntry>[],
-          );
+          entry = <ListEntryBuilder>[];
+          return;
         }
       case 'emptyReason':
         {
-          return copyWith(
-            emptyReason: CodeableConcept.empty(),
-          );
+          emptyReason = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -969,7 +897,7 @@ class FhirList extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  FhirList clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -979,6 +907,8 @@ class FhirList extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
+    bool mode = false,
     bool title = false,
     bool code = false,
     bool subject = false,
@@ -990,171 +920,106 @@ class FhirList extends DomainResource {
     bool entry = false,
     bool emptyReason = false,
   }) {
-    return FhirList(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      mode: mode,
-      title: title ? null : this.title,
-      code: code ? null : this.code,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      date: date ? null : this.date,
-      source: source ? null : this.source,
-      orderedBy: orderedBy ? null : this.orderedBy,
-      note: note ? null : this.note,
-      entry: entry ? null : this.entry,
-      emptyReason: emptyReason ? null : this.emptyReason,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (mode) this.mode = null;
+    if (title) this.title = null;
+    if (code) this.code = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (date) this.date = null;
+    if (source) this.source = null;
+    if (orderedBy) this.orderedBy = null;
+    if (note) this.note = null;
+    if (entry) this.entry = null;
+    if (emptyReason) this.emptyReason = null;
   }
 
   @override
-  FhirList clone() => throw UnimplementedError();
+  FhirListBuilder clone() => throw UnimplementedError();
   @override
-  FhirList copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    ListStatus? status,
-    ListMode? mode,
-    FhirString? title,
-    CodeableConcept? code,
-    Reference? subject,
-    Reference? encounter,
-    FhirDateTime? date,
-    Reference? source,
-    CodeableConcept? orderedBy,
-    List<Annotation>? note,
-    List<ListEntry>? entry,
-    CodeableConcept? emptyReason,
+  FhirListBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    ListStatusBuilder? status,
+    ListModeBuilder? mode,
+    FhirStringBuilder? title,
+    CodeableConceptBuilder? code,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    FhirDateTimeBuilder? date,
+    ReferenceBuilder? source,
+    CodeableConceptBuilder? orderedBy,
+    List<AnnotationBuilder>? note,
+    List<ListEntryBuilder>? entry,
+    CodeableConceptBuilder? emptyReason,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return FhirList(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = FhirListBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      orderedBy: orderedBy?.copyWith(
-            objectPath: '$newObjectPath.orderedBy',
-          ) ??
-          this.orderedBy,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      entry: entry
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.entry',
-                ),
-              )
-              .toList() ??
-          this.entry,
-      emptyReason: emptyReason?.copyWith(
-            objectPath: '$newObjectPath.emptyReason',
-          ) ??
-          this.emptyReason,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      mode: mode ?? this.mode,
+      title: title ?? this.title,
+      code: code ?? this.code,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      date: date ?? this.date,
+      source: source ?? this.source,
+      orderedBy: orderedBy ?? this.orderedBy,
+      note: note ?? this.note,
+      entry: entry ?? this.entry,
+      emptyReason: emptyReason ?? this.emptyReason,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! FhirList) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! FhirListBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1189,25 +1054,25 @@ class FhirList extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1267,13 +1132,13 @@ class FhirList extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<ListEntry>(
+    if (!listEquals<ListEntryBuilder>(
       entry,
       o.entry,
     )) {
@@ -1289,47 +1154,44 @@ class FhirList extends DomainResource {
   }
 }
 
-/// [ListEntry]
+/// [ListEntryBuilder]
 /// Entries in this list.
-class ListEntry extends BackboneElement {
+class ListEntryBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ListEntry]
+  /// [ListEntryBuilder]
 
-  const ListEntry({
+  ListEntryBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.flag,
     this.deleted,
     this.date,
-    required this.item,
+    this.item,
     super.disallowExtensions,
   }) : super(
           objectPath: 'List.entry',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ListEntry.empty() => ListEntry(
-        item: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ListEntryBuilder.empty() => ListEntryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ListEntry.fromJson(
+  factory ListEntryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'List.entry';
-    return ListEntry(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ListEntryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1338,8 +1200,8 @@ class ListEntry extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1347,49 +1209,49 @@ class ListEntry extends BackboneElement {
             ),
           )
           .toList(),
-      flag: JsonParser.parseObject<CodeableConcept>(
+      flag: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'flag',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.flag',
       ),
-      deleted: JsonParser.parsePrimitive<FhirBoolean>(
+      deleted: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'deleted',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.deleted',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      item: JsonParser.parseObject<Reference>(
+      item: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'item',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.item',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ListEntry]
+  /// Deserialize [ListEntryBuilder]
   /// from a [String] or [YamlMap] object
-  factory ListEntry.fromYaml(
+  factory ListEntryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ListEntry.fromJson(
+      return ListEntryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ListEntry.fromJson(
+      return ListEntryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ListEntry '
+        'ListEntryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1397,16 +1259,16 @@ class ListEntry extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ListEntry]
+  /// [ListEntryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ListEntry.fromJsonString(
+  factory ListEntryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ListEntry.fromJson(json);
+      return ListEntryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1419,35 +1281,35 @@ class ListEntry extends BackboneElement {
   /// [flag]
   /// The flag allows the system constructing the list to indicate the role
   /// and significance of the item in the list.
-  final CodeableConcept? flag;
+  CodeableConceptBuilder? flag;
 
   /// [deleted]
   /// True if this item is marked as deleted in the list.
-  final FhirBoolean? deleted;
+  FhirBooleanBuilder? deleted;
 
   /// [date]
   /// When this item was added to the list.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [item]
   /// A reference to the actual resource from which data was derived.
-  final Reference item;
+  ReferenceBuilder? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1456,39 +1318,18 @@ class ListEntry extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'flag',
-      flag,
-    );
-    addField(
-      'deleted',
-      deleted,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'item',
-      item,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('flag', flag);
+    addField('deleted', deleted);
+    addField('date', date);
+    addField('item', item);
     return json;
   }
 
@@ -1509,11 +1350,11 @@ class ListEntry extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1540,7 +1381,9 @@ class ListEntry extends BackboneElement {
           fields.add(date!);
         }
       case 'item':
-        fields.add(item);
+        if (item != null) {
+          fields.add(item!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1551,7 +1394,7 @@ class ListEntry extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1560,81 +1403,85 @@ class ListEntry extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'flag':
         {
-          if (child is CodeableConcept) {
-            return copyWith(flag: child);
+          if (child is CodeableConceptBuilder) {
+            flag = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'deleted':
         {
-          if (child is FhirBoolean) {
-            return copyWith(deleted: child);
+          if (child is FhirBooleanBuilder) {
+            deleted = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'item':
         {
-          if (child is Reference) {
-            return copyWith(item: child);
+          if (child is ReferenceBuilder) {
+            item = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1650,74 +1497,63 @@ class ListEntry extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'flag':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'deleted':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'item':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ListEntry]
+  /// Creates a new [ListEntryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ListEntry createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'flag':
         {
-          return copyWith(
-            flag: CodeableConcept.empty(),
-          );
+          flag = CodeableConceptBuilder.empty();
+          return;
         }
       case 'deleted':
         {
-          return copyWith(
-            deleted: FhirBoolean.empty(),
-          );
+          deleted = FhirBooleanBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'item':
         {
-          return copyWith(
-            item: Reference.empty(),
-          );
+          item = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1726,36 +1562,35 @@ class ListEntry extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ListEntry clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool flag = false,
     bool deleted = false,
     bool date = false,
+    bool item = false,
   }) {
-    return ListEntry(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      flag: flag ? null : this.flag,
-      deleted: deleted ? null : this.deleted,
-      date: date ? null : this.date,
-      item: item,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (flag) this.flag = null;
+    if (deleted) this.deleted = null;
+    if (date) this.date = null;
+    if (item) this.item = null;
   }
 
   @override
-  ListEntry clone() => throw UnimplementedError();
+  ListEntryBuilder clone() => throw UnimplementedError();
   @override
-  ListEntry copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? flag,
-    FhirBoolean? deleted,
-    FhirDateTime? date,
-    Reference? item,
+  ListEntryBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? flag,
+    FhirBooleanBuilder? deleted,
+    FhirDateTimeBuilder? date,
+    ReferenceBuilder? item,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1763,50 +1598,38 @@ class ListEntry extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ListEntry(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      flag: flag?.copyWith(
-            objectPath: '$newObjectPath.flag',
-          ) ??
-          this.flag,
-      deleted: deleted?.copyWith(
-            objectPath: '$newObjectPath.deleted',
-          ) ??
-          this.deleted,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      item: item?.copyWith(
-            objectPath: '$newObjectPath.item',
-          ) ??
-          this.item,
+    final newResult = ListEntryBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      flag: flag ?? this.flag,
+      deleted: deleted ?? this.deleted,
+      date: date ?? this.date,
+      item: item ?? this.item,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ListEntry) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ListEntryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1817,13 +1640,13 @@ class ListEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

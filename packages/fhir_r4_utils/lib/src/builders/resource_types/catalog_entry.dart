@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [CatalogEntry]
+/// [CatalogEntryBuilder]
 /// Catalog entries are wrappers that contextualize items included in a
 /// catalog.
-class CatalogEntry extends DomainResource {
+class CatalogEntryBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [CatalogEntry]
+  /// [CatalogEntryBuilder]
 
-  const CatalogEntry({
+  CatalogEntryBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -20,8 +22,8 @@ class CatalogEntry extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.type,
-    required this.orderable,
-    required this.referencedItem,
+    this.orderable,
+    this.referencedItem,
     this.additionalIdentifier,
     this.classification,
     this.status,
@@ -37,52 +39,48 @@ class CatalogEntry extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CatalogEntry.empty() => CatalogEntry(
-        orderable: FhirBoolean.empty(),
-        referencedItem: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CatalogEntryBuilder.empty() => CatalogEntryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CatalogEntry.fromJson(
+  factory CatalogEntryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'CatalogEntry';
-    return CatalogEntry(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CatalogEntryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -91,8 +89,8 @@ class CatalogEntry extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -101,8 +99,8 @@ class CatalogEntry extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -111,8 +109,8 @@ class CatalogEntry extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -120,27 +118,27 @@ class CatalogEntry extends DomainResource {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      orderable: JsonParser.parsePrimitive<FhirBoolean>(
+      orderable: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'orderable',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.orderable',
-      )!,
-      referencedItem: JsonParser.parseObject<Reference>(
+      ),
+      referencedItem: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'referencedItem',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.referencedItem',
-      )!,
+      ),
       additionalIdentifier: (json['additionalIdentifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.additionalIdentifier',
@@ -149,8 +147,8 @@ class CatalogEntry extends DomainResource {
           )
           .toList(),
       classification: (json['classification'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.classification',
@@ -158,34 +156,34 @@ class CatalogEntry extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      validityPeriod: JsonParser.parseObject<Period>(
+      validityPeriod: JsonParser.parseObject<PeriodBuilder>(
         json,
         'validityPeriod',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.validityPeriod',
       ),
-      validTo: JsonParser.parsePrimitive<FhirDateTime>(
+      validTo: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'validTo',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.validTo',
       ),
-      lastUpdated: JsonParser.parsePrimitive<FhirDateTime>(
+      lastUpdated: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'lastUpdated',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.lastUpdated',
       ),
       additionalCharacteristic:
           (json['additionalCharacteristic'] as List<dynamic>?)
-              ?.map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
+              ?.map<CodeableConceptBuilder>(
+                (v) => CodeableConceptBuilder.fromJson(
                   {
                     ...v as Map<String, dynamic>,
                     'objectPath': '$objectPath.additionalCharacteristic',
@@ -195,8 +193,8 @@ class CatalogEntry extends DomainResource {
               .toList(),
       additionalClassification:
           (json['additionalClassification'] as List<dynamic>?)
-              ?.map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
+              ?.map<CodeableConceptBuilder>(
+                (v) => CodeableConceptBuilder.fromJson(
                   {
                     ...v as Map<String, dynamic>,
                     'objectPath': '$objectPath.additionalClassification',
@@ -205,8 +203,8 @@ class CatalogEntry extends DomainResource {
               )
               .toList(),
       relatedEntry: (json['relatedEntry'] as List<dynamic>?)
-          ?.map<CatalogEntryRelatedEntry>(
-            (v) => CatalogEntryRelatedEntry.fromJson(
+          ?.map<CatalogEntryRelatedEntryBuilder>(
+            (v) => CatalogEntryRelatedEntryBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatedEntry',
@@ -217,22 +215,22 @@ class CatalogEntry extends DomainResource {
     );
   }
 
-  /// Deserialize [CatalogEntry]
+  /// Deserialize [CatalogEntryBuilder]
   /// from a [String] or [YamlMap] object
-  factory CatalogEntry.fromYaml(
+  factory CatalogEntryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CatalogEntry.fromJson(
+      return CatalogEntryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CatalogEntry.fromJson(
+      return CatalogEntryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CatalogEntry '
+        'CatalogEntryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -240,16 +238,16 @@ class CatalogEntry extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [CatalogEntry]
+  /// [CatalogEntryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CatalogEntry.fromJsonString(
+  factory CatalogEntryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CatalogEntry.fromJson(json);
+      return CatalogEntryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -262,74 +260,74 @@ class CatalogEntry extends DomainResource {
   /// [identifier]
   /// Used in supporting different identifiers for the same product, e.g.
   /// manufacturer code and retailer code.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [type]
   /// The type of item - medication, device, service, protocol or other.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [orderable]
   /// Whether the entry represents an orderable item.
-  final FhirBoolean orderable;
+  FhirBooleanBuilder? orderable;
 
   /// [referencedItem]
   /// The item in a catalog or definition.
-  final Reference referencedItem;
+  ReferenceBuilder? referencedItem;
 
   /// [additionalIdentifier]
   /// Used in supporting related concepts, e.g. NDC to RxNorm.
-  final List<Identifier>? additionalIdentifier;
+  List<IdentifierBuilder>? additionalIdentifier;
 
   /// [classification]
   /// Classes of devices, or ATC for medication.
-  final List<CodeableConcept>? classification;
+  List<CodeableConceptBuilder>? classification;
 
   /// [status]
   /// Used to support catalog exchange even for unsupported products, e.g.
   /// getting list of medications even if not prescribable.
-  final PublicationStatus? status;
+  PublicationStatusBuilder? status;
 
   /// [validityPeriod]
   /// The time period in which this catalog entry is expected to be active.
-  final Period? validityPeriod;
+  PeriodBuilder? validityPeriod;
 
   /// [validTo]
   /// The date until which this catalog entry is expected to be active.
-  final FhirDateTime? validTo;
+  FhirDateTimeBuilder? validTo;
 
   /// [lastUpdated]
   /// Typically date of issue is different from the beginning of the
   /// validity. This can be used to see when an item was last updated.
-  final FhirDateTime? lastUpdated;
+  FhirDateTimeBuilder? lastUpdated;
 
   /// [additionalCharacteristic]
   /// Used for examplefor Out of Formulary, or any specifics.
-  final List<CodeableConcept>? additionalCharacteristic;
+  List<CodeableConceptBuilder>? additionalCharacteristic;
 
   /// [additionalClassification]
   /// User for example for ATC classification, or.
-  final List<CodeableConcept>? additionalClassification;
+  List<CodeableConceptBuilder>? additionalClassification;
 
   /// [relatedEntry]
   /// Used for example, to point to a substance, or to a device used to
   /// administer a medication.
-  final List<CatalogEntryRelatedEntry>? relatedEntry;
+  List<CatalogEntryRelatedEntryBuilder>? relatedEntry;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -338,96 +336,33 @@ class CatalogEntry extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'orderable',
-      orderable,
-    );
-    addField(
-      'referencedItem',
-      referencedItem,
-    );
-    addField(
-      'additionalIdentifier',
-      additionalIdentifier,
-    );
-    addField(
-      'classification',
-      classification,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'validityPeriod',
-      validityPeriod,
-    );
-    addField(
-      'validTo',
-      validTo,
-    );
-    addField(
-      'lastUpdated',
-      lastUpdated,
-    );
-    addField(
-      'additionalCharacteristic',
-      additionalCharacteristic,
-    );
-    addField(
-      'additionalClassification',
-      additionalClassification,
-    );
-    addField(
-      'relatedEntry',
-      relatedEntry,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('type', type);
+    addField('orderable', orderable);
+    addField('referencedItem', referencedItem);
+    addField('additionalIdentifier', additionalIdentifier);
+    addField('classification', classification);
+    addField('status', status);
+    addField('validityPeriod', validityPeriod);
+    addField('validTo', validTo);
+    addField('lastUpdated', lastUpdated);
+    addField('additionalCharacteristic', additionalCharacteristic);
+    addField('additionalClassification', additionalClassification);
+    addField('relatedEntry', relatedEntry);
     return json;
   }
 
@@ -462,11 +397,11 @@ class CatalogEntry extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -509,9 +444,13 @@ class CatalogEntry extends DomainResource {
           fields.add(type!);
         }
       case 'orderable':
-        fields.add(orderable);
+        if (orderable != null) {
+          fields.add(orderable!);
+        }
       case 'referencedItem':
-        fields.add(referencedItem);
+        if (referencedItem != null) {
+          fields.add(referencedItem!);
+        }
       case 'additionalIdentifier':
         if (additionalIdentifier != null) {
           fields.addAll(additionalIdentifier!);
@@ -558,7 +497,7 @@ class CatalogEntry extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -567,235 +506,252 @@ class CatalogEntry extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'orderable':
         {
-          if (child is FhirBoolean) {
-            return copyWith(orderable: child);
+          if (child is FhirBooleanBuilder) {
+            orderable = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'referencedItem':
         {
-          if (child is Reference) {
-            return copyWith(referencedItem: child);
+          if (child is ReferenceBuilder) {
+            referencedItem = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'additionalIdentifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?additionalIdentifier, ...child];
-            return copyWith(additionalIdentifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            additionalIdentifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalIdentifier, child];
-            return copyWith(additionalIdentifier: newList);
+            additionalIdentifier = [...(additionalIdentifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classification':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?classification, ...child];
-            return copyWith(classification: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            classification = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
-            return copyWith(classification: newList);
+            classification = [...(classification ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validityPeriod':
         {
-          if (child is Period) {
-            return copyWith(validityPeriod: child);
+          if (child is PeriodBuilder) {
+            validityPeriod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'validTo':
         {
-          if (child is FhirDateTime) {
-            return copyWith(validTo: child);
+          if (child is FhirDateTimeBuilder) {
+            validTo = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastUpdated':
         {
-          if (child is FhirDateTime) {
-            return copyWith(lastUpdated: child);
+          if (child is FhirDateTimeBuilder) {
+            lastUpdated = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'additionalCharacteristic':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?additionalCharacteristic, ...child];
-            return copyWith(additionalCharacteristic: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            additionalCharacteristic = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalCharacteristic, child];
-            return copyWith(additionalCharacteristic: newList);
+            additionalCharacteristic = [
+              ...(additionalCharacteristic ?? []),
+              child
+            ];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'additionalClassification':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?additionalClassification, ...child];
-            return copyWith(additionalClassification: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            additionalClassification = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalClassification, child];
-            return copyWith(additionalClassification: newList);
+            additionalClassification = [
+              ...(additionalClassification ?? []),
+              child
+            ];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatedEntry':
         {
-          if (child is List<CatalogEntryRelatedEntry>) {
-            // Add all elements from passed list
-            final newList = [...?relatedEntry, ...child];
-            return copyWith(relatedEntry: newList);
-          } else if (child is CatalogEntryRelatedEntry) {
+          if (child is List<CatalogEntryRelatedEntryBuilder>) {
+            // Replace or create new list
+            relatedEntry = child;
+            return;
+          } else if (child is CatalogEntryRelatedEntryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedEntry, child];
-            return copyWith(relatedEntry: newList);
+            relatedEntry = [...(relatedEntry ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -811,186 +767,161 @@ class CatalogEntry extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'orderable':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'referencedItem':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'additionalIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'classification':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'validityPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'validTo':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'lastUpdated':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'additionalCharacteristic':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'additionalClassification':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'relatedEntry':
-        return ['CatalogEntryRelatedEntry'];
+        return ['CatalogEntryRelatedEntryBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CatalogEntry]
+  /// Creates a new [CatalogEntryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CatalogEntry createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'orderable':
         {
-          return copyWith(
-            orderable: FhirBoolean.empty(),
-          );
+          orderable = FhirBooleanBuilder.empty();
+          return;
         }
       case 'referencedItem':
         {
-          return copyWith(
-            referencedItem: Reference.empty(),
-          );
+          referencedItem = ReferenceBuilder.empty();
+          return;
         }
       case 'additionalIdentifier':
         {
-          return copyWith(
-            additionalIdentifier: <Identifier>[],
-          );
+          additionalIdentifier = <IdentifierBuilder>[];
+          return;
         }
       case 'classification':
         {
-          return copyWith(
-            classification: <CodeableConcept>[],
-          );
+          classification = <CodeableConceptBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'validityPeriod':
         {
-          return copyWith(
-            validityPeriod: Period.empty(),
-          );
+          validityPeriod = PeriodBuilder.empty();
+          return;
         }
       case 'validTo':
         {
-          return copyWith(
-            validTo: FhirDateTime.empty(),
-          );
+          validTo = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'lastUpdated':
         {
-          return copyWith(
-            lastUpdated: FhirDateTime.empty(),
-          );
+          lastUpdated = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'additionalCharacteristic':
         {
-          return copyWith(
-            additionalCharacteristic: <CodeableConcept>[],
-          );
+          additionalCharacteristic = <CodeableConceptBuilder>[];
+          return;
         }
       case 'additionalClassification':
         {
-          return copyWith(
-            additionalClassification: <CodeableConcept>[],
-          );
+          additionalClassification = <CodeableConceptBuilder>[];
+          return;
         }
       case 'relatedEntry':
         {
-          return copyWith(
-            relatedEntry: <CatalogEntryRelatedEntry>[],
-          );
+          relatedEntry = <CatalogEntryRelatedEntryBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -999,7 +930,7 @@ class CatalogEntry extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  CatalogEntry clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1010,6 +941,8 @@ class CatalogEntry extends DomainResource {
     bool modifierExtension = false,
     bool identifier = false,
     bool type = false,
+    bool orderable = false,
+    bool referencedItem = false,
     bool additionalIdentifier = false,
     bool classification = false,
     bool status = false,
@@ -1020,186 +953,108 @@ class CatalogEntry extends DomainResource {
     bool additionalClassification = false,
     bool relatedEntry = false,
   }) {
-    return CatalogEntry(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      type: type ? null : this.type,
-      orderable: orderable,
-      referencedItem: referencedItem,
-      additionalIdentifier:
-          additionalIdentifier ? null : this.additionalIdentifier,
-      classification: classification ? null : this.classification,
-      status: status ? null : this.status,
-      validityPeriod: validityPeriod ? null : this.validityPeriod,
-      validTo: validTo ? null : this.validTo,
-      lastUpdated: lastUpdated ? null : this.lastUpdated,
-      additionalCharacteristic:
-          additionalCharacteristic ? null : this.additionalCharacteristic,
-      additionalClassification:
-          additionalClassification ? null : this.additionalClassification,
-      relatedEntry: relatedEntry ? null : this.relatedEntry,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (type) this.type = null;
+    if (orderable) this.orderable = null;
+    if (referencedItem) this.referencedItem = null;
+    if (additionalIdentifier) this.additionalIdentifier = null;
+    if (classification) this.classification = null;
+    if (status) this.status = null;
+    if (validityPeriod) this.validityPeriod = null;
+    if (validTo) this.validTo = null;
+    if (lastUpdated) this.lastUpdated = null;
+    if (additionalCharacteristic) this.additionalCharacteristic = null;
+    if (additionalClassification) this.additionalClassification = null;
+    if (relatedEntry) this.relatedEntry = null;
   }
 
   @override
-  CatalogEntry clone() => throw UnimplementedError();
+  CatalogEntryBuilder clone() => throw UnimplementedError();
   @override
-  CatalogEntry copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    CodeableConcept? type,
-    FhirBoolean? orderable,
-    Reference? referencedItem,
-    List<Identifier>? additionalIdentifier,
-    List<CodeableConcept>? classification,
-    PublicationStatus? status,
-    Period? validityPeriod,
-    FhirDateTime? validTo,
-    FhirDateTime? lastUpdated,
-    List<CodeableConcept>? additionalCharacteristic,
-    List<CodeableConcept>? additionalClassification,
-    List<CatalogEntryRelatedEntry>? relatedEntry,
+  CatalogEntryBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    CodeableConceptBuilder? type,
+    FhirBooleanBuilder? orderable,
+    ReferenceBuilder? referencedItem,
+    List<IdentifierBuilder>? additionalIdentifier,
+    List<CodeableConceptBuilder>? classification,
+    PublicationStatusBuilder? status,
+    PeriodBuilder? validityPeriod,
+    FhirDateTimeBuilder? validTo,
+    FhirDateTimeBuilder? lastUpdated,
+    List<CodeableConceptBuilder>? additionalCharacteristic,
+    List<CodeableConceptBuilder>? additionalClassification,
+    List<CatalogEntryRelatedEntryBuilder>? relatedEntry,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return CatalogEntry(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CatalogEntryBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      orderable: orderable?.copyWith(
-            objectPath: '$newObjectPath.orderable',
-          ) ??
-          this.orderable,
-      referencedItem: referencedItem?.copyWith(
-            objectPath: '$newObjectPath.referencedItem',
-          ) ??
-          this.referencedItem,
-      additionalIdentifier: additionalIdentifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.additionalIdentifier',
-                ),
-              )
-              .toList() ??
-          this.additionalIdentifier,
-      classification: classification
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.classification',
-                ),
-              )
-              .toList() ??
-          this.classification,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      validityPeriod: validityPeriod?.copyWith(
-            objectPath: '$newObjectPath.validityPeriod',
-          ) ??
-          this.validityPeriod,
-      validTo: validTo?.copyWith(
-            objectPath: '$newObjectPath.validTo',
-          ) ??
-          this.validTo,
-      lastUpdated: lastUpdated?.copyWith(
-            objectPath: '$newObjectPath.lastUpdated',
-          ) ??
-          this.lastUpdated,
-      additionalCharacteristic: additionalCharacteristic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.additionalCharacteristic',
-                ),
-              )
-              .toList() ??
-          this.additionalCharacteristic,
-      additionalClassification: additionalClassification
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.additionalClassification',
-                ),
-              )
-              .toList() ??
-          this.additionalClassification,
-      relatedEntry: relatedEntry
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatedEntry',
-                ),
-              )
-              .toList() ??
-          this.relatedEntry,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      type: type ?? this.type,
+      orderable: orderable ?? this.orderable,
+      referencedItem: referencedItem ?? this.referencedItem,
+      additionalIdentifier: additionalIdentifier ?? this.additionalIdentifier,
+      classification: classification ?? this.classification,
+      status: status ?? this.status,
+      validityPeriod: validityPeriod ?? this.validityPeriod,
+      validTo: validTo ?? this.validTo,
+      lastUpdated: lastUpdated ?? this.lastUpdated,
+      additionalCharacteristic:
+          additionalCharacteristic ?? this.additionalCharacteristic,
+      additionalClassification:
+          additionalClassification ?? this.additionalClassification,
+      relatedEntry: relatedEntry ?? this.relatedEntry,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CatalogEntry) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CatalogEntryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1234,25 +1089,25 @@ class CatalogEntry extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1276,13 +1131,13 @@ class CatalogEntry extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       additionalIdentifier,
       o.additionalIdentifier,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       classification,
       o.classification,
     )) {
@@ -1312,19 +1167,19 @@ class CatalogEntry extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       additionalCharacteristic,
       o.additionalCharacteristic,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       additionalClassification,
       o.additionalClassification,
     )) {
       return false;
     }
-    if (!listEquals<CatalogEntryRelatedEntry>(
+    if (!listEquals<CatalogEntryRelatedEntryBuilder>(
       relatedEntry,
       o.relatedEntry,
     )) {
@@ -1334,47 +1189,44 @@ class CatalogEntry extends DomainResource {
   }
 }
 
-/// [CatalogEntryRelatedEntry]
+/// [CatalogEntryRelatedEntryBuilder]
 /// Used for example, to point to a substance, or to a device used to
 /// administer a medication.
-class CatalogEntryRelatedEntry extends BackboneElement {
+class CatalogEntryRelatedEntryBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CatalogEntryRelatedEntry]
+  /// [CatalogEntryRelatedEntryBuilder]
 
-  const CatalogEntryRelatedEntry({
+  CatalogEntryRelatedEntryBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.relationtype,
-    required this.item,
+    this.relationtype,
+    this.item,
     super.disallowExtensions,
   }) : super(
           objectPath: 'CatalogEntry.relatedEntry',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CatalogEntryRelatedEntry.empty() => CatalogEntryRelatedEntry(
-        relationtype: CatalogEntryRelationType.values.first,
-        item: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CatalogEntryRelatedEntryBuilder.empty() =>
+      CatalogEntryRelatedEntryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CatalogEntryRelatedEntry.fromJson(
+  factory CatalogEntryRelatedEntryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'CatalogEntry.relatedEntry';
-    return CatalogEntryRelatedEntry(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CatalogEntryRelatedEntryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1383,8 +1235,8 @@ class CatalogEntryRelatedEntry extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1392,37 +1244,37 @@ class CatalogEntryRelatedEntry extends BackboneElement {
             ),
           )
           .toList(),
-      relationtype: JsonParser.parsePrimitive<CatalogEntryRelationType>(
+      relationtype: JsonParser.parsePrimitive<CatalogEntryRelationTypeBuilder>(
         json,
         'relationtype',
-        CatalogEntryRelationType.fromJson,
+        CatalogEntryRelationTypeBuilder.fromJson,
         '$objectPath.relationtype',
-      )!,
-      item: JsonParser.parseObject<Reference>(
+      ),
+      item: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'item',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.item',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CatalogEntryRelatedEntry]
+  /// Deserialize [CatalogEntryRelatedEntryBuilder]
   /// from a [String] or [YamlMap] object
-  factory CatalogEntryRelatedEntry.fromYaml(
+  factory CatalogEntryRelatedEntryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CatalogEntryRelatedEntry.fromJson(
+      return CatalogEntryRelatedEntryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CatalogEntryRelatedEntry.fromJson(
+      return CatalogEntryRelatedEntryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CatalogEntryRelatedEntry '
+        'CatalogEntryRelatedEntryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1430,16 +1282,16 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CatalogEntryRelatedEntry]
+  /// [CatalogEntryRelatedEntryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CatalogEntryRelatedEntry.fromJsonString(
+  factory CatalogEntryRelatedEntryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CatalogEntryRelatedEntry.fromJson(json);
+      return CatalogEntryRelatedEntryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1452,27 +1304,27 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   /// [relationtype]
   /// The type of relation to the related item: child, parent,
   /// packageContent, containerPackage, usedIn, uses, requires, etc.
-  final CatalogEntryRelationType relationtype;
+  CatalogEntryRelationTypeBuilder? relationtype;
 
   /// [item]
   /// The reference to the related item.
-  final Reference item;
+  ReferenceBuilder? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1481,31 +1333,16 @@ class CatalogEntryRelatedEntry extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'relationtype',
-      relationtype,
-    );
-    addField(
-      'item',
-      item,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('relationtype', relationtype);
+    addField('item', item);
     return json;
   }
 
@@ -1524,11 +1361,11 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1543,9 +1380,13 @@ class CatalogEntryRelatedEntry extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'relationtype':
-        fields.add(relationtype);
+        if (relationtype != null) {
+          fields.add(relationtype!);
+        }
       case 'item':
-        fields.add(item);
+        if (item != null) {
+          fields.add(item!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -1556,7 +1397,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1565,65 +1406,67 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationtype':
         {
-          if (child is CatalogEntryRelationType) {
-            return copyWith(relationtype: child);
+          if (child is CatalogEntryRelationTypeBuilder) {
+            relationtype = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'item':
         {
-          if (child is Reference) {
-            return copyWith(item: child);
+          if (child is ReferenceBuilder) {
+            item = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1639,58 +1482,49 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'relationtype':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'item':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CatalogEntryRelatedEntry]
+  /// Creates a new [CatalogEntryRelatedEntryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CatalogEntryRelatedEntry createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'relationtype':
         {
-          return copyWith(
-            relationtype: CatalogEntryRelationType.empty(),
-          );
+          relationtype = CatalogEntryRelationTypeBuilder.empty();
+          return;
         }
       case 'item':
         {
-          return copyWith(
-            item: Reference.empty(),
-          );
+          item = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1699,29 +1533,29 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CatalogEntryRelatedEntry clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool relationtype = false,
+    bool item = false,
   }) {
-    return CatalogEntryRelatedEntry(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      relationtype: relationtype,
-      item: item,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (relationtype) this.relationtype = null;
+    if (item) this.item = null;
   }
 
   @override
-  CatalogEntryRelatedEntry clone() => throw UnimplementedError();
+  CatalogEntryRelatedEntryBuilder clone() => throw UnimplementedError();
   @override
-  CatalogEntryRelatedEntry copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CatalogEntryRelationType? relationtype,
-    Reference? item,
+  CatalogEntryRelatedEntryBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CatalogEntryRelationTypeBuilder? relationtype,
+    ReferenceBuilder? item,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1729,42 +1563,36 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CatalogEntryRelatedEntry(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      relationtype: relationtype?.copyWith(
-            objectPath: '$newObjectPath.relationtype',
-          ) ??
-          this.relationtype,
-      item: item?.copyWith(
-            objectPath: '$newObjectPath.item',
-          ) ??
-          this.item,
+    final newResult = CatalogEntryRelatedEntryBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      relationtype: relationtype ?? this.relationtype,
+      item: item ?? this.item,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CatalogEntryRelatedEntry) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CatalogEntryRelatedEntryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1775,13 +1603,13 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

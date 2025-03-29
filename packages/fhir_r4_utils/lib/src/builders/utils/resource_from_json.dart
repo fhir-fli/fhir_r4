@@ -1,295 +1,295 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
-/// Acts like a constructor, returns a [Resource], accepts a
+/// Acts like a constructor, returns a [ResourceBuilder], accepts a
 /// [Map<String, Dynamic>] as an argument
-Resource resourceFromJson(Map<String, dynamic> json) {
+ResourceBuilder resourceFromJson(Map<String, dynamic> json) {
   final dynamic resourceType = json['resourceType'];
   switch (resourceType) {
     case 'Account':
-      return Account.fromJson(json);
+      return AccountBuilder.fromJson(json);
     case 'ActivityDefinition':
-      return ActivityDefinition.fromJson(json);
+      return ActivityDefinitionBuilder.fromJson(json);
     case 'AdministrableProductDefinition':
-      return AdministrableProductDefinition.fromJson(json);
+      return AdministrableProductDefinitionBuilder.fromJson(json);
     case 'AdverseEvent':
-      return AdverseEvent.fromJson(json);
+      return AdverseEventBuilder.fromJson(json);
     case 'AllergyIntolerance':
-      return AllergyIntolerance.fromJson(json);
+      return AllergyIntoleranceBuilder.fromJson(json);
     case 'Appointment':
-      return Appointment.fromJson(json);
+      return AppointmentBuilder.fromJson(json);
     case 'AppointmentResponse':
-      return AppointmentResponse.fromJson(json);
+      return AppointmentResponseBuilder.fromJson(json);
     case 'AuditEvent':
-      return AuditEvent.fromJson(json);
+      return AuditEventBuilder.fromJson(json);
     case 'Basic':
-      return Basic.fromJson(json);
+      return BasicBuilder.fromJson(json);
     case 'Binary':
-      return Binary.fromJson(json);
+      return BinaryBuilder.fromJson(json);
     case 'BiologicallyDerivedProduct':
-      return BiologicallyDerivedProduct.fromJson(json);
+      return BiologicallyDerivedProductBuilder.fromJson(json);
     case 'BodyStructure':
-      return BodyStructure.fromJson(json);
+      return BodyStructureBuilder.fromJson(json);
     case 'Bundle':
-      return Bundle.fromJson(json);
+      return BundleBuilder.fromJson(json);
     case 'CapabilityStatement':
-      return CapabilityStatement.fromJson(json);
+      return CapabilityStatementBuilder.fromJson(json);
     case 'CarePlan':
-      return CarePlan.fromJson(json);
+      return CarePlanBuilder.fromJson(json);
     case 'CareTeam':
-      return CareTeam.fromJson(json);
+      return CareTeamBuilder.fromJson(json);
     case 'CatalogEntry':
-      return CatalogEntry.fromJson(json);
+      return CatalogEntryBuilder.fromJson(json);
     case 'ChargeItem':
-      return ChargeItem.fromJson(json);
+      return ChargeItemBuilder.fromJson(json);
     case 'ChargeItemDefinition':
-      return ChargeItemDefinition.fromJson(json);
+      return ChargeItemDefinitionBuilder.fromJson(json);
     case 'Citation':
-      return Citation.fromJson(json);
+      return CitationBuilder.fromJson(json);
     case 'Claim':
-      return Claim.fromJson(json);
+      return ClaimBuilder.fromJson(json);
     case 'ClaimResponse':
-      return ClaimResponse.fromJson(json);
+      return ClaimResponseBuilder.fromJson(json);
     case 'ClinicalImpression':
-      return ClinicalImpression.fromJson(json);
+      return ClinicalImpressionBuilder.fromJson(json);
     case 'ClinicalUseDefinition':
-      return ClinicalUseDefinition.fromJson(json);
+      return ClinicalUseDefinitionBuilder.fromJson(json);
     case 'CodeSystem':
-      return CodeSystem.fromJson(json);
+      return CodeSystemBuilder.fromJson(json);
     case 'Communication':
-      return Communication.fromJson(json);
+      return CommunicationBuilder.fromJson(json);
     case 'CommunicationRequest':
-      return CommunicationRequest.fromJson(json);
+      return CommunicationRequestBuilder.fromJson(json);
     case 'CompartmentDefinition':
-      return CompartmentDefinition.fromJson(json);
+      return CompartmentDefinitionBuilder.fromJson(json);
     case 'Composition':
-      return Composition.fromJson(json);
+      return CompositionBuilder.fromJson(json);
     case 'ConceptMap':
-      return ConceptMap.fromJson(json);
+      return ConceptMapBuilder.fromJson(json);
     case 'Condition':
-      return Condition.fromJson(json);
+      return ConditionBuilder.fromJson(json);
     case 'Consent':
-      return Consent.fromJson(json);
+      return ConsentBuilder.fromJson(json);
     case 'Contract':
-      return Contract.fromJson(json);
+      return ContractBuilder.fromJson(json);
     case 'Coverage':
-      return Coverage.fromJson(json);
+      return CoverageBuilder.fromJson(json);
     case 'CoverageEligibilityRequest':
-      return CoverageEligibilityRequest.fromJson(json);
+      return CoverageEligibilityRequestBuilder.fromJson(json);
     case 'CoverageEligibilityResponse':
-      return CoverageEligibilityResponse.fromJson(json);
+      return CoverageEligibilityResponseBuilder.fromJson(json);
     case 'DetectedIssue':
-      return DetectedIssue.fromJson(json);
+      return DetectedIssueBuilder.fromJson(json);
     case 'Device':
-      return Device.fromJson(json);
+      return DeviceBuilder.fromJson(json);
     case 'DeviceDefinition':
-      return DeviceDefinition.fromJson(json);
+      return DeviceDefinitionBuilder.fromJson(json);
     case 'DeviceMetric':
-      return DeviceMetric.fromJson(json);
+      return DeviceMetricBuilder.fromJson(json);
     case 'DeviceRequest':
-      return DeviceRequest.fromJson(json);
+      return DeviceRequestBuilder.fromJson(json);
     case 'DeviceUseStatement':
-      return DeviceUseStatement.fromJson(json);
+      return DeviceUseStatementBuilder.fromJson(json);
     case 'DiagnosticReport':
-      return DiagnosticReport.fromJson(json);
+      return DiagnosticReportBuilder.fromJson(json);
     case 'DocumentManifest':
-      return DocumentManifest.fromJson(json);
+      return DocumentManifestBuilder.fromJson(json);
     case 'DocumentReference':
-      return DocumentReference.fromJson(json);
+      return DocumentReferenceBuilder.fromJson(json);
     case 'Encounter':
-      return Encounter.fromJson(json);
+      return EncounterBuilder.fromJson(json);
     case 'EnrollmentRequest':
-      return EnrollmentRequest.fromJson(json);
+      return EnrollmentRequestBuilder.fromJson(json);
     case 'EnrollmentResponse':
-      return EnrollmentResponse.fromJson(json);
+      return EnrollmentResponseBuilder.fromJson(json);
     case 'EpisodeOfCare':
-      return EpisodeOfCare.fromJson(json);
+      return EpisodeOfCareBuilder.fromJson(json);
     case 'EventDefinition':
-      return EventDefinition.fromJson(json);
+      return EventDefinitionBuilder.fromJson(json);
     case 'Evidence':
-      return Evidence.fromJson(json);
+      return EvidenceBuilder.fromJson(json);
     case 'EvidenceReport':
-      return EvidenceReport.fromJson(json);
+      return EvidenceReportBuilder.fromJson(json);
     case 'EvidenceVariable':
-      return EvidenceVariable.fromJson(json);
+      return EvidenceVariableBuilder.fromJson(json);
     case 'ExampleScenario':
-      return ExampleScenario.fromJson(json);
+      return ExampleScenarioBuilder.fromJson(json);
     case 'ExplanationOfBenefit':
-      return ExplanationOfBenefit.fromJson(json);
+      return ExplanationOfBenefitBuilder.fromJson(json);
     case 'FamilyMemberHistory':
-      return FamilyMemberHistory.fromJson(json);
+      return FamilyMemberHistoryBuilder.fromJson(json);
     case 'Endpoint':
-      return FhirEndpoint.fromJson(json);
+      return FhirEndpointBuilder.fromJson(json);
     case 'Group':
-      return FhirGroup.fromJson(json);
+      return FhirGroupBuilder.fromJson(json);
     case 'List':
-      return FhirList.fromJson(json);
+      return FhirListBuilder.fromJson(json);
     case 'Flag':
-      return Flag.fromJson(json);
+      return FlagBuilder.fromJson(json);
     case 'Goal':
-      return Goal.fromJson(json);
+      return GoalBuilder.fromJson(json);
     case 'GraphDefinition':
-      return GraphDefinition.fromJson(json);
+      return GraphDefinitionBuilder.fromJson(json);
     case 'GuidanceResponse':
-      return GuidanceResponse.fromJson(json);
+      return GuidanceResponseBuilder.fromJson(json);
     case 'HealthcareService':
-      return HealthcareService.fromJson(json);
+      return HealthcareServiceBuilder.fromJson(json);
     case 'ImagingStudy':
-      return ImagingStudy.fromJson(json);
+      return ImagingStudyBuilder.fromJson(json);
     case 'Immunization':
-      return Immunization.fromJson(json);
+      return ImmunizationBuilder.fromJson(json);
     case 'ImmunizationEvaluation':
-      return ImmunizationEvaluation.fromJson(json);
+      return ImmunizationEvaluationBuilder.fromJson(json);
     case 'ImmunizationRecommendation':
-      return ImmunizationRecommendation.fromJson(json);
+      return ImmunizationRecommendationBuilder.fromJson(json);
     case 'ImplementationGuide':
-      return ImplementationGuide.fromJson(json);
+      return ImplementationGuideBuilder.fromJson(json);
     case 'Ingredient':
-      return Ingredient.fromJson(json);
+      return IngredientBuilder.fromJson(json);
     case 'InsurancePlan':
-      return InsurancePlan.fromJson(json);
+      return InsurancePlanBuilder.fromJson(json);
     case 'Invoice':
-      return Invoice.fromJson(json);
+      return InvoiceBuilder.fromJson(json);
     case 'Library':
-      return Library.fromJson(json);
+      return LibraryBuilder.fromJson(json);
     case 'Linkage':
-      return Linkage.fromJson(json);
+      return LinkageBuilder.fromJson(json);
     case 'Location':
-      return Location.fromJson(json);
+      return LocationBuilder.fromJson(json);
     case 'ManufacturedItemDefinition':
-      return ManufacturedItemDefinition.fromJson(json);
+      return ManufacturedItemDefinitionBuilder.fromJson(json);
     case 'Measure':
-      return Measure.fromJson(json);
+      return MeasureBuilder.fromJson(json);
     case 'MeasureReport':
-      return MeasureReport.fromJson(json);
+      return MeasureReportBuilder.fromJson(json);
     case 'Media':
-      return Media.fromJson(json);
+      return MediaBuilder.fromJson(json);
     case 'Medication':
-      return Medication.fromJson(json);
+      return MedicationBuilder.fromJson(json);
     case 'MedicationAdministration':
-      return MedicationAdministration.fromJson(json);
+      return MedicationAdministrationBuilder.fromJson(json);
     case 'MedicationDispense':
-      return MedicationDispense.fromJson(json);
+      return MedicationDispenseBuilder.fromJson(json);
     case 'MedicationKnowledge':
-      return MedicationKnowledge.fromJson(json);
+      return MedicationKnowledgeBuilder.fromJson(json);
     case 'MedicationRequest':
-      return MedicationRequest.fromJson(json);
+      return MedicationRequestBuilder.fromJson(json);
     case 'MedicationStatement':
-      return MedicationStatement.fromJson(json);
+      return MedicationStatementBuilder.fromJson(json);
     case 'MedicinalProductDefinition':
-      return MedicinalProductDefinition.fromJson(json);
+      return MedicinalProductDefinitionBuilder.fromJson(json);
     case 'MessageDefinition':
-      return MessageDefinition.fromJson(json);
+      return MessageDefinitionBuilder.fromJson(json);
     case 'MessageHeader':
-      return MessageHeader.fromJson(json);
+      return MessageHeaderBuilder.fromJson(json);
     case 'MolecularSequence':
-      return MolecularSequence.fromJson(json);
+      return MolecularSequenceBuilder.fromJson(json);
     case 'NamingSystem':
-      return NamingSystem.fromJson(json);
+      return NamingSystemBuilder.fromJson(json);
     case 'NutritionOrder':
-      return NutritionOrder.fromJson(json);
+      return NutritionOrderBuilder.fromJson(json);
     case 'NutritionProduct':
-      return NutritionProduct.fromJson(json);
+      return NutritionProductBuilder.fromJson(json);
     case 'Observation':
-      return Observation.fromJson(json);
+      return ObservationBuilder.fromJson(json);
     case 'ObservationDefinition':
-      return ObservationDefinition.fromJson(json);
+      return ObservationDefinitionBuilder.fromJson(json);
     case 'OperationDefinition':
-      return OperationDefinition.fromJson(json);
+      return OperationDefinitionBuilder.fromJson(json);
     case 'OperationOutcome':
-      return OperationOutcome.fromJson(json);
+      return OperationOutcomeBuilder.fromJson(json);
     case 'Organization':
-      return Organization.fromJson(json);
+      return OrganizationBuilder.fromJson(json);
     case 'OrganizationAffiliation':
-      return OrganizationAffiliation.fromJson(json);
+      return OrganizationAffiliationBuilder.fromJson(json);
     case 'PackagedProductDefinition':
-      return PackagedProductDefinition.fromJson(json);
+      return PackagedProductDefinitionBuilder.fromJson(json);
     case 'Parameters':
-      return Parameters.fromJson(json);
+      return ParametersBuilder.fromJson(json);
     case 'Patient':
-      return Patient.fromJson(json);
+      return PatientBuilder.fromJson(json);
     case 'PaymentNotice':
-      return PaymentNotice.fromJson(json);
+      return PaymentNoticeBuilder.fromJson(json);
     case 'PaymentReconciliation':
-      return PaymentReconciliation.fromJson(json);
+      return PaymentReconciliationBuilder.fromJson(json);
     case 'Person':
-      return Person.fromJson(json);
+      return PersonBuilder.fromJson(json);
     case 'PlanDefinition':
-      return PlanDefinition.fromJson(json);
+      return PlanDefinitionBuilder.fromJson(json);
     case 'Practitioner':
-      return Practitioner.fromJson(json);
+      return PractitionerBuilder.fromJson(json);
     case 'PractitionerRole':
-      return PractitionerRole.fromJson(json);
+      return PractitionerRoleBuilder.fromJson(json);
     case 'Procedure':
-      return Procedure.fromJson(json);
+      return ProcedureBuilder.fromJson(json);
     case 'Provenance':
-      return Provenance.fromJson(json);
+      return ProvenanceBuilder.fromJson(json);
     case 'Questionnaire':
-      return Questionnaire.fromJson(json);
+      return QuestionnaireBuilder.fromJson(json);
     case 'QuestionnaireResponse':
-      return QuestionnaireResponse.fromJson(json);
+      return QuestionnaireResponseBuilder.fromJson(json);
     case 'RegulatedAuthorization':
-      return RegulatedAuthorization.fromJson(json);
+      return RegulatedAuthorizationBuilder.fromJson(json);
     case 'RelatedPerson':
-      return RelatedPerson.fromJson(json);
+      return RelatedPersonBuilder.fromJson(json);
     case 'RequestGroup':
-      return RequestGroup.fromJson(json);
+      return RequestGroupBuilder.fromJson(json);
     case 'ResearchDefinition':
-      return ResearchDefinition.fromJson(json);
+      return ResearchDefinitionBuilder.fromJson(json);
     case 'ResearchElementDefinition':
-      return ResearchElementDefinition.fromJson(json);
+      return ResearchElementDefinitionBuilder.fromJson(json);
     case 'ResearchStudy':
-      return ResearchStudy.fromJson(json);
+      return ResearchStudyBuilder.fromJson(json);
     case 'ResearchSubject':
-      return ResearchSubject.fromJson(json);
+      return ResearchSubjectBuilder.fromJson(json);
     case 'RiskAssessment':
-      return RiskAssessment.fromJson(json);
+      return RiskAssessmentBuilder.fromJson(json);
     case 'Schedule':
-      return Schedule.fromJson(json);
+      return ScheduleBuilder.fromJson(json);
     case 'SearchParameter':
-      return SearchParameter.fromJson(json);
+      return SearchParameterBuilder.fromJson(json);
     case 'ServiceRequest':
-      return ServiceRequest.fromJson(json);
+      return ServiceRequestBuilder.fromJson(json);
     case 'Slot':
-      return Slot.fromJson(json);
+      return SlotBuilder.fromJson(json);
     case 'Specimen':
-      return Specimen.fromJson(json);
+      return SpecimenBuilder.fromJson(json);
     case 'SpecimenDefinition':
-      return SpecimenDefinition.fromJson(json);
+      return SpecimenDefinitionBuilder.fromJson(json);
     case 'StructureDefinition':
-      return StructureDefinition.fromJson(json);
+      return StructureDefinitionBuilder.fromJson(json);
     case 'StructureMap':
-      return StructureMap.fromJson(json);
+      return StructureMapBuilder.fromJson(json);
     case 'Subscription':
-      return Subscription.fromJson(json);
+      return SubscriptionBuilder.fromJson(json);
     case 'SubscriptionStatus':
-      return SubscriptionStatus.fromJson(json);
+      return SubscriptionStatusBuilder.fromJson(json);
     case 'SubscriptionTopic':
-      return SubscriptionTopic.fromJson(json);
+      return SubscriptionTopicBuilder.fromJson(json);
     case 'Substance':
-      return Substance.fromJson(json);
+      return SubstanceBuilder.fromJson(json);
     case 'SubstanceDefinition':
-      return SubstanceDefinition.fromJson(json);
+      return SubstanceDefinitionBuilder.fromJson(json);
     case 'SupplyDelivery':
-      return SupplyDelivery.fromJson(json);
+      return SupplyDeliveryBuilder.fromJson(json);
     case 'SupplyRequest':
-      return SupplyRequest.fromJson(json);
+      return SupplyRequestBuilder.fromJson(json);
     case 'Task':
-      return Task.fromJson(json);
+      return TaskBuilder.fromJson(json);
     case 'TerminologyCapabilities':
-      return TerminologyCapabilities.fromJson(json);
+      return TerminologyCapabilitiesBuilder.fromJson(json);
     case 'TestReport':
-      return TestReport.fromJson(json);
+      return TestReportBuilder.fromJson(json);
     case 'TestScript':
-      return TestScript.fromJson(json);
+      return TestScriptBuilder.fromJson(json);
     case 'ValueSet':
-      return ValueSet.fromJson(json);
+      return ValueSetBuilder.fromJson(json);
     case 'VerificationResult':
-      return VerificationResult.fromJson(json);
+      return VerificationResultBuilder.fromJson(json);
     case 'VisionPrescription':
-      return VisionPrescription.fromJson(json);
+      return VisionPrescriptionBuilder.fromJson(json);
     default:
       throw UnsupportedError(
-          'You have passed Resource.fromJson a type which does not exist or is '
+          'You have passed ResourceBuilder.fromJson a type which does not exist or is '
           'null. In this case, the resourceType is $resourceType.');
   }
 }

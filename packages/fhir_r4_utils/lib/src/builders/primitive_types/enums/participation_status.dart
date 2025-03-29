@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The Participation status of an appointment.
-class ParticipationStatus extends FhirCodeEnum {
+class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ParticipationStatus._({
+  ParticipationStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ParticipationStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ParticipationStatus(
+  factory ParticipationStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ParticipationStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ParticipationStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,67 @@ class ParticipationStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ParticipationStatus] with element only
-  factory ParticipationStatus.empty() =>
-      ParticipationStatus._(validatedValue: '');
+  /// Create empty [ParticipationStatusBuilder] with element only
+  factory ParticipationStatusBuilder.empty() =>
+      ParticipationStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ParticipationStatus] from JSON.
-  factory ParticipationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ParticipationStatusBuilder] from JSON.
+  factory ParticipationStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipationStatus.elementOnly.withElement(element);
+      return ParticipationStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ParticipationStatus cannot be constructed from JSON.',
+        'ParticipationStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return ParticipationStatus._(
+    return ParticipationStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// accepted
-  static final ParticipationStatus accepted = ParticipationStatus._(
+  static ParticipationStatusBuilder accepted = ParticipationStatusBuilder._(
     validatedValue: 'accepted',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Accepted'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Accepted'.toFhirStringBuilder,
   );
 
   /// declined
-  static final ParticipationStatus declined = ParticipationStatus._(
+  static ParticipationStatusBuilder declined = ParticipationStatusBuilder._(
     validatedValue: 'declined',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Declined'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Declined'.toFhirStringBuilder,
   );
 
   /// tentative
-  static final ParticipationStatus tentative = ParticipationStatus._(
+  static ParticipationStatusBuilder tentative = ParticipationStatusBuilder._(
     validatedValue: 'tentative',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Tentative'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Tentative'.toFhirStringBuilder,
   );
 
   /// needs_action
-  static final ParticipationStatus needs_action = ParticipationStatus._(
+  static ParticipationStatusBuilder needs_action = ParticipationStatusBuilder._(
     validatedValue: 'needs-action',
-    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Needs Action'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Needs Action'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ParticipationStatus elementOnly =
-      ParticipationStatus._(validatedValue: '');
+  static ParticipationStatusBuilder elementOnly =
+      ParticipationStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ParticipationStatus> values = [
+  static List<ParticipationStatusBuilder> values = [
     accepted,
     declined,
     tentative,
@@ -111,14 +112,15 @@ class ParticipationStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ParticipationStatus clone() => ParticipationStatus._(
+  ParticipationStatusBuilder clone() => ParticipationStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ParticipationStatus withElement(Element? newElement) {
-    return ParticipationStatus._(validatedValue: value, element: newElement);
+  ParticipationStatusBuilder withElement(ElementBuilder? newElement) {
+    return ParticipationStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,11 +136,11 @@ class ParticipationStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ParticipationStatus copyWith({
+  ParticipationStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -149,7 +151,7 @@ class ParticipationStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ParticipationStatus._(
+    return ParticipationStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -159,7 +161,7 @@ class ParticipationStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

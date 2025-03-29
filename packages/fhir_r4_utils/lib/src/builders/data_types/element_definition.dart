@@ -1,19 +1,21 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ElementDefinition]
+/// [ElementDefinitionBuilder]
 /// Captures constraints on each element within the resource, profile, or
 /// extension.
-class ElementDefinition extends BackboneType {
+class ElementDefinitionBuilder extends BackboneTypeBuilder {
   /// Primary constructor for
-  /// [ElementDefinition]
+  /// [ElementDefinitionBuilder]
 
-  const ElementDefinition({
+  ElementDefinitionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.path,
+    this.path,
     this.representation,
     this.sliceName,
     this.sliceIsConstraining,
@@ -48,31 +50,28 @@ class ElementDefinition extends BackboneType {
     this.binding,
     this.mapping,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinition',
+    super.objectPath = 'ElementDefinitionBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinition.empty() => ElementDefinition(
-        path: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionBuilder.empty() => ElementDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinition.fromJson(
+  factory ElementDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'ElementDefinition';
-    return ElementDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -81,8 +80,8 @@ class ElementDefinition extends BackboneType {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -90,39 +89,40 @@ class ElementDefinition extends BackboneType {
             ),
           )
           .toList(),
-      path: JsonParser.parsePrimitive<FhirString>(
+      path: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'path',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.path',
-      )!,
-      representation: JsonParser.parsePrimitiveList<PropertyRepresentation>(
+      ),
+      representation:
+          JsonParser.parsePrimitiveList<PropertyRepresentationBuilder>(
         json,
         'representation',
-        PropertyRepresentation.fromJson,
+        PropertyRepresentationBuilder.fromJson,
         '$objectPath.representation',
       ),
-      sliceName: JsonParser.parsePrimitive<FhirString>(
+      sliceName: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'sliceName',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.sliceName',
       ),
-      sliceIsConstraining: JsonParser.parsePrimitive<FhirBoolean>(
+      sliceIsConstraining: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'sliceIsConstraining',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.sliceIsConstraining',
       ),
-      label: JsonParser.parsePrimitive<FhirString>(
+      label: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'label',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.label',
       ),
       code: (json['code'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -130,69 +130,69 @@ class ElementDefinition extends BackboneType {
             ),
           )
           .toList(),
-      slicing: JsonParser.parseObject<ElementDefinitionSlicing>(
+      slicing: JsonParser.parseObject<ElementDefinitionSlicingBuilder>(
         json,
         'slicing',
-        ElementDefinitionSlicing.fromJson,
+        ElementDefinitionSlicingBuilder.fromJson,
         '$objectPath.slicing',
       ),
-      short: JsonParser.parsePrimitive<FhirString>(
+      short: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'short',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.short',
       ),
-      definition: JsonParser.parsePrimitive<FhirMarkdown>(
+      definition: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'definition',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.definition',
       ),
-      comment: JsonParser.parsePrimitive<FhirMarkdown>(
+      comment: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'comment',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.comment',
       ),
-      requirements: JsonParser.parsePrimitive<FhirMarkdown>(
+      requirements: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'requirements',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.requirements',
       ),
-      alias: JsonParser.parsePrimitiveList<FhirString>(
+      alias: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'alias',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.alias',
       ),
-      min: JsonParser.parsePrimitive<FhirUnsignedInt>(
+      min: JsonParser.parsePrimitive<FhirUnsignedIntBuilder>(
         json,
         'min',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.min',
       ),
-      max: JsonParser.parsePrimitive<FhirString>(
+      max: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'max',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.max',
       ),
-      base: JsonParser.parseObject<ElementDefinitionBase>(
+      base: JsonParser.parseObject<ElementDefinitionBaseBuilder>(
         json,
         'base',
-        ElementDefinitionBase.fromJson,
+        ElementDefinitionBaseBuilder.fromJson,
         '$objectPath.base',
       ),
-      contentReference: JsonParser.parsePrimitive<FhirUri>(
+      contentReference: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'contentReference',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.contentReference',
       ),
       type: (json['type'] as List<dynamic>?)
-          ?.map<ElementDefinitionType>(
-            (v) => ElementDefinitionType.fromJson(
+          ?.map<ElementDefinitionTypeBuilder>(
+            (v) => ElementDefinitionTypeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -201,192 +201,193 @@ class ElementDefinition extends BackboneType {
           )
           .toList(),
       defaultValueX:
-          JsonParser.parsePolymorphic<DefaultValueXElementDefinition>(
+          JsonParser.parsePolymorphic<DefaultValueXElementDefinitionBuilder>(
         json,
         {
-          'defaultValueBase64Binary': FhirBase64Binary.fromJson,
-          'defaultValueBoolean': FhirBoolean.fromJson,
-          'defaultValueCanonical': FhirCanonical.fromJson,
-          'defaultValueCode': FhirCode.fromJson,
-          'defaultValueDate': FhirDate.fromJson,
-          'defaultValueDateTime': FhirDateTime.fromJson,
-          'defaultValueDecimal': FhirDecimal.fromJson,
-          'defaultValueId': FhirId.fromJson,
-          'defaultValueInstant': FhirInstant.fromJson,
-          'defaultValueInteger': FhirInteger.fromJson,
-          'defaultValueMarkdown': FhirMarkdown.fromJson,
-          'defaultValueOid': FhirOid.fromJson,
-          'defaultValuePositiveInt': FhirPositiveInt.fromJson,
-          'defaultValueString': FhirString.fromJson,
-          'defaultValueTime': FhirTime.fromJson,
-          'defaultValueUnsignedInt': FhirUnsignedInt.fromJson,
-          'defaultValueUri': FhirUri.fromJson,
-          'defaultValueUrl': FhirUrl.fromJson,
-          'defaultValueUuid': FhirUuid.fromJson,
-          'defaultValueAddress': Address.fromJson,
-          'defaultValueAge': Age.fromJson,
-          'defaultValueAnnotation': Annotation.fromJson,
-          'defaultValueAttachment': Attachment.fromJson,
-          'defaultValueCodeableConcept': CodeableConcept.fromJson,
-          'defaultValueCodeableReference': CodeableReference.fromJson,
-          'defaultValueCoding': Coding.fromJson,
-          'defaultValueContactPoint': ContactPoint.fromJson,
-          'defaultValueCount': Count.fromJson,
-          'defaultValueDistance': Distance.fromJson,
-          'defaultValueDuration': FhirDuration.fromJson,
-          'defaultValueHumanName': HumanName.fromJson,
-          'defaultValueIdentifier': Identifier.fromJson,
-          'defaultValueMoney': Money.fromJson,
-          'defaultValuePeriod': Period.fromJson,
-          'defaultValueQuantity': Quantity.fromJson,
-          'defaultValueRange': Range.fromJson,
-          'defaultValueRatio': Ratio.fromJson,
-          'defaultValueRatioRange': RatioRange.fromJson,
-          'defaultValueReference': Reference.fromJson,
-          'defaultValueSampledData': SampledData.fromJson,
-          'defaultValueSignature': Signature.fromJson,
-          'defaultValueTiming': Timing.fromJson,
-          'defaultValueContactDetail': ContactDetail.fromJson,
-          'defaultValueContributor': Contributor.fromJson,
-          'defaultValueDataRequirement': DataRequirement.fromJson,
-          'defaultValueExpression': FhirExpression.fromJson,
-          'defaultValueParameterDefinition': ParameterDefinition.fromJson,
-          'defaultValueRelatedArtifact': RelatedArtifact.fromJson,
-          'defaultValueTriggerDefinition': TriggerDefinition.fromJson,
-          'defaultValueUsageContext': UsageContext.fromJson,
-          'defaultValueDosage': Dosage.fromJson,
+          'defaultValueBase64Binary': FhirBase64BinaryBuilder.fromJson,
+          'defaultValueBoolean': FhirBooleanBuilder.fromJson,
+          'defaultValueCanonical': FhirCanonicalBuilder.fromJson,
+          'defaultValueCode': FhirCodeBuilder.fromJson,
+          'defaultValueDate': FhirDateBuilder.fromJson,
+          'defaultValueDateTime': FhirDateTimeBuilder.fromJson,
+          'defaultValueDecimal': FhirDecimalBuilder.fromJson,
+          'defaultValueId': FhirIdBuilder.fromJson,
+          'defaultValueInstant': FhirInstantBuilder.fromJson,
+          'defaultValueInteger': FhirIntegerBuilder.fromJson,
+          'defaultValueMarkdown': FhirMarkdownBuilder.fromJson,
+          'defaultValueOid': FhirOidBuilder.fromJson,
+          'defaultValuePositiveInt': FhirPositiveIntBuilder.fromJson,
+          'defaultValueString': FhirStringBuilder.fromJson,
+          'defaultValueTime': FhirTimeBuilder.fromJson,
+          'defaultValueUnsignedInt': FhirUnsignedIntBuilder.fromJson,
+          'defaultValueUri': FhirUriBuilder.fromJson,
+          'defaultValueUrl': FhirUrlBuilder.fromJson,
+          'defaultValueUuid': FhirUuidBuilder.fromJson,
+          'defaultValueAddress': AddressBuilder.fromJson,
+          'defaultValueAge': AgeBuilder.fromJson,
+          'defaultValueAnnotation': AnnotationBuilder.fromJson,
+          'defaultValueAttachment': AttachmentBuilder.fromJson,
+          'defaultValueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'defaultValueCodeableReference': CodeableReferenceBuilder.fromJson,
+          'defaultValueCoding': CodingBuilder.fromJson,
+          'defaultValueContactPoint': ContactPointBuilder.fromJson,
+          'defaultValueCount': CountBuilder.fromJson,
+          'defaultValueDistance': DistanceBuilder.fromJson,
+          'defaultValueDuration': FhirDurationBuilder.fromJson,
+          'defaultValueHumanName': HumanNameBuilder.fromJson,
+          'defaultValueIdentifier': IdentifierBuilder.fromJson,
+          'defaultValueMoney': MoneyBuilder.fromJson,
+          'defaultValuePeriod': PeriodBuilder.fromJson,
+          'defaultValueQuantity': QuantityBuilder.fromJson,
+          'defaultValueRange': RangeBuilder.fromJson,
+          'defaultValueRatio': RatioBuilder.fromJson,
+          'defaultValueRatioRange': RatioRangeBuilder.fromJson,
+          'defaultValueReference': ReferenceBuilder.fromJson,
+          'defaultValueSampledData': SampledDataBuilder.fromJson,
+          'defaultValueSignature': SignatureBuilder.fromJson,
+          'defaultValueTiming': TimingBuilder.fromJson,
+          'defaultValueContactDetail': ContactDetailBuilder.fromJson,
+          'defaultValueContributor': ContributorBuilder.fromJson,
+          'defaultValueDataRequirement': DataRequirementBuilder.fromJson,
+          'defaultValueExpression': FhirExpressionBuilder.fromJson,
+          'defaultValueParameterDefinition':
+              ParameterDefinitionBuilder.fromJson,
+          'defaultValueRelatedArtifact': RelatedArtifactBuilder.fromJson,
+          'defaultValueTriggerDefinition': TriggerDefinitionBuilder.fromJson,
+          'defaultValueUsageContext': UsageContextBuilder.fromJson,
+          'defaultValueDosage': DosageBuilder.fromJson,
         },
         objectPath,
       ),
-      meaningWhenMissing: JsonParser.parsePrimitive<FhirMarkdown>(
+      meaningWhenMissing: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'meaningWhenMissing',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.meaningWhenMissing',
       ),
-      orderMeaning: JsonParser.parsePrimitive<FhirString>(
+      orderMeaning: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'orderMeaning',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.orderMeaning',
       ),
-      fixedX: JsonParser.parsePolymorphic<FixedXElementDefinition>(
+      fixedX: JsonParser.parsePolymorphic<FixedXElementDefinitionBuilder>(
         json,
         {
-          'fixedBase64Binary': FhirBase64Binary.fromJson,
-          'fixedBoolean': FhirBoolean.fromJson,
-          'fixedCanonical': FhirCanonical.fromJson,
-          'fixedCode': FhirCode.fromJson,
-          'fixedDate': FhirDate.fromJson,
-          'fixedDateTime': FhirDateTime.fromJson,
-          'fixedDecimal': FhirDecimal.fromJson,
-          'fixedId': FhirId.fromJson,
-          'fixedInstant': FhirInstant.fromJson,
-          'fixedInteger': FhirInteger.fromJson,
-          'fixedMarkdown': FhirMarkdown.fromJson,
-          'fixedOid': FhirOid.fromJson,
-          'fixedPositiveInt': FhirPositiveInt.fromJson,
-          'fixedString': FhirString.fromJson,
-          'fixedTime': FhirTime.fromJson,
-          'fixedUnsignedInt': FhirUnsignedInt.fromJson,
-          'fixedUri': FhirUri.fromJson,
-          'fixedUrl': FhirUrl.fromJson,
-          'fixedUuid': FhirUuid.fromJson,
-          'fixedAddress': Address.fromJson,
-          'fixedAge': Age.fromJson,
-          'fixedAnnotation': Annotation.fromJson,
-          'fixedAttachment': Attachment.fromJson,
-          'fixedCodeableConcept': CodeableConcept.fromJson,
-          'fixedCodeableReference': CodeableReference.fromJson,
-          'fixedCoding': Coding.fromJson,
-          'fixedContactPoint': ContactPoint.fromJson,
-          'fixedCount': Count.fromJson,
-          'fixedDistance': Distance.fromJson,
-          'fixedDuration': FhirDuration.fromJson,
-          'fixedHumanName': HumanName.fromJson,
-          'fixedIdentifier': Identifier.fromJson,
-          'fixedMoney': Money.fromJson,
-          'fixedPeriod': Period.fromJson,
-          'fixedQuantity': Quantity.fromJson,
-          'fixedRange': Range.fromJson,
-          'fixedRatio': Ratio.fromJson,
-          'fixedRatioRange': RatioRange.fromJson,
-          'fixedReference': Reference.fromJson,
-          'fixedSampledData': SampledData.fromJson,
-          'fixedSignature': Signature.fromJson,
-          'fixedTiming': Timing.fromJson,
-          'fixedContactDetail': ContactDetail.fromJson,
-          'fixedContributor': Contributor.fromJson,
-          'fixedDataRequirement': DataRequirement.fromJson,
-          'fixedExpression': FhirExpression.fromJson,
-          'fixedParameterDefinition': ParameterDefinition.fromJson,
-          'fixedRelatedArtifact': RelatedArtifact.fromJson,
-          'fixedTriggerDefinition': TriggerDefinition.fromJson,
-          'fixedUsageContext': UsageContext.fromJson,
-          'fixedDosage': Dosage.fromJson,
+          'fixedBase64Binary': FhirBase64BinaryBuilder.fromJson,
+          'fixedBoolean': FhirBooleanBuilder.fromJson,
+          'fixedCanonical': FhirCanonicalBuilder.fromJson,
+          'fixedCode': FhirCodeBuilder.fromJson,
+          'fixedDate': FhirDateBuilder.fromJson,
+          'fixedDateTime': FhirDateTimeBuilder.fromJson,
+          'fixedDecimal': FhirDecimalBuilder.fromJson,
+          'fixedId': FhirIdBuilder.fromJson,
+          'fixedInstant': FhirInstantBuilder.fromJson,
+          'fixedInteger': FhirIntegerBuilder.fromJson,
+          'fixedMarkdown': FhirMarkdownBuilder.fromJson,
+          'fixedOid': FhirOidBuilder.fromJson,
+          'fixedPositiveInt': FhirPositiveIntBuilder.fromJson,
+          'fixedString': FhirStringBuilder.fromJson,
+          'fixedTime': FhirTimeBuilder.fromJson,
+          'fixedUnsignedInt': FhirUnsignedIntBuilder.fromJson,
+          'fixedUri': FhirUriBuilder.fromJson,
+          'fixedUrl': FhirUrlBuilder.fromJson,
+          'fixedUuid': FhirUuidBuilder.fromJson,
+          'fixedAddress': AddressBuilder.fromJson,
+          'fixedAge': AgeBuilder.fromJson,
+          'fixedAnnotation': AnnotationBuilder.fromJson,
+          'fixedAttachment': AttachmentBuilder.fromJson,
+          'fixedCodeableConcept': CodeableConceptBuilder.fromJson,
+          'fixedCodeableReference': CodeableReferenceBuilder.fromJson,
+          'fixedCoding': CodingBuilder.fromJson,
+          'fixedContactPoint': ContactPointBuilder.fromJson,
+          'fixedCount': CountBuilder.fromJson,
+          'fixedDistance': DistanceBuilder.fromJson,
+          'fixedDuration': FhirDurationBuilder.fromJson,
+          'fixedHumanName': HumanNameBuilder.fromJson,
+          'fixedIdentifier': IdentifierBuilder.fromJson,
+          'fixedMoney': MoneyBuilder.fromJson,
+          'fixedPeriod': PeriodBuilder.fromJson,
+          'fixedQuantity': QuantityBuilder.fromJson,
+          'fixedRange': RangeBuilder.fromJson,
+          'fixedRatio': RatioBuilder.fromJson,
+          'fixedRatioRange': RatioRangeBuilder.fromJson,
+          'fixedReference': ReferenceBuilder.fromJson,
+          'fixedSampledData': SampledDataBuilder.fromJson,
+          'fixedSignature': SignatureBuilder.fromJson,
+          'fixedTiming': TimingBuilder.fromJson,
+          'fixedContactDetail': ContactDetailBuilder.fromJson,
+          'fixedContributor': ContributorBuilder.fromJson,
+          'fixedDataRequirement': DataRequirementBuilder.fromJson,
+          'fixedExpression': FhirExpressionBuilder.fromJson,
+          'fixedParameterDefinition': ParameterDefinitionBuilder.fromJson,
+          'fixedRelatedArtifact': RelatedArtifactBuilder.fromJson,
+          'fixedTriggerDefinition': TriggerDefinitionBuilder.fromJson,
+          'fixedUsageContext': UsageContextBuilder.fromJson,
+          'fixedDosage': DosageBuilder.fromJson,
         },
         objectPath,
       ),
-      patternX: JsonParser.parsePolymorphic<PatternXElementDefinition>(
+      patternX: JsonParser.parsePolymorphic<PatternXElementDefinitionBuilder>(
         json,
         {
-          'patternBase64Binary': FhirBase64Binary.fromJson,
-          'patternBoolean': FhirBoolean.fromJson,
-          'patternCanonical': FhirCanonical.fromJson,
-          'patternCode': FhirCode.fromJson,
-          'patternDate': FhirDate.fromJson,
-          'patternDateTime': FhirDateTime.fromJson,
-          'patternDecimal': FhirDecimal.fromJson,
-          'patternId': FhirId.fromJson,
-          'patternInstant': FhirInstant.fromJson,
-          'patternInteger': FhirInteger.fromJson,
-          'patternMarkdown': FhirMarkdown.fromJson,
-          'patternOid': FhirOid.fromJson,
-          'patternPositiveInt': FhirPositiveInt.fromJson,
-          'patternString': FhirString.fromJson,
-          'patternTime': FhirTime.fromJson,
-          'patternUnsignedInt': FhirUnsignedInt.fromJson,
-          'patternUri': FhirUri.fromJson,
-          'patternUrl': FhirUrl.fromJson,
-          'patternUuid': FhirUuid.fromJson,
-          'patternAddress': Address.fromJson,
-          'patternAge': Age.fromJson,
-          'patternAnnotation': Annotation.fromJson,
-          'patternAttachment': Attachment.fromJson,
-          'patternCodeableConcept': CodeableConcept.fromJson,
-          'patternCodeableReference': CodeableReference.fromJson,
-          'patternCoding': Coding.fromJson,
-          'patternContactPoint': ContactPoint.fromJson,
-          'patternCount': Count.fromJson,
-          'patternDistance': Distance.fromJson,
-          'patternDuration': FhirDuration.fromJson,
-          'patternHumanName': HumanName.fromJson,
-          'patternIdentifier': Identifier.fromJson,
-          'patternMoney': Money.fromJson,
-          'patternPeriod': Period.fromJson,
-          'patternQuantity': Quantity.fromJson,
-          'patternRange': Range.fromJson,
-          'patternRatio': Ratio.fromJson,
-          'patternRatioRange': RatioRange.fromJson,
-          'patternReference': Reference.fromJson,
-          'patternSampledData': SampledData.fromJson,
-          'patternSignature': Signature.fromJson,
-          'patternTiming': Timing.fromJson,
-          'patternContactDetail': ContactDetail.fromJson,
-          'patternContributor': Contributor.fromJson,
-          'patternDataRequirement': DataRequirement.fromJson,
-          'patternExpression': FhirExpression.fromJson,
-          'patternParameterDefinition': ParameterDefinition.fromJson,
-          'patternRelatedArtifact': RelatedArtifact.fromJson,
-          'patternTriggerDefinition': TriggerDefinition.fromJson,
-          'patternUsageContext': UsageContext.fromJson,
-          'patternDosage': Dosage.fromJson,
+          'patternBase64Binary': FhirBase64BinaryBuilder.fromJson,
+          'patternBoolean': FhirBooleanBuilder.fromJson,
+          'patternCanonical': FhirCanonicalBuilder.fromJson,
+          'patternCode': FhirCodeBuilder.fromJson,
+          'patternDate': FhirDateBuilder.fromJson,
+          'patternDateTime': FhirDateTimeBuilder.fromJson,
+          'patternDecimal': FhirDecimalBuilder.fromJson,
+          'patternId': FhirIdBuilder.fromJson,
+          'patternInstant': FhirInstantBuilder.fromJson,
+          'patternInteger': FhirIntegerBuilder.fromJson,
+          'patternMarkdown': FhirMarkdownBuilder.fromJson,
+          'patternOid': FhirOidBuilder.fromJson,
+          'patternPositiveInt': FhirPositiveIntBuilder.fromJson,
+          'patternString': FhirStringBuilder.fromJson,
+          'patternTime': FhirTimeBuilder.fromJson,
+          'patternUnsignedInt': FhirUnsignedIntBuilder.fromJson,
+          'patternUri': FhirUriBuilder.fromJson,
+          'patternUrl': FhirUrlBuilder.fromJson,
+          'patternUuid': FhirUuidBuilder.fromJson,
+          'patternAddress': AddressBuilder.fromJson,
+          'patternAge': AgeBuilder.fromJson,
+          'patternAnnotation': AnnotationBuilder.fromJson,
+          'patternAttachment': AttachmentBuilder.fromJson,
+          'patternCodeableConcept': CodeableConceptBuilder.fromJson,
+          'patternCodeableReference': CodeableReferenceBuilder.fromJson,
+          'patternCoding': CodingBuilder.fromJson,
+          'patternContactPoint': ContactPointBuilder.fromJson,
+          'patternCount': CountBuilder.fromJson,
+          'patternDistance': DistanceBuilder.fromJson,
+          'patternDuration': FhirDurationBuilder.fromJson,
+          'patternHumanName': HumanNameBuilder.fromJson,
+          'patternIdentifier': IdentifierBuilder.fromJson,
+          'patternMoney': MoneyBuilder.fromJson,
+          'patternPeriod': PeriodBuilder.fromJson,
+          'patternQuantity': QuantityBuilder.fromJson,
+          'patternRange': RangeBuilder.fromJson,
+          'patternRatio': RatioBuilder.fromJson,
+          'patternRatioRange': RatioRangeBuilder.fromJson,
+          'patternReference': ReferenceBuilder.fromJson,
+          'patternSampledData': SampledDataBuilder.fromJson,
+          'patternSignature': SignatureBuilder.fromJson,
+          'patternTiming': TimingBuilder.fromJson,
+          'patternContactDetail': ContactDetailBuilder.fromJson,
+          'patternContributor': ContributorBuilder.fromJson,
+          'patternDataRequirement': DataRequirementBuilder.fromJson,
+          'patternExpression': FhirExpressionBuilder.fromJson,
+          'patternParameterDefinition': ParameterDefinitionBuilder.fromJson,
+          'patternRelatedArtifact': RelatedArtifactBuilder.fromJson,
+          'patternTriggerDefinition': TriggerDefinitionBuilder.fromJson,
+          'patternUsageContext': UsageContextBuilder.fromJson,
+          'patternDosage': DosageBuilder.fromJson,
         },
         objectPath,
       ),
       example: (json['example'] as List<dynamic>?)
-          ?.map<ElementDefinitionExample>(
-            (v) => ElementDefinitionExample.fromJson(
+          ?.map<ElementDefinitionExampleBuilder>(
+            (v) => ElementDefinitionExampleBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.example',
@@ -394,51 +395,51 @@ class ElementDefinition extends BackboneType {
             ),
           )
           .toList(),
-      minValueX: JsonParser.parsePolymorphic<MinValueXElementDefinition>(
+      minValueX: JsonParser.parsePolymorphic<MinValueXElementDefinitionBuilder>(
         json,
         {
-          'minValueDate': FhirDate.fromJson,
-          'minValueDateTime': FhirDateTime.fromJson,
-          'minValueInstant': FhirInstant.fromJson,
-          'minValueTime': FhirTime.fromJson,
-          'minValueDecimal': FhirDecimal.fromJson,
-          'minValueInteger': FhirInteger.fromJson,
-          'minValuePositiveInt': FhirPositiveInt.fromJson,
-          'minValueUnsignedInt': FhirUnsignedInt.fromJson,
-          'minValueQuantity': Quantity.fromJson,
+          'minValueDate': FhirDateBuilder.fromJson,
+          'minValueDateTime': FhirDateTimeBuilder.fromJson,
+          'minValueInstant': FhirInstantBuilder.fromJson,
+          'minValueTime': FhirTimeBuilder.fromJson,
+          'minValueDecimal': FhirDecimalBuilder.fromJson,
+          'minValueInteger': FhirIntegerBuilder.fromJson,
+          'minValuePositiveInt': FhirPositiveIntBuilder.fromJson,
+          'minValueUnsignedInt': FhirUnsignedIntBuilder.fromJson,
+          'minValueQuantity': QuantityBuilder.fromJson,
         },
         objectPath,
       ),
-      maxValueX: JsonParser.parsePolymorphic<MaxValueXElementDefinition>(
+      maxValueX: JsonParser.parsePolymorphic<MaxValueXElementDefinitionBuilder>(
         json,
         {
-          'maxValueDate': FhirDate.fromJson,
-          'maxValueDateTime': FhirDateTime.fromJson,
-          'maxValueInstant': FhirInstant.fromJson,
-          'maxValueTime': FhirTime.fromJson,
-          'maxValueDecimal': FhirDecimal.fromJson,
-          'maxValueInteger': FhirInteger.fromJson,
-          'maxValuePositiveInt': FhirPositiveInt.fromJson,
-          'maxValueUnsignedInt': FhirUnsignedInt.fromJson,
-          'maxValueQuantity': Quantity.fromJson,
+          'maxValueDate': FhirDateBuilder.fromJson,
+          'maxValueDateTime': FhirDateTimeBuilder.fromJson,
+          'maxValueInstant': FhirInstantBuilder.fromJson,
+          'maxValueTime': FhirTimeBuilder.fromJson,
+          'maxValueDecimal': FhirDecimalBuilder.fromJson,
+          'maxValueInteger': FhirIntegerBuilder.fromJson,
+          'maxValuePositiveInt': FhirPositiveIntBuilder.fromJson,
+          'maxValueUnsignedInt': FhirUnsignedIntBuilder.fromJson,
+          'maxValueQuantity': QuantityBuilder.fromJson,
         },
         objectPath,
       ),
-      maxLength: JsonParser.parsePrimitive<FhirInteger>(
+      maxLength: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'maxLength',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.maxLength',
       ),
-      condition: JsonParser.parsePrimitiveList<FhirId>(
+      condition: JsonParser.parsePrimitiveList<FhirIdBuilder>(
         json,
         'condition',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.condition',
       ),
       constraint: (json['constraint'] as List<dynamic>?)
-          ?.map<ElementDefinitionConstraint>(
-            (v) => ElementDefinitionConstraint.fromJson(
+          ?.map<ElementDefinitionConstraintBuilder>(
+            (v) => ElementDefinitionConstraintBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.constraint',
@@ -446,39 +447,39 @@ class ElementDefinition extends BackboneType {
             ),
           )
           .toList(),
-      mustSupport: JsonParser.parsePrimitive<FhirBoolean>(
+      mustSupport: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'mustSupport',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.mustSupport',
       ),
-      isModifier: JsonParser.parsePrimitive<FhirBoolean>(
+      isModifier: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'isModifier',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.isModifier',
       ),
-      isModifierReason: JsonParser.parsePrimitive<FhirString>(
+      isModifierReason: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'isModifierReason',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.isModifierReason',
       ),
-      isSummary: JsonParser.parsePrimitive<FhirBoolean>(
+      isSummary: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'isSummary',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.isSummary',
       ),
-      binding: JsonParser.parseObject<ElementDefinitionBinding>(
+      binding: JsonParser.parseObject<ElementDefinitionBindingBuilder>(
         json,
         'binding',
-        ElementDefinitionBinding.fromJson,
+        ElementDefinitionBindingBuilder.fromJson,
         '$objectPath.binding',
       ),
       mapping: (json['mapping'] as List<dynamic>?)
-          ?.map<ElementDefinitionMapping>(
-            (v) => ElementDefinitionMapping.fromJson(
+          ?.map<ElementDefinitionMappingBuilder>(
+            (v) => ElementDefinitionMappingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.mapping',
@@ -489,22 +490,22 @@ class ElementDefinition extends BackboneType {
     );
   }
 
-  /// Deserialize [ElementDefinition]
+  /// Deserialize [ElementDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinition.fromYaml(
+  factory ElementDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinition.fromJson(
+      return ElementDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinition.fromJson(
+      return ElementDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinition '
+        'ElementDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -512,16 +513,16 @@ class ElementDefinition extends BackboneType {
   }
 
   /// Factory constructor for
-  /// [ElementDefinition]
+  /// [ElementDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinition.fromJsonString(
+  factory ElementDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinition.fromJson(json);
+      return ElementDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -535,19 +536,19 @@ class ElementDefinition extends BackboneType {
   /// The path identifies the element and is expressed as a "."-separated
   /// list of ancestor elements, beginning with the name of the resource or
   /// extension.
-  final FhirString path;
+  FhirStringBuilder? path;
 
   /// [representation]
   /// Codes that define how this element is represented in instances, when
   /// the deviation varies from the normal case.
-  final List<PropertyRepresentation>? representation;
+  List<PropertyRepresentationBuilder>? representation;
 
   /// [sliceName]
   /// The name of this element definition slice, when slicing is working. The
   /// name must be a token with no dots or spaces. This is a unique name
   /// referring to a specific set of constraints applied to this element,
   /// used to provide a name to different slices of the same element.
-  final FhirString? sliceName;
+  FhirStringBuilder? sliceName;
 
   /// [sliceIsConstraining]
   /// If true, indicates that this slice definition is constraining a slice
@@ -555,18 +556,18 @@ class ElementDefinition extends BackboneType {
   /// slice is not overriding any slice in an inherited profile. If missing,
   /// the slice might or might not be overriding a slice in an inherited
   /// profile, depending on the sliceName.
-  final FhirBoolean? sliceIsConstraining;
+  FhirBooleanBuilder? sliceIsConstraining;
 
   /// [label]
   /// A single preferred label which is the text to display beside the
   /// element indicating its meaning or to use to prompt for the element in a
   /// user display or form.
-  final FhirString? label;
+  FhirStringBuilder? label;
 
   /// [code]
   /// A code that has the same meaning as the element in a particular
   /// terminology.
-  final List<Coding>? code;
+  List<CodingBuilder>? code;
 
   /// [slicing]
   /// Indicates that the element is sliced into a set of alternative
@@ -577,12 +578,12 @@ class ElementDefinition extends BackboneType {
   /// slices is any elements that come after this in the element sequence
   /// that have the same path, until a shorter path occurs (the shorter path
   /// terminates the set).
-  final ElementDefinitionSlicing? slicing;
+  ElementDefinitionSlicingBuilder? slicing;
 
   /// [short]
   /// A concise description of what this element means (e.g. for use in
   /// autogenerated summaries).
-  final FhirString? short;
+  FhirStringBuilder? short;
 
   /// [definition]
   /// Provides a complete explanation of the meaning of the data element for
@@ -591,33 +592,33 @@ class ElementDefinition extends BackboneType {
   /// the base definition, but convey the meaning of the element in the
   /// particular context of use of the resource. (Note: The text you are
   /// reading is specified in ElementDefinition.definition).
-  final FhirMarkdown? definition;
+  FhirMarkdownBuilder? definition;
 
   /// [comment]
   /// Explanatory notes and implementation guidance about the data element,
   /// including notes about how to use the data properly, exceptions to
   /// proper use, etc. (Note: The text you are reading is specified in
   /// ElementDefinition.comment).
-  final FhirMarkdown? comment;
+  FhirMarkdownBuilder? comment;
 
   /// [requirements]
   /// This element is for traceability of why the element was created and why
   /// the constraints exist as they do. This may be used to point to source
   /// materials or specifications that drove the structure of this element.
-  final FhirMarkdown? requirements;
+  FhirMarkdownBuilder? requirements;
 
   /// [alias]
   /// Identifies additional names by which this element might also be known.
-  final List<FhirString>? alias;
+  List<FhirStringBuilder>? alias;
 
   /// [min]
   /// The minimum number of times this element SHALL appear in the instance.
-  final FhirUnsignedInt? min;
+  FhirUnsignedIntBuilder? min;
 
   /// [max]
   /// The maximum number of times this element is permitted to appear in the
   /// instance.
-  final FhirString? max;
+  FhirStringBuilder? max;
 
   /// [base]
   /// Information about the base definition of the element, provided to make
@@ -628,7 +629,7 @@ class ElementDefinition extends BackboneType {
   /// the information in provided in the element definition may be different
   /// to the base definition. On the original definition of the element, it
   /// will be same.
-  final ElementDefinitionBase? base;
+  ElementDefinitionBaseBuilder? base;
 
   /// [contentReference]
   /// Identifies an element defined elsewhere in the definition whose content
@@ -636,360 +637,395 @@ class ElementDefinition extends BackboneType {
   /// across all the rules that are in the ElementDefinition for the element,
   /// including definitions, cardinality constraints, bindings, invariants
   /// etc.
-  final FhirUri? contentReference;
+  FhirUriBuilder? contentReference;
 
   /// [type]
   /// The data type or resource that the value of this element is permitted
   /// to be.
-  final List<ElementDefinitionType>? type;
+  List<ElementDefinitionTypeBuilder>? type;
 
   /// [defaultValueX]
   /// The value that should be used if there is no value stated in the
   /// instance (e.g. 'if not otherwise specified, the abstract is false').
-  final DefaultValueXElementDefinition? defaultValueX;
+  DefaultValueXElementDefinitionBuilder? defaultValueX;
 
-  /// Getter for [defaultValueBase64Binary] as a FhirBase64Binary
-  FhirBase64Binary? get defaultValueBase64Binary =>
-      defaultValueX?.isAs<FhirBase64Binary>();
+  /// Getter for [defaultValueBase64Binary] as a FhirBase64BinaryBuilder
+  FhirBase64BinaryBuilder? get defaultValueBase64Binary =>
+      defaultValueX?.isAs<FhirBase64BinaryBuilder>();
 
-  /// Getter for [defaultValueBoolean] as a FhirBoolean
-  FhirBoolean? get defaultValueBoolean => defaultValueX?.isAs<FhirBoolean>();
+  /// Getter for [defaultValueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get defaultValueBoolean =>
+      defaultValueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [defaultValueCanonical] as a FhirCanonical
-  FhirCanonical? get defaultValueCanonical =>
-      defaultValueX?.isAs<FhirCanonical>();
+  /// Getter for [defaultValueCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get defaultValueCanonical =>
+      defaultValueX?.isAs<FhirCanonicalBuilder>();
 
-  /// Getter for [defaultValueCode] as a FhirCode
-  FhirCode? get defaultValueCode => defaultValueX?.isAs<FhirCode>();
+  /// Getter for [defaultValueCode] as a FhirCodeBuilder
+  FhirCodeBuilder? get defaultValueCode =>
+      defaultValueX?.isAs<FhirCodeBuilder>();
 
-  /// Getter for [defaultValueDate] as a FhirDate
-  FhirDate? get defaultValueDate => defaultValueX?.isAs<FhirDate>();
+  /// Getter for [defaultValueDate] as a FhirDateBuilder
+  FhirDateBuilder? get defaultValueDate =>
+      defaultValueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [defaultValueDateTime] as a FhirDateTime
-  FhirDateTime? get defaultValueDateTime => defaultValueX?.isAs<FhirDateTime>();
+  /// Getter for [defaultValueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get defaultValueDateTime =>
+      defaultValueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [defaultValueDecimal] as a FhirDecimal
-  FhirDecimal? get defaultValueDecimal => defaultValueX?.isAs<FhirDecimal>();
+  /// Getter for [defaultValueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get defaultValueDecimal =>
+      defaultValueX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [defaultValueId] as a FhirId
-  FhirId? get defaultValueId => defaultValueX?.isAs<FhirId>();
+  /// Getter for [defaultValueId] as a FhirIdBuilder
+  FhirIdBuilder? get defaultValueId => defaultValueX?.isAs<FhirIdBuilder>();
 
-  /// Getter for [defaultValueInstant] as a FhirInstant
-  FhirInstant? get defaultValueInstant => defaultValueX?.isAs<FhirInstant>();
+  /// Getter for [defaultValueInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get defaultValueInstant =>
+      defaultValueX?.isAs<FhirInstantBuilder>();
 
-  /// Getter for [defaultValueInteger] as a FhirInteger
-  FhirInteger? get defaultValueInteger => defaultValueX?.isAs<FhirInteger>();
+  /// Getter for [defaultValueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get defaultValueInteger =>
+      defaultValueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [defaultValueMarkdown] as a FhirMarkdown
-  FhirMarkdown? get defaultValueMarkdown => defaultValueX?.isAs<FhirMarkdown>();
+  /// Getter for [defaultValueMarkdown] as a FhirMarkdownBuilder
+  FhirMarkdownBuilder? get defaultValueMarkdown =>
+      defaultValueX?.isAs<FhirMarkdownBuilder>();
 
-  /// Getter for [defaultValueOid] as a FhirOid
-  FhirOid? get defaultValueOid => defaultValueX?.isAs<FhirOid>();
+  /// Getter for [defaultValueOid] as a FhirOidBuilder
+  FhirOidBuilder? get defaultValueOid => defaultValueX?.isAs<FhirOidBuilder>();
 
-  /// Getter for [defaultValuePositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get defaultValuePositiveInt =>
-      defaultValueX?.isAs<FhirPositiveInt>();
+  /// Getter for [defaultValuePositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get defaultValuePositiveInt =>
+      defaultValueX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [defaultValueString] as a FhirString
-  FhirString? get defaultValueString => defaultValueX?.isAs<FhirString>();
+  /// Getter for [defaultValueString] as a FhirStringBuilder
+  FhirStringBuilder? get defaultValueString =>
+      defaultValueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [defaultValueTime] as a FhirTime
-  FhirTime? get defaultValueTime => defaultValueX?.isAs<FhirTime>();
+  /// Getter for [defaultValueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get defaultValueTime =>
+      defaultValueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [defaultValueUnsignedInt] as a FhirUnsignedInt
-  FhirUnsignedInt? get defaultValueUnsignedInt =>
-      defaultValueX?.isAs<FhirUnsignedInt>();
+  /// Getter for [defaultValueUnsignedInt] as a FhirUnsignedIntBuilder
+  FhirUnsignedIntBuilder? get defaultValueUnsignedInt =>
+      defaultValueX?.isAs<FhirUnsignedIntBuilder>();
 
-  /// Getter for [defaultValueUri] as a FhirUri
-  FhirUri? get defaultValueUri => defaultValueX?.isAs<FhirUri>();
+  /// Getter for [defaultValueUri] as a FhirUriBuilder
+  FhirUriBuilder? get defaultValueUri => defaultValueX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [defaultValueUrl] as a FhirUrl
-  FhirUrl? get defaultValueUrl => defaultValueX?.isAs<FhirUrl>();
+  /// Getter for [defaultValueUrl] as a FhirUrlBuilder
+  FhirUrlBuilder? get defaultValueUrl => defaultValueX?.isAs<FhirUrlBuilder>();
 
-  /// Getter for [defaultValueUuid] as a FhirUuid
-  FhirUuid? get defaultValueUuid => defaultValueX?.isAs<FhirUuid>();
+  /// Getter for [defaultValueUuid] as a FhirUuidBuilder
+  FhirUuidBuilder? get defaultValueUuid =>
+      defaultValueX?.isAs<FhirUuidBuilder>();
 
-  /// Getter for [defaultValueAddress] as a Address
-  Address? get defaultValueAddress => defaultValueX?.isAs<Address>();
+  /// Getter for [defaultValueAddress] as a AddressBuilder
+  AddressBuilder? get defaultValueAddress =>
+      defaultValueX?.isAs<AddressBuilder>();
 
-  /// Getter for [defaultValueAge] as a Age
-  Age? get defaultValueAge => defaultValueX?.isAs<Age>();
+  /// Getter for [defaultValueAge] as a AgeBuilder
+  AgeBuilder? get defaultValueAge => defaultValueX?.isAs<AgeBuilder>();
 
-  /// Getter for [defaultValueAnnotation] as a Annotation
-  Annotation? get defaultValueAnnotation => defaultValueX?.isAs<Annotation>();
+  /// Getter for [defaultValueAnnotation] as a AnnotationBuilder
+  AnnotationBuilder? get defaultValueAnnotation =>
+      defaultValueX?.isAs<AnnotationBuilder>();
 
-  /// Getter for [defaultValueAttachment] as a Attachment
-  Attachment? get defaultValueAttachment => defaultValueX?.isAs<Attachment>();
+  /// Getter for [defaultValueAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get defaultValueAttachment =>
+      defaultValueX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [defaultValueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get defaultValueCodeableConcept =>
-      defaultValueX?.isAs<CodeableConcept>();
+  /// Getter for [defaultValueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get defaultValueCodeableConcept =>
+      defaultValueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [defaultValueCodeableReference] as a CodeableReference
-  CodeableReference? get defaultValueCodeableReference =>
-      defaultValueX?.isAs<CodeableReference>();
+  /// Getter for [defaultValueCodeableReference] as a CodeableReferenceBuilder
+  CodeableReferenceBuilder? get defaultValueCodeableReference =>
+      defaultValueX?.isAs<CodeableReferenceBuilder>();
 
-  /// Getter for [defaultValueCoding] as a Coding
-  Coding? get defaultValueCoding => defaultValueX?.isAs<Coding>();
+  /// Getter for [defaultValueCoding] as a CodingBuilder
+  CodingBuilder? get defaultValueCoding => defaultValueX?.isAs<CodingBuilder>();
 
-  /// Getter for [defaultValueContactPoint] as a ContactPoint
-  ContactPoint? get defaultValueContactPoint =>
-      defaultValueX?.isAs<ContactPoint>();
+  /// Getter for [defaultValueContactPoint] as a ContactPointBuilder
+  ContactPointBuilder? get defaultValueContactPoint =>
+      defaultValueX?.isAs<ContactPointBuilder>();
 
-  /// Getter for [defaultValueCount] as a Count
-  Count? get defaultValueCount => defaultValueX?.isAs<Count>();
+  /// Getter for [defaultValueCount] as a CountBuilder
+  CountBuilder? get defaultValueCount => defaultValueX?.isAs<CountBuilder>();
 
-  /// Getter for [defaultValueDistance] as a Distance
-  Distance? get defaultValueDistance => defaultValueX?.isAs<Distance>();
+  /// Getter for [defaultValueDistance] as a DistanceBuilder
+  DistanceBuilder? get defaultValueDistance =>
+      defaultValueX?.isAs<DistanceBuilder>();
 
-  /// Getter for [defaultValueDuration] as a FhirDuration
-  FhirDuration? get defaultValueDuration => defaultValueX?.isAs<FhirDuration>();
+  /// Getter for [defaultValueDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get defaultValueDuration =>
+      defaultValueX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [defaultValueHumanName] as a HumanName
-  HumanName? get defaultValueHumanName => defaultValueX?.isAs<HumanName>();
+  /// Getter for [defaultValueHumanName] as a HumanNameBuilder
+  HumanNameBuilder? get defaultValueHumanName =>
+      defaultValueX?.isAs<HumanNameBuilder>();
 
-  /// Getter for [defaultValueIdentifier] as a Identifier
-  Identifier? get defaultValueIdentifier => defaultValueX?.isAs<Identifier>();
+  /// Getter for [defaultValueIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get defaultValueIdentifier =>
+      defaultValueX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [defaultValueMoney] as a Money
-  Money? get defaultValueMoney => defaultValueX?.isAs<Money>();
+  /// Getter for [defaultValueMoney] as a MoneyBuilder
+  MoneyBuilder? get defaultValueMoney => defaultValueX?.isAs<MoneyBuilder>();
 
-  /// Getter for [defaultValuePeriod] as a Period
-  Period? get defaultValuePeriod => defaultValueX?.isAs<Period>();
+  /// Getter for [defaultValuePeriod] as a PeriodBuilder
+  PeriodBuilder? get defaultValuePeriod => defaultValueX?.isAs<PeriodBuilder>();
 
-  /// Getter for [defaultValueQuantity] as a Quantity
-  Quantity? get defaultValueQuantity => defaultValueX?.isAs<Quantity>();
+  /// Getter for [defaultValueQuantity] as a QuantityBuilder
+  QuantityBuilder? get defaultValueQuantity =>
+      defaultValueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [defaultValueRange] as a Range
-  Range? get defaultValueRange => defaultValueX?.isAs<Range>();
+  /// Getter for [defaultValueRange] as a RangeBuilder
+  RangeBuilder? get defaultValueRange => defaultValueX?.isAs<RangeBuilder>();
 
-  /// Getter for [defaultValueRatio] as a Ratio
-  Ratio? get defaultValueRatio => defaultValueX?.isAs<Ratio>();
+  /// Getter for [defaultValueRatio] as a RatioBuilder
+  RatioBuilder? get defaultValueRatio => defaultValueX?.isAs<RatioBuilder>();
 
-  /// Getter for [defaultValueRatioRange] as a RatioRange
-  RatioRange? get defaultValueRatioRange => defaultValueX?.isAs<RatioRange>();
+  /// Getter for [defaultValueRatioRange] as a RatioRangeBuilder
+  RatioRangeBuilder? get defaultValueRatioRange =>
+      defaultValueX?.isAs<RatioRangeBuilder>();
 
-  /// Getter for [defaultValueReference] as a Reference
-  Reference? get defaultValueReference => defaultValueX?.isAs<Reference>();
+  /// Getter for [defaultValueReference] as a ReferenceBuilder
+  ReferenceBuilder? get defaultValueReference =>
+      defaultValueX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [defaultValueSampledData] as a SampledData
-  SampledData? get defaultValueSampledData =>
-      defaultValueX?.isAs<SampledData>();
+  /// Getter for [defaultValueSampledData] as a SampledDataBuilder
+  SampledDataBuilder? get defaultValueSampledData =>
+      defaultValueX?.isAs<SampledDataBuilder>();
 
-  /// Getter for [defaultValueSignature] as a Signature
-  Signature? get defaultValueSignature => defaultValueX?.isAs<Signature>();
+  /// Getter for [defaultValueSignature] as a SignatureBuilder
+  SignatureBuilder? get defaultValueSignature =>
+      defaultValueX?.isAs<SignatureBuilder>();
 
-  /// Getter for [defaultValueTiming] as a Timing
-  Timing? get defaultValueTiming => defaultValueX?.isAs<Timing>();
+  /// Getter for [defaultValueTiming] as a TimingBuilder
+  TimingBuilder? get defaultValueTiming => defaultValueX?.isAs<TimingBuilder>();
 
-  /// Getter for [defaultValueContactDetail] as a ContactDetail
-  ContactDetail? get defaultValueContactDetail =>
-      defaultValueX?.isAs<ContactDetail>();
+  /// Getter for [defaultValueContactDetail] as a ContactDetailBuilder
+  ContactDetailBuilder? get defaultValueContactDetail =>
+      defaultValueX?.isAs<ContactDetailBuilder>();
 
-  /// Getter for [defaultValueContributor] as a Contributor
-  Contributor? get defaultValueContributor =>
-      defaultValueX?.isAs<Contributor>();
+  /// Getter for [defaultValueContributor] as a ContributorBuilder
+  ContributorBuilder? get defaultValueContributor =>
+      defaultValueX?.isAs<ContributorBuilder>();
 
-  /// Getter for [defaultValueDataRequirement] as a DataRequirement
-  DataRequirement? get defaultValueDataRequirement =>
-      defaultValueX?.isAs<DataRequirement>();
+  /// Getter for [defaultValueDataRequirement] as a DataRequirementBuilder
+  DataRequirementBuilder? get defaultValueDataRequirement =>
+      defaultValueX?.isAs<DataRequirementBuilder>();
 
-  /// Getter for [defaultValueExpression] as a FhirExpression
-  FhirExpression? get defaultValueExpression =>
-      defaultValueX?.isAs<FhirExpression>();
+  /// Getter for [defaultValueExpression] as a FhirExpressionBuilder
+  FhirExpressionBuilder? get defaultValueExpression =>
+      defaultValueX?.isAs<FhirExpressionBuilder>();
 
-  /// Getter for [defaultValueParameterDefinition] as a ParameterDefinition
-  ParameterDefinition? get defaultValueParameterDefinition =>
-      defaultValueX?.isAs<ParameterDefinition>();
+  /// Getter for [defaultValueParameterDefinition] as a ParameterDefinitionBuilder
+  ParameterDefinitionBuilder? get defaultValueParameterDefinition =>
+      defaultValueX?.isAs<ParameterDefinitionBuilder>();
 
-  /// Getter for [defaultValueRelatedArtifact] as a RelatedArtifact
-  RelatedArtifact? get defaultValueRelatedArtifact =>
-      defaultValueX?.isAs<RelatedArtifact>();
+  /// Getter for [defaultValueRelatedArtifact] as a RelatedArtifactBuilder
+  RelatedArtifactBuilder? get defaultValueRelatedArtifact =>
+      defaultValueX?.isAs<RelatedArtifactBuilder>();
 
-  /// Getter for [defaultValueTriggerDefinition] as a TriggerDefinition
-  TriggerDefinition? get defaultValueTriggerDefinition =>
-      defaultValueX?.isAs<TriggerDefinition>();
+  /// Getter for [defaultValueTriggerDefinition] as a TriggerDefinitionBuilder
+  TriggerDefinitionBuilder? get defaultValueTriggerDefinition =>
+      defaultValueX?.isAs<TriggerDefinitionBuilder>();
 
-  /// Getter for [defaultValueUsageContext] as a UsageContext
-  UsageContext? get defaultValueUsageContext =>
-      defaultValueX?.isAs<UsageContext>();
+  /// Getter for [defaultValueUsageContext] as a UsageContextBuilder
+  UsageContextBuilder? get defaultValueUsageContext =>
+      defaultValueX?.isAs<UsageContextBuilder>();
 
-  /// Getter for [defaultValueDosage] as a Dosage
-  Dosage? get defaultValueDosage => defaultValueX?.isAs<Dosage>();
+  /// Getter for [defaultValueDosage] as a DosageBuilder
+  DosageBuilder? get defaultValueDosage => defaultValueX?.isAs<DosageBuilder>();
 
   /// [meaningWhenMissing]
   /// The Implicit meaning that is to be understood when this element is
   /// missing (e.g. 'when this element is missing, the period is ongoing').
-  final FhirMarkdown? meaningWhenMissing;
+  FhirMarkdownBuilder? meaningWhenMissing;
 
   /// [orderMeaning]
   /// If present, indicates that the order of the repeating element has
   /// meaning and describes what that meaning is. If absent, it means that
   /// the order of the element has no meaning.
-  final FhirString? orderMeaning;
+  FhirStringBuilder? orderMeaning;
 
   /// [fixedX]
   /// Specifies a value that SHALL be exactly the value for this element in
   /// the instance. For purposes of comparison, non-significant whitespace is
   /// ignored, and all values must be an exact match (case and accent
   /// sensitive). Missing elements/attributes must also be missing.
-  final FixedXElementDefinition? fixedX;
+  FixedXElementDefinitionBuilder? fixedX;
 
-  /// Getter for [fixedBase64Binary] as a FhirBase64Binary
-  FhirBase64Binary? get fixedBase64Binary => fixedX?.isAs<FhirBase64Binary>();
+  /// Getter for [fixedBase64Binary] as a FhirBase64BinaryBuilder
+  FhirBase64BinaryBuilder? get fixedBase64Binary =>
+      fixedX?.isAs<FhirBase64BinaryBuilder>();
 
-  /// Getter for [fixedBoolean] as a FhirBoolean
-  FhirBoolean? get fixedBoolean => fixedX?.isAs<FhirBoolean>();
+  /// Getter for [fixedBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get fixedBoolean => fixedX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [fixedCanonical] as a FhirCanonical
-  FhirCanonical? get fixedCanonical => fixedX?.isAs<FhirCanonical>();
+  /// Getter for [fixedCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get fixedCanonical =>
+      fixedX?.isAs<FhirCanonicalBuilder>();
 
-  /// Getter for [fixedCode] as a FhirCode
-  FhirCode? get fixedCode => fixedX?.isAs<FhirCode>();
+  /// Getter for [fixedCode] as a FhirCodeBuilder
+  FhirCodeBuilder? get fixedCode => fixedX?.isAs<FhirCodeBuilder>();
 
-  /// Getter for [fixedDate] as a FhirDate
-  FhirDate? get fixedDate => fixedX?.isAs<FhirDate>();
+  /// Getter for [fixedDate] as a FhirDateBuilder
+  FhirDateBuilder? get fixedDate => fixedX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [fixedDateTime] as a FhirDateTime
-  FhirDateTime? get fixedDateTime => fixedX?.isAs<FhirDateTime>();
+  /// Getter for [fixedDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get fixedDateTime => fixedX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [fixedDecimal] as a FhirDecimal
-  FhirDecimal? get fixedDecimal => fixedX?.isAs<FhirDecimal>();
+  /// Getter for [fixedDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get fixedDecimal => fixedX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [fixedId] as a FhirId
-  FhirId? get fixedId => fixedX?.isAs<FhirId>();
+  /// Getter for [fixedId] as a FhirIdBuilder
+  FhirIdBuilder? get fixedId => fixedX?.isAs<FhirIdBuilder>();
 
-  /// Getter for [fixedInstant] as a FhirInstant
-  FhirInstant? get fixedInstant => fixedX?.isAs<FhirInstant>();
+  /// Getter for [fixedInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get fixedInstant => fixedX?.isAs<FhirInstantBuilder>();
 
-  /// Getter for [fixedInteger] as a FhirInteger
-  FhirInteger? get fixedInteger => fixedX?.isAs<FhirInteger>();
+  /// Getter for [fixedInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get fixedInteger => fixedX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [fixedMarkdown] as a FhirMarkdown
-  FhirMarkdown? get fixedMarkdown => fixedX?.isAs<FhirMarkdown>();
+  /// Getter for [fixedMarkdown] as a FhirMarkdownBuilder
+  FhirMarkdownBuilder? get fixedMarkdown => fixedX?.isAs<FhirMarkdownBuilder>();
 
-  /// Getter for [fixedOid] as a FhirOid
-  FhirOid? get fixedOid => fixedX?.isAs<FhirOid>();
+  /// Getter for [fixedOid] as a FhirOidBuilder
+  FhirOidBuilder? get fixedOid => fixedX?.isAs<FhirOidBuilder>();
 
-  /// Getter for [fixedPositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get fixedPositiveInt => fixedX?.isAs<FhirPositiveInt>();
+  /// Getter for [fixedPositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get fixedPositiveInt =>
+      fixedX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [fixedString] as a FhirString
-  FhirString? get fixedString => fixedX?.isAs<FhirString>();
+  /// Getter for [fixedString] as a FhirStringBuilder
+  FhirStringBuilder? get fixedString => fixedX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [fixedTime] as a FhirTime
-  FhirTime? get fixedTime => fixedX?.isAs<FhirTime>();
+  /// Getter for [fixedTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get fixedTime => fixedX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [fixedUnsignedInt] as a FhirUnsignedInt
-  FhirUnsignedInt? get fixedUnsignedInt => fixedX?.isAs<FhirUnsignedInt>();
+  /// Getter for [fixedUnsignedInt] as a FhirUnsignedIntBuilder
+  FhirUnsignedIntBuilder? get fixedUnsignedInt =>
+      fixedX?.isAs<FhirUnsignedIntBuilder>();
 
-  /// Getter for [fixedUri] as a FhirUri
-  FhirUri? get fixedUri => fixedX?.isAs<FhirUri>();
+  /// Getter for [fixedUri] as a FhirUriBuilder
+  FhirUriBuilder? get fixedUri => fixedX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [fixedUrl] as a FhirUrl
-  FhirUrl? get fixedUrl => fixedX?.isAs<FhirUrl>();
+  /// Getter for [fixedUrl] as a FhirUrlBuilder
+  FhirUrlBuilder? get fixedUrl => fixedX?.isAs<FhirUrlBuilder>();
 
-  /// Getter for [fixedUuid] as a FhirUuid
-  FhirUuid? get fixedUuid => fixedX?.isAs<FhirUuid>();
+  /// Getter for [fixedUuid] as a FhirUuidBuilder
+  FhirUuidBuilder? get fixedUuid => fixedX?.isAs<FhirUuidBuilder>();
 
-  /// Getter for [fixedAddress] as a Address
-  Address? get fixedAddress => fixedX?.isAs<Address>();
+  /// Getter for [fixedAddress] as a AddressBuilder
+  AddressBuilder? get fixedAddress => fixedX?.isAs<AddressBuilder>();
 
-  /// Getter for [fixedAge] as a Age
-  Age? get fixedAge => fixedX?.isAs<Age>();
+  /// Getter for [fixedAge] as a AgeBuilder
+  AgeBuilder? get fixedAge => fixedX?.isAs<AgeBuilder>();
 
-  /// Getter for [fixedAnnotation] as a Annotation
-  Annotation? get fixedAnnotation => fixedX?.isAs<Annotation>();
+  /// Getter for [fixedAnnotation] as a AnnotationBuilder
+  AnnotationBuilder? get fixedAnnotation => fixedX?.isAs<AnnotationBuilder>();
 
-  /// Getter for [fixedAttachment] as a Attachment
-  Attachment? get fixedAttachment => fixedX?.isAs<Attachment>();
+  /// Getter for [fixedAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get fixedAttachment => fixedX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [fixedCodeableConcept] as a CodeableConcept
-  CodeableConcept? get fixedCodeableConcept => fixedX?.isAs<CodeableConcept>();
+  /// Getter for [fixedCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get fixedCodeableConcept =>
+      fixedX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [fixedCodeableReference] as a CodeableReference
-  CodeableReference? get fixedCodeableReference =>
-      fixedX?.isAs<CodeableReference>();
+  /// Getter for [fixedCodeableReference] as a CodeableReferenceBuilder
+  CodeableReferenceBuilder? get fixedCodeableReference =>
+      fixedX?.isAs<CodeableReferenceBuilder>();
 
-  /// Getter for [fixedCoding] as a Coding
-  Coding? get fixedCoding => fixedX?.isAs<Coding>();
+  /// Getter for [fixedCoding] as a CodingBuilder
+  CodingBuilder? get fixedCoding => fixedX?.isAs<CodingBuilder>();
 
-  /// Getter for [fixedContactPoint] as a ContactPoint
-  ContactPoint? get fixedContactPoint => fixedX?.isAs<ContactPoint>();
+  /// Getter for [fixedContactPoint] as a ContactPointBuilder
+  ContactPointBuilder? get fixedContactPoint =>
+      fixedX?.isAs<ContactPointBuilder>();
 
-  /// Getter for [fixedCount] as a Count
-  Count? get fixedCount => fixedX?.isAs<Count>();
+  /// Getter for [fixedCount] as a CountBuilder
+  CountBuilder? get fixedCount => fixedX?.isAs<CountBuilder>();
 
-  /// Getter for [fixedDistance] as a Distance
-  Distance? get fixedDistance => fixedX?.isAs<Distance>();
+  /// Getter for [fixedDistance] as a DistanceBuilder
+  DistanceBuilder? get fixedDistance => fixedX?.isAs<DistanceBuilder>();
 
-  /// Getter for [fixedDuration] as a FhirDuration
-  FhirDuration? get fixedDuration => fixedX?.isAs<FhirDuration>();
+  /// Getter for [fixedDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get fixedDuration => fixedX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [fixedHumanName] as a HumanName
-  HumanName? get fixedHumanName => fixedX?.isAs<HumanName>();
+  /// Getter for [fixedHumanName] as a HumanNameBuilder
+  HumanNameBuilder? get fixedHumanName => fixedX?.isAs<HumanNameBuilder>();
 
-  /// Getter for [fixedIdentifier] as a Identifier
-  Identifier? get fixedIdentifier => fixedX?.isAs<Identifier>();
+  /// Getter for [fixedIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get fixedIdentifier => fixedX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [fixedMoney] as a Money
-  Money? get fixedMoney => fixedX?.isAs<Money>();
+  /// Getter for [fixedMoney] as a MoneyBuilder
+  MoneyBuilder? get fixedMoney => fixedX?.isAs<MoneyBuilder>();
 
-  /// Getter for [fixedPeriod] as a Period
-  Period? get fixedPeriod => fixedX?.isAs<Period>();
+  /// Getter for [fixedPeriod] as a PeriodBuilder
+  PeriodBuilder? get fixedPeriod => fixedX?.isAs<PeriodBuilder>();
 
-  /// Getter for [fixedQuantity] as a Quantity
-  Quantity? get fixedQuantity => fixedX?.isAs<Quantity>();
+  /// Getter for [fixedQuantity] as a QuantityBuilder
+  QuantityBuilder? get fixedQuantity => fixedX?.isAs<QuantityBuilder>();
 
-  /// Getter for [fixedRange] as a Range
-  Range? get fixedRange => fixedX?.isAs<Range>();
+  /// Getter for [fixedRange] as a RangeBuilder
+  RangeBuilder? get fixedRange => fixedX?.isAs<RangeBuilder>();
 
-  /// Getter for [fixedRatio] as a Ratio
-  Ratio? get fixedRatio => fixedX?.isAs<Ratio>();
+  /// Getter for [fixedRatio] as a RatioBuilder
+  RatioBuilder? get fixedRatio => fixedX?.isAs<RatioBuilder>();
 
-  /// Getter for [fixedRatioRange] as a RatioRange
-  RatioRange? get fixedRatioRange => fixedX?.isAs<RatioRange>();
+  /// Getter for [fixedRatioRange] as a RatioRangeBuilder
+  RatioRangeBuilder? get fixedRatioRange => fixedX?.isAs<RatioRangeBuilder>();
 
-  /// Getter for [fixedReference] as a Reference
-  Reference? get fixedReference => fixedX?.isAs<Reference>();
+  /// Getter for [fixedReference] as a ReferenceBuilder
+  ReferenceBuilder? get fixedReference => fixedX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [fixedSampledData] as a SampledData
-  SampledData? get fixedSampledData => fixedX?.isAs<SampledData>();
+  /// Getter for [fixedSampledData] as a SampledDataBuilder
+  SampledDataBuilder? get fixedSampledData =>
+      fixedX?.isAs<SampledDataBuilder>();
 
-  /// Getter for [fixedSignature] as a Signature
-  Signature? get fixedSignature => fixedX?.isAs<Signature>();
+  /// Getter for [fixedSignature] as a SignatureBuilder
+  SignatureBuilder? get fixedSignature => fixedX?.isAs<SignatureBuilder>();
 
-  /// Getter for [fixedTiming] as a Timing
-  Timing? get fixedTiming => fixedX?.isAs<Timing>();
+  /// Getter for [fixedTiming] as a TimingBuilder
+  TimingBuilder? get fixedTiming => fixedX?.isAs<TimingBuilder>();
 
-  /// Getter for [fixedContactDetail] as a ContactDetail
-  ContactDetail? get fixedContactDetail => fixedX?.isAs<ContactDetail>();
+  /// Getter for [fixedContactDetail] as a ContactDetailBuilder
+  ContactDetailBuilder? get fixedContactDetail =>
+      fixedX?.isAs<ContactDetailBuilder>();
 
-  /// Getter for [fixedContributor] as a Contributor
-  Contributor? get fixedContributor => fixedX?.isAs<Contributor>();
+  /// Getter for [fixedContributor] as a ContributorBuilder
+  ContributorBuilder? get fixedContributor =>
+      fixedX?.isAs<ContributorBuilder>();
 
-  /// Getter for [fixedDataRequirement] as a DataRequirement
-  DataRequirement? get fixedDataRequirement => fixedX?.isAs<DataRequirement>();
+  /// Getter for [fixedDataRequirement] as a DataRequirementBuilder
+  DataRequirementBuilder? get fixedDataRequirement =>
+      fixedX?.isAs<DataRequirementBuilder>();
 
-  /// Getter for [fixedExpression] as a FhirExpression
-  FhirExpression? get fixedExpression => fixedX?.isAs<FhirExpression>();
+  /// Getter for [fixedExpression] as a FhirExpressionBuilder
+  FhirExpressionBuilder? get fixedExpression =>
+      fixedX?.isAs<FhirExpressionBuilder>();
 
-  /// Getter for [fixedParameterDefinition] as a ParameterDefinition
-  ParameterDefinition? get fixedParameterDefinition =>
-      fixedX?.isAs<ParameterDefinition>();
+  /// Getter for [fixedParameterDefinition] as a ParameterDefinitionBuilder
+  ParameterDefinitionBuilder? get fixedParameterDefinition =>
+      fixedX?.isAs<ParameterDefinitionBuilder>();
 
-  /// Getter for [fixedRelatedArtifact] as a RelatedArtifact
-  RelatedArtifact? get fixedRelatedArtifact => fixedX?.isAs<RelatedArtifact>();
+  /// Getter for [fixedRelatedArtifact] as a RelatedArtifactBuilder
+  RelatedArtifactBuilder? get fixedRelatedArtifact =>
+      fixedX?.isAs<RelatedArtifactBuilder>();
 
-  /// Getter for [fixedTriggerDefinition] as a TriggerDefinition
-  TriggerDefinition? get fixedTriggerDefinition =>
-      fixedX?.isAs<TriggerDefinition>();
+  /// Getter for [fixedTriggerDefinition] as a TriggerDefinitionBuilder
+  TriggerDefinitionBuilder? get fixedTriggerDefinition =>
+      fixedX?.isAs<TriggerDefinitionBuilder>();
 
-  /// Getter for [fixedUsageContext] as a UsageContext
-  UsageContext? get fixedUsageContext => fixedX?.isAs<UsageContext>();
+  /// Getter for [fixedUsageContext] as a UsageContextBuilder
+  UsageContextBuilder? get fixedUsageContext =>
+      fixedX?.isAs<UsageContextBuilder>();
 
-  /// Getter for [fixedDosage] as a Dosage
-  Dosage? get fixedDosage => fixedX?.isAs<Dosage>();
+  /// Getter for [fixedDosage] as a DosageBuilder
+  DosageBuilder? get fixedDosage => fixedX?.isAs<DosageBuilder>();
 
   /// [patternX]
   /// Specifies a value that the value in the instance SHALL follow - that
@@ -1011,258 +1047,286 @@ class ElementDefinition extends BackboneType {
   /// 1. If primitive: it must match exactly the pattern value
   /// 2. If a complex object: it must match (recursively) the pattern value
   /// 3. If an array: it must match (recursively) the pattern value.
-  final PatternXElementDefinition? patternX;
+  PatternXElementDefinitionBuilder? patternX;
 
-  /// Getter for [patternBase64Binary] as a FhirBase64Binary
-  FhirBase64Binary? get patternBase64Binary =>
-      patternX?.isAs<FhirBase64Binary>();
+  /// Getter for [patternBase64Binary] as a FhirBase64BinaryBuilder
+  FhirBase64BinaryBuilder? get patternBase64Binary =>
+      patternX?.isAs<FhirBase64BinaryBuilder>();
 
-  /// Getter for [patternBoolean] as a FhirBoolean
-  FhirBoolean? get patternBoolean => patternX?.isAs<FhirBoolean>();
+  /// Getter for [patternBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get patternBoolean =>
+      patternX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [patternCanonical] as a FhirCanonical
-  FhirCanonical? get patternCanonical => patternX?.isAs<FhirCanonical>();
+  /// Getter for [patternCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get patternCanonical =>
+      patternX?.isAs<FhirCanonicalBuilder>();
 
-  /// Getter for [patternCode] as a FhirCode
-  FhirCode? get patternCode => patternX?.isAs<FhirCode>();
+  /// Getter for [patternCode] as a FhirCodeBuilder
+  FhirCodeBuilder? get patternCode => patternX?.isAs<FhirCodeBuilder>();
 
-  /// Getter for [patternDate] as a FhirDate
-  FhirDate? get patternDate => patternX?.isAs<FhirDate>();
+  /// Getter for [patternDate] as a FhirDateBuilder
+  FhirDateBuilder? get patternDate => patternX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [patternDateTime] as a FhirDateTime
-  FhirDateTime? get patternDateTime => patternX?.isAs<FhirDateTime>();
+  /// Getter for [patternDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get patternDateTime =>
+      patternX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [patternDecimal] as a FhirDecimal
-  FhirDecimal? get patternDecimal => patternX?.isAs<FhirDecimal>();
+  /// Getter for [patternDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get patternDecimal =>
+      patternX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [patternId] as a FhirId
-  FhirId? get patternId => patternX?.isAs<FhirId>();
+  /// Getter for [patternId] as a FhirIdBuilder
+  FhirIdBuilder? get patternId => patternX?.isAs<FhirIdBuilder>();
 
-  /// Getter for [patternInstant] as a FhirInstant
-  FhirInstant? get patternInstant => patternX?.isAs<FhirInstant>();
+  /// Getter for [patternInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get patternInstant =>
+      patternX?.isAs<FhirInstantBuilder>();
 
-  /// Getter for [patternInteger] as a FhirInteger
-  FhirInteger? get patternInteger => patternX?.isAs<FhirInteger>();
+  /// Getter for [patternInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get patternInteger =>
+      patternX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [patternMarkdown] as a FhirMarkdown
-  FhirMarkdown? get patternMarkdown => patternX?.isAs<FhirMarkdown>();
+  /// Getter for [patternMarkdown] as a FhirMarkdownBuilder
+  FhirMarkdownBuilder? get patternMarkdown =>
+      patternX?.isAs<FhirMarkdownBuilder>();
 
-  /// Getter for [patternOid] as a FhirOid
-  FhirOid? get patternOid => patternX?.isAs<FhirOid>();
+  /// Getter for [patternOid] as a FhirOidBuilder
+  FhirOidBuilder? get patternOid => patternX?.isAs<FhirOidBuilder>();
 
-  /// Getter for [patternPositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get patternPositiveInt => patternX?.isAs<FhirPositiveInt>();
+  /// Getter for [patternPositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get patternPositiveInt =>
+      patternX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [patternString] as a FhirString
-  FhirString? get patternString => patternX?.isAs<FhirString>();
+  /// Getter for [patternString] as a FhirStringBuilder
+  FhirStringBuilder? get patternString => patternX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [patternTime] as a FhirTime
-  FhirTime? get patternTime => patternX?.isAs<FhirTime>();
+  /// Getter for [patternTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get patternTime => patternX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [patternUnsignedInt] as a FhirUnsignedInt
-  FhirUnsignedInt? get patternUnsignedInt => patternX?.isAs<FhirUnsignedInt>();
+  /// Getter for [patternUnsignedInt] as a FhirUnsignedIntBuilder
+  FhirUnsignedIntBuilder? get patternUnsignedInt =>
+      patternX?.isAs<FhirUnsignedIntBuilder>();
 
-  /// Getter for [patternUri] as a FhirUri
-  FhirUri? get patternUri => patternX?.isAs<FhirUri>();
+  /// Getter for [patternUri] as a FhirUriBuilder
+  FhirUriBuilder? get patternUri => patternX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [patternUrl] as a FhirUrl
-  FhirUrl? get patternUrl => patternX?.isAs<FhirUrl>();
+  /// Getter for [patternUrl] as a FhirUrlBuilder
+  FhirUrlBuilder? get patternUrl => patternX?.isAs<FhirUrlBuilder>();
 
-  /// Getter for [patternUuid] as a FhirUuid
-  FhirUuid? get patternUuid => patternX?.isAs<FhirUuid>();
+  /// Getter for [patternUuid] as a FhirUuidBuilder
+  FhirUuidBuilder? get patternUuid => patternX?.isAs<FhirUuidBuilder>();
 
-  /// Getter for [patternAddress] as a Address
-  Address? get patternAddress => patternX?.isAs<Address>();
+  /// Getter for [patternAddress] as a AddressBuilder
+  AddressBuilder? get patternAddress => patternX?.isAs<AddressBuilder>();
 
-  /// Getter for [patternAge] as a Age
-  Age? get patternAge => patternX?.isAs<Age>();
+  /// Getter for [patternAge] as a AgeBuilder
+  AgeBuilder? get patternAge => patternX?.isAs<AgeBuilder>();
 
-  /// Getter for [patternAnnotation] as a Annotation
-  Annotation? get patternAnnotation => patternX?.isAs<Annotation>();
+  /// Getter for [patternAnnotation] as a AnnotationBuilder
+  AnnotationBuilder? get patternAnnotation =>
+      patternX?.isAs<AnnotationBuilder>();
 
-  /// Getter for [patternAttachment] as a Attachment
-  Attachment? get patternAttachment => patternX?.isAs<Attachment>();
+  /// Getter for [patternAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get patternAttachment =>
+      patternX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [patternCodeableConcept] as a CodeableConcept
-  CodeableConcept? get patternCodeableConcept =>
-      patternX?.isAs<CodeableConcept>();
+  /// Getter for [patternCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get patternCodeableConcept =>
+      patternX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [patternCodeableReference] as a CodeableReference
-  CodeableReference? get patternCodeableReference =>
-      patternX?.isAs<CodeableReference>();
+  /// Getter for [patternCodeableReference] as a CodeableReferenceBuilder
+  CodeableReferenceBuilder? get patternCodeableReference =>
+      patternX?.isAs<CodeableReferenceBuilder>();
 
-  /// Getter for [patternCoding] as a Coding
-  Coding? get patternCoding => patternX?.isAs<Coding>();
+  /// Getter for [patternCoding] as a CodingBuilder
+  CodingBuilder? get patternCoding => patternX?.isAs<CodingBuilder>();
 
-  /// Getter for [patternContactPoint] as a ContactPoint
-  ContactPoint? get patternContactPoint => patternX?.isAs<ContactPoint>();
+  /// Getter for [patternContactPoint] as a ContactPointBuilder
+  ContactPointBuilder? get patternContactPoint =>
+      patternX?.isAs<ContactPointBuilder>();
 
-  /// Getter for [patternCount] as a Count
-  Count? get patternCount => patternX?.isAs<Count>();
+  /// Getter for [patternCount] as a CountBuilder
+  CountBuilder? get patternCount => patternX?.isAs<CountBuilder>();
 
-  /// Getter for [patternDistance] as a Distance
-  Distance? get patternDistance => patternX?.isAs<Distance>();
+  /// Getter for [patternDistance] as a DistanceBuilder
+  DistanceBuilder? get patternDistance => patternX?.isAs<DistanceBuilder>();
 
-  /// Getter for [patternDuration] as a FhirDuration
-  FhirDuration? get patternDuration => patternX?.isAs<FhirDuration>();
+  /// Getter for [patternDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get patternDuration =>
+      patternX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [patternHumanName] as a HumanName
-  HumanName? get patternHumanName => patternX?.isAs<HumanName>();
+  /// Getter for [patternHumanName] as a HumanNameBuilder
+  HumanNameBuilder? get patternHumanName => patternX?.isAs<HumanNameBuilder>();
 
-  /// Getter for [patternIdentifier] as a Identifier
-  Identifier? get patternIdentifier => patternX?.isAs<Identifier>();
+  /// Getter for [patternIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get patternIdentifier =>
+      patternX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [patternMoney] as a Money
-  Money? get patternMoney => patternX?.isAs<Money>();
+  /// Getter for [patternMoney] as a MoneyBuilder
+  MoneyBuilder? get patternMoney => patternX?.isAs<MoneyBuilder>();
 
-  /// Getter for [patternPeriod] as a Period
-  Period? get patternPeriod => patternX?.isAs<Period>();
+  /// Getter for [patternPeriod] as a PeriodBuilder
+  PeriodBuilder? get patternPeriod => patternX?.isAs<PeriodBuilder>();
 
-  /// Getter for [patternQuantity] as a Quantity
-  Quantity? get patternQuantity => patternX?.isAs<Quantity>();
+  /// Getter for [patternQuantity] as a QuantityBuilder
+  QuantityBuilder? get patternQuantity => patternX?.isAs<QuantityBuilder>();
 
-  /// Getter for [patternRange] as a Range
-  Range? get patternRange => patternX?.isAs<Range>();
+  /// Getter for [patternRange] as a RangeBuilder
+  RangeBuilder? get patternRange => patternX?.isAs<RangeBuilder>();
 
-  /// Getter for [patternRatio] as a Ratio
-  Ratio? get patternRatio => patternX?.isAs<Ratio>();
+  /// Getter for [patternRatio] as a RatioBuilder
+  RatioBuilder? get patternRatio => patternX?.isAs<RatioBuilder>();
 
-  /// Getter for [patternRatioRange] as a RatioRange
-  RatioRange? get patternRatioRange => patternX?.isAs<RatioRange>();
+  /// Getter for [patternRatioRange] as a RatioRangeBuilder
+  RatioRangeBuilder? get patternRatioRange =>
+      patternX?.isAs<RatioRangeBuilder>();
 
-  /// Getter for [patternReference] as a Reference
-  Reference? get patternReference => patternX?.isAs<Reference>();
+  /// Getter for [patternReference] as a ReferenceBuilder
+  ReferenceBuilder? get patternReference => patternX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [patternSampledData] as a SampledData
-  SampledData? get patternSampledData => patternX?.isAs<SampledData>();
+  /// Getter for [patternSampledData] as a SampledDataBuilder
+  SampledDataBuilder? get patternSampledData =>
+      patternX?.isAs<SampledDataBuilder>();
 
-  /// Getter for [patternSignature] as a Signature
-  Signature? get patternSignature => patternX?.isAs<Signature>();
+  /// Getter for [patternSignature] as a SignatureBuilder
+  SignatureBuilder? get patternSignature => patternX?.isAs<SignatureBuilder>();
 
-  /// Getter for [patternTiming] as a Timing
-  Timing? get patternTiming => patternX?.isAs<Timing>();
+  /// Getter for [patternTiming] as a TimingBuilder
+  TimingBuilder? get patternTiming => patternX?.isAs<TimingBuilder>();
 
-  /// Getter for [patternContactDetail] as a ContactDetail
-  ContactDetail? get patternContactDetail => patternX?.isAs<ContactDetail>();
+  /// Getter for [patternContactDetail] as a ContactDetailBuilder
+  ContactDetailBuilder? get patternContactDetail =>
+      patternX?.isAs<ContactDetailBuilder>();
 
-  /// Getter for [patternContributor] as a Contributor
-  Contributor? get patternContributor => patternX?.isAs<Contributor>();
+  /// Getter for [patternContributor] as a ContributorBuilder
+  ContributorBuilder? get patternContributor =>
+      patternX?.isAs<ContributorBuilder>();
 
-  /// Getter for [patternDataRequirement] as a DataRequirement
-  DataRequirement? get patternDataRequirement =>
-      patternX?.isAs<DataRequirement>();
+  /// Getter for [patternDataRequirement] as a DataRequirementBuilder
+  DataRequirementBuilder? get patternDataRequirement =>
+      patternX?.isAs<DataRequirementBuilder>();
 
-  /// Getter for [patternExpression] as a FhirExpression
-  FhirExpression? get patternExpression => patternX?.isAs<FhirExpression>();
+  /// Getter for [patternExpression] as a FhirExpressionBuilder
+  FhirExpressionBuilder? get patternExpression =>
+      patternX?.isAs<FhirExpressionBuilder>();
 
-  /// Getter for [patternParameterDefinition] as a ParameterDefinition
-  ParameterDefinition? get patternParameterDefinition =>
-      patternX?.isAs<ParameterDefinition>();
+  /// Getter for [patternParameterDefinition] as a ParameterDefinitionBuilder
+  ParameterDefinitionBuilder? get patternParameterDefinition =>
+      patternX?.isAs<ParameterDefinitionBuilder>();
 
-  /// Getter for [patternRelatedArtifact] as a RelatedArtifact
-  RelatedArtifact? get patternRelatedArtifact =>
-      patternX?.isAs<RelatedArtifact>();
+  /// Getter for [patternRelatedArtifact] as a RelatedArtifactBuilder
+  RelatedArtifactBuilder? get patternRelatedArtifact =>
+      patternX?.isAs<RelatedArtifactBuilder>();
 
-  /// Getter for [patternTriggerDefinition] as a TriggerDefinition
-  TriggerDefinition? get patternTriggerDefinition =>
-      patternX?.isAs<TriggerDefinition>();
+  /// Getter for [patternTriggerDefinition] as a TriggerDefinitionBuilder
+  TriggerDefinitionBuilder? get patternTriggerDefinition =>
+      patternX?.isAs<TriggerDefinitionBuilder>();
 
-  /// Getter for [patternUsageContext] as a UsageContext
-  UsageContext? get patternUsageContext => patternX?.isAs<UsageContext>();
+  /// Getter for [patternUsageContext] as a UsageContextBuilder
+  UsageContextBuilder? get patternUsageContext =>
+      patternX?.isAs<UsageContextBuilder>();
 
-  /// Getter for [patternDosage] as a Dosage
-  Dosage? get patternDosage => patternX?.isAs<Dosage>();
+  /// Getter for [patternDosage] as a DosageBuilder
+  DosageBuilder? get patternDosage => patternX?.isAs<DosageBuilder>();
 
   /// [example]
   /// A sample value for this element demonstrating the type of information
   /// that would typically be found in the element.
-  final List<ElementDefinitionExample>? example;
+  List<ElementDefinitionExampleBuilder>? example;
 
   /// [minValueX]
   /// The minimum allowed value for the element. The value is inclusive. This
   /// is allowed for the types date, dateTime, instant, time, decimal,
   /// integer, and Quantity.
-  final MinValueXElementDefinition? minValueX;
+  MinValueXElementDefinitionBuilder? minValueX;
 
-  /// Getter for [minValueDate] as a FhirDate
-  FhirDate? get minValueDate => minValueX?.isAs<FhirDate>();
+  /// Getter for [minValueDate] as a FhirDateBuilder
+  FhirDateBuilder? get minValueDate => minValueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [minValueDateTime] as a FhirDateTime
-  FhirDateTime? get minValueDateTime => minValueX?.isAs<FhirDateTime>();
+  /// Getter for [minValueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get minValueDateTime =>
+      minValueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [minValueInstant] as a FhirInstant
-  FhirInstant? get minValueInstant => minValueX?.isAs<FhirInstant>();
+  /// Getter for [minValueInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get minValueInstant =>
+      minValueX?.isAs<FhirInstantBuilder>();
 
-  /// Getter for [minValueTime] as a FhirTime
-  FhirTime? get minValueTime => minValueX?.isAs<FhirTime>();
+  /// Getter for [minValueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get minValueTime => minValueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [minValueDecimal] as a FhirDecimal
-  FhirDecimal? get minValueDecimal => minValueX?.isAs<FhirDecimal>();
+  /// Getter for [minValueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get minValueDecimal =>
+      minValueX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [minValueInteger] as a FhirInteger
-  FhirInteger? get minValueInteger => minValueX?.isAs<FhirInteger>();
+  /// Getter for [minValueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get minValueInteger =>
+      minValueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [minValuePositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get minValuePositiveInt =>
-      minValueX?.isAs<FhirPositiveInt>();
+  /// Getter for [minValuePositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get minValuePositiveInt =>
+      minValueX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [minValueUnsignedInt] as a FhirUnsignedInt
-  FhirUnsignedInt? get minValueUnsignedInt =>
-      minValueX?.isAs<FhirUnsignedInt>();
+  /// Getter for [minValueUnsignedInt] as a FhirUnsignedIntBuilder
+  FhirUnsignedIntBuilder? get minValueUnsignedInt =>
+      minValueX?.isAs<FhirUnsignedIntBuilder>();
 
-  /// Getter for [minValueQuantity] as a Quantity
-  Quantity? get minValueQuantity => minValueX?.isAs<Quantity>();
+  /// Getter for [minValueQuantity] as a QuantityBuilder
+  QuantityBuilder? get minValueQuantity => minValueX?.isAs<QuantityBuilder>();
 
   /// [maxValueX]
   /// The maximum allowed value for the element. The value is inclusive. This
   /// is allowed for the types date, dateTime, instant, time, decimal,
   /// integer, and Quantity.
-  final MaxValueXElementDefinition? maxValueX;
+  MaxValueXElementDefinitionBuilder? maxValueX;
 
-  /// Getter for [maxValueDate] as a FhirDate
-  FhirDate? get maxValueDate => maxValueX?.isAs<FhirDate>();
+  /// Getter for [maxValueDate] as a FhirDateBuilder
+  FhirDateBuilder? get maxValueDate => maxValueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [maxValueDateTime] as a FhirDateTime
-  FhirDateTime? get maxValueDateTime => maxValueX?.isAs<FhirDateTime>();
+  /// Getter for [maxValueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get maxValueDateTime =>
+      maxValueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [maxValueInstant] as a FhirInstant
-  FhirInstant? get maxValueInstant => maxValueX?.isAs<FhirInstant>();
+  /// Getter for [maxValueInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get maxValueInstant =>
+      maxValueX?.isAs<FhirInstantBuilder>();
 
-  /// Getter for [maxValueTime] as a FhirTime
-  FhirTime? get maxValueTime => maxValueX?.isAs<FhirTime>();
+  /// Getter for [maxValueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get maxValueTime => maxValueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [maxValueDecimal] as a FhirDecimal
-  FhirDecimal? get maxValueDecimal => maxValueX?.isAs<FhirDecimal>();
+  /// Getter for [maxValueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get maxValueDecimal =>
+      maxValueX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [maxValueInteger] as a FhirInteger
-  FhirInteger? get maxValueInteger => maxValueX?.isAs<FhirInteger>();
+  /// Getter for [maxValueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get maxValueInteger =>
+      maxValueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [maxValuePositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get maxValuePositiveInt =>
-      maxValueX?.isAs<FhirPositiveInt>();
+  /// Getter for [maxValuePositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get maxValuePositiveInt =>
+      maxValueX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [maxValueUnsignedInt] as a FhirUnsignedInt
-  FhirUnsignedInt? get maxValueUnsignedInt =>
-      maxValueX?.isAs<FhirUnsignedInt>();
+  /// Getter for [maxValueUnsignedInt] as a FhirUnsignedIntBuilder
+  FhirUnsignedIntBuilder? get maxValueUnsignedInt =>
+      maxValueX?.isAs<FhirUnsignedIntBuilder>();
 
-  /// Getter for [maxValueQuantity] as a Quantity
-  Quantity? get maxValueQuantity => maxValueX?.isAs<Quantity>();
+  /// Getter for [maxValueQuantity] as a QuantityBuilder
+  QuantityBuilder? get maxValueQuantity => maxValueX?.isAs<QuantityBuilder>();
 
   /// [maxLength]
   /// Indicates the maximum length in characters that is permitted to be
   /// present in conformant instances and which is expected to be supported
   /// by conformant consumers that support the element.
-  final FhirInteger? maxLength;
+  FhirIntegerBuilder? maxLength;
 
   /// [condition]
   /// A reference to an invariant that may make additional statements about
   /// the cardinality or value in the instance.
-  final List<FhirId>? condition;
+  List<FhirIdBuilder>? condition;
 
   /// [constraint]
   /// Formal constraints such as co-occurrence and other constraints that can
   /// be computationally evaluated within the context of the instance.
-  final List<ElementDefinitionConstraint>? constraint;
+  List<ElementDefinitionConstraintBuilder>? constraint;
 
   /// [mustSupport]
   /// If true, implementations that produce or consume resources SHALL
@@ -1270,7 +1334,7 @@ class ElementDefinition extends BackboneType {
   /// element may be ignored and not supported. If false, whether to populate
   /// or use the data element in any way is at the discretion of the
   /// implementation.
-  final FhirBoolean? mustSupport;
+  FhirBooleanBuilder? mustSupport;
 
   /// [isModifier]
   /// If true, the value of this element affects the interpretation of the
@@ -1280,43 +1344,43 @@ class ElementDefinition extends BackboneType {
   /// ignored by systems: they SHALL either recognize the element and process
   /// it, and/or a pre-determination has been made that it is not relevant to
   /// their particular system.
-  final FhirBoolean? isModifier;
+  FhirBooleanBuilder? isModifier;
 
   /// [isModifierReason]
   /// Explains how that element affects the interpretation of the resource or
   /// element that contains it.
-  final FhirString? isModifierReason;
+  FhirStringBuilder? isModifierReason;
 
   /// [isSummary]
   /// Whether the element should be included if a client requests a search
   /// with the parameter _summary=true.
-  final FhirBoolean? isSummary;
+  FhirBooleanBuilder? isSummary;
 
   /// [binding]
   /// Binds to a value set if this element is coded (code, Coding,
   /// CodeableConcept, Quantity), or the data types (string, uri).
-  final ElementDefinitionBinding? binding;
+  ElementDefinitionBindingBuilder? binding;
 
   /// [mapping]
   /// Identifies a concept from an external specification that roughly
   /// corresponds to this element.
-  final List<ElementDefinitionMapping>? mapping;
+  List<ElementDefinitionMappingBuilder>? mapping;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1325,179 +1389,68 @@ class ElementDefinition extends BackboneType {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'path',
-      path,
-    );
-    addField(
-      'representation',
-      representation,
-    );
-    addField(
-      'sliceName',
-      sliceName,
-    );
-    addField(
-      'sliceIsConstraining',
-      sliceIsConstraining,
-    );
-    addField(
-      'label',
-      label,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'slicing',
-      slicing,
-    );
-    addField(
-      'short',
-      short,
-    );
-    addField(
-      'definition',
-      definition,
-    );
-    addField(
-      'comment',
-      comment,
-    );
-    addField(
-      'requirements',
-      requirements,
-    );
-    addField(
-      'alias',
-      alias,
-    );
-    addField(
-      'min',
-      min,
-    );
-    addField(
-      'max',
-      max,
-    );
-    addField(
-      'base',
-      base,
-    );
-    addField(
-      'contentReference',
-      contentReference,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('path', path);
+    addField('representation', representation);
+    addField('sliceName', sliceName);
+    addField('sliceIsConstraining', sliceIsConstraining);
+    addField('label', label);
+    addField('code', code);
+    addField('slicing', slicing);
+    addField('short', short);
+    addField('definition', definition);
+    addField('comment', comment);
+    addField('requirements', requirements);
+    addField('alias', alias);
+    addField('min', min);
+    addField('max', max);
+    addField('base', base);
+    addField('contentReference', contentReference);
+    addField('type', type);
     if (defaultValueX != null) {
       final fhirType = defaultValueX!.fhirType;
-      addField(
-        'defaultValue${fhirType.capitalize()}',
-        defaultValueX,
-      );
+      addField('defaultValue${fhirType.capitalize()}', defaultValueX);
     }
 
-    addField(
-      'meaningWhenMissing',
-      meaningWhenMissing,
-    );
-    addField(
-      'orderMeaning',
-      orderMeaning,
-    );
+    addField('meaningWhenMissing', meaningWhenMissing);
+    addField('orderMeaning', orderMeaning);
     if (fixedX != null) {
       final fhirType = fixedX!.fhirType;
-      addField(
-        'fixed${fhirType.capitalize()}',
-        fixedX,
-      );
+      addField('fixed${fhirType.capitalize()}', fixedX);
     }
 
     if (patternX != null) {
       final fhirType = patternX!.fhirType;
-      addField(
-        'pattern${fhirType.capitalize()}',
-        patternX,
-      );
+      addField('pattern${fhirType.capitalize()}', patternX);
     }
 
-    addField(
-      'example',
-      example,
-    );
+    addField('example', example);
     if (minValueX != null) {
       final fhirType = minValueX!.fhirType;
-      addField(
-        'minValue${fhirType.capitalize()}',
-        minValueX,
-      );
+      addField('minValue${fhirType.capitalize()}', minValueX);
     }
 
     if (maxValueX != null) {
       final fhirType = maxValueX!.fhirType;
-      addField(
-        'maxValue${fhirType.capitalize()}',
-        maxValueX,
-      );
+      addField('maxValue${fhirType.capitalize()}', maxValueX);
     }
 
-    addField(
-      'maxLength',
-      maxLength,
-    );
-    addField(
-      'condition',
-      condition,
-    );
-    addField(
-      'constraint',
-      constraint,
-    );
-    addField(
-      'mustSupport',
-      mustSupport,
-    );
-    addField(
-      'isModifier',
-      isModifier,
-    );
-    addField(
-      'isModifierReason',
-      isModifierReason,
-    );
-    addField(
-      'isSummary',
-      isSummary,
-    );
-    addField(
-      'binding',
-      binding,
-    );
-    addField(
-      'mapping',
-      mapping,
-    );
+    addField('maxLength', maxLength);
+    addField('condition', condition);
+    addField('constraint', constraint);
+    addField('mustSupport', mustSupport);
+    addField('isModifier', isModifier);
+    addField('isModifierReason', isModifierReason);
+    addField('isSummary', isSummary);
+    addField('binding', binding);
+    addField('mapping', mapping);
     return json;
   }
 
@@ -1548,11 +1501,11 @@ class ElementDefinition extends BackboneType {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1567,7 +1520,9 @@ class ElementDefinition extends BackboneType {
           fields.addAll(modifierExtension!);
         }
       case 'path':
-        fields.add(path);
+        if (path != null) {
+          fields.add(path!);
+        }
       case 'representation':
         if (representation != null) {
           fields.addAll(representation!);
@@ -1633,211 +1588,215 @@ class ElementDefinition extends BackboneType {
           fields.addAll(type!);
         }
       case 'defaultValue':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueX':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueBase64Binary':
-        if (defaultValueX is FhirBase64Binary) {
+        if (defaultValueX is FhirBase64BinaryBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueBoolean':
-        if (defaultValueX is FhirBoolean) {
+        if (defaultValueX is FhirBooleanBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCanonical':
-        if (defaultValueX is FhirCanonical) {
+        if (defaultValueX is FhirCanonicalBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCode':
-        if (defaultValueX is FhirCode) {
+        if (defaultValueX is FhirCodeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDate':
-        if (defaultValueX is FhirDate) {
+        if (defaultValueX is FhirDateBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDateTime':
-        if (defaultValueX is FhirDateTime) {
+        if (defaultValueX is FhirDateTimeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDecimal':
-        if (defaultValueX is FhirDecimal) {
+        if (defaultValueX is FhirDecimalBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueId':
-        if (defaultValueX is FhirId) {
+        if (defaultValueX is FhirIdBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueInstant':
-        if (defaultValueX is FhirInstant) {
+        if (defaultValueX is FhirInstantBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueInteger':
-        if (defaultValueX is FhirInteger) {
+        if (defaultValueX is FhirIntegerBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueMarkdown':
-        if (defaultValueX is FhirMarkdown) {
+        if (defaultValueX is FhirMarkdownBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueOid':
-        if (defaultValueX is FhirOid) {
+        if (defaultValueX is FhirOidBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValuePositiveInt':
-        if (defaultValueX is FhirPositiveInt) {
+        if (defaultValueX is FhirPositiveIntBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueString':
-        if (defaultValueX is FhirString) {
+        if (defaultValueX is FhirStringBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueTime':
-        if (defaultValueX is FhirTime) {
+        if (defaultValueX is FhirTimeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUnsignedInt':
-        if (defaultValueX is FhirUnsignedInt) {
+        if (defaultValueX is FhirUnsignedIntBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUri':
-        if (defaultValueX is FhirUri) {
+        if (defaultValueX is FhirUriBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUrl':
-        if (defaultValueX is FhirUrl) {
+        if (defaultValueX is FhirUrlBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUuid':
-        if (defaultValueX is FhirUuid) {
+        if (defaultValueX is FhirUuidBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAddress':
-        if (defaultValueX is Address) {
+        if (defaultValueX is AddressBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAge':
-        if (defaultValueX is Age) {
+        if (defaultValueX is AgeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAnnotation':
-        if (defaultValueX is Annotation) {
+        if (defaultValueX is AnnotationBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAttachment':
-        if (defaultValueX is Attachment) {
+        if (defaultValueX is AttachmentBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCodeableConcept':
-        if (defaultValueX is CodeableConcept) {
+        if (defaultValueX is CodeableConceptBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCodeableReference':
-        if (defaultValueX is CodeableReference) {
+        if (defaultValueX is CodeableReferenceBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCoding':
-        if (defaultValueX is Coding) {
+        if (defaultValueX is CodingBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueContactPoint':
-        if (defaultValueX is ContactPoint) {
+        if (defaultValueX is ContactPointBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCount':
-        if (defaultValueX is Count) {
+        if (defaultValueX is CountBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDistance':
-        if (defaultValueX is Distance) {
+        if (defaultValueX is DistanceBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDuration':
-        if (defaultValueX is FhirDuration) {
+        if (defaultValueX is FhirDurationBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueHumanName':
-        if (defaultValueX is HumanName) {
+        if (defaultValueX is HumanNameBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueIdentifier':
-        if (defaultValueX is Identifier) {
+        if (defaultValueX is IdentifierBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueMoney':
-        if (defaultValueX is Money) {
+        if (defaultValueX is MoneyBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValuePeriod':
-        if (defaultValueX is Period) {
+        if (defaultValueX is PeriodBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueQuantity':
-        if (defaultValueX is Quantity) {
+        if (defaultValueX is QuantityBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueRange':
-        if (defaultValueX is Range) {
+        if (defaultValueX is RangeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueRatio':
-        if (defaultValueX is Ratio) {
+        if (defaultValueX is RatioBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueRatioRange':
-        if (defaultValueX is RatioRange) {
+        if (defaultValueX is RatioRangeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueReference':
-        if (defaultValueX is Reference) {
+        if (defaultValueX is ReferenceBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueSampledData':
-        if (defaultValueX is SampledData) {
+        if (defaultValueX is SampledDataBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueSignature':
-        if (defaultValueX is Signature) {
+        if (defaultValueX is SignatureBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueTiming':
-        if (defaultValueX is Timing) {
+        if (defaultValueX is TimingBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueContactDetail':
-        if (defaultValueX is ContactDetail) {
+        if (defaultValueX is ContactDetailBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueContributor':
-        if (defaultValueX is Contributor) {
+        if (defaultValueX is ContributorBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDataRequirement':
-        if (defaultValueX is DataRequirement) {
+        if (defaultValueX is DataRequirementBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueExpression':
-        if (defaultValueX is FhirExpression) {
+        if (defaultValueX is FhirExpressionBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueParameterDefinition':
-        if (defaultValueX is ParameterDefinition) {
+        if (defaultValueX is ParameterDefinitionBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueRelatedArtifact':
-        if (defaultValueX is RelatedArtifact) {
+        if (defaultValueX is RelatedArtifactBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueTriggerDefinition':
-        if (defaultValueX is TriggerDefinition) {
+        if (defaultValueX is TriggerDefinitionBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUsageContext':
-        if (defaultValueX is UsageContext) {
+        if (defaultValueX is UsageContextBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDosage':
-        if (defaultValueX is Dosage) {
+        if (defaultValueX is DosageBuilder) {
           fields.add(defaultValueX!);
         }
       case 'meaningWhenMissing':
@@ -1849,419 +1808,427 @@ class ElementDefinition extends BackboneType {
           fields.add(orderMeaning!);
         }
       case 'fixed':
-        fields.add(fixedX!);
+        if (fixedX != null) {
+          fields.add(fixedX!);
+        }
       case 'fixedX':
-        fields.add(fixedX!);
+        if (fixedX != null) {
+          fields.add(fixedX!);
+        }
       case 'fixedBase64Binary':
-        if (fixedX is FhirBase64Binary) {
+        if (fixedX is FhirBase64BinaryBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedBoolean':
-        if (fixedX is FhirBoolean) {
+        if (fixedX is FhirBooleanBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedCanonical':
-        if (fixedX is FhirCanonical) {
+        if (fixedX is FhirCanonicalBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedCode':
-        if (fixedX is FhirCode) {
+        if (fixedX is FhirCodeBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedDate':
-        if (fixedX is FhirDate) {
+        if (fixedX is FhirDateBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedDateTime':
-        if (fixedX is FhirDateTime) {
+        if (fixedX is FhirDateTimeBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedDecimal':
-        if (fixedX is FhirDecimal) {
+        if (fixedX is FhirDecimalBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedId':
-        if (fixedX is FhirId) {
+        if (fixedX is FhirIdBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedInstant':
-        if (fixedX is FhirInstant) {
+        if (fixedX is FhirInstantBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedInteger':
-        if (fixedX is FhirInteger) {
+        if (fixedX is FhirIntegerBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedMarkdown':
-        if (fixedX is FhirMarkdown) {
+        if (fixedX is FhirMarkdownBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedOid':
-        if (fixedX is FhirOid) {
+        if (fixedX is FhirOidBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedPositiveInt':
-        if (fixedX is FhirPositiveInt) {
+        if (fixedX is FhirPositiveIntBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedString':
-        if (fixedX is FhirString) {
+        if (fixedX is FhirStringBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedTime':
-        if (fixedX is FhirTime) {
+        if (fixedX is FhirTimeBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedUnsignedInt':
-        if (fixedX is FhirUnsignedInt) {
+        if (fixedX is FhirUnsignedIntBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedUri':
-        if (fixedX is FhirUri) {
+        if (fixedX is FhirUriBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedUrl':
-        if (fixedX is FhirUrl) {
+        if (fixedX is FhirUrlBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedUuid':
-        if (fixedX is FhirUuid) {
+        if (fixedX is FhirUuidBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedAddress':
-        if (fixedX is Address) {
+        if (fixedX is AddressBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedAge':
-        if (fixedX is Age) {
+        if (fixedX is AgeBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedAnnotation':
-        if (fixedX is Annotation) {
+        if (fixedX is AnnotationBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedAttachment':
-        if (fixedX is Attachment) {
+        if (fixedX is AttachmentBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedCodeableConcept':
-        if (fixedX is CodeableConcept) {
+        if (fixedX is CodeableConceptBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedCodeableReference':
-        if (fixedX is CodeableReference) {
+        if (fixedX is CodeableReferenceBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedCoding':
-        if (fixedX is Coding) {
+        if (fixedX is CodingBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedContactPoint':
-        if (fixedX is ContactPoint) {
+        if (fixedX is ContactPointBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedCount':
-        if (fixedX is Count) {
+        if (fixedX is CountBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedDistance':
-        if (fixedX is Distance) {
+        if (fixedX is DistanceBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedDuration':
-        if (fixedX is FhirDuration) {
+        if (fixedX is FhirDurationBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedHumanName':
-        if (fixedX is HumanName) {
+        if (fixedX is HumanNameBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedIdentifier':
-        if (fixedX is Identifier) {
+        if (fixedX is IdentifierBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedMoney':
-        if (fixedX is Money) {
+        if (fixedX is MoneyBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedPeriod':
-        if (fixedX is Period) {
+        if (fixedX is PeriodBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedQuantity':
-        if (fixedX is Quantity) {
+        if (fixedX is QuantityBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedRange':
-        if (fixedX is Range) {
+        if (fixedX is RangeBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedRatio':
-        if (fixedX is Ratio) {
+        if (fixedX is RatioBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedRatioRange':
-        if (fixedX is RatioRange) {
+        if (fixedX is RatioRangeBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedReference':
-        if (fixedX is Reference) {
+        if (fixedX is ReferenceBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedSampledData':
-        if (fixedX is SampledData) {
+        if (fixedX is SampledDataBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedSignature':
-        if (fixedX is Signature) {
+        if (fixedX is SignatureBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedTiming':
-        if (fixedX is Timing) {
+        if (fixedX is TimingBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedContactDetail':
-        if (fixedX is ContactDetail) {
+        if (fixedX is ContactDetailBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedContributor':
-        if (fixedX is Contributor) {
+        if (fixedX is ContributorBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedDataRequirement':
-        if (fixedX is DataRequirement) {
+        if (fixedX is DataRequirementBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedExpression':
-        if (fixedX is FhirExpression) {
+        if (fixedX is FhirExpressionBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedParameterDefinition':
-        if (fixedX is ParameterDefinition) {
+        if (fixedX is ParameterDefinitionBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedRelatedArtifact':
-        if (fixedX is RelatedArtifact) {
+        if (fixedX is RelatedArtifactBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedTriggerDefinition':
-        if (fixedX is TriggerDefinition) {
+        if (fixedX is TriggerDefinitionBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedUsageContext':
-        if (fixedX is UsageContext) {
+        if (fixedX is UsageContextBuilder) {
           fields.add(fixedX!);
         }
       case 'fixedDosage':
-        if (fixedX is Dosage) {
+        if (fixedX is DosageBuilder) {
           fields.add(fixedX!);
         }
       case 'pattern':
-        fields.add(patternX!);
+        if (patternX != null) {
+          fields.add(patternX!);
+        }
       case 'patternX':
-        fields.add(patternX!);
+        if (patternX != null) {
+          fields.add(patternX!);
+        }
       case 'patternBase64Binary':
-        if (patternX is FhirBase64Binary) {
+        if (patternX is FhirBase64BinaryBuilder) {
           fields.add(patternX!);
         }
       case 'patternBoolean':
-        if (patternX is FhirBoolean) {
+        if (patternX is FhirBooleanBuilder) {
           fields.add(patternX!);
         }
       case 'patternCanonical':
-        if (patternX is FhirCanonical) {
+        if (patternX is FhirCanonicalBuilder) {
           fields.add(patternX!);
         }
       case 'patternCode':
-        if (patternX is FhirCode) {
+        if (patternX is FhirCodeBuilder) {
           fields.add(patternX!);
         }
       case 'patternDate':
-        if (patternX is FhirDate) {
+        if (patternX is FhirDateBuilder) {
           fields.add(patternX!);
         }
       case 'patternDateTime':
-        if (patternX is FhirDateTime) {
+        if (patternX is FhirDateTimeBuilder) {
           fields.add(patternX!);
         }
       case 'patternDecimal':
-        if (patternX is FhirDecimal) {
+        if (patternX is FhirDecimalBuilder) {
           fields.add(patternX!);
         }
       case 'patternId':
-        if (patternX is FhirId) {
+        if (patternX is FhirIdBuilder) {
           fields.add(patternX!);
         }
       case 'patternInstant':
-        if (patternX is FhirInstant) {
+        if (patternX is FhirInstantBuilder) {
           fields.add(patternX!);
         }
       case 'patternInteger':
-        if (patternX is FhirInteger) {
+        if (patternX is FhirIntegerBuilder) {
           fields.add(patternX!);
         }
       case 'patternMarkdown':
-        if (patternX is FhirMarkdown) {
+        if (patternX is FhirMarkdownBuilder) {
           fields.add(patternX!);
         }
       case 'patternOid':
-        if (patternX is FhirOid) {
+        if (patternX is FhirOidBuilder) {
           fields.add(patternX!);
         }
       case 'patternPositiveInt':
-        if (patternX is FhirPositiveInt) {
+        if (patternX is FhirPositiveIntBuilder) {
           fields.add(patternX!);
         }
       case 'patternString':
-        if (patternX is FhirString) {
+        if (patternX is FhirStringBuilder) {
           fields.add(patternX!);
         }
       case 'patternTime':
-        if (patternX is FhirTime) {
+        if (patternX is FhirTimeBuilder) {
           fields.add(patternX!);
         }
       case 'patternUnsignedInt':
-        if (patternX is FhirUnsignedInt) {
+        if (patternX is FhirUnsignedIntBuilder) {
           fields.add(patternX!);
         }
       case 'patternUri':
-        if (patternX is FhirUri) {
+        if (patternX is FhirUriBuilder) {
           fields.add(patternX!);
         }
       case 'patternUrl':
-        if (patternX is FhirUrl) {
+        if (patternX is FhirUrlBuilder) {
           fields.add(patternX!);
         }
       case 'patternUuid':
-        if (patternX is FhirUuid) {
+        if (patternX is FhirUuidBuilder) {
           fields.add(patternX!);
         }
       case 'patternAddress':
-        if (patternX is Address) {
+        if (patternX is AddressBuilder) {
           fields.add(patternX!);
         }
       case 'patternAge':
-        if (patternX is Age) {
+        if (patternX is AgeBuilder) {
           fields.add(patternX!);
         }
       case 'patternAnnotation':
-        if (patternX is Annotation) {
+        if (patternX is AnnotationBuilder) {
           fields.add(patternX!);
         }
       case 'patternAttachment':
-        if (patternX is Attachment) {
+        if (patternX is AttachmentBuilder) {
           fields.add(patternX!);
         }
       case 'patternCodeableConcept':
-        if (patternX is CodeableConcept) {
+        if (patternX is CodeableConceptBuilder) {
           fields.add(patternX!);
         }
       case 'patternCodeableReference':
-        if (patternX is CodeableReference) {
+        if (patternX is CodeableReferenceBuilder) {
           fields.add(patternX!);
         }
       case 'patternCoding':
-        if (patternX is Coding) {
+        if (patternX is CodingBuilder) {
           fields.add(patternX!);
         }
       case 'patternContactPoint':
-        if (patternX is ContactPoint) {
+        if (patternX is ContactPointBuilder) {
           fields.add(patternX!);
         }
       case 'patternCount':
-        if (patternX is Count) {
+        if (patternX is CountBuilder) {
           fields.add(patternX!);
         }
       case 'patternDistance':
-        if (patternX is Distance) {
+        if (patternX is DistanceBuilder) {
           fields.add(patternX!);
         }
       case 'patternDuration':
-        if (patternX is FhirDuration) {
+        if (patternX is FhirDurationBuilder) {
           fields.add(patternX!);
         }
       case 'patternHumanName':
-        if (patternX is HumanName) {
+        if (patternX is HumanNameBuilder) {
           fields.add(patternX!);
         }
       case 'patternIdentifier':
-        if (patternX is Identifier) {
+        if (patternX is IdentifierBuilder) {
           fields.add(patternX!);
         }
       case 'patternMoney':
-        if (patternX is Money) {
+        if (patternX is MoneyBuilder) {
           fields.add(patternX!);
         }
       case 'patternPeriod':
-        if (patternX is Period) {
+        if (patternX is PeriodBuilder) {
           fields.add(patternX!);
         }
       case 'patternQuantity':
-        if (patternX is Quantity) {
+        if (patternX is QuantityBuilder) {
           fields.add(patternX!);
         }
       case 'patternRange':
-        if (patternX is Range) {
+        if (patternX is RangeBuilder) {
           fields.add(patternX!);
         }
       case 'patternRatio':
-        if (patternX is Ratio) {
+        if (patternX is RatioBuilder) {
           fields.add(patternX!);
         }
       case 'patternRatioRange':
-        if (patternX is RatioRange) {
+        if (patternX is RatioRangeBuilder) {
           fields.add(patternX!);
         }
       case 'patternReference':
-        if (patternX is Reference) {
+        if (patternX is ReferenceBuilder) {
           fields.add(patternX!);
         }
       case 'patternSampledData':
-        if (patternX is SampledData) {
+        if (patternX is SampledDataBuilder) {
           fields.add(patternX!);
         }
       case 'patternSignature':
-        if (patternX is Signature) {
+        if (patternX is SignatureBuilder) {
           fields.add(patternX!);
         }
       case 'patternTiming':
-        if (patternX is Timing) {
+        if (patternX is TimingBuilder) {
           fields.add(patternX!);
         }
       case 'patternContactDetail':
-        if (patternX is ContactDetail) {
+        if (patternX is ContactDetailBuilder) {
           fields.add(patternX!);
         }
       case 'patternContributor':
-        if (patternX is Contributor) {
+        if (patternX is ContributorBuilder) {
           fields.add(patternX!);
         }
       case 'patternDataRequirement':
-        if (patternX is DataRequirement) {
+        if (patternX is DataRequirementBuilder) {
           fields.add(patternX!);
         }
       case 'patternExpression':
-        if (patternX is FhirExpression) {
+        if (patternX is FhirExpressionBuilder) {
           fields.add(patternX!);
         }
       case 'patternParameterDefinition':
-        if (patternX is ParameterDefinition) {
+        if (patternX is ParameterDefinitionBuilder) {
           fields.add(patternX!);
         }
       case 'patternRelatedArtifact':
-        if (patternX is RelatedArtifact) {
+        if (patternX is RelatedArtifactBuilder) {
           fields.add(patternX!);
         }
       case 'patternTriggerDefinition':
-        if (patternX is TriggerDefinition) {
+        if (patternX is TriggerDefinitionBuilder) {
           fields.add(patternX!);
         }
       case 'patternUsageContext':
-        if (patternX is UsageContext) {
+        if (patternX is UsageContextBuilder) {
           fields.add(patternX!);
         }
       case 'patternDosage':
-        if (patternX is Dosage) {
+        if (patternX is DosageBuilder) {
           fields.add(patternX!);
         }
       case 'example':
@@ -2269,83 +2236,91 @@ class ElementDefinition extends BackboneType {
           fields.addAll(example!);
         }
       case 'minValue':
-        fields.add(minValueX!);
+        if (minValueX != null) {
+          fields.add(minValueX!);
+        }
       case 'minValueX':
-        fields.add(minValueX!);
+        if (minValueX != null) {
+          fields.add(minValueX!);
+        }
       case 'minValueDate':
-        if (minValueX is FhirDate) {
+        if (minValueX is FhirDateBuilder) {
           fields.add(minValueX!);
         }
       case 'minValueDateTime':
-        if (minValueX is FhirDateTime) {
+        if (minValueX is FhirDateTimeBuilder) {
           fields.add(minValueX!);
         }
       case 'minValueInstant':
-        if (minValueX is FhirInstant) {
+        if (minValueX is FhirInstantBuilder) {
           fields.add(minValueX!);
         }
       case 'minValueTime':
-        if (minValueX is FhirTime) {
+        if (minValueX is FhirTimeBuilder) {
           fields.add(minValueX!);
         }
       case 'minValueDecimal':
-        if (minValueX is FhirDecimal) {
+        if (minValueX is FhirDecimalBuilder) {
           fields.add(minValueX!);
         }
       case 'minValueInteger':
-        if (minValueX is FhirInteger) {
+        if (minValueX is FhirIntegerBuilder) {
           fields.add(minValueX!);
         }
       case 'minValuePositiveInt':
-        if (minValueX is FhirPositiveInt) {
+        if (minValueX is FhirPositiveIntBuilder) {
           fields.add(minValueX!);
         }
       case 'minValueUnsignedInt':
-        if (minValueX is FhirUnsignedInt) {
+        if (minValueX is FhirUnsignedIntBuilder) {
           fields.add(minValueX!);
         }
       case 'minValueQuantity':
-        if (minValueX is Quantity) {
+        if (minValueX is QuantityBuilder) {
           fields.add(minValueX!);
         }
       case 'maxValue':
-        fields.add(maxValueX!);
+        if (maxValueX != null) {
+          fields.add(maxValueX!);
+        }
       case 'maxValueX':
-        fields.add(maxValueX!);
+        if (maxValueX != null) {
+          fields.add(maxValueX!);
+        }
       case 'maxValueDate':
-        if (maxValueX is FhirDate) {
+        if (maxValueX is FhirDateBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValueDateTime':
-        if (maxValueX is FhirDateTime) {
+        if (maxValueX is FhirDateTimeBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValueInstant':
-        if (maxValueX is FhirInstant) {
+        if (maxValueX is FhirInstantBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValueTime':
-        if (maxValueX is FhirTime) {
+        if (maxValueX is FhirTimeBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValueDecimal':
-        if (maxValueX is FhirDecimal) {
+        if (maxValueX is FhirDecimalBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValueInteger':
-        if (maxValueX is FhirInteger) {
+        if (maxValueX is FhirIntegerBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValuePositiveInt':
-        if (maxValueX is FhirPositiveInt) {
+        if (maxValueX is FhirPositiveIntBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValueUnsignedInt':
-        if (maxValueX is FhirUnsignedInt) {
+        if (maxValueX is FhirUnsignedIntBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxValueQuantity':
-        if (maxValueX is Quantity) {
+        if (maxValueX is QuantityBuilder) {
           fields.add(maxValueX!);
         }
       case 'maxLength':
@@ -2394,7 +2369,7 @@ class ElementDefinition extends BackboneType {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2403,2250 +2378,2618 @@ class ElementDefinition extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
         {
-          if (child is FhirString) {
-            return copyWith(path: child);
+          if (child is FhirStringBuilder) {
+            path = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'representation':
         {
-          if (child is List<PropertyRepresentation>) {
-            // Add all elements from passed list
-            final newList = [...?representation, ...child];
-            return copyWith(representation: newList);
-          } else if (child is PropertyRepresentation) {
+          if (child is List<PropertyRepresentationBuilder>) {
+            // Replace or create new list
+            representation = child;
+            return;
+          } else if (child is PropertyRepresentationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?representation, child];
-            return copyWith(representation: newList);
+            representation = [...(representation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sliceName':
         {
-          if (child is FhirString) {
-            return copyWith(sliceName: child);
+          if (child is FhirStringBuilder) {
+            sliceName = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sliceIsConstraining':
         {
-          if (child is FhirBoolean) {
-            return copyWith(sliceIsConstraining: child);
+          if (child is FhirBooleanBuilder) {
+            sliceIsConstraining = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'label':
         {
-          if (child is FhirString) {
-            return copyWith(label: child);
+          if (child is FhirStringBuilder) {
+            label = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'slicing':
         {
-          if (child is ElementDefinitionSlicing) {
-            return copyWith(slicing: child);
+          if (child is ElementDefinitionSlicingBuilder) {
+            slicing = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'short':
         {
-          if (child is FhirString) {
-            return copyWith(short: child);
+          if (child is FhirStringBuilder) {
+            short = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'definition':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(definition: child);
+          if (child is FhirMarkdownBuilder) {
+            definition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(comment: child);
+          if (child is FhirMarkdownBuilder) {
+            comment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requirements':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(requirements: child);
+          if (child is FhirMarkdownBuilder) {
+            requirements = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'alias':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?alias, ...child];
-            return copyWith(alias: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            alias = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?alias, child];
-            return copyWith(alias: newList);
+            alias = [...(alias ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(min: child);
+          if (child is FhirUnsignedIntBuilder) {
+            min = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
         {
-          if (child is FhirString) {
-            return copyWith(max: child);
+          if (child is FhirStringBuilder) {
+            max = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'base':
         {
-          if (child is ElementDefinitionBase) {
-            return copyWith(base: child);
+          if (child is ElementDefinitionBaseBuilder) {
+            base = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentReference':
         {
-          if (child is FhirUri) {
-            return copyWith(contentReference: child);
+          if (child is FhirUriBuilder) {
+            contentReference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<ElementDefinitionType>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is ElementDefinitionType) {
+          if (child is List<ElementDefinitionTypeBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is ElementDefinitionTypeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueX':
         {
-          if (child is DefaultValueXElementDefinition) {
-            return copyWith(defaultValueX: child);
+          if (child is DefaultValueXElementDefinitionBuilder) {
+            defaultValueX = child;
+            return;
           } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirBase64BinaryBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirBooleanBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirCanonicalBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirCode) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirCodeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDateBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDateTimeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDecimalBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirId) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirIdBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirInstantBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirIntegerBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirMarkdown) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirMarkdownBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirOid) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirOidBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirPositiveInt) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirPositiveIntBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirStringBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirTimeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUnsignedInt) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUnsignedIntBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUri) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUriBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUrl) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUrlBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUuid) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUuidBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Address) {
-              return copyWith(defaultValueX: child);
+            if (child is AddressBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(defaultValueX: child);
+            if (child is AgeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Annotation) {
-              return copyWith(defaultValueX: child);
+            if (child is AnnotationBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(defaultValueX: child);
+            if (child is AttachmentBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(defaultValueX: child);
+            if (child is CodeableConceptBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is CodeableReference) {
-              return copyWith(defaultValueX: child);
+            if (child is CodeableReferenceBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Coding) {
-              return copyWith(defaultValueX: child);
+            if (child is CodingBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is ContactPoint) {
-              return copyWith(defaultValueX: child);
+            if (child is ContactPointBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Count) {
-              return copyWith(defaultValueX: child);
+            if (child is CountBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Distance) {
-              return copyWith(defaultValueX: child);
+            if (child is DistanceBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDurationBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is HumanName) {
-              return copyWith(defaultValueX: child);
+            if (child is HumanNameBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Identifier) {
-              return copyWith(defaultValueX: child);
+            if (child is IdentifierBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Money) {
-              return copyWith(defaultValueX: child);
+            if (child is MoneyBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(defaultValueX: child);
+            if (child is PeriodBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(defaultValueX: child);
+            if (child is QuantityBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(defaultValueX: child);
+            if (child is RangeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(defaultValueX: child);
+            if (child is RatioBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is RatioRange) {
-              return copyWith(defaultValueX: child);
+            if (child is RatioRangeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(defaultValueX: child);
+            if (child is ReferenceBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is SampledData) {
-              return copyWith(defaultValueX: child);
+            if (child is SampledDataBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Signature) {
-              return copyWith(defaultValueX: child);
+            if (child is SignatureBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(defaultValueX: child);
+            if (child is TimingBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is ContactDetail) {
-              return copyWith(defaultValueX: child);
+            if (child is ContactDetailBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Contributor) {
-              return copyWith(defaultValueX: child);
+            if (child is ContributorBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is DataRequirement) {
-              return copyWith(defaultValueX: child);
+            if (child is DataRequirementBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirExpression) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirExpressionBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is ParameterDefinition) {
-              return copyWith(defaultValueX: child);
+            if (child is ParameterDefinitionBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is RelatedArtifact) {
-              return copyWith(defaultValueX: child);
+            if (child is RelatedArtifactBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is TriggerDefinition) {
-              return copyWith(defaultValueX: child);
+            if (child is TriggerDefinitionBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is UsageContext) {
-              return copyWith(defaultValueX: child);
+            if (child is UsageContextBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Dosage) {
-              return copyWith(defaultValueX: child);
+            if (child is DosageBuilder) {
+              defaultValueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'defaultValueFhirBase64Binary':
+      case 'defaultValueBase64Binary':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirBase64BinaryBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirBoolean':
+      case 'defaultValueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirBooleanBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirCanonical':
+      case 'defaultValueCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirCanonicalBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirCode':
+      case 'defaultValueCode':
         {
-          if (child is FhirCode) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirCodeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDate':
+      case 'defaultValueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDateBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDateTime':
+      case 'defaultValueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDateTimeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDecimal':
+      case 'defaultValueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDecimalBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirId':
+      case 'defaultValueId':
         {
-          if (child is FhirId) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirIdBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirInstant':
+      case 'defaultValueInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirInstantBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirInteger':
+      case 'defaultValueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirIntegerBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirMarkdown':
+      case 'defaultValueMarkdown':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirMarkdownBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirOid':
+      case 'defaultValueOid':
         {
-          if (child is FhirOid) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirOidBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirPositiveInt':
+      case 'defaultValuePositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirPositiveIntBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirString':
+      case 'defaultValueString':
         {
-          if (child is FhirString) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirStringBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirTime':
+      case 'defaultValueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirTimeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUnsignedInt':
+      case 'defaultValueUnsignedInt':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUnsignedIntBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUri':
+      case 'defaultValueUri':
         {
-          if (child is FhirUri) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUriBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUrl':
+      case 'defaultValueUrl':
         {
-          if (child is FhirUrl) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUrlBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUuid':
+      case 'defaultValueUuid':
         {
-          if (child is FhirUuid) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUuidBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAddress':
         {
-          if (child is Address) {
-            return copyWith(defaultValueX: child);
+          if (child is AddressBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAge':
         {
-          if (child is Age) {
-            return copyWith(defaultValueX: child);
+          if (child is AgeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAnnotation':
         {
-          if (child is Annotation) {
-            return copyWith(defaultValueX: child);
+          if (child is AnnotationBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(defaultValueX: child);
+          if (child is AttachmentBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(defaultValueX: child);
+          if (child is CodeableConceptBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueCodeableReference':
         {
-          if (child is CodeableReference) {
-            return copyWith(defaultValueX: child);
+          if (child is CodeableReferenceBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueCoding':
         {
-          if (child is Coding) {
-            return copyWith(defaultValueX: child);
+          if (child is CodingBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueContactPoint':
         {
-          if (child is ContactPoint) {
-            return copyWith(defaultValueX: child);
+          if (child is ContactPointBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueCount':
         {
-          if (child is Count) {
-            return copyWith(defaultValueX: child);
+          if (child is CountBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueDistance':
         {
-          if (child is Distance) {
-            return copyWith(defaultValueX: child);
+          if (child is DistanceBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDuration':
+      case 'defaultValueDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDurationBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueHumanName':
         {
-          if (child is HumanName) {
-            return copyWith(defaultValueX: child);
+          if (child is HumanNameBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(defaultValueX: child);
+          if (child is IdentifierBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueMoney':
         {
-          if (child is Money) {
-            return copyWith(defaultValueX: child);
+          if (child is MoneyBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValuePeriod':
         {
-          if (child is Period) {
-            return copyWith(defaultValueX: child);
+          if (child is PeriodBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(defaultValueX: child);
+          if (child is QuantityBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueRange':
         {
-          if (child is Range) {
-            return copyWith(defaultValueX: child);
+          if (child is RangeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueRatio':
         {
-          if (child is Ratio) {
-            return copyWith(defaultValueX: child);
+          if (child is RatioBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueRatioRange':
         {
-          if (child is RatioRange) {
-            return copyWith(defaultValueX: child);
+          if (child is RatioRangeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueReference':
         {
-          if (child is Reference) {
-            return copyWith(defaultValueX: child);
+          if (child is ReferenceBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueSampledData':
         {
-          if (child is SampledData) {
-            return copyWith(defaultValueX: child);
+          if (child is SampledDataBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueSignature':
         {
-          if (child is Signature) {
-            return copyWith(defaultValueX: child);
+          if (child is SignatureBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueTiming':
         {
-          if (child is Timing) {
-            return copyWith(defaultValueX: child);
+          if (child is TimingBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueContactDetail':
         {
-          if (child is ContactDetail) {
-            return copyWith(defaultValueX: child);
+          if (child is ContactDetailBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueContributor':
         {
-          if (child is Contributor) {
-            return copyWith(defaultValueX: child);
+          if (child is ContributorBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueDataRequirement':
         {
-          if (child is DataRequirement) {
-            return copyWith(defaultValueX: child);
+          if (child is DataRequirementBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirExpression':
+      case 'defaultValueExpression':
         {
-          if (child is FhirExpression) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirExpressionBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueParameterDefinition':
         {
-          if (child is ParameterDefinition) {
-            return copyWith(defaultValueX: child);
+          if (child is ParameterDefinitionBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueRelatedArtifact':
         {
-          if (child is RelatedArtifact) {
-            return copyWith(defaultValueX: child);
+          if (child is RelatedArtifactBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueTriggerDefinition':
         {
-          if (child is TriggerDefinition) {
-            return copyWith(defaultValueX: child);
+          if (child is TriggerDefinitionBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueUsageContext':
         {
-          if (child is UsageContext) {
-            return copyWith(defaultValueX: child);
+          if (child is UsageContextBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueDosage':
         {
-          if (child is Dosage) {
-            return copyWith(defaultValueX: child);
+          if (child is DosageBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meaningWhenMissing':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(meaningWhenMissing: child);
+          if (child is FhirMarkdownBuilder) {
+            meaningWhenMissing = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'orderMeaning':
         {
-          if (child is FhirString) {
-            return copyWith(orderMeaning: child);
+          if (child is FhirStringBuilder) {
+            orderMeaning = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedX':
         {
-          if (child is FixedXElementDefinition) {
-            return copyWith(fixedX: child);
+          if (child is FixedXElementDefinitionBuilder) {
+            fixedX = child;
+            return;
           } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(fixedX: child);
+            if (child is FhirBase64BinaryBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(fixedX: child);
+            if (child is FhirBooleanBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(fixedX: child);
+            if (child is FhirCanonicalBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirCode) {
-              return copyWith(fixedX: child);
+            if (child is FhirCodeBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(fixedX: child);
+            if (child is FhirDateBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(fixedX: child);
+            if (child is FhirDateTimeBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(fixedX: child);
+            if (child is FhirDecimalBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirId) {
-              return copyWith(fixedX: child);
+            if (child is FhirIdBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(fixedX: child);
+            if (child is FhirInstantBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(fixedX: child);
+            if (child is FhirIntegerBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirMarkdown) {
-              return copyWith(fixedX: child);
+            if (child is FhirMarkdownBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirOid) {
-              return copyWith(fixedX: child);
+            if (child is FhirOidBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirPositiveInt) {
-              return copyWith(fixedX: child);
+            if (child is FhirPositiveIntBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(fixedX: child);
+            if (child is FhirStringBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(fixedX: child);
+            if (child is FhirTimeBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirUnsignedInt) {
-              return copyWith(fixedX: child);
+            if (child is FhirUnsignedIntBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirUri) {
-              return copyWith(fixedX: child);
+            if (child is FhirUriBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirUrl) {
-              return copyWith(fixedX: child);
+            if (child is FhirUrlBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirUuid) {
-              return copyWith(fixedX: child);
+            if (child is FhirUuidBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Address) {
-              return copyWith(fixedX: child);
+            if (child is AddressBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(fixedX: child);
+            if (child is AgeBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Annotation) {
-              return copyWith(fixedX: child);
+            if (child is AnnotationBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(fixedX: child);
+            if (child is AttachmentBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(fixedX: child);
+            if (child is CodeableConceptBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is CodeableReference) {
-              return copyWith(fixedX: child);
+            if (child is CodeableReferenceBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Coding) {
-              return copyWith(fixedX: child);
+            if (child is CodingBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is ContactPoint) {
-              return copyWith(fixedX: child);
+            if (child is ContactPointBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Count) {
-              return copyWith(fixedX: child);
+            if (child is CountBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Distance) {
-              return copyWith(fixedX: child);
+            if (child is DistanceBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(fixedX: child);
+            if (child is FhirDurationBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is HumanName) {
-              return copyWith(fixedX: child);
+            if (child is HumanNameBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Identifier) {
-              return copyWith(fixedX: child);
+            if (child is IdentifierBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Money) {
-              return copyWith(fixedX: child);
+            if (child is MoneyBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(fixedX: child);
+            if (child is PeriodBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(fixedX: child);
+            if (child is QuantityBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(fixedX: child);
+            if (child is RangeBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(fixedX: child);
+            if (child is RatioBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is RatioRange) {
-              return copyWith(fixedX: child);
+            if (child is RatioRangeBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(fixedX: child);
+            if (child is ReferenceBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is SampledData) {
-              return copyWith(fixedX: child);
+            if (child is SampledDataBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Signature) {
-              return copyWith(fixedX: child);
+            if (child is SignatureBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(fixedX: child);
+            if (child is TimingBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is ContactDetail) {
-              return copyWith(fixedX: child);
+            if (child is ContactDetailBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Contributor) {
-              return copyWith(fixedX: child);
+            if (child is ContributorBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is DataRequirement) {
-              return copyWith(fixedX: child);
+            if (child is DataRequirementBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is FhirExpression) {
-              return copyWith(fixedX: child);
+            if (child is FhirExpressionBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is ParameterDefinition) {
-              return copyWith(fixedX: child);
+            if (child is ParameterDefinitionBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is RelatedArtifact) {
-              return copyWith(fixedX: child);
+            if (child is RelatedArtifactBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is TriggerDefinition) {
-              return copyWith(fixedX: child);
+            if (child is TriggerDefinitionBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is UsageContext) {
-              return copyWith(fixedX: child);
+            if (child is UsageContextBuilder) {
+              fixedX = child;
+              return;
             }
-            if (child is Dosage) {
-              return copyWith(fixedX: child);
+            if (child is DosageBuilder) {
+              fixedX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'fixedFhirBase64Binary':
+      case 'fixedBase64Binary':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(fixedX: child);
+          if (child is FhirBase64BinaryBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirBoolean':
+      case 'fixedBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(fixedX: child);
+          if (child is FhirBooleanBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirCanonical':
+      case 'fixedCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(fixedX: child);
+          if (child is FhirCanonicalBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirCode':
+      case 'fixedCode':
         {
-          if (child is FhirCode) {
-            return copyWith(fixedX: child);
+          if (child is FhirCodeBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirDate':
+      case 'fixedDate':
         {
-          if (child is FhirDate) {
-            return copyWith(fixedX: child);
+          if (child is FhirDateBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirDateTime':
+      case 'fixedDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(fixedX: child);
+          if (child is FhirDateTimeBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirDecimal':
+      case 'fixedDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(fixedX: child);
+          if (child is FhirDecimalBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirId':
+      case 'fixedId':
         {
-          if (child is FhirId) {
-            return copyWith(fixedX: child);
+          if (child is FhirIdBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirInstant':
+      case 'fixedInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(fixedX: child);
+          if (child is FhirInstantBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirInteger':
+      case 'fixedInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(fixedX: child);
+          if (child is FhirIntegerBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirMarkdown':
+      case 'fixedMarkdown':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(fixedX: child);
+          if (child is FhirMarkdownBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirOid':
+      case 'fixedOid':
         {
-          if (child is FhirOid) {
-            return copyWith(fixedX: child);
+          if (child is FhirOidBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirPositiveInt':
+      case 'fixedPositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(fixedX: child);
+          if (child is FhirPositiveIntBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirString':
+      case 'fixedString':
         {
-          if (child is FhirString) {
-            return copyWith(fixedX: child);
+          if (child is FhirStringBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirTime':
+      case 'fixedTime':
         {
-          if (child is FhirTime) {
-            return copyWith(fixedX: child);
+          if (child is FhirTimeBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirUnsignedInt':
+      case 'fixedUnsignedInt':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(fixedX: child);
+          if (child is FhirUnsignedIntBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirUri':
+      case 'fixedUri':
         {
-          if (child is FhirUri) {
-            return copyWith(fixedX: child);
+          if (child is FhirUriBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirUrl':
+      case 'fixedUrl':
         {
-          if (child is FhirUrl) {
-            return copyWith(fixedX: child);
+          if (child is FhirUrlBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirUuid':
+      case 'fixedUuid':
         {
-          if (child is FhirUuid) {
-            return copyWith(fixedX: child);
+          if (child is FhirUuidBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedAddress':
         {
-          if (child is Address) {
-            return copyWith(fixedX: child);
+          if (child is AddressBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedAge':
         {
-          if (child is Age) {
-            return copyWith(fixedX: child);
+          if (child is AgeBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedAnnotation':
         {
-          if (child is Annotation) {
-            return copyWith(fixedX: child);
+          if (child is AnnotationBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(fixedX: child);
+          if (child is AttachmentBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(fixedX: child);
+          if (child is CodeableConceptBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedCodeableReference':
         {
-          if (child is CodeableReference) {
-            return copyWith(fixedX: child);
+          if (child is CodeableReferenceBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedCoding':
         {
-          if (child is Coding) {
-            return copyWith(fixedX: child);
+          if (child is CodingBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedContactPoint':
         {
-          if (child is ContactPoint) {
-            return copyWith(fixedX: child);
+          if (child is ContactPointBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedCount':
         {
-          if (child is Count) {
-            return copyWith(fixedX: child);
+          if (child is CountBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedDistance':
         {
-          if (child is Distance) {
-            return copyWith(fixedX: child);
+          if (child is DistanceBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirDuration':
+      case 'fixedDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(fixedX: child);
+          if (child is FhirDurationBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedHumanName':
         {
-          if (child is HumanName) {
-            return copyWith(fixedX: child);
+          if (child is HumanNameBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(fixedX: child);
+          if (child is IdentifierBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedMoney':
         {
-          if (child is Money) {
-            return copyWith(fixedX: child);
+          if (child is MoneyBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedPeriod':
         {
-          if (child is Period) {
-            return copyWith(fixedX: child);
+          if (child is PeriodBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(fixedX: child);
+          if (child is QuantityBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedRange':
         {
-          if (child is Range) {
-            return copyWith(fixedX: child);
+          if (child is RangeBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedRatio':
         {
-          if (child is Ratio) {
-            return copyWith(fixedX: child);
+          if (child is RatioBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedRatioRange':
         {
-          if (child is RatioRange) {
-            return copyWith(fixedX: child);
+          if (child is RatioRangeBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedReference':
         {
-          if (child is Reference) {
-            return copyWith(fixedX: child);
+          if (child is ReferenceBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedSampledData':
         {
-          if (child is SampledData) {
-            return copyWith(fixedX: child);
+          if (child is SampledDataBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedSignature':
         {
-          if (child is Signature) {
-            return copyWith(fixedX: child);
+          if (child is SignatureBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedTiming':
         {
-          if (child is Timing) {
-            return copyWith(fixedX: child);
+          if (child is TimingBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedContactDetail':
         {
-          if (child is ContactDetail) {
-            return copyWith(fixedX: child);
+          if (child is ContactDetailBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedContributor':
         {
-          if (child is Contributor) {
-            return copyWith(fixedX: child);
+          if (child is ContributorBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedDataRequirement':
         {
-          if (child is DataRequirement) {
-            return copyWith(fixedX: child);
+          if (child is DataRequirementBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'fixedFhirExpression':
+      case 'fixedExpression':
         {
-          if (child is FhirExpression) {
-            return copyWith(fixedX: child);
+          if (child is FhirExpressionBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedParameterDefinition':
         {
-          if (child is ParameterDefinition) {
-            return copyWith(fixedX: child);
+          if (child is ParameterDefinitionBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedRelatedArtifact':
         {
-          if (child is RelatedArtifact) {
-            return copyWith(fixedX: child);
+          if (child is RelatedArtifactBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedTriggerDefinition':
         {
-          if (child is TriggerDefinition) {
-            return copyWith(fixedX: child);
+          if (child is TriggerDefinitionBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedUsageContext':
         {
-          if (child is UsageContext) {
-            return copyWith(fixedX: child);
+          if (child is UsageContextBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'fixedDosage':
         {
-          if (child is Dosage) {
-            return copyWith(fixedX: child);
+          if (child is DosageBuilder) {
+            fixedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternX':
         {
-          if (child is PatternXElementDefinition) {
-            return copyWith(patternX: child);
+          if (child is PatternXElementDefinitionBuilder) {
+            patternX = child;
+            return;
           } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(patternX: child);
+            if (child is FhirBase64BinaryBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(patternX: child);
+            if (child is FhirBooleanBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(patternX: child);
+            if (child is FhirCanonicalBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirCode) {
-              return copyWith(patternX: child);
+            if (child is FhirCodeBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(patternX: child);
+            if (child is FhirDateBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(patternX: child);
+            if (child is FhirDateTimeBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(patternX: child);
+            if (child is FhirDecimalBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirId) {
-              return copyWith(patternX: child);
+            if (child is FhirIdBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(patternX: child);
+            if (child is FhirInstantBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(patternX: child);
+            if (child is FhirIntegerBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirMarkdown) {
-              return copyWith(patternX: child);
+            if (child is FhirMarkdownBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirOid) {
-              return copyWith(patternX: child);
+            if (child is FhirOidBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirPositiveInt) {
-              return copyWith(patternX: child);
+            if (child is FhirPositiveIntBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(patternX: child);
+            if (child is FhirStringBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(patternX: child);
+            if (child is FhirTimeBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirUnsignedInt) {
-              return copyWith(patternX: child);
+            if (child is FhirUnsignedIntBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirUri) {
-              return copyWith(patternX: child);
+            if (child is FhirUriBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirUrl) {
-              return copyWith(patternX: child);
+            if (child is FhirUrlBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirUuid) {
-              return copyWith(patternX: child);
+            if (child is FhirUuidBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Address) {
-              return copyWith(patternX: child);
+            if (child is AddressBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(patternX: child);
+            if (child is AgeBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Annotation) {
-              return copyWith(patternX: child);
+            if (child is AnnotationBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(patternX: child);
+            if (child is AttachmentBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(patternX: child);
+            if (child is CodeableConceptBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is CodeableReference) {
-              return copyWith(patternX: child);
+            if (child is CodeableReferenceBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Coding) {
-              return copyWith(patternX: child);
+            if (child is CodingBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is ContactPoint) {
-              return copyWith(patternX: child);
+            if (child is ContactPointBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Count) {
-              return copyWith(patternX: child);
+            if (child is CountBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Distance) {
-              return copyWith(patternX: child);
+            if (child is DistanceBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(patternX: child);
+            if (child is FhirDurationBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is HumanName) {
-              return copyWith(patternX: child);
+            if (child is HumanNameBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Identifier) {
-              return copyWith(patternX: child);
+            if (child is IdentifierBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Money) {
-              return copyWith(patternX: child);
+            if (child is MoneyBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(patternX: child);
+            if (child is PeriodBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(patternX: child);
+            if (child is QuantityBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(patternX: child);
+            if (child is RangeBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(patternX: child);
+            if (child is RatioBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is RatioRange) {
-              return copyWith(patternX: child);
+            if (child is RatioRangeBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(patternX: child);
+            if (child is ReferenceBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is SampledData) {
-              return copyWith(patternX: child);
+            if (child is SampledDataBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Signature) {
-              return copyWith(patternX: child);
+            if (child is SignatureBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(patternX: child);
+            if (child is TimingBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is ContactDetail) {
-              return copyWith(patternX: child);
+            if (child is ContactDetailBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Contributor) {
-              return copyWith(patternX: child);
+            if (child is ContributorBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is DataRequirement) {
-              return copyWith(patternX: child);
+            if (child is DataRequirementBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is FhirExpression) {
-              return copyWith(patternX: child);
+            if (child is FhirExpressionBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is ParameterDefinition) {
-              return copyWith(patternX: child);
+            if (child is ParameterDefinitionBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is RelatedArtifact) {
-              return copyWith(patternX: child);
+            if (child is RelatedArtifactBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is TriggerDefinition) {
-              return copyWith(patternX: child);
+            if (child is TriggerDefinitionBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is UsageContext) {
-              return copyWith(patternX: child);
+            if (child is UsageContextBuilder) {
+              patternX = child;
+              return;
             }
-            if (child is Dosage) {
-              return copyWith(patternX: child);
+            if (child is DosageBuilder) {
+              patternX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'patternFhirBase64Binary':
+      case 'patternBase64Binary':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(patternX: child);
+          if (child is FhirBase64BinaryBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirBoolean':
+      case 'patternBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(patternX: child);
+          if (child is FhirBooleanBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirCanonical':
+      case 'patternCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(patternX: child);
+          if (child is FhirCanonicalBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirCode':
+      case 'patternCode':
         {
-          if (child is FhirCode) {
-            return copyWith(patternX: child);
+          if (child is FhirCodeBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirDate':
+      case 'patternDate':
         {
-          if (child is FhirDate) {
-            return copyWith(patternX: child);
+          if (child is FhirDateBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirDateTime':
+      case 'patternDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(patternX: child);
+          if (child is FhirDateTimeBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirDecimal':
+      case 'patternDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(patternX: child);
+          if (child is FhirDecimalBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirId':
+      case 'patternId':
         {
-          if (child is FhirId) {
-            return copyWith(patternX: child);
+          if (child is FhirIdBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirInstant':
+      case 'patternInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(patternX: child);
+          if (child is FhirInstantBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirInteger':
+      case 'patternInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(patternX: child);
+          if (child is FhirIntegerBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirMarkdown':
+      case 'patternMarkdown':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(patternX: child);
+          if (child is FhirMarkdownBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirOid':
+      case 'patternOid':
         {
-          if (child is FhirOid) {
-            return copyWith(patternX: child);
+          if (child is FhirOidBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirPositiveInt':
+      case 'patternPositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(patternX: child);
+          if (child is FhirPositiveIntBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirString':
+      case 'patternString':
         {
-          if (child is FhirString) {
-            return copyWith(patternX: child);
+          if (child is FhirStringBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirTime':
+      case 'patternTime':
         {
-          if (child is FhirTime) {
-            return copyWith(patternX: child);
+          if (child is FhirTimeBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirUnsignedInt':
+      case 'patternUnsignedInt':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(patternX: child);
+          if (child is FhirUnsignedIntBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirUri':
+      case 'patternUri':
         {
-          if (child is FhirUri) {
-            return copyWith(patternX: child);
+          if (child is FhirUriBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirUrl':
+      case 'patternUrl':
         {
-          if (child is FhirUrl) {
-            return copyWith(patternX: child);
+          if (child is FhirUrlBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirUuid':
+      case 'patternUuid':
         {
-          if (child is FhirUuid) {
-            return copyWith(patternX: child);
+          if (child is FhirUuidBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternAddress':
         {
-          if (child is Address) {
-            return copyWith(patternX: child);
+          if (child is AddressBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternAge':
         {
-          if (child is Age) {
-            return copyWith(patternX: child);
+          if (child is AgeBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternAnnotation':
         {
-          if (child is Annotation) {
-            return copyWith(patternX: child);
+          if (child is AnnotationBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(patternX: child);
+          if (child is AttachmentBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(patternX: child);
+          if (child is CodeableConceptBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternCodeableReference':
         {
-          if (child is CodeableReference) {
-            return copyWith(patternX: child);
+          if (child is CodeableReferenceBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternCoding':
         {
-          if (child is Coding) {
-            return copyWith(patternX: child);
+          if (child is CodingBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternContactPoint':
         {
-          if (child is ContactPoint) {
-            return copyWith(patternX: child);
+          if (child is ContactPointBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternCount':
         {
-          if (child is Count) {
-            return copyWith(patternX: child);
+          if (child is CountBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternDistance':
         {
-          if (child is Distance) {
-            return copyWith(patternX: child);
+          if (child is DistanceBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirDuration':
+      case 'patternDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(patternX: child);
+          if (child is FhirDurationBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternHumanName':
         {
-          if (child is HumanName) {
-            return copyWith(patternX: child);
+          if (child is HumanNameBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(patternX: child);
+          if (child is IdentifierBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternMoney':
         {
-          if (child is Money) {
-            return copyWith(patternX: child);
+          if (child is MoneyBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternPeriod':
         {
-          if (child is Period) {
-            return copyWith(patternX: child);
+          if (child is PeriodBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(patternX: child);
+          if (child is QuantityBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternRange':
         {
-          if (child is Range) {
-            return copyWith(patternX: child);
+          if (child is RangeBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternRatio':
         {
-          if (child is Ratio) {
-            return copyWith(patternX: child);
+          if (child is RatioBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternRatioRange':
         {
-          if (child is RatioRange) {
-            return copyWith(patternX: child);
+          if (child is RatioRangeBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternReference':
         {
-          if (child is Reference) {
-            return copyWith(patternX: child);
+          if (child is ReferenceBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternSampledData':
         {
-          if (child is SampledData) {
-            return copyWith(patternX: child);
+          if (child is SampledDataBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternSignature':
         {
-          if (child is Signature) {
-            return copyWith(patternX: child);
+          if (child is SignatureBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternTiming':
         {
-          if (child is Timing) {
-            return copyWith(patternX: child);
+          if (child is TimingBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternContactDetail':
         {
-          if (child is ContactDetail) {
-            return copyWith(patternX: child);
+          if (child is ContactDetailBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternContributor':
         {
-          if (child is Contributor) {
-            return copyWith(patternX: child);
+          if (child is ContributorBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternDataRequirement':
         {
-          if (child is DataRequirement) {
-            return copyWith(patternX: child);
+          if (child is DataRequirementBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'patternFhirExpression':
+      case 'patternExpression':
         {
-          if (child is FhirExpression) {
-            return copyWith(patternX: child);
+          if (child is FhirExpressionBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternParameterDefinition':
         {
-          if (child is ParameterDefinition) {
-            return copyWith(patternX: child);
+          if (child is ParameterDefinitionBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternRelatedArtifact':
         {
-          if (child is RelatedArtifact) {
-            return copyWith(patternX: child);
+          if (child is RelatedArtifactBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternTriggerDefinition':
         {
-          if (child is TriggerDefinition) {
-            return copyWith(patternX: child);
+          if (child is TriggerDefinitionBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternUsageContext':
         {
-          if (child is UsageContext) {
-            return copyWith(patternX: child);
+          if (child is UsageContextBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patternDosage':
         {
-          if (child is Dosage) {
-            return copyWith(patternX: child);
+          if (child is DosageBuilder) {
+            patternX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'example':
         {
-          if (child is List<ElementDefinitionExample>) {
-            // Add all elements from passed list
-            final newList = [...?example, ...child];
-            return copyWith(example: newList);
-          } else if (child is ElementDefinitionExample) {
+          if (child is List<ElementDefinitionExampleBuilder>) {
+            // Replace or create new list
+            example = child;
+            return;
+          } else if (child is ElementDefinitionExampleBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?example, child];
-            return copyWith(example: newList);
+            example = [...(example ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'minValueX':
         {
-          if (child is MinValueXElementDefinition) {
-            return copyWith(minValueX: child);
+          if (child is MinValueXElementDefinitionBuilder) {
+            minValueX = child;
+            return;
           } else {
-            if (child is FhirDate) {
-              return copyWith(minValueX: child);
+            if (child is FhirDateBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(minValueX: child);
+            if (child is FhirDateTimeBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(minValueX: child);
+            if (child is FhirInstantBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(minValueX: child);
+            if (child is FhirTimeBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(minValueX: child);
+            if (child is FhirDecimalBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(minValueX: child);
+            if (child is FhirIntegerBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is FhirPositiveInt) {
-              return copyWith(minValueX: child);
+            if (child is FhirPositiveIntBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is FhirUnsignedInt) {
-              return copyWith(minValueX: child);
+            if (child is FhirUnsignedIntBuilder) {
+              minValueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(minValueX: child);
+            if (child is QuantityBuilder) {
+              minValueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'minValueFhirDate':
+      case 'minValueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(minValueX: child);
+          if (child is FhirDateBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minValueFhirDateTime':
+      case 'minValueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(minValueX: child);
+          if (child is FhirDateTimeBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minValueFhirInstant':
+      case 'minValueInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(minValueX: child);
+          if (child is FhirInstantBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minValueFhirTime':
+      case 'minValueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(minValueX: child);
+          if (child is FhirTimeBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minValueFhirDecimal':
+      case 'minValueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(minValueX: child);
+          if (child is FhirDecimalBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minValueFhirInteger':
+      case 'minValueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(minValueX: child);
+          if (child is FhirIntegerBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minValueFhirPositiveInt':
+      case 'minValuePositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(minValueX: child);
+          if (child is FhirPositiveIntBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'minValueFhirUnsignedInt':
+      case 'minValueUnsignedInt':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(minValueX: child);
+          if (child is FhirUnsignedIntBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'minValueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(minValueX: child);
+          if (child is QuantityBuilder) {
+            minValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxValueX':
         {
-          if (child is MaxValueXElementDefinition) {
-            return copyWith(maxValueX: child);
+          if (child is MaxValueXElementDefinitionBuilder) {
+            maxValueX = child;
+            return;
           } else {
-            if (child is FhirDate) {
-              return copyWith(maxValueX: child);
+            if (child is FhirDateBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(maxValueX: child);
+            if (child is FhirDateTimeBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(maxValueX: child);
+            if (child is FhirInstantBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(maxValueX: child);
+            if (child is FhirTimeBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(maxValueX: child);
+            if (child is FhirDecimalBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(maxValueX: child);
+            if (child is FhirIntegerBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is FhirPositiveInt) {
-              return copyWith(maxValueX: child);
+            if (child is FhirPositiveIntBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is FhirUnsignedInt) {
-              return copyWith(maxValueX: child);
+            if (child is FhirUnsignedIntBuilder) {
+              maxValueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(maxValueX: child);
+            if (child is QuantityBuilder) {
+              maxValueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'maxValueFhirDate':
+      case 'maxValueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(maxValueX: child);
+          if (child is FhirDateBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'maxValueFhirDateTime':
+      case 'maxValueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(maxValueX: child);
+          if (child is FhirDateTimeBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'maxValueFhirInstant':
+      case 'maxValueInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(maxValueX: child);
+          if (child is FhirInstantBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'maxValueFhirTime':
+      case 'maxValueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(maxValueX: child);
+          if (child is FhirTimeBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'maxValueFhirDecimal':
+      case 'maxValueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(maxValueX: child);
+          if (child is FhirDecimalBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'maxValueFhirInteger':
+      case 'maxValueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(maxValueX: child);
+          if (child is FhirIntegerBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'maxValueFhirPositiveInt':
+      case 'maxValuePositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(maxValueX: child);
+          if (child is FhirPositiveIntBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'maxValueFhirUnsignedInt':
+      case 'maxValueUnsignedInt':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(maxValueX: child);
+          if (child is FhirUnsignedIntBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxValueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(maxValueX: child);
+          if (child is QuantityBuilder) {
+            maxValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxLength':
         {
-          if (child is FhirInteger) {
-            return copyWith(maxLength: child);
+          if (child is FhirIntegerBuilder) {
+            maxLength = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is List<FhirId>) {
-            // Add all elements from passed list
-            final newList = [...?condition, ...child];
-            return copyWith(condition: newList);
-          } else if (child is FhirId) {
+          if (child is List<FhirIdBuilder>) {
+            // Replace or create new list
+            condition = child;
+            return;
+          } else if (child is FhirIdBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?condition, child];
-            return copyWith(condition: newList);
+            condition = [...(condition ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'constraint':
         {
-          if (child is List<ElementDefinitionConstraint>) {
-            // Add all elements from passed list
-            final newList = [...?constraint, ...child];
-            return copyWith(constraint: newList);
-          } else if (child is ElementDefinitionConstraint) {
+          if (child is List<ElementDefinitionConstraintBuilder>) {
+            // Replace or create new list
+            constraint = child;
+            return;
+          } else if (child is ElementDefinitionConstraintBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?constraint, child];
-            return copyWith(constraint: newList);
+            constraint = [...(constraint ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mustSupport':
         {
-          if (child is FhirBoolean) {
-            return copyWith(mustSupport: child);
+          if (child is FhirBooleanBuilder) {
+            mustSupport = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'isModifier':
         {
-          if (child is FhirBoolean) {
-            return copyWith(isModifier: child);
+          if (child is FhirBooleanBuilder) {
+            isModifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'isModifierReason':
         {
-          if (child is FhirString) {
-            return copyWith(isModifierReason: child);
+          if (child is FhirStringBuilder) {
+            isModifierReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'isSummary':
         {
-          if (child is FhirBoolean) {
-            return copyWith(isSummary: child);
+          if (child is FhirBooleanBuilder) {
+            isSummary = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'binding':
         {
-          if (child is ElementDefinitionBinding) {
-            return copyWith(binding: child);
+          if (child is ElementDefinitionBindingBuilder) {
+            binding = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mapping':
         {
-          if (child is List<ElementDefinitionMapping>) {
-            // Add all elements from passed list
-            final newList = [...?mapping, ...child];
-            return copyWith(mapping: newList);
-          } else if (child is ElementDefinitionMapping) {
+          if (child is List<ElementDefinitionMappingBuilder>) {
+            // Replace or create new list
+            mapping = child;
+            return;
+          } else if (child is ElementDefinitionMappingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?mapping, child];
-            return copyWith(mapping: newList);
+            mapping = [...(mapping ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4662,1843 +5005,1636 @@ class ElementDefinition extends BackboneType {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'path':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'representation':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'sliceName':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'sliceIsConstraining':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'label':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'code':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'slicing':
-        return ['ElementDefinitionSlicing'];
+        return ['ElementDefinitionSlicingBuilder'];
       case 'short':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'definition':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'comment':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'requirements':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'alias':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'min':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'max':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'base':
-        return ['ElementDefinitionBase'];
+        return ['ElementDefinitionBaseBuilder'];
       case 'contentReference':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'type':
-        return ['ElementDefinitionType'];
+        return ['ElementDefinitionTypeBuilder'];
       case 'defaultValue':
       case 'defaultValueX':
         return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'CodeableReference',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'RatioRange',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
+          'FhirBase64BinaryBuilder',
+          'FhirBooleanBuilder',
+          'FhirCanonicalBuilder',
+          'FhirCodeBuilder',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirDecimalBuilder',
+          'FhirIdBuilder',
+          'FhirInstantBuilder',
+          'FhirIntegerBuilder',
+          'FhirMarkdownBuilder',
+          'FhirOidBuilder',
+          'FhirPositiveIntBuilder',
+          'FhirStringBuilder',
+          'FhirTimeBuilder',
+          'FhirUnsignedIntBuilder',
+          'FhirUriBuilder',
+          'FhirUrlBuilder',
+          'FhirUuidBuilder',
+          'AddressBuilder',
+          'AgeBuilder',
+          'AnnotationBuilder',
+          'AttachmentBuilder',
+          'CodeableConceptBuilder',
+          'CodeableReferenceBuilder',
+          'CodingBuilder',
+          'ContactPointBuilder',
+          'CountBuilder',
+          'DistanceBuilder',
+          'FhirDurationBuilder',
+          'HumanNameBuilder',
+          'IdentifierBuilder',
+          'MoneyBuilder',
+          'PeriodBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'RatioBuilder',
+          'RatioRangeBuilder',
+          'ReferenceBuilder',
+          'SampledDataBuilder',
+          'SignatureBuilder',
+          'TimingBuilder',
+          'ContactDetailBuilder',
+          'ContributorBuilder',
+          'DataRequirementBuilder',
+          'FhirExpressionBuilder',
+          'ParameterDefinitionBuilder',
+          'RelatedArtifactBuilder',
+          'TriggerDefinitionBuilder',
+          'UsageContextBuilder',
+          'DosageBuilder'
         ];
       case 'defaultValueBase64Binary':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'defaultValueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'defaultValueCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'defaultValueCode':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'defaultValueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'defaultValueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'defaultValueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'defaultValueId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'defaultValueInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'defaultValueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'defaultValueMarkdown':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'defaultValueOid':
-        return ['FhirOid'];
+        return ['FhirOidBuilder'];
       case 'defaultValuePositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'defaultValueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'defaultValueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'defaultValueUnsignedInt':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'defaultValueUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'defaultValueUrl':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'defaultValueUuid':
-        return ['FhirUuid'];
+        return ['FhirUuidBuilder'];
       case 'defaultValueAddress':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'defaultValueAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'defaultValueAnnotation':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'defaultValueAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'defaultValueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'defaultValueCodeableReference':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'defaultValueCoding':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'defaultValueContactPoint':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'defaultValueCount':
-        return ['Count'];
+        return ['CountBuilder'];
       case 'defaultValueDistance':
-        return ['Distance'];
+        return ['DistanceBuilder'];
       case 'defaultValueDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'defaultValueHumanName':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'defaultValueIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'defaultValueMoney':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'defaultValuePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'defaultValueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'defaultValueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'defaultValueRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'defaultValueRatioRange':
-        return ['RatioRange'];
+        return ['RatioRangeBuilder'];
       case 'defaultValueReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'defaultValueSampledData':
-        return ['SampledData'];
+        return ['SampledDataBuilder'];
       case 'defaultValueSignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       case 'defaultValueTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'defaultValueContactDetail':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'defaultValueContributor':
-        return ['Contributor'];
+        return ['ContributorBuilder'];
       case 'defaultValueDataRequirement':
-        return ['DataRequirement'];
+        return ['DataRequirementBuilder'];
       case 'defaultValueExpression':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       case 'defaultValueParameterDefinition':
-        return ['ParameterDefinition'];
+        return ['ParameterDefinitionBuilder'];
       case 'defaultValueRelatedArtifact':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'defaultValueTriggerDefinition':
-        return ['TriggerDefinition'];
+        return ['TriggerDefinitionBuilder'];
       case 'defaultValueUsageContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'defaultValueDosage':
-        return ['Dosage'];
+        return ['DosageBuilder'];
       case 'meaningWhenMissing':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'orderMeaning':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'fixed':
       case 'fixedX':
         return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'CodeableReference',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'RatioRange',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
+          'FhirBase64BinaryBuilder',
+          'FhirBooleanBuilder',
+          'FhirCanonicalBuilder',
+          'FhirCodeBuilder',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirDecimalBuilder',
+          'FhirIdBuilder',
+          'FhirInstantBuilder',
+          'FhirIntegerBuilder',
+          'FhirMarkdownBuilder',
+          'FhirOidBuilder',
+          'FhirPositiveIntBuilder',
+          'FhirStringBuilder',
+          'FhirTimeBuilder',
+          'FhirUnsignedIntBuilder',
+          'FhirUriBuilder',
+          'FhirUrlBuilder',
+          'FhirUuidBuilder',
+          'AddressBuilder',
+          'AgeBuilder',
+          'AnnotationBuilder',
+          'AttachmentBuilder',
+          'CodeableConceptBuilder',
+          'CodeableReferenceBuilder',
+          'CodingBuilder',
+          'ContactPointBuilder',
+          'CountBuilder',
+          'DistanceBuilder',
+          'FhirDurationBuilder',
+          'HumanNameBuilder',
+          'IdentifierBuilder',
+          'MoneyBuilder',
+          'PeriodBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'RatioBuilder',
+          'RatioRangeBuilder',
+          'ReferenceBuilder',
+          'SampledDataBuilder',
+          'SignatureBuilder',
+          'TimingBuilder',
+          'ContactDetailBuilder',
+          'ContributorBuilder',
+          'DataRequirementBuilder',
+          'FhirExpressionBuilder',
+          'ParameterDefinitionBuilder',
+          'RelatedArtifactBuilder',
+          'TriggerDefinitionBuilder',
+          'UsageContextBuilder',
+          'DosageBuilder'
         ];
       case 'fixedBase64Binary':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'fixedBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'fixedCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'fixedCode':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'fixedDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'fixedDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'fixedDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'fixedId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'fixedInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'fixedInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'fixedMarkdown':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'fixedOid':
-        return ['FhirOid'];
+        return ['FhirOidBuilder'];
       case 'fixedPositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'fixedString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'fixedTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'fixedUnsignedInt':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'fixedUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'fixedUrl':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'fixedUuid':
-        return ['FhirUuid'];
+        return ['FhirUuidBuilder'];
       case 'fixedAddress':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'fixedAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'fixedAnnotation':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'fixedAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'fixedCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'fixedCodeableReference':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'fixedCoding':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'fixedContactPoint':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'fixedCount':
-        return ['Count'];
+        return ['CountBuilder'];
       case 'fixedDistance':
-        return ['Distance'];
+        return ['DistanceBuilder'];
       case 'fixedDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'fixedHumanName':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'fixedIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'fixedMoney':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'fixedPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'fixedQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'fixedRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'fixedRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'fixedRatioRange':
-        return ['RatioRange'];
+        return ['RatioRangeBuilder'];
       case 'fixedReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'fixedSampledData':
-        return ['SampledData'];
+        return ['SampledDataBuilder'];
       case 'fixedSignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       case 'fixedTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'fixedContactDetail':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'fixedContributor':
-        return ['Contributor'];
+        return ['ContributorBuilder'];
       case 'fixedDataRequirement':
-        return ['DataRequirement'];
+        return ['DataRequirementBuilder'];
       case 'fixedExpression':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       case 'fixedParameterDefinition':
-        return ['ParameterDefinition'];
+        return ['ParameterDefinitionBuilder'];
       case 'fixedRelatedArtifact':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'fixedTriggerDefinition':
-        return ['TriggerDefinition'];
+        return ['TriggerDefinitionBuilder'];
       case 'fixedUsageContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'fixedDosage':
-        return ['Dosage'];
+        return ['DosageBuilder'];
       case 'pattern':
       case 'patternX':
         return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'CodeableReference',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'RatioRange',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
+          'FhirBase64BinaryBuilder',
+          'FhirBooleanBuilder',
+          'FhirCanonicalBuilder',
+          'FhirCodeBuilder',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirDecimalBuilder',
+          'FhirIdBuilder',
+          'FhirInstantBuilder',
+          'FhirIntegerBuilder',
+          'FhirMarkdownBuilder',
+          'FhirOidBuilder',
+          'FhirPositiveIntBuilder',
+          'FhirStringBuilder',
+          'FhirTimeBuilder',
+          'FhirUnsignedIntBuilder',
+          'FhirUriBuilder',
+          'FhirUrlBuilder',
+          'FhirUuidBuilder',
+          'AddressBuilder',
+          'AgeBuilder',
+          'AnnotationBuilder',
+          'AttachmentBuilder',
+          'CodeableConceptBuilder',
+          'CodeableReferenceBuilder',
+          'CodingBuilder',
+          'ContactPointBuilder',
+          'CountBuilder',
+          'DistanceBuilder',
+          'FhirDurationBuilder',
+          'HumanNameBuilder',
+          'IdentifierBuilder',
+          'MoneyBuilder',
+          'PeriodBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'RatioBuilder',
+          'RatioRangeBuilder',
+          'ReferenceBuilder',
+          'SampledDataBuilder',
+          'SignatureBuilder',
+          'TimingBuilder',
+          'ContactDetailBuilder',
+          'ContributorBuilder',
+          'DataRequirementBuilder',
+          'FhirExpressionBuilder',
+          'ParameterDefinitionBuilder',
+          'RelatedArtifactBuilder',
+          'TriggerDefinitionBuilder',
+          'UsageContextBuilder',
+          'DosageBuilder'
         ];
       case 'patternBase64Binary':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'patternBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'patternCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'patternCode':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'patternDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'patternDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'patternDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'patternId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'patternInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'patternInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'patternMarkdown':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'patternOid':
-        return ['FhirOid'];
+        return ['FhirOidBuilder'];
       case 'patternPositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'patternString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'patternTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'patternUnsignedInt':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'patternUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'patternUrl':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'patternUuid':
-        return ['FhirUuid'];
+        return ['FhirUuidBuilder'];
       case 'patternAddress':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'patternAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'patternAnnotation':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'patternAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'patternCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'patternCodeableReference':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'patternCoding':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'patternContactPoint':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'patternCount':
-        return ['Count'];
+        return ['CountBuilder'];
       case 'patternDistance':
-        return ['Distance'];
+        return ['DistanceBuilder'];
       case 'patternDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'patternHumanName':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'patternIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'patternMoney':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'patternPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'patternQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'patternRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'patternRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'patternRatioRange':
-        return ['RatioRange'];
+        return ['RatioRangeBuilder'];
       case 'patternReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'patternSampledData':
-        return ['SampledData'];
+        return ['SampledDataBuilder'];
       case 'patternSignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       case 'patternTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'patternContactDetail':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'patternContributor':
-        return ['Contributor'];
+        return ['ContributorBuilder'];
       case 'patternDataRequirement':
-        return ['DataRequirement'];
+        return ['DataRequirementBuilder'];
       case 'patternExpression':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       case 'patternParameterDefinition':
-        return ['ParameterDefinition'];
+        return ['ParameterDefinitionBuilder'];
       case 'patternRelatedArtifact':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'patternTriggerDefinition':
-        return ['TriggerDefinition'];
+        return ['TriggerDefinitionBuilder'];
       case 'patternUsageContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'patternDosage':
-        return ['Dosage'];
+        return ['DosageBuilder'];
       case 'example':
-        return ['ElementDefinitionExample'];
+        return ['ElementDefinitionExampleBuilder'];
       case 'minValue':
       case 'minValueX':
         return [
-          'FhirDate',
-          'FhirDateTime',
-          'FhirInstant',
-          'FhirTime',
-          'FhirDecimal',
-          'FhirInteger',
-          'FhirPositiveInt',
-          'FhirUnsignedInt',
-          'Quantity',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirInstantBuilder',
+          'FhirTimeBuilder',
+          'FhirDecimalBuilder',
+          'FhirIntegerBuilder',
+          'FhirPositiveIntBuilder',
+          'FhirUnsignedIntBuilder',
+          'QuantityBuilder'
         ];
       case 'minValueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'minValueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'minValueInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'minValueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'minValueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'minValueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'minValuePositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'minValueUnsignedInt':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'minValueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'maxValue':
       case 'maxValueX':
         return [
-          'FhirDate',
-          'FhirDateTime',
-          'FhirInstant',
-          'FhirTime',
-          'FhirDecimal',
-          'FhirInteger',
-          'FhirPositiveInt',
-          'FhirUnsignedInt',
-          'Quantity',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirInstantBuilder',
+          'FhirTimeBuilder',
+          'FhirDecimalBuilder',
+          'FhirIntegerBuilder',
+          'FhirPositiveIntBuilder',
+          'FhirUnsignedIntBuilder',
+          'QuantityBuilder'
         ];
       case 'maxValueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'maxValueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'maxValueInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'maxValueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'maxValueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'maxValueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'maxValuePositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'maxValueUnsignedInt':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'maxValueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'maxLength':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'condition':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'constraint':
-        return ['ElementDefinitionConstraint'];
+        return ['ElementDefinitionConstraintBuilder'];
       case 'mustSupport':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'isModifier':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'isModifierReason':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'isSummary':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'binding':
-        return ['ElementDefinitionBinding'];
+        return ['ElementDefinitionBindingBuilder'];
       case 'mapping':
-        return ['ElementDefinitionMapping'];
+        return ['ElementDefinitionMappingBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinition]
+  /// Creates a new [ElementDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'path':
         {
-          return copyWith(
-            path: FhirString.empty(),
-          );
+          path = FhirStringBuilder.empty();
+          return;
         }
       case 'representation':
         {
-          return copyWith(
-            representation: <PropertyRepresentation>[],
-          );
+          representation = <PropertyRepresentationBuilder>[];
+          return;
         }
       case 'sliceName':
         {
-          return copyWith(
-            sliceName: FhirString.empty(),
-          );
+          sliceName = FhirStringBuilder.empty();
+          return;
         }
       case 'sliceIsConstraining':
         {
-          return copyWith(
-            sliceIsConstraining: FhirBoolean.empty(),
-          );
+          sliceIsConstraining = FhirBooleanBuilder.empty();
+          return;
         }
       case 'label':
         {
-          return copyWith(
-            label: FhirString.empty(),
-          );
+          label = FhirStringBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <Coding>[],
-          );
+          code = <CodingBuilder>[];
+          return;
         }
       case 'slicing':
         {
-          return copyWith(
-            slicing: ElementDefinitionSlicing.empty(),
-          );
+          slicing = ElementDefinitionSlicingBuilder.empty();
+          return;
         }
       case 'short':
         {
-          return copyWith(
-            short: FhirString.empty(),
-          );
+          short = FhirStringBuilder.empty();
+          return;
         }
       case 'definition':
         {
-          return copyWith(
-            definition: FhirMarkdown.empty(),
-          );
+          definition = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: FhirMarkdown.empty(),
-          );
+          comment = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'requirements':
         {
-          return copyWith(
-            requirements: FhirMarkdown.empty(),
-          );
+          requirements = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'alias':
         {
-          return copyWith(
-            alias: <FhirString>[],
-          );
+          alias = <FhirStringBuilder>[];
+          return;
         }
       case 'min':
         {
-          return copyWith(
-            min: FhirUnsignedInt.empty(),
-          );
+          min = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'max':
         {
-          return copyWith(
-            max: FhirString.empty(),
-          );
+          max = FhirStringBuilder.empty();
+          return;
         }
       case 'base':
         {
-          return copyWith(
-            base: ElementDefinitionBase.empty(),
-          );
+          base = ElementDefinitionBaseBuilder.empty();
+          return;
         }
       case 'contentReference':
         {
-          return copyWith(
-            contentReference: FhirUri.empty(),
-          );
+          contentReference = FhirUriBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <ElementDefinitionType>[],
-          );
+          type = <ElementDefinitionTypeBuilder>[];
+          return;
         }
       case 'defaultValue':
       case 'defaultValueX':
       case 'defaultValueBase64Binary':
         {
-          return copyWith(
-            defaultValueX: FhirBase64Binary.empty(),
-          );
+          defaultValueX = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'defaultValueBoolean':
         {
-          return copyWith(
-            defaultValueX: FhirBoolean.empty(),
-          );
+          defaultValueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'defaultValueCanonical':
         {
-          return copyWith(
-            defaultValueX: FhirCanonical.empty(),
-          );
+          defaultValueX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'defaultValueCode':
         {
-          return copyWith(
-            defaultValueX: FhirCode.empty(),
-          );
+          defaultValueX = FhirCodeBuilder.empty();
+          return;
         }
       case 'defaultValueDate':
         {
-          return copyWith(
-            defaultValueX: FhirDate.empty(),
-          );
+          defaultValueX = FhirDateBuilder.empty();
+          return;
         }
       case 'defaultValueDateTime':
         {
-          return copyWith(
-            defaultValueX: FhirDateTime.empty(),
-          );
+          defaultValueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'defaultValueDecimal':
         {
-          return copyWith(
-            defaultValueX: FhirDecimal.empty(),
-          );
+          defaultValueX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'defaultValueId':
         {
-          return copyWith(
-            defaultValueX: FhirId.empty(),
-          );
+          defaultValueX = FhirIdBuilder.empty();
+          return;
         }
       case 'defaultValueInstant':
         {
-          return copyWith(
-            defaultValueX: FhirInstant.empty(),
-          );
+          defaultValueX = FhirInstantBuilder.empty();
+          return;
         }
       case 'defaultValueInteger':
         {
-          return copyWith(
-            defaultValueX: FhirInteger.empty(),
-          );
+          defaultValueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'defaultValueMarkdown':
         {
-          return copyWith(
-            defaultValueX: FhirMarkdown.empty(),
-          );
+          defaultValueX = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'defaultValueOid':
         {
-          return copyWith(
-            defaultValueX: FhirOid.empty(),
-          );
+          defaultValueX = FhirOidBuilder.empty();
+          return;
         }
       case 'defaultValuePositiveInt':
         {
-          return copyWith(
-            defaultValueX: FhirPositiveInt.empty(),
-          );
+          defaultValueX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'defaultValueString':
         {
-          return copyWith(
-            defaultValueX: FhirString.empty(),
-          );
+          defaultValueX = FhirStringBuilder.empty();
+          return;
         }
       case 'defaultValueTime':
         {
-          return copyWith(
-            defaultValueX: FhirTime.empty(),
-          );
+          defaultValueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'defaultValueUnsignedInt':
         {
-          return copyWith(
-            defaultValueX: FhirUnsignedInt.empty(),
-          );
+          defaultValueX = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'defaultValueUri':
         {
-          return copyWith(
-            defaultValueX: FhirUri.empty(),
-          );
+          defaultValueX = FhirUriBuilder.empty();
+          return;
         }
       case 'defaultValueUrl':
         {
-          return copyWith(
-            defaultValueX: FhirUrl.empty(),
-          );
+          defaultValueX = FhirUrlBuilder.empty();
+          return;
         }
       case 'defaultValueUuid':
         {
-          return copyWith(
-            defaultValueX: FhirUuid.empty(),
-          );
+          defaultValueX = FhirUuidBuilder.empty();
+          return;
         }
       case 'defaultValueAddress':
         {
-          return copyWith(
-            defaultValueX: Address.empty(),
-          );
+          defaultValueX = AddressBuilder.empty();
+          return;
         }
       case 'defaultValueAge':
         {
-          return copyWith(
-            defaultValueX: Age.empty(),
-          );
+          defaultValueX = AgeBuilder.empty();
+          return;
         }
       case 'defaultValueAnnotation':
         {
-          return copyWith(
-            defaultValueX: Annotation.empty(),
-          );
+          defaultValueX = AnnotationBuilder.empty();
+          return;
         }
       case 'defaultValueAttachment':
         {
-          return copyWith(
-            defaultValueX: Attachment.empty(),
-          );
+          defaultValueX = AttachmentBuilder.empty();
+          return;
         }
       case 'defaultValueCodeableConcept':
         {
-          return copyWith(
-            defaultValueX: CodeableConcept.empty(),
-          );
+          defaultValueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'defaultValueCodeableReference':
         {
-          return copyWith(
-            defaultValueX: CodeableReference.empty(),
-          );
+          defaultValueX = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'defaultValueCoding':
         {
-          return copyWith(
-            defaultValueX: Coding.empty(),
-          );
+          defaultValueX = CodingBuilder.empty();
+          return;
         }
       case 'defaultValueContactPoint':
         {
-          return copyWith(
-            defaultValueX: ContactPoint.empty(),
-          );
+          defaultValueX = ContactPointBuilder.empty();
+          return;
         }
       case 'defaultValueCount':
         {
-          return copyWith(
-            defaultValueX: Count.empty(),
-          );
+          defaultValueX = CountBuilder.empty();
+          return;
         }
       case 'defaultValueDistance':
         {
-          return copyWith(
-            defaultValueX: Distance.empty(),
-          );
+          defaultValueX = DistanceBuilder.empty();
+          return;
         }
       case 'defaultValueDuration':
         {
-          return copyWith(
-            defaultValueX: FhirDuration.empty(),
-          );
+          defaultValueX = FhirDurationBuilder.empty();
+          return;
         }
       case 'defaultValueHumanName':
         {
-          return copyWith(
-            defaultValueX: HumanName.empty(),
-          );
+          defaultValueX = HumanNameBuilder.empty();
+          return;
         }
       case 'defaultValueIdentifier':
         {
-          return copyWith(
-            defaultValueX: Identifier.empty(),
-          );
+          defaultValueX = IdentifierBuilder.empty();
+          return;
         }
       case 'defaultValueMoney':
         {
-          return copyWith(
-            defaultValueX: Money.empty(),
-          );
+          defaultValueX = MoneyBuilder.empty();
+          return;
         }
       case 'defaultValuePeriod':
         {
-          return copyWith(
-            defaultValueX: Period.empty(),
-          );
+          defaultValueX = PeriodBuilder.empty();
+          return;
         }
       case 'defaultValueQuantity':
         {
-          return copyWith(
-            defaultValueX: Quantity.empty(),
-          );
+          defaultValueX = QuantityBuilder.empty();
+          return;
         }
       case 'defaultValueRange':
         {
-          return copyWith(
-            defaultValueX: Range.empty(),
-          );
+          defaultValueX = RangeBuilder.empty();
+          return;
         }
       case 'defaultValueRatio':
         {
-          return copyWith(
-            defaultValueX: Ratio.empty(),
-          );
+          defaultValueX = RatioBuilder.empty();
+          return;
         }
       case 'defaultValueRatioRange':
         {
-          return copyWith(
-            defaultValueX: RatioRange.empty(),
-          );
+          defaultValueX = RatioRangeBuilder.empty();
+          return;
         }
       case 'defaultValueReference':
         {
-          return copyWith(
-            defaultValueX: Reference.empty(),
-          );
+          defaultValueX = ReferenceBuilder.empty();
+          return;
         }
       case 'defaultValueSampledData':
         {
-          return copyWith(
-            defaultValueX: SampledData.empty(),
-          );
+          defaultValueX = SampledDataBuilder.empty();
+          return;
         }
       case 'defaultValueSignature':
         {
-          return copyWith(
-            defaultValueX: Signature.empty(),
-          );
+          defaultValueX = SignatureBuilder.empty();
+          return;
         }
       case 'defaultValueTiming':
         {
-          return copyWith(
-            defaultValueX: Timing.empty(),
-          );
+          defaultValueX = TimingBuilder.empty();
+          return;
         }
       case 'defaultValueContactDetail':
         {
-          return copyWith(
-            defaultValueX: ContactDetail.empty(),
-          );
+          defaultValueX = ContactDetailBuilder.empty();
+          return;
         }
       case 'defaultValueContributor':
         {
-          return copyWith(
-            defaultValueX: Contributor.empty(),
-          );
+          defaultValueX = ContributorBuilder.empty();
+          return;
         }
       case 'defaultValueDataRequirement':
         {
-          return copyWith(
-            defaultValueX: DataRequirement.empty(),
-          );
+          defaultValueX = DataRequirementBuilder.empty();
+          return;
         }
       case 'defaultValueExpression':
         {
-          return copyWith(
-            defaultValueX: FhirExpression.empty(),
-          );
+          defaultValueX = FhirExpressionBuilder.empty();
+          return;
         }
       case 'defaultValueParameterDefinition':
         {
-          return copyWith(
-            defaultValueX: ParameterDefinition.empty(),
-          );
+          defaultValueX = ParameterDefinitionBuilder.empty();
+          return;
         }
       case 'defaultValueRelatedArtifact':
         {
-          return copyWith(
-            defaultValueX: RelatedArtifact.empty(),
-          );
+          defaultValueX = RelatedArtifactBuilder.empty();
+          return;
         }
       case 'defaultValueTriggerDefinition':
         {
-          return copyWith(
-            defaultValueX: TriggerDefinition.empty(),
-          );
+          defaultValueX = TriggerDefinitionBuilder.empty();
+          return;
         }
       case 'defaultValueUsageContext':
         {
-          return copyWith(
-            defaultValueX: UsageContext.empty(),
-          );
+          defaultValueX = UsageContextBuilder.empty();
+          return;
         }
       case 'defaultValueDosage':
         {
-          return copyWith(
-            defaultValueX: Dosage.empty(),
-          );
+          defaultValueX = DosageBuilder.empty();
+          return;
         }
       case 'meaningWhenMissing':
         {
-          return copyWith(
-            meaningWhenMissing: FhirMarkdown.empty(),
-          );
+          meaningWhenMissing = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'orderMeaning':
         {
-          return copyWith(
-            orderMeaning: FhirString.empty(),
-          );
+          orderMeaning = FhirStringBuilder.empty();
+          return;
         }
       case 'fixed':
       case 'fixedX':
       case 'fixedBase64Binary':
         {
-          return copyWith(
-            fixedX: FhirBase64Binary.empty(),
-          );
+          fixedX = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'fixedBoolean':
         {
-          return copyWith(
-            fixedX: FhirBoolean.empty(),
-          );
+          fixedX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'fixedCanonical':
         {
-          return copyWith(
-            fixedX: FhirCanonical.empty(),
-          );
+          fixedX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'fixedCode':
         {
-          return copyWith(
-            fixedX: FhirCode.empty(),
-          );
+          fixedX = FhirCodeBuilder.empty();
+          return;
         }
       case 'fixedDate':
         {
-          return copyWith(
-            fixedX: FhirDate.empty(),
-          );
+          fixedX = FhirDateBuilder.empty();
+          return;
         }
       case 'fixedDateTime':
         {
-          return copyWith(
-            fixedX: FhirDateTime.empty(),
-          );
+          fixedX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'fixedDecimal':
         {
-          return copyWith(
-            fixedX: FhirDecimal.empty(),
-          );
+          fixedX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'fixedId':
         {
-          return copyWith(
-            fixedX: FhirId.empty(),
-          );
+          fixedX = FhirIdBuilder.empty();
+          return;
         }
       case 'fixedInstant':
         {
-          return copyWith(
-            fixedX: FhirInstant.empty(),
-          );
+          fixedX = FhirInstantBuilder.empty();
+          return;
         }
       case 'fixedInteger':
         {
-          return copyWith(
-            fixedX: FhirInteger.empty(),
-          );
+          fixedX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'fixedMarkdown':
         {
-          return copyWith(
-            fixedX: FhirMarkdown.empty(),
-          );
+          fixedX = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'fixedOid':
         {
-          return copyWith(
-            fixedX: FhirOid.empty(),
-          );
+          fixedX = FhirOidBuilder.empty();
+          return;
         }
       case 'fixedPositiveInt':
         {
-          return copyWith(
-            fixedX: FhirPositiveInt.empty(),
-          );
+          fixedX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'fixedString':
         {
-          return copyWith(
-            fixedX: FhirString.empty(),
-          );
+          fixedX = FhirStringBuilder.empty();
+          return;
         }
       case 'fixedTime':
         {
-          return copyWith(
-            fixedX: FhirTime.empty(),
-          );
+          fixedX = FhirTimeBuilder.empty();
+          return;
         }
       case 'fixedUnsignedInt':
         {
-          return copyWith(
-            fixedX: FhirUnsignedInt.empty(),
-          );
+          fixedX = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'fixedUri':
         {
-          return copyWith(
-            fixedX: FhirUri.empty(),
-          );
+          fixedX = FhirUriBuilder.empty();
+          return;
         }
       case 'fixedUrl':
         {
-          return copyWith(
-            fixedX: FhirUrl.empty(),
-          );
+          fixedX = FhirUrlBuilder.empty();
+          return;
         }
       case 'fixedUuid':
         {
-          return copyWith(
-            fixedX: FhirUuid.empty(),
-          );
+          fixedX = FhirUuidBuilder.empty();
+          return;
         }
       case 'fixedAddress':
         {
-          return copyWith(
-            fixedX: Address.empty(),
-          );
+          fixedX = AddressBuilder.empty();
+          return;
         }
       case 'fixedAge':
         {
-          return copyWith(
-            fixedX: Age.empty(),
-          );
+          fixedX = AgeBuilder.empty();
+          return;
         }
       case 'fixedAnnotation':
         {
-          return copyWith(
-            fixedX: Annotation.empty(),
-          );
+          fixedX = AnnotationBuilder.empty();
+          return;
         }
       case 'fixedAttachment':
         {
-          return copyWith(
-            fixedX: Attachment.empty(),
-          );
+          fixedX = AttachmentBuilder.empty();
+          return;
         }
       case 'fixedCodeableConcept':
         {
-          return copyWith(
-            fixedX: CodeableConcept.empty(),
-          );
+          fixedX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'fixedCodeableReference':
         {
-          return copyWith(
-            fixedX: CodeableReference.empty(),
-          );
+          fixedX = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'fixedCoding':
         {
-          return copyWith(
-            fixedX: Coding.empty(),
-          );
+          fixedX = CodingBuilder.empty();
+          return;
         }
       case 'fixedContactPoint':
         {
-          return copyWith(
-            fixedX: ContactPoint.empty(),
-          );
+          fixedX = ContactPointBuilder.empty();
+          return;
         }
       case 'fixedCount':
         {
-          return copyWith(
-            fixedX: Count.empty(),
-          );
+          fixedX = CountBuilder.empty();
+          return;
         }
       case 'fixedDistance':
         {
-          return copyWith(
-            fixedX: Distance.empty(),
-          );
+          fixedX = DistanceBuilder.empty();
+          return;
         }
       case 'fixedDuration':
         {
-          return copyWith(
-            fixedX: FhirDuration.empty(),
-          );
+          fixedX = FhirDurationBuilder.empty();
+          return;
         }
       case 'fixedHumanName':
         {
-          return copyWith(
-            fixedX: HumanName.empty(),
-          );
+          fixedX = HumanNameBuilder.empty();
+          return;
         }
       case 'fixedIdentifier':
         {
-          return copyWith(
-            fixedX: Identifier.empty(),
-          );
+          fixedX = IdentifierBuilder.empty();
+          return;
         }
       case 'fixedMoney':
         {
-          return copyWith(
-            fixedX: Money.empty(),
-          );
+          fixedX = MoneyBuilder.empty();
+          return;
         }
       case 'fixedPeriod':
         {
-          return copyWith(
-            fixedX: Period.empty(),
-          );
+          fixedX = PeriodBuilder.empty();
+          return;
         }
       case 'fixedQuantity':
         {
-          return copyWith(
-            fixedX: Quantity.empty(),
-          );
+          fixedX = QuantityBuilder.empty();
+          return;
         }
       case 'fixedRange':
         {
-          return copyWith(
-            fixedX: Range.empty(),
-          );
+          fixedX = RangeBuilder.empty();
+          return;
         }
       case 'fixedRatio':
         {
-          return copyWith(
-            fixedX: Ratio.empty(),
-          );
+          fixedX = RatioBuilder.empty();
+          return;
         }
       case 'fixedRatioRange':
         {
-          return copyWith(
-            fixedX: RatioRange.empty(),
-          );
+          fixedX = RatioRangeBuilder.empty();
+          return;
         }
       case 'fixedReference':
         {
-          return copyWith(
-            fixedX: Reference.empty(),
-          );
+          fixedX = ReferenceBuilder.empty();
+          return;
         }
       case 'fixedSampledData':
         {
-          return copyWith(
-            fixedX: SampledData.empty(),
-          );
+          fixedX = SampledDataBuilder.empty();
+          return;
         }
       case 'fixedSignature':
         {
-          return copyWith(
-            fixedX: Signature.empty(),
-          );
+          fixedX = SignatureBuilder.empty();
+          return;
         }
       case 'fixedTiming':
         {
-          return copyWith(
-            fixedX: Timing.empty(),
-          );
+          fixedX = TimingBuilder.empty();
+          return;
         }
       case 'fixedContactDetail':
         {
-          return copyWith(
-            fixedX: ContactDetail.empty(),
-          );
+          fixedX = ContactDetailBuilder.empty();
+          return;
         }
       case 'fixedContributor':
         {
-          return copyWith(
-            fixedX: Contributor.empty(),
-          );
+          fixedX = ContributorBuilder.empty();
+          return;
         }
       case 'fixedDataRequirement':
         {
-          return copyWith(
-            fixedX: DataRequirement.empty(),
-          );
+          fixedX = DataRequirementBuilder.empty();
+          return;
         }
       case 'fixedExpression':
         {
-          return copyWith(
-            fixedX: FhirExpression.empty(),
-          );
+          fixedX = FhirExpressionBuilder.empty();
+          return;
         }
       case 'fixedParameterDefinition':
         {
-          return copyWith(
-            fixedX: ParameterDefinition.empty(),
-          );
+          fixedX = ParameterDefinitionBuilder.empty();
+          return;
         }
       case 'fixedRelatedArtifact':
         {
-          return copyWith(
-            fixedX: RelatedArtifact.empty(),
-          );
+          fixedX = RelatedArtifactBuilder.empty();
+          return;
         }
       case 'fixedTriggerDefinition':
         {
-          return copyWith(
-            fixedX: TriggerDefinition.empty(),
-          );
+          fixedX = TriggerDefinitionBuilder.empty();
+          return;
         }
       case 'fixedUsageContext':
         {
-          return copyWith(
-            fixedX: UsageContext.empty(),
-          );
+          fixedX = UsageContextBuilder.empty();
+          return;
         }
       case 'fixedDosage':
         {
-          return copyWith(
-            fixedX: Dosage.empty(),
-          );
+          fixedX = DosageBuilder.empty();
+          return;
         }
       case 'pattern':
       case 'patternX':
       case 'patternBase64Binary':
         {
-          return copyWith(
-            patternX: FhirBase64Binary.empty(),
-          );
+          patternX = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'patternBoolean':
         {
-          return copyWith(
-            patternX: FhirBoolean.empty(),
-          );
+          patternX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'patternCanonical':
         {
-          return copyWith(
-            patternX: FhirCanonical.empty(),
-          );
+          patternX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'patternCode':
         {
-          return copyWith(
-            patternX: FhirCode.empty(),
-          );
+          patternX = FhirCodeBuilder.empty();
+          return;
         }
       case 'patternDate':
         {
-          return copyWith(
-            patternX: FhirDate.empty(),
-          );
+          patternX = FhirDateBuilder.empty();
+          return;
         }
       case 'patternDateTime':
         {
-          return copyWith(
-            patternX: FhirDateTime.empty(),
-          );
+          patternX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'patternDecimal':
         {
-          return copyWith(
-            patternX: FhirDecimal.empty(),
-          );
+          patternX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'patternId':
         {
-          return copyWith(
-            patternX: FhirId.empty(),
-          );
+          patternX = FhirIdBuilder.empty();
+          return;
         }
       case 'patternInstant':
         {
-          return copyWith(
-            patternX: FhirInstant.empty(),
-          );
+          patternX = FhirInstantBuilder.empty();
+          return;
         }
       case 'patternInteger':
         {
-          return copyWith(
-            patternX: FhirInteger.empty(),
-          );
+          patternX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'patternMarkdown':
         {
-          return copyWith(
-            patternX: FhirMarkdown.empty(),
-          );
+          patternX = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'patternOid':
         {
-          return copyWith(
-            patternX: FhirOid.empty(),
-          );
+          patternX = FhirOidBuilder.empty();
+          return;
         }
       case 'patternPositiveInt':
         {
-          return copyWith(
-            patternX: FhirPositiveInt.empty(),
-          );
+          patternX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'patternString':
         {
-          return copyWith(
-            patternX: FhirString.empty(),
-          );
+          patternX = FhirStringBuilder.empty();
+          return;
         }
       case 'patternTime':
         {
-          return copyWith(
-            patternX: FhirTime.empty(),
-          );
+          patternX = FhirTimeBuilder.empty();
+          return;
         }
       case 'patternUnsignedInt':
         {
-          return copyWith(
-            patternX: FhirUnsignedInt.empty(),
-          );
+          patternX = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'patternUri':
         {
-          return copyWith(
-            patternX: FhirUri.empty(),
-          );
+          patternX = FhirUriBuilder.empty();
+          return;
         }
       case 'patternUrl':
         {
-          return copyWith(
-            patternX: FhirUrl.empty(),
-          );
+          patternX = FhirUrlBuilder.empty();
+          return;
         }
       case 'patternUuid':
         {
-          return copyWith(
-            patternX: FhirUuid.empty(),
-          );
+          patternX = FhirUuidBuilder.empty();
+          return;
         }
       case 'patternAddress':
         {
-          return copyWith(
-            patternX: Address.empty(),
-          );
+          patternX = AddressBuilder.empty();
+          return;
         }
       case 'patternAge':
         {
-          return copyWith(
-            patternX: Age.empty(),
-          );
+          patternX = AgeBuilder.empty();
+          return;
         }
       case 'patternAnnotation':
         {
-          return copyWith(
-            patternX: Annotation.empty(),
-          );
+          patternX = AnnotationBuilder.empty();
+          return;
         }
       case 'patternAttachment':
         {
-          return copyWith(
-            patternX: Attachment.empty(),
-          );
+          patternX = AttachmentBuilder.empty();
+          return;
         }
       case 'patternCodeableConcept':
         {
-          return copyWith(
-            patternX: CodeableConcept.empty(),
-          );
+          patternX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'patternCodeableReference':
         {
-          return copyWith(
-            patternX: CodeableReference.empty(),
-          );
+          patternX = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'patternCoding':
         {
-          return copyWith(
-            patternX: Coding.empty(),
-          );
+          patternX = CodingBuilder.empty();
+          return;
         }
       case 'patternContactPoint':
         {
-          return copyWith(
-            patternX: ContactPoint.empty(),
-          );
+          patternX = ContactPointBuilder.empty();
+          return;
         }
       case 'patternCount':
         {
-          return copyWith(
-            patternX: Count.empty(),
-          );
+          patternX = CountBuilder.empty();
+          return;
         }
       case 'patternDistance':
         {
-          return copyWith(
-            patternX: Distance.empty(),
-          );
+          patternX = DistanceBuilder.empty();
+          return;
         }
       case 'patternDuration':
         {
-          return copyWith(
-            patternX: FhirDuration.empty(),
-          );
+          patternX = FhirDurationBuilder.empty();
+          return;
         }
       case 'patternHumanName':
         {
-          return copyWith(
-            patternX: HumanName.empty(),
-          );
+          patternX = HumanNameBuilder.empty();
+          return;
         }
       case 'patternIdentifier':
         {
-          return copyWith(
-            patternX: Identifier.empty(),
-          );
+          patternX = IdentifierBuilder.empty();
+          return;
         }
       case 'patternMoney':
         {
-          return copyWith(
-            patternX: Money.empty(),
-          );
+          patternX = MoneyBuilder.empty();
+          return;
         }
       case 'patternPeriod':
         {
-          return copyWith(
-            patternX: Period.empty(),
-          );
+          patternX = PeriodBuilder.empty();
+          return;
         }
       case 'patternQuantity':
         {
-          return copyWith(
-            patternX: Quantity.empty(),
-          );
+          patternX = QuantityBuilder.empty();
+          return;
         }
       case 'patternRange':
         {
-          return copyWith(
-            patternX: Range.empty(),
-          );
+          patternX = RangeBuilder.empty();
+          return;
         }
       case 'patternRatio':
         {
-          return copyWith(
-            patternX: Ratio.empty(),
-          );
+          patternX = RatioBuilder.empty();
+          return;
         }
       case 'patternRatioRange':
         {
-          return copyWith(
-            patternX: RatioRange.empty(),
-          );
+          patternX = RatioRangeBuilder.empty();
+          return;
         }
       case 'patternReference':
         {
-          return copyWith(
-            patternX: Reference.empty(),
-          );
+          patternX = ReferenceBuilder.empty();
+          return;
         }
       case 'patternSampledData':
         {
-          return copyWith(
-            patternX: SampledData.empty(),
-          );
+          patternX = SampledDataBuilder.empty();
+          return;
         }
       case 'patternSignature':
         {
-          return copyWith(
-            patternX: Signature.empty(),
-          );
+          patternX = SignatureBuilder.empty();
+          return;
         }
       case 'patternTiming':
         {
-          return copyWith(
-            patternX: Timing.empty(),
-          );
+          patternX = TimingBuilder.empty();
+          return;
         }
       case 'patternContactDetail':
         {
-          return copyWith(
-            patternX: ContactDetail.empty(),
-          );
+          patternX = ContactDetailBuilder.empty();
+          return;
         }
       case 'patternContributor':
         {
-          return copyWith(
-            patternX: Contributor.empty(),
-          );
+          patternX = ContributorBuilder.empty();
+          return;
         }
       case 'patternDataRequirement':
         {
-          return copyWith(
-            patternX: DataRequirement.empty(),
-          );
+          patternX = DataRequirementBuilder.empty();
+          return;
         }
       case 'patternExpression':
         {
-          return copyWith(
-            patternX: FhirExpression.empty(),
-          );
+          patternX = FhirExpressionBuilder.empty();
+          return;
         }
       case 'patternParameterDefinition':
         {
-          return copyWith(
-            patternX: ParameterDefinition.empty(),
-          );
+          patternX = ParameterDefinitionBuilder.empty();
+          return;
         }
       case 'patternRelatedArtifact':
         {
-          return copyWith(
-            patternX: RelatedArtifact.empty(),
-          );
+          patternX = RelatedArtifactBuilder.empty();
+          return;
         }
       case 'patternTriggerDefinition':
         {
-          return copyWith(
-            patternX: TriggerDefinition.empty(),
-          );
+          patternX = TriggerDefinitionBuilder.empty();
+          return;
         }
       case 'patternUsageContext':
         {
-          return copyWith(
-            patternX: UsageContext.empty(),
-          );
+          patternX = UsageContextBuilder.empty();
+          return;
         }
       case 'patternDosage':
         {
-          return copyWith(
-            patternX: Dosage.empty(),
-          );
+          patternX = DosageBuilder.empty();
+          return;
         }
       case 'example':
         {
-          return copyWith(
-            example: <ElementDefinitionExample>[],
-          );
+          example = <ElementDefinitionExampleBuilder>[];
+          return;
         }
       case 'minValue':
       case 'minValueX':
       case 'minValueDate':
         {
-          return copyWith(
-            minValueX: FhirDate.empty(),
-          );
+          minValueX = FhirDateBuilder.empty();
+          return;
         }
       case 'minValueDateTime':
         {
-          return copyWith(
-            minValueX: FhirDateTime.empty(),
-          );
+          minValueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'minValueInstant':
         {
-          return copyWith(
-            minValueX: FhirInstant.empty(),
-          );
+          minValueX = FhirInstantBuilder.empty();
+          return;
         }
       case 'minValueTime':
         {
-          return copyWith(
-            minValueX: FhirTime.empty(),
-          );
+          minValueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'minValueDecimal':
         {
-          return copyWith(
-            minValueX: FhirDecimal.empty(),
-          );
+          minValueX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'minValueInteger':
         {
-          return copyWith(
-            minValueX: FhirInteger.empty(),
-          );
+          minValueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'minValuePositiveInt':
         {
-          return copyWith(
-            minValueX: FhirPositiveInt.empty(),
-          );
+          minValueX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'minValueUnsignedInt':
         {
-          return copyWith(
-            minValueX: FhirUnsignedInt.empty(),
-          );
+          minValueX = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'minValueQuantity':
         {
-          return copyWith(
-            minValueX: Quantity.empty(),
-          );
+          minValueX = QuantityBuilder.empty();
+          return;
         }
       case 'maxValue':
       case 'maxValueX':
       case 'maxValueDate':
         {
-          return copyWith(
-            maxValueX: FhirDate.empty(),
-          );
+          maxValueX = FhirDateBuilder.empty();
+          return;
         }
       case 'maxValueDateTime':
         {
-          return copyWith(
-            maxValueX: FhirDateTime.empty(),
-          );
+          maxValueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'maxValueInstant':
         {
-          return copyWith(
-            maxValueX: FhirInstant.empty(),
-          );
+          maxValueX = FhirInstantBuilder.empty();
+          return;
         }
       case 'maxValueTime':
         {
-          return copyWith(
-            maxValueX: FhirTime.empty(),
-          );
+          maxValueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'maxValueDecimal':
         {
-          return copyWith(
-            maxValueX: FhirDecimal.empty(),
-          );
+          maxValueX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'maxValueInteger':
         {
-          return copyWith(
-            maxValueX: FhirInteger.empty(),
-          );
+          maxValueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'maxValuePositiveInt':
         {
-          return copyWith(
-            maxValueX: FhirPositiveInt.empty(),
-          );
+          maxValueX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'maxValueUnsignedInt':
         {
-          return copyWith(
-            maxValueX: FhirUnsignedInt.empty(),
-          );
+          maxValueX = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'maxValueQuantity':
         {
-          return copyWith(
-            maxValueX: Quantity.empty(),
-          );
+          maxValueX = QuantityBuilder.empty();
+          return;
         }
       case 'maxLength':
         {
-          return copyWith(
-            maxLength: FhirInteger.empty(),
-          );
+          maxLength = FhirIntegerBuilder.empty();
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: <FhirId>[],
-          );
+          condition = <FhirIdBuilder>[];
+          return;
         }
       case 'constraint':
         {
-          return copyWith(
-            constraint: <ElementDefinitionConstraint>[],
-          );
+          constraint = <ElementDefinitionConstraintBuilder>[];
+          return;
         }
       case 'mustSupport':
         {
-          return copyWith(
-            mustSupport: FhirBoolean.empty(),
-          );
+          mustSupport = FhirBooleanBuilder.empty();
+          return;
         }
       case 'isModifier':
         {
-          return copyWith(
-            isModifier: FhirBoolean.empty(),
-          );
+          isModifier = FhirBooleanBuilder.empty();
+          return;
         }
       case 'isModifierReason':
         {
-          return copyWith(
-            isModifierReason: FhirString.empty(),
-          );
+          isModifierReason = FhirStringBuilder.empty();
+          return;
         }
       case 'isSummary':
         {
-          return copyWith(
-            isSummary: FhirBoolean.empty(),
-          );
+          isSummary = FhirBooleanBuilder.empty();
+          return;
         }
       case 'binding':
         {
-          return copyWith(
-            binding: ElementDefinitionBinding.empty(),
-          );
+          binding = ElementDefinitionBindingBuilder.empty();
+          return;
         }
       case 'mapping':
         {
-          return copyWith(
-            mapping: <ElementDefinitionMapping>[],
-          );
+          mapping = <ElementDefinitionMappingBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6507,10 +6643,11 @@ class ElementDefinition extends BackboneType {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinition clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool path = false,
     bool representation = false,
     bool sliceName = false,
     bool sliceIsConstraining = false,
@@ -6545,89 +6682,86 @@ class ElementDefinition extends BackboneType {
     bool binding = false,
     bool mapping = false,
   }) {
-    return ElementDefinition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      path: path,
-      representation: representation ? null : this.representation,
-      sliceName: sliceName ? null : this.sliceName,
-      sliceIsConstraining:
-          sliceIsConstraining ? null : this.sliceIsConstraining,
-      label: label ? null : this.label,
-      code: code ? null : this.code,
-      slicing: slicing ? null : this.slicing,
-      short: short ? null : this.short,
-      definition: definition ? null : this.definition,
-      comment: comment ? null : this.comment,
-      requirements: requirements ? null : this.requirements,
-      alias: alias ? null : this.alias,
-      min: min ? null : this.min,
-      max: max ? null : this.max,
-      base: base ? null : this.base,
-      contentReference: contentReference ? null : this.contentReference,
-      type: type ? null : this.type,
-      defaultValueX: defaultValue ? null : defaultValueX,
-      meaningWhenMissing: meaningWhenMissing ? null : this.meaningWhenMissing,
-      orderMeaning: orderMeaning ? null : this.orderMeaning,
-      fixedX: fixed ? null : fixedX,
-      patternX: pattern ? null : patternX,
-      example: example ? null : this.example,
-      minValueX: minValue ? null : minValueX,
-      maxValueX: maxValue ? null : maxValueX,
-      maxLength: maxLength ? null : this.maxLength,
-      condition: condition ? null : this.condition,
-      constraint: constraint ? null : this.constraint,
-      mustSupport: mustSupport ? null : this.mustSupport,
-      isModifier: isModifier ? null : this.isModifier,
-      isModifierReason: isModifierReason ? null : this.isModifierReason,
-      isSummary: isSummary ? null : this.isSummary,
-      binding: binding ? null : this.binding,
-      mapping: mapping ? null : this.mapping,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (path) this.path = null;
+    if (representation) this.representation = null;
+    if (sliceName) this.sliceName = null;
+    if (sliceIsConstraining) this.sliceIsConstraining = null;
+    if (label) this.label = null;
+    if (code) this.code = null;
+    if (slicing) this.slicing = null;
+    if (short) this.short = null;
+    if (definition) this.definition = null;
+    if (comment) this.comment = null;
+    if (requirements) this.requirements = null;
+    if (alias) this.alias = null;
+    if (min) this.min = null;
+    if (max) this.max = null;
+    if (base) this.base = null;
+    if (contentReference) this.contentReference = null;
+    if (type) this.type = null;
+    if (defaultValue) this.defaultValueX = null;
+    if (meaningWhenMissing) this.meaningWhenMissing = null;
+    if (orderMeaning) this.orderMeaning = null;
+    if (fixed) this.fixedX = null;
+    if (pattern) this.patternX = null;
+    if (example) this.example = null;
+    if (minValue) this.minValueX = null;
+    if (maxValue) this.maxValueX = null;
+    if (maxLength) this.maxLength = null;
+    if (condition) this.condition = null;
+    if (constraint) this.constraint = null;
+    if (mustSupport) this.mustSupport = null;
+    if (isModifier) this.isModifier = null;
+    if (isModifierReason) this.isModifierReason = null;
+    if (isSummary) this.isSummary = null;
+    if (binding) this.binding = null;
+    if (mapping) this.mapping = null;
   }
 
   @override
-  ElementDefinition clone() => throw UnimplementedError();
+  ElementDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? path,
-    List<PropertyRepresentation>? representation,
-    FhirString? sliceName,
-    FhirBoolean? sliceIsConstraining,
-    FhirString? label,
-    List<Coding>? code,
-    ElementDefinitionSlicing? slicing,
-    FhirString? short,
-    FhirMarkdown? definition,
-    FhirMarkdown? comment,
-    FhirMarkdown? requirements,
-    List<FhirString>? alias,
-    FhirUnsignedInt? min,
-    FhirString? max,
-    ElementDefinitionBase? base,
-    FhirUri? contentReference,
-    List<ElementDefinitionType>? type,
-    DefaultValueXElementDefinition? defaultValueX,
-    FhirMarkdown? meaningWhenMissing,
-    FhirString? orderMeaning,
-    FixedXElementDefinition? fixedX,
-    PatternXElementDefinition? patternX,
-    List<ElementDefinitionExample>? example,
-    MinValueXElementDefinition? minValueX,
-    MaxValueXElementDefinition? maxValueX,
-    FhirInteger? maxLength,
-    List<FhirId>? condition,
-    List<ElementDefinitionConstraint>? constraint,
-    FhirBoolean? mustSupport,
-    FhirBoolean? isModifier,
-    FhirString? isModifierReason,
-    FhirBoolean? isSummary,
-    ElementDefinitionBinding? binding,
-    List<ElementDefinitionMapping>? mapping,
+  ElementDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? path,
+    List<PropertyRepresentationBuilder>? representation,
+    FhirStringBuilder? sliceName,
+    FhirBooleanBuilder? sliceIsConstraining,
+    FhirStringBuilder? label,
+    List<CodingBuilder>? code,
+    ElementDefinitionSlicingBuilder? slicing,
+    FhirStringBuilder? short,
+    FhirMarkdownBuilder? definition,
+    FhirMarkdownBuilder? comment,
+    FhirMarkdownBuilder? requirements,
+    List<FhirStringBuilder>? alias,
+    FhirUnsignedIntBuilder? min,
+    FhirStringBuilder? max,
+    ElementDefinitionBaseBuilder? base,
+    FhirUriBuilder? contentReference,
+    List<ElementDefinitionTypeBuilder>? type,
+    DefaultValueXElementDefinitionBuilder? defaultValueX,
+    FhirMarkdownBuilder? meaningWhenMissing,
+    FhirStringBuilder? orderMeaning,
+    FixedXElementDefinitionBuilder? fixedX,
+    PatternXElementDefinitionBuilder? patternX,
+    List<ElementDefinitionExampleBuilder>? example,
+    MinValueXElementDefinitionBuilder? minValueX,
+    MaxValueXElementDefinitionBuilder? maxValueX,
+    FhirIntegerBuilder? maxLength,
+    List<FhirIdBuilder>? condition,
+    List<ElementDefinitionConstraintBuilder>? constraint,
+    FhirBooleanBuilder? mustSupport,
+    FhirBooleanBuilder? isModifier,
+    FhirStringBuilder? isModifierReason,
+    FhirBooleanBuilder? isSummary,
+    ElementDefinitionBindingBuilder? binding,
+    List<ElementDefinitionMappingBuilder>? mapping,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6635,202 +6769,68 @@ class ElementDefinition extends BackboneType {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      path: path?.copyWith(
-            objectPath: '$newObjectPath.path',
-          ) ??
-          this.path,
-      representation: representation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.representation',
-                ),
-              )
-              .toList() ??
-          this.representation,
-      sliceName: sliceName?.copyWith(
-            objectPath: '$newObjectPath.sliceName',
-          ) ??
-          this.sliceName,
-      sliceIsConstraining: sliceIsConstraining?.copyWith(
-            objectPath: '$newObjectPath.sliceIsConstraining',
-          ) ??
-          this.sliceIsConstraining,
-      label: label?.copyWith(
-            objectPath: '$newObjectPath.label',
-          ) ??
-          this.label,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      slicing: slicing?.copyWith(
-            objectPath: '$newObjectPath.slicing',
-          ) ??
-          this.slicing,
-      short: short?.copyWith(
-            objectPath: '$newObjectPath.short',
-          ) ??
-          this.short,
-      definition: definition?.copyWith(
-            objectPath: '$newObjectPath.definition',
-          ) ??
-          this.definition,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
-      requirements: requirements?.copyWith(
-            objectPath: '$newObjectPath.requirements',
-          ) ??
-          this.requirements,
-      alias: alias
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.alias',
-                ),
-              )
-              .toList() ??
-          this.alias,
-      min: min?.copyWith(
-            objectPath: '$newObjectPath.min',
-          ) ??
-          this.min,
-      max: max?.copyWith(
-            objectPath: '$newObjectPath.max',
-          ) ??
-          this.max,
-      base: base?.copyWith(
-            objectPath: '$newObjectPath.base',
-          ) ??
-          this.base,
-      contentReference: contentReference?.copyWith(
-            objectPath: '$newObjectPath.contentReference',
-          ) ??
-          this.contentReference,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      defaultValueX: defaultValueX?.copyWith(
-            objectPath: '$newObjectPath.defaultValueX',
-          ) as DefaultValueXElementDefinition? ??
-          this.defaultValueX,
-      meaningWhenMissing: meaningWhenMissing?.copyWith(
-            objectPath: '$newObjectPath.meaningWhenMissing',
-          ) ??
-          this.meaningWhenMissing,
-      orderMeaning: orderMeaning?.copyWith(
-            objectPath: '$newObjectPath.orderMeaning',
-          ) ??
-          this.orderMeaning,
-      fixedX: fixedX?.copyWith(
-            objectPath: '$newObjectPath.fixedX',
-          ) as FixedXElementDefinition? ??
-          this.fixedX,
-      patternX: patternX?.copyWith(
-            objectPath: '$newObjectPath.patternX',
-          ) as PatternXElementDefinition? ??
-          this.patternX,
-      example: example
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.example',
-                ),
-              )
-              .toList() ??
-          this.example,
-      minValueX: minValueX?.copyWith(
-            objectPath: '$newObjectPath.minValueX',
-          ) as MinValueXElementDefinition? ??
-          this.minValueX,
-      maxValueX: maxValueX?.copyWith(
-            objectPath: '$newObjectPath.maxValueX',
-          ) as MaxValueXElementDefinition? ??
-          this.maxValueX,
-      maxLength: maxLength?.copyWith(
-            objectPath: '$newObjectPath.maxLength',
-          ) ??
-          this.maxLength,
-      condition: condition
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.condition',
-                ),
-              )
-              .toList() ??
-          this.condition,
-      constraint: constraint
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.constraint',
-                ),
-              )
-              .toList() ??
-          this.constraint,
-      mustSupport: mustSupport?.copyWith(
-            objectPath: '$newObjectPath.mustSupport',
-          ) ??
-          this.mustSupport,
-      isModifier: isModifier?.copyWith(
-            objectPath: '$newObjectPath.isModifier',
-          ) ??
-          this.isModifier,
-      isModifierReason: isModifierReason?.copyWith(
-            objectPath: '$newObjectPath.isModifierReason',
-          ) ??
-          this.isModifierReason,
-      isSummary: isSummary?.copyWith(
-            objectPath: '$newObjectPath.isSummary',
-          ) ??
-          this.isSummary,
-      binding: binding?.copyWith(
-            objectPath: '$newObjectPath.binding',
-          ) ??
-          this.binding,
-      mapping: mapping
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.mapping',
-                ),
-              )
-              .toList() ??
-          this.mapping,
+    final newResult = ElementDefinitionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      path: path ?? this.path,
+      representation: representation ?? this.representation,
+      sliceName: sliceName ?? this.sliceName,
+      sliceIsConstraining: sliceIsConstraining ?? this.sliceIsConstraining,
+      label: label ?? this.label,
+      code: code ?? this.code,
+      slicing: slicing ?? this.slicing,
+      short: short ?? this.short,
+      definition: definition ?? this.definition,
+      comment: comment ?? this.comment,
+      requirements: requirements ?? this.requirements,
+      alias: alias ?? this.alias,
+      min: min ?? this.min,
+      max: max ?? this.max,
+      base: base ?? this.base,
+      contentReference: contentReference ?? this.contentReference,
+      type: type ?? this.type,
+      defaultValueX: defaultValueX ?? this.defaultValueX,
+      meaningWhenMissing: meaningWhenMissing ?? this.meaningWhenMissing,
+      orderMeaning: orderMeaning ?? this.orderMeaning,
+      fixedX: fixedX ?? this.fixedX,
+      patternX: patternX ?? this.patternX,
+      example: example ?? this.example,
+      minValueX: minValueX ?? this.minValueX,
+      maxValueX: maxValueX ?? this.maxValueX,
+      maxLength: maxLength ?? this.maxLength,
+      condition: condition ?? this.condition,
+      constraint: constraint ?? this.constraint,
+      mustSupport: mustSupport ?? this.mustSupport,
+      isModifier: isModifier ?? this.isModifier,
+      isModifierReason: isModifierReason ?? this.isModifierReason,
+      isSummary: isSummary ?? this.isSummary,
+      binding: binding ?? this.binding,
+      mapping: mapping ?? this.mapping,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -6841,13 +6841,13 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -6859,7 +6859,7 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<PropertyRepresentation>(
+    if (!listEquals<PropertyRepresentationBuilder>(
       representation,
       o.representation,
     )) {
@@ -6883,7 +6883,7 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       code,
       o.code,
     )) {
@@ -6919,7 +6919,7 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       alias,
       o.alias,
     )) {
@@ -6949,7 +6949,7 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<ElementDefinitionType>(
+    if (!listEquals<ElementDefinitionTypeBuilder>(
       type,
       o.type,
     )) {
@@ -6985,7 +6985,7 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<ElementDefinitionExample>(
+    if (!listEquals<ElementDefinitionExampleBuilder>(
       example,
       o.example,
     )) {
@@ -7009,13 +7009,13 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<FhirId>(
+    if (!listEquals<FhirIdBuilder>(
       condition,
       o.condition,
     )) {
       return false;
     }
-    if (!listEquals<ElementDefinitionConstraint>(
+    if (!listEquals<ElementDefinitionConstraintBuilder>(
       constraint,
       o.constraint,
     )) {
@@ -7051,7 +7051,7 @@ class ElementDefinition extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<ElementDefinitionMapping>(
+    if (!listEquals<ElementDefinitionMappingBuilder>(
       mapping,
       o.mapping,
     )) {
@@ -7061,7 +7061,7 @@ class ElementDefinition extends BackboneType {
   }
 }
 
-/// [ElementDefinitionSlicing]
+/// [ElementDefinitionSlicingBuilder]
 /// Indicates that the element is sliced into a set of alternative
 /// definitions (i.e. in a structure definition, there are multiple
 /// different constraints on a single element in the base resource).
@@ -7070,44 +7070,42 @@ class ElementDefinition extends BackboneType {
 /// slices is any elements that come after this in the element sequence
 /// that have the same path, until a shorter path occurs (the shorter path
 /// terminates the set).
-class ElementDefinitionSlicing extends Element {
+class ElementDefinitionSlicingBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionSlicing]
+  /// [ElementDefinitionSlicingBuilder]
 
-  const ElementDefinitionSlicing({
+  ElementDefinitionSlicingBuilder({
     super.id,
     super.extension_,
     this.discriminator,
     this.description,
     this.ordered,
-    required this.rules,
+    this.rules,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionSlicing',
+    super.objectPath = 'ElementDefinitionSlicingBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionSlicing.empty() => ElementDefinitionSlicing(
-        rules: SlicingRules.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionSlicingBuilder.empty() =>
+      ElementDefinitionSlicingBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionSlicing.fromJson(
+  factory ElementDefinitionSlicingBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionSlicing';
-    return ElementDefinitionSlicing(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionSlicingBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7116,8 +7114,8 @@ class ElementDefinitionSlicing extends Element {
           )
           .toList(),
       discriminator: (json['discriminator'] as List<dynamic>?)
-          ?.map<ElementDefinitionDiscriminator>(
-            (v) => ElementDefinitionDiscriminator.fromJson(
+          ?.map<ElementDefinitionDiscriminatorBuilder>(
+            (v) => ElementDefinitionDiscriminatorBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.discriminator',
@@ -7125,43 +7123,43 @@ class ElementDefinitionSlicing extends Element {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      ordered: JsonParser.parsePrimitive<FhirBoolean>(
+      ordered: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'ordered',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.ordered',
       ),
-      rules: JsonParser.parsePrimitive<SlicingRules>(
+      rules: JsonParser.parsePrimitive<SlicingRulesBuilder>(
         json,
         'rules',
-        SlicingRules.fromJson,
+        SlicingRulesBuilder.fromJson,
         '$objectPath.rules',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ElementDefinitionSlicing]
+  /// Deserialize [ElementDefinitionSlicingBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionSlicing.fromYaml(
+  factory ElementDefinitionSlicingBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionSlicing.fromJson(
+      return ElementDefinitionSlicingBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionSlicing.fromJson(
+      return ElementDefinitionSlicingBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionSlicing '
+        'ElementDefinitionSlicingBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7169,16 +7167,16 @@ class ElementDefinitionSlicing extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionSlicing]
+  /// [ElementDefinitionSlicingBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionSlicing.fromJsonString(
+  factory ElementDefinitionSlicingBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionSlicing.fromJson(json);
+      return ElementDefinitionSlicingBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7194,40 +7192,40 @@ class ElementDefinitionSlicing extends Element {
   /// provided, the value of the child elements in the instance data SHALL
   /// completely distinguish which slice the element in the resource matches
   /// based on the allowed values for those elements in each of the slices.
-  final List<ElementDefinitionDiscriminator>? discriminator;
+  List<ElementDefinitionDiscriminatorBuilder>? discriminator;
 
   /// [description]
   /// A human-readable text description of how the slicing works. If there is
   /// no discriminator, this is required to be present to provide whatever
   /// information is possible about how the slices can be differentiated.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [ordered]
   /// If the matching elements have to occur in the same order as defined in
   /// the profile.
-  final FhirBoolean? ordered;
+  FhirBooleanBuilder? ordered;
 
   /// [rules]
   /// Whether additional slices are allowed or not. When the slices are
   /// ordered, profile authors can also say that additional slices are only
   /// allowed at the end.
-  final SlicingRules rules;
+  SlicingRulesBuilder? rules;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7236,35 +7234,17 @@ class ElementDefinitionSlicing extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'discriminator',
-      discriminator,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'ordered',
-      ordered,
-    );
-    addField(
-      'rules',
-      rules,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('discriminator', discriminator);
+    addField('description', description);
+    addField('ordered', ordered);
+    addField('rules', rules);
     return json;
   }
 
@@ -7284,11 +7264,11 @@ class ElementDefinitionSlicing extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7311,7 +7291,9 @@ class ElementDefinitionSlicing extends Element {
           fields.add(ordered!);
         }
       case 'rules':
-        fields.add(rules);
+        if (rules != null) {
+          fields.add(rules!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -7322,7 +7304,7 @@ class ElementDefinitionSlicing extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -7331,73 +7313,76 @@ class ElementDefinitionSlicing extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'discriminator':
         {
-          if (child is List<ElementDefinitionDiscriminator>) {
-            // Add all elements from passed list
-            final newList = [...?discriminator, ...child];
-            return copyWith(discriminator: newList);
-          } else if (child is ElementDefinitionDiscriminator) {
+          if (child is List<ElementDefinitionDiscriminatorBuilder>) {
+            // Replace or create new list
+            discriminator = child;
+            return;
+          } else if (child is ElementDefinitionDiscriminatorBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?discriminator, child];
-            return copyWith(discriminator: newList);
+            discriminator = [...(discriminator ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'ordered':
         {
-          if (child is FhirBoolean) {
-            return copyWith(ordered: child);
+          if (child is FhirBooleanBuilder) {
+            ordered = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rules':
         {
-          if (child is SlicingRules) {
-            return copyWith(rules: child);
+          if (child is SlicingRulesBuilder) {
+            rules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -7413,66 +7398,56 @@ class ElementDefinitionSlicing extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'discriminator':
-        return ['ElementDefinitionDiscriminator'];
+        return ['ElementDefinitionDiscriminatorBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'ordered':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'rules':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionSlicing]
+  /// Creates a new [ElementDefinitionSlicingBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionSlicing createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'discriminator':
         {
-          return copyWith(
-            discriminator: <ElementDefinitionDiscriminator>[],
-          );
+          discriminator = <ElementDefinitionDiscriminatorBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'ordered':
         {
-          return copyWith(
-            ordered: FhirBoolean.empty(),
-          );
+          ordered = FhirBooleanBuilder.empty();
+          return;
         }
       case 'rules':
         {
-          return copyWith(
-            rules: SlicingRules.empty(),
-          );
+          rules = SlicingRulesBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7481,33 +7456,32 @@ class ElementDefinitionSlicing extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionSlicing clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool discriminator = false,
     bool description = false,
     bool ordered = false,
+    bool rules = false,
   }) {
-    return ElementDefinitionSlicing(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      discriminator: discriminator ? null : this.discriminator,
-      description: description ? null : this.description,
-      ordered: ordered ? null : this.ordered,
-      rules: rules,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (discriminator) this.discriminator = null;
+    if (description) this.description = null;
+    if (ordered) this.ordered = null;
+    if (rules) this.rules = null;
   }
 
   @override
-  ElementDefinitionSlicing clone() => throw UnimplementedError();
+  ElementDefinitionSlicingBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionSlicing copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<ElementDefinitionDiscriminator>? discriminator,
-    FhirString? description,
-    FhirBoolean? ordered,
-    SlicingRules? rules,
+  ElementDefinitionSlicingBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<ElementDefinitionDiscriminatorBuilder>? discriminator,
+    FhirStringBuilder? description,
+    FhirBooleanBuilder? ordered,
+    SlicingRulesBuilder? rules,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7515,46 +7489,37 @@ class ElementDefinitionSlicing extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionSlicing(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      discriminator: discriminator
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.discriminator',
-                ),
-              )
-              .toList() ??
-          this.discriminator,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      ordered: ordered?.copyWith(
-            objectPath: '$newObjectPath.ordered',
-          ) ??
-          this.ordered,
-      rules: rules?.copyWith(
-            objectPath: '$newObjectPath.rules',
-          ) ??
-          this.rules,
+    final newResult = ElementDefinitionSlicingBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      discriminator: discriminator ?? this.discriminator,
+      description: description ?? this.description,
+      ordered: ordered ?? this.ordered,
+      rules: rules ?? this.rules,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionSlicing) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionSlicingBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7565,13 +7530,13 @@ class ElementDefinitionSlicing extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<ElementDefinitionDiscriminator>(
+    if (!listEquals<ElementDefinitionDiscriminatorBuilder>(
       discriminator,
       o.discriminator,
     )) {
@@ -7599,50 +7564,46 @@ class ElementDefinitionSlicing extends Element {
   }
 }
 
-/// [ElementDefinitionDiscriminator]
+/// [ElementDefinitionDiscriminatorBuilder]
 /// Designates which child elements are used to discriminate between the
 /// slices when processing an instance. If one or more discriminators are
 /// provided, the value of the child elements in the instance data SHALL
 /// completely distinguish which slice the element in the resource matches
 /// based on the allowed values for those elements in each of the slices.
-class ElementDefinitionDiscriminator extends Element {
+class ElementDefinitionDiscriminatorBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionDiscriminator]
+  /// [ElementDefinitionDiscriminatorBuilder]
 
-  const ElementDefinitionDiscriminator({
+  ElementDefinitionDiscriminatorBuilder({
     super.id,
     super.extension_,
-    required this.type,
-    required this.path,
+    this.type,
+    this.path,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionDiscriminator',
+    super.objectPath = 'ElementDefinitionDiscriminatorBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionDiscriminator.empty() =>
-      ElementDefinitionDiscriminator(
-        type: DiscriminatorType.values.first,
-        path: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionDiscriminatorBuilder.empty() =>
+      ElementDefinitionDiscriminatorBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionDiscriminator.fromJson(
+  factory ElementDefinitionDiscriminatorBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionDiscriminator';
-    return ElementDefinitionDiscriminator(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionDiscriminatorBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7650,37 +7611,37 @@ class ElementDefinitionDiscriminator extends Element {
             ),
           )
           .toList(),
-      type: JsonParser.parsePrimitive<DiscriminatorType>(
+      type: JsonParser.parsePrimitive<DiscriminatorTypeBuilder>(
         json,
         'type',
-        DiscriminatorType.fromJson,
+        DiscriminatorTypeBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      path: JsonParser.parsePrimitive<FhirString>(
+      ),
+      path: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'path',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.path',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ElementDefinitionDiscriminator]
+  /// Deserialize [ElementDefinitionDiscriminatorBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionDiscriminator.fromYaml(
+  factory ElementDefinitionDiscriminatorBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionDiscriminator.fromJson(
+      return ElementDefinitionDiscriminatorBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionDiscriminator.fromJson(
+      return ElementDefinitionDiscriminatorBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionDiscriminator '
+        'ElementDefinitionDiscriminatorBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7688,16 +7649,16 @@ class ElementDefinitionDiscriminator extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionDiscriminator]
+  /// [ElementDefinitionDiscriminatorBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionDiscriminator.fromJsonString(
+  factory ElementDefinitionDiscriminatorBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionDiscriminator.fromJson(json);
+      return ElementDefinitionDiscriminatorBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7709,29 +7670,29 @@ class ElementDefinitionDiscriminator extends Element {
 
   /// [type]
   /// How the element value is interpreted when discrimination is evaluated.
-  final DiscriminatorType type;
+  DiscriminatorTypeBuilder? type;
 
   /// [path]
   /// A FHIRPath expression, using [the simple subset of
   /// FHIRPath](fhirpath.html#simple), that is used to identify the element
   /// on which discrimination is based.
-  final FhirString path;
+  FhirStringBuilder? path;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7740,27 +7701,15 @@ class ElementDefinitionDiscriminator extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'path',
-      path,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('type', type);
+    addField('path', path);
     return json;
   }
 
@@ -7778,11 +7727,11 @@ class ElementDefinitionDiscriminator extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7793,9 +7742,13 @@ class ElementDefinitionDiscriminator extends Element {
           fields.addAll(extension_!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'path':
-        fields.add(path);
+        if (path != null) {
+          fields.add(path!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -7806,7 +7759,7 @@ class ElementDefinitionDiscriminator extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -7815,51 +7768,53 @@ class ElementDefinitionDiscriminator extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is DiscriminatorType) {
-            return copyWith(type: child);
+          if (child is DiscriminatorTypeBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
         {
-          if (child is FhirString) {
-            return copyWith(path: child);
+          if (child is FhirStringBuilder) {
+            path = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -7875,50 +7830,42 @@ class ElementDefinitionDiscriminator extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'path':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionDiscriminator]
+  /// Creates a new [ElementDefinitionDiscriminatorBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionDiscriminator createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: DiscriminatorType.empty(),
-          );
+          type = DiscriminatorTypeBuilder.empty();
+          return;
         }
       case 'path':
         {
-          return copyWith(
-            path: FhirString.empty(),
-          );
+          path = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7927,26 +7874,26 @@ class ElementDefinitionDiscriminator extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionDiscriminator clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool type = false,
+    bool path = false,
   }) {
-    return ElementDefinitionDiscriminator(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      path: path,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (type) this.type = null;
+    if (path) this.path = null;
   }
 
   @override
-  ElementDefinitionDiscriminator clone() => throw UnimplementedError();
+  ElementDefinitionDiscriminatorBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionDiscriminator copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    DiscriminatorType? type,
-    FhirString? path,
+  ElementDefinitionDiscriminatorBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    DiscriminatorTypeBuilder? type,
+    FhirStringBuilder? path,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7954,34 +7901,35 @@ class ElementDefinitionDiscriminator extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionDiscriminator(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      path: path?.copyWith(
-            objectPath: '$newObjectPath.path',
-          ) ??
-          this.path,
+    final newResult = ElementDefinitionDiscriminatorBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      type: type ?? this.type,
+      path: path ?? this.path,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionDiscriminator) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionDiscriminatorBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7992,7 +7940,7 @@ class ElementDefinitionDiscriminator extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -8014,7 +7962,7 @@ class ElementDefinitionDiscriminator extends Element {
   }
 }
 
-/// [ElementDefinitionBase]
+/// [ElementDefinitionBaseBuilder]
 /// Information about the base definition of the element, provided to make
 /// it unnecessary for tools to trace the deviation of the element through
 /// the derived and related profiles. When the element definition is not
@@ -8023,45 +7971,41 @@ class ElementDefinitionDiscriminator extends Element {
 /// the information in provided in the element definition may be different
 /// to the base definition. On the original definition of the element, it
 /// will be same.
-class ElementDefinitionBase extends Element {
+class ElementDefinitionBaseBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionBase]
+  /// [ElementDefinitionBaseBuilder]
 
-  const ElementDefinitionBase({
+  ElementDefinitionBaseBuilder({
     super.id,
     super.extension_,
-    required this.path,
-    required this.min,
-    required this.max,
+    this.path,
+    this.min,
+    this.max,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionBase',
+    super.objectPath = 'ElementDefinitionBaseBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionBase.empty() => ElementDefinitionBase(
-        path: FhirString.empty(),
-        min: FhirUnsignedInt.empty(),
-        max: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionBaseBuilder.empty() =>
+      ElementDefinitionBaseBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionBase.fromJson(
+  factory ElementDefinitionBaseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionBase';
-    return ElementDefinitionBase(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionBaseBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -8069,43 +8013,43 @@ class ElementDefinitionBase extends Element {
             ),
           )
           .toList(),
-      path: JsonParser.parsePrimitive<FhirString>(
+      path: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'path',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.path',
-      )!,
-      min: JsonParser.parsePrimitive<FhirUnsignedInt>(
+      ),
+      min: JsonParser.parsePrimitive<FhirUnsignedIntBuilder>(
         json,
         'min',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.min',
-      )!,
-      max: JsonParser.parsePrimitive<FhirString>(
+      ),
+      max: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'max',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.max',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ElementDefinitionBase]
+  /// Deserialize [ElementDefinitionBaseBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionBase.fromYaml(
+  factory ElementDefinitionBaseBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionBase.fromJson(
+      return ElementDefinitionBaseBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionBase.fromJson(
+      return ElementDefinitionBaseBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionBase '
+        'ElementDefinitionBaseBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -8113,16 +8057,16 @@ class ElementDefinitionBase extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionBase]
+  /// [ElementDefinitionBaseBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionBase.fromJsonString(
+  factory ElementDefinitionBaseBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionBase.fromJson(json);
+      return ElementDefinitionBaseBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -8138,31 +8082,31 @@ class ElementDefinitionBase extends Element {
   /// base definition of any element - that is, an element definition on a
   /// [StructureDefinition](structuredefinition.html#) without a
   /// StructureDefinition.base.
-  final FhirString path;
+  FhirStringBuilder? path;
 
   /// [min]
   /// Minimum cardinality of the base element identified by the path.
-  final FhirUnsignedInt min;
+  FhirUnsignedIntBuilder? min;
 
   /// [max]
   /// Maximum cardinality of the base element identified by the path.
-  final FhirString max;
+  FhirStringBuilder? max;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -8171,31 +8115,16 @@ class ElementDefinitionBase extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'path',
-      path,
-    );
-    addField(
-      'min',
-      min,
-    );
-    addField(
-      'max',
-      max,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('path', path);
+    addField('min', min);
+    addField('max', max);
     return json;
   }
 
@@ -8214,11 +8143,11 @@ class ElementDefinitionBase extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -8229,11 +8158,17 @@ class ElementDefinitionBase extends Element {
           fields.addAll(extension_!);
         }
       case 'path':
-        fields.add(path);
+        if (path != null) {
+          fields.add(path!);
+        }
       case 'min':
-        fields.add(min);
+        if (min != null) {
+          fields.add(min!);
+        }
       case 'max':
-        fields.add(max);
+        if (max != null) {
+          fields.add(max!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -8244,7 +8179,7 @@ class ElementDefinitionBase extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -8253,59 +8188,62 @@ class ElementDefinitionBase extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
         {
-          if (child is FhirString) {
-            return copyWith(path: child);
+          if (child is FhirStringBuilder) {
+            path = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(min: child);
+          if (child is FhirUnsignedIntBuilder) {
+            min = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
         {
-          if (child is FhirString) {
-            return copyWith(max: child);
+          if (child is FhirStringBuilder) {
+            max = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -8321,58 +8259,49 @@ class ElementDefinitionBase extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'path':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'min':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'max':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionBase]
+  /// Creates a new [ElementDefinitionBaseBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionBase createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'path':
         {
-          return copyWith(
-            path: FhirString.empty(),
-          );
+          path = FhirStringBuilder.empty();
+          return;
         }
       case 'min':
         {
-          return copyWith(
-            min: FhirUnsignedInt.empty(),
-          );
+          min = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'max':
         {
-          return copyWith(
-            max: FhirString.empty(),
-          );
+          max = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8381,28 +8310,29 @@ class ElementDefinitionBase extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionBase clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool path = false,
+    bool min = false,
+    bool max = false,
   }) {
-    return ElementDefinitionBase(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      path: path,
-      min: min,
-      max: max,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (path) this.path = null;
+    if (min) this.min = null;
+    if (max) this.max = null;
   }
 
   @override
-  ElementDefinitionBase clone() => throw UnimplementedError();
+  ElementDefinitionBaseBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionBase copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? path,
-    FhirUnsignedInt? min,
-    FhirString? max,
+  ElementDefinitionBaseBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirStringBuilder? path,
+    FhirUnsignedIntBuilder? min,
+    FhirStringBuilder? max,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8410,38 +8340,36 @@ class ElementDefinitionBase extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionBase(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      path: path?.copyWith(
-            objectPath: '$newObjectPath.path',
-          ) ??
-          this.path,
-      min: min?.copyWith(
-            objectPath: '$newObjectPath.min',
-          ) ??
-          this.min,
-      max: max?.copyWith(
-            objectPath: '$newObjectPath.max',
-          ) ??
-          this.max,
+    final newResult = ElementDefinitionBaseBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      path: path ?? this.path,
+      min: min ?? this.min,
+      max: max ?? this.max,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionBase) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionBaseBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8452,7 +8380,7 @@ class ElementDefinitionBase extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -8480,48 +8408,46 @@ class ElementDefinitionBase extends Element {
   }
 }
 
-/// [ElementDefinitionType]
+/// [ElementDefinitionTypeBuilder]
 /// The data type or resource that the value of this element is permitted
 /// to be.
-class ElementDefinitionType extends Element {
+class ElementDefinitionTypeBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionType]
+  /// [ElementDefinitionTypeBuilder]
 
-  const ElementDefinitionType({
+  ElementDefinitionTypeBuilder({
     super.id,
     super.extension_,
-    required this.code,
+    this.code,
     this.profile,
     this.targetProfile,
     this.aggregation,
     this.versioning,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionType',
+    super.objectPath = 'ElementDefinitionTypeBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionType.empty() => ElementDefinitionType(
-        code: FhirUri.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionTypeBuilder.empty() =>
+      ElementDefinitionTypeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionType.fromJson(
+  factory ElementDefinitionTypeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionType';
-    return ElementDefinitionType(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionTypeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -8529,55 +8455,55 @@ class ElementDefinitionType extends Element {
             ),
           )
           .toList(),
-      code: JsonParser.parsePrimitive<FhirUri>(
+      code: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'code',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.code',
-      )!,
-      profile: JsonParser.parsePrimitiveList<FhirCanonical>(
+      ),
+      profile: JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'profile',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.profile',
       ),
-      targetProfile: JsonParser.parsePrimitiveList<FhirCanonical>(
+      targetProfile: JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'targetProfile',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.targetProfile',
       ),
-      aggregation: JsonParser.parsePrimitiveList<AggregationMode>(
+      aggregation: JsonParser.parsePrimitiveList<AggregationModeBuilder>(
         json,
         'aggregation',
-        AggregationMode.fromJson,
+        AggregationModeBuilder.fromJson,
         '$objectPath.aggregation',
       ),
-      versioning: JsonParser.parsePrimitive<ReferenceVersionRules>(
+      versioning: JsonParser.parsePrimitive<ReferenceVersionRulesBuilder>(
         json,
         'versioning',
-        ReferenceVersionRules.fromJson,
+        ReferenceVersionRulesBuilder.fromJson,
         '$objectPath.versioning',
       ),
     );
   }
 
-  /// Deserialize [ElementDefinitionType]
+  /// Deserialize [ElementDefinitionTypeBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionType.fromYaml(
+  factory ElementDefinitionTypeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionType.fromJson(
+      return ElementDefinitionTypeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionType.fromJson(
+      return ElementDefinitionTypeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionType '
+        'ElementDefinitionTypeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -8585,16 +8511,16 @@ class ElementDefinitionType extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionType]
+  /// [ElementDefinitionTypeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionType.fromJsonString(
+  factory ElementDefinitionTypeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionType.fromJson(json);
+      return ElementDefinitionTypeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -8610,7 +8536,7 @@ class ElementDefinitionType extends Element {
   /// http://hl7.org/fhir/StructureDefinition e.g. "string" is a reference to
   /// http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only
   /// allowed in logical models.
-  final FhirUri code;
+  FhirUriBuilder? code;
 
   /// [profile]
   /// Identifies a profile structure or implementation Guide that applies to
@@ -8620,7 +8546,7 @@ class ElementDefinitionType extends Element {
   /// another StructureDefinition or Implementation Guide by a canonical URL.
   /// When an implementation guide is specified, the type SHALL conform to at
   /// least one profile defined in the implementation guide.
-  final List<FhirCanonical>? profile;
+  List<FhirCanonicalBuilder>? profile;
 
   /// [targetProfile]
   /// Used when the type is "Reference" or "canonical", and identifies a
@@ -8631,34 +8557,34 @@ class ElementDefinitionType extends Element {
   /// another StructureDefinition or Implementation Guide by a canonical URL.
   /// When an implementation guide is specified, the target resource SHALL
   /// conform to at least one profile defined in the implementation guide.
-  final List<FhirCanonical>? targetProfile;
+  List<FhirCanonicalBuilder>? targetProfile;
 
   /// [aggregation]
   /// If the type is a reference to another resource, how the resource is or
   /// can be aggregated - is it a contained resource, or a reference, and if
   /// the context is a bundle, is it included in the bundle.
-  final List<AggregationMode>? aggregation;
+  List<AggregationModeBuilder>? aggregation;
 
   /// [versioning]
   /// Whether this reference needs to be version specific or version
   /// independent, or whether either can be used.
-  final ReferenceVersionRules? versioning;
+  ReferenceVersionRulesBuilder? versioning;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -8667,39 +8593,18 @@ class ElementDefinitionType extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'profile',
-      profile,
-    );
-    addField(
-      'targetProfile',
-      targetProfile,
-    );
-    addField(
-      'aggregation',
-      aggregation,
-    );
-    addField(
-      'versioning',
-      versioning,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('code', code);
+    addField('profile', profile);
+    addField('targetProfile', targetProfile);
+    addField('aggregation', aggregation);
+    addField('versioning', versioning);
     return json;
   }
 
@@ -8720,11 +8625,11 @@ class ElementDefinitionType extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -8735,7 +8640,9 @@ class ElementDefinitionType extends Element {
           fields.addAll(extension_!);
         }
       case 'code':
-        fields.add(code);
+        if (code != null) {
+          fields.add(code!);
+        }
       case 'profile':
         if (profile != null) {
           fields.addAll(profile!);
@@ -8762,7 +8669,7 @@ class ElementDefinitionType extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -8771,93 +8678,95 @@ class ElementDefinitionType extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is FhirUri) {
-            return copyWith(code: child);
+          if (child is FhirUriBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?profile, ...child];
-            return copyWith(profile: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            profile = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?profile, child];
-            return copyWith(profile: newList);
+            profile = [...(profile ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetProfile':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?targetProfile, ...child];
-            return copyWith(targetProfile: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            targetProfile = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?targetProfile, child];
-            return copyWith(targetProfile: newList);
+            targetProfile = [...(targetProfile ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'aggregation':
         {
-          if (child is List<AggregationMode>) {
-            // Add all elements from passed list
-            final newList = [...?aggregation, ...child];
-            return copyWith(aggregation: newList);
-          } else if (child is AggregationMode) {
+          if (child is List<AggregationModeBuilder>) {
+            // Replace or create new list
+            aggregation = child;
+            return;
+          } else if (child is AggregationModeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?aggregation, child];
-            return copyWith(aggregation: newList);
+            aggregation = [...(aggregation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'versioning':
         {
-          if (child is ReferenceVersionRules) {
-            return copyWith(versioning: child);
+          if (child is ReferenceVersionRulesBuilder) {
+            versioning = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -8873,74 +8782,63 @@ class ElementDefinitionType extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'profile':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'targetProfile':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'aggregation':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'versioning':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionType]
+  /// Creates a new [ElementDefinitionTypeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionType createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: FhirUri.empty(),
-          );
+          code = FhirUriBuilder.empty();
+          return;
         }
       case 'profile':
         {
-          return copyWith(
-            profile: <FhirCanonical>[],
-          );
+          profile = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'targetProfile':
         {
-          return copyWith(
-            targetProfile: <FhirCanonical>[],
-          );
+          targetProfile = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'aggregation':
         {
-          return copyWith(
-            aggregation: <AggregationMode>[],
-          );
+          aggregation = <AggregationModeBuilder>[];
+          return;
         }
       case 'versioning':
         {
-          return copyWith(
-            versioning: ReferenceVersionRules.empty(),
-          );
+          versioning = ReferenceVersionRulesBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8949,36 +8847,35 @@ class ElementDefinitionType extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionType clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool code = false,
     bool profile = false,
     bool targetProfile = false,
     bool aggregation = false,
     bool versioning = false,
   }) {
-    return ElementDefinitionType(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      code: code,
-      profile: profile ? null : this.profile,
-      targetProfile: targetProfile ? null : this.targetProfile,
-      aggregation: aggregation ? null : this.aggregation,
-      versioning: versioning ? null : this.versioning,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (code) this.code = null;
+    if (profile) this.profile = null;
+    if (targetProfile) this.targetProfile = null;
+    if (aggregation) this.aggregation = null;
+    if (versioning) this.versioning = null;
   }
 
   @override
-  ElementDefinitionType clone() => throw UnimplementedError();
+  ElementDefinitionTypeBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionType copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirUri? code,
-    List<FhirCanonical>? profile,
-    List<FhirCanonical>? targetProfile,
-    List<AggregationMode>? aggregation,
-    ReferenceVersionRules? versioning,
+  ElementDefinitionTypeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirUriBuilder? code,
+    List<FhirCanonicalBuilder>? profile,
+    List<FhirCanonicalBuilder>? targetProfile,
+    List<AggregationModeBuilder>? aggregation,
+    ReferenceVersionRulesBuilder? versioning,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8986,58 +8883,38 @@ class ElementDefinitionType extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionType(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      profile: profile
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.profile',
-                ),
-              )
-              .toList() ??
-          this.profile,
-      targetProfile: targetProfile
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.targetProfile',
-                ),
-              )
-              .toList() ??
-          this.targetProfile,
-      aggregation: aggregation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.aggregation',
-                ),
-              )
-              .toList() ??
-          this.aggregation,
-      versioning: versioning?.copyWith(
-            objectPath: '$newObjectPath.versioning',
-          ) ??
-          this.versioning,
+    final newResult = ElementDefinitionTypeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      code: code ?? this.code,
+      profile: profile ?? this.profile,
+      targetProfile: targetProfile ?? this.targetProfile,
+      aggregation: aggregation ?? this.aggregation,
+      versioning: versioning ?? this.versioning,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionType) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionTypeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -9048,7 +8925,7 @@ class ElementDefinitionType extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -9060,19 +8937,19 @@ class ElementDefinitionType extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       profile,
       o.profile,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       targetProfile,
       o.targetProfile,
     )) {
       return false;
     }
-    if (!listEquals<AggregationMode>(
+    if (!listEquals<AggregationModeBuilder>(
       aggregation,
       o.aggregation,
     )) {
@@ -9088,46 +8965,43 @@ class ElementDefinitionType extends Element {
   }
 }
 
-/// [ElementDefinitionExample]
+/// [ElementDefinitionExampleBuilder]
 /// A sample value for this element demonstrating the type of information
 /// that would typically be found in the element.
-class ElementDefinitionExample extends Element {
+class ElementDefinitionExampleBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionExample]
+  /// [ElementDefinitionExampleBuilder]
 
-  const ElementDefinitionExample({
+  ElementDefinitionExampleBuilder({
     super.id,
     super.extension_,
-    required this.label,
-    required this.valueX,
+    this.label,
+    this.valueX,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionExample',
+    super.objectPath = 'ElementDefinitionExampleBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionExample.empty() => ElementDefinitionExample(
-        label: FhirString.empty(),
-        valueX: FhirBase64Binary.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionExampleBuilder.empty() =>
+      ElementDefinitionExampleBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionExample.fromJson(
+  factory ElementDefinitionExampleBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionExample';
-    return ElementDefinitionExample(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionExampleBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -9135,88 +9009,89 @@ class ElementDefinitionExample extends Element {
             ),
           )
           .toList(),
-      label: JsonParser.parsePrimitive<FhirString>(
+      label: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'label',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.label',
-      )!,
-      valueX: JsonParser.parsePolymorphic<ValueXElementDefinitionExample>(
+      ),
+      valueX:
+          JsonParser.parsePolymorphic<ValueXElementDefinitionExampleBuilder>(
         json,
         {
-          'valueBase64Binary': FhirBase64Binary.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueCanonical': FhirCanonical.fromJson,
-          'valueCode': FhirCode.fromJson,
-          'valueDate': FhirDate.fromJson,
-          'valueDateTime': FhirDateTime.fromJson,
-          'valueDecimal': FhirDecimal.fromJson,
-          'valueId': FhirId.fromJson,
-          'valueInstant': FhirInstant.fromJson,
-          'valueInteger': FhirInteger.fromJson,
-          'valueMarkdown': FhirMarkdown.fromJson,
-          'valueOid': FhirOid.fromJson,
-          'valuePositiveInt': FhirPositiveInt.fromJson,
-          'valueString': FhirString.fromJson,
-          'valueTime': FhirTime.fromJson,
-          'valueUnsignedInt': FhirUnsignedInt.fromJson,
-          'valueUri': FhirUri.fromJson,
-          'valueUrl': FhirUrl.fromJson,
-          'valueUuid': FhirUuid.fromJson,
-          'valueAddress': Address.fromJson,
-          'valueAge': Age.fromJson,
-          'valueAnnotation': Annotation.fromJson,
-          'valueAttachment': Attachment.fromJson,
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueCodeableReference': CodeableReference.fromJson,
-          'valueCoding': Coding.fromJson,
-          'valueContactPoint': ContactPoint.fromJson,
-          'valueCount': Count.fromJson,
-          'valueDistance': Distance.fromJson,
-          'valueDuration': FhirDuration.fromJson,
-          'valueHumanName': HumanName.fromJson,
-          'valueIdentifier': Identifier.fromJson,
-          'valueMoney': Money.fromJson,
-          'valuePeriod': Period.fromJson,
-          'valueQuantity': Quantity.fromJson,
-          'valueRange': Range.fromJson,
-          'valueRatio': Ratio.fromJson,
-          'valueRatioRange': RatioRange.fromJson,
-          'valueReference': Reference.fromJson,
-          'valueSampledData': SampledData.fromJson,
-          'valueSignature': Signature.fromJson,
-          'valueTiming': Timing.fromJson,
-          'valueContactDetail': ContactDetail.fromJson,
-          'valueContributor': Contributor.fromJson,
-          'valueDataRequirement': DataRequirement.fromJson,
-          'valueExpression': FhirExpression.fromJson,
-          'valueParameterDefinition': ParameterDefinition.fromJson,
-          'valueRelatedArtifact': RelatedArtifact.fromJson,
-          'valueTriggerDefinition': TriggerDefinition.fromJson,
-          'valueUsageContext': UsageContext.fromJson,
-          'valueDosage': Dosage.fromJson,
+          'valueBase64Binary': FhirBase64BinaryBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueCanonical': FhirCanonicalBuilder.fromJson,
+          'valueCode': FhirCodeBuilder.fromJson,
+          'valueDate': FhirDateBuilder.fromJson,
+          'valueDateTime': FhirDateTimeBuilder.fromJson,
+          'valueDecimal': FhirDecimalBuilder.fromJson,
+          'valueId': FhirIdBuilder.fromJson,
+          'valueInstant': FhirInstantBuilder.fromJson,
+          'valueInteger': FhirIntegerBuilder.fromJson,
+          'valueMarkdown': FhirMarkdownBuilder.fromJson,
+          'valueOid': FhirOidBuilder.fromJson,
+          'valuePositiveInt': FhirPositiveIntBuilder.fromJson,
+          'valueString': FhirStringBuilder.fromJson,
+          'valueTime': FhirTimeBuilder.fromJson,
+          'valueUnsignedInt': FhirUnsignedIntBuilder.fromJson,
+          'valueUri': FhirUriBuilder.fromJson,
+          'valueUrl': FhirUrlBuilder.fromJson,
+          'valueUuid': FhirUuidBuilder.fromJson,
+          'valueAddress': AddressBuilder.fromJson,
+          'valueAge': AgeBuilder.fromJson,
+          'valueAnnotation': AnnotationBuilder.fromJson,
+          'valueAttachment': AttachmentBuilder.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueCodeableReference': CodeableReferenceBuilder.fromJson,
+          'valueCoding': CodingBuilder.fromJson,
+          'valueContactPoint': ContactPointBuilder.fromJson,
+          'valueCount': CountBuilder.fromJson,
+          'valueDistance': DistanceBuilder.fromJson,
+          'valueDuration': FhirDurationBuilder.fromJson,
+          'valueHumanName': HumanNameBuilder.fromJson,
+          'valueIdentifier': IdentifierBuilder.fromJson,
+          'valueMoney': MoneyBuilder.fromJson,
+          'valuePeriod': PeriodBuilder.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueRange': RangeBuilder.fromJson,
+          'valueRatio': RatioBuilder.fromJson,
+          'valueRatioRange': RatioRangeBuilder.fromJson,
+          'valueReference': ReferenceBuilder.fromJson,
+          'valueSampledData': SampledDataBuilder.fromJson,
+          'valueSignature': SignatureBuilder.fromJson,
+          'valueTiming': TimingBuilder.fromJson,
+          'valueContactDetail': ContactDetailBuilder.fromJson,
+          'valueContributor': ContributorBuilder.fromJson,
+          'valueDataRequirement': DataRequirementBuilder.fromJson,
+          'valueExpression': FhirExpressionBuilder.fromJson,
+          'valueParameterDefinition': ParameterDefinitionBuilder.fromJson,
+          'valueRelatedArtifact': RelatedArtifactBuilder.fromJson,
+          'valueTriggerDefinition': TriggerDefinitionBuilder.fromJson,
+          'valueUsageContext': UsageContextBuilder.fromJson,
+          'valueDosage': DosageBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ElementDefinitionExample]
+  /// Deserialize [ElementDefinitionExampleBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionExample.fromYaml(
+  factory ElementDefinitionExampleBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionExample.fromJson(
+      return ElementDefinitionExampleBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionExample.fromJson(
+      return ElementDefinitionExampleBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionExample '
+        'ElementDefinitionExampleBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -9224,16 +9099,16 @@ class ElementDefinitionExample extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionExample]
+  /// [ElementDefinitionExampleBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionExample.fromJsonString(
+  factory ElementDefinitionExampleBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionExample.fromJson(json);
+      return ElementDefinitionExampleBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -9245,184 +9120,197 @@ class ElementDefinitionExample extends Element {
 
   /// [label]
   /// Describes the purpose of this example amoung the set of examples.
-  final FhirString label;
+  FhirStringBuilder? label;
 
   /// [valueX]
   /// The actual value for the element, which must be one of the types
   /// allowed for this element.
-  final ValueXElementDefinitionExample valueX;
+  ValueXElementDefinitionExampleBuilder? valueX;
 
-  /// Getter for [valueBase64Binary] as a FhirBase64Binary
-  FhirBase64Binary? get valueBase64Binary => valueX.isAs<FhirBase64Binary>();
+  /// Getter for [valueBase64Binary] as a FhirBase64BinaryBuilder
+  FhirBase64BinaryBuilder? get valueBase64Binary =>
+      valueX?.isAs<FhirBase64BinaryBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueCanonical] as a FhirCanonical
-  FhirCanonical? get valueCanonical => valueX.isAs<FhirCanonical>();
+  /// Getter for [valueCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get valueCanonical =>
+      valueX?.isAs<FhirCanonicalBuilder>();
 
-  /// Getter for [valueCode] as a FhirCode
-  FhirCode? get valueCode => valueX.isAs<FhirCode>();
+  /// Getter for [valueCode] as a FhirCodeBuilder
+  FhirCodeBuilder? get valueCode => valueX?.isAs<FhirCodeBuilder>();
 
-  /// Getter for [valueDate] as a FhirDate
-  FhirDate? get valueDate => valueX.isAs<FhirDate>();
+  /// Getter for [valueDate] as a FhirDateBuilder
+  FhirDateBuilder? get valueDate => valueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [valueDateTime] as a FhirDateTime
-  FhirDateTime? get valueDateTime => valueX.isAs<FhirDateTime>();
+  /// Getter for [valueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get valueDateTime => valueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [valueDecimal] as a FhirDecimal
-  FhirDecimal? get valueDecimal => valueX.isAs<FhirDecimal>();
+  /// Getter for [valueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [valueId] as a FhirId
-  FhirId? get valueId => valueX.isAs<FhirId>();
+  /// Getter for [valueId] as a FhirIdBuilder
+  FhirIdBuilder? get valueId => valueX?.isAs<FhirIdBuilder>();
 
-  /// Getter for [valueInstant] as a FhirInstant
-  FhirInstant? get valueInstant => valueX.isAs<FhirInstant>();
+  /// Getter for [valueInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get valueInstant => valueX?.isAs<FhirInstantBuilder>();
 
-  /// Getter for [valueInteger] as a FhirInteger
-  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+  /// Getter for [valueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get valueInteger => valueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [valueMarkdown] as a FhirMarkdown
-  FhirMarkdown? get valueMarkdown => valueX.isAs<FhirMarkdown>();
+  /// Getter for [valueMarkdown] as a FhirMarkdownBuilder
+  FhirMarkdownBuilder? get valueMarkdown => valueX?.isAs<FhirMarkdownBuilder>();
 
-  /// Getter for [valueOid] as a FhirOid
-  FhirOid? get valueOid => valueX.isAs<FhirOid>();
+  /// Getter for [valueOid] as a FhirOidBuilder
+  FhirOidBuilder? get valueOid => valueX?.isAs<FhirOidBuilder>();
 
-  /// Getter for [valuePositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get valuePositiveInt => valueX.isAs<FhirPositiveInt>();
+  /// Getter for [valuePositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get valuePositiveInt =>
+      valueX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [valueString] as a FhirString
-  FhirString? get valueString => valueX.isAs<FhirString>();
+  /// Getter for [valueString] as a FhirStringBuilder
+  FhirStringBuilder? get valueString => valueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [valueTime] as a FhirTime
-  FhirTime? get valueTime => valueX.isAs<FhirTime>();
+  /// Getter for [valueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get valueTime => valueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [valueUnsignedInt] as a FhirUnsignedInt
-  FhirUnsignedInt? get valueUnsignedInt => valueX.isAs<FhirUnsignedInt>();
+  /// Getter for [valueUnsignedInt] as a FhirUnsignedIntBuilder
+  FhirUnsignedIntBuilder? get valueUnsignedInt =>
+      valueX?.isAs<FhirUnsignedIntBuilder>();
 
-  /// Getter for [valueUri] as a FhirUri
-  FhirUri? get valueUri => valueX.isAs<FhirUri>();
+  /// Getter for [valueUri] as a FhirUriBuilder
+  FhirUriBuilder? get valueUri => valueX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [valueUrl] as a FhirUrl
-  FhirUrl? get valueUrl => valueX.isAs<FhirUrl>();
+  /// Getter for [valueUrl] as a FhirUrlBuilder
+  FhirUrlBuilder? get valueUrl => valueX?.isAs<FhirUrlBuilder>();
 
-  /// Getter for [valueUuid] as a FhirUuid
-  FhirUuid? get valueUuid => valueX.isAs<FhirUuid>();
+  /// Getter for [valueUuid] as a FhirUuidBuilder
+  FhirUuidBuilder? get valueUuid => valueX?.isAs<FhirUuidBuilder>();
 
-  /// Getter for [valueAddress] as a Address
-  Address? get valueAddress => valueX.isAs<Address>();
+  /// Getter for [valueAddress] as a AddressBuilder
+  AddressBuilder? get valueAddress => valueX?.isAs<AddressBuilder>();
 
-  /// Getter for [valueAge] as a Age
-  Age? get valueAge => valueX.isAs<Age>();
+  /// Getter for [valueAge] as a AgeBuilder
+  AgeBuilder? get valueAge => valueX?.isAs<AgeBuilder>();
 
-  /// Getter for [valueAnnotation] as a Annotation
-  Annotation? get valueAnnotation => valueX.isAs<Annotation>();
+  /// Getter for [valueAnnotation] as a AnnotationBuilder
+  AnnotationBuilder? get valueAnnotation => valueX?.isAs<AnnotationBuilder>();
 
-  /// Getter for [valueAttachment] as a Attachment
-  Attachment? get valueAttachment => valueX.isAs<Attachment>();
+  /// Getter for [valueAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueCodeableReference] as a CodeableReference
-  CodeableReference? get valueCodeableReference =>
-      valueX.isAs<CodeableReference>();
+  /// Getter for [valueCodeableReference] as a CodeableReferenceBuilder
+  CodeableReferenceBuilder? get valueCodeableReference =>
+      valueX?.isAs<CodeableReferenceBuilder>();
 
-  /// Getter for [valueCoding] as a Coding
-  Coding? get valueCoding => valueX.isAs<Coding>();
+  /// Getter for [valueCoding] as a CodingBuilder
+  CodingBuilder? get valueCoding => valueX?.isAs<CodingBuilder>();
 
-  /// Getter for [valueContactPoint] as a ContactPoint
-  ContactPoint? get valueContactPoint => valueX.isAs<ContactPoint>();
+  /// Getter for [valueContactPoint] as a ContactPointBuilder
+  ContactPointBuilder? get valueContactPoint =>
+      valueX?.isAs<ContactPointBuilder>();
 
-  /// Getter for [valueCount] as a Count
-  Count? get valueCount => valueX.isAs<Count>();
+  /// Getter for [valueCount] as a CountBuilder
+  CountBuilder? get valueCount => valueX?.isAs<CountBuilder>();
 
-  /// Getter for [valueDistance] as a Distance
-  Distance? get valueDistance => valueX.isAs<Distance>();
+  /// Getter for [valueDistance] as a DistanceBuilder
+  DistanceBuilder? get valueDistance => valueX?.isAs<DistanceBuilder>();
 
-  /// Getter for [valueDuration] as a FhirDuration
-  FhirDuration? get valueDuration => valueX.isAs<FhirDuration>();
+  /// Getter for [valueDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get valueDuration => valueX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [valueHumanName] as a HumanName
-  HumanName? get valueHumanName => valueX.isAs<HumanName>();
+  /// Getter for [valueHumanName] as a HumanNameBuilder
+  HumanNameBuilder? get valueHumanName => valueX?.isAs<HumanNameBuilder>();
 
-  /// Getter for [valueIdentifier] as a Identifier
-  Identifier? get valueIdentifier => valueX.isAs<Identifier>();
+  /// Getter for [valueIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get valueIdentifier => valueX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [valueMoney] as a Money
-  Money? get valueMoney => valueX.isAs<Money>();
+  /// Getter for [valueMoney] as a MoneyBuilder
+  MoneyBuilder? get valueMoney => valueX?.isAs<MoneyBuilder>();
 
-  /// Getter for [valuePeriod] as a Period
-  Period? get valuePeriod => valueX.isAs<Period>();
+  /// Getter for [valuePeriod] as a PeriodBuilder
+  PeriodBuilder? get valuePeriod => valueX?.isAs<PeriodBuilder>();
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueRange] as a Range
-  Range? get valueRange => valueX.isAs<Range>();
+  /// Getter for [valueRange] as a RangeBuilder
+  RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// Getter for [valueRatio] as a Ratio
-  Ratio? get valueRatio => valueX.isAs<Ratio>();
+  /// Getter for [valueRatio] as a RatioBuilder
+  RatioBuilder? get valueRatio => valueX?.isAs<RatioBuilder>();
 
-  /// Getter for [valueRatioRange] as a RatioRange
-  RatioRange? get valueRatioRange => valueX.isAs<RatioRange>();
+  /// Getter for [valueRatioRange] as a RatioRangeBuilder
+  RatioRangeBuilder? get valueRatioRange => valueX?.isAs<RatioRangeBuilder>();
 
-  /// Getter for [valueReference] as a Reference
-  Reference? get valueReference => valueX.isAs<Reference>();
+  /// Getter for [valueReference] as a ReferenceBuilder
+  ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [valueSampledData] as a SampledData
-  SampledData? get valueSampledData => valueX.isAs<SampledData>();
+  /// Getter for [valueSampledData] as a SampledDataBuilder
+  SampledDataBuilder? get valueSampledData =>
+      valueX?.isAs<SampledDataBuilder>();
 
-  /// Getter for [valueSignature] as a Signature
-  Signature? get valueSignature => valueX.isAs<Signature>();
+  /// Getter for [valueSignature] as a SignatureBuilder
+  SignatureBuilder? get valueSignature => valueX?.isAs<SignatureBuilder>();
 
-  /// Getter for [valueTiming] as a Timing
-  Timing? get valueTiming => valueX.isAs<Timing>();
+  /// Getter for [valueTiming] as a TimingBuilder
+  TimingBuilder? get valueTiming => valueX?.isAs<TimingBuilder>();
 
-  /// Getter for [valueContactDetail] as a ContactDetail
-  ContactDetail? get valueContactDetail => valueX.isAs<ContactDetail>();
+  /// Getter for [valueContactDetail] as a ContactDetailBuilder
+  ContactDetailBuilder? get valueContactDetail =>
+      valueX?.isAs<ContactDetailBuilder>();
 
-  /// Getter for [valueContributor] as a Contributor
-  Contributor? get valueContributor => valueX.isAs<Contributor>();
+  /// Getter for [valueContributor] as a ContributorBuilder
+  ContributorBuilder? get valueContributor =>
+      valueX?.isAs<ContributorBuilder>();
 
-  /// Getter for [valueDataRequirement] as a DataRequirement
-  DataRequirement? get valueDataRequirement => valueX.isAs<DataRequirement>();
+  /// Getter for [valueDataRequirement] as a DataRequirementBuilder
+  DataRequirementBuilder? get valueDataRequirement =>
+      valueX?.isAs<DataRequirementBuilder>();
 
-  /// Getter for [valueExpression] as a FhirExpression
-  FhirExpression? get valueExpression => valueX.isAs<FhirExpression>();
+  /// Getter for [valueExpression] as a FhirExpressionBuilder
+  FhirExpressionBuilder? get valueExpression =>
+      valueX?.isAs<FhirExpressionBuilder>();
 
-  /// Getter for [valueParameterDefinition] as a ParameterDefinition
-  ParameterDefinition? get valueParameterDefinition =>
-      valueX.isAs<ParameterDefinition>();
+  /// Getter for [valueParameterDefinition] as a ParameterDefinitionBuilder
+  ParameterDefinitionBuilder? get valueParameterDefinition =>
+      valueX?.isAs<ParameterDefinitionBuilder>();
 
-  /// Getter for [valueRelatedArtifact] as a RelatedArtifact
-  RelatedArtifact? get valueRelatedArtifact => valueX.isAs<RelatedArtifact>();
+  /// Getter for [valueRelatedArtifact] as a RelatedArtifactBuilder
+  RelatedArtifactBuilder? get valueRelatedArtifact =>
+      valueX?.isAs<RelatedArtifactBuilder>();
 
-  /// Getter for [valueTriggerDefinition] as a TriggerDefinition
-  TriggerDefinition? get valueTriggerDefinition =>
-      valueX.isAs<TriggerDefinition>();
+  /// Getter for [valueTriggerDefinition] as a TriggerDefinitionBuilder
+  TriggerDefinitionBuilder? get valueTriggerDefinition =>
+      valueX?.isAs<TriggerDefinitionBuilder>();
 
-  /// Getter for [valueUsageContext] as a UsageContext
-  UsageContext? get valueUsageContext => valueX.isAs<UsageContext>();
+  /// Getter for [valueUsageContext] as a UsageContextBuilder
+  UsageContextBuilder? get valueUsageContext =>
+      valueX?.isAs<UsageContextBuilder>();
 
-  /// Getter for [valueDosage] as a Dosage
-  Dosage? get valueDosage => valueX.isAs<Dosage>();
+  /// Getter for [valueDosage] as a DosageBuilder
+  DosageBuilder? get valueDosage => valueX?.isAs<DosageBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -9431,28 +9319,18 @@ class ElementDefinitionExample extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'label',
-      label,
-    );
-    final valueXFhirType = valueX.fhirType;
-    addField(
-      'value${valueXFhirType.capitalize()}',
-      valueX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('label', label);
+    if (valueX != null) {
+      final fhirType = valueX!.fhirType;
+      addField('value${fhirType.capitalize()}', valueX);
+    }
 
     return json;
   }
@@ -9471,11 +9349,11 @@ class ElementDefinitionExample extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -9486,214 +9364,220 @@ class ElementDefinitionExample extends Element {
           fields.addAll(extension_!);
         }
       case 'label':
-        fields.add(label);
+        if (label != null) {
+          fields.add(label!);
+        }
       case 'value':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueBase64Binary':
-        if (valueX is FhirBase64Binary) {
-          fields.add(valueX);
+        if (valueX is FhirBase64BinaryBuilder) {
+          fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
-          fields.add(valueX);
+        if (valueX is FhirBooleanBuilder) {
+          fields.add(valueX!);
         }
       case 'valueCanonical':
-        if (valueX is FhirCanonical) {
-          fields.add(valueX);
+        if (valueX is FhirCanonicalBuilder) {
+          fields.add(valueX!);
         }
       case 'valueCode':
-        if (valueX is FhirCode) {
-          fields.add(valueX);
+        if (valueX is FhirCodeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDate':
-        if (valueX is FhirDate) {
-          fields.add(valueX);
+        if (valueX is FhirDateBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDateTime':
-        if (valueX is FhirDateTime) {
-          fields.add(valueX);
+        if (valueX is FhirDateTimeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDecimal':
-        if (valueX is FhirDecimal) {
-          fields.add(valueX);
+        if (valueX is FhirDecimalBuilder) {
+          fields.add(valueX!);
         }
       case 'valueId':
-        if (valueX is FhirId) {
-          fields.add(valueX);
+        if (valueX is FhirIdBuilder) {
+          fields.add(valueX!);
         }
       case 'valueInstant':
-        if (valueX is FhirInstant) {
-          fields.add(valueX);
+        if (valueX is FhirInstantBuilder) {
+          fields.add(valueX!);
         }
       case 'valueInteger':
-        if (valueX is FhirInteger) {
-          fields.add(valueX);
+        if (valueX is FhirIntegerBuilder) {
+          fields.add(valueX!);
         }
       case 'valueMarkdown':
-        if (valueX is FhirMarkdown) {
-          fields.add(valueX);
+        if (valueX is FhirMarkdownBuilder) {
+          fields.add(valueX!);
         }
       case 'valueOid':
-        if (valueX is FhirOid) {
-          fields.add(valueX);
+        if (valueX is FhirOidBuilder) {
+          fields.add(valueX!);
         }
       case 'valuePositiveInt':
-        if (valueX is FhirPositiveInt) {
-          fields.add(valueX);
+        if (valueX is FhirPositiveIntBuilder) {
+          fields.add(valueX!);
         }
       case 'valueString':
-        if (valueX is FhirString) {
-          fields.add(valueX);
+        if (valueX is FhirStringBuilder) {
+          fields.add(valueX!);
         }
       case 'valueTime':
-        if (valueX is FhirTime) {
-          fields.add(valueX);
+        if (valueX is FhirTimeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueUnsignedInt':
-        if (valueX is FhirUnsignedInt) {
-          fields.add(valueX);
+        if (valueX is FhirUnsignedIntBuilder) {
+          fields.add(valueX!);
         }
       case 'valueUri':
-        if (valueX is FhirUri) {
-          fields.add(valueX);
+        if (valueX is FhirUriBuilder) {
+          fields.add(valueX!);
         }
       case 'valueUrl':
-        if (valueX is FhirUrl) {
-          fields.add(valueX);
+        if (valueX is FhirUrlBuilder) {
+          fields.add(valueX!);
         }
       case 'valueUuid':
-        if (valueX is FhirUuid) {
-          fields.add(valueX);
+        if (valueX is FhirUuidBuilder) {
+          fields.add(valueX!);
         }
       case 'valueAddress':
-        if (valueX is Address) {
-          fields.add(valueX);
+        if (valueX is AddressBuilder) {
+          fields.add(valueX!);
         }
       case 'valueAge':
-        if (valueX is Age) {
-          fields.add(valueX);
+        if (valueX is AgeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueAnnotation':
-        if (valueX is Annotation) {
-          fields.add(valueX);
+        if (valueX is AnnotationBuilder) {
+          fields.add(valueX!);
         }
       case 'valueAttachment':
-        if (valueX is Attachment) {
-          fields.add(valueX);
+        if (valueX is AttachmentBuilder) {
+          fields.add(valueX!);
         }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
-          fields.add(valueX);
+        if (valueX is CodeableConceptBuilder) {
+          fields.add(valueX!);
         }
       case 'valueCodeableReference':
-        if (valueX is CodeableReference) {
-          fields.add(valueX);
+        if (valueX is CodeableReferenceBuilder) {
+          fields.add(valueX!);
         }
       case 'valueCoding':
-        if (valueX is Coding) {
-          fields.add(valueX);
+        if (valueX is CodingBuilder) {
+          fields.add(valueX!);
         }
       case 'valueContactPoint':
-        if (valueX is ContactPoint) {
-          fields.add(valueX);
+        if (valueX is ContactPointBuilder) {
+          fields.add(valueX!);
         }
       case 'valueCount':
-        if (valueX is Count) {
-          fields.add(valueX);
+        if (valueX is CountBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDistance':
-        if (valueX is Distance) {
-          fields.add(valueX);
+        if (valueX is DistanceBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDuration':
-        if (valueX is FhirDuration) {
-          fields.add(valueX);
+        if (valueX is FhirDurationBuilder) {
+          fields.add(valueX!);
         }
       case 'valueHumanName':
-        if (valueX is HumanName) {
-          fields.add(valueX);
+        if (valueX is HumanNameBuilder) {
+          fields.add(valueX!);
         }
       case 'valueIdentifier':
-        if (valueX is Identifier) {
-          fields.add(valueX);
+        if (valueX is IdentifierBuilder) {
+          fields.add(valueX!);
         }
       case 'valueMoney':
-        if (valueX is Money) {
-          fields.add(valueX);
+        if (valueX is MoneyBuilder) {
+          fields.add(valueX!);
         }
       case 'valuePeriod':
-        if (valueX is Period) {
-          fields.add(valueX);
+        if (valueX is PeriodBuilder) {
+          fields.add(valueX!);
         }
       case 'valueQuantity':
-        if (valueX is Quantity) {
-          fields.add(valueX);
+        if (valueX is QuantityBuilder) {
+          fields.add(valueX!);
         }
       case 'valueRange':
-        if (valueX is Range) {
-          fields.add(valueX);
+        if (valueX is RangeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueRatio':
-        if (valueX is Ratio) {
-          fields.add(valueX);
+        if (valueX is RatioBuilder) {
+          fields.add(valueX!);
         }
       case 'valueRatioRange':
-        if (valueX is RatioRange) {
-          fields.add(valueX);
+        if (valueX is RatioRangeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueReference':
-        if (valueX is Reference) {
-          fields.add(valueX);
+        if (valueX is ReferenceBuilder) {
+          fields.add(valueX!);
         }
       case 'valueSampledData':
-        if (valueX is SampledData) {
-          fields.add(valueX);
+        if (valueX is SampledDataBuilder) {
+          fields.add(valueX!);
         }
       case 'valueSignature':
-        if (valueX is Signature) {
-          fields.add(valueX);
+        if (valueX is SignatureBuilder) {
+          fields.add(valueX!);
         }
       case 'valueTiming':
-        if (valueX is Timing) {
-          fields.add(valueX);
+        if (valueX is TimingBuilder) {
+          fields.add(valueX!);
         }
       case 'valueContactDetail':
-        if (valueX is ContactDetail) {
-          fields.add(valueX);
+        if (valueX is ContactDetailBuilder) {
+          fields.add(valueX!);
         }
       case 'valueContributor':
-        if (valueX is Contributor) {
-          fields.add(valueX);
+        if (valueX is ContributorBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDataRequirement':
-        if (valueX is DataRequirement) {
-          fields.add(valueX);
+        if (valueX is DataRequirementBuilder) {
+          fields.add(valueX!);
         }
       case 'valueExpression':
-        if (valueX is FhirExpression) {
-          fields.add(valueX);
+        if (valueX is FhirExpressionBuilder) {
+          fields.add(valueX!);
         }
       case 'valueParameterDefinition':
-        if (valueX is ParameterDefinition) {
-          fields.add(valueX);
+        if (valueX is ParameterDefinitionBuilder) {
+          fields.add(valueX!);
         }
       case 'valueRelatedArtifact':
-        if (valueX is RelatedArtifact) {
-          fields.add(valueX);
+        if (valueX is RelatedArtifactBuilder) {
+          fields.add(valueX!);
         }
       case 'valueTriggerDefinition':
-        if (valueX is TriggerDefinition) {
-          fields.add(valueX);
+        if (valueX is TriggerDefinitionBuilder) {
+          fields.add(valueX!);
         }
       case 'valueUsageContext':
-        if (valueX is UsageContext) {
-          fields.add(valueX);
+        if (valueX is UsageContextBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDosage':
-        if (valueX is Dosage) {
-          fields.add(valueX);
+        if (valueX is DosageBuilder) {
+          fields.add(valueX!);
         }
       default:
         if (checkValid) {
@@ -9705,7 +9589,7 @@ class ElementDefinitionExample extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -9714,612 +9598,716 @@ class ElementDefinitionExample extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'label':
         {
-          if (child is FhirString) {
-            return copyWith(label: child);
+          if (child is FhirStringBuilder) {
+            label = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXElementDefinitionExample) {
-            return copyWith(valueX: child);
+          if (child is ValueXElementDefinitionExampleBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(valueX: child);
+            if (child is FhirBase64BinaryBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(valueX: child);
+            if (child is FhirCanonicalBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirCode) {
-              return copyWith(valueX: child);
+            if (child is FhirCodeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(valueX: child);
+            if (child is FhirDateBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
+            if (child is FhirDateTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(valueX: child);
+            if (child is FhirDecimalBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirId) {
-              return copyWith(valueX: child);
+            if (child is FhirIdBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(valueX: child);
+            if (child is FhirInstantBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
+            if (child is FhirIntegerBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirMarkdown) {
-              return copyWith(valueX: child);
+            if (child is FhirMarkdownBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirOid) {
-              return copyWith(valueX: child);
+            if (child is FhirOidBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirPositiveInt) {
-              return copyWith(valueX: child);
+            if (child is FhirPositiveIntBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
+            if (child is FhirStringBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
+            if (child is FhirTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirUnsignedInt) {
-              return copyWith(valueX: child);
+            if (child is FhirUnsignedIntBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirUri) {
-              return copyWith(valueX: child);
+            if (child is FhirUriBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirUrl) {
-              return copyWith(valueX: child);
+            if (child is FhirUrlBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirUuid) {
-              return copyWith(valueX: child);
+            if (child is FhirUuidBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Address) {
-              return copyWith(valueX: child);
+            if (child is AddressBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(valueX: child);
+            if (child is AgeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Annotation) {
-              return copyWith(valueX: child);
+            if (child is AnnotationBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
+            if (child is AttachmentBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is CodeableReference) {
-              return copyWith(valueX: child);
+            if (child is CodeableReferenceBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Coding) {
-              return copyWith(valueX: child);
+            if (child is CodingBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is ContactPoint) {
-              return copyWith(valueX: child);
+            if (child is ContactPointBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Count) {
-              return copyWith(valueX: child);
+            if (child is CountBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Distance) {
-              return copyWith(valueX: child);
+            if (child is DistanceBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(valueX: child);
+            if (child is FhirDurationBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is HumanName) {
-              return copyWith(valueX: child);
+            if (child is HumanNameBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Identifier) {
-              return copyWith(valueX: child);
+            if (child is IdentifierBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Money) {
-              return copyWith(valueX: child);
+            if (child is MoneyBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(valueX: child);
+            if (child is PeriodBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(valueX: child);
+            if (child is RangeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(valueX: child);
+            if (child is RatioBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is RatioRange) {
-              return copyWith(valueX: child);
+            if (child is RatioRangeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(valueX: child);
+            if (child is ReferenceBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is SampledData) {
-              return copyWith(valueX: child);
+            if (child is SampledDataBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Signature) {
-              return copyWith(valueX: child);
+            if (child is SignatureBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(valueX: child);
+            if (child is TimingBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is ContactDetail) {
-              return copyWith(valueX: child);
+            if (child is ContactDetailBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Contributor) {
-              return copyWith(valueX: child);
+            if (child is ContributorBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is DataRequirement) {
-              return copyWith(valueX: child);
+            if (child is DataRequirementBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirExpression) {
-              return copyWith(valueX: child);
+            if (child is FhirExpressionBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is ParameterDefinition) {
-              return copyWith(valueX: child);
+            if (child is ParameterDefinitionBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is RelatedArtifact) {
-              return copyWith(valueX: child);
+            if (child is RelatedArtifactBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is TriggerDefinition) {
-              return copyWith(valueX: child);
+            if (child is TriggerDefinitionBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is UsageContext) {
-              return copyWith(valueX: child);
+            if (child is UsageContextBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Dosage) {
-              return copyWith(valueX: child);
+            if (child is DosageBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'valueFhirBase64Binary':
+      case 'valueBase64Binary':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(valueX: child);
+          if (child is FhirBase64BinaryBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirCanonical':
+      case 'valueCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(valueX: child);
+          if (child is FhirCanonicalBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirCode':
+      case 'valueCode':
         {
-          if (child is FhirCode) {
-            return copyWith(valueX: child);
+          if (child is FhirCodeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDate':
+      case 'valueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(valueX: child);
+          if (child is FhirDateBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDateTime':
+      case 'valueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
+          if (child is FhirDateTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDecimal':
+      case 'valueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(valueX: child);
+          if (child is FhirDecimalBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirId':
+      case 'valueId':
         {
-          if (child is FhirId) {
-            return copyWith(valueX: child);
+          if (child is FhirIdBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirInstant':
+      case 'valueInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(valueX: child);
+          if (child is FhirInstantBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirInteger':
+      case 'valueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
+          if (child is FhirIntegerBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirMarkdown':
+      case 'valueMarkdown':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(valueX: child);
+          if (child is FhirMarkdownBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirOid':
+      case 'valueOid':
         {
-          if (child is FhirOid) {
-            return copyWith(valueX: child);
+          if (child is FhirOidBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirPositiveInt':
+      case 'valuePositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(valueX: child);
+          if (child is FhirPositiveIntBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirString':
+      case 'valueString':
         {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
+          if (child is FhirStringBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirTime':
+      case 'valueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
+          if (child is FhirTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirUnsignedInt':
+      case 'valueUnsignedInt':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(valueX: child);
+          if (child is FhirUnsignedIntBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirUri':
+      case 'valueUri':
         {
-          if (child is FhirUri) {
-            return copyWith(valueX: child);
+          if (child is FhirUriBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirUrl':
+      case 'valueUrl':
         {
-          if (child is FhirUrl) {
-            return copyWith(valueX: child);
+          if (child is FhirUrlBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirUuid':
+      case 'valueUuid':
         {
-          if (child is FhirUuid) {
-            return copyWith(valueX: child);
+          if (child is FhirUuidBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAddress':
         {
-          if (child is Address) {
-            return copyWith(valueX: child);
+          if (child is AddressBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAge':
         {
-          if (child is Age) {
-            return copyWith(valueX: child);
+          if (child is AgeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAnnotation':
         {
-          if (child is Annotation) {
-            return copyWith(valueX: child);
+          if (child is AnnotationBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
+          if (child is AttachmentBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCodeableReference':
         {
-          if (child is CodeableReference) {
-            return copyWith(valueX: child);
+          if (child is CodeableReferenceBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCoding':
         {
-          if (child is Coding) {
-            return copyWith(valueX: child);
+          if (child is CodingBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueContactPoint':
         {
-          if (child is ContactPoint) {
-            return copyWith(valueX: child);
+          if (child is ContactPointBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCount':
         {
-          if (child is Count) {
-            return copyWith(valueX: child);
+          if (child is CountBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueDistance':
         {
-          if (child is Distance) {
-            return copyWith(valueX: child);
+          if (child is DistanceBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDuration':
+      case 'valueDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(valueX: child);
+          if (child is FhirDurationBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueHumanName':
         {
-          if (child is HumanName) {
-            return copyWith(valueX: child);
+          if (child is HumanNameBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(valueX: child);
+          if (child is IdentifierBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueMoney':
         {
-          if (child is Money) {
-            return copyWith(valueX: child);
+          if (child is MoneyBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valuePeriod':
         {
-          if (child is Period) {
-            return copyWith(valueX: child);
+          if (child is PeriodBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRange':
         {
-          if (child is Range) {
-            return copyWith(valueX: child);
+          if (child is RangeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRatio':
         {
-          if (child is Ratio) {
-            return copyWith(valueX: child);
+          if (child is RatioBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRatioRange':
         {
-          if (child is RatioRange) {
-            return copyWith(valueX: child);
+          if (child is RatioRangeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueReference':
         {
-          if (child is Reference) {
-            return copyWith(valueX: child);
+          if (child is ReferenceBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSampledData':
         {
-          if (child is SampledData) {
-            return copyWith(valueX: child);
+          if (child is SampledDataBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSignature':
         {
-          if (child is Signature) {
-            return copyWith(valueX: child);
+          if (child is SignatureBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueTiming':
         {
-          if (child is Timing) {
-            return copyWith(valueX: child);
+          if (child is TimingBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueContactDetail':
         {
-          if (child is ContactDetail) {
-            return copyWith(valueX: child);
+          if (child is ContactDetailBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueContributor':
         {
-          if (child is Contributor) {
-            return copyWith(valueX: child);
+          if (child is ContributorBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueDataRequirement':
         {
-          if (child is DataRequirement) {
-            return copyWith(valueX: child);
+          if (child is DataRequirementBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirExpression':
+      case 'valueExpression':
         {
-          if (child is FhirExpression) {
-            return copyWith(valueX: child);
+          if (child is FhirExpressionBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueParameterDefinition':
         {
-          if (child is ParameterDefinition) {
-            return copyWith(valueX: child);
+          if (child is ParameterDefinitionBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRelatedArtifact':
         {
-          if (child is RelatedArtifact) {
-            return copyWith(valueX: child);
+          if (child is RelatedArtifactBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueTriggerDefinition':
         {
-          if (child is TriggerDefinition) {
-            return copyWith(valueX: child);
+          if (child is TriggerDefinitionBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueUsageContext':
         {
-          if (child is UsageContext) {
-            return copyWith(valueX: child);
+          if (child is UsageContextBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueDosage':
         {
-          if (child is Dosage) {
-            return copyWith(valueX: child);
+          if (child is DosageBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -10335,507 +10323,449 @@ class ElementDefinitionExample extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'label':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'CodeableReference',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'RatioRange',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
+          'FhirBase64BinaryBuilder',
+          'FhirBooleanBuilder',
+          'FhirCanonicalBuilder',
+          'FhirCodeBuilder',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirDecimalBuilder',
+          'FhirIdBuilder',
+          'FhirInstantBuilder',
+          'FhirIntegerBuilder',
+          'FhirMarkdownBuilder',
+          'FhirOidBuilder',
+          'FhirPositiveIntBuilder',
+          'FhirStringBuilder',
+          'FhirTimeBuilder',
+          'FhirUnsignedIntBuilder',
+          'FhirUriBuilder',
+          'FhirUrlBuilder',
+          'FhirUuidBuilder',
+          'AddressBuilder',
+          'AgeBuilder',
+          'AnnotationBuilder',
+          'AttachmentBuilder',
+          'CodeableConceptBuilder',
+          'CodeableReferenceBuilder',
+          'CodingBuilder',
+          'ContactPointBuilder',
+          'CountBuilder',
+          'DistanceBuilder',
+          'FhirDurationBuilder',
+          'HumanNameBuilder',
+          'IdentifierBuilder',
+          'MoneyBuilder',
+          'PeriodBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'RatioBuilder',
+          'RatioRangeBuilder',
+          'ReferenceBuilder',
+          'SampledDataBuilder',
+          'SignatureBuilder',
+          'TimingBuilder',
+          'ContactDetailBuilder',
+          'ContributorBuilder',
+          'DataRequirementBuilder',
+          'FhirExpressionBuilder',
+          'ParameterDefinitionBuilder',
+          'RelatedArtifactBuilder',
+          'TriggerDefinitionBuilder',
+          'UsageContextBuilder',
+          'DosageBuilder'
         ];
       case 'valueBase64Binary':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'valueCode':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'valueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'valueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'valueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'valueId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'valueInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'valueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'valueMarkdown':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'valueOid':
-        return ['FhirOid'];
+        return ['FhirOidBuilder'];
       case 'valuePositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'valueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'valueUnsignedInt':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'valueUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'valueUrl':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'valueUuid':
-        return ['FhirUuid'];
+        return ['FhirUuidBuilder'];
       case 'valueAddress':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'valueAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'valueAnnotation':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'valueAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueCodeableReference':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'valueCoding':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'valueContactPoint':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'valueCount':
-        return ['Count'];
+        return ['CountBuilder'];
       case 'valueDistance':
-        return ['Distance'];
+        return ['DistanceBuilder'];
       case 'valueDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'valueHumanName':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'valueIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'valueMoney':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'valuePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'valueRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'valueRatioRange':
-        return ['RatioRange'];
+        return ['RatioRangeBuilder'];
       case 'valueReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'valueSampledData':
-        return ['SampledData'];
+        return ['SampledDataBuilder'];
       case 'valueSignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       case 'valueTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'valueContactDetail':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'valueContributor':
-        return ['Contributor'];
+        return ['ContributorBuilder'];
       case 'valueDataRequirement':
-        return ['DataRequirement'];
+        return ['DataRequirementBuilder'];
       case 'valueExpression':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       case 'valueParameterDefinition':
-        return ['ParameterDefinition'];
+        return ['ParameterDefinitionBuilder'];
       case 'valueRelatedArtifact':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'valueTriggerDefinition':
-        return ['TriggerDefinition'];
+        return ['TriggerDefinitionBuilder'];
       case 'valueUsageContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'valueDosage':
-        return ['Dosage'];
+        return ['DosageBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionExample]
+  /// Creates a new [ElementDefinitionExampleBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionExample createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'label':
         {
-          return copyWith(
-            label: FhirString.empty(),
-          );
+          label = FhirStringBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueBase64Binary':
         {
-          return copyWith(
-            valueX: FhirBase64Binary.empty(),
-          );
+          valueX = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueCanonical':
         {
-          return copyWith(
-            valueX: FhirCanonical.empty(),
-          );
+          valueX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'valueCode':
         {
-          return copyWith(
-            valueX: FhirCode.empty(),
-          );
+          valueX = FhirCodeBuilder.empty();
+          return;
         }
       case 'valueDate':
         {
-          return copyWith(
-            valueX: FhirDate.empty(),
-          );
+          valueX = FhirDateBuilder.empty();
+          return;
         }
       case 'valueDateTime':
         {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
+          valueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'valueDecimal':
         {
-          return copyWith(
-            valueX: FhirDecimal.empty(),
-          );
+          valueX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'valueId':
         {
-          return copyWith(
-            valueX: FhirId.empty(),
-          );
+          valueX = FhirIdBuilder.empty();
+          return;
         }
       case 'valueInstant':
         {
-          return copyWith(
-            valueX: FhirInstant.empty(),
-          );
+          valueX = FhirInstantBuilder.empty();
+          return;
         }
       case 'valueInteger':
         {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
+          valueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'valueMarkdown':
         {
-          return copyWith(
-            valueX: FhirMarkdown.empty(),
-          );
+          valueX = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'valueOid':
         {
-          return copyWith(
-            valueX: FhirOid.empty(),
-          );
+          valueX = FhirOidBuilder.empty();
+          return;
         }
       case 'valuePositiveInt':
         {
-          return copyWith(
-            valueX: FhirPositiveInt.empty(),
-          );
+          valueX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'valueString':
         {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
+          valueX = FhirStringBuilder.empty();
+          return;
         }
       case 'valueTime':
         {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
+          valueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'valueUnsignedInt':
         {
-          return copyWith(
-            valueX: FhirUnsignedInt.empty(),
-          );
+          valueX = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'valueUri':
         {
-          return copyWith(
-            valueX: FhirUri.empty(),
-          );
+          valueX = FhirUriBuilder.empty();
+          return;
         }
       case 'valueUrl':
         {
-          return copyWith(
-            valueX: FhirUrl.empty(),
-          );
+          valueX = FhirUrlBuilder.empty();
+          return;
         }
       case 'valueUuid':
         {
-          return copyWith(
-            valueX: FhirUuid.empty(),
-          );
+          valueX = FhirUuidBuilder.empty();
+          return;
         }
       case 'valueAddress':
         {
-          return copyWith(
-            valueX: Address.empty(),
-          );
+          valueX = AddressBuilder.empty();
+          return;
         }
       case 'valueAge':
         {
-          return copyWith(
-            valueX: Age.empty(),
-          );
+          valueX = AgeBuilder.empty();
+          return;
         }
       case 'valueAnnotation':
         {
-          return copyWith(
-            valueX: Annotation.empty(),
-          );
+          valueX = AnnotationBuilder.empty();
+          return;
         }
       case 'valueAttachment':
         {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
+          valueX = AttachmentBuilder.empty();
+          return;
         }
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueCodeableReference':
         {
-          return copyWith(
-            valueX: CodeableReference.empty(),
-          );
+          valueX = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'valueCoding':
         {
-          return copyWith(
-            valueX: Coding.empty(),
-          );
+          valueX = CodingBuilder.empty();
+          return;
         }
       case 'valueContactPoint':
         {
-          return copyWith(
-            valueX: ContactPoint.empty(),
-          );
+          valueX = ContactPointBuilder.empty();
+          return;
         }
       case 'valueCount':
         {
-          return copyWith(
-            valueX: Count.empty(),
-          );
+          valueX = CountBuilder.empty();
+          return;
         }
       case 'valueDistance':
         {
-          return copyWith(
-            valueX: Distance.empty(),
-          );
+          valueX = DistanceBuilder.empty();
+          return;
         }
       case 'valueDuration':
         {
-          return copyWith(
-            valueX: FhirDuration.empty(),
-          );
+          valueX = FhirDurationBuilder.empty();
+          return;
         }
       case 'valueHumanName':
         {
-          return copyWith(
-            valueX: HumanName.empty(),
-          );
+          valueX = HumanNameBuilder.empty();
+          return;
         }
       case 'valueIdentifier':
         {
-          return copyWith(
-            valueX: Identifier.empty(),
-          );
+          valueX = IdentifierBuilder.empty();
+          return;
         }
       case 'valueMoney':
         {
-          return copyWith(
-            valueX: Money.empty(),
-          );
+          valueX = MoneyBuilder.empty();
+          return;
         }
       case 'valuePeriod':
         {
-          return copyWith(
-            valueX: Period.empty(),
-          );
+          valueX = PeriodBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueRange':
         {
-          return copyWith(
-            valueX: Range.empty(),
-          );
+          valueX = RangeBuilder.empty();
+          return;
         }
       case 'valueRatio':
         {
-          return copyWith(
-            valueX: Ratio.empty(),
-          );
+          valueX = RatioBuilder.empty();
+          return;
         }
       case 'valueRatioRange':
         {
-          return copyWith(
-            valueX: RatioRange.empty(),
-          );
+          valueX = RatioRangeBuilder.empty();
+          return;
         }
       case 'valueReference':
         {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
+          valueX = ReferenceBuilder.empty();
+          return;
         }
       case 'valueSampledData':
         {
-          return copyWith(
-            valueX: SampledData.empty(),
-          );
+          valueX = SampledDataBuilder.empty();
+          return;
         }
       case 'valueSignature':
         {
-          return copyWith(
-            valueX: Signature.empty(),
-          );
+          valueX = SignatureBuilder.empty();
+          return;
         }
       case 'valueTiming':
         {
-          return copyWith(
-            valueX: Timing.empty(),
-          );
+          valueX = TimingBuilder.empty();
+          return;
         }
       case 'valueContactDetail':
         {
-          return copyWith(
-            valueX: ContactDetail.empty(),
-          );
+          valueX = ContactDetailBuilder.empty();
+          return;
         }
       case 'valueContributor':
         {
-          return copyWith(
-            valueX: Contributor.empty(),
-          );
+          valueX = ContributorBuilder.empty();
+          return;
         }
       case 'valueDataRequirement':
         {
-          return copyWith(
-            valueX: DataRequirement.empty(),
-          );
+          valueX = DataRequirementBuilder.empty();
+          return;
         }
       case 'valueExpression':
         {
-          return copyWith(
-            valueX: FhirExpression.empty(),
-          );
+          valueX = FhirExpressionBuilder.empty();
+          return;
         }
       case 'valueParameterDefinition':
         {
-          return copyWith(
-            valueX: ParameterDefinition.empty(),
-          );
+          valueX = ParameterDefinitionBuilder.empty();
+          return;
         }
       case 'valueRelatedArtifact':
         {
-          return copyWith(
-            valueX: RelatedArtifact.empty(),
-          );
+          valueX = RelatedArtifactBuilder.empty();
+          return;
         }
       case 'valueTriggerDefinition':
         {
-          return copyWith(
-            valueX: TriggerDefinition.empty(),
-          );
+          valueX = TriggerDefinitionBuilder.empty();
+          return;
         }
       case 'valueUsageContext':
         {
-          return copyWith(
-            valueX: UsageContext.empty(),
-          );
+          valueX = UsageContextBuilder.empty();
+          return;
         }
       case 'valueDosage':
         {
-          return copyWith(
-            valueX: Dosage.empty(),
-          );
+          valueX = DosageBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -10844,26 +10774,26 @@ class ElementDefinitionExample extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionExample clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool label = false,
+    bool value = false,
   }) {
-    return ElementDefinitionExample(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      label: label,
-      valueX: valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (label) this.label = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  ElementDefinitionExample clone() => throw UnimplementedError();
+  ElementDefinitionExampleBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionExample copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? label,
-    ValueXElementDefinitionExample? valueX,
+  ElementDefinitionExampleBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirStringBuilder? label,
+    ValueXElementDefinitionExampleBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -10871,34 +10801,35 @@ class ElementDefinitionExample extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionExample(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      label: label?.copyWith(
-            objectPath: '$newObjectPath.label',
-          ) ??
-          this.label,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXElementDefinitionExample? ??
-          this.valueX,
+    final newResult = ElementDefinitionExampleBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      label: label ?? this.label,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionExample) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionExampleBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -10909,7 +10840,7 @@ class ElementDefinitionExample extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -10931,52 +10862,48 @@ class ElementDefinitionExample extends Element {
   }
 }
 
-/// [ElementDefinitionConstraint]
+/// [ElementDefinitionConstraintBuilder]
 /// Formal constraints such as co-occurrence and other constraints that can
 /// be computationally evaluated within the context of the instance.
-class ElementDefinitionConstraint extends Element {
+class ElementDefinitionConstraintBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionConstraint]
+  /// [ElementDefinitionConstraintBuilder]
 
-  const ElementDefinitionConstraint({
+  ElementDefinitionConstraintBuilder({
     super.id,
     super.extension_,
-    required this.key,
+    this.key,
     this.requirements,
-    required this.severity,
-    required this.human,
+    this.severity,
+    this.human,
     this.expression,
     this.xpath,
     this.source,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionConstraint',
+    super.objectPath = 'ElementDefinitionConstraintBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionConstraint.empty() => ElementDefinitionConstraint(
-        key: FhirId.empty(),
-        severity: ConstraintSeverity.values.first,
-        human: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionConstraintBuilder.empty() =>
+      ElementDefinitionConstraintBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionConstraint.fromJson(
+  factory ElementDefinitionConstraintBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionConstraint';
-    return ElementDefinitionConstraint(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionConstraintBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -10984,67 +10911,67 @@ class ElementDefinitionConstraint extends Element {
             ),
           )
           .toList(),
-      key: JsonParser.parsePrimitive<FhirId>(
+      key: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'key',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.key',
-      )!,
-      requirements: JsonParser.parsePrimitive<FhirString>(
+      ),
+      requirements: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'requirements',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.requirements',
       ),
-      severity: JsonParser.parsePrimitive<ConstraintSeverity>(
+      severity: JsonParser.parsePrimitive<ConstraintSeverityBuilder>(
         json,
         'severity',
-        ConstraintSeverity.fromJson,
+        ConstraintSeverityBuilder.fromJson,
         '$objectPath.severity',
-      )!,
-      human: JsonParser.parsePrimitive<FhirString>(
+      ),
+      human: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'human',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.human',
-      )!,
-      expression: JsonParser.parsePrimitive<FhirString>(
+      ),
+      expression: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'expression',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.expression',
       ),
-      xpath: JsonParser.parsePrimitive<FhirString>(
+      xpath: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'xpath',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.xpath',
       ),
-      source: JsonParser.parsePrimitive<FhirCanonical>(
+      source: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'source',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.source',
       ),
     );
   }
 
-  /// Deserialize [ElementDefinitionConstraint]
+  /// Deserialize [ElementDefinitionConstraintBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionConstraint.fromYaml(
+  factory ElementDefinitionConstraintBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionConstraint.fromJson(
+      return ElementDefinitionConstraintBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionConstraint.fromJson(
+      return ElementDefinitionConstraintBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionConstraint '
+        'ElementDefinitionConstraintBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -11052,16 +10979,16 @@ class ElementDefinitionConstraint extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionConstraint]
+  /// [ElementDefinitionConstraintBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionConstraint.fromJsonString(
+  factory ElementDefinitionConstraintBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionConstraint.fromJson(json);
+      return ElementDefinitionConstraintBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -11075,52 +11002,52 @@ class ElementDefinitionConstraint extends Element {
   /// Allows identification of which elements have their cardinalities
   /// impacted by the constraint. Will not be referenced for constraints that
   /// do not affect cardinality.
-  final FhirId key;
+  FhirIdBuilder? key;
 
   /// [requirements]
   /// Description of why this constraint is necessary or appropriate.
-  final FhirString? requirements;
+  FhirStringBuilder? requirements;
 
   /// [severity]
   /// Identifies the impact constraint violation has on the conformance of
   /// the instance.
-  final ConstraintSeverity severity;
+  ConstraintSeverityBuilder? severity;
 
   /// [human]
   /// Text that can be used to describe the constraint in messages
   /// identifying that the constraint has been violated.
-  final FhirString human;
+  FhirStringBuilder? human;
 
   /// [expression]
   /// A [FHIRPath](fhirpath.html) expression of constraint that can be
   /// executed to see if this constraint is met.
-  final FhirString? expression;
+  FhirStringBuilder? expression;
 
   /// [xpath]
   /// An XPath expression of constraint that can be executed to see if this
   /// constraint is met.
-  final FhirString? xpath;
+  FhirStringBuilder? xpath;
 
   /// [source]
   /// A reference to the original source of the constraint, for traceability
   /// purposes.
-  final FhirCanonical? source;
+  FhirCanonicalBuilder? source;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -11129,47 +11056,20 @@ class ElementDefinitionConstraint extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'key',
-      key,
-    );
-    addField(
-      'requirements',
-      requirements,
-    );
-    addField(
-      'severity',
-      severity,
-    );
-    addField(
-      'human',
-      human,
-    );
-    addField(
-      'expression',
-      expression,
-    );
-    addField(
-      'xpath',
-      xpath,
-    );
-    addField(
-      'source',
-      source,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('key', key);
+    addField('requirements', requirements);
+    addField('severity', severity);
+    addField('human', human);
+    addField('expression', expression);
+    addField('xpath', xpath);
+    addField('source', source);
     return json;
   }
 
@@ -11192,11 +11092,11 @@ class ElementDefinitionConstraint extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -11207,15 +11107,21 @@ class ElementDefinitionConstraint extends Element {
           fields.addAll(extension_!);
         }
       case 'key':
-        fields.add(key);
+        if (key != null) {
+          fields.add(key!);
+        }
       case 'requirements':
         if (requirements != null) {
           fields.add(requirements!);
         }
       case 'severity':
-        fields.add(severity);
+        if (severity != null) {
+          fields.add(severity!);
+        }
       case 'human':
-        fields.add(human);
+        if (human != null) {
+          fields.add(human!);
+        }
       case 'expression':
         if (expression != null) {
           fields.add(expression!);
@@ -11238,7 +11144,7 @@ class ElementDefinitionConstraint extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -11247,91 +11153,98 @@ class ElementDefinitionConstraint extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'key':
         {
-          if (child is FhirId) {
-            return copyWith(key: child);
+          if (child is FhirIdBuilder) {
+            key = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requirements':
         {
-          if (child is FhirString) {
-            return copyWith(requirements: child);
+          if (child is FhirStringBuilder) {
+            requirements = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
         {
-          if (child is ConstraintSeverity) {
-            return copyWith(severity: child);
+          if (child is ConstraintSeverityBuilder) {
+            severity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'human':
         {
-          if (child is FhirString) {
-            return copyWith(human: child);
+          if (child is FhirStringBuilder) {
+            human = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
         {
-          if (child is FhirString) {
-            return copyWith(expression: child);
+          if (child is FhirStringBuilder) {
+            expression = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'xpath':
         {
-          if (child is FhirString) {
-            return copyWith(xpath: child);
+          if (child is FhirStringBuilder) {
+            xpath = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is FhirCanonical) {
-            return copyWith(source: child);
+          if (child is FhirCanonicalBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -11347,90 +11260,77 @@ class ElementDefinitionConstraint extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'key':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'requirements':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'severity':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'human':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'expression':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'xpath':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'source':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionConstraint]
+  /// Creates a new [ElementDefinitionConstraintBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionConstraint createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'key':
         {
-          return copyWith(
-            key: FhirId.empty(),
-          );
+          key = FhirIdBuilder.empty();
+          return;
         }
       case 'requirements':
         {
-          return copyWith(
-            requirements: FhirString.empty(),
-          );
+          requirements = FhirStringBuilder.empty();
+          return;
         }
       case 'severity':
         {
-          return copyWith(
-            severity: ConstraintSeverity.empty(),
-          );
+          severity = ConstraintSeverityBuilder.empty();
+          return;
         }
       case 'human':
         {
-          return copyWith(
-            human: FhirString.empty(),
-          );
+          human = FhirStringBuilder.empty();
+          return;
         }
       case 'expression':
         {
-          return copyWith(
-            expression: FhirString.empty(),
-          );
+          expression = FhirStringBuilder.empty();
+          return;
         }
       case 'xpath':
         {
-          return copyWith(
-            xpath: FhirString.empty(),
-          );
+          xpath = FhirStringBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: FhirCanonical.empty(),
-          );
+          source = FhirCanonicalBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -11439,40 +11339,41 @@ class ElementDefinitionConstraint extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionConstraint clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool key = false,
     bool requirements = false,
+    bool severity = false,
+    bool human = false,
     bool expression = false,
     bool xpath = false,
     bool source = false,
   }) {
-    return ElementDefinitionConstraint(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      key: key,
-      requirements: requirements ? null : this.requirements,
-      severity: severity,
-      human: human,
-      expression: expression ? null : this.expression,
-      xpath: xpath ? null : this.xpath,
-      source: source ? null : this.source,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (key) this.key = null;
+    if (requirements) this.requirements = null;
+    if (severity) this.severity = null;
+    if (human) this.human = null;
+    if (expression) this.expression = null;
+    if (xpath) this.xpath = null;
+    if (source) this.source = null;
   }
 
   @override
-  ElementDefinitionConstraint clone() => throw UnimplementedError();
+  ElementDefinitionConstraintBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionConstraint copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirId? key,
-    FhirString? requirements,
-    ConstraintSeverity? severity,
-    FhirString? human,
-    FhirString? expression,
-    FhirString? xpath,
-    FhirCanonical? source,
+  ElementDefinitionConstraintBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirIdBuilder? key,
+    FhirStringBuilder? requirements,
+    ConstraintSeverityBuilder? severity,
+    FhirStringBuilder? human,
+    FhirStringBuilder? expression,
+    FhirStringBuilder? xpath,
+    FhirCanonicalBuilder? source,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -11480,54 +11381,40 @@ class ElementDefinitionConstraint extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionConstraint(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      key: key?.copyWith(
-            objectPath: '$newObjectPath.key',
-          ) ??
-          this.key,
-      requirements: requirements?.copyWith(
-            objectPath: '$newObjectPath.requirements',
-          ) ??
-          this.requirements,
-      severity: severity?.copyWith(
-            objectPath: '$newObjectPath.severity',
-          ) ??
-          this.severity,
-      human: human?.copyWith(
-            objectPath: '$newObjectPath.human',
-          ) ??
-          this.human,
-      expression: expression?.copyWith(
-            objectPath: '$newObjectPath.expression',
-          ) ??
-          this.expression,
-      xpath: xpath?.copyWith(
-            objectPath: '$newObjectPath.xpath',
-          ) ??
-          this.xpath,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
+    final newResult = ElementDefinitionConstraintBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      key: key ?? this.key,
+      requirements: requirements ?? this.requirements,
+      severity: severity ?? this.severity,
+      human: human ?? this.human,
+      expression: expression ?? this.expression,
+      xpath: xpath ?? this.xpath,
+      source: source ?? this.source,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionConstraint) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionConstraintBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -11538,7 +11425,7 @@ class ElementDefinitionConstraint extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -11590,46 +11477,44 @@ class ElementDefinitionConstraint extends Element {
   }
 }
 
-/// [ElementDefinitionBinding]
+/// [ElementDefinitionBindingBuilder]
 /// Binds to a value set if this element is coded (code, Coding,
 /// CodeableConcept, Quantity), or the data types (string, uri).
-class ElementDefinitionBinding extends Element {
+class ElementDefinitionBindingBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionBinding]
+  /// [ElementDefinitionBindingBuilder]
 
-  const ElementDefinitionBinding({
+  ElementDefinitionBindingBuilder({
     super.id,
     super.extension_,
-    required this.strength,
+    this.strength,
     this.description,
     this.valueSet,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionBinding',
+    super.objectPath = 'ElementDefinitionBindingBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionBinding.empty() => ElementDefinitionBinding(
-        strength: BindingStrength.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionBindingBuilder.empty() =>
+      ElementDefinitionBindingBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionBinding.fromJson(
+  factory ElementDefinitionBindingBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionBinding';
-    return ElementDefinitionBinding(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionBindingBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -11637,43 +11522,43 @@ class ElementDefinitionBinding extends Element {
             ),
           )
           .toList(),
-      strength: JsonParser.parsePrimitive<BindingStrength>(
+      strength: JsonParser.parsePrimitive<BindingStrengthBuilder>(
         json,
         'strength',
-        BindingStrength.fromJson,
+        BindingStrengthBuilder.fromJson,
         '$objectPath.strength',
-      )!,
-      description: JsonParser.parsePrimitive<FhirString>(
+      ),
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      valueSet: JsonParser.parsePrimitive<FhirCanonical>(
+      valueSet: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'valueSet',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.valueSet',
       ),
     );
   }
 
-  /// Deserialize [ElementDefinitionBinding]
+  /// Deserialize [ElementDefinitionBindingBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionBinding.fromYaml(
+  factory ElementDefinitionBindingBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionBinding.fromJson(
+      return ElementDefinitionBindingBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionBinding.fromJson(
+      return ElementDefinitionBindingBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionBinding '
+        'ElementDefinitionBindingBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -11681,16 +11566,16 @@ class ElementDefinitionBinding extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionBinding]
+  /// [ElementDefinitionBindingBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionBinding.fromJsonString(
+  factory ElementDefinitionBindingBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionBinding.fromJson(json);
+      return ElementDefinitionBindingBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -11704,32 +11589,32 @@ class ElementDefinitionBinding extends Element {
   /// Indicates the degree of conformance expectations associated with this
   /// binding - that is, the degree to which the provided value set must be
   /// adhered to in the instances.
-  final BindingStrength strength;
+  BindingStrengthBuilder? strength;
 
   /// [description]
   /// Describes the intended use of this particular set of codes.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [valueSet]
   /// Refers to the value set that identifies the set of codes the binding
   /// refers to.
-  final FhirCanonical? valueSet;
+  FhirCanonicalBuilder? valueSet;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -11738,31 +11623,16 @@ class ElementDefinitionBinding extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'strength',
-      strength,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'valueSet',
-      valueSet,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('strength', strength);
+    addField('description', description);
+    addField('valueSet', valueSet);
     return json;
   }
 
@@ -11781,11 +11651,11 @@ class ElementDefinitionBinding extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -11796,7 +11666,9 @@ class ElementDefinitionBinding extends Element {
           fields.addAll(extension_!);
         }
       case 'strength':
-        fields.add(strength);
+        if (strength != null) {
+          fields.add(strength!);
+        }
       case 'description':
         if (description != null) {
           fields.add(description!);
@@ -11815,7 +11687,7 @@ class ElementDefinitionBinding extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -11824,59 +11696,62 @@ class ElementDefinitionBinding extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'strength':
         {
-          if (child is BindingStrength) {
-            return copyWith(strength: child);
+          if (child is BindingStrengthBuilder) {
+            strength = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSet':
         {
-          if (child is FhirCanonical) {
-            return copyWith(valueSet: child);
+          if (child is FhirCanonicalBuilder) {
+            valueSet = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -11892,58 +11767,49 @@ class ElementDefinitionBinding extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'strength':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueSet':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionBinding]
+  /// Creates a new [ElementDefinitionBindingBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionBinding createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'strength':
         {
-          return copyWith(
-            strength: BindingStrength.empty(),
-          );
+          strength = BindingStrengthBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'valueSet':
         {
-          return copyWith(
-            valueSet: FhirCanonical.empty(),
-          );
+          valueSet = FhirCanonicalBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -11952,30 +11818,29 @@ class ElementDefinitionBinding extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionBinding clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool strength = false,
     bool description = false,
     bool valueSet = false,
   }) {
-    return ElementDefinitionBinding(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      strength: strength,
-      description: description ? null : this.description,
-      valueSet: valueSet ? null : this.valueSet,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (strength) this.strength = null;
+    if (description) this.description = null;
+    if (valueSet) this.valueSet = null;
   }
 
   @override
-  ElementDefinitionBinding clone() => throw UnimplementedError();
+  ElementDefinitionBindingBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionBinding copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    BindingStrength? strength,
-    FhirString? description,
-    FhirCanonical? valueSet,
+  ElementDefinitionBindingBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    BindingStrengthBuilder? strength,
+    FhirStringBuilder? description,
+    FhirCanonicalBuilder? valueSet,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -11983,38 +11848,36 @@ class ElementDefinitionBinding extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionBinding(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      strength: strength?.copyWith(
-            objectPath: '$newObjectPath.strength',
-          ) ??
-          this.strength,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      valueSet: valueSet?.copyWith(
-            objectPath: '$newObjectPath.valueSet',
-          ) ??
-          this.valueSet,
+    final newResult = ElementDefinitionBindingBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      strength: strength ?? this.strength,
+      description: description ?? this.description,
+      valueSet: valueSet ?? this.valueSet,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionBinding) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionBindingBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -12025,7 +11888,7 @@ class ElementDefinitionBinding extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
@@ -12053,48 +11916,45 @@ class ElementDefinitionBinding extends Element {
   }
 }
 
-/// [ElementDefinitionMapping]
+/// [ElementDefinitionMappingBuilder]
 /// Identifies a concept from an external specification that roughly
 /// corresponds to this element.
-class ElementDefinitionMapping extends Element {
+class ElementDefinitionMappingBuilder extends ElementBuilder {
   /// Primary constructor for
-  /// [ElementDefinitionMapping]
+  /// [ElementDefinitionMappingBuilder]
 
-  const ElementDefinitionMapping({
+  ElementDefinitionMappingBuilder({
     super.id,
     super.extension_,
-    required this.identity,
+    this.identity,
     this.language,
-    required this.map,
+    this.map,
     this.comment,
     super.disallowExtensions,
-    super.objectPath = 'ElementDefinitionMapping',
+    super.objectPath = 'ElementDefinitionMappingBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ElementDefinitionMapping.empty() => ElementDefinitionMapping(
-        identity: FhirId.empty(),
-        map: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ElementDefinitionMappingBuilder.empty() =>
+      ElementDefinitionMappingBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionMapping.fromJson(
+  factory ElementDefinitionMappingBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath =
         json['resourceType'] as String? ?? 'ElementDefinitionMapping';
-    return ElementDefinitionMapping(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ElementDefinitionMappingBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -12102,49 +11962,49 @@ class ElementDefinitionMapping extends Element {
             ),
           )
           .toList(),
-      identity: JsonParser.parsePrimitive<FhirId>(
+      identity: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'identity',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.identity',
-      )!,
-      language: JsonParser.parsePrimitive<FhirCode>(
+      ),
+      language: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'language',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.language',
       ),
-      map: JsonParser.parsePrimitive<FhirString>(
+      map: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'map',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.map',
-      )!,
-      comment: JsonParser.parsePrimitive<FhirString>(
+      ),
+      comment: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'comment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.comment',
       ),
     );
   }
 
-  /// Deserialize [ElementDefinitionMapping]
+  /// Deserialize [ElementDefinitionMappingBuilder]
   /// from a [String] or [YamlMap] object
-  factory ElementDefinitionMapping.fromYaml(
+  factory ElementDefinitionMappingBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ElementDefinitionMapping.fromJson(
+      return ElementDefinitionMappingBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ElementDefinitionMapping.fromJson(
+      return ElementDefinitionMappingBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ElementDefinitionMapping '
+        'ElementDefinitionMappingBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -12152,16 +12012,16 @@ class ElementDefinitionMapping extends Element {
   }
 
   /// Factory constructor for
-  /// [ElementDefinitionMapping]
+  /// [ElementDefinitionMappingBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionMapping.fromJsonString(
+  factory ElementDefinitionMappingBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ElementDefinitionMapping.fromJson(json);
+      return ElementDefinitionMappingBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -12173,36 +12033,36 @@ class ElementDefinitionMapping extends Element {
 
   /// [identity]
   /// An internal reference to the definition of a mapping.
-  final FhirId identity;
+  FhirIdBuilder? identity;
 
   /// [language]
   /// Identifies the computable language in which mapping.map is expressed.
-  final FhirCode? language;
+  FhirCodeBuilder? language;
 
   /// [map]
   /// Expresses what part of the target specification corresponds to this
   /// element.
-  final FhirString map;
+  FhirStringBuilder? map;
 
   /// [comment]
   /// Comments that provide information about the mapping or its use.
-  final FhirString? comment;
+  FhirStringBuilder? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -12211,35 +12071,17 @@ class ElementDefinitionMapping extends Element {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'identity',
-      identity,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'map',
-      map,
-    );
-    addField(
-      'comment',
-      comment,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('identity', identity);
+    addField('language', language);
+    addField('map', map);
+    addField('comment', comment);
     return json;
   }
 
@@ -12259,11 +12101,11 @@ class ElementDefinitionMapping extends Element {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -12274,13 +12116,17 @@ class ElementDefinitionMapping extends Element {
           fields.addAll(extension_!);
         }
       case 'identity':
-        fields.add(identity);
+        if (identity != null) {
+          fields.add(identity!);
+        }
       case 'language':
         if (language != null) {
           fields.add(language!);
         }
       case 'map':
-        fields.add(map);
+        if (map != null) {
+          fields.add(map!);
+        }
       case 'comment':
         if (comment != null) {
           fields.add(comment!);
@@ -12295,7 +12141,7 @@ class ElementDefinitionMapping extends Element {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -12304,67 +12150,71 @@ class ElementDefinitionMapping extends Element {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identity':
         {
-          if (child is FhirId) {
-            return copyWith(identity: child);
+          if (child is FhirIdBuilder) {
+            identity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is FhirCode) {
-            return copyWith(language: child);
+          if (child is FhirCodeBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'map':
         {
-          if (child is FhirString) {
-            return copyWith(map: child);
+          if (child is FhirStringBuilder) {
+            map = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
         {
-          if (child is FhirString) {
-            return copyWith(comment: child);
+          if (child is FhirStringBuilder) {
+            comment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -12380,66 +12230,56 @@ class ElementDefinitionMapping extends Element {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identity':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'map':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'comment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ElementDefinitionMapping]
+  /// Creates a new [ElementDefinitionMappingBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ElementDefinitionMapping createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identity':
         {
-          return copyWith(
-            identity: FhirId.empty(),
-          );
+          identity = FhirIdBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: FhirCode.empty(),
-          );
+          language = FhirCodeBuilder.empty();
+          return;
         }
       case 'map':
         {
-          return copyWith(
-            map: FhirString.empty(),
-          );
+          map = FhirStringBuilder.empty();
+          return;
         }
       case 'comment':
         {
-          return copyWith(
-            comment: FhirString.empty(),
-          );
+          comment = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -12448,32 +12288,32 @@ class ElementDefinitionMapping extends Element {
 
   /// Clears specific fields in this object
   @override
-  ElementDefinitionMapping clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
+    bool identity = false,
     bool language = false,
+    bool map = false,
     bool comment = false,
   }) {
-    return ElementDefinitionMapping(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      identity: identity,
-      language: language ? null : this.language,
-      map: map,
-      comment: comment ? null : this.comment,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (identity) this.identity = null;
+    if (language) this.language = null;
+    if (map) this.map = null;
+    if (comment) this.comment = null;
   }
 
   @override
-  ElementDefinitionMapping clone() => throw UnimplementedError();
+  ElementDefinitionMappingBuilder clone() => throw UnimplementedError();
   @override
-  ElementDefinitionMapping copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirId? identity,
-    FhirCode? language,
-    FhirString? map,
-    FhirString? comment,
+  ElementDefinitionMappingBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirIdBuilder? identity,
+    FhirCodeBuilder? language,
+    FhirStringBuilder? map,
+    FhirStringBuilder? comment,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -12481,42 +12321,37 @@ class ElementDefinitionMapping extends Element {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ElementDefinitionMapping(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      identity: identity?.copyWith(
-            objectPath: '$newObjectPath.identity',
-          ) ??
-          this.identity,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      map: map?.copyWith(
-            objectPath: '$newObjectPath.map',
-          ) ??
-          this.map,
-      comment: comment?.copyWith(
-            objectPath: '$newObjectPath.comment',
-          ) ??
-          this.comment,
+    final newResult = ElementDefinitionMappingBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      identity: identity ?? this.identity,
+      language: language ?? this.language,
+      map: map ?? this.map,
+      comment: comment ?? this.comment,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ElementDefinitionMapping) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ElementDefinitionMappingBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -12527,7 +12362,7 @@ class ElementDefinitionMapping extends Element {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How a type relates to its baseDefinition.
-class TypeDerivationRule extends FhirCodeEnum {
+class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  TypeDerivationRule._({
+  TypeDerivationRuleBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class TypeDerivationRule extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory TypeDerivationRule(
+  factory TypeDerivationRuleBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return TypeDerivationRule._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return TypeDerivationRuleBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,64 +43,68 @@ class TypeDerivationRule extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [TypeDerivationRule] with element only
-  factory TypeDerivationRule.empty() =>
-      TypeDerivationRule._(validatedValue: '');
+  /// Create empty [TypeDerivationRuleBuilder] with element only
+  factory TypeDerivationRuleBuilder.empty() =>
+      TypeDerivationRuleBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TypeDerivationRule] from JSON.
-  factory TypeDerivationRule.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TypeDerivationRuleBuilder] from JSON.
+  factory TypeDerivationRuleBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TypeDerivationRule.elementOnly.withElement(element);
+      return TypeDerivationRuleBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TypeDerivationRule cannot be constructed from JSON.',
+        'TypeDerivationRuleBuilder cannot be constructed from JSON.',
       );
     }
-    return TypeDerivationRule._(
+    return TypeDerivationRuleBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// specialization
-  static final TypeDerivationRule specialization = TypeDerivationRule._(
+  static TypeDerivationRuleBuilder specialization = TypeDerivationRuleBuilder._(
     validatedValue: 'specialization',
-    system: 'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Specialization'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Specialization'.toFhirStringBuilder,
   );
 
   /// constraint
-  static final TypeDerivationRule constraint = TypeDerivationRule._(
+  static TypeDerivationRuleBuilder constraint = TypeDerivationRuleBuilder._(
     validatedValue: 'constraint',
-    system: 'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Constraint'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Constraint'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final TypeDerivationRule elementOnly =
-      TypeDerivationRule._(validatedValue: '');
+  static TypeDerivationRuleBuilder elementOnly =
+      TypeDerivationRuleBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<TypeDerivationRule> values = [
+  static List<TypeDerivationRuleBuilder> values = [
     specialization,
     constraint,
   ];
 
   /// Clones the current instance
   @override
-  TypeDerivationRule clone() => TypeDerivationRule._(
+  TypeDerivationRuleBuilder clone() => TypeDerivationRuleBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  TypeDerivationRule withElement(Element? newElement) {
-    return TypeDerivationRule._(validatedValue: value, element: newElement);
+  TypeDerivationRuleBuilder withElement(ElementBuilder? newElement) {
+    return TypeDerivationRuleBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,11 +120,11 @@ class TypeDerivationRule extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  TypeDerivationRule copyWith({
+  TypeDerivationRuleBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -131,7 +135,7 @@ class TypeDerivationRule extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return TypeDerivationRule._(
+    return TypeDerivationRuleBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -141,7 +145,7 @@ class TypeDerivationRule extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

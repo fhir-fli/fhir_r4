@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The type of method used to execute a subscription.
-class SubscriptionChannelType extends FhirCodeEnum {
+class SubscriptionChannelTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  SubscriptionChannelType._({
+  SubscriptionChannelTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class SubscriptionChannelType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory SubscriptionChannelType(
+  factory SubscriptionChannelTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return SubscriptionChannelType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return SubscriptionChannelTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,74 +43,84 @@ class SubscriptionChannelType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [SubscriptionChannelType] with element only
-  factory SubscriptionChannelType.empty() =>
-      SubscriptionChannelType._(validatedValue: '');
+  /// Create empty [SubscriptionChannelTypeBuilder] with element only
+  factory SubscriptionChannelTypeBuilder.empty() =>
+      SubscriptionChannelTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SubscriptionChannelType] from JSON.
-  factory SubscriptionChannelType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionChannelTypeBuilder] from JSON.
+  factory SubscriptionChannelTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionChannelType.elementOnly.withElement(element);
+      return SubscriptionChannelTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SubscriptionChannelType cannot be constructed from JSON.',
+        'SubscriptionChannelTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return SubscriptionChannelType._(
+    return SubscriptionChannelTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// rest_hook
-  static final SubscriptionChannelType rest_hook = SubscriptionChannelType._(
+  static SubscriptionChannelTypeBuilder rest_hook =
+      SubscriptionChannelTypeBuilder._(
     validatedValue: 'rest-hook',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Rest Hook'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Rest Hook'.toFhirStringBuilder,
   );
 
   /// websocket
-  static final SubscriptionChannelType websocket = SubscriptionChannelType._(
+  static SubscriptionChannelTypeBuilder websocket =
+      SubscriptionChannelTypeBuilder._(
     validatedValue: 'websocket',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Websocket'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Websocket'.toFhirStringBuilder,
   );
 
   /// email
-  static final SubscriptionChannelType email = SubscriptionChannelType._(
+  static SubscriptionChannelTypeBuilder email =
+      SubscriptionChannelTypeBuilder._(
     validatedValue: 'email',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Email'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Email'.toFhirStringBuilder,
   );
 
   /// sms
-  static final SubscriptionChannelType sms = SubscriptionChannelType._(
+  static SubscriptionChannelTypeBuilder sms = SubscriptionChannelTypeBuilder._(
     validatedValue: 'sms',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SMS'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'SMS'.toFhirStringBuilder,
   );
 
   /// message
-  static final SubscriptionChannelType message = SubscriptionChannelType._(
+  static SubscriptionChannelTypeBuilder message =
+      SubscriptionChannelTypeBuilder._(
     validatedValue: 'message',
-    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Message'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Message'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final SubscriptionChannelType elementOnly =
-      SubscriptionChannelType._(validatedValue: '');
+  static SubscriptionChannelTypeBuilder elementOnly =
+      SubscriptionChannelTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<SubscriptionChannelType> values = [
+  static List<SubscriptionChannelTypeBuilder> values = [
     rest_hook,
     websocket,
     email,
@@ -120,15 +130,15 @@ class SubscriptionChannelType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  SubscriptionChannelType clone() => SubscriptionChannelType._(
+  SubscriptionChannelTypeBuilder clone() => SubscriptionChannelTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  SubscriptionChannelType withElement(Element? newElement) {
-    return SubscriptionChannelType._(
-        validatedValue: value, element: newElement,);
+  SubscriptionChannelTypeBuilder withElement(ElementBuilder? newElement) {
+    return SubscriptionChannelTypeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -144,11 +154,11 @@ class SubscriptionChannelType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  SubscriptionChannelType copyWith({
+  SubscriptionChannelTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -159,7 +169,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return SubscriptionChannelType._(
+    return SubscriptionChannelTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -169,7 +179,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

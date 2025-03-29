@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// How the Quantity should be understood and represented.
-class QuantityComparator extends FhirCodeEnum {
+class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  QuantityComparator._({
+  QuantityComparatorBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory QuantityComparator(
+  factory QuantityComparatorBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return QuantityComparator._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return QuantityComparatorBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,66 +43,67 @@ class QuantityComparator extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [QuantityComparator] with element only
-  factory QuantityComparator.empty() =>
-      QuantityComparator._(validatedValue: '');
+  /// Create empty [QuantityComparatorBuilder] with element only
+  factory QuantityComparatorBuilder.empty() =>
+      QuantityComparatorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [QuantityComparator] from JSON.
-  factory QuantityComparator.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [QuantityComparatorBuilder] from JSON.
+  factory QuantityComparatorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuantityComparator.elementOnly.withElement(element);
+      return QuantityComparatorBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'QuantityComparator cannot be constructed from JSON.',
+        'QuantityComparatorBuilder cannot be constructed from JSON.',
       );
     }
-    return QuantityComparator._(
+    return QuantityComparatorBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// lt
-  static final QuantityComparator lt = QuantityComparator._(
+  static QuantityComparatorBuilder lt = QuantityComparatorBuilder._(
     validatedValue: '<',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Less than'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Less than'.toFhirStringBuilder,
   );
 
   /// le
-  static final QuantityComparator le = QuantityComparator._(
+  static QuantityComparatorBuilder le = QuantityComparatorBuilder._(
     validatedValue: '<=',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Less or Equal to'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Less or Equal to'.toFhirStringBuilder,
   );
 
   /// ge
-  static final QuantityComparator ge = QuantityComparator._(
+  static QuantityComparatorBuilder ge = QuantityComparatorBuilder._(
     validatedValue: '>=',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Greater or Equal to'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Greater or Equal to'.toFhirStringBuilder,
   );
 
   /// gt
-  static final QuantityComparator gt = QuantityComparator._(
+  static QuantityComparatorBuilder gt = QuantityComparatorBuilder._(
     validatedValue: '>',
-    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Greater than'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Greater than'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final QuantityComparator elementOnly =
-      QuantityComparator._(validatedValue: '');
+  static QuantityComparatorBuilder elementOnly =
+      QuantityComparatorBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<QuantityComparator> values = [
+  static List<QuantityComparatorBuilder> values = [
     lt,
     le,
     ge,
@@ -111,14 +112,15 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  QuantityComparator clone() => QuantityComparator._(
+  QuantityComparatorBuilder clone() => QuantityComparatorBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  QuantityComparator withElement(Element? newElement) {
-    return QuantityComparator._(validatedValue: value, element: newElement);
+  QuantityComparatorBuilder withElement(ElementBuilder? newElement) {
+    return QuantityComparatorBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,11 +136,11 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  QuantityComparator copyWith({
+  QuantityComparatorBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -149,7 +151,7 @@ class QuantityComparator extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return QuantityComparator._(
+    return QuantityComparatorBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -159,7 +161,7 @@ class QuantityComparator extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

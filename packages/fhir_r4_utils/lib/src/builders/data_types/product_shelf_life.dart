@@ -1,49 +1,47 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ProductShelfLife]
+/// [ProductShelfLifeBuilder]
 /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.
-class ProductShelfLife extends BackboneType {
+class ProductShelfLifeBuilder extends BackboneTypeBuilder {
   /// Primary constructor for
-  /// [ProductShelfLife]
+  /// [ProductShelfLifeBuilder]
 
-  const ProductShelfLife({
+  ProductShelfLifeBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.type,
-    required this.period,
+    this.type,
+    this.period,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
-    super.objectPath = 'ProductShelfLife',
+    super.objectPath = 'ProductShelfLifeBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ProductShelfLife.empty() => ProductShelfLife(
-        type: CodeableConcept.empty(),
-        period: Quantity.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ProductShelfLifeBuilder.empty() => ProductShelfLifeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProductShelfLife.fromJson(
+  factory ProductShelfLifeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'ProductShelfLife';
-    return ProductShelfLife(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ProductShelfLifeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -52,8 +50,8 @@ class ProductShelfLife extends BackboneType {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -61,28 +59,28 @@ class ProductShelfLife extends BackboneType {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      period: JsonParser.parseObject<Quantity>(
+      ),
+      period: JsonParser.parseObject<QuantityBuilder>(
         json,
         'period',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.period',
-      )!,
+      ),
       specialPrecautionsForStorage:
           (json['specialPrecautionsForStorage'] as List<dynamic>?)
-              ?.map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
+              ?.map<CodeableConceptBuilder>(
+                (v) => CodeableConceptBuilder.fromJson(
                   {
                     ...v as Map<String, dynamic>,
                     'objectPath': '$objectPath.specialPrecautionsForStorage',
@@ -93,22 +91,22 @@ class ProductShelfLife extends BackboneType {
     );
   }
 
-  /// Deserialize [ProductShelfLife]
+  /// Deserialize [ProductShelfLifeBuilder]
   /// from a [String] or [YamlMap] object
-  factory ProductShelfLife.fromYaml(
+  factory ProductShelfLifeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ProductShelfLife.fromJson(
+      return ProductShelfLifeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ProductShelfLife.fromJson(
+      return ProductShelfLifeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ProductShelfLife '
+        'ProductShelfLifeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -116,16 +114,16 @@ class ProductShelfLife extends BackboneType {
   }
 
   /// Factory constructor for
-  /// [ProductShelfLife]
+  /// [ProductShelfLifeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProductShelfLife.fromJsonString(
+  factory ProductShelfLifeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ProductShelfLife.fromJson(json);
+      return ProductShelfLifeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -137,7 +135,7 @@ class ProductShelfLife extends BackboneType {
 
   /// [identifier]
   /// Unique identifier for the packaged Medicinal Product.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [type]
   /// This describes the shelf life, taking into account various scenarios
@@ -146,7 +144,7 @@ class ProductShelfLife extends BackboneType {
   /// opening of a bottle, etc. The shelf life type shall be specified using
   /// an appropriate controlled vocabulary The controlled term and the
   /// controlled term identifier shall be specified.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [period]
   /// The shelf life time period can be specified using a numerical value for
@@ -154,29 +152,29 @@ class ProductShelfLife extends BackboneType {
   /// measurement shall be specified in accordance with ISO 11240 and the
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
-  final Quantity period;
+  QuantityBuilder? period;
 
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary The controlled term and the
   /// controlled term identifier shall be specified.
-  final List<CodeableConcept>? specialPrecautionsForStorage;
+  List<CodeableConceptBuilder>? specialPrecautionsForStorage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -185,39 +183,18 @@ class ProductShelfLife extends BackboneType {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'specialPrecautionsForStorage',
-      specialPrecautionsForStorage,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('type', type);
+    addField('period', period);
+    addField('specialPrecautionsForStorage', specialPrecautionsForStorage);
     return json;
   }
 
@@ -238,11 +215,11 @@ class ProductShelfLife extends BackboneType {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -261,9 +238,13 @@ class ProductShelfLife extends BackboneType {
           fields.add(identifier!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'period':
-        fields.add(period);
+        if (period != null) {
+          fields.add(period!);
+        }
       case 'specialPrecautionsForStorage':
         if (specialPrecautionsForStorage != null) {
           fields.addAll(specialPrecautionsForStorage!);
@@ -278,7 +259,7 @@ class ProductShelfLife extends BackboneType {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -287,87 +268,93 @@ class ProductShelfLife extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Quantity) {
-            return copyWith(period: child);
+          if (child is QuantityBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialPrecautionsForStorage':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialPrecautionsForStorage, ...child];
-            return copyWith(specialPrecautionsForStorage: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            specialPrecautionsForStorage = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialPrecautionsForStorage, child];
-            return copyWith(specialPrecautionsForStorage: newList);
+            specialPrecautionsForStorage = [
+              ...(specialPrecautionsForStorage ?? []),
+              child
+            ];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -383,74 +370,63 @@ class ProductShelfLife extends BackboneType {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'period':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'specialPrecautionsForStorage':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ProductShelfLife]
+  /// Creates a new [ProductShelfLifeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProductShelfLife createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Quantity.empty(),
-          );
+          period = QuantityBuilder.empty();
+          return;
         }
       case 'specialPrecautionsForStorage':
         {
-          return copyWith(
-            specialPrecautionsForStorage: <CodeableConcept>[],
-          );
+          specialPrecautionsForStorage = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -459,37 +435,35 @@ class ProductShelfLife extends BackboneType {
 
   /// Clears specific fields in this object
   @override
-  ProductShelfLife clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool type = false,
+    bool period = false,
     bool specialPrecautionsForStorage = false,
   }) {
-    return ProductShelfLife(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      type: type,
-      period: period,
-      specialPrecautionsForStorage: specialPrecautionsForStorage
-          ? null
-          : this.specialPrecautionsForStorage,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (type) this.type = null;
+    if (period) this.period = null;
+    if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
   }
 
   @override
-  ProductShelfLife clone() => throw UnimplementedError();
+  ProductShelfLifeBuilder clone() => throw UnimplementedError();
   @override
-  ProductShelfLife copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    CodeableConcept? type,
-    Quantity? period,
-    List<CodeableConcept>? specialPrecautionsForStorage,
+  ProductShelfLifeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    CodeableConceptBuilder? type,
+    QuantityBuilder? period,
+    List<CodeableConceptBuilder>? specialPrecautionsForStorage,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -497,54 +471,39 @@ class ProductShelfLife extends BackboneType {
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return ProductShelfLife(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      specialPrecautionsForStorage: specialPrecautionsForStorage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialPrecautionsForStorage',
-                ),
-              )
-              .toList() ??
-          this.specialPrecautionsForStorage,
+    final newResult = ProductShelfLifeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      type: type ?? this.type,
+      period: period ?? this.period,
+      specialPrecautionsForStorage:
+          specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ProductShelfLife) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ProductShelfLifeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -555,13 +514,13 @@ class ProductShelfLife extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -585,7 +544,7 @@ class ProductShelfLife extends BackboneType {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       specialPrecautionsForStorage,
       o.specialPrecautionsForStorage,
     )) {

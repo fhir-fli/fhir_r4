@@ -56,7 +56,7 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Canonical',
+    String? objectPath = 'Canonical',
   }) {
     // 1) Validate/parse
     //    - If rawInput is null and no element, throw
@@ -172,7 +172,7 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Boolean checks
   bool get valueOnly => value != null && element == null;

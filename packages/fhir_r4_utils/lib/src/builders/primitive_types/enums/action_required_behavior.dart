@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// Defines expectations around whether an action or action group is
 /// required.
-class ActionRequiredBehavior extends FhirCodeEnum {
+class ActionRequiredBehaviorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ActionRequiredBehavior._({
+  ActionRequiredBehaviorBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class ActionRequiredBehavior extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ActionRequiredBehavior(
+  factory ActionRequiredBehaviorBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ActionRequiredBehavior._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ActionRequiredBehaviorBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,59 +44,63 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ActionRequiredBehavior] with element only
-  factory ActionRequiredBehavior.empty() =>
-      ActionRequiredBehavior._(validatedValue: '');
+  /// Create empty [ActionRequiredBehaviorBuilder] with element only
+  factory ActionRequiredBehaviorBuilder.empty() =>
+      ActionRequiredBehaviorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionRequiredBehavior] from JSON.
-  factory ActionRequiredBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionRequiredBehaviorBuilder] from JSON.
+  factory ActionRequiredBehaviorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionRequiredBehavior.elementOnly.withElement(element);
+      return ActionRequiredBehaviorBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ActionRequiredBehavior cannot be constructed from JSON.',
+        'ActionRequiredBehaviorBuilder cannot be constructed from JSON.',
       );
     }
-    return ActionRequiredBehavior._(
+    return ActionRequiredBehaviorBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// must
-  static final ActionRequiredBehavior must = ActionRequiredBehavior._(
+  static ActionRequiredBehaviorBuilder must = ActionRequiredBehaviorBuilder._(
     validatedValue: 'must',
-    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Must'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Must'.toFhirStringBuilder,
   );
 
   /// could
-  static final ActionRequiredBehavior could = ActionRequiredBehavior._(
+  static ActionRequiredBehaviorBuilder could = ActionRequiredBehaviorBuilder._(
     validatedValue: 'could',
-    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Could'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Could'.toFhirStringBuilder,
   );
 
   /// must_unless_documented
-  static final ActionRequiredBehavior must_unless_documented =
-      ActionRequiredBehavior._(
+  static ActionRequiredBehaviorBuilder must_unless_documented =
+      ActionRequiredBehaviorBuilder._(
     validatedValue: 'must-unless-documented',
-    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Must Unless Documented'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Must Unless Documented'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ActionRequiredBehavior elementOnly =
-      ActionRequiredBehavior._(validatedValue: '');
+  static ActionRequiredBehaviorBuilder elementOnly =
+      ActionRequiredBehaviorBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ActionRequiredBehavior> values = [
+  static List<ActionRequiredBehaviorBuilder> values = [
     must,
     could,
     must_unless_documented,
@@ -104,14 +108,15 @@ class ActionRequiredBehavior extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ActionRequiredBehavior clone() => ActionRequiredBehavior._(
+  ActionRequiredBehaviorBuilder clone() => ActionRequiredBehaviorBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ActionRequiredBehavior withElement(Element? newElement) {
-    return ActionRequiredBehavior._(validatedValue: value, element: newElement);
+  ActionRequiredBehaviorBuilder withElement(ElementBuilder? newElement) {
+    return ActionRequiredBehaviorBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -127,11 +132,11 @@ class ActionRequiredBehavior extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ActionRequiredBehavior copyWith({
+  ActionRequiredBehaviorBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -142,7 +147,7 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ActionRequiredBehavior._(
+    return ActionRequiredBehaviorBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -152,7 +157,7 @@ class ActionRequiredBehavior extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

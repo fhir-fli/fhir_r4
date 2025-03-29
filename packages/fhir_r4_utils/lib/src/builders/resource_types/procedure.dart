@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Procedure]
+/// [ProcedureBuilder]
 /// An action that is or was performed on or for a patient. This can be a
 /// physical intervention like an operation, or less invasive like long
 /// term services, counseling, or hypnotherapy.
-class Procedure extends DomainResource {
+class ProcedureBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Procedure]
+  /// [ProcedureBuilder]
 
-  const Procedure({
+  ProcedureBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -24,11 +26,11 @@ class Procedure extends DomainResource {
     this.instantiatesUri,
     this.basedOn,
     this.partOf,
-    required this.status,
+    this.status,
     this.statusReason,
     this.category,
     this.code,
-    required this.subject,
+    this.subject,
     this.encounter,
     this.performedX,
     this.recorder,
@@ -53,52 +55,48 @@ class Procedure extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Procedure.empty() => Procedure(
-        status: EventStatus.values.first,
-        subject: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ProcedureBuilder.empty() => ProcedureBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Procedure.fromJson(
+  factory ProcedureBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Procedure';
-    return Procedure(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ProcedureBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -107,8 +105,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -117,8 +115,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -127,8 +125,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -136,21 +134,22 @@ class Procedure extends DomainResource {
             ),
           )
           .toList(),
-      instantiatesCanonical: JsonParser.parsePrimitiveList<FhirCanonical>(
+      instantiatesCanonical:
+          JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'instantiatesCanonical',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.instantiatesCanonical',
       ),
-      instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
+      instantiatesUri: JsonParser.parsePrimitiveList<FhirUriBuilder>(
         json,
         'instantiatesUri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiatesUri',
       ),
       basedOn: (json['basedOn'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.basedOn',
@@ -159,8 +158,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.partOf',
@@ -168,68 +167,68 @@ class Procedure extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<EventStatus>(
+      status: JsonParser.parsePrimitive<EventStatusBuilder>(
         json,
         'status',
-        EventStatus.fromJson,
+        EventStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      statusReason: JsonParser.parseObject<CodeableConcept>(
+      ),
+      statusReason: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'statusReason',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.statusReason',
       ),
-      category: JsonParser.parseObject<CodeableConcept>(
+      category: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'category',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.category',
       ),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      performedX: JsonParser.parsePolymorphic<PerformedXProcedure>(
+      performedX: JsonParser.parsePolymorphic<PerformedXProcedureBuilder>(
         json,
         {
-          'performedDateTime': FhirDateTime.fromJson,
-          'performedPeriod': Period.fromJson,
-          'performedString': FhirString.fromJson,
-          'performedAge': Age.fromJson,
-          'performedRange': Range.fromJson,
+          'performedDateTime': FhirDateTimeBuilder.fromJson,
+          'performedPeriod': PeriodBuilder.fromJson,
+          'performedString': FhirStringBuilder.fromJson,
+          'performedAge': AgeBuilder.fromJson,
+          'performedRange': RangeBuilder.fromJson,
         },
         objectPath,
       ),
-      recorder: JsonParser.parseObject<Reference>(
+      recorder: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'recorder',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.recorder',
       ),
-      asserter: JsonParser.parseObject<Reference>(
+      asserter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'asserter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.asserter',
       ),
       performer: (json['performer'] as List<dynamic>?)
-          ?.map<ProcedurePerformer>(
-            (v) => ProcedurePerformer.fromJson(
+          ?.map<ProcedurePerformerBuilder>(
+            (v) => ProcedurePerformerBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performer',
@@ -237,15 +236,15 @@ class Procedure extends DomainResource {
             ),
           )
           .toList(),
-      location: JsonParser.parseObject<Reference>(
+      location: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'location',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.location',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -254,8 +253,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -264,8 +263,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       bodySite: (json['bodySite'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.bodySite',
@@ -273,15 +272,15 @@ class Procedure extends DomainResource {
             ),
           )
           .toList(),
-      outcome: JsonParser.parseObject<CodeableConcept>(
+      outcome: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'outcome',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.outcome',
       ),
       report: (json['report'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.report',
@@ -290,8 +289,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       complication: (json['complication'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.complication',
@@ -300,8 +299,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       complicationDetail: (json['complicationDetail'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.complicationDetail',
@@ -310,8 +309,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       followUp: (json['followUp'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.followUp',
@@ -320,8 +319,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -330,8 +329,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       focalDevice: (json['focalDevice'] as List<dynamic>?)
-          ?.map<ProcedureFocalDevice>(
-            (v) => ProcedureFocalDevice.fromJson(
+          ?.map<ProcedureFocalDeviceBuilder>(
+            (v) => ProcedureFocalDeviceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.focalDevice',
@@ -340,8 +339,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       usedReference: (json['usedReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.usedReference',
@@ -350,8 +349,8 @@ class Procedure extends DomainResource {
           )
           .toList(),
       usedCode: (json['usedCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.usedCode',
@@ -362,22 +361,22 @@ class Procedure extends DomainResource {
     );
   }
 
-  /// Deserialize [Procedure]
+  /// Deserialize [ProcedureBuilder]
   /// from a [String] or [YamlMap] object
-  factory Procedure.fromYaml(
+  factory ProcedureBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Procedure.fromJson(
+      return ProcedureBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Procedure.fromJson(
+      return ProcedureBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Procedure '
+        'ProcedureBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -385,16 +384,16 @@ class Procedure extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Procedure]
+  /// [ProcedureBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Procedure.fromJsonString(
+  factory ProcedureBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Procedure.fromJson(json);
+      return ProcedureBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -408,174 +407,176 @@ class Procedure extends DomainResource {
   /// Business identifiers assigned to this procedure by the performer or
   /// other systems which remain constant as the resource is updated and is
   /// propagated from server to server.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, order set or
   /// other definition that is adhered to in whole or in part by this
   /// Procedure.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonicalBuilder>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline, order
   /// set or other definition that is adhered to in whole or in part by this
   /// Procedure.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUriBuilder>? instantiatesUri;
 
   /// [basedOn]
   /// A reference to a resource that contains details of the request for this
   /// procedure.
-  final List<Reference>? basedOn;
+  List<ReferenceBuilder>? basedOn;
 
   /// [partOf]
   /// A larger event of which this particular procedure is a component or
   /// step.
-  final List<Reference>? partOf;
+  List<ReferenceBuilder>? partOf;
 
   /// [status]
   /// A code specifying the state of the procedure. Generally, this will be
   /// the in-progress or completed state.
-  final EventStatus status;
+  EventStatusBuilder? status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the procedure.
-  final CodeableConcept? statusReason;
+  CodeableConceptBuilder? statusReason;
 
   /// [category]
   /// A code that classifies the procedure for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
-  final CodeableConcept? category;
+  CodeableConceptBuilder? category;
 
   /// [code]
   /// The specific procedure that is performed. Use text if the exact nature
   /// of the procedure cannot be coded (e.g. "Laparoscopic Appendectomy").
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [subject]
   /// The person, animal or group on which the procedure was performed.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The Encounter during which this Procedure was created or performed or
   /// to which the creation of this record is tightly associated.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [performedX]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final PerformedXProcedure? performedX;
+  PerformedXProcedureBuilder? performedX;
 
-  /// Getter for [performedDateTime] as a FhirDateTime
-  FhirDateTime? get performedDateTime => performedX?.isAs<FhirDateTime>();
+  /// Getter for [performedDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get performedDateTime =>
+      performedX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [performedPeriod] as a Period
-  Period? get performedPeriod => performedX?.isAs<Period>();
+  /// Getter for [performedPeriod] as a PeriodBuilder
+  PeriodBuilder? get performedPeriod => performedX?.isAs<PeriodBuilder>();
 
-  /// Getter for [performedString] as a FhirString
-  FhirString? get performedString => performedX?.isAs<FhirString>();
+  /// Getter for [performedString] as a FhirStringBuilder
+  FhirStringBuilder? get performedString =>
+      performedX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [performedAge] as a Age
-  Age? get performedAge => performedX?.isAs<Age>();
+  /// Getter for [performedAge] as a AgeBuilder
+  AgeBuilder? get performedAge => performedX?.isAs<AgeBuilder>();
 
-  /// Getter for [performedRange] as a Range
-  Range? get performedRange => performedX?.isAs<Range>();
+  /// Getter for [performedRange] as a RangeBuilder
+  RangeBuilder? get performedRange => performedX?.isAs<RangeBuilder>();
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
   /// content.
-  final Reference? recorder;
+  ReferenceBuilder? recorder;
 
   /// [asserter]
   /// Individual who is making the procedure statement.
-  final Reference? asserter;
+  ReferenceBuilder? asserter;
 
   /// [performer]
   /// Limited to "real" people rather than equipment.
-  final List<ProcedurePerformer>? performer;
+  List<ProcedurePerformerBuilder>? performer;
 
   /// [location]
   /// The location where the procedure actually happened. E.g. a newborn at
   /// home, a tracheostomy at a restaurant.
-  final Reference? location;
+  ReferenceBuilder? location;
 
   /// [reasonCode]
   /// The coded reason why the procedure was performed. This may be a coded
   /// entity of some type, or may simply be present as text.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// The justification of why the procedure was performed.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [bodySite]
   /// Detailed and structured anatomical location information. Multiple
   /// locations are allowed - e.g. multiple punch biopsies of a lesion.
-  final List<CodeableConcept>? bodySite;
+  List<CodeableConceptBuilder>? bodySite;
 
   /// [outcome]
   /// The outcome of the procedure - did it resolve the reasons for the
   /// procedure being performed?
-  final CodeableConcept? outcome;
+  CodeableConceptBuilder? outcome;
 
   /// [report]
   /// This could be a histology result, pathology report, surgical report,
   /// etc.
-  final List<Reference>? report;
+  List<ReferenceBuilder>? report;
 
   /// [complication]
   /// Any complications that occurred during the procedure, or in the
   /// immediate post-performance period. These are generally tracked
   /// separately from the notes, which will typically describe the procedure
   /// itself rather than any 'post procedure' issues.
-  final List<CodeableConcept>? complication;
+  List<CodeableConceptBuilder>? complication;
 
   /// [complicationDetail]
   /// Any complications that occurred during the procedure, or in the
   /// immediate post-performance period.
-  final List<Reference>? complicationDetail;
+  List<ReferenceBuilder>? complicationDetail;
 
   /// [followUp]
   /// If the procedure required specific follow up - e.g. removal of sutures.
   /// The follow up may be represented as a simple note or could potentially
   /// be more complex, in which case the CarePlan resource can be used.
-  final List<CodeableConcept>? followUp;
+  List<CodeableConceptBuilder>? followUp;
 
   /// [note]
   /// Any other notes and comments about the procedure.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [focalDevice]
   /// A device that is implanted, removed or otherwise manipulated
   /// (calibration, battery replacement, fitting a prosthesis, attaching a
   /// wound-vac, etc.) as a focal portion of the Procedure.
-  final List<ProcedureFocalDevice>? focalDevice;
+  List<ProcedureFocalDeviceBuilder>? focalDevice;
 
   /// [usedReference]
   /// Identifies medications, devices and any other substance used as part of
   /// the procedure.
-  final List<Reference>? usedReference;
+  List<ReferenceBuilder>? usedReference;
 
   /// [usedCode]
   /// Identifies coded items that were used as part of the procedure.
-  final List<CodeableConcept>? usedCode;
+  List<CodeableConceptBuilder>? usedCode;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -584,160 +585,52 @@ class Procedure extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'instantiatesCanonical',
-      instantiatesCanonical,
-    );
-    addField(
-      'instantiatesUri',
-      instantiatesUri,
-    );
-    addField(
-      'basedOn',
-      basedOn,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusReason',
-      statusReason,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('instantiatesCanonical', instantiatesCanonical);
+    addField('instantiatesUri', instantiatesUri);
+    addField('basedOn', basedOn);
+    addField('partOf', partOf);
+    addField('status', status);
+    addField('statusReason', statusReason);
+    addField('category', category);
+    addField('code', code);
+    addField('subject', subject);
+    addField('encounter', encounter);
     if (performedX != null) {
       final fhirType = performedX!.fhirType;
-      addField(
-        'performed${fhirType.capitalize()}',
-        performedX,
-      );
+      addField('performed${fhirType.capitalize()}', performedX);
     }
 
-    addField(
-      'recorder',
-      recorder,
-    );
-    addField(
-      'asserter',
-      asserter,
-    );
-    addField(
-      'performer',
-      performer,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'bodySite',
-      bodySite,
-    );
-    addField(
-      'outcome',
-      outcome,
-    );
-    addField(
-      'report',
-      report,
-    );
-    addField(
-      'complication',
-      complication,
-    );
-    addField(
-      'complicationDetail',
-      complicationDetail,
-    );
-    addField(
-      'followUp',
-      followUp,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'focalDevice',
-      focalDevice,
-    );
-    addField(
-      'usedReference',
-      usedReference,
-    );
-    addField(
-      'usedCode',
-      usedCode,
-    );
+    addField('recorder', recorder);
+    addField('asserter', asserter);
+    addField('performer', performer);
+    addField('location', location);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('bodySite', bodySite);
+    addField('outcome', outcome);
+    addField('report', report);
+    addField('complication', complication);
+    addField('complicationDetail', complicationDetail);
+    addField('followUp', followUp);
+    addField('note', note);
+    addField('focalDevice', focalDevice);
+    addField('usedReference', usedReference);
+    addField('usedCode', usedCode);
     return json;
   }
 
@@ -787,11 +680,11 @@ class Procedure extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -846,7 +739,9 @@ class Procedure extends DomainResource {
           fields.addAll(partOf!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'statusReason':
         if (statusReason != null) {
           fields.add(statusReason!);
@@ -860,33 +755,39 @@ class Procedure extends DomainResource {
           fields.add(code!);
         }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
         }
       case 'performed':
-        fields.add(performedX!);
+        if (performedX != null) {
+          fields.add(performedX!);
+        }
       case 'performedX':
-        fields.add(performedX!);
+        if (performedX != null) {
+          fields.add(performedX!);
+        }
       case 'performedDateTime':
-        if (performedX is FhirDateTime) {
+        if (performedX is FhirDateTimeBuilder) {
           fields.add(performedX!);
         }
       case 'performedPeriod':
-        if (performedX is Period) {
+        if (performedX is PeriodBuilder) {
           fields.add(performedX!);
         }
       case 'performedString':
-        if (performedX is FhirString) {
+        if (performedX is FhirStringBuilder) {
           fields.add(performedX!);
         }
       case 'performedAge':
-        if (performedX is Age) {
+        if (performedX is AgeBuilder) {
           fields.add(performedX!);
         }
       case 'performedRange':
-        if (performedX is Range) {
+        if (performedX is RangeBuilder) {
           fields.add(performedX!);
         }
       case 'recorder':
@@ -963,7 +864,7 @@ class Procedure extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -972,476 +873,501 @@ class Procedure extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            instantiatesCanonical = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
-            return copyWith(instantiatesCanonical: newList);
+            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
+          if (child is List<FhirUriBuilder>) {
+            // Replace or create new list
+            instantiatesUri = child;
+            return;
+          } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
-            return copyWith(instantiatesUri: newList);
+            instantiatesUri = [...(instantiatesUri ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basedOn, ...child];
-            return copyWith(basedOn: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            basedOn = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
-            return copyWith(basedOn: newList);
+            basedOn = [...(basedOn ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            partOf = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
-            return copyWith(partOf: newList);
+            partOf = [...(partOf ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is EventStatus) {
-            return copyWith(status: child);
+          if (child is EventStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusReason':
         {
-          if (child is CodeableConcept) {
-            return copyWith(statusReason: child);
+          if (child is CodeableConceptBuilder) {
+            statusReason = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
+          if (child is CodeableConceptBuilder) {
+            category = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedX':
         {
-          if (child is PerformedXProcedure) {
-            return copyWith(performedX: child);
+          if (child is PerformedXProcedureBuilder) {
+            performedX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(performedX: child);
+            if (child is FhirDateTimeBuilder) {
+              performedX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(performedX: child);
+            if (child is PeriodBuilder) {
+              performedX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(performedX: child);
+            if (child is FhirStringBuilder) {
+              performedX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(performedX: child);
+            if (child is AgeBuilder) {
+              performedX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(performedX: child);
+            if (child is RangeBuilder) {
+              performedX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'performedFhirDateTime':
+      case 'performedDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(performedX: child);
+          if (child is FhirDateTimeBuilder) {
+            performedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedPeriod':
         {
-          if (child is Period) {
-            return copyWith(performedX: child);
+          if (child is PeriodBuilder) {
+            performedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'performedFhirString':
+      case 'performedString':
         {
-          if (child is FhirString) {
-            return copyWith(performedX: child);
+          if (child is FhirStringBuilder) {
+            performedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedAge':
         {
-          if (child is Age) {
-            return copyWith(performedX: child);
+          if (child is AgeBuilder) {
+            performedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedRange':
         {
-          if (child is Range) {
-            return copyWith(performedX: child);
+          if (child is RangeBuilder) {
+            performedX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorder':
         {
-          if (child is Reference) {
-            return copyWith(recorder: child);
+          if (child is ReferenceBuilder) {
+            recorder = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asserter':
         {
-          if (child is Reference) {
-            return copyWith(asserter: child);
+          if (child is ReferenceBuilder) {
+            asserter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is List<ProcedurePerformer>) {
-            // Add all elements from passed list
-            final newList = [...?performer, ...child];
-            return copyWith(performer: newList);
-          } else if (child is ProcedurePerformer) {
+          if (child is List<ProcedurePerformerBuilder>) {
+            // Replace or create new list
+            performer = child;
+            return;
+          } else if (child is ProcedurePerformerBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
-            return copyWith(performer: newList);
+            performer = [...(performer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is Reference) {
-            return copyWith(location: child);
+          if (child is ReferenceBuilder) {
+            location = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?bodySite, ...child];
-            return copyWith(bodySite: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            bodySite = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?bodySite, child];
-            return copyWith(bodySite: newList);
+            bodySite = [...(bodySite ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
         {
-          if (child is CodeableConcept) {
-            return copyWith(outcome: child);
+          if (child is CodeableConceptBuilder) {
+            outcome = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'report':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?report, ...child];
-            return copyWith(report: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            report = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?report, child];
-            return copyWith(report: newList);
+            report = [...(report ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'complication':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?complication, ...child];
-            return copyWith(complication: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            complication = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?complication, child];
-            return copyWith(complication: newList);
+            complication = [...(complication ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'complicationDetail':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?complicationDetail, ...child];
-            return copyWith(complicationDetail: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            complicationDetail = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?complicationDetail, child];
-            return copyWith(complicationDetail: newList);
+            complicationDetail = [...(complicationDetail ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'followUp':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?followUp, ...child];
-            return copyWith(followUp: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            followUp = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?followUp, child];
-            return copyWith(followUp: newList);
+            followUp = [...(followUp ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'focalDevice':
         {
-          if (child is List<ProcedureFocalDevice>) {
-            // Add all elements from passed list
-            final newList = [...?focalDevice, ...child];
-            return copyWith(focalDevice: newList);
-          } else if (child is ProcedureFocalDevice) {
+          if (child is List<ProcedureFocalDeviceBuilder>) {
+            // Replace or create new list
+            focalDevice = child;
+            return;
+          } else if (child is ProcedureFocalDeviceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?focalDevice, child];
-            return copyWith(focalDevice: newList);
+            focalDevice = [...(focalDevice ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'usedReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?usedReference, ...child];
-            return copyWith(usedReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            usedReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?usedReference, child];
-            return copyWith(usedReference: newList);
+            usedReference = [...(usedReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'usedCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?usedCode, ...child];
-            return copyWith(usedCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            usedCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?usedCode, child];
-            return copyWith(usedCode: newList);
+            usedCode = [...(usedCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1457,343 +1383,305 @@ class Procedure extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'instantiatesCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'instantiatesUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'basedOn':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'statusReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'performed':
       case 'performedX':
-        return ['FhirDateTime', 'Period', 'FhirString', 'Age', 'Range'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+          'FhirStringBuilder',
+          'AgeBuilder',
+          'RangeBuilder'
+        ];
       case 'performedDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'performedPeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'performedString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'performedAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'performedRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'recorder':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'asserter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'performer':
-        return ['ProcedurePerformer'];
+        return ['ProcedurePerformerBuilder'];
       case 'location':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'bodySite':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'outcome':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'report':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'complication':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'complicationDetail':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'followUp':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'focalDevice':
-        return ['ProcedureFocalDevice'];
+        return ['ProcedureFocalDeviceBuilder'];
       case 'usedReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'usedCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Procedure]
+  /// Creates a new [ProcedureBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Procedure createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
+          instantiatesCanonical = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'instantiatesUri':
         {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
+          instantiatesUri = <FhirUriBuilder>[];
+          return;
         }
       case 'basedOn':
         {
-          return copyWith(
-            basedOn: <Reference>[],
-          );
+          basedOn = <ReferenceBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: <Reference>[],
-          );
+          partOf = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: EventStatus.empty(),
-          );
+          status = EventStatusBuilder.empty();
+          return;
         }
       case 'statusReason':
         {
-          return copyWith(
-            statusReason: CodeableConcept.empty(),
-          );
+          statusReason = CodeableConceptBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
+          category = CodeableConceptBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'performed':
       case 'performedX':
       case 'performedDateTime':
         {
-          return copyWith(
-            performedX: FhirDateTime.empty(),
-          );
+          performedX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'performedPeriod':
         {
-          return copyWith(
-            performedX: Period.empty(),
-          );
+          performedX = PeriodBuilder.empty();
+          return;
         }
       case 'performedString':
         {
-          return copyWith(
-            performedX: FhirString.empty(),
-          );
+          performedX = FhirStringBuilder.empty();
+          return;
         }
       case 'performedAge':
         {
-          return copyWith(
-            performedX: Age.empty(),
-          );
+          performedX = AgeBuilder.empty();
+          return;
         }
       case 'performedRange':
         {
-          return copyWith(
-            performedX: Range.empty(),
-          );
+          performedX = RangeBuilder.empty();
+          return;
         }
       case 'recorder':
         {
-          return copyWith(
-            recorder: Reference.empty(),
-          );
+          recorder = ReferenceBuilder.empty();
+          return;
         }
       case 'asserter':
         {
-          return copyWith(
-            asserter: Reference.empty(),
-          );
+          asserter = ReferenceBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: <ProcedurePerformer>[],
-          );
+          performer = <ProcedurePerformerBuilder>[];
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: Reference.empty(),
-          );
+          location = ReferenceBuilder.empty();
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'bodySite':
         {
-          return copyWith(
-            bodySite: <CodeableConcept>[],
-          );
+          bodySite = <CodeableConceptBuilder>[];
+          return;
         }
       case 'outcome':
         {
-          return copyWith(
-            outcome: CodeableConcept.empty(),
-          );
+          outcome = CodeableConceptBuilder.empty();
+          return;
         }
       case 'report':
         {
-          return copyWith(
-            report: <Reference>[],
-          );
+          report = <ReferenceBuilder>[];
+          return;
         }
       case 'complication':
         {
-          return copyWith(
-            complication: <CodeableConcept>[],
-          );
+          complication = <CodeableConceptBuilder>[];
+          return;
         }
       case 'complicationDetail':
         {
-          return copyWith(
-            complicationDetail: <Reference>[],
-          );
+          complicationDetail = <ReferenceBuilder>[];
+          return;
         }
       case 'followUp':
         {
-          return copyWith(
-            followUp: <CodeableConcept>[],
-          );
+          followUp = <CodeableConceptBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'focalDevice':
         {
-          return copyWith(
-            focalDevice: <ProcedureFocalDevice>[],
-          );
+          focalDevice = <ProcedureFocalDeviceBuilder>[];
+          return;
         }
       case 'usedReference':
         {
-          return copyWith(
-            usedReference: <Reference>[],
-          );
+          usedReference = <ReferenceBuilder>[];
+          return;
         }
       case 'usedCode':
         {
-          return copyWith(
-            usedCode: <CodeableConcept>[],
-          );
+          usedCode = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1802,7 +1690,7 @@ class Procedure extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Procedure clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1816,9 +1704,11 @@ class Procedure extends DomainResource {
     bool instantiatesUri = false,
     bool basedOn = false,
     bool partOf = false,
+    bool status = false,
     bool statusReason = false,
     bool category = false,
     bool code = false,
+    bool subject = false,
     bool encounter = false,
     bool performed = false,
     bool recorder = false,
@@ -1838,318 +1728,152 @@ class Procedure extends DomainResource {
     bool usedReference = false,
     bool usedCode = false,
   }) {
-    return Procedure(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      basedOn: basedOn ? null : this.basedOn,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      statusReason: statusReason ? null : this.statusReason,
-      category: category ? null : this.category,
-      code: code ? null : this.code,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      performedX: performed ? null : performedX,
-      recorder: recorder ? null : this.recorder,
-      asserter: asserter ? null : this.asserter,
-      performer: performer ? null : this.performer,
-      location: location ? null : this.location,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      bodySite: bodySite ? null : this.bodySite,
-      outcome: outcome ? null : this.outcome,
-      report: report ? null : this.report,
-      complication: complication ? null : this.complication,
-      complicationDetail: complicationDetail ? null : this.complicationDetail,
-      followUp: followUp ? null : this.followUp,
-      note: note ? null : this.note,
-      focalDevice: focalDevice ? null : this.focalDevice,
-      usedReference: usedReference ? null : this.usedReference,
-      usedCode: usedCode ? null : this.usedCode,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (instantiatesCanonical) this.instantiatesCanonical = null;
+    if (instantiatesUri) this.instantiatesUri = null;
+    if (basedOn) this.basedOn = null;
+    if (partOf) this.partOf = null;
+    if (status) this.status = null;
+    if (statusReason) this.statusReason = null;
+    if (category) this.category = null;
+    if (code) this.code = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (performed) this.performedX = null;
+    if (recorder) this.recorder = null;
+    if (asserter) this.asserter = null;
+    if (performer) this.performer = null;
+    if (location) this.location = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (bodySite) this.bodySite = null;
+    if (outcome) this.outcome = null;
+    if (report) this.report = null;
+    if (complication) this.complication = null;
+    if (complicationDetail) this.complicationDetail = null;
+    if (followUp) this.followUp = null;
+    if (note) this.note = null;
+    if (focalDevice) this.focalDevice = null;
+    if (usedReference) this.usedReference = null;
+    if (usedCode) this.usedCode = null;
   }
 
   @override
-  Procedure clone() => throw UnimplementedError();
+  ProcedureBuilder clone() => throw UnimplementedError();
   @override
-  Procedure copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    List<Reference>? basedOn,
-    List<Reference>? partOf,
-    EventStatus? status,
-    CodeableConcept? statusReason,
-    CodeableConcept? category,
-    CodeableConcept? code,
-    Reference? subject,
-    Reference? encounter,
-    PerformedXProcedure? performedX,
-    Reference? recorder,
-    Reference? asserter,
-    List<ProcedurePerformer>? performer,
-    Reference? location,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<CodeableConcept>? bodySite,
-    CodeableConcept? outcome,
-    List<Reference>? report,
-    List<CodeableConcept>? complication,
-    List<Reference>? complicationDetail,
-    List<CodeableConcept>? followUp,
-    List<Annotation>? note,
-    List<ProcedureFocalDevice>? focalDevice,
-    List<Reference>? usedReference,
-    List<CodeableConcept>? usedCode,
+  ProcedureBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<FhirCanonicalBuilder>? instantiatesCanonical,
+    List<FhirUriBuilder>? instantiatesUri,
+    List<ReferenceBuilder>? basedOn,
+    List<ReferenceBuilder>? partOf,
+    EventStatusBuilder? status,
+    CodeableConceptBuilder? statusReason,
+    CodeableConceptBuilder? category,
+    CodeableConceptBuilder? code,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    PerformedXProcedureBuilder? performedX,
+    ReferenceBuilder? recorder,
+    ReferenceBuilder? asserter,
+    List<ProcedurePerformerBuilder>? performer,
+    ReferenceBuilder? location,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<CodeableConceptBuilder>? bodySite,
+    CodeableConceptBuilder? outcome,
+    List<ReferenceBuilder>? report,
+    List<CodeableConceptBuilder>? complication,
+    List<ReferenceBuilder>? complicationDetail,
+    List<CodeableConceptBuilder>? followUp,
+    List<AnnotationBuilder>? note,
+    List<ProcedureFocalDeviceBuilder>? focalDevice,
+    List<ReferenceBuilder>? usedReference,
+    List<CodeableConceptBuilder>? usedCode,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Procedure(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ProcedureBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      basedOn: basedOn
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basedOn',
-                ),
-              )
-              .toList() ??
-          this.basedOn,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusReason: statusReason?.copyWith(
-            objectPath: '$newObjectPath.statusReason',
-          ) ??
-          this.statusReason,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      performedX: performedX?.copyWith(
-            objectPath: '$newObjectPath.performedX',
-          ) as PerformedXProcedure? ??
-          this.performedX,
-      recorder: recorder?.copyWith(
-            objectPath: '$newObjectPath.recorder',
-          ) ??
-          this.recorder,
-      asserter: asserter?.copyWith(
-            objectPath: '$newObjectPath.asserter',
-          ) ??
-          this.asserter,
-      performer: performer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performer',
-                ),
-              )
-              .toList() ??
-          this.performer,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      bodySite: bodySite
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.bodySite',
-                ),
-              )
-              .toList() ??
-          this.bodySite,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      report: report
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.report',
-                ),
-              )
-              .toList() ??
-          this.report,
-      complication: complication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.complication',
-                ),
-              )
-              .toList() ??
-          this.complication,
-      complicationDetail: complicationDetail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.complicationDetail',
-                ),
-              )
-              .toList() ??
-          this.complicationDetail,
-      followUp: followUp
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.followUp',
-                ),
-              )
-              .toList() ??
-          this.followUp,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      focalDevice: focalDevice
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.focalDevice',
-                ),
-              )
-              .toList() ??
-          this.focalDevice,
-      usedReference: usedReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.usedReference',
-                ),
-              )
-              .toList() ??
-          this.usedReference,
-      usedCode: usedCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.usedCode',
-                ),
-              )
-              .toList() ??
-          this.usedCode,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ?? this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
+      basedOn: basedOn ?? this.basedOn,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      statusReason: statusReason ?? this.statusReason,
+      category: category ?? this.category,
+      code: code ?? this.code,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      performedX: performedX ?? this.performedX,
+      recorder: recorder ?? this.recorder,
+      asserter: asserter ?? this.asserter,
+      performer: performer ?? this.performer,
+      location: location ?? this.location,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      bodySite: bodySite ?? this.bodySite,
+      outcome: outcome ?? this.outcome,
+      report: report ?? this.report,
+      complication: complication ?? this.complication,
+      complicationDetail: complicationDetail ?? this.complicationDetail,
+      followUp: followUp ?? this.followUp,
+      note: note ?? this.note,
+      focalDevice: focalDevice ?? this.focalDevice,
+      usedReference: usedReference ?? this.usedReference,
+      usedCode: usedCode ?? this.usedCode,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Procedure) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ProcedureBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2184,49 +1908,49 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       instantiatesCanonical,
       o.instantiatesCanonical,
     )) {
       return false;
     }
-    if (!listEquals<FhirUri>(
+    if (!listEquals<FhirUriBuilder>(
       instantiatesUri,
       o.instantiatesUri,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       basedOn,
       o.basedOn,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       partOf,
       o.partOf,
     )) {
@@ -2286,7 +2010,7 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ProcedurePerformer>(
+    if (!listEquals<ProcedurePerformerBuilder>(
       performer,
       o.performer,
     )) {
@@ -2298,19 +2022,19 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       bodySite,
       o.bodySite,
     )) {
@@ -2322,49 +2046,49 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       report,
       o.report,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       complication,
       o.complication,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       complicationDetail,
       o.complicationDetail,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       followUp,
       o.followUp,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<ProcedureFocalDevice>(
+    if (!listEquals<ProcedureFocalDeviceBuilder>(
       focalDevice,
       o.focalDevice,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       usedReference,
       o.usedReference,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       usedCode,
       o.usedCode,
     )) {
@@ -2374,18 +2098,18 @@ class Procedure extends DomainResource {
   }
 }
 
-/// [ProcedurePerformer]
+/// [ProcedurePerformerBuilder]
 /// Limited to "real" people rather than equipment.
-class ProcedurePerformer extends BackboneElement {
+class ProcedurePerformerBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ProcedurePerformer]
+  /// [ProcedurePerformerBuilder]
 
-  const ProcedurePerformer({
+  ProcedurePerformerBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.function_,
-    required this.actor,
+    this.actor,
     this.onBehalfOf,
     super.disallowExtensions,
   }) : super(
@@ -2393,27 +2117,24 @@ class ProcedurePerformer extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ProcedurePerformer.empty() => ProcedurePerformer(
-        actor: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ProcedurePerformerBuilder.empty() => ProcedurePerformerBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProcedurePerformer.fromJson(
+  factory ProcedurePerformerBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Procedure.performer';
-    return ProcedurePerformer(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ProcedurePerformerBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2422,8 +2143,8 @@ class ProcedurePerformer extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2431,43 +2152,43 @@ class ProcedurePerformer extends BackboneElement {
             ),
           )
           .toList(),
-      function_: JsonParser.parseObject<CodeableConcept>(
+      function_: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'function',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.function',
       ),
-      actor: JsonParser.parseObject<Reference>(
+      actor: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'actor',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.actor',
-      )!,
-      onBehalfOf: JsonParser.parseObject<Reference>(
+      ),
+      onBehalfOf: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'onBehalfOf',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.onBehalfOf',
       ),
     );
   }
 
-  /// Deserialize [ProcedurePerformer]
+  /// Deserialize [ProcedurePerformerBuilder]
   /// from a [String] or [YamlMap] object
-  factory ProcedurePerformer.fromYaml(
+  factory ProcedurePerformerBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ProcedurePerformer.fromJson(
+      return ProcedurePerformerBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ProcedurePerformer.fromJson(
+      return ProcedurePerformerBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ProcedurePerformer '
+        'ProcedurePerformerBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2475,16 +2196,16 @@ class ProcedurePerformer extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ProcedurePerformer]
+  /// [ProcedurePerformerBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProcedurePerformer.fromJsonString(
+  factory ProcedurePerformerBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ProcedurePerformer.fromJson(json);
+      return ProcedurePerformerBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2497,31 +2218,31 @@ class ProcedurePerformer extends BackboneElement {
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
   /// procedure. For example, surgeon, anaesthetist, endoscopist.
-  final CodeableConcept? function_;
+  CodeableConceptBuilder? function_;
 
   /// [actor]
   /// The practitioner who was involved in the procedure.
-  final Reference actor;
+  ReferenceBuilder? actor;
 
   /// [onBehalfOf]
   /// The organization the device or practitioner was acting on behalf of.
-  final Reference? onBehalfOf;
+  ReferenceBuilder? onBehalfOf;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2530,35 +2251,17 @@ class ProcedurePerformer extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'function',
-      function_,
-    );
-    addField(
-      'actor',
-      actor,
-    );
-    addField(
-      'onBehalfOf',
-      onBehalfOf,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('function', function_);
+    addField('actor', actor);
+    addField('onBehalfOf', onBehalfOf);
     return json;
   }
 
@@ -2578,11 +2281,11 @@ class ProcedurePerformer extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2601,7 +2304,9 @@ class ProcedurePerformer extends BackboneElement {
           fields.add(function_!);
         }
       case 'actor':
-        fields.add(actor);
+        if (actor != null) {
+          fields.add(actor!);
+        }
       case 'onBehalfOf':
         if (onBehalfOf != null) {
           fields.add(onBehalfOf!);
@@ -2616,7 +2321,7 @@ class ProcedurePerformer extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2625,73 +2330,76 @@ class ProcedurePerformer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'function':
         {
-          if (child is CodeableConcept) {
-            return copyWith(function_: child);
+          if (child is CodeableConceptBuilder) {
+            function_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
         {
-          if (child is Reference) {
-            return copyWith(actor: child);
+          if (child is ReferenceBuilder) {
+            actor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'onBehalfOf':
         {
-          if (child is Reference) {
-            return copyWith(onBehalfOf: child);
+          if (child is ReferenceBuilder) {
+            onBehalfOf = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2707,66 +2415,56 @@ class ProcedurePerformer extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'function':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'actor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'onBehalfOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ProcedurePerformer]
+  /// Creates a new [ProcedurePerformerBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProcedurePerformer createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'function':
         {
-          return copyWith(
-            function_: CodeableConcept.empty(),
-          );
+          function_ = CodeableConceptBuilder.empty();
+          return;
         }
       case 'actor':
         {
-          return copyWith(
-            actor: Reference.empty(),
-          );
+          actor = ReferenceBuilder.empty();
+          return;
         }
       case 'onBehalfOf':
         {
-          return copyWith(
-            onBehalfOf: Reference.empty(),
-          );
+          onBehalfOf = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2775,33 +2473,32 @@ class ProcedurePerformer extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ProcedurePerformer clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool function_ = false,
+    bool actor = false,
     bool onBehalfOf = false,
   }) {
-    return ProcedurePerformer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      function_: function_ ? null : this.function_,
-      actor: actor,
-      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (function_) this.function_ = null;
+    if (actor) this.actor = null;
+    if (onBehalfOf) this.onBehalfOf = null;
   }
 
   @override
-  ProcedurePerformer clone() => throw UnimplementedError();
+  ProcedurePerformerBuilder clone() => throw UnimplementedError();
   @override
-  ProcedurePerformer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? function_,
-    Reference? actor,
-    Reference? onBehalfOf,
+  ProcedurePerformerBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? function_,
+    ReferenceBuilder? actor,
+    ReferenceBuilder? onBehalfOf,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2809,46 +2506,37 @@ class ProcedurePerformer extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ProcedurePerformer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      function_: function_?.copyWith(
-            objectPath: '$newObjectPath.function',
-          ) ??
-          this.function_,
-      actor: actor?.copyWith(
-            objectPath: '$newObjectPath.actor',
-          ) ??
-          this.actor,
-      onBehalfOf: onBehalfOf?.copyWith(
-            objectPath: '$newObjectPath.onBehalfOf',
-          ) ??
-          this.onBehalfOf,
+    final newResult = ProcedurePerformerBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      function_: function_ ?? this.function_,
+      actor: actor ?? this.actor,
+      onBehalfOf: onBehalfOf ?? this.onBehalfOf,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ProcedurePerformer) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ProcedurePerformerBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2859,13 +2547,13 @@ class ProcedurePerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2893,47 +2581,44 @@ class ProcedurePerformer extends BackboneElement {
   }
 }
 
-/// [ProcedureFocalDevice]
+/// [ProcedureFocalDeviceBuilder]
 /// A device that is implanted, removed or otherwise manipulated
 /// (calibration, battery replacement, fitting a prosthesis, attaching a
 /// wound-vac, etc.) as a focal portion of the Procedure.
-class ProcedureFocalDevice extends BackboneElement {
+class ProcedureFocalDeviceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ProcedureFocalDevice]
+  /// [ProcedureFocalDeviceBuilder]
 
-  const ProcedureFocalDevice({
+  ProcedureFocalDeviceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.action,
-    required this.manipulated,
+    this.manipulated,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Procedure.focalDevice',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ProcedureFocalDevice.empty() => ProcedureFocalDevice(
-        manipulated: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ProcedureFocalDeviceBuilder.empty() => ProcedureFocalDeviceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProcedureFocalDevice.fromJson(
+  factory ProcedureFocalDeviceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Procedure.focalDevice';
-    return ProcedureFocalDevice(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ProcedureFocalDeviceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2942,8 +2627,8 @@ class ProcedureFocalDevice extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2951,37 +2636,37 @@ class ProcedureFocalDevice extends BackboneElement {
             ),
           )
           .toList(),
-      action: JsonParser.parseObject<CodeableConcept>(
+      action: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'action',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.action',
       ),
-      manipulated: JsonParser.parseObject<Reference>(
+      manipulated: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'manipulated',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.manipulated',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ProcedureFocalDevice]
+  /// Deserialize [ProcedureFocalDeviceBuilder]
   /// from a [String] or [YamlMap] object
-  factory ProcedureFocalDevice.fromYaml(
+  factory ProcedureFocalDeviceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ProcedureFocalDevice.fromJson(
+      return ProcedureFocalDeviceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ProcedureFocalDevice.fromJson(
+      return ProcedureFocalDeviceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ProcedureFocalDevice '
+        'ProcedureFocalDeviceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2989,16 +2674,16 @@ class ProcedureFocalDevice extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ProcedureFocalDevice]
+  /// [ProcedureFocalDeviceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProcedureFocalDevice.fromJsonString(
+  factory ProcedureFocalDeviceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ProcedureFocalDevice.fromJson(json);
+      return ProcedureFocalDeviceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3010,27 +2695,27 @@ class ProcedureFocalDevice extends BackboneElement {
 
   /// [action]
   /// The kind of change that happened to the device during the procedure.
-  final CodeableConcept? action;
+  CodeableConceptBuilder? action;
 
   /// [manipulated]
   /// The device that was manipulated (changed) during the procedure.
-  final Reference manipulated;
+  ReferenceBuilder? manipulated;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3039,31 +2724,16 @@ class ProcedureFocalDevice extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'action',
-      action,
-    );
-    addField(
-      'manipulated',
-      manipulated,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('action', action);
+    addField('manipulated', manipulated);
     return json;
   }
 
@@ -3082,11 +2752,11 @@ class ProcedureFocalDevice extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3105,7 +2775,9 @@ class ProcedureFocalDevice extends BackboneElement {
           fields.add(action!);
         }
       case 'manipulated':
-        fields.add(manipulated);
+        if (manipulated != null) {
+          fields.add(manipulated!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -3116,7 +2788,7 @@ class ProcedureFocalDevice extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3125,65 +2797,67 @@ class ProcedureFocalDevice extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is CodeableConcept) {
-            return copyWith(action: child);
+          if (child is CodeableConceptBuilder) {
+            action = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manipulated':
         {
-          if (child is Reference) {
-            return copyWith(manipulated: child);
+          if (child is ReferenceBuilder) {
+            manipulated = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3199,58 +2873,49 @@ class ProcedureFocalDevice extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'action':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'manipulated':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ProcedureFocalDevice]
+  /// Creates a new [ProcedureFocalDeviceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProcedureFocalDevice createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: CodeableConcept.empty(),
-          );
+          action = CodeableConceptBuilder.empty();
+          return;
         }
       case 'manipulated':
         {
-          return copyWith(
-            manipulated: Reference.empty(),
-          );
+          manipulated = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3259,30 +2924,29 @@ class ProcedureFocalDevice extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ProcedureFocalDevice clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool action = false,
+    bool manipulated = false,
   }) {
-    return ProcedureFocalDevice(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      action: action ? null : this.action,
-      manipulated: manipulated,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (action) this.action = null;
+    if (manipulated) this.manipulated = null;
   }
 
   @override
-  ProcedureFocalDevice clone() => throw UnimplementedError();
+  ProcedureFocalDeviceBuilder clone() => throw UnimplementedError();
   @override
-  ProcedureFocalDevice copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? action,
-    Reference? manipulated,
+  ProcedureFocalDeviceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? action,
+    ReferenceBuilder? manipulated,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3290,42 +2954,36 @@ class ProcedureFocalDevice extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ProcedureFocalDevice(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      action: action?.copyWith(
-            objectPath: '$newObjectPath.action',
-          ) ??
-          this.action,
-      manipulated: manipulated?.copyWith(
-            objectPath: '$newObjectPath.manipulated',
-          ) ??
-          this.manipulated,
+    final newResult = ProcedureFocalDeviceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      action: action ?? this.action,
+      manipulated: manipulated ?? this.manipulated,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ProcedureFocalDevice) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ProcedureFocalDeviceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3336,13 +2994,13 @@ class ProcedureFocalDevice extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

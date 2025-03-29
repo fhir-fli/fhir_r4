@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Whether the application produces or consumes documents.
-class DocumentMode extends FhirCodeEnum {
+class DocumentModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  DocumentMode._({
+  DocumentModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class DocumentMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory DocumentMode(
+  factory DocumentModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return DocumentMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return DocumentModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,62 +43,65 @@ class DocumentMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [DocumentMode] with element only
-  factory DocumentMode.empty() => DocumentMode._(validatedValue: '');
+  /// Create empty [DocumentModeBuilder] with element only
+  factory DocumentModeBuilder.empty() =>
+      DocumentModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DocumentMode] from JSON.
-  factory DocumentMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DocumentModeBuilder] from JSON.
+  factory DocumentModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentMode.elementOnly.withElement(element);
+      return DocumentModeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DocumentMode cannot be constructed from JSON.',
+        'DocumentModeBuilder cannot be constructed from JSON.',
       );
     }
-    return DocumentMode._(
+    return DocumentModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// producer
-  static final DocumentMode producer = DocumentMode._(
+  static DocumentModeBuilder producer = DocumentModeBuilder._(
     validatedValue: 'producer',
-    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Producer'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Producer'.toFhirStringBuilder,
   );
 
   /// consumer
-  static final DocumentMode consumer = DocumentMode._(
+  static DocumentModeBuilder consumer = DocumentModeBuilder._(
     validatedValue: 'consumer',
-    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Consumer'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Consumer'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final DocumentMode elementOnly = DocumentMode._(validatedValue: '');
+  static DocumentModeBuilder elementOnly =
+      DocumentModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<DocumentMode> values = [
+  static List<DocumentModeBuilder> values = [
     producer,
     consumer,
   ];
 
   /// Clones the current instance
   @override
-  DocumentMode clone() => DocumentMode._(
+  DocumentModeBuilder clone() => DocumentModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  DocumentMode withElement(Element? newElement) {
-    return DocumentMode._(validatedValue: value, element: newElement);
+  DocumentModeBuilder withElement(ElementBuilder? newElement) {
+    return DocumentModeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,11 +117,11 @@ class DocumentMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  DocumentMode copyWith({
+  DocumentModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -129,7 +132,7 @@ class DocumentMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return DocumentMode._(
+    return DocumentModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -139,7 +142,7 @@ class DocumentMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

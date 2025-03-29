@@ -1,16 +1,18 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ImmunizationEvaluation]
+/// [ImmunizationEvaluationBuilder]
 /// Describes a comparison of an immunization event against published
 /// recommendations to determine if the administration is "valid" in
 /// relation to those recommendations.
-class ImmunizationEvaluation extends DomainResource {
+class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [ImmunizationEvaluation]
+  /// [ImmunizationEvaluationBuilder]
 
-  const ImmunizationEvaluation({
+  ImmunizationEvaluationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -20,13 +22,13 @@ class ImmunizationEvaluation extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
-    required this.patient,
+    this.status,
+    this.patient,
     this.date,
     this.authority,
-    required this.targetDisease,
-    required this.immunizationEvent,
-    required this.doseStatus,
+    this.targetDisease,
+    this.immunizationEvent,
+    this.doseStatus,
     this.doseStatusReason,
     this.description,
     this.series,
@@ -38,55 +40,49 @@ class ImmunizationEvaluation extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ImmunizationEvaluation.empty() => ImmunizationEvaluation(
-        status: ImmunizationEvaluationStatusCodes.values.first,
-        patient: Reference.empty(),
-        targetDisease: CodeableConcept.empty(),
-        immunizationEvent: Reference.empty(),
-        doseStatus: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ImmunizationEvaluationBuilder.empty() =>
+      ImmunizationEvaluationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImmunizationEvaluation.fromJson(
+  factory ImmunizationEvaluationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ImmunizationEvaluation';
-    return ImmunizationEvaluation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ImmunizationEvaluationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -95,8 +91,8 @@ class ImmunizationEvaluation extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -105,8 +101,8 @@ class ImmunizationEvaluation extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -115,8 +111,8 @@ class ImmunizationEvaluation extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -124,51 +120,52 @@ class ImmunizationEvaluation extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<ImmunizationEvaluationStatusCodes>(
+      status:
+          JsonParser.parsePrimitive<ImmunizationEvaluationStatusCodesBuilder>(
         json,
         'status',
-        ImmunizationEvaluationStatusCodes.fromJson,
+        ImmunizationEvaluationStatusCodesBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      patient: JsonParser.parseObject<Reference>(
+      ),
+      patient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'patient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.patient',
-      )!,
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      authority: JsonParser.parseObject<Reference>(
+      authority: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'authority',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.authority',
       ),
-      targetDisease: JsonParser.parseObject<CodeableConcept>(
+      targetDisease: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'targetDisease',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.targetDisease',
-      )!,
-      immunizationEvent: JsonParser.parseObject<Reference>(
+      ),
+      immunizationEvent: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'immunizationEvent',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.immunizationEvent',
-      )!,
-      doseStatus: JsonParser.parseObject<CodeableConcept>(
+      ),
+      doseStatus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'doseStatus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.doseStatus',
-      )!,
+      ),
       doseStatusReason: (json['doseStatusReason'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.doseStatusReason',
@@ -176,55 +173,55 @@ class ImmunizationEvaluation extends DomainResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
-      series: JsonParser.parsePrimitive<FhirString>(
+      series: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'series',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.series',
       ),
       doseNumberX:
-          JsonParser.parsePolymorphic<DoseNumberXImmunizationEvaluation>(
+          JsonParser.parsePolymorphic<DoseNumberXImmunizationEvaluationBuilder>(
         json,
         {
-          'doseNumberPositiveInt': FhirPositiveInt.fromJson,
-          'doseNumberString': FhirString.fromJson,
+          'doseNumberPositiveInt': FhirPositiveIntBuilder.fromJson,
+          'doseNumberString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      seriesDosesX:
-          JsonParser.parsePolymorphic<SeriesDosesXImmunizationEvaluation>(
+      seriesDosesX: JsonParser.parsePolymorphic<
+          SeriesDosesXImmunizationEvaluationBuilder>(
         json,
         {
-          'seriesDosesPositiveInt': FhirPositiveInt.fromJson,
-          'seriesDosesString': FhirString.fromJson,
+          'seriesDosesPositiveInt': FhirPositiveIntBuilder.fromJson,
+          'seriesDosesString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [ImmunizationEvaluation]
+  /// Deserialize [ImmunizationEvaluationBuilder]
   /// from a [String] or [YamlMap] object
-  factory ImmunizationEvaluation.fromYaml(
+  factory ImmunizationEvaluationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ImmunizationEvaluation.fromJson(
+      return ImmunizationEvaluationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ImmunizationEvaluation.fromJson(
+      return ImmunizationEvaluationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImmunizationEvaluation '
+        'ImmunizationEvaluationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -232,16 +229,16 @@ class ImmunizationEvaluation extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [ImmunizationEvaluation]
+  /// [ImmunizationEvaluationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImmunizationEvaluation.fromJsonString(
+  factory ImmunizationEvaluationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ImmunizationEvaluation.fromJson(json);
+      return ImmunizationEvaluationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -253,90 +250,92 @@ class ImmunizationEvaluation extends DomainResource {
 
   /// [identifier]
   /// A unique identifier assigned to this immunization evaluation record.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// Indicates the current status of the evaluation of the vaccination
   /// administration event.
-  final ImmunizationEvaluationStatusCodes status;
+  ImmunizationEvaluationStatusCodesBuilder? status;
 
   /// [patient]
   /// The individual for whom the evaluation is being done.
-  final Reference patient;
+  ReferenceBuilder? patient;
 
   /// [date]
   /// The date the evaluation of the vaccine administration event was
   /// performed.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [authority]
   /// Indicates the authority who published the protocol (e.g. ACIP).
-  final Reference? authority;
+  ReferenceBuilder? authority;
 
   /// [targetDisease]
   /// The vaccine preventable disease the dose is being evaluated against.
-  final CodeableConcept targetDisease;
+  CodeableConceptBuilder? targetDisease;
 
   /// [immunizationEvent]
   /// The vaccine administration event being evaluated.
-  final Reference immunizationEvent;
+  ReferenceBuilder? immunizationEvent;
 
   /// [doseStatus]
   /// Indicates if the dose is valid or not valid with respect to the
   /// published recommendations.
-  final CodeableConcept doseStatus;
+  CodeableConceptBuilder? doseStatus;
 
   /// [doseStatusReason]
   /// Provides an explanation as to why the vaccine administration event is
   /// valid or not relative to the published recommendations.
-  final List<CodeableConcept>? doseStatusReason;
+  List<CodeableConceptBuilder>? doseStatusReason;
 
   /// [description]
   /// Additional information about the evaluation.
-  final FhirString? description;
+  FhirStringBuilder? description;
 
   /// [series]
   /// One possible path to achieve presumed immunity against a disease -
   /// within the context of an authority.
-  final FhirString? series;
+  FhirStringBuilder? series;
 
   /// [doseNumberX]
   /// Nominal position in a series.
-  final DoseNumberXImmunizationEvaluation? doseNumberX;
+  DoseNumberXImmunizationEvaluationBuilder? doseNumberX;
 
-  /// Getter for [doseNumberPositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get doseNumberPositiveInt =>
-      doseNumberX?.isAs<FhirPositiveInt>();
+  /// Getter for [doseNumberPositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get doseNumberPositiveInt =>
+      doseNumberX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [doseNumberString] as a FhirString
-  FhirString? get doseNumberString => doseNumberX?.isAs<FhirString>();
+  /// Getter for [doseNumberString] as a FhirStringBuilder
+  FhirStringBuilder? get doseNumberString =>
+      doseNumberX?.isAs<FhirStringBuilder>();
 
   /// [seriesDosesX]
   /// The recommended number of doses to achieve immunity.
-  final SeriesDosesXImmunizationEvaluation? seriesDosesX;
+  SeriesDosesXImmunizationEvaluationBuilder? seriesDosesX;
 
-  /// Getter for [seriesDosesPositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get seriesDosesPositiveInt =>
-      seriesDosesX?.isAs<FhirPositiveInt>();
+  /// Getter for [seriesDosesPositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get seriesDosesPositiveInt =>
+      seriesDosesX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [seriesDosesString] as a FhirString
-  FhirString? get seriesDosesString => seriesDosesX?.isAs<FhirString>();
+  /// Getter for [seriesDosesString] as a FhirStringBuilder
+  FhirStringBuilder? get seriesDosesString =>
+      seriesDosesX?.isAs<FhirStringBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -345,102 +344,39 @@ class ImmunizationEvaluation extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'patient',
-      patient,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'authority',
-      authority,
-    );
-    addField(
-      'targetDisease',
-      targetDisease,
-    );
-    addField(
-      'immunizationEvent',
-      immunizationEvent,
-    );
-    addField(
-      'doseStatus',
-      doseStatus,
-    );
-    addField(
-      'doseStatusReason',
-      doseStatusReason,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'series',
-      series,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('patient', patient);
+    addField('date', date);
+    addField('authority', authority);
+    addField('targetDisease', targetDisease);
+    addField('immunizationEvent', immunizationEvent);
+    addField('doseStatus', doseStatus);
+    addField('doseStatusReason', doseStatusReason);
+    addField('description', description);
+    addField('series', series);
     if (doseNumberX != null) {
       final fhirType = doseNumberX!.fhirType;
-      addField(
-        'doseNumber${fhirType.capitalize()}',
-        doseNumberX,
-      );
+      addField('doseNumber${fhirType.capitalize()}', doseNumberX);
     }
 
     if (seriesDosesX != null) {
       final fhirType = seriesDosesX!.fhirType;
-      addField(
-        'seriesDoses${fhirType.capitalize()}',
-        seriesDosesX,
-      );
+      addField('seriesDoses${fhirType.capitalize()}', seriesDosesX);
     }
 
     return json;
@@ -477,11 +413,11 @@ class ImmunizationEvaluation extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -520,9 +456,13 @@ class ImmunizationEvaluation extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'patient':
-        fields.add(patient);
+        if (patient != null) {
+          fields.add(patient!);
+        }
       case 'date':
         if (date != null) {
           fields.add(date!);
@@ -532,11 +472,17 @@ class ImmunizationEvaluation extends DomainResource {
           fields.add(authority!);
         }
       case 'targetDisease':
-        fields.add(targetDisease);
+        if (targetDisease != null) {
+          fields.add(targetDisease!);
+        }
       case 'immunizationEvent':
-        fields.add(immunizationEvent);
+        if (immunizationEvent != null) {
+          fields.add(immunizationEvent!);
+        }
       case 'doseStatus':
-        fields.add(doseStatus);
+        if (doseStatus != null) {
+          fields.add(doseStatus!);
+        }
       case 'doseStatusReason':
         if (doseStatusReason != null) {
           fields.addAll(doseStatusReason!);
@@ -550,27 +496,35 @@ class ImmunizationEvaluation extends DomainResource {
           fields.add(series!);
         }
       case 'doseNumber':
-        fields.add(doseNumberX!);
+        if (doseNumberX != null) {
+          fields.add(doseNumberX!);
+        }
       case 'doseNumberX':
-        fields.add(doseNumberX!);
+        if (doseNumberX != null) {
+          fields.add(doseNumberX!);
+        }
       case 'doseNumberPositiveInt':
-        if (doseNumberX is FhirPositiveInt) {
+        if (doseNumberX is FhirPositiveIntBuilder) {
           fields.add(doseNumberX!);
         }
       case 'doseNumberString':
-        if (doseNumberX is FhirString) {
+        if (doseNumberX is FhirStringBuilder) {
           fields.add(doseNumberX!);
         }
       case 'seriesDoses':
-        fields.add(seriesDosesX!);
+        if (seriesDosesX != null) {
+          fields.add(seriesDosesX!);
+        }
       case 'seriesDosesX':
-        fields.add(seriesDosesX!);
+        if (seriesDosesX != null) {
+          fields.add(seriesDosesX!);
+        }
       case 'seriesDosesPositiveInt':
-        if (seriesDosesX is FhirPositiveInt) {
+        if (seriesDosesX is FhirPositiveIntBuilder) {
           fields.add(seriesDosesX!);
         }
       case 'seriesDosesString':
-        if (seriesDosesX is FhirString) {
+        if (seriesDosesX is FhirStringBuilder) {
           fields.add(seriesDosesX!);
         }
       default:
@@ -583,7 +537,7 @@ class ImmunizationEvaluation extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -592,255 +546,278 @@ class ImmunizationEvaluation extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ImmunizationEvaluationStatusCodes) {
-            return copyWith(status: child);
+          if (child is ImmunizationEvaluationStatusCodesBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
         {
-          if (child is Reference) {
-            return copyWith(patient: child);
+          if (child is ReferenceBuilder) {
+            patient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authority':
         {
-          if (child is Reference) {
-            return copyWith(authority: child);
+          if (child is ReferenceBuilder) {
+            authority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetDisease':
         {
-          if (child is CodeableConcept) {
-            return copyWith(targetDisease: child);
+          if (child is CodeableConceptBuilder) {
+            targetDisease = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'immunizationEvent':
         {
-          if (child is Reference) {
-            return copyWith(immunizationEvent: child);
+          if (child is ReferenceBuilder) {
+            immunizationEvent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseStatus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(doseStatus: child);
+          if (child is CodeableConceptBuilder) {
+            doseStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseStatusReason':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?doseStatusReason, ...child];
-            return copyWith(doseStatusReason: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            doseStatusReason = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?doseStatusReason, child];
-            return copyWith(doseStatusReason: newList);
+            doseStatusReason = [...(doseStatusReason ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'series':
         {
-          if (child is FhirString) {
-            return copyWith(series: child);
+          if (child is FhirStringBuilder) {
+            series = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseNumberX':
         {
-          if (child is DoseNumberXImmunizationEvaluation) {
-            return copyWith(doseNumberX: child);
+          if (child is DoseNumberXImmunizationEvaluationBuilder) {
+            doseNumberX = child;
+            return;
           } else {
-            if (child is FhirPositiveInt) {
-              return copyWith(doseNumberX: child);
+            if (child is FhirPositiveIntBuilder) {
+              doseNumberX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(doseNumberX: child);
+            if (child is FhirStringBuilder) {
+              doseNumberX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'doseNumberFhirPositiveInt':
+      case 'doseNumberPositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(doseNumberX: child);
+          if (child is FhirPositiveIntBuilder) {
+            doseNumberX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'doseNumberFhirString':
+      case 'doseNumberString':
         {
-          if (child is FhirString) {
-            return copyWith(doseNumberX: child);
+          if (child is FhirStringBuilder) {
+            doseNumberX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'seriesDosesX':
         {
-          if (child is SeriesDosesXImmunizationEvaluation) {
-            return copyWith(seriesDosesX: child);
+          if (child is SeriesDosesXImmunizationEvaluationBuilder) {
+            seriesDosesX = child;
+            return;
           } else {
-            if (child is FhirPositiveInt) {
-              return copyWith(seriesDosesX: child);
+            if (child is FhirPositiveIntBuilder) {
+              seriesDosesX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(seriesDosesX: child);
+            if (child is FhirStringBuilder) {
+              seriesDosesX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'seriesDosesFhirPositiveInt':
+      case 'seriesDosesPositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(seriesDosesX: child);
+          if (child is FhirPositiveIntBuilder) {
+            seriesDosesX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'seriesDosesFhirString':
+      case 'seriesDosesString':
         {
-          if (child is FhirString) {
-            return copyWith(seriesDosesX: child);
+          if (child is FhirStringBuilder) {
+            seriesDosesX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -856,212 +833,185 @@ class ImmunizationEvaluation extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'patient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'authority':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'targetDisease':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'immunizationEvent':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'doseStatus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'doseStatusReason':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'series':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'doseNumber':
       case 'doseNumberX':
-        return ['FhirPositiveInt', 'FhirString'];
+        return ['FhirPositiveIntBuilder', 'FhirStringBuilder'];
       case 'doseNumberPositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'doseNumberString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'seriesDoses':
       case 'seriesDosesX':
-        return ['FhirPositiveInt', 'FhirString'];
+        return ['FhirPositiveIntBuilder', 'FhirStringBuilder'];
       case 'seriesDosesPositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'seriesDosesString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ImmunizationEvaluation]
+  /// Creates a new [ImmunizationEvaluationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ImmunizationEvaluation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ImmunizationEvaluationStatusCodes.empty(),
-          );
+          status = ImmunizationEvaluationStatusCodesBuilder.empty();
+          return;
         }
       case 'patient':
         {
-          return copyWith(
-            patient: Reference.empty(),
-          );
+          patient = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'authority':
         {
-          return copyWith(
-            authority: Reference.empty(),
-          );
+          authority = ReferenceBuilder.empty();
+          return;
         }
       case 'targetDisease':
         {
-          return copyWith(
-            targetDisease: CodeableConcept.empty(),
-          );
+          targetDisease = CodeableConceptBuilder.empty();
+          return;
         }
       case 'immunizationEvent':
         {
-          return copyWith(
-            immunizationEvent: Reference.empty(),
-          );
+          immunizationEvent = ReferenceBuilder.empty();
+          return;
         }
       case 'doseStatus':
         {
-          return copyWith(
-            doseStatus: CodeableConcept.empty(),
-          );
+          doseStatus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'doseStatusReason':
         {
-          return copyWith(
-            doseStatusReason: <CodeableConcept>[],
-          );
+          doseStatusReason = <CodeableConceptBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       case 'series':
         {
-          return copyWith(
-            series: FhirString.empty(),
-          );
+          series = FhirStringBuilder.empty();
+          return;
         }
       case 'doseNumber':
       case 'doseNumberX':
       case 'doseNumberPositiveInt':
         {
-          return copyWith(
-            doseNumberX: FhirPositiveInt.empty(),
-          );
+          doseNumberX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'doseNumberString':
         {
-          return copyWith(
-            doseNumberX: FhirString.empty(),
-          );
+          doseNumberX = FhirStringBuilder.empty();
+          return;
         }
       case 'seriesDoses':
       case 'seriesDosesX':
       case 'seriesDosesPositiveInt':
         {
-          return copyWith(
-            seriesDosesX: FhirPositiveInt.empty(),
-          );
+          seriesDosesX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'seriesDosesString':
         {
-          return copyWith(
-            seriesDosesX: FhirString.empty(),
-          );
+          seriesDosesX = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1070,7 +1020,7 @@ class ImmunizationEvaluation extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  ImmunizationEvaluation clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1080,175 +1030,119 @@ class ImmunizationEvaluation extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
+    bool patient = false,
     bool date = false,
     bool authority = false,
+    bool targetDisease = false,
+    bool immunizationEvent = false,
+    bool doseStatus = false,
     bool doseStatusReason = false,
     bool description = false,
     bool series = false,
     bool doseNumber = false,
     bool seriesDoses = false,
   }) {
-    return ImmunizationEvaluation(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      patient: patient,
-      date: date ? null : this.date,
-      authority: authority ? null : this.authority,
-      targetDisease: targetDisease,
-      immunizationEvent: immunizationEvent,
-      doseStatus: doseStatus,
-      doseStatusReason: doseStatusReason ? null : this.doseStatusReason,
-      description: description ? null : this.description,
-      series: series ? null : this.series,
-      doseNumberX: doseNumber ? null : doseNumberX,
-      seriesDosesX: seriesDoses ? null : seriesDosesX,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (patient) this.patient = null;
+    if (date) this.date = null;
+    if (authority) this.authority = null;
+    if (targetDisease) this.targetDisease = null;
+    if (immunizationEvent) this.immunizationEvent = null;
+    if (doseStatus) this.doseStatus = null;
+    if (doseStatusReason) this.doseStatusReason = null;
+    if (description) this.description = null;
+    if (series) this.series = null;
+    if (doseNumber) this.doseNumberX = null;
+    if (seriesDoses) this.seriesDosesX = null;
   }
 
   @override
-  ImmunizationEvaluation clone() => throw UnimplementedError();
+  ImmunizationEvaluationBuilder clone() => throw UnimplementedError();
   @override
-  ImmunizationEvaluation copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    ImmunizationEvaluationStatusCodes? status,
-    Reference? patient,
-    FhirDateTime? date,
-    Reference? authority,
-    CodeableConcept? targetDisease,
-    Reference? immunizationEvent,
-    CodeableConcept? doseStatus,
-    List<CodeableConcept>? doseStatusReason,
-    FhirString? description,
-    FhirString? series,
-    DoseNumberXImmunizationEvaluation? doseNumberX,
-    SeriesDosesXImmunizationEvaluation? seriesDosesX,
+  ImmunizationEvaluationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    ImmunizationEvaluationStatusCodesBuilder? status,
+    ReferenceBuilder? patient,
+    FhirDateTimeBuilder? date,
+    ReferenceBuilder? authority,
+    CodeableConceptBuilder? targetDisease,
+    ReferenceBuilder? immunizationEvent,
+    CodeableConceptBuilder? doseStatus,
+    List<CodeableConceptBuilder>? doseStatusReason,
+    FhirStringBuilder? description,
+    FhirStringBuilder? series,
+    DoseNumberXImmunizationEvaluationBuilder? doseNumberX,
+    SeriesDosesXImmunizationEvaluationBuilder? seriesDosesX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return ImmunizationEvaluation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ImmunizationEvaluationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      authority: authority?.copyWith(
-            objectPath: '$newObjectPath.authority',
-          ) ??
-          this.authority,
-      targetDisease: targetDisease?.copyWith(
-            objectPath: '$newObjectPath.targetDisease',
-          ) ??
-          this.targetDisease,
-      immunizationEvent: immunizationEvent?.copyWith(
-            objectPath: '$newObjectPath.immunizationEvent',
-          ) ??
-          this.immunizationEvent,
-      doseStatus: doseStatus?.copyWith(
-            objectPath: '$newObjectPath.doseStatus',
-          ) ??
-          this.doseStatus,
-      doseStatusReason: doseStatusReason
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.doseStatusReason',
-                ),
-              )
-              .toList() ??
-          this.doseStatusReason,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      series: series?.copyWith(
-            objectPath: '$newObjectPath.series',
-          ) ??
-          this.series,
-      doseNumberX: doseNumberX?.copyWith(
-            objectPath: '$newObjectPath.doseNumberX',
-          ) as DoseNumberXImmunizationEvaluation? ??
-          this.doseNumberX,
-      seriesDosesX: seriesDosesX?.copyWith(
-            objectPath: '$newObjectPath.seriesDosesX',
-          ) as SeriesDosesXImmunizationEvaluation? ??
-          this.seriesDosesX,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      patient: patient ?? this.patient,
+      date: date ?? this.date,
+      authority: authority ?? this.authority,
+      targetDisease: targetDisease ?? this.targetDisease,
+      immunizationEvent: immunizationEvent ?? this.immunizationEvent,
+      doseStatus: doseStatus ?? this.doseStatus,
+      doseStatusReason: doseStatusReason ?? this.doseStatusReason,
+      description: description ?? this.description,
+      series: series ?? this.series,
+      doseNumberX: doseNumberX ?? this.doseNumberX,
+      seriesDosesX: seriesDosesX ?? this.seriesDosesX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ImmunizationEvaluation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ImmunizationEvaluationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1283,25 +1177,25 @@ class ImmunizationEvaluation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1349,7 +1243,7 @@ class ImmunizationEvaluation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       doseStatusReason,
       o.doseStatusReason,
     )) {

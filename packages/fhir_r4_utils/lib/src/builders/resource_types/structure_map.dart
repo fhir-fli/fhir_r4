@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [StructureMap]
+/// [StructureMapBuilder]
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
-class StructureMap extends CanonicalResource {
+class StructureMapBuilder extends CanonicalResourceBuilder {
   /// Primary constructor for
-  /// [StructureMap]
+  /// [StructureMapBuilder]
 
-  const StructureMap({
+  StructureMapBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -18,12 +20,12 @@ class StructureMap extends CanonicalResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required super.url,
+    super.url,
     this.identifier,
     super.version,
-    required this.name,
+    this.name,
     this.title,
-    required super.status,
+    super.status,
     super.experimental,
     super.date,
     super.publisher,
@@ -35,61 +37,55 @@ class StructureMap extends CanonicalResource {
     this.copyright,
     this.structure,
     this.import_,
-    required this.group,
+    this.group,
   }) : super(
           objectPath: 'StructureMap',
           resourceType: R4ResourceType.StructureMap,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMap.empty() => StructureMap(
-        url: FhirUri.empty(),
-        name: FhirString.empty(),
-        status: PublicationStatus.values.first,
-        group: <StructureMapGroup>[],
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapBuilder.empty() => StructureMapBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMap.fromJson(
+  factory StructureMapBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap';
-    return StructureMap(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -98,8 +94,8 @@ class StructureMap extends CanonicalResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -108,8 +104,8 @@ class StructureMap extends CanonicalResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -117,15 +113,15 @@ class StructureMap extends CanonicalResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -133,51 +129,51 @@ class StructureMap extends CanonicalResource {
             ),
           )
           .toList(),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      title: JsonParser.parsePrimitive<FhirString>(
+      ),
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
       ),
-      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+      experimental: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'experimental',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.experimental',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -185,15 +181,15 @@ class StructureMap extends CanonicalResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -202,8 +198,8 @@ class StructureMap extends CanonicalResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -211,21 +207,21 @@ class StructureMap extends CanonicalResource {
             ),
           )
           .toList(),
-      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+      purpose: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'purpose',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
       structure: (json['structure'] as List<dynamic>?)
-          ?.map<StructureMapStructure>(
-            (v) => StructureMapStructure.fromJson(
+          ?.map<StructureMapStructureBuilder>(
+            (v) => StructureMapStructureBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.structure',
@@ -233,15 +229,15 @@ class StructureMap extends CanonicalResource {
             ),
           )
           .toList(),
-      import_: JsonParser.parsePrimitiveList<FhirCanonical>(
+      import_: JsonParser.parsePrimitiveList<FhirCanonicalBuilder>(
         json,
         'import',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.import',
       ),
-      group: (json['group'] as List<dynamic>)
-          .map<StructureMapGroup>(
-            (v) => StructureMapGroup.fromJson(
+      group: (json['group'] as List<dynamic>?)
+          ?.map<StructureMapGroupBuilder>(
+            (v) => StructureMapGroupBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.group',
@@ -252,22 +248,22 @@ class StructureMap extends CanonicalResource {
     );
   }
 
-  /// Deserialize [StructureMap]
+  /// Deserialize [StructureMapBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMap.fromYaml(
+  factory StructureMapBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMap.fromJson(
+      return StructureMapBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMap.fromJson(
+      return StructureMapBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMap '
+        'StructureMapBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -275,16 +271,16 @@ class StructureMap extends CanonicalResource {
   }
 
   /// Factory constructor for
-  /// [StructureMap]
+  /// [StructureMapBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMap.fromJsonString(
+  factory StructureMapBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMap.fromJson(json);
+      return StructureMapBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -298,59 +294,59 @@ class StructureMap extends CanonicalResource {
   /// A formal identifier that is used to identify this structure map when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [name]
   /// A natural language name identifying the structure map. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the structure map.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [purpose]
   /// Explanation of why this structure map is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdownBuilder? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the structure map and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the structure map.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
 
   /// [structure]
   /// A structure definition used by this map. The structure definition may
   /// describe instances that are converted, or the instances that are
   /// produced.
-  final List<StructureMapStructure>? structure;
+  List<StructureMapStructureBuilder>? structure;
 
   /// [import_]
   /// Other maps used by this map (canonical URLs).
-  final List<FhirCanonical>? import_;
+  List<FhirCanonicalBuilder>? import_;
 
   /// [group]
   /// Organizes the mapping into manageable chunks for human review/ease of
   /// maintenance.
-  final List<StructureMapGroup> group;
+  List<StructureMapGroupBuilder>? group;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -359,116 +355,38 @@ class StructureMap extends CanonicalResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
-    addField(
-      'structure',
-      structure,
-    );
-    addField(
-      'import',
-      import_,
-    );
-    addField(
-      'group',
-      group,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('identifier', identifier);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('copyright', copyright);
+    addField('structure', structure);
+    addField('import', import_);
+    addField('group', group);
     return json;
   }
 
@@ -508,11 +426,11 @@ class StructureMap extends CanonicalResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -559,7 +477,9 @@ class StructureMap extends CanonicalResource {
           fields.add(version!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'title':
         if (title != null) {
           fields.add(title!);
@@ -613,7 +533,9 @@ class StructureMap extends CanonicalResource {
           fields.addAll(import_!);
         }
       case 'group':
-        fields.addAll(group);
+        if (group != null) {
+          fields.addAll(group!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -624,7 +546,7 @@ class StructureMap extends CanonicalResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -633,281 +555,296 @@ class StructureMap extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
         {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
+          if (child is FhirBooleanBuilder) {
+            experimental = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
+          if (child is FhirMarkdownBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'structure':
         {
-          if (child is List<StructureMapStructure>) {
-            // Add all elements from passed list
-            final newList = [...?structure, ...child];
-            return copyWith(structure: newList);
-          } else if (child is StructureMapStructure) {
+          if (child is List<StructureMapStructureBuilder>) {
+            // Replace or create new list
+            structure = child;
+            return;
+          } else if (child is StructureMapStructureBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?structure, child];
-            return copyWith(structure: newList);
+            structure = [...(structure ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'import':
         {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?import_, ...child];
-            return copyWith(import_: newList);
-          } else if (child is FhirCanonical) {
+          if (child is List<FhirCanonicalBuilder>) {
+            // Replace or create new list
+            import_ = child;
+            return;
+          } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?import_, child];
-            return copyWith(import_: newList);
+            import_ = [...(import_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'group':
         {
-          if (child is List<StructureMapGroup>) {
-            // Add all elements from passed list
-            final newList = [...group, ...child];
-            return copyWith(group: newList);
-          } else if (child is StructureMapGroup) {
+          if (child is List<StructureMapGroupBuilder>) {
+            // Replace or create new list
+            group = child;
+            return;
+          } else if (child is StructureMapGroupBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...group, child];
-            return copyWith(group: newList);
+            group = [...(group ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -923,226 +860,196 @@ class StructureMap extends CanonicalResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'experimental':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'purpose':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'structure':
-        return ['StructureMapStructure'];
+        return ['StructureMapStructureBuilder'];
       case 'import':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'group':
-        return ['StructureMapGroup'];
+        return ['StructureMapGroupBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMap]
+  /// Creates a new [StructureMapBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMap createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'experimental':
         {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
+          experimental = FhirBooleanBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
+          purpose = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'structure':
         {
-          return copyWith(
-            structure: <StructureMapStructure>[],
-          );
+          structure = <StructureMapStructureBuilder>[];
+          return;
         }
       case 'import':
         {
-          return copyWith(
-            import_: <FhirCanonical>[],
-          );
+          import_ = <FhirCanonicalBuilder>[];
+          return;
         }
       case 'group':
         {
-          return copyWith(
-            group: <StructureMapGroup>[],
-          );
+          group = <StructureMapGroupBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1151,7 +1058,7 @@ class StructureMap extends CanonicalResource {
 
   /// Clears specific fields in this object
   @override
-  StructureMap clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1160,9 +1067,12 @@ class StructureMap extends CanonicalResource {
     bool contained = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool url = false,
     bool identifier = false,
     bool version = false,
+    bool name = false,
     bool title = false,
+    bool status = false,
     bool experimental = false,
     bool date = false,
     bool publisher = false,
@@ -1174,218 +1084,123 @@ class StructureMap extends CanonicalResource {
     bool copyright = false,
     bool structure = false,
     bool import_ = false,
+    bool group = false,
   }) {
-    return StructureMap(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name,
-      title: title ? null : this.title,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      copyright: copyright ? null : this.copyright,
-      structure: structure ? null : this.structure,
-      import_: import_ ? null : this.import_,
-      group: group,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (identifier) this.identifier = null;
+    if (version) this.version = null;
+    if (name) this.name = null;
+    if (title) this.title = null;
+    if (status) this.status = null;
+    if (experimental) this.experimental = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (description) this.description = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (purpose) this.purpose = null;
+    if (copyright) this.copyright = null;
+    if (structure) this.structure = null;
+    if (import_) this.import_ = null;
+    if (group) this.group = null;
   }
 
   @override
-  StructureMap clone() => throw UnimplementedError();
+  StructureMapBuilder clone() => throw UnimplementedError();
   @override
-  StructureMap copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirMarkdown? copyright,
-    List<StructureMapStructure>? structure,
-    List<FhirCanonical>? import_,
-    List<StructureMapGroup>? group,
+  StructureMapBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? url,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? version,
+    FhirStringBuilder? name,
+    FhirStringBuilder? title,
+    PublicationStatusBuilder? status,
+    FhirBooleanBuilder? experimental,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirMarkdownBuilder? description,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirMarkdownBuilder? purpose,
+    FhirMarkdownBuilder? copyright,
+    List<StructureMapStructureBuilder>? structure,
+    List<FhirCanonicalBuilder>? import_,
+    List<StructureMapGroupBuilder>? group,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return StructureMap(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = StructureMapBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      structure: structure
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.structure',
-                ),
-              )
-              .toList() ??
-          this.structure,
-      import_: import_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.import',
-                ),
-              )
-              .toList() ??
-          this.import_,
-      group: group
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.group',
-                ),
-              )
-              .toList() ??
-          this.group,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      identifier: identifier ?? this.identifier,
+      version: version ?? this.version,
+      name: name ?? this.name,
+      title: title ?? this.title,
+      status: status ?? this.status,
+      experimental: experimental ?? this.experimental,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      description: description ?? this.description,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      purpose: purpose ?? this.purpose,
+      copyright: copyright ?? this.copyright,
+      structure: structure ?? this.structure,
+      import_: import_ ?? this.import_,
+      group: group ?? this.group,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMap) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1420,19 +1235,19 @@ class StructureMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1444,7 +1259,7 @@ class StructureMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1492,7 +1307,7 @@ class StructureMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -1504,13 +1319,13 @@ class StructureMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -1528,19 +1343,19 @@ class StructureMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!listEquals<StructureMapStructure>(
+    if (!listEquals<StructureMapStructureBuilder>(
       structure,
       o.structure,
     )) {
       return false;
     }
-    if (!listEquals<FhirCanonical>(
+    if (!listEquals<FhirCanonicalBuilder>(
       import_,
       o.import_,
     )) {
       return false;
     }
-    if (!listEquals<StructureMapGroup>(
+    if (!listEquals<StructureMapGroupBuilder>(
       group,
       o.group,
     )) {
@@ -1550,20 +1365,20 @@ class StructureMap extends CanonicalResource {
   }
 }
 
-/// [StructureMapStructure]
+/// [StructureMapStructureBuilder]
 /// A structure definition used by this map. The structure definition may
 /// describe instances that are converted, or the instances that are
 /// produced.
-class StructureMapStructure extends BackboneElement {
+class StructureMapStructureBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapStructure]
+  /// [StructureMapStructureBuilder]
 
-  const StructureMapStructure({
+  StructureMapStructureBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.url,
-    required this.mode,
+    this.url,
+    this.mode,
     this.alias,
     this.documentation,
     super.disallowExtensions,
@@ -1572,28 +1387,25 @@ class StructureMapStructure extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapStructure.empty() => StructureMapStructure(
-        url: FhirCanonical.empty(),
-        mode: StructureMapModelMode.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapStructureBuilder.empty() =>
+      StructureMapStructureBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapStructure.fromJson(
+  factory StructureMapStructureBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.structure';
-    return StructureMapStructure(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapStructureBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1602,8 +1414,8 @@ class StructureMapStructure extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1611,49 +1423,49 @@ class StructureMapStructure extends BackboneElement {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirCanonical>(
+      url: JsonParser.parsePrimitive<FhirCanonicalBuilder>(
         json,
         'url',
-        FhirCanonical.fromJson,
+        FhirCanonicalBuilder.fromJson,
         '$objectPath.url',
-      )!,
-      mode: JsonParser.parsePrimitive<StructureMapModelMode>(
+      ),
+      mode: JsonParser.parsePrimitive<StructureMapModelModeBuilder>(
         json,
         'mode',
-        StructureMapModelMode.fromJson,
+        StructureMapModelModeBuilder.fromJson,
         '$objectPath.mode',
-      )!,
-      alias: JsonParser.parsePrimitive<FhirString>(
+      ),
+      alias: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'alias',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.alias',
       ),
-      documentation: JsonParser.parsePrimitive<FhirString>(
+      documentation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'documentation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.documentation',
       ),
     );
   }
 
-  /// Deserialize [StructureMapStructure]
+  /// Deserialize [StructureMapStructureBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapStructure.fromYaml(
+  factory StructureMapStructureBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapStructure.fromJson(
+      return StructureMapStructureBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapStructure.fromJson(
+      return StructureMapStructureBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapStructure '
+        'StructureMapStructureBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1661,16 +1473,16 @@ class StructureMapStructure extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapStructure]
+  /// [StructureMapStructureBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapStructure.fromJsonString(
+  factory StructureMapStructureBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapStructure.fromJson(json);
+      return StructureMapStructureBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1682,35 +1494,35 @@ class StructureMapStructure extends BackboneElement {
 
   /// [url]
   /// The canonical reference to the structure.
-  final FhirCanonical url;
+  FhirCanonicalBuilder? url;
 
   /// [mode]
   /// How the referenced structure is used in this mapping.
-  final StructureMapModelMode mode;
+  StructureMapModelModeBuilder? mode;
 
   /// [alias]
   /// The name used for this type in the map.
-  final FhirString? alias;
+  FhirStringBuilder? alias;
 
   /// [documentation]
   /// Documentation that describes how the structure is used in the mapping.
-  final FhirString? documentation;
+  FhirStringBuilder? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1719,39 +1531,18 @@ class StructureMapStructure extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'mode',
-      mode,
-    );
-    addField(
-      'alias',
-      alias,
-    );
-    addField(
-      'documentation',
-      documentation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('mode', mode);
+    addField('alias', alias);
+    addField('documentation', documentation);
     return json;
   }
 
@@ -1772,11 +1563,11 @@ class StructureMapStructure extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1791,9 +1582,13 @@ class StructureMapStructure extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'url':
-        fields.add(url);
+        if (url != null) {
+          fields.add(url!);
+        }
       case 'mode':
-        fields.add(mode);
+        if (mode != null) {
+          fields.add(mode!);
+        }
       case 'alias':
         if (alias != null) {
           fields.add(alias!);
@@ -1812,7 +1607,7 @@ class StructureMapStructure extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1821,81 +1616,85 @@ class StructureMapStructure extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirCanonical) {
-            return copyWith(url: child);
+          if (child is FhirCanonicalBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
         {
-          if (child is StructureMapModelMode) {
-            return copyWith(mode: child);
+          if (child is StructureMapModelModeBuilder) {
+            mode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'alias':
         {
-          if (child is FhirString) {
-            return copyWith(alias: child);
+          if (child is FhirStringBuilder) {
+            alias = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
         {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
+          if (child is FhirStringBuilder) {
+            documentation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1911,74 +1710,63 @@ class StructureMapStructure extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'mode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'alias':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'documentation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapStructure]
+  /// Creates a new [StructureMapStructureBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapStructure createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirCanonical.empty(),
-          );
+          url = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'mode':
         {
-          return copyWith(
-            mode: StructureMapModelMode.empty(),
-          );
+          mode = StructureMapModelModeBuilder.empty();
+          return;
         }
       case 'alias':
         {
-          return copyWith(
-            alias: FhirString.empty(),
-          );
+          alias = FhirStringBuilder.empty();
+          return;
         }
       case 'documentation':
         {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
+          documentation = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1987,35 +1775,35 @@ class StructureMapStructure extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapStructure clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool url = false,
+    bool mode = false,
     bool alias = false,
     bool documentation = false,
   }) {
-    return StructureMapStructure(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url,
-      mode: mode,
-      alias: alias ? null : this.alias,
-      documentation: documentation ? null : this.documentation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (mode) this.mode = null;
+    if (alias) this.alias = null;
+    if (documentation) this.documentation = null;
   }
 
   @override
-  StructureMapStructure clone() => throw UnimplementedError();
+  StructureMapStructureBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapStructure copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirCanonical? url,
-    StructureMapModelMode? mode,
-    FhirString? alias,
-    FhirString? documentation,
+  StructureMapStructureBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirCanonicalBuilder? url,
+    StructureMapModelModeBuilder? mode,
+    FhirStringBuilder? alias,
+    FhirStringBuilder? documentation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2023,50 +1811,38 @@ class StructureMapStructure extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapStructure(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      alias: alias?.copyWith(
-            objectPath: '$newObjectPath.alias',
-          ) ??
-          this.alias,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
+    final newResult = StructureMapStructureBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      mode: mode ?? this.mode,
+      alias: alias ?? this.alias,
+      documentation: documentation ?? this.documentation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapStructure) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapStructureBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2077,13 +1853,13 @@ class StructureMapStructure extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2117,53 +1893,47 @@ class StructureMapStructure extends BackboneElement {
   }
 }
 
-/// [StructureMapGroup]
+/// [StructureMapGroupBuilder]
 /// Organizes the mapping into manageable chunks for human review/ease of
 /// maintenance.
-class StructureMapGroup extends BackboneElement {
+class StructureMapGroupBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapGroup]
+  /// [StructureMapGroupBuilder]
 
-  const StructureMapGroup({
+  StructureMapGroupBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
+    this.name,
     this.extends_,
-    required this.typeMode,
+    this.typeMode,
     this.documentation,
-    required this.input,
-    required this.rule,
+    this.input,
+    this.rule,
     super.disallowExtensions,
   }) : super(
           objectPath: 'StructureMap.group',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapGroup.empty() => StructureMapGroup(
-        name: FhirId.empty(),
-        typeMode: StructureMapGroupTypeMode.values.first,
-        input: <StructureMapInput>[],
-        rule: <StructureMapRule>[],
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapGroupBuilder.empty() => StructureMapGroupBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapGroup.fromJson(
+  factory StructureMapGroupBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.group';
-    return StructureMapGroup(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapGroupBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2172,8 +1942,8 @@ class StructureMapGroup extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2181,33 +1951,33 @@ class StructureMapGroup extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirId>(
+      name: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'name',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      extends_: JsonParser.parsePrimitive<FhirId>(
+      ),
+      extends_: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'extends',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.extends',
       ),
-      typeMode: JsonParser.parsePrimitive<StructureMapGroupTypeMode>(
+      typeMode: JsonParser.parsePrimitive<StructureMapGroupTypeModeBuilder>(
         json,
         'typeMode',
-        StructureMapGroupTypeMode.fromJson,
+        StructureMapGroupTypeModeBuilder.fromJson,
         '$objectPath.typeMode',
-      )!,
-      documentation: JsonParser.parsePrimitive<FhirString>(
+      ),
+      documentation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'documentation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.documentation',
       ),
-      input: (json['input'] as List<dynamic>)
-          .map<StructureMapInput>(
-            (v) => StructureMapInput.fromJson(
+      input: (json['input'] as List<dynamic>?)
+          ?.map<StructureMapInputBuilder>(
+            (v) => StructureMapInputBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.input',
@@ -2215,9 +1985,9 @@ class StructureMapGroup extends BackboneElement {
             ),
           )
           .toList(),
-      rule: (json['rule'] as List<dynamic>)
-          .map<StructureMapRule>(
-            (v) => StructureMapRule.fromJson(
+      rule: (json['rule'] as List<dynamic>?)
+          ?.map<StructureMapRuleBuilder>(
+            (v) => StructureMapRuleBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.rule',
@@ -2228,22 +1998,22 @@ class StructureMapGroup extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapGroup]
+  /// Deserialize [StructureMapGroupBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapGroup.fromYaml(
+  factory StructureMapGroupBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapGroup.fromJson(
+      return StructureMapGroupBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapGroup.fromJson(
+      return StructureMapGroupBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapGroup '
+        'StructureMapGroupBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2251,16 +2021,16 @@ class StructureMapGroup extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapGroup]
+  /// [StructureMapGroupBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapGroup.fromJsonString(
+  factory StructureMapGroupBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapGroup.fromJson(json);
+      return StructureMapGroupBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2272,46 +2042,46 @@ class StructureMapGroup extends BackboneElement {
 
   /// [name]
   /// A unique name for the group for the convenience of human readers.
-  final FhirId name;
+  FhirIdBuilder? name;
 
   /// [extends_]
   /// Another group that this group adds rules to.
-  final FhirId? extends_;
+  FhirIdBuilder? extends_;
 
   /// [typeMode]
   /// If this is the default rule set to apply for the source type or this
   /// combination of types.
-  final StructureMapGroupTypeMode typeMode;
+  StructureMapGroupTypeModeBuilder? typeMode;
 
   /// [documentation]
   /// Additional supporting documentation that explains the purpose of the
   /// group and the types of mappings within it.
-  final FhirString? documentation;
+  FhirStringBuilder? documentation;
 
   /// [input]
   /// A name assigned to an instance of data. The instance must be provided
   /// when the mapping is invoked.
-  final List<StructureMapInput> input;
+  List<StructureMapInputBuilder>? input;
 
   /// [rule]
   /// Transform Rule from source to target.
-  final List<StructureMapRule> rule;
+  List<StructureMapRuleBuilder>? rule;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2320,47 +2090,20 @@ class StructureMapGroup extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'extends',
-      extends_,
-    );
-    addField(
-      'typeMode',
-      typeMode,
-    );
-    addField(
-      'documentation',
-      documentation,
-    );
-    addField(
-      'input',
-      input,
-    );
-    addField(
-      'rule',
-      rule,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('extends', extends_);
+    addField('typeMode', typeMode);
+    addField('documentation', documentation);
+    addField('input', input);
+    addField('rule', rule);
     return json;
   }
 
@@ -2383,11 +2126,11 @@ class StructureMapGroup extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2402,21 +2145,29 @@ class StructureMapGroup extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'extends':
         if (extends_ != null) {
           fields.add(extends_!);
         }
       case 'typeMode':
-        fields.add(typeMode);
+        if (typeMode != null) {
+          fields.add(typeMode!);
+        }
       case 'documentation':
         if (documentation != null) {
           fields.add(documentation!);
         }
       case 'input':
-        fields.addAll(input);
+        if (input != null) {
+          fields.addAll(input!);
+        }
       case 'rule':
-        fields.addAll(rule);
+        if (rule != null) {
+          fields.addAll(rule!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2427,7 +2178,7 @@ class StructureMapGroup extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2436,109 +2187,113 @@ class StructureMapGroup extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirId) {
-            return copyWith(name: child);
+          if (child is FhirIdBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extends':
         {
-          if (child is FhirId) {
-            return copyWith(extends_: child);
+          if (child is FhirIdBuilder) {
+            extends_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'typeMode':
         {
-          if (child is StructureMapGroupTypeMode) {
-            return copyWith(typeMode: child);
+          if (child is StructureMapGroupTypeModeBuilder) {
+            typeMode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
         {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
+          if (child is FhirStringBuilder) {
+            documentation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'input':
         {
-          if (child is List<StructureMapInput>) {
-            // Add all elements from passed list
-            final newList = [...input, ...child];
-            return copyWith(input: newList);
-          } else if (child is StructureMapInput) {
+          if (child is List<StructureMapInputBuilder>) {
+            // Replace or create new list
+            input = child;
+            return;
+          } else if (child is StructureMapInputBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...input, child];
-            return copyWith(input: newList);
+            input = [...(input ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rule':
         {
-          if (child is List<StructureMapRule>) {
-            // Add all elements from passed list
-            final newList = [...rule, ...child];
-            return copyWith(rule: newList);
-          } else if (child is StructureMapRule) {
+          if (child is List<StructureMapRuleBuilder>) {
+            // Replace or create new list
+            rule = child;
+            return;
+          } else if (child is StructureMapRuleBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...rule, child];
-            return copyWith(rule: newList);
+            rule = [...(rule ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2554,90 +2309,77 @@ class StructureMapGroup extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'extends':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'typeMode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'documentation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'input':
-        return ['StructureMapInput'];
+        return ['StructureMapInputBuilder'];
       case 'rule':
-        return ['StructureMapRule'];
+        return ['StructureMapRuleBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapGroup]
+  /// Creates a new [StructureMapGroupBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapGroup createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirId.empty(),
-          );
+          name = FhirIdBuilder.empty();
+          return;
         }
       case 'extends':
         {
-          return copyWith(
-            extends_: FhirId.empty(),
-          );
+          extends_ = FhirIdBuilder.empty();
+          return;
         }
       case 'typeMode':
         {
-          return copyWith(
-            typeMode: StructureMapGroupTypeMode.empty(),
-          );
+          typeMode = StructureMapGroupTypeModeBuilder.empty();
+          return;
         }
       case 'documentation':
         {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
+          documentation = FhirStringBuilder.empty();
+          return;
         }
       case 'input':
         {
-          return copyWith(
-            input: <StructureMapInput>[],
-          );
+          input = <StructureMapInputBuilder>[];
+          return;
         }
       case 'rule':
         {
-          return copyWith(
-            rule: <StructureMapRule>[],
-          );
+          rule = <StructureMapRuleBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2646,39 +2388,41 @@ class StructureMapGroup extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapGroup clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
     bool extends_ = false,
+    bool typeMode = false,
     bool documentation = false,
+    bool input = false,
+    bool rule = false,
   }) {
-    return StructureMapGroup(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      extends_: extends_ ? null : this.extends_,
-      typeMode: typeMode,
-      documentation: documentation ? null : this.documentation,
-      input: input,
-      rule: rule,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (extends_) this.extends_ = null;
+    if (typeMode) this.typeMode = null;
+    if (documentation) this.documentation = null;
+    if (input) this.input = null;
+    if (rule) this.rule = null;
   }
 
   @override
-  StructureMapGroup clone() => throw UnimplementedError();
+  StructureMapGroupBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapGroup copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    FhirId? extends_,
-    StructureMapGroupTypeMode? typeMode,
-    FhirString? documentation,
-    List<StructureMapInput>? input,
-    List<StructureMapRule>? rule,
+  StructureMapGroupBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIdBuilder? name,
+    FhirIdBuilder? extends_,
+    StructureMapGroupTypeModeBuilder? typeMode,
+    FhirStringBuilder? documentation,
+    List<StructureMapInputBuilder>? input,
+    List<StructureMapRuleBuilder>? rule,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2686,66 +2430,40 @@ class StructureMapGroup extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapGroup(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      extends_: extends_?.copyWith(
-            objectPath: '$newObjectPath.extends',
-          ) ??
-          this.extends_,
-      typeMode: typeMode?.copyWith(
-            objectPath: '$newObjectPath.typeMode',
-          ) ??
-          this.typeMode,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
-      input: input
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.input',
-                ),
-              )
-              .toList() ??
-          this.input,
-      rule: rule
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.rule',
-                ),
-              )
-              .toList() ??
-          this.rule,
+    final newResult = StructureMapGroupBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      extends_: extends_ ?? this.extends_,
+      typeMode: typeMode ?? this.typeMode,
+      documentation: documentation ?? this.documentation,
+      input: input ?? this.input,
+      rule: rule ?? this.rule,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapGroup) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapGroupBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2756,13 +2474,13 @@ class StructureMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2792,13 +2510,13 @@ class StructureMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<StructureMapInput>(
+    if (!listEquals<StructureMapInputBuilder>(
       input,
       o.input,
     )) {
       return false;
     }
-    if (!listEquals<StructureMapRule>(
+    if (!listEquals<StructureMapRuleBuilder>(
       rule,
       o.rule,
     )) {
@@ -2808,20 +2526,20 @@ class StructureMapGroup extends BackboneElement {
   }
 }
 
-/// [StructureMapInput]
+/// [StructureMapInputBuilder]
 /// A name assigned to an instance of data. The instance must be provided
 /// when the mapping is invoked.
-class StructureMapInput extends BackboneElement {
+class StructureMapInputBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapInput]
+  /// [StructureMapInputBuilder]
 
-  const StructureMapInput({
+  StructureMapInputBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
+    this.name,
     this.type,
-    required this.mode,
+    this.mode,
     this.documentation,
     super.disallowExtensions,
   }) : super(
@@ -2829,28 +2547,24 @@ class StructureMapInput extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapInput.empty() => StructureMapInput(
-        name: FhirId.empty(),
-        mode: StructureMapInputMode.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapInputBuilder.empty() => StructureMapInputBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapInput.fromJson(
+  factory StructureMapInputBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.group.input';
-    return StructureMapInput(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapInputBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2859,8 +2573,8 @@ class StructureMapInput extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2868,49 +2582,49 @@ class StructureMapInput extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirId>(
+      name: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'name',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      type: JsonParser.parsePrimitive<FhirString>(
+      ),
+      type: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'type',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.type',
       ),
-      mode: JsonParser.parsePrimitive<StructureMapInputMode>(
+      mode: JsonParser.parsePrimitive<StructureMapInputModeBuilder>(
         json,
         'mode',
-        StructureMapInputMode.fromJson,
+        StructureMapInputModeBuilder.fromJson,
         '$objectPath.mode',
-      )!,
-      documentation: JsonParser.parsePrimitive<FhirString>(
+      ),
+      documentation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'documentation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.documentation',
       ),
     );
   }
 
-  /// Deserialize [StructureMapInput]
+  /// Deserialize [StructureMapInputBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapInput.fromYaml(
+  factory StructureMapInputBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapInput.fromJson(
+      return StructureMapInputBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapInput.fromJson(
+      return StructureMapInputBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapInput '
+        'StructureMapInputBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2918,16 +2632,16 @@ class StructureMapInput extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapInput]
+  /// [StructureMapInputBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapInput.fromJsonString(
+  factory StructureMapInputBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapInput.fromJson(json);
+      return StructureMapInputBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2939,35 +2653,35 @@ class StructureMapInput extends BackboneElement {
 
   /// [name]
   /// Name for this instance of data.
-  final FhirId name;
+  FhirIdBuilder? name;
 
   /// [type]
   /// Type for this instance of data.
-  final FhirString? type;
+  FhirStringBuilder? type;
 
   /// [mode]
   /// Mode for this instance of data.
-  final StructureMapInputMode mode;
+  StructureMapInputModeBuilder? mode;
 
   /// [documentation]
   /// Documentation for this instance of data.
-  final FhirString? documentation;
+  FhirStringBuilder? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2976,39 +2690,18 @@ class StructureMapInput extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'mode',
-      mode,
-    );
-    addField(
-      'documentation',
-      documentation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('type', type);
+    addField('mode', mode);
+    addField('documentation', documentation);
     return json;
   }
 
@@ -3029,11 +2722,11 @@ class StructureMapInput extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3048,13 +2741,17 @@ class StructureMapInput extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'type':
         if (type != null) {
           fields.add(type!);
         }
       case 'mode':
-        fields.add(mode);
+        if (mode != null) {
+          fields.add(mode!);
+        }
       case 'documentation':
         if (documentation != null) {
           fields.add(documentation!);
@@ -3069,7 +2766,7 @@ class StructureMapInput extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3078,81 +2775,85 @@ class StructureMapInput extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirId) {
-            return copyWith(name: child);
+          if (child is FhirIdBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is FhirString) {
-            return copyWith(type: child);
+          if (child is FhirStringBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
         {
-          if (child is StructureMapInputMode) {
-            return copyWith(mode: child);
+          if (child is StructureMapInputModeBuilder) {
+            mode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
         {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
+          if (child is FhirStringBuilder) {
+            documentation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3168,74 +2869,63 @@ class StructureMapInput extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'type':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'mode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'documentation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapInput]
+  /// Creates a new [StructureMapInputBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapInput createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirId.empty(),
-          );
+          name = FhirIdBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: FhirString.empty(),
-          );
+          type = FhirStringBuilder.empty();
+          return;
         }
       case 'mode':
         {
-          return copyWith(
-            mode: StructureMapInputMode.empty(),
-          );
+          mode = StructureMapInputModeBuilder.empty();
+          return;
         }
       case 'documentation':
         {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
+          documentation = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3244,35 +2934,35 @@ class StructureMapInput extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapInput clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
     bool type = false,
+    bool mode = false,
     bool documentation = false,
   }) {
-    return StructureMapInput(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      type: type ? null : this.type,
-      mode: mode,
-      documentation: documentation ? null : this.documentation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (type) this.type = null;
+    if (mode) this.mode = null;
+    if (documentation) this.documentation = null;
   }
 
   @override
-  StructureMapInput clone() => throw UnimplementedError();
+  StructureMapInputBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapInput copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    FhirString? type,
-    StructureMapInputMode? mode,
-    FhirString? documentation,
+  StructureMapInputBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIdBuilder? name,
+    FhirStringBuilder? type,
+    StructureMapInputModeBuilder? mode,
+    FhirStringBuilder? documentation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3280,50 +2970,38 @@ class StructureMapInput extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapInput(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      mode: mode?.copyWith(
-            objectPath: '$newObjectPath.mode',
-          ) ??
-          this.mode,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
+    final newResult = StructureMapInputBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      mode: mode ?? this.mode,
+      documentation: documentation ?? this.documentation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapInput) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapInputBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3334,13 +3012,13 @@ class StructureMapInput extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3374,18 +3052,18 @@ class StructureMapInput extends BackboneElement {
   }
 }
 
-/// [StructureMapRule]
+/// [StructureMapRuleBuilder]
 /// Transform Rule from source to target.
-class StructureMapRule extends BackboneElement {
+class StructureMapRuleBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapRule]
+  /// [StructureMapRuleBuilder]
 
-  const StructureMapRule({
+  StructureMapRuleBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
-    required this.source,
+    this.name,
+    this.source,
     this.target,
     this.rule,
     this.dependent,
@@ -3396,28 +3074,24 @@ class StructureMapRule extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapRule.empty() => StructureMapRule(
-        name: FhirId.empty(),
-        source: <StructureMapSource>[],
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapRuleBuilder.empty() => StructureMapRuleBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapRule.fromJson(
+  factory StructureMapRuleBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.group.rule';
-    return StructureMapRule(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapRuleBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3426,8 +3100,8 @@ class StructureMapRule extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3435,15 +3109,15 @@ class StructureMapRule extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirId>(
+      name: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'name',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      source: (json['source'] as List<dynamic>)
-          .map<StructureMapSource>(
-            (v) => StructureMapSource.fromJson(
+      ),
+      source: (json['source'] as List<dynamic>?)
+          ?.map<StructureMapSourceBuilder>(
+            (v) => StructureMapSourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.source',
@@ -3452,8 +3126,8 @@ class StructureMapRule extends BackboneElement {
           )
           .toList(),
       target: (json['target'] as List<dynamic>?)
-          ?.map<StructureMapTarget>(
-            (v) => StructureMapTarget.fromJson(
+          ?.map<StructureMapTargetBuilder>(
+            (v) => StructureMapTargetBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.target',
@@ -3462,8 +3136,8 @@ class StructureMapRule extends BackboneElement {
           )
           .toList(),
       rule: (json['rule'] as List<dynamic>?)
-          ?.map<StructureMapRule>(
-            (v) => StructureMapRule.fromJson(
+          ?.map<StructureMapRuleBuilder>(
+            (v) => StructureMapRuleBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.rule',
@@ -3472,8 +3146,8 @@ class StructureMapRule extends BackboneElement {
           )
           .toList(),
       dependent: (json['dependent'] as List<dynamic>?)
-          ?.map<StructureMapDependent>(
-            (v) => StructureMapDependent.fromJson(
+          ?.map<StructureMapDependentBuilder>(
+            (v) => StructureMapDependentBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.dependent',
@@ -3481,31 +3155,31 @@ class StructureMapRule extends BackboneElement {
             ),
           )
           .toList(),
-      documentation: JsonParser.parsePrimitive<FhirString>(
+      documentation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'documentation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.documentation',
       ),
     );
   }
 
-  /// Deserialize [StructureMapRule]
+  /// Deserialize [StructureMapRuleBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapRule.fromYaml(
+  factory StructureMapRuleBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapRule.fromJson(
+      return StructureMapRuleBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapRule.fromJson(
+      return StructureMapRuleBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapRule '
+        'StructureMapRuleBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3513,16 +3187,16 @@ class StructureMapRule extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapRule]
+  /// [StructureMapRuleBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapRule.fromJsonString(
+  factory StructureMapRuleBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapRule.fromJson(json);
+      return StructureMapRuleBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3534,43 +3208,43 @@ class StructureMapRule extends BackboneElement {
 
   /// [name]
   /// Name of the rule for internal references.
-  final FhirId name;
+  FhirIdBuilder? name;
 
   /// [source]
   /// Source inputs to the mapping.
-  final List<StructureMapSource> source;
+  List<StructureMapSourceBuilder>? source;
 
   /// [target]
   /// Content to create because of this mapping rule.
-  final List<StructureMapTarget>? target;
+  List<StructureMapTargetBuilder>? target;
 
   /// [rule]
   /// Rules contained in this rule.
-  final List<StructureMapRule>? rule;
+  List<StructureMapRuleBuilder>? rule;
 
   /// [dependent]
   /// Which other rules to apply in the context of this rule.
-  final List<StructureMapDependent>? dependent;
+  List<StructureMapDependentBuilder>? dependent;
 
   /// [documentation]
   /// Documentation for this instance of data.
-  final FhirString? documentation;
+  FhirStringBuilder? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3579,47 +3253,20 @@ class StructureMapRule extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'target',
-      target,
-    );
-    addField(
-      'rule',
-      rule,
-    );
-    addField(
-      'dependent',
-      dependent,
-    );
-    addField(
-      'documentation',
-      documentation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('source', source);
+    addField('target', target);
+    addField('rule', rule);
+    addField('dependent', dependent);
+    addField('documentation', documentation);
     return json;
   }
 
@@ -3642,11 +3289,11 @@ class StructureMapRule extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3661,9 +3308,13 @@ class StructureMapRule extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'source':
-        fields.addAll(source);
+        if (source != null) {
+          fields.addAll(source!);
+        }
       case 'target':
         if (target != null) {
           fields.addAll(target!);
@@ -3690,7 +3341,7 @@ class StructureMapRule extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3699,121 +3350,123 @@ class StructureMapRule extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirId) {
-            return copyWith(name: child);
+          if (child is FhirIdBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is List<StructureMapSource>) {
-            // Add all elements from passed list
-            final newList = [...source, ...child];
-            return copyWith(source: newList);
-          } else if (child is StructureMapSource) {
+          if (child is List<StructureMapSourceBuilder>) {
+            // Replace or create new list
+            source = child;
+            return;
+          } else if (child is StructureMapSourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...source, child];
-            return copyWith(source: newList);
+            source = [...(source ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
-          if (child is List<StructureMapTarget>) {
-            // Add all elements from passed list
-            final newList = [...?target, ...child];
-            return copyWith(target: newList);
-          } else if (child is StructureMapTarget) {
+          if (child is List<StructureMapTargetBuilder>) {
+            // Replace or create new list
+            target = child;
+            return;
+          } else if (child is StructureMapTargetBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
-            return copyWith(target: newList);
+            target = [...(target ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rule':
         {
-          if (child is List<StructureMapRule>) {
-            // Add all elements from passed list
-            final newList = [...?rule, ...child];
-            return copyWith(rule: newList);
-          } else if (child is StructureMapRule) {
+          if (child is List<StructureMapRuleBuilder>) {
+            // Replace or create new list
+            rule = child;
+            return;
+          } else if (child is StructureMapRuleBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?rule, child];
-            return copyWith(rule: newList);
+            rule = [...(rule ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dependent':
         {
-          if (child is List<StructureMapDependent>) {
-            // Add all elements from passed list
-            final newList = [...?dependent, ...child];
-            return copyWith(dependent: newList);
-          } else if (child is StructureMapDependent) {
+          if (child is List<StructureMapDependentBuilder>) {
+            // Replace or create new list
+            dependent = child;
+            return;
+          } else if (child is StructureMapDependentBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?dependent, child];
-            return copyWith(dependent: newList);
+            dependent = [...(dependent ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
         {
-          if (child is FhirString) {
-            return copyWith(documentation: child);
+          if (child is FhirStringBuilder) {
+            documentation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3829,90 +3482,77 @@ class StructureMapRule extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'source':
-        return ['StructureMapSource'];
+        return ['StructureMapSourceBuilder'];
       case 'target':
-        return ['StructureMapTarget'];
+        return ['StructureMapTargetBuilder'];
       case 'rule':
-        return ['StructureMapRule'];
+        return ['StructureMapRuleBuilder'];
       case 'dependent':
-        return ['StructureMapDependent'];
+        return ['StructureMapDependentBuilder'];
       case 'documentation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapRule]
+  /// Creates a new [StructureMapRuleBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapRule createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirId.empty(),
-          );
+          name = FhirIdBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: <StructureMapSource>[],
-          );
+          source = <StructureMapSourceBuilder>[];
+          return;
         }
       case 'target':
         {
-          return copyWith(
-            target: <StructureMapTarget>[],
-          );
+          target = <StructureMapTargetBuilder>[];
+          return;
         }
       case 'rule':
         {
-          return copyWith(
-            rule: <StructureMapRule>[],
-          );
+          rule = <StructureMapRuleBuilder>[];
+          return;
         }
       case 'dependent':
         {
-          return copyWith(
-            dependent: <StructureMapDependent>[],
-          );
+          dependent = <StructureMapDependentBuilder>[];
+          return;
         }
       case 'documentation':
         {
-          return copyWith(
-            documentation: FhirString.empty(),
-          );
+          documentation = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3921,41 +3561,41 @@ class StructureMapRule extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapRule clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
+    bool source = false,
     bool target = false,
     bool rule = false,
     bool dependent = false,
     bool documentation = false,
   }) {
-    return StructureMapRule(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      source: source,
-      target: target ? null : this.target,
-      rule: rule ? null : this.rule,
-      dependent: dependent ? null : this.dependent,
-      documentation: documentation ? null : this.documentation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (source) this.source = null;
+    if (target) this.target = null;
+    if (rule) this.rule = null;
+    if (dependent) this.dependent = null;
+    if (documentation) this.documentation = null;
   }
 
   @override
-  StructureMapRule clone() => throw UnimplementedError();
+  StructureMapRuleBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapRule copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    List<StructureMapSource>? source,
-    List<StructureMapTarget>? target,
-    List<StructureMapRule>? rule,
-    List<StructureMapDependent>? dependent,
-    FhirString? documentation,
+  StructureMapRuleBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIdBuilder? name,
+    List<StructureMapSourceBuilder>? source,
+    List<StructureMapTargetBuilder>? target,
+    List<StructureMapRuleBuilder>? rule,
+    List<StructureMapDependentBuilder>? dependent,
+    FhirStringBuilder? documentation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3963,74 +3603,40 @@ class StructureMapRule extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapRule(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      source: source
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.source',
-                ),
-              )
-              .toList() ??
-          this.source,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
-      rule: rule
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.rule',
-                ),
-              )
-              .toList() ??
-          this.rule,
-      dependent: dependent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dependent',
-                ),
-              )
-              .toList() ??
-          this.dependent,
-      documentation: documentation?.copyWith(
-            objectPath: '$newObjectPath.documentation',
-          ) ??
-          this.documentation,
+    final newResult = StructureMapRuleBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      source: source ?? this.source,
+      target: target ?? this.target,
+      rule: rule ?? this.rule,
+      dependent: dependent ?? this.dependent,
+      documentation: documentation ?? this.documentation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapRule) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapRuleBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4041,13 +3647,13 @@ class StructureMapRule extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4059,25 +3665,25 @@ class StructureMapRule extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<StructureMapSource>(
+    if (!listEquals<StructureMapSourceBuilder>(
       source,
       o.source,
     )) {
       return false;
     }
-    if (!listEquals<StructureMapTarget>(
+    if (!listEquals<StructureMapTargetBuilder>(
       target,
       o.target,
     )) {
       return false;
     }
-    if (!listEquals<StructureMapRule>(
+    if (!listEquals<StructureMapRuleBuilder>(
       rule,
       o.rule,
     )) {
       return false;
     }
-    if (!listEquals<StructureMapDependent>(
+    if (!listEquals<StructureMapDependentBuilder>(
       dependent,
       o.dependent,
     )) {
@@ -4093,17 +3699,17 @@ class StructureMapRule extends BackboneElement {
   }
 }
 
-/// [StructureMapSource]
+/// [StructureMapSourceBuilder]
 /// Source inputs to the mapping.
-class StructureMapSource extends BackboneElement {
+class StructureMapSourceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapSource]
+  /// [StructureMapSourceBuilder]
 
-  const StructureMapSource({
+  StructureMapSourceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.context,
+    this.context,
     this.min,
     this.max,
     this.type,
@@ -4120,27 +3726,24 @@ class StructureMapSource extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapSource.empty() => StructureMapSource(
-        context: FhirId.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapSourceBuilder.empty() => StructureMapSourceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapSource.fromJson(
+  factory StructureMapSourceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.group.rule.source';
-    return StructureMapSource(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapSourceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4149,8 +3752,8 @@ class StructureMapSource extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4158,142 +3761,143 @@ class StructureMapSource extends BackboneElement {
             ),
           )
           .toList(),
-      context: JsonParser.parsePrimitive<FhirId>(
+      context: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'context',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.context',
-      )!,
-      min: JsonParser.parsePrimitive<FhirInteger>(
+      ),
+      min: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'min',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.min',
       ),
-      max: JsonParser.parsePrimitive<FhirString>(
+      max: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'max',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.max',
       ),
-      type: JsonParser.parsePrimitive<FhirString>(
+      type: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'type',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.type',
       ),
       defaultValueX:
-          JsonParser.parsePolymorphic<DefaultValueXStructureMapSource>(
+          JsonParser.parsePolymorphic<DefaultValueXStructureMapSourceBuilder>(
         json,
         {
-          'defaultValueBase64Binary': FhirBase64Binary.fromJson,
-          'defaultValueBoolean': FhirBoolean.fromJson,
-          'defaultValueCanonical': FhirCanonical.fromJson,
-          'defaultValueCode': FhirCode.fromJson,
-          'defaultValueDate': FhirDate.fromJson,
-          'defaultValueDateTime': FhirDateTime.fromJson,
-          'defaultValueDecimal': FhirDecimal.fromJson,
-          'defaultValueId': FhirId.fromJson,
-          'defaultValueInstant': FhirInstant.fromJson,
-          'defaultValueInteger': FhirInteger.fromJson,
-          'defaultValueMarkdown': FhirMarkdown.fromJson,
-          'defaultValueOid': FhirOid.fromJson,
-          'defaultValuePositiveInt': FhirPositiveInt.fromJson,
-          'defaultValueString': FhirString.fromJson,
-          'defaultValueTime': FhirTime.fromJson,
-          'defaultValueUnsignedInt': FhirUnsignedInt.fromJson,
-          'defaultValueUri': FhirUri.fromJson,
-          'defaultValueUrl': FhirUrl.fromJson,
-          'defaultValueUuid': FhirUuid.fromJson,
-          'defaultValueAddress': Address.fromJson,
-          'defaultValueAge': Age.fromJson,
-          'defaultValueAnnotation': Annotation.fromJson,
-          'defaultValueAttachment': Attachment.fromJson,
-          'defaultValueCodeableConcept': CodeableConcept.fromJson,
-          'defaultValueCoding': Coding.fromJson,
-          'defaultValueContactPoint': ContactPoint.fromJson,
-          'defaultValueCount': Count.fromJson,
-          'defaultValueDistance': Distance.fromJson,
-          'defaultValueDuration': FhirDuration.fromJson,
-          'defaultValueHumanName': HumanName.fromJson,
-          'defaultValueIdentifier': Identifier.fromJson,
-          'defaultValueMoney': Money.fromJson,
-          'defaultValuePeriod': Period.fromJson,
-          'defaultValueQuantity': Quantity.fromJson,
-          'defaultValueRange': Range.fromJson,
-          'defaultValueRatio': Ratio.fromJson,
-          'defaultValueReference': Reference.fromJson,
-          'defaultValueSampledData': SampledData.fromJson,
-          'defaultValueSignature': Signature.fromJson,
-          'defaultValueTiming': Timing.fromJson,
-          'defaultValueContactDetail': ContactDetail.fromJson,
-          'defaultValueContributor': Contributor.fromJson,
-          'defaultValueDataRequirement': DataRequirement.fromJson,
-          'defaultValueExpression': FhirExpression.fromJson,
-          'defaultValueParameterDefinition': ParameterDefinition.fromJson,
-          'defaultValueRelatedArtifact': RelatedArtifact.fromJson,
-          'defaultValueTriggerDefinition': TriggerDefinition.fromJson,
-          'defaultValueUsageContext': UsageContext.fromJson,
-          'defaultValueDosage': Dosage.fromJson,
-          'defaultValueMeta': FhirMeta.fromJson,
+          'defaultValueBase64Binary': FhirBase64BinaryBuilder.fromJson,
+          'defaultValueBoolean': FhirBooleanBuilder.fromJson,
+          'defaultValueCanonical': FhirCanonicalBuilder.fromJson,
+          'defaultValueCode': FhirCodeBuilder.fromJson,
+          'defaultValueDate': FhirDateBuilder.fromJson,
+          'defaultValueDateTime': FhirDateTimeBuilder.fromJson,
+          'defaultValueDecimal': FhirDecimalBuilder.fromJson,
+          'defaultValueId': FhirIdBuilder.fromJson,
+          'defaultValueInstant': FhirInstantBuilder.fromJson,
+          'defaultValueInteger': FhirIntegerBuilder.fromJson,
+          'defaultValueMarkdown': FhirMarkdownBuilder.fromJson,
+          'defaultValueOid': FhirOidBuilder.fromJson,
+          'defaultValuePositiveInt': FhirPositiveIntBuilder.fromJson,
+          'defaultValueString': FhirStringBuilder.fromJson,
+          'defaultValueTime': FhirTimeBuilder.fromJson,
+          'defaultValueUnsignedInt': FhirUnsignedIntBuilder.fromJson,
+          'defaultValueUri': FhirUriBuilder.fromJson,
+          'defaultValueUrl': FhirUrlBuilder.fromJson,
+          'defaultValueUuid': FhirUuidBuilder.fromJson,
+          'defaultValueAddress': AddressBuilder.fromJson,
+          'defaultValueAge': AgeBuilder.fromJson,
+          'defaultValueAnnotation': AnnotationBuilder.fromJson,
+          'defaultValueAttachment': AttachmentBuilder.fromJson,
+          'defaultValueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'defaultValueCoding': CodingBuilder.fromJson,
+          'defaultValueContactPoint': ContactPointBuilder.fromJson,
+          'defaultValueCount': CountBuilder.fromJson,
+          'defaultValueDistance': DistanceBuilder.fromJson,
+          'defaultValueDuration': FhirDurationBuilder.fromJson,
+          'defaultValueHumanName': HumanNameBuilder.fromJson,
+          'defaultValueIdentifier': IdentifierBuilder.fromJson,
+          'defaultValueMoney': MoneyBuilder.fromJson,
+          'defaultValuePeriod': PeriodBuilder.fromJson,
+          'defaultValueQuantity': QuantityBuilder.fromJson,
+          'defaultValueRange': RangeBuilder.fromJson,
+          'defaultValueRatio': RatioBuilder.fromJson,
+          'defaultValueReference': ReferenceBuilder.fromJson,
+          'defaultValueSampledData': SampledDataBuilder.fromJson,
+          'defaultValueSignature': SignatureBuilder.fromJson,
+          'defaultValueTiming': TimingBuilder.fromJson,
+          'defaultValueContactDetail': ContactDetailBuilder.fromJson,
+          'defaultValueContributor': ContributorBuilder.fromJson,
+          'defaultValueDataRequirement': DataRequirementBuilder.fromJson,
+          'defaultValueExpression': FhirExpressionBuilder.fromJson,
+          'defaultValueParameterDefinition':
+              ParameterDefinitionBuilder.fromJson,
+          'defaultValueRelatedArtifact': RelatedArtifactBuilder.fromJson,
+          'defaultValueTriggerDefinition': TriggerDefinitionBuilder.fromJson,
+          'defaultValueUsageContext': UsageContextBuilder.fromJson,
+          'defaultValueDosage': DosageBuilder.fromJson,
+          'defaultValueMeta': FhirMetaBuilder.fromJson,
         },
         objectPath,
       ),
-      element: JsonParser.parsePrimitive<FhirString>(
+      element: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'element',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.element',
       ),
-      listMode: JsonParser.parsePrimitive<StructureMapSourceListMode>(
+      listMode: JsonParser.parsePrimitive<StructureMapSourceListModeBuilder>(
         json,
         'listMode',
-        StructureMapSourceListMode.fromJson,
+        StructureMapSourceListModeBuilder.fromJson,
         '$objectPath.listMode',
       ),
-      variable: JsonParser.parsePrimitive<FhirId>(
+      variable: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'variable',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.variable',
       ),
-      condition: JsonParser.parsePrimitive<FhirString>(
+      condition: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'condition',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.condition',
       ),
-      check: JsonParser.parsePrimitive<FhirString>(
+      check: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'check',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.check',
       ),
-      logMessage: JsonParser.parsePrimitive<FhirString>(
+      logMessage: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'logMessage',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.logMessage',
       ),
     );
   }
 
-  /// Deserialize [StructureMapSource]
+  /// Deserialize [StructureMapSourceBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapSource.fromYaml(
+  factory StructureMapSourceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapSource.fromJson(
+      return StructureMapSourceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapSource.fromJson(
+      return StructureMapSourceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapSource '
+        'StructureMapSourceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4301,16 +3905,16 @@ class StructureMapSource extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapSource]
+  /// [StructureMapSourceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapSource.fromJsonString(
+  factory StructureMapSourceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapSource.fromJson(json);
+      return StructureMapSourceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4322,234 +3926,256 @@ class StructureMapSource extends BackboneElement {
 
   /// [context]
   /// Type or variable this rule applies to.
-  final FhirId context;
+  FhirIdBuilder? context;
 
   /// [min]
   /// Specified minimum cardinality for the element. This is optional; if
   /// present, it acts an implicit check on the input content.
-  final FhirInteger? min;
+  FhirIntegerBuilder? min;
 
   /// [max]
   /// Specified maximum cardinality for the element - a number or a "*". This
   /// is optional; if present, it acts an implicit check on the input content
   /// (* just serves as documentation; it's the default value).
-  final FhirString? max;
+  FhirStringBuilder? max;
 
   /// [type]
   /// Specified type for the element. This works as a condition on the
   /// mapping - use for polymorphic elements.
-  final FhirString? type;
+  FhirStringBuilder? type;
 
   /// [defaultValueX]
   /// A value to use if there is no existing value in the source object.
-  final DefaultValueXStructureMapSource? defaultValueX;
+  DefaultValueXStructureMapSourceBuilder? defaultValueX;
 
-  /// Getter for [defaultValueBase64Binary] as a FhirBase64Binary
-  FhirBase64Binary? get defaultValueBase64Binary =>
-      defaultValueX?.isAs<FhirBase64Binary>();
+  /// Getter for [defaultValueBase64Binary] as a FhirBase64BinaryBuilder
+  FhirBase64BinaryBuilder? get defaultValueBase64Binary =>
+      defaultValueX?.isAs<FhirBase64BinaryBuilder>();
 
-  /// Getter for [defaultValueBoolean] as a FhirBoolean
-  FhirBoolean? get defaultValueBoolean => defaultValueX?.isAs<FhirBoolean>();
+  /// Getter for [defaultValueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get defaultValueBoolean =>
+      defaultValueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [defaultValueCanonical] as a FhirCanonical
-  FhirCanonical? get defaultValueCanonical =>
-      defaultValueX?.isAs<FhirCanonical>();
+  /// Getter for [defaultValueCanonical] as a FhirCanonicalBuilder
+  FhirCanonicalBuilder? get defaultValueCanonical =>
+      defaultValueX?.isAs<FhirCanonicalBuilder>();
 
-  /// Getter for [defaultValueCode] as a FhirCode
-  FhirCode? get defaultValueCode => defaultValueX?.isAs<FhirCode>();
+  /// Getter for [defaultValueCode] as a FhirCodeBuilder
+  FhirCodeBuilder? get defaultValueCode =>
+      defaultValueX?.isAs<FhirCodeBuilder>();
 
-  /// Getter for [defaultValueDate] as a FhirDate
-  FhirDate? get defaultValueDate => defaultValueX?.isAs<FhirDate>();
+  /// Getter for [defaultValueDate] as a FhirDateBuilder
+  FhirDateBuilder? get defaultValueDate =>
+      defaultValueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [defaultValueDateTime] as a FhirDateTime
-  FhirDateTime? get defaultValueDateTime => defaultValueX?.isAs<FhirDateTime>();
+  /// Getter for [defaultValueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get defaultValueDateTime =>
+      defaultValueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [defaultValueDecimal] as a FhirDecimal
-  FhirDecimal? get defaultValueDecimal => defaultValueX?.isAs<FhirDecimal>();
+  /// Getter for [defaultValueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get defaultValueDecimal =>
+      defaultValueX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [defaultValueId] as a FhirId
-  FhirId? get defaultValueId => defaultValueX?.isAs<FhirId>();
+  /// Getter for [defaultValueId] as a FhirIdBuilder
+  FhirIdBuilder? get defaultValueId => defaultValueX?.isAs<FhirIdBuilder>();
 
-  /// Getter for [defaultValueInstant] as a FhirInstant
-  FhirInstant? get defaultValueInstant => defaultValueX?.isAs<FhirInstant>();
+  /// Getter for [defaultValueInstant] as a FhirInstantBuilder
+  FhirInstantBuilder? get defaultValueInstant =>
+      defaultValueX?.isAs<FhirInstantBuilder>();
 
-  /// Getter for [defaultValueInteger] as a FhirInteger
-  FhirInteger? get defaultValueInteger => defaultValueX?.isAs<FhirInteger>();
+  /// Getter for [defaultValueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get defaultValueInteger =>
+      defaultValueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [defaultValueMarkdown] as a FhirMarkdown
-  FhirMarkdown? get defaultValueMarkdown => defaultValueX?.isAs<FhirMarkdown>();
+  /// Getter for [defaultValueMarkdown] as a FhirMarkdownBuilder
+  FhirMarkdownBuilder? get defaultValueMarkdown =>
+      defaultValueX?.isAs<FhirMarkdownBuilder>();
 
-  /// Getter for [defaultValueOid] as a FhirOid
-  FhirOid? get defaultValueOid => defaultValueX?.isAs<FhirOid>();
+  /// Getter for [defaultValueOid] as a FhirOidBuilder
+  FhirOidBuilder? get defaultValueOid => defaultValueX?.isAs<FhirOidBuilder>();
 
-  /// Getter for [defaultValuePositiveInt] as a FhirPositiveInt
-  FhirPositiveInt? get defaultValuePositiveInt =>
-      defaultValueX?.isAs<FhirPositiveInt>();
+  /// Getter for [defaultValuePositiveInt] as a FhirPositiveIntBuilder
+  FhirPositiveIntBuilder? get defaultValuePositiveInt =>
+      defaultValueX?.isAs<FhirPositiveIntBuilder>();
 
-  /// Getter for [defaultValueString] as a FhirString
-  FhirString? get defaultValueString => defaultValueX?.isAs<FhirString>();
+  /// Getter for [defaultValueString] as a FhirStringBuilder
+  FhirStringBuilder? get defaultValueString =>
+      defaultValueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [defaultValueTime] as a FhirTime
-  FhirTime? get defaultValueTime => defaultValueX?.isAs<FhirTime>();
+  /// Getter for [defaultValueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get defaultValueTime =>
+      defaultValueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [defaultValueUnsignedInt] as a FhirUnsignedInt
-  FhirUnsignedInt? get defaultValueUnsignedInt =>
-      defaultValueX?.isAs<FhirUnsignedInt>();
+  /// Getter for [defaultValueUnsignedInt] as a FhirUnsignedIntBuilder
+  FhirUnsignedIntBuilder? get defaultValueUnsignedInt =>
+      defaultValueX?.isAs<FhirUnsignedIntBuilder>();
 
-  /// Getter for [defaultValueUri] as a FhirUri
-  FhirUri? get defaultValueUri => defaultValueX?.isAs<FhirUri>();
+  /// Getter for [defaultValueUri] as a FhirUriBuilder
+  FhirUriBuilder? get defaultValueUri => defaultValueX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [defaultValueUrl] as a FhirUrl
-  FhirUrl? get defaultValueUrl => defaultValueX?.isAs<FhirUrl>();
+  /// Getter for [defaultValueUrl] as a FhirUrlBuilder
+  FhirUrlBuilder? get defaultValueUrl => defaultValueX?.isAs<FhirUrlBuilder>();
 
-  /// Getter for [defaultValueUuid] as a FhirUuid
-  FhirUuid? get defaultValueUuid => defaultValueX?.isAs<FhirUuid>();
+  /// Getter for [defaultValueUuid] as a FhirUuidBuilder
+  FhirUuidBuilder? get defaultValueUuid =>
+      defaultValueX?.isAs<FhirUuidBuilder>();
 
-  /// Getter for [defaultValueAddress] as a Address
-  Address? get defaultValueAddress => defaultValueX?.isAs<Address>();
+  /// Getter for [defaultValueAddress] as a AddressBuilder
+  AddressBuilder? get defaultValueAddress =>
+      defaultValueX?.isAs<AddressBuilder>();
 
-  /// Getter for [defaultValueAge] as a Age
-  Age? get defaultValueAge => defaultValueX?.isAs<Age>();
+  /// Getter for [defaultValueAge] as a AgeBuilder
+  AgeBuilder? get defaultValueAge => defaultValueX?.isAs<AgeBuilder>();
 
-  /// Getter for [defaultValueAnnotation] as a Annotation
-  Annotation? get defaultValueAnnotation => defaultValueX?.isAs<Annotation>();
+  /// Getter for [defaultValueAnnotation] as a AnnotationBuilder
+  AnnotationBuilder? get defaultValueAnnotation =>
+      defaultValueX?.isAs<AnnotationBuilder>();
 
-  /// Getter for [defaultValueAttachment] as a Attachment
-  Attachment? get defaultValueAttachment => defaultValueX?.isAs<Attachment>();
+  /// Getter for [defaultValueAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get defaultValueAttachment =>
+      defaultValueX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [defaultValueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get defaultValueCodeableConcept =>
-      defaultValueX?.isAs<CodeableConcept>();
+  /// Getter for [defaultValueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get defaultValueCodeableConcept =>
+      defaultValueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [defaultValueCoding] as a Coding
-  Coding? get defaultValueCoding => defaultValueX?.isAs<Coding>();
+  /// Getter for [defaultValueCoding] as a CodingBuilder
+  CodingBuilder? get defaultValueCoding => defaultValueX?.isAs<CodingBuilder>();
 
-  /// Getter for [defaultValueContactPoint] as a ContactPoint
-  ContactPoint? get defaultValueContactPoint =>
-      defaultValueX?.isAs<ContactPoint>();
+  /// Getter for [defaultValueContactPoint] as a ContactPointBuilder
+  ContactPointBuilder? get defaultValueContactPoint =>
+      defaultValueX?.isAs<ContactPointBuilder>();
 
-  /// Getter for [defaultValueCount] as a Count
-  Count? get defaultValueCount => defaultValueX?.isAs<Count>();
+  /// Getter for [defaultValueCount] as a CountBuilder
+  CountBuilder? get defaultValueCount => defaultValueX?.isAs<CountBuilder>();
 
-  /// Getter for [defaultValueDistance] as a Distance
-  Distance? get defaultValueDistance => defaultValueX?.isAs<Distance>();
+  /// Getter for [defaultValueDistance] as a DistanceBuilder
+  DistanceBuilder? get defaultValueDistance =>
+      defaultValueX?.isAs<DistanceBuilder>();
 
-  /// Getter for [defaultValueDuration] as a FhirDuration
-  FhirDuration? get defaultValueDuration => defaultValueX?.isAs<FhirDuration>();
+  /// Getter for [defaultValueDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get defaultValueDuration =>
+      defaultValueX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [defaultValueHumanName] as a HumanName
-  HumanName? get defaultValueHumanName => defaultValueX?.isAs<HumanName>();
+  /// Getter for [defaultValueHumanName] as a HumanNameBuilder
+  HumanNameBuilder? get defaultValueHumanName =>
+      defaultValueX?.isAs<HumanNameBuilder>();
 
-  /// Getter for [defaultValueIdentifier] as a Identifier
-  Identifier? get defaultValueIdentifier => defaultValueX?.isAs<Identifier>();
+  /// Getter for [defaultValueIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get defaultValueIdentifier =>
+      defaultValueX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [defaultValueMoney] as a Money
-  Money? get defaultValueMoney => defaultValueX?.isAs<Money>();
+  /// Getter for [defaultValueMoney] as a MoneyBuilder
+  MoneyBuilder? get defaultValueMoney => defaultValueX?.isAs<MoneyBuilder>();
 
-  /// Getter for [defaultValuePeriod] as a Period
-  Period? get defaultValuePeriod => defaultValueX?.isAs<Period>();
+  /// Getter for [defaultValuePeriod] as a PeriodBuilder
+  PeriodBuilder? get defaultValuePeriod => defaultValueX?.isAs<PeriodBuilder>();
 
-  /// Getter for [defaultValueQuantity] as a Quantity
-  Quantity? get defaultValueQuantity => defaultValueX?.isAs<Quantity>();
+  /// Getter for [defaultValueQuantity] as a QuantityBuilder
+  QuantityBuilder? get defaultValueQuantity =>
+      defaultValueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [defaultValueRange] as a Range
-  Range? get defaultValueRange => defaultValueX?.isAs<Range>();
+  /// Getter for [defaultValueRange] as a RangeBuilder
+  RangeBuilder? get defaultValueRange => defaultValueX?.isAs<RangeBuilder>();
 
-  /// Getter for [defaultValueRatio] as a Ratio
-  Ratio? get defaultValueRatio => defaultValueX?.isAs<Ratio>();
+  /// Getter for [defaultValueRatio] as a RatioBuilder
+  RatioBuilder? get defaultValueRatio => defaultValueX?.isAs<RatioBuilder>();
 
-  /// Getter for [defaultValueReference] as a Reference
-  Reference? get defaultValueReference => defaultValueX?.isAs<Reference>();
+  /// Getter for [defaultValueReference] as a ReferenceBuilder
+  ReferenceBuilder? get defaultValueReference =>
+      defaultValueX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [defaultValueSampledData] as a SampledData
-  SampledData? get defaultValueSampledData =>
-      defaultValueX?.isAs<SampledData>();
+  /// Getter for [defaultValueSampledData] as a SampledDataBuilder
+  SampledDataBuilder? get defaultValueSampledData =>
+      defaultValueX?.isAs<SampledDataBuilder>();
 
-  /// Getter for [defaultValueSignature] as a Signature
-  Signature? get defaultValueSignature => defaultValueX?.isAs<Signature>();
+  /// Getter for [defaultValueSignature] as a SignatureBuilder
+  SignatureBuilder? get defaultValueSignature =>
+      defaultValueX?.isAs<SignatureBuilder>();
 
-  /// Getter for [defaultValueTiming] as a Timing
-  Timing? get defaultValueTiming => defaultValueX?.isAs<Timing>();
+  /// Getter for [defaultValueTiming] as a TimingBuilder
+  TimingBuilder? get defaultValueTiming => defaultValueX?.isAs<TimingBuilder>();
 
-  /// Getter for [defaultValueContactDetail] as a ContactDetail
-  ContactDetail? get defaultValueContactDetail =>
-      defaultValueX?.isAs<ContactDetail>();
+  /// Getter for [defaultValueContactDetail] as a ContactDetailBuilder
+  ContactDetailBuilder? get defaultValueContactDetail =>
+      defaultValueX?.isAs<ContactDetailBuilder>();
 
-  /// Getter for [defaultValueContributor] as a Contributor
-  Contributor? get defaultValueContributor =>
-      defaultValueX?.isAs<Contributor>();
+  /// Getter for [defaultValueContributor] as a ContributorBuilder
+  ContributorBuilder? get defaultValueContributor =>
+      defaultValueX?.isAs<ContributorBuilder>();
 
-  /// Getter for [defaultValueDataRequirement] as a DataRequirement
-  DataRequirement? get defaultValueDataRequirement =>
-      defaultValueX?.isAs<DataRequirement>();
+  /// Getter for [defaultValueDataRequirement] as a DataRequirementBuilder
+  DataRequirementBuilder? get defaultValueDataRequirement =>
+      defaultValueX?.isAs<DataRequirementBuilder>();
 
-  /// Getter for [defaultValueExpression] as a FhirExpression
-  FhirExpression? get defaultValueExpression =>
-      defaultValueX?.isAs<FhirExpression>();
+  /// Getter for [defaultValueExpression] as a FhirExpressionBuilder
+  FhirExpressionBuilder? get defaultValueExpression =>
+      defaultValueX?.isAs<FhirExpressionBuilder>();
 
-  /// Getter for [defaultValueParameterDefinition] as a ParameterDefinition
-  ParameterDefinition? get defaultValueParameterDefinition =>
-      defaultValueX?.isAs<ParameterDefinition>();
+  /// Getter for [defaultValueParameterDefinition] as a ParameterDefinitionBuilder
+  ParameterDefinitionBuilder? get defaultValueParameterDefinition =>
+      defaultValueX?.isAs<ParameterDefinitionBuilder>();
 
-  /// Getter for [defaultValueRelatedArtifact] as a RelatedArtifact
-  RelatedArtifact? get defaultValueRelatedArtifact =>
-      defaultValueX?.isAs<RelatedArtifact>();
+  /// Getter for [defaultValueRelatedArtifact] as a RelatedArtifactBuilder
+  RelatedArtifactBuilder? get defaultValueRelatedArtifact =>
+      defaultValueX?.isAs<RelatedArtifactBuilder>();
 
-  /// Getter for [defaultValueTriggerDefinition] as a TriggerDefinition
-  TriggerDefinition? get defaultValueTriggerDefinition =>
-      defaultValueX?.isAs<TriggerDefinition>();
+  /// Getter for [defaultValueTriggerDefinition] as a TriggerDefinitionBuilder
+  TriggerDefinitionBuilder? get defaultValueTriggerDefinition =>
+      defaultValueX?.isAs<TriggerDefinitionBuilder>();
 
-  /// Getter for [defaultValueUsageContext] as a UsageContext
-  UsageContext? get defaultValueUsageContext =>
-      defaultValueX?.isAs<UsageContext>();
+  /// Getter for [defaultValueUsageContext] as a UsageContextBuilder
+  UsageContextBuilder? get defaultValueUsageContext =>
+      defaultValueX?.isAs<UsageContextBuilder>();
 
-  /// Getter for [defaultValueDosage] as a Dosage
-  Dosage? get defaultValueDosage => defaultValueX?.isAs<Dosage>();
+  /// Getter for [defaultValueDosage] as a DosageBuilder
+  DosageBuilder? get defaultValueDosage => defaultValueX?.isAs<DosageBuilder>();
 
-  /// Getter for [defaultValueMeta] as a FhirMeta
-  FhirMeta? get defaultValueMeta => defaultValueX?.isAs<FhirMeta>();
+  /// Getter for [defaultValueMeta] as a FhirMetaBuilder
+  FhirMetaBuilder? get defaultValueMeta =>
+      defaultValueX?.isAs<FhirMetaBuilder>();
 
   /// [element]
   /// Optional field for this source.
-  final FhirString? element;
+  FhirStringBuilder? element;
 
   /// [listMode]
   /// How to handle the list mode for this element.
-  final StructureMapSourceListMode? listMode;
+  StructureMapSourceListModeBuilder? listMode;
 
   /// [variable]
   /// Named context for field, if a field is specified.
-  final FhirId? variable;
+  FhirIdBuilder? variable;
 
   /// [condition]
   /// FHIRPath expression - must be true or the rule does not apply.
-  final FhirString? condition;
+  FhirStringBuilder? condition;
 
   /// [check]
   /// FHIRPath expression - must be true or the mapping engine throws an
   /// error instead of completing.
-  final FhirString? check;
+  FhirStringBuilder? check;
 
   /// [logMessage]
   /// A FHIRPath expression which specifies a message to put in the transform
   /// log when content matching the source rule is found.
-  final FhirString? logMessage;
+  FhirStringBuilder? logMessage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4558,71 +4184,29 @@ class StructureMapSource extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'context',
-      context,
-    );
-    addField(
-      'min',
-      min,
-    );
-    addField(
-      'max',
-      max,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('context', context);
+    addField('min', min);
+    addField('max', max);
+    addField('type', type);
     if (defaultValueX != null) {
       final fhirType = defaultValueX!.fhirType;
-      addField(
-        'defaultValue${fhirType.capitalize()}',
-        defaultValueX,
-      );
+      addField('defaultValue${fhirType.capitalize()}', defaultValueX);
     }
 
-    addField(
-      'element',
-      element,
-    );
-    addField(
-      'listMode',
-      listMode,
-    );
-    addField(
-      'variable',
-      variable,
-    );
-    addField(
-      'condition',
-      condition,
-    );
-    addField(
-      'check',
-      check,
-    );
-    addField(
-      'logMessage',
-      logMessage,
-    );
+    addField('element', element);
+    addField('listMode', listMode);
+    addField('variable', variable);
+    addField('condition', condition);
+    addField('check', check);
+    addField('logMessage', logMessage);
     return json;
   }
 
@@ -4650,11 +4234,11 @@ class StructureMapSource extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4669,7 +4253,9 @@ class StructureMapSource extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'context':
-        fields.add(context);
+        if (context != null) {
+          fields.add(context!);
+        }
       case 'min':
         if (min != null) {
           fields.add(min!);
@@ -4683,207 +4269,211 @@ class StructureMapSource extends BackboneElement {
           fields.add(type!);
         }
       case 'defaultValue':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueX':
-        fields.add(defaultValueX!);
+        if (defaultValueX != null) {
+          fields.add(defaultValueX!);
+        }
       case 'defaultValueBase64Binary':
-        if (defaultValueX is FhirBase64Binary) {
+        if (defaultValueX is FhirBase64BinaryBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueBoolean':
-        if (defaultValueX is FhirBoolean) {
+        if (defaultValueX is FhirBooleanBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCanonical':
-        if (defaultValueX is FhirCanonical) {
+        if (defaultValueX is FhirCanonicalBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCode':
-        if (defaultValueX is FhirCode) {
+        if (defaultValueX is FhirCodeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDate':
-        if (defaultValueX is FhirDate) {
+        if (defaultValueX is FhirDateBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDateTime':
-        if (defaultValueX is FhirDateTime) {
+        if (defaultValueX is FhirDateTimeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDecimal':
-        if (defaultValueX is FhirDecimal) {
+        if (defaultValueX is FhirDecimalBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueId':
-        if (defaultValueX is FhirId) {
+        if (defaultValueX is FhirIdBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueInstant':
-        if (defaultValueX is FhirInstant) {
+        if (defaultValueX is FhirInstantBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueInteger':
-        if (defaultValueX is FhirInteger) {
+        if (defaultValueX is FhirIntegerBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueMarkdown':
-        if (defaultValueX is FhirMarkdown) {
+        if (defaultValueX is FhirMarkdownBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueOid':
-        if (defaultValueX is FhirOid) {
+        if (defaultValueX is FhirOidBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValuePositiveInt':
-        if (defaultValueX is FhirPositiveInt) {
+        if (defaultValueX is FhirPositiveIntBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueString':
-        if (defaultValueX is FhirString) {
+        if (defaultValueX is FhirStringBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueTime':
-        if (defaultValueX is FhirTime) {
+        if (defaultValueX is FhirTimeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUnsignedInt':
-        if (defaultValueX is FhirUnsignedInt) {
+        if (defaultValueX is FhirUnsignedIntBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUri':
-        if (defaultValueX is FhirUri) {
+        if (defaultValueX is FhirUriBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUrl':
-        if (defaultValueX is FhirUrl) {
+        if (defaultValueX is FhirUrlBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUuid':
-        if (defaultValueX is FhirUuid) {
+        if (defaultValueX is FhirUuidBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAddress':
-        if (defaultValueX is Address) {
+        if (defaultValueX is AddressBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAge':
-        if (defaultValueX is Age) {
+        if (defaultValueX is AgeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAnnotation':
-        if (defaultValueX is Annotation) {
+        if (defaultValueX is AnnotationBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueAttachment':
-        if (defaultValueX is Attachment) {
+        if (defaultValueX is AttachmentBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCodeableConcept':
-        if (defaultValueX is CodeableConcept) {
+        if (defaultValueX is CodeableConceptBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCoding':
-        if (defaultValueX is Coding) {
+        if (defaultValueX is CodingBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueContactPoint':
-        if (defaultValueX is ContactPoint) {
+        if (defaultValueX is ContactPointBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueCount':
-        if (defaultValueX is Count) {
+        if (defaultValueX is CountBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDistance':
-        if (defaultValueX is Distance) {
+        if (defaultValueX is DistanceBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDuration':
-        if (defaultValueX is FhirDuration) {
+        if (defaultValueX is FhirDurationBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueHumanName':
-        if (defaultValueX is HumanName) {
+        if (defaultValueX is HumanNameBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueIdentifier':
-        if (defaultValueX is Identifier) {
+        if (defaultValueX is IdentifierBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueMoney':
-        if (defaultValueX is Money) {
+        if (defaultValueX is MoneyBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValuePeriod':
-        if (defaultValueX is Period) {
+        if (defaultValueX is PeriodBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueQuantity':
-        if (defaultValueX is Quantity) {
+        if (defaultValueX is QuantityBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueRange':
-        if (defaultValueX is Range) {
+        if (defaultValueX is RangeBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueRatio':
-        if (defaultValueX is Ratio) {
+        if (defaultValueX is RatioBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueReference':
-        if (defaultValueX is Reference) {
+        if (defaultValueX is ReferenceBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueSampledData':
-        if (defaultValueX is SampledData) {
+        if (defaultValueX is SampledDataBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueSignature':
-        if (defaultValueX is Signature) {
+        if (defaultValueX is SignatureBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueTiming':
-        if (defaultValueX is Timing) {
+        if (defaultValueX is TimingBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueContactDetail':
-        if (defaultValueX is ContactDetail) {
+        if (defaultValueX is ContactDetailBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueContributor':
-        if (defaultValueX is Contributor) {
+        if (defaultValueX is ContributorBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDataRequirement':
-        if (defaultValueX is DataRequirement) {
+        if (defaultValueX is DataRequirementBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueExpression':
-        if (defaultValueX is FhirExpression) {
+        if (defaultValueX is FhirExpressionBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueParameterDefinition':
-        if (defaultValueX is ParameterDefinition) {
+        if (defaultValueX is ParameterDefinitionBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueRelatedArtifact':
-        if (defaultValueX is RelatedArtifact) {
+        if (defaultValueX is RelatedArtifactBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueTriggerDefinition':
-        if (defaultValueX is TriggerDefinition) {
+        if (defaultValueX is TriggerDefinitionBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueUsageContext':
-        if (defaultValueX is UsageContext) {
+        if (defaultValueX is UsageContextBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueDosage':
-        if (defaultValueX is Dosage) {
+        if (defaultValueX is DosageBuilder) {
           fields.add(defaultValueX!);
         }
       case 'defaultValueMeta':
-        if (defaultValueX is FhirMeta) {
+        if (defaultValueX is FhirMetaBuilder) {
           fields.add(defaultValueX!);
         }
       case 'element':
@@ -4920,7 +4510,7 @@ class StructureMapSource extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4929,687 +4519,798 @@ class StructureMapSource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
         {
-          if (child is FhirId) {
-            return copyWith(context: child);
+          if (child is FhirIdBuilder) {
+            context = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
         {
-          if (child is FhirInteger) {
-            return copyWith(min: child);
+          if (child is FhirIntegerBuilder) {
+            min = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
         {
-          if (child is FhirString) {
-            return copyWith(max: child);
+          if (child is FhirStringBuilder) {
+            max = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is FhirString) {
-            return copyWith(type: child);
+          if (child is FhirStringBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueX':
         {
-          if (child is DefaultValueXStructureMapSource) {
-            return copyWith(defaultValueX: child);
+          if (child is DefaultValueXStructureMapSourceBuilder) {
+            defaultValueX = child;
+            return;
           } else {
-            if (child is FhirBase64Binary) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirBase64BinaryBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirBooleanBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirCanonical) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirCanonicalBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirCode) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirCodeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDateBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDateTimeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDecimalBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirId) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirIdBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirInstant) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirInstantBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirIntegerBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirMarkdown) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirMarkdownBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirOid) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirOidBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirPositiveInt) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirPositiveIntBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirStringBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirTimeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUnsignedInt) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUnsignedIntBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUri) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUriBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUrl) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUrlBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirUuid) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirUuidBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Address) {
-              return copyWith(defaultValueX: child);
+            if (child is AddressBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Age) {
-              return copyWith(defaultValueX: child);
+            if (child is AgeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Annotation) {
-              return copyWith(defaultValueX: child);
+            if (child is AnnotationBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(defaultValueX: child);
+            if (child is AttachmentBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(defaultValueX: child);
+            if (child is CodeableConceptBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Coding) {
-              return copyWith(defaultValueX: child);
+            if (child is CodingBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is ContactPoint) {
-              return copyWith(defaultValueX: child);
+            if (child is ContactPointBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Count) {
-              return copyWith(defaultValueX: child);
+            if (child is CountBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Distance) {
-              return copyWith(defaultValueX: child);
+            if (child is DistanceBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirDuration) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirDurationBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is HumanName) {
-              return copyWith(defaultValueX: child);
+            if (child is HumanNameBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Identifier) {
-              return copyWith(defaultValueX: child);
+            if (child is IdentifierBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Money) {
-              return copyWith(defaultValueX: child);
+            if (child is MoneyBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(defaultValueX: child);
+            if (child is PeriodBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(defaultValueX: child);
+            if (child is QuantityBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Range) {
-              return copyWith(defaultValueX: child);
+            if (child is RangeBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(defaultValueX: child);
+            if (child is RatioBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(defaultValueX: child);
+            if (child is ReferenceBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is SampledData) {
-              return copyWith(defaultValueX: child);
+            if (child is SampledDataBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Signature) {
-              return copyWith(defaultValueX: child);
+            if (child is SignatureBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(defaultValueX: child);
+            if (child is TimingBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is ContactDetail) {
-              return copyWith(defaultValueX: child);
+            if (child is ContactDetailBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Contributor) {
-              return copyWith(defaultValueX: child);
+            if (child is ContributorBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is DataRequirement) {
-              return copyWith(defaultValueX: child);
+            if (child is DataRequirementBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirExpression) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirExpressionBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is ParameterDefinition) {
-              return copyWith(defaultValueX: child);
+            if (child is ParameterDefinitionBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is RelatedArtifact) {
-              return copyWith(defaultValueX: child);
+            if (child is RelatedArtifactBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is TriggerDefinition) {
-              return copyWith(defaultValueX: child);
+            if (child is TriggerDefinitionBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is UsageContext) {
-              return copyWith(defaultValueX: child);
+            if (child is UsageContextBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is Dosage) {
-              return copyWith(defaultValueX: child);
+            if (child is DosageBuilder) {
+              defaultValueX = child;
+              return;
             }
-            if (child is FhirMeta) {
-              return copyWith(defaultValueX: child);
+            if (child is FhirMetaBuilder) {
+              defaultValueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'defaultValueFhirBase64Binary':
+      case 'defaultValueBase64Binary':
         {
-          if (child is FhirBase64Binary) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirBase64BinaryBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirBoolean':
+      case 'defaultValueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirBooleanBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirCanonical':
+      case 'defaultValueCanonical':
         {
-          if (child is FhirCanonical) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirCanonicalBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirCode':
+      case 'defaultValueCode':
         {
-          if (child is FhirCode) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirCodeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDate':
+      case 'defaultValueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDateBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDateTime':
+      case 'defaultValueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDateTimeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDecimal':
+      case 'defaultValueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDecimalBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirId':
+      case 'defaultValueId':
         {
-          if (child is FhirId) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirIdBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirInstant':
+      case 'defaultValueInstant':
         {
-          if (child is FhirInstant) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirInstantBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirInteger':
+      case 'defaultValueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirIntegerBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirMarkdown':
+      case 'defaultValueMarkdown':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirMarkdownBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirOid':
+      case 'defaultValueOid':
         {
-          if (child is FhirOid) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirOidBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirPositiveInt':
+      case 'defaultValuePositiveInt':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirPositiveIntBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirString':
+      case 'defaultValueString':
         {
-          if (child is FhirString) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirStringBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirTime':
+      case 'defaultValueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirTimeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUnsignedInt':
+      case 'defaultValueUnsignedInt':
         {
-          if (child is FhirUnsignedInt) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUnsignedIntBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUri':
+      case 'defaultValueUri':
         {
-          if (child is FhirUri) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUriBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUrl':
+      case 'defaultValueUrl':
         {
-          if (child is FhirUrl) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUrlBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirUuid':
+      case 'defaultValueUuid':
         {
-          if (child is FhirUuid) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirUuidBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAddress':
         {
-          if (child is Address) {
-            return copyWith(defaultValueX: child);
+          if (child is AddressBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAge':
         {
-          if (child is Age) {
-            return copyWith(defaultValueX: child);
+          if (child is AgeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAnnotation':
         {
-          if (child is Annotation) {
-            return copyWith(defaultValueX: child);
+          if (child is AnnotationBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(defaultValueX: child);
+          if (child is AttachmentBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(defaultValueX: child);
+          if (child is CodeableConceptBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueCoding':
         {
-          if (child is Coding) {
-            return copyWith(defaultValueX: child);
+          if (child is CodingBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueContactPoint':
         {
-          if (child is ContactPoint) {
-            return copyWith(defaultValueX: child);
+          if (child is ContactPointBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueCount':
         {
-          if (child is Count) {
-            return copyWith(defaultValueX: child);
+          if (child is CountBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueDistance':
         {
-          if (child is Distance) {
-            return copyWith(defaultValueX: child);
+          if (child is DistanceBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirDuration':
+      case 'defaultValueDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirDurationBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueHumanName':
         {
-          if (child is HumanName) {
-            return copyWith(defaultValueX: child);
+          if (child is HumanNameBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(defaultValueX: child);
+          if (child is IdentifierBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueMoney':
         {
-          if (child is Money) {
-            return copyWith(defaultValueX: child);
+          if (child is MoneyBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValuePeriod':
         {
-          if (child is Period) {
-            return copyWith(defaultValueX: child);
+          if (child is PeriodBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(defaultValueX: child);
+          if (child is QuantityBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueRange':
         {
-          if (child is Range) {
-            return copyWith(defaultValueX: child);
+          if (child is RangeBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueRatio':
         {
-          if (child is Ratio) {
-            return copyWith(defaultValueX: child);
+          if (child is RatioBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueReference':
         {
-          if (child is Reference) {
-            return copyWith(defaultValueX: child);
+          if (child is ReferenceBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueSampledData':
         {
-          if (child is SampledData) {
-            return copyWith(defaultValueX: child);
+          if (child is SampledDataBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueSignature':
         {
-          if (child is Signature) {
-            return copyWith(defaultValueX: child);
+          if (child is SignatureBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueTiming':
         {
-          if (child is Timing) {
-            return copyWith(defaultValueX: child);
+          if (child is TimingBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueContactDetail':
         {
-          if (child is ContactDetail) {
-            return copyWith(defaultValueX: child);
+          if (child is ContactDetailBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueContributor':
         {
-          if (child is Contributor) {
-            return copyWith(defaultValueX: child);
+          if (child is ContributorBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueDataRequirement':
         {
-          if (child is DataRequirement) {
-            return copyWith(defaultValueX: child);
+          if (child is DataRequirementBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirExpression':
+      case 'defaultValueExpression':
         {
-          if (child is FhirExpression) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirExpressionBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueParameterDefinition':
         {
-          if (child is ParameterDefinition) {
-            return copyWith(defaultValueX: child);
+          if (child is ParameterDefinitionBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueRelatedArtifact':
         {
-          if (child is RelatedArtifact) {
-            return copyWith(defaultValueX: child);
+          if (child is RelatedArtifactBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueTriggerDefinition':
         {
-          if (child is TriggerDefinition) {
-            return copyWith(defaultValueX: child);
+          if (child is TriggerDefinitionBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueUsageContext':
         {
-          if (child is UsageContext) {
-            return copyWith(defaultValueX: child);
+          if (child is UsageContextBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'defaultValueDosage':
         {
-          if (child is Dosage) {
-            return copyWith(defaultValueX: child);
+          if (child is DosageBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'defaultValueFhirMeta':
+      case 'defaultValueMeta':
         {
-          if (child is FhirMeta) {
-            return copyWith(defaultValueX: child);
+          if (child is FhirMetaBuilder) {
+            defaultValueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'element':
         {
-          if (child is FhirString) {
-            return copyWith(element: child);
+          if (child is FhirStringBuilder) {
+            element = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'listMode':
         {
-          if (child is StructureMapSourceListMode) {
-            return copyWith(listMode: child);
+          if (child is StructureMapSourceListModeBuilder) {
+            listMode = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'variable':
         {
-          if (child is FhirId) {
-            return copyWith(variable: child);
+          if (child is FhirIdBuilder) {
+            variable = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is FhirString) {
-            return copyWith(condition: child);
+          if (child is FhirStringBuilder) {
+            condition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'check':
         {
-          if (child is FhirString) {
-            return copyWith(check: child);
+          if (child is FhirStringBuilder) {
+            check = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'logMessage':
         {
-          if (child is FhirString) {
-            return copyWith(logMessage: child);
+          if (child is FhirStringBuilder) {
+            logMessage = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5625,578 +5326,511 @@ class StructureMapSource extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'context':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'min':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'max':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'defaultValue':
       case 'defaultValueX':
         return [
-          'FhirBase64Binary',
-          'FhirBoolean',
-          'FhirCanonical',
-          'FhirCode',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirDecimal',
-          'FhirId',
-          'FhirInstant',
-          'FhirInteger',
-          'FhirMarkdown',
-          'FhirOid',
-          'FhirPositiveInt',
-          'FhirString',
-          'FhirTime',
-          'FhirUnsignedInt',
-          'FhirUri',
-          'FhirUrl',
-          'FhirUuid',
-          'Address',
-          'Age',
-          'Annotation',
-          'Attachment',
-          'CodeableConcept',
-          'Coding',
-          'ContactPoint',
-          'Count',
-          'Distance',
-          'FhirDuration',
-          'HumanName',
-          'Identifier',
-          'Money',
-          'Period',
-          'Quantity',
-          'Range',
-          'Ratio',
-          'Reference',
-          'SampledData',
-          'Signature',
-          'Timing',
-          'ContactDetail',
-          'Contributor',
-          'DataRequirement',
-          'FhirExpression',
-          'ParameterDefinition',
-          'RelatedArtifact',
-          'TriggerDefinition',
-          'UsageContext',
-          'Dosage',
-          'FhirMeta',
+          'FhirBase64BinaryBuilder',
+          'FhirBooleanBuilder',
+          'FhirCanonicalBuilder',
+          'FhirCodeBuilder',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirDecimalBuilder',
+          'FhirIdBuilder',
+          'FhirInstantBuilder',
+          'FhirIntegerBuilder',
+          'FhirMarkdownBuilder',
+          'FhirOidBuilder',
+          'FhirPositiveIntBuilder',
+          'FhirStringBuilder',
+          'FhirTimeBuilder',
+          'FhirUnsignedIntBuilder',
+          'FhirUriBuilder',
+          'FhirUrlBuilder',
+          'FhirUuidBuilder',
+          'AddressBuilder',
+          'AgeBuilder',
+          'AnnotationBuilder',
+          'AttachmentBuilder',
+          'CodeableConceptBuilder',
+          'CodingBuilder',
+          'ContactPointBuilder',
+          'CountBuilder',
+          'DistanceBuilder',
+          'FhirDurationBuilder',
+          'HumanNameBuilder',
+          'IdentifierBuilder',
+          'MoneyBuilder',
+          'PeriodBuilder',
+          'QuantityBuilder',
+          'RangeBuilder',
+          'RatioBuilder',
+          'ReferenceBuilder',
+          'SampledDataBuilder',
+          'SignatureBuilder',
+          'TimingBuilder',
+          'ContactDetailBuilder',
+          'ContributorBuilder',
+          'DataRequirementBuilder',
+          'FhirExpressionBuilder',
+          'ParameterDefinitionBuilder',
+          'RelatedArtifactBuilder',
+          'TriggerDefinitionBuilder',
+          'UsageContextBuilder',
+          'DosageBuilder',
+          'FhirMetaBuilder'
         ];
       case 'defaultValueBase64Binary':
-        return ['FhirBase64Binary'];
+        return ['FhirBase64BinaryBuilder'];
       case 'defaultValueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'defaultValueCanonical':
-        return ['FhirCanonical'];
+        return ['FhirCanonicalBuilder'];
       case 'defaultValueCode':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       case 'defaultValueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'defaultValueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'defaultValueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'defaultValueId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'defaultValueInstant':
-        return ['FhirInstant'];
+        return ['FhirInstantBuilder'];
       case 'defaultValueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'defaultValueMarkdown':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'defaultValueOid':
-        return ['FhirOid'];
+        return ['FhirOidBuilder'];
       case 'defaultValuePositiveInt':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       case 'defaultValueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'defaultValueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'defaultValueUnsignedInt':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'defaultValueUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'defaultValueUrl':
-        return ['FhirUrl'];
+        return ['FhirUrlBuilder'];
       case 'defaultValueUuid':
-        return ['FhirUuid'];
+        return ['FhirUuidBuilder'];
       case 'defaultValueAddress':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'defaultValueAge':
-        return ['Age'];
+        return ['AgeBuilder'];
       case 'defaultValueAnnotation':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'defaultValueAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'defaultValueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'defaultValueCoding':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'defaultValueContactPoint':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'defaultValueCount':
-        return ['Count'];
+        return ['CountBuilder'];
       case 'defaultValueDistance':
-        return ['Distance'];
+        return ['DistanceBuilder'];
       case 'defaultValueDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'defaultValueHumanName':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'defaultValueIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'defaultValueMoney':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'defaultValuePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'defaultValueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'defaultValueRange':
-        return ['Range'];
+        return ['RangeBuilder'];
       case 'defaultValueRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'defaultValueReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'defaultValueSampledData':
-        return ['SampledData'];
+        return ['SampledDataBuilder'];
       case 'defaultValueSignature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       case 'defaultValueTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'defaultValueContactDetail':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'defaultValueContributor':
-        return ['Contributor'];
+        return ['ContributorBuilder'];
       case 'defaultValueDataRequirement':
-        return ['DataRequirement'];
+        return ['DataRequirementBuilder'];
       case 'defaultValueExpression':
-        return ['FhirExpression'];
+        return ['FhirExpressionBuilder'];
       case 'defaultValueParameterDefinition':
-        return ['ParameterDefinition'];
+        return ['ParameterDefinitionBuilder'];
       case 'defaultValueRelatedArtifact':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'defaultValueTriggerDefinition':
-        return ['TriggerDefinition'];
+        return ['TriggerDefinitionBuilder'];
       case 'defaultValueUsageContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'defaultValueDosage':
-        return ['Dosage'];
+        return ['DosageBuilder'];
       case 'defaultValueMeta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'element':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'listMode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'variable':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'condition':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'check':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'logMessage':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapSource]
+  /// Creates a new [StructureMapSourceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapSource createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'context':
         {
-          return copyWith(
-            context: FhirId.empty(),
-          );
+          context = FhirIdBuilder.empty();
+          return;
         }
       case 'min':
         {
-          return copyWith(
-            min: FhirInteger.empty(),
-          );
+          min = FhirIntegerBuilder.empty();
+          return;
         }
       case 'max':
         {
-          return copyWith(
-            max: FhirString.empty(),
-          );
+          max = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: FhirString.empty(),
-          );
+          type = FhirStringBuilder.empty();
+          return;
         }
       case 'defaultValue':
       case 'defaultValueX':
       case 'defaultValueBase64Binary':
         {
-          return copyWith(
-            defaultValueX: FhirBase64Binary.empty(),
-          );
+          defaultValueX = FhirBase64BinaryBuilder.empty();
+          return;
         }
       case 'defaultValueBoolean':
         {
-          return copyWith(
-            defaultValueX: FhirBoolean.empty(),
-          );
+          defaultValueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'defaultValueCanonical':
         {
-          return copyWith(
-            defaultValueX: FhirCanonical.empty(),
-          );
+          defaultValueX = FhirCanonicalBuilder.empty();
+          return;
         }
       case 'defaultValueCode':
         {
-          return copyWith(
-            defaultValueX: FhirCode.empty(),
-          );
+          defaultValueX = FhirCodeBuilder.empty();
+          return;
         }
       case 'defaultValueDate':
         {
-          return copyWith(
-            defaultValueX: FhirDate.empty(),
-          );
+          defaultValueX = FhirDateBuilder.empty();
+          return;
         }
       case 'defaultValueDateTime':
         {
-          return copyWith(
-            defaultValueX: FhirDateTime.empty(),
-          );
+          defaultValueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'defaultValueDecimal':
         {
-          return copyWith(
-            defaultValueX: FhirDecimal.empty(),
-          );
+          defaultValueX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'defaultValueId':
         {
-          return copyWith(
-            defaultValueX: FhirId.empty(),
-          );
+          defaultValueX = FhirIdBuilder.empty();
+          return;
         }
       case 'defaultValueInstant':
         {
-          return copyWith(
-            defaultValueX: FhirInstant.empty(),
-          );
+          defaultValueX = FhirInstantBuilder.empty();
+          return;
         }
       case 'defaultValueInteger':
         {
-          return copyWith(
-            defaultValueX: FhirInteger.empty(),
-          );
+          defaultValueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'defaultValueMarkdown':
         {
-          return copyWith(
-            defaultValueX: FhirMarkdown.empty(),
-          );
+          defaultValueX = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'defaultValueOid':
         {
-          return copyWith(
-            defaultValueX: FhirOid.empty(),
-          );
+          defaultValueX = FhirOidBuilder.empty();
+          return;
         }
       case 'defaultValuePositiveInt':
         {
-          return copyWith(
-            defaultValueX: FhirPositiveInt.empty(),
-          );
+          defaultValueX = FhirPositiveIntBuilder.empty();
+          return;
         }
       case 'defaultValueString':
         {
-          return copyWith(
-            defaultValueX: FhirString.empty(),
-          );
+          defaultValueX = FhirStringBuilder.empty();
+          return;
         }
       case 'defaultValueTime':
         {
-          return copyWith(
-            defaultValueX: FhirTime.empty(),
-          );
+          defaultValueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'defaultValueUnsignedInt':
         {
-          return copyWith(
-            defaultValueX: FhirUnsignedInt.empty(),
-          );
+          defaultValueX = FhirUnsignedIntBuilder.empty();
+          return;
         }
       case 'defaultValueUri':
         {
-          return copyWith(
-            defaultValueX: FhirUri.empty(),
-          );
+          defaultValueX = FhirUriBuilder.empty();
+          return;
         }
       case 'defaultValueUrl':
         {
-          return copyWith(
-            defaultValueX: FhirUrl.empty(),
-          );
+          defaultValueX = FhirUrlBuilder.empty();
+          return;
         }
       case 'defaultValueUuid':
         {
-          return copyWith(
-            defaultValueX: FhirUuid.empty(),
-          );
+          defaultValueX = FhirUuidBuilder.empty();
+          return;
         }
       case 'defaultValueAddress':
         {
-          return copyWith(
-            defaultValueX: Address.empty(),
-          );
+          defaultValueX = AddressBuilder.empty();
+          return;
         }
       case 'defaultValueAge':
         {
-          return copyWith(
-            defaultValueX: Age.empty(),
-          );
+          defaultValueX = AgeBuilder.empty();
+          return;
         }
       case 'defaultValueAnnotation':
         {
-          return copyWith(
-            defaultValueX: Annotation.empty(),
-          );
+          defaultValueX = AnnotationBuilder.empty();
+          return;
         }
       case 'defaultValueAttachment':
         {
-          return copyWith(
-            defaultValueX: Attachment.empty(),
-          );
+          defaultValueX = AttachmentBuilder.empty();
+          return;
         }
       case 'defaultValueCodeableConcept':
         {
-          return copyWith(
-            defaultValueX: CodeableConcept.empty(),
-          );
+          defaultValueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'defaultValueCoding':
         {
-          return copyWith(
-            defaultValueX: Coding.empty(),
-          );
+          defaultValueX = CodingBuilder.empty();
+          return;
         }
       case 'defaultValueContactPoint':
         {
-          return copyWith(
-            defaultValueX: ContactPoint.empty(),
-          );
+          defaultValueX = ContactPointBuilder.empty();
+          return;
         }
       case 'defaultValueCount':
         {
-          return copyWith(
-            defaultValueX: Count.empty(),
-          );
+          defaultValueX = CountBuilder.empty();
+          return;
         }
       case 'defaultValueDistance':
         {
-          return copyWith(
-            defaultValueX: Distance.empty(),
-          );
+          defaultValueX = DistanceBuilder.empty();
+          return;
         }
       case 'defaultValueDuration':
         {
-          return copyWith(
-            defaultValueX: FhirDuration.empty(),
-          );
+          defaultValueX = FhirDurationBuilder.empty();
+          return;
         }
       case 'defaultValueHumanName':
         {
-          return copyWith(
-            defaultValueX: HumanName.empty(),
-          );
+          defaultValueX = HumanNameBuilder.empty();
+          return;
         }
       case 'defaultValueIdentifier':
         {
-          return copyWith(
-            defaultValueX: Identifier.empty(),
-          );
+          defaultValueX = IdentifierBuilder.empty();
+          return;
         }
       case 'defaultValueMoney':
         {
-          return copyWith(
-            defaultValueX: Money.empty(),
-          );
+          defaultValueX = MoneyBuilder.empty();
+          return;
         }
       case 'defaultValuePeriod':
         {
-          return copyWith(
-            defaultValueX: Period.empty(),
-          );
+          defaultValueX = PeriodBuilder.empty();
+          return;
         }
       case 'defaultValueQuantity':
         {
-          return copyWith(
-            defaultValueX: Quantity.empty(),
-          );
+          defaultValueX = QuantityBuilder.empty();
+          return;
         }
       case 'defaultValueRange':
         {
-          return copyWith(
-            defaultValueX: Range.empty(),
-          );
+          defaultValueX = RangeBuilder.empty();
+          return;
         }
       case 'defaultValueRatio':
         {
-          return copyWith(
-            defaultValueX: Ratio.empty(),
-          );
+          defaultValueX = RatioBuilder.empty();
+          return;
         }
       case 'defaultValueReference':
         {
-          return copyWith(
-            defaultValueX: Reference.empty(),
-          );
+          defaultValueX = ReferenceBuilder.empty();
+          return;
         }
       case 'defaultValueSampledData':
         {
-          return copyWith(
-            defaultValueX: SampledData.empty(),
-          );
+          defaultValueX = SampledDataBuilder.empty();
+          return;
         }
       case 'defaultValueSignature':
         {
-          return copyWith(
-            defaultValueX: Signature.empty(),
-          );
+          defaultValueX = SignatureBuilder.empty();
+          return;
         }
       case 'defaultValueTiming':
         {
-          return copyWith(
-            defaultValueX: Timing.empty(),
-          );
+          defaultValueX = TimingBuilder.empty();
+          return;
         }
       case 'defaultValueContactDetail':
         {
-          return copyWith(
-            defaultValueX: ContactDetail.empty(),
-          );
+          defaultValueX = ContactDetailBuilder.empty();
+          return;
         }
       case 'defaultValueContributor':
         {
-          return copyWith(
-            defaultValueX: Contributor.empty(),
-          );
+          defaultValueX = ContributorBuilder.empty();
+          return;
         }
       case 'defaultValueDataRequirement':
         {
-          return copyWith(
-            defaultValueX: DataRequirement.empty(),
-          );
+          defaultValueX = DataRequirementBuilder.empty();
+          return;
         }
       case 'defaultValueExpression':
         {
-          return copyWith(
-            defaultValueX: FhirExpression.empty(),
-          );
+          defaultValueX = FhirExpressionBuilder.empty();
+          return;
         }
       case 'defaultValueParameterDefinition':
         {
-          return copyWith(
-            defaultValueX: ParameterDefinition.empty(),
-          );
+          defaultValueX = ParameterDefinitionBuilder.empty();
+          return;
         }
       case 'defaultValueRelatedArtifact':
         {
-          return copyWith(
-            defaultValueX: RelatedArtifact.empty(),
-          );
+          defaultValueX = RelatedArtifactBuilder.empty();
+          return;
         }
       case 'defaultValueTriggerDefinition':
         {
-          return copyWith(
-            defaultValueX: TriggerDefinition.empty(),
-          );
+          defaultValueX = TriggerDefinitionBuilder.empty();
+          return;
         }
       case 'defaultValueUsageContext':
         {
-          return copyWith(
-            defaultValueX: UsageContext.empty(),
-          );
+          defaultValueX = UsageContextBuilder.empty();
+          return;
         }
       case 'defaultValueDosage':
         {
-          return copyWith(
-            defaultValueX: Dosage.empty(),
-          );
+          defaultValueX = DosageBuilder.empty();
+          return;
         }
       case 'defaultValueMeta':
         {
-          return copyWith(
-            defaultValueX: FhirMeta.empty(),
-          );
+          defaultValueX = FhirMetaBuilder.empty();
+          return;
         }
       case 'element':
         {
-          return copyWith(
-            element: FhirString.empty(),
-          );
+          element = FhirStringBuilder.empty();
+          return;
         }
       case 'listMode':
         {
-          return copyWith(
-            listMode: StructureMapSourceListMode.empty(),
-          );
+          listMode = StructureMapSourceListModeBuilder.empty();
+          return;
         }
       case 'variable':
         {
-          return copyWith(
-            variable: FhirId.empty(),
-          );
+          variable = FhirIdBuilder.empty();
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: FhirString.empty(),
-          );
+          condition = FhirStringBuilder.empty();
+          return;
         }
       case 'check':
         {
-          return copyWith(
-            check: FhirString.empty(),
-          );
+          check = FhirStringBuilder.empty();
+          return;
         }
       case 'logMessage':
         {
-          return copyWith(
-            logMessage: FhirString.empty(),
-          );
+          logMessage = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6205,10 +5839,11 @@ class StructureMapSource extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapSource clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool context = false,
     bool min = false,
     bool max = false,
     bool type = false,
@@ -6220,42 +5855,40 @@ class StructureMapSource extends BackboneElement {
     bool check = false,
     bool logMessage = false,
   }) {
-    return StructureMapSource(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      context: context,
-      min: min ? null : this.min,
-      max: max ? null : this.max,
-      type: type ? null : this.type,
-      defaultValueX: defaultValue ? null : defaultValueX,
-      element: element ? null : this.element,
-      listMode: listMode ? null : this.listMode,
-      variable: variable ? null : this.variable,
-      condition: condition ? null : this.condition,
-      check: check ? null : this.check,
-      logMessage: logMessage ? null : this.logMessage,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (context) this.context = null;
+    if (min) this.min = null;
+    if (max) this.max = null;
+    if (type) this.type = null;
+    if (defaultValue) this.defaultValueX = null;
+    if (element) this.element = null;
+    if (listMode) this.listMode = null;
+    if (variable) this.variable = null;
+    if (condition) this.condition = null;
+    if (check) this.check = null;
+    if (logMessage) this.logMessage = null;
   }
 
   @override
-  StructureMapSource clone() => throw UnimplementedError();
+  StructureMapSourceBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapSource copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? context,
-    FhirInteger? min,
-    FhirString? max,
-    FhirString? type,
-    DefaultValueXStructureMapSource? defaultValueX,
-    FhirString? element,
-    StructureMapSourceListMode? listMode,
-    FhirId? variable,
-    FhirString? condition,
-    FhirString? check,
-    FhirString? logMessage,
+  StructureMapSourceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIdBuilder? context,
+    FhirIntegerBuilder? min,
+    FhirStringBuilder? max,
+    FhirStringBuilder? type,
+    DefaultValueXStructureMapSourceBuilder? defaultValueX,
+    FhirStringBuilder? element,
+    StructureMapSourceListModeBuilder? listMode,
+    FhirIdBuilder? variable,
+    FhirStringBuilder? condition,
+    FhirStringBuilder? check,
+    FhirStringBuilder? logMessage,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6263,78 +5896,45 @@ class StructureMapSource extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapSource(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      context: context?.copyWith(
-            objectPath: '$newObjectPath.context',
-          ) ??
-          this.context,
-      min: min?.copyWith(
-            objectPath: '$newObjectPath.min',
-          ) ??
-          this.min,
-      max: max?.copyWith(
-            objectPath: '$newObjectPath.max',
-          ) ??
-          this.max,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      defaultValueX: defaultValueX?.copyWith(
-            objectPath: '$newObjectPath.defaultValueX',
-          ) as DefaultValueXStructureMapSource? ??
-          this.defaultValueX,
-      element: element?.copyWith(
-            objectPath: '$newObjectPath.element',
-          ) ??
-          this.element,
-      listMode: listMode?.copyWith(
-            objectPath: '$newObjectPath.listMode',
-          ) ??
-          this.listMode,
-      variable: variable?.copyWith(
-            objectPath: '$newObjectPath.variable',
-          ) ??
-          this.variable,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
-      check: check?.copyWith(
-            objectPath: '$newObjectPath.check',
-          ) ??
-          this.check,
-      logMessage: logMessage?.copyWith(
-            objectPath: '$newObjectPath.logMessage',
-          ) ??
-          this.logMessage,
+    final newResult = StructureMapSourceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      context: context ?? this.context,
+      min: min ?? this.min,
+      max: max ?? this.max,
+      type: type ?? this.type,
+      defaultValueX: defaultValueX ?? this.defaultValueX,
+      element: element ?? this.element,
+      listMode: listMode ?? this.listMode,
+      variable: variable ?? this.variable,
+      condition: condition ?? this.condition,
+      check: check ?? this.check,
+      logMessage: logMessage ?? this.logMessage,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapSource) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapSourceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -6345,13 +5945,13 @@ class StructureMapSource extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -6427,13 +6027,13 @@ class StructureMapSource extends BackboneElement {
   }
 }
 
-/// [StructureMapTarget]
+/// [StructureMapTargetBuilder]
 /// Content to create because of this mapping rule.
-class StructureMapTarget extends BackboneElement {
+class StructureMapTargetBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapTarget]
+  /// [StructureMapTargetBuilder]
 
-  const StructureMapTarget({
+  StructureMapTargetBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -6451,25 +6051,24 @@ class StructureMapTarget extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapTarget.empty() => const StructureMapTarget();
+  /// For Builder classes, no fields are required
+  factory StructureMapTargetBuilder.empty() => StructureMapTargetBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapTarget.fromJson(
+  factory StructureMapTargetBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.group.rule.target';
-    return StructureMapTarget(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapTargetBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -6478,8 +6077,8 @@ class StructureMapTarget extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -6487,51 +6086,52 @@ class StructureMapTarget extends BackboneElement {
             ),
           )
           .toList(),
-      context: JsonParser.parsePrimitive<FhirId>(
+      context: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'context',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.context',
       ),
-      contextType: JsonParser.parsePrimitive<StructureMapContextType>(
+      contextType: JsonParser.parsePrimitive<StructureMapContextTypeBuilder>(
         json,
         'contextType',
-        StructureMapContextType.fromJson,
+        StructureMapContextTypeBuilder.fromJson,
         '$objectPath.contextType',
       ),
-      element: JsonParser.parsePrimitive<FhirString>(
+      element: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'element',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.element',
       ),
-      variable: JsonParser.parsePrimitive<FhirId>(
+      variable: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'variable',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.variable',
       ),
-      listMode: JsonParser.parsePrimitiveList<StructureMapTargetListMode>(
+      listMode:
+          JsonParser.parsePrimitiveList<StructureMapTargetListModeBuilder>(
         json,
         'listMode',
-        StructureMapTargetListMode.fromJson,
+        StructureMapTargetListModeBuilder.fromJson,
         '$objectPath.listMode',
       ),
-      listRuleId: JsonParser.parsePrimitive<FhirId>(
+      listRuleId: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'listRuleId',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.listRuleId',
       ),
-      transform: JsonParser.parsePrimitive<StructureMapTransform>(
+      transform: JsonParser.parsePrimitive<StructureMapTransformBuilder>(
         json,
         'transform',
-        StructureMapTransform.fromJson,
+        StructureMapTransformBuilder.fromJson,
         '$objectPath.transform',
       ),
       parameter: (json['parameter'] as List<dynamic>?)
-          ?.map<StructureMapParameter>(
-            (v) => StructureMapParameter.fromJson(
+          ?.map<StructureMapParameterBuilder>(
+            (v) => StructureMapParameterBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.parameter',
@@ -6542,22 +6142,22 @@ class StructureMapTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapTarget]
+  /// Deserialize [StructureMapTargetBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapTarget.fromYaml(
+  factory StructureMapTargetBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapTarget.fromJson(
+      return StructureMapTargetBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapTarget.fromJson(
+      return StructureMapTargetBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapTarget '
+        'StructureMapTargetBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -6565,16 +6165,16 @@ class StructureMapTarget extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapTarget]
+  /// [StructureMapTargetBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapTarget.fromJsonString(
+  factory StructureMapTargetBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapTarget.fromJson(json);
+      return StructureMapTargetBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -6586,51 +6186,51 @@ class StructureMapTarget extends BackboneElement {
 
   /// [context]
   /// Type or variable this rule applies to.
-  final FhirId? context;
+  FhirIdBuilder? context;
 
   /// [contextType]
   /// How to interpret the context.
-  final StructureMapContextType? contextType;
+  StructureMapContextTypeBuilder? contextType;
 
   /// [element]
   /// Field to create in the context.
-  final FhirString? element;
+  FhirStringBuilder? element;
 
   /// [variable]
   /// Named context for field, if desired, and a field is specified.
-  final FhirId? variable;
+  FhirIdBuilder? variable;
 
   /// [listMode]
   /// If field is a list, how to manage the list.
-  final List<StructureMapTargetListMode>? listMode;
+  List<StructureMapTargetListModeBuilder>? listMode;
 
   /// [listRuleId]
   /// Internal rule reference for shared list items.
-  final FhirId? listRuleId;
+  FhirIdBuilder? listRuleId;
 
   /// [transform]
   /// How the data is copied / created.
-  final StructureMapTransform? transform;
+  StructureMapTransformBuilder? transform;
 
   /// [parameter]
   /// Parameters to the transform.
-  final List<StructureMapParameter>? parameter;
+  List<StructureMapParameterBuilder>? parameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -6639,55 +6239,22 @@ class StructureMapTarget extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'context',
-      context,
-    );
-    addField(
-      'contextType',
-      contextType,
-    );
-    addField(
-      'element',
-      element,
-    );
-    addField(
-      'variable',
-      variable,
-    );
-    addField(
-      'listMode',
-      listMode,
-    );
-    addField(
-      'listRuleId',
-      listRuleId,
-    );
-    addField(
-      'transform',
-      transform,
-    );
-    addField(
-      'parameter',
-      parameter,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('context', context);
+    addField('contextType', contextType);
+    addField('element', element);
+    addField('variable', variable);
+    addField('listMode', listMode);
+    addField('listRuleId', listRuleId);
+    addField('transform', transform);
+    addField('parameter', parameter);
     return json;
   }
 
@@ -6712,11 +6279,11 @@ class StructureMapTarget extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6772,7 +6339,7 @@ class StructureMapTarget extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6781,125 +6348,131 @@ class StructureMapTarget extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
         {
-          if (child is FhirId) {
-            return copyWith(context: child);
+          if (child is FhirIdBuilder) {
+            context = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contextType':
         {
-          if (child is StructureMapContextType) {
-            return copyWith(contextType: child);
+          if (child is StructureMapContextTypeBuilder) {
+            contextType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'element':
         {
-          if (child is FhirString) {
-            return copyWith(element: child);
+          if (child is FhirStringBuilder) {
+            element = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'variable':
         {
-          if (child is FhirId) {
-            return copyWith(variable: child);
+          if (child is FhirIdBuilder) {
+            variable = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'listMode':
         {
-          if (child is List<StructureMapTargetListMode>) {
-            // Add all elements from passed list
-            final newList = [...?listMode, ...child];
-            return copyWith(listMode: newList);
-          } else if (child is StructureMapTargetListMode) {
+          if (child is List<StructureMapTargetListModeBuilder>) {
+            // Replace or create new list
+            listMode = child;
+            return;
+          } else if (child is StructureMapTargetListModeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?listMode, child];
-            return copyWith(listMode: newList);
+            listMode = [...(listMode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'listRuleId':
         {
-          if (child is FhirId) {
-            return copyWith(listRuleId: child);
+          if (child is FhirIdBuilder) {
+            listRuleId = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'transform':
         {
-          if (child is StructureMapTransform) {
-            return copyWith(transform: child);
+          if (child is StructureMapTransformBuilder) {
+            transform = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'parameter':
         {
-          if (child is List<StructureMapParameter>) {
-            // Add all elements from passed list
-            final newList = [...?parameter, ...child];
-            return copyWith(parameter: newList);
-          } else if (child is StructureMapParameter) {
+          if (child is List<StructureMapParameterBuilder>) {
+            // Replace or create new list
+            parameter = child;
+            return;
+          } else if (child is StructureMapParameterBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?parameter, child];
-            return copyWith(parameter: newList);
+            parameter = [...(parameter ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -6915,106 +6488,91 @@ class StructureMapTarget extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'context':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'contextType':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'element':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'variable':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'listMode':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'listRuleId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'transform':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'parameter':
-        return ['StructureMapParameter'];
+        return ['StructureMapParameterBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapTarget]
+  /// Creates a new [StructureMapTargetBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapTarget createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'context':
         {
-          return copyWith(
-            context: FhirId.empty(),
-          );
+          context = FhirIdBuilder.empty();
+          return;
         }
       case 'contextType':
         {
-          return copyWith(
-            contextType: StructureMapContextType.empty(),
-          );
+          contextType = StructureMapContextTypeBuilder.empty();
+          return;
         }
       case 'element':
         {
-          return copyWith(
-            element: FhirString.empty(),
-          );
+          element = FhirStringBuilder.empty();
+          return;
         }
       case 'variable':
         {
-          return copyWith(
-            variable: FhirId.empty(),
-          );
+          variable = FhirIdBuilder.empty();
+          return;
         }
       case 'listMode':
         {
-          return copyWith(
-            listMode: <StructureMapTargetListMode>[],
-          );
+          listMode = <StructureMapTargetListModeBuilder>[];
+          return;
         }
       case 'listRuleId':
         {
-          return copyWith(
-            listRuleId: FhirId.empty(),
-          );
+          listRuleId = FhirIdBuilder.empty();
+          return;
         }
       case 'transform':
         {
-          return copyWith(
-            transform: StructureMapTransform.empty(),
-          );
+          transform = StructureMapTransformBuilder.empty();
+          return;
         }
       case 'parameter':
         {
-          return copyWith(
-            parameter: <StructureMapParameter>[],
-          );
+          parameter = <StructureMapParameterBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7023,7 +6581,7 @@ class StructureMapTarget extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapTarget clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -7036,36 +6594,34 @@ class StructureMapTarget extends BackboneElement {
     bool transform = false,
     bool parameter = false,
   }) {
-    return StructureMapTarget(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      context: context ? null : this.context,
-      contextType: contextType ? null : this.contextType,
-      element: element ? null : this.element,
-      variable: variable ? null : this.variable,
-      listMode: listMode ? null : this.listMode,
-      listRuleId: listRuleId ? null : this.listRuleId,
-      transform: transform ? null : this.transform,
-      parameter: parameter ? null : this.parameter,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (context) this.context = null;
+    if (contextType) this.contextType = null;
+    if (element) this.element = null;
+    if (variable) this.variable = null;
+    if (listMode) this.listMode = null;
+    if (listRuleId) this.listRuleId = null;
+    if (transform) this.transform = null;
+    if (parameter) this.parameter = null;
   }
 
   @override
-  StructureMapTarget clone() => throw UnimplementedError();
+  StructureMapTargetBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapTarget copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? context,
-    StructureMapContextType? contextType,
-    FhirString? element,
-    FhirId? variable,
-    List<StructureMapTargetListMode>? listMode,
-    FhirId? listRuleId,
-    StructureMapTransform? transform,
-    List<StructureMapParameter>? parameter,
+  StructureMapTargetBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIdBuilder? context,
+    StructureMapContextTypeBuilder? contextType,
+    FhirStringBuilder? element,
+    FhirIdBuilder? variable,
+    List<StructureMapTargetListModeBuilder>? listMode,
+    FhirIdBuilder? listRuleId,
+    StructureMapTransformBuilder? transform,
+    List<StructureMapParameterBuilder>? parameter,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7073,74 +6629,42 @@ class StructureMapTarget extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapTarget(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      context: context?.copyWith(
-            objectPath: '$newObjectPath.context',
-          ) ??
-          this.context,
-      contextType: contextType?.copyWith(
-            objectPath: '$newObjectPath.contextType',
-          ) ??
-          this.contextType,
-      element: element?.copyWith(
-            objectPath: '$newObjectPath.element',
-          ) ??
-          this.element,
-      variable: variable?.copyWith(
-            objectPath: '$newObjectPath.variable',
-          ) ??
-          this.variable,
-      listMode: listMode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.listMode',
-                ),
-              )
-              .toList() ??
-          this.listMode,
-      listRuleId: listRuleId?.copyWith(
-            objectPath: '$newObjectPath.listRuleId',
-          ) ??
-          this.listRuleId,
-      transform: transform?.copyWith(
-            objectPath: '$newObjectPath.transform',
-          ) ??
-          this.transform,
-      parameter: parameter
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.parameter',
-                ),
-              )
-              .toList() ??
-          this.parameter,
+    final newResult = StructureMapTargetBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      context: context ?? this.context,
+      contextType: contextType ?? this.contextType,
+      element: element ?? this.element,
+      variable: variable ?? this.variable,
+      listMode: listMode ?? this.listMode,
+      listRuleId: listRuleId ?? this.listRuleId,
+      transform: transform ?? this.transform,
+      parameter: parameter ?? this.parameter,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapTarget) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapTargetBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7151,13 +6675,13 @@ class StructureMapTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -7187,7 +6711,7 @@ class StructureMapTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<StructureMapTargetListMode>(
+    if (!listEquals<StructureMapTargetListModeBuilder>(
       listMode,
       o.listMode,
     )) {
@@ -7205,7 +6729,7 @@ class StructureMapTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<StructureMapParameter>(
+    if (!listEquals<StructureMapParameterBuilder>(
       parameter,
       o.parameter,
     )) {
@@ -7215,44 +6739,42 @@ class StructureMapTarget extends BackboneElement {
   }
 }
 
-/// [StructureMapParameter]
+/// [StructureMapParameterBuilder]
 /// Parameters to the transform.
-class StructureMapParameter extends BackboneElement {
+class StructureMapParameterBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapParameter]
+  /// [StructureMapParameterBuilder]
 
-  const StructureMapParameter({
+  StructureMapParameterBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueX,
+    this.valueX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'StructureMap.group.rule.target.parameter',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapParameter.empty() => StructureMapParameter(
-        valueX: FhirId.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapParameterBuilder.empty() =>
+      StructureMapParameterBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapParameter.fromJson(
+  factory StructureMapParameterBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.group.rule.target.parameter';
-    return StructureMapParameter(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapParameterBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7261,8 +6783,8 @@ class StructureMapParameter extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -7270,36 +6792,36 @@ class StructureMapParameter extends BackboneElement {
             ),
           )
           .toList(),
-      valueX: JsonParser.parsePolymorphic<ValueXStructureMapParameter>(
+      valueX: JsonParser.parsePolymorphic<ValueXStructureMapParameterBuilder>(
         json,
         {
-          'valueId': FhirId.fromJson,
-          'valueString': FhirString.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueInteger': FhirInteger.fromJson,
-          'valueDecimal': FhirDecimal.fromJson,
+          'valueId': FhirIdBuilder.fromJson,
+          'valueString': FhirStringBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueInteger': FhirIntegerBuilder.fromJson,
+          'valueDecimal': FhirDecimalBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [StructureMapParameter]
+  /// Deserialize [StructureMapParameterBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapParameter.fromYaml(
+  factory StructureMapParameterBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapParameter.fromJson(
+      return StructureMapParameterBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapParameter.fromJson(
+      return StructureMapParameterBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapParameter '
+        'StructureMapParameterBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7307,16 +6829,16 @@ class StructureMapParameter extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapParameter]
+  /// [StructureMapParameterBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapParameter.fromJsonString(
+  factory StructureMapParameterBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapParameter.fromJson(json);
+      return StructureMapParameterBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7328,38 +6850,38 @@ class StructureMapParameter extends BackboneElement {
 
   /// [valueX]
   /// Parameter value - variable or literal.
-  final ValueXStructureMapParameter valueX;
+  ValueXStructureMapParameterBuilder? valueX;
 
-  /// Getter for [valueId] as a FhirId
-  FhirId? get valueId => valueX.isAs<FhirId>();
+  /// Getter for [valueId] as a FhirIdBuilder
+  FhirIdBuilder? get valueId => valueX?.isAs<FhirIdBuilder>();
 
-  /// Getter for [valueString] as a FhirString
-  FhirString? get valueString => valueX.isAs<FhirString>();
+  /// Getter for [valueString] as a FhirStringBuilder
+  FhirStringBuilder? get valueString => valueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueInteger] as a FhirInteger
-  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+  /// Getter for [valueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get valueInteger => valueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [valueDecimal] as a FhirDecimal
-  FhirDecimal? get valueDecimal => valueX.isAs<FhirDecimal>();
+  /// Getter for [valueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7368,28 +6890,18 @@ class StructureMapParameter extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    final valueXFhirType = valueX.fhirType;
-    addField(
-      'value${valueXFhirType.capitalize()}',
-      valueX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    if (valueX != null) {
+      final fhirType = valueX!.fhirType;
+      addField('value${fhirType.capitalize()}', valueX);
+    }
 
     return json;
   }
@@ -7408,11 +6920,11 @@ class StructureMapParameter extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7427,28 +6939,32 @@ class StructureMapParameter extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'value':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueId':
-        if (valueX is FhirId) {
-          fields.add(valueX);
+        if (valueX is FhirIdBuilder) {
+          fields.add(valueX!);
         }
       case 'valueString':
-        if (valueX is FhirString) {
-          fields.add(valueX);
+        if (valueX is FhirStringBuilder) {
+          fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
-          fields.add(valueX);
+        if (valueX is FhirBooleanBuilder) {
+          fields.add(valueX!);
         }
       case 'valueInteger':
-        if (valueX is FhirInteger) {
-          fields.add(valueX);
+        if (valueX is FhirIntegerBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDecimal':
-        if (valueX is FhirDecimal) {
-          fields.add(valueX);
+        if (valueX is FhirDecimalBuilder) {
+          fields.add(valueX!);
         }
       default:
         if (checkValid) {
@@ -7460,7 +6976,7 @@ class StructureMapParameter extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -7469,112 +6985,123 @@ class StructureMapParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXStructureMapParameter) {
-            return copyWith(valueX: child);
+          if (child is ValueXStructureMapParameterBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is FhirId) {
-              return copyWith(valueX: child);
+            if (child is FhirIdBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
+            if (child is FhirStringBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
+            if (child is FhirIntegerBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(valueX: child);
+            if (child is FhirDecimalBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'valueFhirId':
+      case 'valueId':
         {
-          if (child is FhirId) {
-            return copyWith(valueX: child);
+          if (child is FhirIdBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirString':
+      case 'valueString':
         {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
+          if (child is FhirStringBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirInteger':
+      case 'valueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
+          if (child is FhirIntegerBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDecimal':
+      case 'valueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(valueX: child);
+          if (child is FhirDecimalBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -7590,93 +7117,81 @@ class StructureMapParameter extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'FhirId',
-          'FhirString',
-          'FhirBoolean',
-          'FhirInteger',
-          'FhirDecimal',
+          'FhirIdBuilder',
+          'FhirStringBuilder',
+          'FhirBooleanBuilder',
+          'FhirIntegerBuilder',
+          'FhirDecimalBuilder'
         ];
       case 'valueId':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'valueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'valueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapParameter]
+  /// Creates a new [StructureMapParameterBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapParameter createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueId':
         {
-          return copyWith(
-            valueX: FhirId.empty(),
-          );
+          valueX = FhirIdBuilder.empty();
+          return;
         }
       case 'valueString':
         {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
+          valueX = FhirStringBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueInteger':
         {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
+          valueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'valueDecimal':
         {
-          return copyWith(
-            valueX: FhirDecimal.empty(),
-          );
+          valueX = FhirDecimalBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7685,27 +7200,26 @@ class StructureMapParameter extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapParameter clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool value = false,
   }) {
-    return StructureMapParameter(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      valueX: valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  StructureMapParameter clone() => throw UnimplementedError();
+  StructureMapParameterBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapParameter copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ValueXStructureMapParameter? valueX,
+  StructureMapParameterBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ValueXStructureMapParameterBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7713,38 +7227,35 @@ class StructureMapParameter extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapParameter(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXStructureMapParameter? ??
-          this.valueX,
+    final newResult = StructureMapParameterBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapParameter) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapParameterBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7755,13 +7266,13 @@ class StructureMapParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -7777,46 +7288,43 @@ class StructureMapParameter extends BackboneElement {
   }
 }
 
-/// [StructureMapDependent]
+/// [StructureMapDependentBuilder]
 /// Which other rules to apply in the context of this rule.
-class StructureMapDependent extends BackboneElement {
+class StructureMapDependentBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [StructureMapDependent]
+  /// [StructureMapDependentBuilder]
 
-  const StructureMapDependent({
+  StructureMapDependentBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
-    required this.variable,
+    this.name,
+    this.variable,
     super.disallowExtensions,
   }) : super(
           objectPath: 'StructureMap.group.rule.dependent',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory StructureMapDependent.empty() => StructureMapDependent(
-        name: FhirId.empty(),
-        variable: <FhirString>[],
-      );
+  /// For Builder classes, no fields are required
+  factory StructureMapDependentBuilder.empty() =>
+      StructureMapDependentBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapDependent.fromJson(
+  factory StructureMapDependentBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'StructureMap.group.rule.dependent';
-    return StructureMapDependent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return StructureMapDependentBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7825,8 +7333,8 @@ class StructureMapDependent extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -7834,37 +7342,37 @@ class StructureMapDependent extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirId>(
+      name: JsonParser.parsePrimitive<FhirIdBuilder>(
         json,
         'name',
-        FhirId.fromJson,
+        FhirIdBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      variable: JsonParser.parsePrimitiveList<FhirString>(
+      ),
+      variable: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'variable',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.variable',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [StructureMapDependent]
+  /// Deserialize [StructureMapDependentBuilder]
   /// from a [String] or [YamlMap] object
-  factory StructureMapDependent.fromYaml(
+  factory StructureMapDependentBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return StructureMapDependent.fromJson(
+      return StructureMapDependentBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return StructureMapDependent.fromJson(
+      return StructureMapDependentBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'StructureMapDependent '
+        'StructureMapDependentBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7872,16 +7380,16 @@ class StructureMapDependent extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [StructureMapDependent]
+  /// [StructureMapDependentBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory StructureMapDependent.fromJsonString(
+  factory StructureMapDependentBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return StructureMapDependent.fromJson(json);
+      return StructureMapDependentBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7893,27 +7401,27 @@ class StructureMapDependent extends BackboneElement {
 
   /// [name]
   /// Name of a rule or group to apply.
-  final FhirId name;
+  FhirIdBuilder? name;
 
   /// [variable]
   /// Variable to pass to the rule or group.
-  final List<FhirString> variable;
+  List<FhirStringBuilder>? variable;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7922,31 +7430,16 @@ class StructureMapDependent extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'variable',
-      variable,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('variable', variable);
     return json;
   }
 
@@ -7965,11 +7458,11 @@ class StructureMapDependent extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7984,9 +7477,13 @@ class StructureMapDependent extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'variable':
-        fields.addAll(variable);
+        if (variable != null) {
+          fields.addAll(variable!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -7997,7 +7494,7 @@ class StructureMapDependent extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -8006,71 +7503,72 @@ class StructureMapDependent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirId) {
-            return copyWith(name: child);
+          if (child is FhirIdBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'variable':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...variable, ...child];
-            return copyWith(variable: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            variable = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...variable, child];
-            return copyWith(variable: newList);
+            variable = [...(variable ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -8086,58 +7584,49 @@ class StructureMapDependent extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirId'];
+        return ['FhirIdBuilder'];
       case 'variable':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [StructureMapDependent]
+  /// Creates a new [StructureMapDependentBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  StructureMapDependent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirId.empty(),
-          );
+          name = FhirIdBuilder.empty();
+          return;
         }
       case 'variable':
         {
-          return copyWith(
-            variable: <FhirString>[],
-          );
+          variable = <FhirStringBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8146,29 +7635,29 @@ class StructureMapDependent extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  StructureMapDependent clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
+    bool variable = false,
   }) {
-    return StructureMapDependent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      variable: variable,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (variable) this.variable = null;
   }
 
   @override
-  StructureMapDependent clone() => throw UnimplementedError();
+  StructureMapDependentBuilder clone() => throw UnimplementedError();
   @override
-  StructureMapDependent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirId? name,
-    List<FhirString>? variable,
+  StructureMapDependentBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirIdBuilder? name,
+    List<FhirStringBuilder>? variable,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8176,46 +7665,36 @@ class StructureMapDependent extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return StructureMapDependent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      variable: variable
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.variable',
-                ),
-              )
-              .toList() ??
-          this.variable,
+    final newResult = StructureMapDependentBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      variable: variable ?? this.variable,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! StructureMapDependent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! StructureMapDependentBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8226,13 +7705,13 @@ class StructureMapDependent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -8244,7 +7723,7 @@ class StructureMapDependent extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       variable,
       o.variable,
     )) {

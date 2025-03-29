@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [AdverseEvent]
+/// [AdverseEventBuilder]
 /// Actual or potential/avoided event causing unintended physical injury
 /// resulting from or contributed to by medical care, a research study or
 /// other healthcare setting factors that requires additional monitoring,
 /// treatment, or hospitalization, or that results in death.
-class AdverseEvent extends DomainResource {
+class AdverseEventBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [AdverseEvent]
+  /// [AdverseEventBuilder]
 
-  const AdverseEvent({
+  AdverseEventBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -21,10 +23,10 @@ class AdverseEvent extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.actuality,
+    this.actuality,
     this.category,
     this.event,
-    required this.subject,
+    this.subject,
     this.encounter,
     this.date,
     this.detected,
@@ -46,52 +48,48 @@ class AdverseEvent extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AdverseEvent.empty() => AdverseEvent(
-        actuality: AdverseEventActuality.values.first,
-        subject: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory AdverseEventBuilder.empty() => AdverseEventBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AdverseEvent.fromJson(
+  factory AdverseEventBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AdverseEvent';
-    return AdverseEvent(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AdverseEventBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -100,8 +98,8 @@ class AdverseEvent extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -110,8 +108,8 @@ class AdverseEvent extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -119,21 +117,21 @@ class AdverseEvent extends DomainResource {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      actuality: JsonParser.parsePrimitive<AdverseEventActuality>(
+      actuality: JsonParser.parsePrimitive<AdverseEventActualityBuilder>(
         json,
         'actuality',
-        AdverseEventActuality.fromJson,
+        AdverseEventActualityBuilder.fromJson,
         '$objectPath.actuality',
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -141,45 +139,45 @@ class AdverseEvent extends DomainResource {
             ),
           )
           .toList(),
-      event: JsonParser.parseObject<CodeableConcept>(
+      event: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'event',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.event',
       ),
-      subject: JsonParser.parseObject<Reference>(
+      subject: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'subject',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.subject',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      detected: JsonParser.parsePrimitive<FhirDateTime>(
+      detected: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'detected',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.detected',
       ),
-      recordedDate: JsonParser.parsePrimitive<FhirDateTime>(
+      recordedDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'recordedDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.recordedDate',
       ),
       resultingCondition: (json['resultingCondition'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.resultingCondition',
@@ -187,39 +185,39 @@ class AdverseEvent extends DomainResource {
             ),
           )
           .toList(),
-      location: JsonParser.parseObject<Reference>(
+      location: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'location',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.location',
       ),
-      seriousness: JsonParser.parseObject<CodeableConcept>(
+      seriousness: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'seriousness',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.seriousness',
       ),
-      severity: JsonParser.parseObject<CodeableConcept>(
+      severity: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'severity',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.severity',
       ),
-      outcome: JsonParser.parseObject<CodeableConcept>(
+      outcome: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'outcome',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.outcome',
       ),
-      recorder: JsonParser.parseObject<Reference>(
+      recorder: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'recorder',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.recorder',
       ),
       contributor: (json['contributor'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contributor',
@@ -228,8 +226,8 @@ class AdverseEvent extends DomainResource {
           )
           .toList(),
       suspectEntity: (json['suspectEntity'] as List<dynamic>?)
-          ?.map<AdverseEventSuspectEntity>(
-            (v) => AdverseEventSuspectEntity.fromJson(
+          ?.map<AdverseEventSuspectEntityBuilder>(
+            (v) => AdverseEventSuspectEntityBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.suspectEntity',
@@ -238,8 +236,8 @@ class AdverseEvent extends DomainResource {
           )
           .toList(),
       subjectMedicalHistory: (json['subjectMedicalHistory'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.subjectMedicalHistory',
@@ -248,8 +246,8 @@ class AdverseEvent extends DomainResource {
           )
           .toList(),
       referenceDocument: (json['referenceDocument'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.referenceDocument',
@@ -258,8 +256,8 @@ class AdverseEvent extends DomainResource {
           )
           .toList(),
       study: (json['study'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.study',
@@ -270,22 +268,22 @@ class AdverseEvent extends DomainResource {
     );
   }
 
-  /// Deserialize [AdverseEvent]
+  /// Deserialize [AdverseEventBuilder]
   /// from a [String] or [YamlMap] object
-  factory AdverseEvent.fromYaml(
+  factory AdverseEventBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AdverseEvent.fromJson(
+      return AdverseEventBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AdverseEvent.fromJson(
+      return AdverseEventBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AdverseEvent '
+        'AdverseEventBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -293,16 +291,16 @@ class AdverseEvent extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [AdverseEvent]
+  /// [AdverseEventBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdverseEvent.fromJsonString(
+  factory AdverseEventBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AdverseEvent.fromJson(json);
+      return AdverseEventBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -316,72 +314,72 @@ class AdverseEvent extends DomainResource {
   /// Business identifiers assigned to this adverse event by the performer or
   /// other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [actuality]
   /// Whether the event actually happened, or just had the potential to. Note
   /// that this is independent of whether anyone was affected or harmed or
   /// how severely.
-  final AdverseEventActuality actuality;
+  AdverseEventActualityBuilder? actuality;
 
   /// [category]
   /// The overall type of event, intended for search and filtering purposes.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [event]
   /// This element defines the specific type of event that occurred or that
   /// was prevented from occurring.
-  final CodeableConcept? event;
+  CodeableConceptBuilder? event;
 
   /// [subject]
   /// This subject or group impacted by the event.
-  final Reference subject;
+  ReferenceBuilder? subject;
 
   /// [encounter]
   /// The Encounter during which AdverseEvent was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [date]
   /// The date (and perhaps time) when the adverse event occurred.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [detected]
   /// Estimated or actual date the AdverseEvent began, in the opinion of the
   /// reporter.
-  final FhirDateTime? detected;
+  FhirDateTimeBuilder? detected;
 
   /// [recordedDate]
   /// The date on which the existence of the AdverseEvent was first recorded.
-  final FhirDateTime? recordedDate;
+  FhirDateTimeBuilder? recordedDate;
 
   /// [resultingCondition]
   /// Includes information about the reaction that occurred as a result of
   /// exposure to a substance (for example, a drug or a chemical).
-  final List<Reference>? resultingCondition;
+  List<ReferenceBuilder>? resultingCondition;
 
   /// [location]
   /// The information about where the adverse event occurred.
-  final Reference? location;
+  ReferenceBuilder? location;
 
   /// [seriousness]
   /// Assessment whether this event was of real importance.
-  final CodeableConcept? seriousness;
+  CodeableConceptBuilder? seriousness;
 
   /// [severity]
   /// Describes the severity of the adverse event, in relation to the
   /// subject. Contrast to AdverseEvent.seriousness - a severe rash might not
   /// be serious, but a mild heart problem is.
-  final CodeableConcept? severity;
+  CodeableConceptBuilder? severity;
 
   /// [outcome]
   /// Describes the type of outcome from the adverse event.
-  final CodeableConcept? outcome;
+  CodeableConceptBuilder? outcome;
 
   /// [recorder]
   /// Information on who recorded the adverse event. May be the patient or a
   /// practitioner.
-  final Reference? recorder;
+  ReferenceBuilder? recorder;
 
   /// [contributor]
   /// Parties that may or should contribute or have contributed information
@@ -391,40 +389,40 @@ class AdverseEvent extends DomainResource {
   /// that the activity itself seeks to reveal (e.g. informant of clinical
   /// history), or information about what activity was performed (e.g.
   /// informant witness).
-  final List<Reference>? contributor;
+  List<ReferenceBuilder>? contributor;
 
   /// [suspectEntity]
   /// Describes the entity that is suspected to have caused the adverse
   /// event.
-  final List<AdverseEventSuspectEntity>? suspectEntity;
+  List<AdverseEventSuspectEntityBuilder>? suspectEntity;
 
   /// [subjectMedicalHistory]
   /// AdverseEvent.subjectMedicalHistory.
-  final List<Reference>? subjectMedicalHistory;
+  List<ReferenceBuilder>? subjectMedicalHistory;
 
   /// [referenceDocument]
   /// AdverseEvent.referenceDocument.
-  final List<Reference>? referenceDocument;
+  List<ReferenceBuilder>? referenceDocument;
 
   /// [study]
   /// AdverseEvent.study.
-  final List<Reference>? study;
+  List<ReferenceBuilder>? study;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -433,124 +431,40 @@ class AdverseEvent extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'actuality',
-      actuality,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'event',
-      event,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'detected',
-      detected,
-    );
-    addField(
-      'recordedDate',
-      recordedDate,
-    );
-    addField(
-      'resultingCondition',
-      resultingCondition,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'seriousness',
-      seriousness,
-    );
-    addField(
-      'severity',
-      severity,
-    );
-    addField(
-      'outcome',
-      outcome,
-    );
-    addField(
-      'recorder',
-      recorder,
-    );
-    addField(
-      'contributor',
-      contributor,
-    );
-    addField(
-      'suspectEntity',
-      suspectEntity,
-    );
-    addField(
-      'subjectMedicalHistory',
-      subjectMedicalHistory,
-    );
-    addField(
-      'referenceDocument',
-      referenceDocument,
-    );
-    addField(
-      'study',
-      study,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('actuality', actuality);
+    addField('category', category);
+    addField('event', event);
+    addField('subject', subject);
+    addField('encounter', encounter);
+    addField('date', date);
+    addField('detected', detected);
+    addField('recordedDate', recordedDate);
+    addField('resultingCondition', resultingCondition);
+    addField('location', location);
+    addField('seriousness', seriousness);
+    addField('severity', severity);
+    addField('outcome', outcome);
+    addField('recorder', recorder);
+    addField('contributor', contributor);
+    addField('suspectEntity', suspectEntity);
+    addField('subjectMedicalHistory', subjectMedicalHistory);
+    addField('referenceDocument', referenceDocument);
+    addField('study', study);
     return json;
   }
 
@@ -592,11 +506,11 @@ class AdverseEvent extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -635,7 +549,9 @@ class AdverseEvent extends DomainResource {
           fields.add(identifier!);
         }
       case 'actuality':
-        fields.add(actuality);
+        if (actuality != null) {
+          fields.add(actuality!);
+        }
       case 'category':
         if (category != null) {
           fields.addAll(category!);
@@ -645,7 +561,9 @@ class AdverseEvent extends DomainResource {
           fields.add(event!);
         }
       case 'subject':
-        fields.add(subject);
+        if (subject != null) {
+          fields.add(subject!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
@@ -716,7 +634,7 @@ class AdverseEvent extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -725,297 +643,314 @@ class AdverseEvent extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actuality':
         {
-          if (child is AdverseEventActuality) {
-            return copyWith(actuality: child);
+          if (child is AdverseEventActualityBuilder) {
+            actuality = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'event':
         {
-          if (child is CodeableConcept) {
-            return copyWith(event: child);
+          if (child is CodeableConceptBuilder) {
+            event = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is Reference) {
-            return copyWith(subject: child);
+          if (child is ReferenceBuilder) {
+            subject = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'detected':
         {
-          if (child is FhirDateTime) {
-            return copyWith(detected: child);
+          if (child is FhirDateTimeBuilder) {
+            detected = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recordedDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(recordedDate: child);
+          if (child is FhirDateTimeBuilder) {
+            recordedDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'resultingCondition':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?resultingCondition, ...child];
-            return copyWith(resultingCondition: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            resultingCondition = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?resultingCondition, child];
-            return copyWith(resultingCondition: newList);
+            resultingCondition = [...(resultingCondition ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is Reference) {
-            return copyWith(location: child);
+          if (child is ReferenceBuilder) {
+            location = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'seriousness':
         {
-          if (child is CodeableConcept) {
-            return copyWith(seriousness: child);
+          if (child is CodeableConceptBuilder) {
+            seriousness = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
         {
-          if (child is CodeableConcept) {
-            return copyWith(severity: child);
+          if (child is CodeableConceptBuilder) {
+            severity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
         {
-          if (child is CodeableConcept) {
-            return copyWith(outcome: child);
+          if (child is CodeableConceptBuilder) {
+            outcome = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorder':
         {
-          if (child is Reference) {
-            return copyWith(recorder: child);
+          if (child is ReferenceBuilder) {
+            recorder = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contributor':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?contributor, ...child];
-            return copyWith(contributor: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            contributor = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contributor, child];
-            return copyWith(contributor: newList);
+            contributor = [...(contributor ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'suspectEntity':
         {
-          if (child is List<AdverseEventSuspectEntity>) {
-            // Add all elements from passed list
-            final newList = [...?suspectEntity, ...child];
-            return copyWith(suspectEntity: newList);
-          } else if (child is AdverseEventSuspectEntity) {
+          if (child is List<AdverseEventSuspectEntityBuilder>) {
+            // Replace or create new list
+            suspectEntity = child;
+            return;
+          } else if (child is AdverseEventSuspectEntityBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?suspectEntity, child];
-            return copyWith(suspectEntity: newList);
+            suspectEntity = [...(suspectEntity ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectMedicalHistory':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?subjectMedicalHistory, ...child];
-            return copyWith(subjectMedicalHistory: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            subjectMedicalHistory = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?subjectMedicalHistory, child];
-            return copyWith(subjectMedicalHistory: newList);
+            subjectMedicalHistory = [...(subjectMedicalHistory ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceDocument':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?referenceDocument, ...child];
-            return copyWith(referenceDocument: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            referenceDocument = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceDocument, child];
-            return copyWith(referenceDocument: newList);
+            referenceDocument = [...(referenceDocument ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'study':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?study, ...child];
-            return copyWith(study: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            study = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?study, child];
-            return copyWith(study: newList);
+            study = [...(study ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1031,242 +966,210 @@ class AdverseEvent extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'actuality':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'event':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'detected':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'recordedDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'resultingCondition':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'location':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'seriousness':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'severity':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'outcome':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'recorder':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'contributor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'suspectEntity':
-        return ['AdverseEventSuspectEntity'];
+        return ['AdverseEventSuspectEntityBuilder'];
       case 'subjectMedicalHistory':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'referenceDocument':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'study':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AdverseEvent]
+  /// Creates a new [AdverseEventBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AdverseEvent createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'actuality':
         {
-          return copyWith(
-            actuality: AdverseEventActuality.empty(),
-          );
+          actuality = AdverseEventActualityBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'event':
         {
-          return copyWith(
-            event: CodeableConcept.empty(),
-          );
+          event = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: Reference.empty(),
-          );
+          subject = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'detected':
         {
-          return copyWith(
-            detected: FhirDateTime.empty(),
-          );
+          detected = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'recordedDate':
         {
-          return copyWith(
-            recordedDate: FhirDateTime.empty(),
-          );
+          recordedDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'resultingCondition':
         {
-          return copyWith(
-            resultingCondition: <Reference>[],
-          );
+          resultingCondition = <ReferenceBuilder>[];
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: Reference.empty(),
-          );
+          location = ReferenceBuilder.empty();
+          return;
         }
       case 'seriousness':
         {
-          return copyWith(
-            seriousness: CodeableConcept.empty(),
-          );
+          seriousness = CodeableConceptBuilder.empty();
+          return;
         }
       case 'severity':
         {
-          return copyWith(
-            severity: CodeableConcept.empty(),
-          );
+          severity = CodeableConceptBuilder.empty();
+          return;
         }
       case 'outcome':
         {
-          return copyWith(
-            outcome: CodeableConcept.empty(),
-          );
+          outcome = CodeableConceptBuilder.empty();
+          return;
         }
       case 'recorder':
         {
-          return copyWith(
-            recorder: Reference.empty(),
-          );
+          recorder = ReferenceBuilder.empty();
+          return;
         }
       case 'contributor':
         {
-          return copyWith(
-            contributor: <Reference>[],
-          );
+          contributor = <ReferenceBuilder>[];
+          return;
         }
       case 'suspectEntity':
         {
-          return copyWith(
-            suspectEntity: <AdverseEventSuspectEntity>[],
-          );
+          suspectEntity = <AdverseEventSuspectEntityBuilder>[];
+          return;
         }
       case 'subjectMedicalHistory':
         {
-          return copyWith(
-            subjectMedicalHistory: <Reference>[],
-          );
+          subjectMedicalHistory = <ReferenceBuilder>[];
+          return;
         }
       case 'referenceDocument':
         {
-          return copyWith(
-            referenceDocument: <Reference>[],
-          );
+          referenceDocument = <ReferenceBuilder>[];
+          return;
         }
       case 'study':
         {
-          return copyWith(
-            study: <Reference>[],
-          );
+          study = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1275,7 +1178,7 @@ class AdverseEvent extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  AdverseEvent clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1285,8 +1188,10 @@ class AdverseEvent extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool actuality = false,
     bool category = false,
     bool event = false,
+    bool subject = false,
     bool encounter = false,
     bool date = false,
     bool detected = false,
@@ -1303,230 +1208,128 @@ class AdverseEvent extends DomainResource {
     bool referenceDocument = false,
     bool study = false,
   }) {
-    return AdverseEvent(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      actuality: actuality,
-      category: category ? null : this.category,
-      event: event ? null : this.event,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      date: date ? null : this.date,
-      detected: detected ? null : this.detected,
-      recordedDate: recordedDate ? null : this.recordedDate,
-      resultingCondition: resultingCondition ? null : this.resultingCondition,
-      location: location ? null : this.location,
-      seriousness: seriousness ? null : this.seriousness,
-      severity: severity ? null : this.severity,
-      outcome: outcome ? null : this.outcome,
-      recorder: recorder ? null : this.recorder,
-      contributor: contributor ? null : this.contributor,
-      suspectEntity: suspectEntity ? null : this.suspectEntity,
-      subjectMedicalHistory:
-          subjectMedicalHistory ? null : this.subjectMedicalHistory,
-      referenceDocument: referenceDocument ? null : this.referenceDocument,
-      study: study ? null : this.study,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (actuality) this.actuality = null;
+    if (category) this.category = null;
+    if (event) this.event = null;
+    if (subject) this.subject = null;
+    if (encounter) this.encounter = null;
+    if (date) this.date = null;
+    if (detected) this.detected = null;
+    if (recordedDate) this.recordedDate = null;
+    if (resultingCondition) this.resultingCondition = null;
+    if (location) this.location = null;
+    if (seriousness) this.seriousness = null;
+    if (severity) this.severity = null;
+    if (outcome) this.outcome = null;
+    if (recorder) this.recorder = null;
+    if (contributor) this.contributor = null;
+    if (suspectEntity) this.suspectEntity = null;
+    if (subjectMedicalHistory) this.subjectMedicalHistory = null;
+    if (referenceDocument) this.referenceDocument = null;
+    if (study) this.study = null;
   }
 
   @override
-  AdverseEvent clone() => throw UnimplementedError();
+  AdverseEventBuilder clone() => throw UnimplementedError();
   @override
-  AdverseEvent copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    AdverseEventActuality? actuality,
-    List<CodeableConcept>? category,
-    CodeableConcept? event,
-    Reference? subject,
-    Reference? encounter,
-    FhirDateTime? date,
-    FhirDateTime? detected,
-    FhirDateTime? recordedDate,
-    List<Reference>? resultingCondition,
-    Reference? location,
-    CodeableConcept? seriousness,
-    CodeableConcept? severity,
-    CodeableConcept? outcome,
-    Reference? recorder,
-    List<Reference>? contributor,
-    List<AdverseEventSuspectEntity>? suspectEntity,
-    List<Reference>? subjectMedicalHistory,
-    List<Reference>? referenceDocument,
-    List<Reference>? study,
+  AdverseEventBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    AdverseEventActualityBuilder? actuality,
+    List<CodeableConceptBuilder>? category,
+    CodeableConceptBuilder? event,
+    ReferenceBuilder? subject,
+    ReferenceBuilder? encounter,
+    FhirDateTimeBuilder? date,
+    FhirDateTimeBuilder? detected,
+    FhirDateTimeBuilder? recordedDate,
+    List<ReferenceBuilder>? resultingCondition,
+    ReferenceBuilder? location,
+    CodeableConceptBuilder? seriousness,
+    CodeableConceptBuilder? severity,
+    CodeableConceptBuilder? outcome,
+    ReferenceBuilder? recorder,
+    List<ReferenceBuilder>? contributor,
+    List<AdverseEventSuspectEntityBuilder>? suspectEntity,
+    List<ReferenceBuilder>? subjectMedicalHistory,
+    List<ReferenceBuilder>? referenceDocument,
+    List<ReferenceBuilder>? study,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return AdverseEvent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = AdverseEventBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      actuality: actuality?.copyWith(
-            objectPath: '$newObjectPath.actuality',
-          ) ??
-          this.actuality,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      event: event?.copyWith(
-            objectPath: '$newObjectPath.event',
-          ) ??
-          this.event,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      detected: detected?.copyWith(
-            objectPath: '$newObjectPath.detected',
-          ) ??
-          this.detected,
-      recordedDate: recordedDate?.copyWith(
-            objectPath: '$newObjectPath.recordedDate',
-          ) ??
-          this.recordedDate,
-      resultingCondition: resultingCondition
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.resultingCondition',
-                ),
-              )
-              .toList() ??
-          this.resultingCondition,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      seriousness: seriousness?.copyWith(
-            objectPath: '$newObjectPath.seriousness',
-          ) ??
-          this.seriousness,
-      severity: severity?.copyWith(
-            objectPath: '$newObjectPath.severity',
-          ) ??
-          this.severity,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      recorder: recorder?.copyWith(
-            objectPath: '$newObjectPath.recorder',
-          ) ??
-          this.recorder,
-      contributor: contributor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contributor',
-                ),
-              )
-              .toList() ??
-          this.contributor,
-      suspectEntity: suspectEntity
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.suspectEntity',
-                ),
-              )
-              .toList() ??
-          this.suspectEntity,
-      subjectMedicalHistory: subjectMedicalHistory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subjectMedicalHistory',
-                ),
-              )
-              .toList() ??
-          this.subjectMedicalHistory,
-      referenceDocument: referenceDocument
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referenceDocument',
-                ),
-              )
-              .toList() ??
-          this.referenceDocument,
-      study: study
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.study',
-                ),
-              )
-              .toList() ??
-          this.study,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      actuality: actuality ?? this.actuality,
+      category: category ?? this.category,
+      event: event ?? this.event,
+      subject: subject ?? this.subject,
+      encounter: encounter ?? this.encounter,
+      date: date ?? this.date,
+      detected: detected ?? this.detected,
+      recordedDate: recordedDate ?? this.recordedDate,
+      resultingCondition: resultingCondition ?? this.resultingCondition,
+      location: location ?? this.location,
+      seriousness: seriousness ?? this.seriousness,
+      severity: severity ?? this.severity,
+      outcome: outcome ?? this.outcome,
+      recorder: recorder ?? this.recorder,
+      contributor: contributor ?? this.contributor,
+      suspectEntity: suspectEntity ?? this.suspectEntity,
+      subjectMedicalHistory:
+          subjectMedicalHistory ?? this.subjectMedicalHistory,
+      referenceDocument: referenceDocument ?? this.referenceDocument,
+      study: study ?? this.study,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AdverseEvent) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AdverseEventBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1561,19 +1364,19 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1591,7 +1394,7 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
@@ -1633,7 +1436,7 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       resultingCondition,
       o.resultingCondition,
     )) {
@@ -1669,31 +1472,31 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       contributor,
       o.contributor,
     )) {
       return false;
     }
-    if (!listEquals<AdverseEventSuspectEntity>(
+    if (!listEquals<AdverseEventSuspectEntityBuilder>(
       suspectEntity,
       o.suspectEntity,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       subjectMedicalHistory,
       o.subjectMedicalHistory,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       referenceDocument,
       o.referenceDocument,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       study,
       o.study,
     )) {
@@ -1703,18 +1506,18 @@ class AdverseEvent extends DomainResource {
   }
 }
 
-/// [AdverseEventSuspectEntity]
+/// [AdverseEventSuspectEntityBuilder]
 /// Describes the entity that is suspected to have caused the adverse
 /// event.
-class AdverseEventSuspectEntity extends BackboneElement {
+class AdverseEventSuspectEntityBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AdverseEventSuspectEntity]
+  /// [AdverseEventSuspectEntityBuilder]
 
-  const AdverseEventSuspectEntity({
+  AdverseEventSuspectEntityBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.instance,
+    this.instance,
     this.causality,
     super.disallowExtensions,
   }) : super(
@@ -1722,27 +1525,25 @@ class AdverseEventSuspectEntity extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AdverseEventSuspectEntity.empty() => AdverseEventSuspectEntity(
-        instance: Reference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory AdverseEventSuspectEntityBuilder.empty() =>
+      AdverseEventSuspectEntityBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AdverseEventSuspectEntity.fromJson(
+  factory AdverseEventSuspectEntityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AdverseEvent.suspectEntity';
-    return AdverseEventSuspectEntity(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AdverseEventSuspectEntityBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1751,8 +1552,8 @@ class AdverseEventSuspectEntity extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1760,15 +1561,15 @@ class AdverseEventSuspectEntity extends BackboneElement {
             ),
           )
           .toList(),
-      instance: JsonParser.parseObject<Reference>(
+      instance: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'instance',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.instance',
-      )!,
+      ),
       causality: (json['causality'] as List<dynamic>?)
-          ?.map<AdverseEventCausality>(
-            (v) => AdverseEventCausality.fromJson(
+          ?.map<AdverseEventCausalityBuilder>(
+            (v) => AdverseEventCausalityBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.causality',
@@ -1779,22 +1580,22 @@ class AdverseEventSuspectEntity extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdverseEventSuspectEntity]
+  /// Deserialize [AdverseEventSuspectEntityBuilder]
   /// from a [String] or [YamlMap] object
-  factory AdverseEventSuspectEntity.fromYaml(
+  factory AdverseEventSuspectEntityBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AdverseEventSuspectEntity.fromJson(
+      return AdverseEventSuspectEntityBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AdverseEventSuspectEntity.fromJson(
+      return AdverseEventSuspectEntityBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AdverseEventSuspectEntity '
+        'AdverseEventSuspectEntityBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1802,16 +1603,16 @@ class AdverseEventSuspectEntity extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AdverseEventSuspectEntity]
+  /// [AdverseEventSuspectEntityBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdverseEventSuspectEntity.fromJsonString(
+  factory AdverseEventSuspectEntityBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AdverseEventSuspectEntity.fromJson(json);
+      return AdverseEventSuspectEntityBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1825,27 +1626,27 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// Identifies the actual instance of what caused the adverse event. May be
   /// a substance, medication, medication administration, medication
   /// statement or a device.
-  final Reference instance;
+  ReferenceBuilder? instance;
 
   /// [causality]
   /// Information on the possible cause of the event.
-  final List<AdverseEventCausality>? causality;
+  List<AdverseEventCausalityBuilder>? causality;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1854,31 +1655,16 @@ class AdverseEventSuspectEntity extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'instance',
-      instance,
-    );
-    addField(
-      'causality',
-      causality,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('instance', instance);
+    addField('causality', causality);
     return json;
   }
 
@@ -1897,11 +1683,11 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1916,7 +1702,9 @@ class AdverseEventSuspectEntity extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'instance':
-        fields.add(instance);
+        if (instance != null) {
+          fields.add(instance!);
+        }
       case 'causality':
         if (causality != null) {
           fields.addAll(causality!);
@@ -1931,7 +1719,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1940,71 +1728,72 @@ class AdverseEventSuspectEntity extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instance':
         {
-          if (child is Reference) {
-            return copyWith(instance: child);
+          if (child is ReferenceBuilder) {
+            instance = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'causality':
         {
-          if (child is List<AdverseEventCausality>) {
-            // Add all elements from passed list
-            final newList = [...?causality, ...child];
-            return copyWith(causality: newList);
-          } else if (child is AdverseEventCausality) {
+          if (child is List<AdverseEventCausalityBuilder>) {
+            // Replace or create new list
+            causality = child;
+            return;
+          } else if (child is AdverseEventCausalityBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?causality, child];
-            return copyWith(causality: newList);
+            causality = [...(causality ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2020,58 +1809,49 @@ class AdverseEventSuspectEntity extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'instance':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'causality':
-        return ['AdverseEventCausality'];
+        return ['AdverseEventCausalityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AdverseEventSuspectEntity]
+  /// Creates a new [AdverseEventSuspectEntityBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AdverseEventSuspectEntity createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'instance':
         {
-          return copyWith(
-            instance: Reference.empty(),
-          );
+          instance = ReferenceBuilder.empty();
+          return;
         }
       case 'causality':
         {
-          return copyWith(
-            causality: <AdverseEventCausality>[],
-          );
+          causality = <AdverseEventCausalityBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2080,30 +1860,29 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AdverseEventSuspectEntity clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool instance = false,
     bool causality = false,
   }) {
-    return AdverseEventSuspectEntity(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      instance: instance,
-      causality: causality ? null : this.causality,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (instance) this.instance = null;
+    if (causality) this.causality = null;
   }
 
   @override
-  AdverseEventSuspectEntity clone() => throw UnimplementedError();
+  AdverseEventSuspectEntityBuilder clone() => throw UnimplementedError();
   @override
-  AdverseEventSuspectEntity copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? instance,
-    List<AdverseEventCausality>? causality,
+  AdverseEventSuspectEntityBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? instance,
+    List<AdverseEventCausalityBuilder>? causality,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2111,46 +1890,36 @@ class AdverseEventSuspectEntity extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AdverseEventSuspectEntity(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      instance: instance?.copyWith(
-            objectPath: '$newObjectPath.instance',
-          ) ??
-          this.instance,
-      causality: causality
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.causality',
-                ),
-              )
-              .toList() ??
-          this.causality,
+    final newResult = AdverseEventSuspectEntityBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      instance: instance ?? this.instance,
+      causality: causality ?? this.causality,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AdverseEventSuspectEntity) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AdverseEventSuspectEntityBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2161,13 +1930,13 @@ class AdverseEventSuspectEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2179,7 +1948,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<AdverseEventCausality>(
+    if (!listEquals<AdverseEventCausalityBuilder>(
       causality,
       o.causality,
     )) {
@@ -2189,13 +1958,13 @@ class AdverseEventSuspectEntity extends BackboneElement {
   }
 }
 
-/// [AdverseEventCausality]
+/// [AdverseEventCausalityBuilder]
 /// Information on the possible cause of the event.
-class AdverseEventCausality extends BackboneElement {
+class AdverseEventCausalityBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [AdverseEventCausality]
+  /// [AdverseEventCausalityBuilder]
 
-  const AdverseEventCausality({
+  AdverseEventCausalityBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2209,25 +1978,25 @@ class AdverseEventCausality extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory AdverseEventCausality.empty() => const AdverseEventCausality();
+  /// For Builder classes, no fields are required
+  factory AdverseEventCausalityBuilder.empty() =>
+      AdverseEventCausalityBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AdverseEventCausality.fromJson(
+  factory AdverseEventCausalityBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'AdverseEvent.suspectEntity.causality';
-    return AdverseEventCausality(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return AdverseEventCausalityBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2236,8 +2005,8 @@ class AdverseEventCausality extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2245,49 +2014,49 @@ class AdverseEventCausality extends BackboneElement {
             ),
           )
           .toList(),
-      assessment: JsonParser.parseObject<CodeableConcept>(
+      assessment: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'assessment',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.assessment',
       ),
-      productRelatedness: JsonParser.parsePrimitive<FhirString>(
+      productRelatedness: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'productRelatedness',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.productRelatedness',
       ),
-      author: JsonParser.parseObject<Reference>(
+      author: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'author',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.author',
       ),
-      method: JsonParser.parseObject<CodeableConcept>(
+      method: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'method',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.method',
       ),
     );
   }
 
-  /// Deserialize [AdverseEventCausality]
+  /// Deserialize [AdverseEventCausalityBuilder]
   /// from a [String] or [YamlMap] object
-  factory AdverseEventCausality.fromYaml(
+  factory AdverseEventCausalityBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return AdverseEventCausality.fromJson(
+      return AdverseEventCausalityBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return AdverseEventCausality.fromJson(
+      return AdverseEventCausalityBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'AdverseEventCausality '
+        'AdverseEventCausalityBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2295,16 +2064,16 @@ class AdverseEventCausality extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [AdverseEventCausality]
+  /// [AdverseEventCausalityBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdverseEventCausality.fromJsonString(
+  factory AdverseEventCausalityBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return AdverseEventCausality.fromJson(json);
+      return AdverseEventCausalityBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2316,35 +2085,35 @@ class AdverseEventCausality extends BackboneElement {
 
   /// [assessment]
   /// Assessment of if the entity caused the event.
-  final CodeableConcept? assessment;
+  CodeableConceptBuilder? assessment;
 
   /// [productRelatedness]
   /// AdverseEvent.suspectEntity.causalityProductRelatedness.
-  final FhirString? productRelatedness;
+  FhirStringBuilder? productRelatedness;
 
   /// [author]
   /// AdverseEvent.suspectEntity.causalityAuthor.
-  final Reference? author;
+  ReferenceBuilder? author;
 
   /// [method]
   /// ProbabilityScale | Bayesian | Checklist.
-  final CodeableConcept? method;
+  CodeableConceptBuilder? method;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2353,39 +2122,18 @@ class AdverseEventCausality extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'assessment',
-      assessment,
-    );
-    addField(
-      'productRelatedness',
-      productRelatedness,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'method',
-      method,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('assessment', assessment);
+    addField('productRelatedness', productRelatedness);
+    addField('author', author);
+    addField('method', method);
     return json;
   }
 
@@ -2406,11 +2154,11 @@ class AdverseEventCausality extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2450,7 +2198,7 @@ class AdverseEventCausality extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2459,81 +2207,85 @@ class AdverseEventCausality extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'assessment':
         {
-          if (child is CodeableConcept) {
-            return copyWith(assessment: child);
+          if (child is CodeableConceptBuilder) {
+            assessment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'productRelatedness':
         {
-          if (child is FhirString) {
-            return copyWith(productRelatedness: child);
+          if (child is FhirStringBuilder) {
+            productRelatedness = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is Reference) {
-            return copyWith(author: child);
+          if (child is ReferenceBuilder) {
+            author = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
         {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
+          if (child is CodeableConceptBuilder) {
+            method = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2549,74 +2301,63 @@ class AdverseEventCausality extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'assessment':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'productRelatedness':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'method':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [AdverseEventCausality]
+  /// Creates a new [AdverseEventCausalityBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  AdverseEventCausality createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'assessment':
         {
-          return copyWith(
-            assessment: CodeableConcept.empty(),
-          );
+          assessment = CodeableConceptBuilder.empty();
+          return;
         }
       case 'productRelatedness':
         {
-          return copyWith(
-            productRelatedness: FhirString.empty(),
-          );
+          productRelatedness = FhirStringBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: Reference.empty(),
-          );
+          author = ReferenceBuilder.empty();
+          return;
         }
       case 'method':
         {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
+          method = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2625,7 +2366,7 @@ class AdverseEventCausality extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  AdverseEventCausality clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2634,28 +2375,26 @@ class AdverseEventCausality extends BackboneElement {
     bool author = false,
     bool method = false,
   }) {
-    return AdverseEventCausality(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      assessment: assessment ? null : this.assessment,
-      productRelatedness: productRelatedness ? null : this.productRelatedness,
-      author: author ? null : this.author,
-      method: method ? null : this.method,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (assessment) this.assessment = null;
+    if (productRelatedness) this.productRelatedness = null;
+    if (author) this.author = null;
+    if (method) this.method = null;
   }
 
   @override
-  AdverseEventCausality clone() => throw UnimplementedError();
+  AdverseEventCausalityBuilder clone() => throw UnimplementedError();
   @override
-  AdverseEventCausality copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? assessment,
-    FhirString? productRelatedness,
-    Reference? author,
-    CodeableConcept? method,
+  AdverseEventCausalityBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? assessment,
+    FhirStringBuilder? productRelatedness,
+    ReferenceBuilder? author,
+    CodeableConceptBuilder? method,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2663,50 +2402,38 @@ class AdverseEventCausality extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return AdverseEventCausality(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      assessment: assessment?.copyWith(
-            objectPath: '$newObjectPath.assessment',
-          ) ??
-          this.assessment,
-      productRelatedness: productRelatedness?.copyWith(
-            objectPath: '$newObjectPath.productRelatedness',
-          ) ??
-          this.productRelatedness,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
+    final newResult = AdverseEventCausalityBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      assessment: assessment ?? this.assessment,
+      productRelatedness: productRelatedness ?? this.productRelatedness,
+      author: author ?? this.author,
+      method: method ?? this.method,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! AdverseEventCausality) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! AdverseEventCausalityBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2717,13 +2444,13 @@ class AdverseEventCausality extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

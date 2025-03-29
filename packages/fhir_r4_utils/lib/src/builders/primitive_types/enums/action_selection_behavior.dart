@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Defines selection behavior of a group.
-class ActionSelectionBehavior extends FhirCodeEnum {
+class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ActionSelectionBehavior._({
+  ActionSelectionBehaviorBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ActionSelectionBehavior extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ActionSelectionBehavior(
+  factory ActionSelectionBehaviorBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ActionSelectionBehavior._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ActionSelectionBehaviorBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,82 +43,93 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ActionSelectionBehavior] with element only
-  factory ActionSelectionBehavior.empty() =>
-      ActionSelectionBehavior._(validatedValue: '');
+  /// Create empty [ActionSelectionBehaviorBuilder] with element only
+  factory ActionSelectionBehaviorBuilder.empty() =>
+      ActionSelectionBehaviorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionSelectionBehavior] from JSON.
-  factory ActionSelectionBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionSelectionBehaviorBuilder] from JSON.
+  factory ActionSelectionBehaviorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionSelectionBehavior.elementOnly.withElement(element);
+      return ActionSelectionBehaviorBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ActionSelectionBehavior cannot be constructed from JSON.',
+        'ActionSelectionBehaviorBuilder cannot be constructed from JSON.',
       );
     }
-    return ActionSelectionBehavior._(
+    return ActionSelectionBehaviorBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// any
-  static final ActionSelectionBehavior any = ActionSelectionBehavior._(
+  static ActionSelectionBehaviorBuilder any = ActionSelectionBehaviorBuilder._(
     validatedValue: 'any',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Any'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Any'.toFhirStringBuilder,
   );
 
   /// all
-  static final ActionSelectionBehavior all = ActionSelectionBehavior._(
+  static ActionSelectionBehaviorBuilder all = ActionSelectionBehaviorBuilder._(
     validatedValue: 'all',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'All'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'All'.toFhirStringBuilder,
   );
 
   /// all_or_none
-  static final ActionSelectionBehavior all_or_none = ActionSelectionBehavior._(
+  static ActionSelectionBehaviorBuilder all_or_none =
+      ActionSelectionBehaviorBuilder._(
     validatedValue: 'all-or-none',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'All Or None'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'All Or None'.toFhirStringBuilder,
   );
 
   /// exactly_one
-  static final ActionSelectionBehavior exactly_one = ActionSelectionBehavior._(
+  static ActionSelectionBehaviorBuilder exactly_one =
+      ActionSelectionBehaviorBuilder._(
     validatedValue: 'exactly-one',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Exactly One'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Exactly One'.toFhirStringBuilder,
   );
 
   /// at_most_one
-  static final ActionSelectionBehavior at_most_one = ActionSelectionBehavior._(
+  static ActionSelectionBehaviorBuilder at_most_one =
+      ActionSelectionBehaviorBuilder._(
     validatedValue: 'at-most-one',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'At Most One'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'At Most One'.toFhirStringBuilder,
   );
 
   /// one_or_more
-  static final ActionSelectionBehavior one_or_more = ActionSelectionBehavior._(
+  static ActionSelectionBehaviorBuilder one_or_more =
+      ActionSelectionBehaviorBuilder._(
     validatedValue: 'one-or-more',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'One Or More'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'One Or More'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ActionSelectionBehavior elementOnly =
-      ActionSelectionBehavior._(validatedValue: '');
+  static ActionSelectionBehaviorBuilder elementOnly =
+      ActionSelectionBehaviorBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ActionSelectionBehavior> values = [
+  static List<ActionSelectionBehaviorBuilder> values = [
     any,
     all,
     all_or_none,
@@ -129,15 +140,15 @@ class ActionSelectionBehavior extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ActionSelectionBehavior clone() => ActionSelectionBehavior._(
+  ActionSelectionBehaviorBuilder clone() => ActionSelectionBehaviorBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ActionSelectionBehavior withElement(Element? newElement) {
-    return ActionSelectionBehavior._(
-        validatedValue: value, element: newElement,);
+  ActionSelectionBehaviorBuilder withElement(ElementBuilder? newElement) {
+    return ActionSelectionBehaviorBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -153,11 +164,11 @@ class ActionSelectionBehavior extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ActionSelectionBehavior copyWith({
+  ActionSelectionBehaviorBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -168,7 +179,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ActionSelectionBehavior._(
+    return ActionSelectionBehaviorBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -178,7 +189,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

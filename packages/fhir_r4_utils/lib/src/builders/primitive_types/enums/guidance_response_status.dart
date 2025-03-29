@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The status of a guidance response.
-class GuidanceResponseStatus extends FhirCodeEnum {
+class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  GuidanceResponseStatus._({
+  GuidanceResponseStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class GuidanceResponseStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory GuidanceResponseStatus(
+  factory GuidanceResponseStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return GuidanceResponseStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return GuidanceResponseStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,83 +43,95 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [GuidanceResponseStatus] with element only
-  factory GuidanceResponseStatus.empty() =>
-      GuidanceResponseStatus._(validatedValue: '');
+  /// Create empty [GuidanceResponseStatusBuilder] with element only
+  factory GuidanceResponseStatusBuilder.empty() =>
+      GuidanceResponseStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GuidanceResponseStatus] from JSON.
-  factory GuidanceResponseStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GuidanceResponseStatusBuilder] from JSON.
+  factory GuidanceResponseStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuidanceResponseStatus.elementOnly.withElement(element);
+      return GuidanceResponseStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'GuidanceResponseStatus cannot be constructed from JSON.',
+        'GuidanceResponseStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return GuidanceResponseStatus._(
+    return GuidanceResponseStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// success
-  static final GuidanceResponseStatus success = GuidanceResponseStatus._(
+  static GuidanceResponseStatusBuilder success =
+      GuidanceResponseStatusBuilder._(
     validatedValue: 'success',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Success'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Success'.toFhirStringBuilder,
   );
 
   /// data_requested
-  static final GuidanceResponseStatus data_requested = GuidanceResponseStatus._(
+  static GuidanceResponseStatusBuilder data_requested =
+      GuidanceResponseStatusBuilder._(
     validatedValue: 'data-requested',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Data Requested'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Data Requested'.toFhirStringBuilder,
   );
 
   /// data_required
-  static final GuidanceResponseStatus data_required = GuidanceResponseStatus._(
+  static GuidanceResponseStatusBuilder data_required =
+      GuidanceResponseStatusBuilder._(
     validatedValue: 'data-required',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Data Required'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Data Required'.toFhirStringBuilder,
   );
 
   /// in_progress
-  static final GuidanceResponseStatus in_progress = GuidanceResponseStatus._(
+  static GuidanceResponseStatusBuilder in_progress =
+      GuidanceResponseStatusBuilder._(
     validatedValue: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In Progress'.toFhirStringBuilder,
   );
 
   /// failure
-  static final GuidanceResponseStatus failure = GuidanceResponseStatus._(
+  static GuidanceResponseStatusBuilder failure =
+      GuidanceResponseStatusBuilder._(
     validatedValue: 'failure',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Failure'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Failure'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final GuidanceResponseStatus entered_in_error =
-      GuidanceResponseStatus._(
+  static GuidanceResponseStatusBuilder entered_in_error =
+      GuidanceResponseStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered In Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered In Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final GuidanceResponseStatus elementOnly =
-      GuidanceResponseStatus._(validatedValue: '');
+  static GuidanceResponseStatusBuilder elementOnly =
+      GuidanceResponseStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<GuidanceResponseStatus> values = [
+  static List<GuidanceResponseStatusBuilder> values = [
     success,
     data_requested,
     data_required,
@@ -130,14 +142,15 @@ class GuidanceResponseStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  GuidanceResponseStatus clone() => GuidanceResponseStatus._(
+  GuidanceResponseStatusBuilder clone() => GuidanceResponseStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  GuidanceResponseStatus withElement(Element? newElement) {
-    return GuidanceResponseStatus._(validatedValue: value, element: newElement);
+  GuidanceResponseStatusBuilder withElement(ElementBuilder? newElement) {
+    return GuidanceResponseStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -153,11 +166,11 @@ class GuidanceResponseStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  GuidanceResponseStatus copyWith({
+  GuidanceResponseStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -168,7 +181,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return GuidanceResponseStatus._(
+    return GuidanceResponseStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -178,7 +191,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The use of a human name.
-class NameUse extends FhirCodeEnum {
+class NameUseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  NameUse._({
+  NameUseBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class NameUse extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory NameUse(
+  factory NameUseBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return NameUse._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return NameUseBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,88 +43,89 @@ class NameUse extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [NameUse] with element only
-  factory NameUse.empty() => NameUse._(validatedValue: '');
+  /// Create empty [NameUseBuilder] with element only
+  factory NameUseBuilder.empty() => NameUseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [NameUse] from JSON.
-  factory NameUse.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NameUseBuilder] from JSON.
+  factory NameUseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NameUse.elementOnly.withElement(element);
+      return NameUseBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'NameUse cannot be constructed from JSON.',
+        'NameUseBuilder cannot be constructed from JSON.',
       );
     }
-    return NameUse._(
+    return NameUseBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// usual
-  static final NameUse usual = NameUse._(
+  static NameUseBuilder usual = NameUseBuilder._(
     validatedValue: 'usual',
-    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Usual'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Usual'.toFhirStringBuilder,
   );
 
   /// official
-  static final NameUse official = NameUse._(
+  static NameUseBuilder official = NameUseBuilder._(
     validatedValue: 'official',
-    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Official'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Official'.toFhirStringBuilder,
   );
 
   /// temp
-  static final NameUse temp = NameUse._(
+  static NameUseBuilder temp = NameUseBuilder._(
     validatedValue: 'temp',
-    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Temp'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Temp'.toFhirStringBuilder,
   );
 
   /// nickname
-  static final NameUse nickname = NameUse._(
+  static NameUseBuilder nickname = NameUseBuilder._(
     validatedValue: 'nickname',
-    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Nickname'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Nickname'.toFhirStringBuilder,
   );
 
   /// anonymous
-  static final NameUse anonymous = NameUse._(
+  static NameUseBuilder anonymous = NameUseBuilder._(
     validatedValue: 'anonymous',
-    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Anonymous'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Anonymous'.toFhirStringBuilder,
   );
 
   /// old
-  static final NameUse old = NameUse._(
+  static NameUseBuilder old = NameUseBuilder._(
     validatedValue: 'old',
-    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Old'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Old'.toFhirStringBuilder,
   );
 
   /// maiden
-  static final NameUse maiden = NameUse._(
+  static NameUseBuilder maiden = NameUseBuilder._(
     validatedValue: 'maiden',
-    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Name changed for Marriage'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Name changed for Marriage'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final NameUse elementOnly = NameUse._(validatedValue: '');
+  static NameUseBuilder elementOnly = NameUseBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<NameUse> values = [
+  static List<NameUseBuilder> values = [
     usual,
     official,
     temp,
@@ -136,14 +137,14 @@ class NameUse extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  NameUse clone() => NameUse._(
+  NameUseBuilder clone() => NameUseBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  NameUse withElement(Element? newElement) {
-    return NameUse._(validatedValue: value, element: newElement);
+  NameUseBuilder withElement(ElementBuilder? newElement) {
+    return NameUseBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -159,11 +160,11 @@ class NameUse extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  NameUse copyWith({
+  NameUseBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -174,7 +175,7 @@ class NameUse extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return NameUse._(
+    return NameUseBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -184,7 +185,7 @@ class NameUse extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

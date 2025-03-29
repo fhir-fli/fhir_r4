@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// If field is a list, how to manage the production.
-class StructureMapTargetListMode extends FhirCodeEnum {
+class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  StructureMapTargetListMode._({
+  StructureMapTargetListModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class StructureMapTargetListMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory StructureMapTargetListMode(
+  factory StructureMapTargetListModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return StructureMapTargetListMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return StructureMapTargetListModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,67 +43,76 @@ class StructureMapTargetListMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [StructureMapTargetListMode] with element only
-  factory StructureMapTargetListMode.empty() =>
-      StructureMapTargetListMode._(validatedValue: '');
+  /// Create empty [StructureMapTargetListModeBuilder] with element only
+  factory StructureMapTargetListModeBuilder.empty() =>
+      StructureMapTargetListModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureMapTargetListMode] from JSON.
-  factory StructureMapTargetListMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapTargetListModeBuilder] from JSON.
+  factory StructureMapTargetListModeBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapTargetListMode.elementOnly.withElement(element);
+      return StructureMapTargetListModeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureMapTargetListMode cannot be constructed from JSON.',
+        'StructureMapTargetListModeBuilder cannot be constructed from JSON.',
       );
     }
-    return StructureMapTargetListMode._(
+    return StructureMapTargetListModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// first
-  static final StructureMapTargetListMode first = StructureMapTargetListMode._(
+  static StructureMapTargetListModeBuilder first =
+      StructureMapTargetListModeBuilder._(
     validatedValue: 'first',
-    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'First'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'First'.toFhirStringBuilder,
   );
 
   /// share
-  static final StructureMapTargetListMode share = StructureMapTargetListMode._(
+  static StructureMapTargetListModeBuilder share =
+      StructureMapTargetListModeBuilder._(
     validatedValue: 'share',
-    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Share'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Share'.toFhirStringBuilder,
   );
 
   /// last
-  static final StructureMapTargetListMode last = StructureMapTargetListMode._(
+  static StructureMapTargetListModeBuilder last =
+      StructureMapTargetListModeBuilder._(
     validatedValue: 'last',
-    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Last'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Last'.toFhirStringBuilder,
   );
 
   /// collate
-  static final StructureMapTargetListMode collate =
-      StructureMapTargetListMode._(
+  static StructureMapTargetListModeBuilder collate =
+      StructureMapTargetListModeBuilder._(
     validatedValue: 'collate',
-    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Collate'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Collate'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final StructureMapTargetListMode elementOnly =
-      StructureMapTargetListMode._(validatedValue: '');
+  static StructureMapTargetListModeBuilder elementOnly =
+      StructureMapTargetListModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<StructureMapTargetListMode> values = [
+  static List<StructureMapTargetListModeBuilder> values = [
     first,
     share,
     last,
@@ -112,15 +121,16 @@ class StructureMapTargetListMode extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  StructureMapTargetListMode clone() => StructureMapTargetListMode._(
+  StructureMapTargetListModeBuilder clone() =>
+      StructureMapTargetListModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  StructureMapTargetListMode withElement(Element? newElement) {
-    return StructureMapTargetListMode._(
-        validatedValue: value, element: newElement,);
+  StructureMapTargetListModeBuilder withElement(ElementBuilder? newElement) {
+    return StructureMapTargetListModeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,11 +146,11 @@ class StructureMapTargetListMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  StructureMapTargetListMode copyWith({
+  StructureMapTargetListModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -151,7 +161,7 @@ class StructureMapTargetListMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return StructureMapTargetListMode._(
+    return StructureMapTargetListModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -161,7 +171,7 @@ class StructureMapTargetListMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

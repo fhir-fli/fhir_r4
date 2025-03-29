@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Defines which action to take if there is no match in the group.
-class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
+class ConceptMapGroupUnmappedModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ConceptMapGroupUnmappedMode._({
+  ConceptMapGroupUnmappedModeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ConceptMapGroupUnmappedMode(
+  factory ConceptMapGroupUnmappedModeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ConceptMapGroupUnmappedMode._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ConceptMapGroupUnmappedModeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,61 +43,67 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ConceptMapGroupUnmappedMode] with element only
-  factory ConceptMapGroupUnmappedMode.empty() =>
-      ConceptMapGroupUnmappedMode._(validatedValue: '');
+  /// Create empty [ConceptMapGroupUnmappedModeBuilder] with element only
+  factory ConceptMapGroupUnmappedModeBuilder.empty() =>
+      ConceptMapGroupUnmappedModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConceptMapGroupUnmappedMode] from JSON.
-  factory ConceptMapGroupUnmappedMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConceptMapGroupUnmappedModeBuilder] from JSON.
+  factory ConceptMapGroupUnmappedModeBuilder.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConceptMapGroupUnmappedMode.elementOnly.withElement(element);
+      return ConceptMapGroupUnmappedModeBuilder.elementOnly
+          .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ConceptMapGroupUnmappedMode cannot be constructed from JSON.',
+        'ConceptMapGroupUnmappedModeBuilder cannot be constructed from JSON.',
       );
     }
-    return ConceptMapGroupUnmappedMode._(
+    return ConceptMapGroupUnmappedModeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// provided
-  static final ConceptMapGroupUnmappedMode provided =
-      ConceptMapGroupUnmappedMode._(
+  static ConceptMapGroupUnmappedModeBuilder provided =
+      ConceptMapGroupUnmappedModeBuilder._(
     validatedValue: 'provided',
-    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Provided Code'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Provided Code'.toFhirStringBuilder,
   );
 
   /// fixed
-  static final ConceptMapGroupUnmappedMode fixed =
-      ConceptMapGroupUnmappedMode._(
+  static ConceptMapGroupUnmappedModeBuilder fixed =
+      ConceptMapGroupUnmappedModeBuilder._(
     validatedValue: 'fixed',
-    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fixed Code'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Fixed Code'.toFhirStringBuilder,
   );
 
   /// other_map
-  static final ConceptMapGroupUnmappedMode other_map =
-      ConceptMapGroupUnmappedMode._(
+  static ConceptMapGroupUnmappedModeBuilder other_map =
+      ConceptMapGroupUnmappedModeBuilder._(
     validatedValue: 'other-map',
-    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Other Map'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Other Map'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ConceptMapGroupUnmappedMode elementOnly =
-      ConceptMapGroupUnmappedMode._(validatedValue: '');
+  static ConceptMapGroupUnmappedModeBuilder elementOnly =
+      ConceptMapGroupUnmappedModeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ConceptMapGroupUnmappedMode> values = [
+  static List<ConceptMapGroupUnmappedModeBuilder> values = [
     provided,
     fixed,
     other_map,
@@ -105,15 +111,16 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ConceptMapGroupUnmappedMode clone() => ConceptMapGroupUnmappedMode._(
+  ConceptMapGroupUnmappedModeBuilder clone() =>
+      ConceptMapGroupUnmappedModeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ConceptMapGroupUnmappedMode withElement(Element? newElement) {
-    return ConceptMapGroupUnmappedMode._(
-        validatedValue: value, element: newElement,);
+  ConceptMapGroupUnmappedModeBuilder withElement(ElementBuilder? newElement) {
+    return ConceptMapGroupUnmappedModeBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -129,11 +136,11 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ConceptMapGroupUnmappedMode copyWith({
+  ConceptMapGroupUnmappedModeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -144,7 +151,7 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ConceptMapGroupUnmappedMode._(
+    return ConceptMapGroupUnmappedModeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -154,7 +161,7 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The current status of the test report.
-class TestReportStatus extends FhirCodeEnum {
+class TestReportStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  TestReportStatus._({
+  TestReportStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory TestReportStatus(
+  factory TestReportStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return TestReportStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return TestReportStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,73 +43,75 @@ class TestReportStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [TestReportStatus] with element only
-  factory TestReportStatus.empty() => TestReportStatus._(validatedValue: '');
+  /// Create empty [TestReportStatusBuilder] with element only
+  factory TestReportStatusBuilder.empty() =>
+      TestReportStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TestReportStatus] from JSON.
-  factory TestReportStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TestReportStatusBuilder] from JSON.
+  factory TestReportStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportStatus.elementOnly.withElement(element);
+      return TestReportStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TestReportStatus cannot be constructed from JSON.',
+        'TestReportStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return TestReportStatus._(
+    return TestReportStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// completed
-  static final TestReportStatus completed = TestReportStatus._(
+  static TestReportStatusBuilder completed = TestReportStatusBuilder._(
     validatedValue: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// in_progress
-  static final TestReportStatus in_progress = TestReportStatus._(
+  static TestReportStatusBuilder in_progress = TestReportStatusBuilder._(
     validatedValue: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In Progress'.toFhirStringBuilder,
   );
 
   /// waiting
-  static final TestReportStatus waiting = TestReportStatus._(
+  static TestReportStatusBuilder waiting = TestReportStatusBuilder._(
     validatedValue: 'waiting',
-    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Waiting'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Waiting'.toFhirStringBuilder,
   );
 
   /// stopped
-  static final TestReportStatus stopped = TestReportStatus._(
+  static TestReportStatusBuilder stopped = TestReportStatusBuilder._(
     validatedValue: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Stopped'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final TestReportStatus entered_in_error = TestReportStatus._(
+  static TestReportStatusBuilder entered_in_error = TestReportStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered In Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered In Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final TestReportStatus elementOnly =
-      TestReportStatus._(validatedValue: '');
+  static TestReportStatusBuilder elementOnly =
+      TestReportStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<TestReportStatus> values = [
+  static List<TestReportStatusBuilder> values = [
     completed,
     in_progress,
     waiting,
@@ -119,14 +121,15 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  TestReportStatus clone() => TestReportStatus._(
+  TestReportStatusBuilder clone() => TestReportStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  TestReportStatus withElement(Element? newElement) {
-    return TestReportStatus._(validatedValue: value, element: newElement);
+  TestReportStatusBuilder withElement(ElementBuilder? newElement) {
+    return TestReportStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -142,11 +145,11 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  TestReportStatus copyWith({
+  TestReportStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -157,7 +160,7 @@ class TestReportStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return TestReportStatus._(
+    return TestReportStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -167,7 +170,7 @@ class TestReportStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

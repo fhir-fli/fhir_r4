@@ -86,7 +86,7 @@ class FhirStringBuilder extends PrimitiveTypeBuilder<String>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'String',
+    String? objectPath = 'String',
   }) {
     // No extra validation beyond "value or element" check
     return FhirStringBuilder._(
@@ -151,7 +151,7 @@ class FhirStringBuilder extends PrimitiveTypeBuilder<String>
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Returns the FHIR type as 'string'.
   @override

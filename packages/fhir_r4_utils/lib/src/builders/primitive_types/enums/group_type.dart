@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Types of resources that are part of group.
-class GroupType extends FhirCodeEnum {
+class GroupTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  GroupType._({
+  GroupTypeBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class GroupType extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory GroupType(
+  factory GroupTypeBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return GroupType._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return GroupTypeBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,80 +43,81 @@ class GroupType extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [GroupType] with element only
-  factory GroupType.empty() => GroupType._(validatedValue: '');
+  /// Create empty [GroupTypeBuilder] with element only
+  factory GroupTypeBuilder.empty() => GroupTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GroupType] from JSON.
-  factory GroupType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GroupTypeBuilder] from JSON.
+  factory GroupTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupType.elementOnly.withElement(element);
+      return GroupTypeBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'GroupType cannot be constructed from JSON.',
+        'GroupTypeBuilder cannot be constructed from JSON.',
       );
     }
-    return GroupType._(
+    return GroupTypeBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// person
-  static final GroupType person = GroupType._(
+  static GroupTypeBuilder person = GroupTypeBuilder._(
     validatedValue: 'person',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Person'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Person'.toFhirStringBuilder,
   );
 
   /// animal
-  static final GroupType animal = GroupType._(
+  static GroupTypeBuilder animal = GroupTypeBuilder._(
     validatedValue: 'animal',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Animal'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Animal'.toFhirStringBuilder,
   );
 
   /// practitioner
-  static final GroupType practitioner = GroupType._(
+  static GroupTypeBuilder practitioner = GroupTypeBuilder._(
     validatedValue: 'practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Practitioner'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Practitioner'.toFhirStringBuilder,
   );
 
   /// device
-  static final GroupType device = GroupType._(
+  static GroupTypeBuilder device = GroupTypeBuilder._(
     validatedValue: 'device',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Device'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Device'.toFhirStringBuilder,
   );
 
   /// medication
-  static final GroupType medication = GroupType._(
+  static GroupTypeBuilder medication = GroupTypeBuilder._(
     validatedValue: 'medication',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Medication'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Medication'.toFhirStringBuilder,
   );
 
   /// substance
-  static final GroupType substance = GroupType._(
+  static GroupTypeBuilder substance = GroupTypeBuilder._(
     validatedValue: 'substance',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Substance'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Substance'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final GroupType elementOnly = GroupType._(validatedValue: '');
+  static GroupTypeBuilder elementOnly = GroupTypeBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<GroupType> values = [
+  static List<GroupTypeBuilder> values = [
     person,
     animal,
     practitioner,
@@ -127,14 +128,14 @@ class GroupType extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  GroupType clone() => GroupType._(
+  GroupTypeBuilder clone() => GroupTypeBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  GroupType withElement(Element? newElement) {
-    return GroupType._(validatedValue: value, element: newElement);
+  GroupTypeBuilder withElement(ElementBuilder? newElement) {
+    return GroupTypeBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,11 +151,11 @@ class GroupType extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  GroupType copyWith({
+  GroupTypeBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -165,7 +166,7 @@ class GroupType extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return GroupType._(
+    return GroupTypeBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -175,7 +176,7 @@ class GroupType extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

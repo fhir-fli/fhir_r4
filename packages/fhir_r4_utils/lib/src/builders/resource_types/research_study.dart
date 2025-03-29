@@ -1,8 +1,10 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [ResearchStudy]
+/// [ResearchStudyBuilder]
 /// A process where a researcher or organization plans and then executes a
 /// series of steps intended to increase the field of healthcare-related
 /// knowledge. This includes studies of safety, efficacy, comparative
@@ -10,11 +12,11 @@ import 'package:yaml/yaml.dart';
 /// therapies and other interventional and investigative techniques. A
 /// ResearchStudy involves the gathering of information about human or
 /// animal subjects.
-class ResearchStudy extends DomainResource {
+class ResearchStudyBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [ResearchStudy]
+  /// [ResearchStudyBuilder]
 
-  const ResearchStudy({
+  ResearchStudyBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -27,7 +29,7 @@ class ResearchStudy extends DomainResource {
     this.title,
     this.protocol,
     this.partOf,
-    required this.status,
+    this.status,
     this.primaryPurposeType,
     this.phase,
     this.category,
@@ -53,51 +55,48 @@ class ResearchStudy extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ResearchStudy.empty() => ResearchStudy(
-        status: ResearchStudyStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ResearchStudyBuilder.empty() => ResearchStudyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchStudy.fromJson(
+  factory ResearchStudyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ResearchStudy';
-    return ResearchStudy(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ResearchStudyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -106,8 +105,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -116,8 +115,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -126,8 +125,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -135,15 +134,15 @@ class ResearchStudy extends DomainResource {
             ),
           )
           .toList(),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
       protocol: (json['protocol'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.protocol',
@@ -152,8 +151,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       partOf: (json['partOf'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.partOf',
@@ -161,27 +160,27 @@ class ResearchStudy extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<ResearchStudyStatus>(
+      status: JsonParser.parsePrimitive<ResearchStudyStatusBuilder>(
         json,
         'status',
-        ResearchStudyStatus.fromJson,
+        ResearchStudyStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      primaryPurposeType: JsonParser.parseObject<CodeableConcept>(
+      ),
+      primaryPurposeType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'primaryPurposeType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.primaryPurposeType',
       ),
-      phase: JsonParser.parseObject<CodeableConcept>(
+      phase: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'phase',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.phase',
       ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -190,8 +189,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       focus: (json['focus'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.focus',
@@ -200,8 +199,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.condition',
@@ -210,8 +209,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -220,8 +219,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       relatedArtifact: (json['relatedArtifact'] as List<dynamic>?)
-          ?.map<RelatedArtifact>(
-            (v) => RelatedArtifact.fromJson(
+          ?.map<RelatedArtifactBuilder>(
+            (v) => RelatedArtifactBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatedArtifact',
@@ -230,8 +229,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       keyword: (json['keyword'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.keyword',
@@ -240,8 +239,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       location: (json['location'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.location',
@@ -249,15 +248,15 @@ class ResearchStudy extends DomainResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       enrollment: (json['enrollment'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.enrollment',
@@ -265,27 +264,27 @@ class ResearchStudy extends DomainResource {
             ),
           )
           .toList(),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      sponsor: JsonParser.parseObject<Reference>(
+      sponsor: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'sponsor',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.sponsor',
       ),
-      principalInvestigator: JsonParser.parseObject<Reference>(
+      principalInvestigator: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'principalInvestigator',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.principalInvestigator',
       ),
       site: (json['site'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.site',
@@ -293,15 +292,15 @@ class ResearchStudy extends DomainResource {
             ),
           )
           .toList(),
-      reasonStopped: JsonParser.parseObject<CodeableConcept>(
+      reasonStopped: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'reasonStopped',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.reasonStopped',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -310,8 +309,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       arm: (json['arm'] as List<dynamic>?)
-          ?.map<ResearchStudyArm>(
-            (v) => ResearchStudyArm.fromJson(
+          ?.map<ResearchStudyArmBuilder>(
+            (v) => ResearchStudyArmBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.arm',
@@ -320,8 +319,8 @@ class ResearchStudy extends DomainResource {
           )
           .toList(),
       objective: (json['objective'] as List<dynamic>?)
-          ?.map<ResearchStudyObjective>(
-            (v) => ResearchStudyObjective.fromJson(
+          ?.map<ResearchStudyObjectiveBuilder>(
+            (v) => ResearchStudyObjectiveBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.objective',
@@ -332,22 +331,22 @@ class ResearchStudy extends DomainResource {
     );
   }
 
-  /// Deserialize [ResearchStudy]
+  /// Deserialize [ResearchStudyBuilder]
   /// from a [String] or [YamlMap] object
-  factory ResearchStudy.fromYaml(
+  factory ResearchStudyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ResearchStudy.fromJson(
+      return ResearchStudyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ResearchStudy.fromJson(
+      return ResearchStudyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ResearchStudy '
+        'ResearchStudyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -355,16 +354,16 @@ class ResearchStudy extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [ResearchStudy]
+  /// [ResearchStudyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchStudy.fromJsonString(
+  factory ResearchStudyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ResearchStudy.fromJson(json);
+      return ResearchStudyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -377,141 +376,141 @@ class ResearchStudy extends DomainResource {
   /// [identifier]
   /// Identifiers assigned to this research study by the sponsor or other
   /// systems.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [title]
   /// A short, descriptive user-friendly label for the study.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [protocol]
   /// The set of steps expected to be performed as part of the execution of
   /// the study.
-  final List<Reference>? protocol;
+  List<ReferenceBuilder>? protocol;
 
   /// [partOf]
   /// A larger research study of which this particular study is a component
   /// or step.
-  final List<Reference>? partOf;
+  List<ReferenceBuilder>? partOf;
 
   /// [status]
   /// The current state of the study.
-  final ResearchStudyStatus status;
+  ResearchStudyStatusBuilder? status;
 
   /// [primaryPurposeType]
   /// The type of study based upon the intent of the study's activities. A
   /// classification of the intent of the study.
-  final CodeableConcept? primaryPurposeType;
+  CodeableConceptBuilder? primaryPurposeType;
 
   /// [phase]
   /// The stage in the progression of a therapy from initial experimental use
   /// in humans in clinical trials to post-market evaluation.
-  final CodeableConcept? phase;
+  CodeableConceptBuilder? phase;
 
   /// [category]
   /// Codes categorizing the type of study such as investigational vs.
   /// observational, type of blinding, type of randomization, safety vs.
   /// efficacy, etc.
-  final List<CodeableConcept>? category;
+  List<CodeableConceptBuilder>? category;
 
   /// [focus]
   /// The medication(s), food(s), therapy(ies), device(s) or other concerns
   /// or interventions that the study is seeking to gain more information
   /// about.
-  final List<CodeableConcept>? focus;
+  List<CodeableConceptBuilder>? focus;
 
   /// [condition]
   /// The condition that is the focus of the study. For example, In a study
   /// to examine risk factors for Lupus, might have as an inclusion criterion
   /// "healthy volunteer", but the target condition code would be a Lupus
   /// SNOMED code.
-  final List<CodeableConcept>? condition;
+  List<CodeableConceptBuilder>? condition;
 
   /// [contact]
   /// Contact details to assist a user in learning more about or engaging
   /// with the study.
-  final List<ContactDetail>? contact;
+  List<ContactDetailBuilder>? contact;
 
   /// [relatedArtifact]
   /// Citations, references and other related documents.
-  final List<RelatedArtifact>? relatedArtifact;
+  List<RelatedArtifactBuilder>? relatedArtifact;
 
   /// [keyword]
   /// Key terms to aid in searching for or filtering the study.
-  final List<CodeableConcept>? keyword;
+  List<CodeableConceptBuilder>? keyword;
 
   /// [location]
   /// Indicates a country, state or other region where the study is taking
   /// place.
-  final List<CodeableConcept>? location;
+  List<CodeableConceptBuilder>? location;
 
   /// [description]
   /// A full description of how the study is being conducted.
-  final FhirMarkdown? description;
+  FhirMarkdownBuilder? description;
 
   /// [enrollment]
   /// Reference to a Group that defines the criteria for and quantity of
   /// subjects participating in the study. E.g. " 200 female Europeans
   /// between the ages of 20 and 45 with early onset diabetes".
-  final List<Reference>? enrollment;
+  List<ReferenceBuilder>? enrollment;
 
   /// [period]
   /// Identifies the start date and the expected (or actual, depending on
   /// status) end date for the study.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [sponsor]
   /// An organization that initiates the investigation and is legally
   /// responsible for the study.
-  final Reference? sponsor;
+  ReferenceBuilder? sponsor;
 
   /// [principalInvestigator]
   /// A researcher in a study who oversees multiple aspects of the study,
   /// such as concept development, protocol writing, protocol submission for
   /// IRB approval, participant recruitment, informed consent, data
   /// collection, analysis, interpretation and presentation.
-  final Reference? principalInvestigator;
+  ReferenceBuilder? principalInvestigator;
 
   /// [site]
   /// A facility in which study activities are conducted.
-  final List<Reference>? site;
+  List<ReferenceBuilder>? site;
 
   /// [reasonStopped]
   /// A description and/or code explaining the premature termination of the
   /// study.
-  final CodeableConcept? reasonStopped;
+  CodeableConceptBuilder? reasonStopped;
 
   /// [note]
   /// Comments made about the study by the performer, subject or other
   /// participants.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [arm]
   /// Describes an expected sequence of events for one of the participants of
   /// a study. E.g. Exposure to drug A, wash-out, exposure to drug B,
   /// wash-out, follow-up.
-  final List<ResearchStudyArm>? arm;
+  List<ResearchStudyArmBuilder>? arm;
 
   /// [objective]
   /// A goal that the study is aiming to achieve in terms of a scientific
   /// question to be answered by the analysis of data collected during the
   /// study.
-  final List<ResearchStudyObjective>? objective;
+  List<ResearchStudyObjectiveBuilder>? objective;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -520,140 +519,44 @@ class ResearchStudy extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'protocol',
-      protocol,
-    );
-    addField(
-      'partOf',
-      partOf,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'primaryPurposeType',
-      primaryPurposeType,
-    );
-    addField(
-      'phase',
-      phase,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'focus',
-      focus,
-    );
-    addField(
-      'condition',
-      condition,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'relatedArtifact',
-      relatedArtifact,
-    );
-    addField(
-      'keyword',
-      keyword,
-    );
-    addField(
-      'location',
-      location,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'enrollment',
-      enrollment,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'sponsor',
-      sponsor,
-    );
-    addField(
-      'principalInvestigator',
-      principalInvestigator,
-    );
-    addField(
-      'site',
-      site,
-    );
-    addField(
-      'reasonStopped',
-      reasonStopped,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'arm',
-      arm,
-    );
-    addField(
-      'objective',
-      objective,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('title', title);
+    addField('protocol', protocol);
+    addField('partOf', partOf);
+    addField('status', status);
+    addField('primaryPurposeType', primaryPurposeType);
+    addField('phase', phase);
+    addField('category', category);
+    addField('focus', focus);
+    addField('condition', condition);
+    addField('contact', contact);
+    addField('relatedArtifact', relatedArtifact);
+    addField('keyword', keyword);
+    addField('location', location);
+    addField('description', description);
+    addField('enrollment', enrollment);
+    addField('period', period);
+    addField('sponsor', sponsor);
+    addField('principalInvestigator', principalInvestigator);
+    addField('site', site);
+    addField('reasonStopped', reasonStopped);
+    addField('note', note);
+    addField('arm', arm);
+    addField('objective', objective);
     return json;
   }
 
@@ -699,11 +602,11 @@ class ResearchStudy extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -754,7 +657,9 @@ class ResearchStudy extends DomainResource {
           fields.addAll(partOf!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'primaryPurposeType':
         if (primaryPurposeType != null) {
           fields.add(primaryPurposeType!);
@@ -841,7 +746,7 @@ class ResearchStudy extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -850,377 +755,390 @@ class ResearchStudy extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'protocol':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?protocol, ...child];
-            return copyWith(protocol: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            protocol = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?protocol, child];
-            return copyWith(protocol: newList);
+            protocol = [...(protocol ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?partOf, ...child];
-            return copyWith(partOf: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            partOf = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
-            return copyWith(partOf: newList);
+            partOf = [...(partOf ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ResearchStudyStatus) {
-            return copyWith(status: child);
+          if (child is ResearchStudyStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'primaryPurposeType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(primaryPurposeType: child);
+          if (child is CodeableConceptBuilder) {
+            primaryPurposeType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'phase':
         {
-          if (child is CodeableConcept) {
-            return copyWith(phase: child);
+          if (child is CodeableConceptBuilder) {
+            phase = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'focus':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?focus, ...child];
-            return copyWith(focus: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            focus = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?focus, child];
-            return copyWith(focus: newList);
+            focus = [...(focus ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?condition, ...child];
-            return copyWith(condition: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            condition = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?condition, child];
-            return copyWith(condition: newList);
+            condition = [...(condition ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatedArtifact':
         {
-          if (child is List<RelatedArtifact>) {
-            // Add all elements from passed list
-            final newList = [...?relatedArtifact, ...child];
-            return copyWith(relatedArtifact: newList);
-          } else if (child is RelatedArtifact) {
+          if (child is List<RelatedArtifactBuilder>) {
+            // Replace or create new list
+            relatedArtifact = child;
+            return;
+          } else if (child is RelatedArtifactBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedArtifact, child];
-            return copyWith(relatedArtifact: newList);
+            relatedArtifact = [...(relatedArtifact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'keyword':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?keyword, ...child];
-            return copyWith(keyword: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            keyword = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?keyword, child];
-            return copyWith(keyword: newList);
+            keyword = [...(keyword ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?location, ...child];
-            return copyWith(location: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            location = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
-            return copyWith(location: newList);
+            location = [...(location ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'enrollment':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?enrollment, ...child];
-            return copyWith(enrollment: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            enrollment = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?enrollment, child];
-            return copyWith(enrollment: newList);
+            enrollment = [...(enrollment ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sponsor':
         {
-          if (child is Reference) {
-            return copyWith(sponsor: child);
+          if (child is ReferenceBuilder) {
+            sponsor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'principalInvestigator':
         {
-          if (child is Reference) {
-            return copyWith(principalInvestigator: child);
+          if (child is ReferenceBuilder) {
+            principalInvestigator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'site':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?site, ...child];
-            return copyWith(site: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            site = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?site, child];
-            return copyWith(site: newList);
+            site = [...(site ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonStopped':
         {
-          if (child is CodeableConcept) {
-            return copyWith(reasonStopped: child);
+          if (child is CodeableConceptBuilder) {
+            reasonStopped = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'arm':
         {
-          if (child is List<ResearchStudyArm>) {
-            // Add all elements from passed list
-            final newList = [...?arm, ...child];
-            return copyWith(arm: newList);
-          } else if (child is ResearchStudyArm) {
+          if (child is List<ResearchStudyArmBuilder>) {
+            // Replace or create new list
+            arm = child;
+            return;
+          } else if (child is ResearchStudyArmBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?arm, child];
-            return copyWith(arm: newList);
+            arm = [...(arm ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'objective':
         {
-          if (child is List<ResearchStudyObjective>) {
-            // Add all elements from passed list
-            final newList = [...?objective, ...child];
-            return copyWith(objective: newList);
-          } else if (child is ResearchStudyObjective) {
+          if (child is List<ResearchStudyObjectiveBuilder>) {
+            // Replace or create new list
+            objective = child;
+            return;
+          } else if (child is ResearchStudyObjectiveBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?objective, child];
-            return copyWith(objective: newList);
+            objective = [...(objective ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1236,274 +1154,238 @@ class ResearchStudy extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'protocol':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'partOf':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'primaryPurposeType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'phase':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'category':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'focus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'condition':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'relatedArtifact':
-        return ['RelatedArtifact'];
+        return ['RelatedArtifactBuilder'];
       case 'keyword':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'location':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'enrollment':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'sponsor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'principalInvestigator':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'site':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reasonStopped':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'arm':
-        return ['ResearchStudyArm'];
+        return ['ResearchStudyArmBuilder'];
       case 'objective':
-        return ['ResearchStudyObjective'];
+        return ['ResearchStudyObjectiveBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ResearchStudy]
+  /// Creates a new [ResearchStudyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ResearchStudy createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'protocol':
         {
-          return copyWith(
-            protocol: <Reference>[],
-          );
+          protocol = <ReferenceBuilder>[];
+          return;
         }
       case 'partOf':
         {
-          return copyWith(
-            partOf: <Reference>[],
-          );
+          partOf = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ResearchStudyStatus.empty(),
-          );
+          status = ResearchStudyStatusBuilder.empty();
+          return;
         }
       case 'primaryPurposeType':
         {
-          return copyWith(
-            primaryPurposeType: CodeableConcept.empty(),
-          );
+          primaryPurposeType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'phase':
         {
-          return copyWith(
-            phase: CodeableConcept.empty(),
-          );
+          phase = CodeableConceptBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <CodeableConcept>[],
-          );
+          category = <CodeableConceptBuilder>[];
+          return;
         }
       case 'focus':
         {
-          return copyWith(
-            focus: <CodeableConcept>[],
-          );
+          focus = <CodeableConceptBuilder>[];
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: <CodeableConcept>[],
-          );
+          condition = <CodeableConceptBuilder>[];
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'relatedArtifact':
         {
-          return copyWith(
-            relatedArtifact: <RelatedArtifact>[],
-          );
+          relatedArtifact = <RelatedArtifactBuilder>[];
+          return;
         }
       case 'keyword':
         {
-          return copyWith(
-            keyword: <CodeableConcept>[],
-          );
+          keyword = <CodeableConceptBuilder>[];
+          return;
         }
       case 'location':
         {
-          return copyWith(
-            location: <CodeableConcept>[],
-          );
+          location = <CodeableConceptBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'enrollment':
         {
-          return copyWith(
-            enrollment: <Reference>[],
-          );
+          enrollment = <ReferenceBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'sponsor':
         {
-          return copyWith(
-            sponsor: Reference.empty(),
-          );
+          sponsor = ReferenceBuilder.empty();
+          return;
         }
       case 'principalInvestigator':
         {
-          return copyWith(
-            principalInvestigator: Reference.empty(),
-          );
+          principalInvestigator = ReferenceBuilder.empty();
+          return;
         }
       case 'site':
         {
-          return copyWith(
-            site: <Reference>[],
-          );
+          site = <ReferenceBuilder>[];
+          return;
         }
       case 'reasonStopped':
         {
-          return copyWith(
-            reasonStopped: CodeableConcept.empty(),
-          );
+          reasonStopped = CodeableConceptBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'arm':
         {
-          return copyWith(
-            arm: <ResearchStudyArm>[],
-          );
+          arm = <ResearchStudyArmBuilder>[];
+          return;
         }
       case 'objective':
         {
-          return copyWith(
-            objective: <ResearchStudyObjective>[],
-          );
+          objective = <ResearchStudyObjectiveBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1512,7 +1394,7 @@ class ResearchStudy extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  ResearchStudy clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1525,6 +1407,7 @@ class ResearchStudy extends DomainResource {
     bool title = false,
     bool protocol = false,
     bool partOf = false,
+    bool status = false,
     bool primaryPurposeType = false,
     bool phase = false,
     bool category = false,
@@ -1545,286 +1428,140 @@ class ResearchStudy extends DomainResource {
     bool arm = false,
     bool objective = false,
   }) {
-    return ResearchStudy(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      title: title ? null : this.title,
-      protocol: protocol ? null : this.protocol,
-      partOf: partOf ? null : this.partOf,
-      status: status,
-      primaryPurposeType: primaryPurposeType ? null : this.primaryPurposeType,
-      phase: phase ? null : this.phase,
-      category: category ? null : this.category,
-      focus: focus ? null : this.focus,
-      condition: condition ? null : this.condition,
-      contact: contact ? null : this.contact,
-      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
-      keyword: keyword ? null : this.keyword,
-      location: location ? null : this.location,
-      description: description ? null : this.description,
-      enrollment: enrollment ? null : this.enrollment,
-      period: period ? null : this.period,
-      sponsor: sponsor ? null : this.sponsor,
-      principalInvestigator:
-          principalInvestigator ? null : this.principalInvestigator,
-      site: site ? null : this.site,
-      reasonStopped: reasonStopped ? null : this.reasonStopped,
-      note: note ? null : this.note,
-      arm: arm ? null : this.arm,
-      objective: objective ? null : this.objective,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (title) this.title = null;
+    if (protocol) this.protocol = null;
+    if (partOf) this.partOf = null;
+    if (status) this.status = null;
+    if (primaryPurposeType) this.primaryPurposeType = null;
+    if (phase) this.phase = null;
+    if (category) this.category = null;
+    if (focus) this.focus = null;
+    if (condition) this.condition = null;
+    if (contact) this.contact = null;
+    if (relatedArtifact) this.relatedArtifact = null;
+    if (keyword) this.keyword = null;
+    if (location) this.location = null;
+    if (description) this.description = null;
+    if (enrollment) this.enrollment = null;
+    if (period) this.period = null;
+    if (sponsor) this.sponsor = null;
+    if (principalInvestigator) this.principalInvestigator = null;
+    if (site) this.site = null;
+    if (reasonStopped) this.reasonStopped = null;
+    if (note) this.note = null;
+    if (arm) this.arm = null;
+    if (objective) this.objective = null;
   }
 
   @override
-  ResearchStudy clone() => throw UnimplementedError();
+  ResearchStudyBuilder clone() => throw UnimplementedError();
   @override
-  ResearchStudy copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirString? title,
-    List<Reference>? protocol,
-    List<Reference>? partOf,
-    ResearchStudyStatus? status,
-    CodeableConcept? primaryPurposeType,
-    CodeableConcept? phase,
-    List<CodeableConcept>? category,
-    List<CodeableConcept>? focus,
-    List<CodeableConcept>? condition,
-    List<ContactDetail>? contact,
-    List<RelatedArtifact>? relatedArtifact,
-    List<CodeableConcept>? keyword,
-    List<CodeableConcept>? location,
-    FhirMarkdown? description,
-    List<Reference>? enrollment,
-    Period? period,
-    Reference? sponsor,
-    Reference? principalInvestigator,
-    List<Reference>? site,
-    CodeableConcept? reasonStopped,
-    List<Annotation>? note,
-    List<ResearchStudyArm>? arm,
-    List<ResearchStudyObjective>? objective,
+  ResearchStudyBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? title,
+    List<ReferenceBuilder>? protocol,
+    List<ReferenceBuilder>? partOf,
+    ResearchStudyStatusBuilder? status,
+    CodeableConceptBuilder? primaryPurposeType,
+    CodeableConceptBuilder? phase,
+    List<CodeableConceptBuilder>? category,
+    List<CodeableConceptBuilder>? focus,
+    List<CodeableConceptBuilder>? condition,
+    List<ContactDetailBuilder>? contact,
+    List<RelatedArtifactBuilder>? relatedArtifact,
+    List<CodeableConceptBuilder>? keyword,
+    List<CodeableConceptBuilder>? location,
+    FhirMarkdownBuilder? description,
+    List<ReferenceBuilder>? enrollment,
+    PeriodBuilder? period,
+    ReferenceBuilder? sponsor,
+    ReferenceBuilder? principalInvestigator,
+    List<ReferenceBuilder>? site,
+    CodeableConceptBuilder? reasonStopped,
+    List<AnnotationBuilder>? note,
+    List<ResearchStudyArmBuilder>? arm,
+    List<ResearchStudyObjectiveBuilder>? objective,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return ResearchStudy(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ResearchStudyBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      protocol: protocol
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.protocol',
-                ),
-              )
-              .toList() ??
-          this.protocol,
-      partOf: partOf
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.partOf',
-                ),
-              )
-              .toList() ??
-          this.partOf,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      primaryPurposeType: primaryPurposeType?.copyWith(
-            objectPath: '$newObjectPath.primaryPurposeType',
-          ) ??
-          this.primaryPurposeType,
-      phase: phase?.copyWith(
-            objectPath: '$newObjectPath.phase',
-          ) ??
-          this.phase,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      focus: focus
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.focus',
-                ),
-              )
-              .toList() ??
-          this.focus,
-      condition: condition
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.condition',
-                ),
-              )
-              .toList() ??
-          this.condition,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      relatedArtifact: relatedArtifact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatedArtifact',
-                ),
-              )
-              .toList() ??
-          this.relatedArtifact,
-      keyword: keyword
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.keyword',
-                ),
-              )
-              .toList() ??
-          this.keyword,
-      location: location
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.location',
-                ),
-              )
-              .toList() ??
-          this.location,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      enrollment: enrollment
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.enrollment',
-                ),
-              )
-              .toList() ??
-          this.enrollment,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      sponsor: sponsor?.copyWith(
-            objectPath: '$newObjectPath.sponsor',
-          ) ??
-          this.sponsor,
-      principalInvestigator: principalInvestigator?.copyWith(
-            objectPath: '$newObjectPath.principalInvestigator',
-          ) ??
-          this.principalInvestigator,
-      site: site
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.site',
-                ),
-              )
-              .toList() ??
-          this.site,
-      reasonStopped: reasonStopped?.copyWith(
-            objectPath: '$newObjectPath.reasonStopped',
-          ) ??
-          this.reasonStopped,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      arm: arm
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.arm',
-                ),
-              )
-              .toList() ??
-          this.arm,
-      objective: objective
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.objective',
-                ),
-              )
-              .toList() ??
-          this.objective,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      title: title ?? this.title,
+      protocol: protocol ?? this.protocol,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      primaryPurposeType: primaryPurposeType ?? this.primaryPurposeType,
+      phase: phase ?? this.phase,
+      category: category ?? this.category,
+      focus: focus ?? this.focus,
+      condition: condition ?? this.condition,
+      contact: contact ?? this.contact,
+      relatedArtifact: relatedArtifact ?? this.relatedArtifact,
+      keyword: keyword ?? this.keyword,
+      location: location ?? this.location,
+      description: description ?? this.description,
+      enrollment: enrollment ?? this.enrollment,
+      period: period ?? this.period,
+      sponsor: sponsor ?? this.sponsor,
+      principalInvestigator:
+          principalInvestigator ?? this.principalInvestigator,
+      site: site ?? this.site,
+      reasonStopped: reasonStopped ?? this.reasonStopped,
+      note: note ?? this.note,
+      arm: arm ?? this.arm,
+      objective: objective ?? this.objective,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ResearchStudy) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ResearchStudyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1859,25 +1596,25 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1889,13 +1626,13 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       protocol,
       o.protocol,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       partOf,
       o.partOf,
     )) {
@@ -1919,43 +1656,43 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       category,
       o.category,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       focus,
       o.focus,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       condition,
       o.condition,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
       return false;
     }
-    if (!listEquals<RelatedArtifact>(
+    if (!listEquals<RelatedArtifactBuilder>(
       relatedArtifact,
       o.relatedArtifact,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       keyword,
       o.keyword,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       location,
       o.location,
     )) {
@@ -1967,7 +1704,7 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       enrollment,
       o.enrollment,
     )) {
@@ -1991,7 +1728,7 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       site,
       o.site,
     )) {
@@ -2003,19 +1740,19 @@ class ResearchStudy extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<ResearchStudyArm>(
+    if (!listEquals<ResearchStudyArmBuilder>(
       arm,
       o.arm,
     )) {
       return false;
     }
-    if (!listEquals<ResearchStudyObjective>(
+    if (!listEquals<ResearchStudyObjectiveBuilder>(
       objective,
       o.objective,
     )) {
@@ -2025,19 +1762,19 @@ class ResearchStudy extends DomainResource {
   }
 }
 
-/// [ResearchStudyArm]
+/// [ResearchStudyArmBuilder]
 /// Describes an expected sequence of events for one of the participants of
 /// a study. E.g. Exposure to drug A, wash-out, exposure to drug B,
 /// wash-out, follow-up.
-class ResearchStudyArm extends BackboneElement {
+class ResearchStudyArmBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ResearchStudyArm]
+  /// [ResearchStudyArmBuilder]
 
-  const ResearchStudyArm({
+  ResearchStudyArmBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
+    this.name,
     this.type,
     this.description,
     super.disallowExtensions,
@@ -2046,27 +1783,24 @@ class ResearchStudyArm extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ResearchStudyArm.empty() => ResearchStudyArm(
-        name: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ResearchStudyArmBuilder.empty() => ResearchStudyArmBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchStudyArm.fromJson(
+  factory ResearchStudyArmBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ResearchStudy.arm';
-    return ResearchStudyArm(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ResearchStudyArmBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2075,8 +1809,8 @@ class ResearchStudyArm extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2084,43 +1818,43 @@ class ResearchStudyArm extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      type: JsonParser.parseObject<CodeableConcept>(
+      ),
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      description: JsonParser.parsePrimitive<FhirString>(
+      description: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'description',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.description',
       ),
     );
   }
 
-  /// Deserialize [ResearchStudyArm]
+  /// Deserialize [ResearchStudyArmBuilder]
   /// from a [String] or [YamlMap] object
-  factory ResearchStudyArm.fromYaml(
+  factory ResearchStudyArmBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ResearchStudyArm.fromJson(
+      return ResearchStudyArmBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ResearchStudyArm.fromJson(
+      return ResearchStudyArmBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ResearchStudyArm '
+        'ResearchStudyArmBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2128,16 +1862,16 @@ class ResearchStudyArm extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ResearchStudyArm]
+  /// [ResearchStudyArmBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchStudyArm.fromJsonString(
+  factory ResearchStudyArmBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ResearchStudyArm.fromJson(json);
+      return ResearchStudyArmBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2149,33 +1883,33 @@ class ResearchStudyArm extends BackboneElement {
 
   /// [name]
   /// Unique, human-readable label for this arm of the study.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [type]
   /// Categorization of study arm, e.g. experimental, active comparator,
   /// placebo comparater.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [description]
   /// A succinct description of the path through the study that would be
   /// followed by a subject adhering to this arm.
-  final FhirString? description;
+  FhirStringBuilder? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2184,35 +1918,17 @@ class ResearchStudyArm extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'description',
-      description,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('type', type);
+    addField('description', description);
     return json;
   }
 
@@ -2232,11 +1948,11 @@ class ResearchStudyArm extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2251,7 +1967,9 @@ class ResearchStudyArm extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'type':
         if (type != null) {
           fields.add(type!);
@@ -2270,7 +1988,7 @@ class ResearchStudyArm extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2279,73 +1997,76 @@ class ResearchStudyArm extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirString) {
-            return copyWith(description: child);
+          if (child is FhirStringBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2361,66 +2082,56 @@ class ResearchStudyArm extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ResearchStudyArm]
+  /// Creates a new [ResearchStudyArmBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ResearchStudyArm createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirString.empty(),
-          );
+          description = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2429,33 +2140,32 @@ class ResearchStudyArm extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ResearchStudyArm clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
     bool type = false,
     bool description = false,
   }) {
-    return ResearchStudyArm(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      type: type ? null : this.type,
-      description: description ? null : this.description,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (type) this.type = null;
+    if (description) this.description = null;
   }
 
   @override
-  ResearchStudyArm clone() => throw UnimplementedError();
+  ResearchStudyArmBuilder clone() => throw UnimplementedError();
   @override
-  ResearchStudyArm copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    CodeableConcept? type,
-    FhirString? description,
+  ResearchStudyArmBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? name,
+    CodeableConceptBuilder? type,
+    FhirStringBuilder? description,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2463,46 +2173,37 @@ class ResearchStudyArm extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ResearchStudyArm(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
+    final newResult = ResearchStudyArmBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      description: description ?? this.description,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ResearchStudyArm) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ResearchStudyArmBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2513,13 +2214,13 @@ class ResearchStudyArm extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2547,15 +2248,15 @@ class ResearchStudyArm extends BackboneElement {
   }
 }
 
-/// [ResearchStudyObjective]
+/// [ResearchStudyObjectiveBuilder]
 /// A goal that the study is aiming to achieve in terms of a scientific
 /// question to be answered by the analysis of data collected during the
 /// study.
-class ResearchStudyObjective extends BackboneElement {
+class ResearchStudyObjectiveBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ResearchStudyObjective]
+  /// [ResearchStudyObjectiveBuilder]
 
-  const ResearchStudyObjective({
+  ResearchStudyObjectiveBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2567,25 +2268,25 @@ class ResearchStudyObjective extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ResearchStudyObjective.empty() => const ResearchStudyObjective();
+  /// For Builder classes, no fields are required
+  factory ResearchStudyObjectiveBuilder.empty() =>
+      ResearchStudyObjectiveBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchStudyObjective.fromJson(
+  factory ResearchStudyObjectiveBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'ResearchStudy.objective';
-    return ResearchStudyObjective(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ResearchStudyObjectiveBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2594,8 +2295,8 @@ class ResearchStudyObjective extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2603,37 +2304,37 @@ class ResearchStudyObjective extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
     );
   }
 
-  /// Deserialize [ResearchStudyObjective]
+  /// Deserialize [ResearchStudyObjectiveBuilder]
   /// from a [String] or [YamlMap] object
-  factory ResearchStudyObjective.fromYaml(
+  factory ResearchStudyObjectiveBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ResearchStudyObjective.fromJson(
+      return ResearchStudyObjectiveBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ResearchStudyObjective.fromJson(
+      return ResearchStudyObjectiveBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ResearchStudyObjective '
+        'ResearchStudyObjectiveBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2641,16 +2342,16 @@ class ResearchStudyObjective extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ResearchStudyObjective]
+  /// [ResearchStudyObjectiveBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchStudyObjective.fromJsonString(
+  factory ResearchStudyObjectiveBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ResearchStudyObjective.fromJson(json);
+      return ResearchStudyObjectiveBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2662,27 +2363,27 @@ class ResearchStudyObjective extends BackboneElement {
 
   /// [name]
   /// Unique, human-readable label for this objective of the study.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [type]
   /// The kind of study objective.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2691,31 +2392,16 @@ class ResearchStudyObjective extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('type', type);
     return json;
   }
 
@@ -2734,11 +2420,11 @@ class ResearchStudyObjective extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2770,7 +2456,7 @@ class ResearchStudyObjective extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2779,65 +2465,67 @@ class ResearchStudyObjective extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2853,58 +2541,49 @@ class ResearchStudyObjective extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ResearchStudyObjective]
+  /// Creates a new [ResearchStudyObjectiveBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ResearchStudyObjective createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2913,31 +2592,29 @@ class ResearchStudyObjective extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ResearchStudyObjective clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool name = false,
     bool type = false,
   }) {
-    return ResearchStudyObjective(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name ? null : this.name,
-      type: type ? null : this.type,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (type) this.type = null;
   }
 
   @override
-  ResearchStudyObjective clone() => throw UnimplementedError();
+  ResearchStudyObjectiveBuilder clone() => throw UnimplementedError();
   @override
-  ResearchStudyObjective copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    CodeableConcept? type,
+  ResearchStudyObjectiveBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? name,
+    CodeableConceptBuilder? type,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2945,42 +2622,36 @@ class ResearchStudyObjective extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ResearchStudyObjective(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
+    final newResult = ResearchStudyObjectiveBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      type: type ?? this.type,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ResearchStudyObjective) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ResearchStudyObjectiveBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2991,13 +2662,13 @@ class ResearchStudyObjective extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

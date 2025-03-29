@@ -3,9 +3,9 @@ part of '../primitive_types.dart';
 
 /// Codes that reflect the current state of a care plan activity within its
 /// overall life cycle.
-class CarePlanActivityStatus extends FhirCodeEnum {
+class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  CarePlanActivityStatus._({
+  CarePlanActivityStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -19,19 +19,19 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory CarePlanActivityStatus(
+  factory CarePlanActivityStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return CarePlanActivityStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return CarePlanActivityStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -44,107 +44,125 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [CarePlanActivityStatus] with element only
-  factory CarePlanActivityStatus.empty() =>
-      CarePlanActivityStatus._(validatedValue: '');
+  /// Create empty [CarePlanActivityStatusBuilder] with element only
+  factory CarePlanActivityStatusBuilder.empty() =>
+      CarePlanActivityStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CarePlanActivityStatus] from JSON.
-  factory CarePlanActivityStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CarePlanActivityStatusBuilder] from JSON.
+  factory CarePlanActivityStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanActivityStatus.elementOnly.withElement(element);
+      return CarePlanActivityStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CarePlanActivityStatus cannot be constructed from JSON.',
+        'CarePlanActivityStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return CarePlanActivityStatus._(
+    return CarePlanActivityStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// not_started
-  static final CarePlanActivityStatus not_started = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder not_started =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'not-started',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Started'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not Started'.toFhirStringBuilder,
   );
 
   /// scheduled
-  static final CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder scheduled =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'scheduled',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Scheduled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Scheduled'.toFhirStringBuilder,
   );
 
   /// in_progress
-  static final CarePlanActivityStatus in_progress = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder in_progress =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In Progress'.toFhirStringBuilder,
   );
 
   /// on_hold
-  static final CarePlanActivityStatus on_hold = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder on_hold =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'On Hold'.toFhirStringBuilder,
   );
 
   /// completed
-  static final CarePlanActivityStatus completed = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder completed =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Completed'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder cancelled =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Cancelled'.toFhirStringBuilder,
   );
 
   /// stopped
-  static final CarePlanActivityStatus stopped = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder stopped =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Stopped'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final CarePlanActivityStatus unknown = CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder unknown =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final CarePlanActivityStatus entered_in_error =
-      CarePlanActivityStatus._(
+  static CarePlanActivityStatusBuilder entered_in_error =
+      CarePlanActivityStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final CarePlanActivityStatus elementOnly =
-      CarePlanActivityStatus._(validatedValue: '');
+  static CarePlanActivityStatusBuilder elementOnly =
+      CarePlanActivityStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<CarePlanActivityStatus> values = [
+  static List<CarePlanActivityStatusBuilder> values = [
     not_started,
     scheduled,
     in_progress,
@@ -158,14 +176,15 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  CarePlanActivityStatus clone() => CarePlanActivityStatus._(
+  CarePlanActivityStatusBuilder clone() => CarePlanActivityStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  CarePlanActivityStatus withElement(Element? newElement) {
-    return CarePlanActivityStatus._(validatedValue: value, element: newElement);
+  CarePlanActivityStatusBuilder withElement(ElementBuilder? newElement) {
+    return CarePlanActivityStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -181,11 +200,11 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  CarePlanActivityStatus copyWith({
+  CarePlanActivityStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -196,7 +215,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return CarePlanActivityStatus._(
+    return CarePlanActivityStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -206,7 +225,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

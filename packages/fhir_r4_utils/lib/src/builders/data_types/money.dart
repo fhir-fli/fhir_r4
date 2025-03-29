@@ -1,57 +1,58 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Money]
+/// [MoneyBuilder]
 /// An amount of economic utility in some recognized currency.
-class Money extends DataType
+class MoneyBuilder extends DataTypeBuilder
     implements
-        ValueXCoverageCostToBeneficiary,
-        AllowedXCoverageEligibilityResponseBenefit,
-        UsedXCoverageEligibilityResponseBenefit,
-        AllowedXExplanationOfBenefitFinancial,
-        UsedXExplanationOfBenefitFinancial,
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        ValueXCoverageCostToBeneficiaryBuilder,
+        AllowedXCoverageEligibilityResponseBenefitBuilder,
+        UsedXCoverageEligibilityResponseBenefitBuilder,
+        AllowedXExplanationOfBenefitFinancialBuilder,
+        UsedXExplanationOfBenefitFinancialBuilder,
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Money]
+  /// [MoneyBuilder]
 
-  const Money({
+  MoneyBuilder({
     super.id,
     super.extension_,
     this.value,
     this.currency,
     super.disallowExtensions,
-    super.objectPath = 'Money',
+    super.objectPath = 'MoneyBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Money.empty() => const Money();
+  /// For Builder classes, no fields are required
+  factory MoneyBuilder.empty() => MoneyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Money.fromJson(
+  factory MoneyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Money';
-    return Money(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return MoneyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -59,37 +60,37 @@ class Money extends DataType
             ),
           )
           .toList(),
-      value: JsonParser.parsePrimitive<FhirDecimal>(
+      value: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'value',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.value',
       ),
-      currency: JsonParser.parsePrimitive<FhirCode>(
+      currency: JsonParser.parsePrimitive<FhirCodeBuilder>(
         json,
         'currency',
-        FhirCode.fromJson,
+        FhirCodeBuilder.fromJson,
         '$objectPath.currency',
       ),
     );
   }
 
-  /// Deserialize [Money]
+  /// Deserialize [MoneyBuilder]
   /// from a [String] or [YamlMap] object
-  factory Money.fromYaml(
+  factory MoneyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Money.fromJson(
+      return MoneyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Money.fromJson(
+      return MoneyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Money '
+        'MoneyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -97,16 +98,16 @@ class Money extends DataType
   }
 
   /// Factory constructor for
-  /// [Money]
+  /// [MoneyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Money.fromJsonString(
+  factory MoneyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Money.fromJson(json);
+      return MoneyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -118,27 +119,27 @@ class Money extends DataType
 
   /// [value]
   /// Numerical value (with implicit precision).
-  final FhirDecimal? value;
+  FhirDecimalBuilder? value;
 
   /// [currency]
   /// ISO 4217 Currency Code.
-  final FhirCode? currency;
+  FhirCodeBuilder? currency;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -147,27 +148,15 @@ class Money extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'currency',
-      currency,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('value', value);
+    addField('currency', currency);
     return json;
   }
 
@@ -185,11 +174,11 @@ class Money extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -217,7 +206,7 @@ class Money extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -226,51 +215,53 @@ class Money extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirDecimal) {
-            return copyWith(value: child);
+          if (child is FhirDecimalBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'currency':
         {
-          if (child is FhirCode) {
-            return copyWith(currency: child);
+          if (child is FhirCodeBuilder) {
+            currency = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -286,50 +277,42 @@ class Money extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'value':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'currency':
-        return ['FhirCode'];
+        return ['FhirCodeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Money]
+  /// Creates a new [MoneyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Money createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirDecimal.empty(),
-          );
+          value = FhirDecimalBuilder.empty();
+          return;
         }
       case 'currency':
         {
-          return copyWith(
-            currency: FhirCode.empty(),
-          );
+          currency = FhirCodeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -338,28 +321,26 @@ class Money extends DataType
 
   /// Clears specific fields in this object
   @override
-  Money clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool value = false,
     bool currency = false,
   }) {
-    return Money(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      value: value ? null : this.value,
-      currency: currency ? null : this.currency,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (value) this.value = null;
+    if (currency) this.currency = null;
   }
 
   @override
-  Money clone() => throw UnimplementedError();
+  MoneyBuilder clone() => throw UnimplementedError();
   @override
-  Money copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirDecimal? value,
-    FhirCode? currency,
+  MoneyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    FhirDecimalBuilder? value,
+    FhirCodeBuilder? currency,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -367,34 +348,35 @@ class Money extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Money(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      currency: currency?.copyWith(
-            objectPath: '$newObjectPath.currency',
-          ) ??
-          this.currency,
+    final newResult = MoneyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      value: value ?? this.value,
+      currency: currency ?? this.currency,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Money) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! MoneyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -405,7 +387,7 @@ class Money extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

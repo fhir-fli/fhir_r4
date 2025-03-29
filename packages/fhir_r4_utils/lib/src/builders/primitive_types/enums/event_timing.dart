@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Real world event relating to the schedule.
-class EventTiming extends FhirCodeEnum {
+class EventTimingBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  EventTiming._({
+  EventTimingBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class EventTiming extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory EventTiming(
+  factory EventTimingBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return EventTiming._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return EventTimingBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,240 +43,243 @@ class EventTiming extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [EventTiming] with element only
-  factory EventTiming.empty() => EventTiming._(validatedValue: '');
+  /// Create empty [EventTimingBuilder] with element only
+  factory EventTimingBuilder.empty() =>
+      EventTimingBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EventTiming] from JSON.
-  factory EventTiming.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EventTimingBuilder] from JSON.
+  factory EventTimingBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EventTiming.elementOnly.withElement(element);
+      return EventTimingBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EventTiming cannot be constructed from JSON.',
+        'EventTimingBuilder cannot be constructed from JSON.',
       );
     }
-    return EventTiming._(
+    return EventTimingBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// MORN
-  static final EventTiming MORN = EventTiming._(
+  static EventTimingBuilder MORN = EventTimingBuilder._(
     validatedValue: 'MORN',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Morning'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Morning'.toFhirStringBuilder,
   );
 
   /// MORN_early
-  static final EventTiming MORN_early = EventTiming._(
+  static EventTimingBuilder MORN_early = EventTimingBuilder._(
     validatedValue: 'MORN.early',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Early Morning'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Early Morning'.toFhirStringBuilder,
   );
 
   /// MORN_late
-  static final EventTiming MORN_late = EventTiming._(
+  static EventTimingBuilder MORN_late = EventTimingBuilder._(
     validatedValue: 'MORN.late',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Late Morning'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Late Morning'.toFhirStringBuilder,
   );
 
   /// NOON
-  static final EventTiming NOON = EventTiming._(
+  static EventTimingBuilder NOON = EventTimingBuilder._(
     validatedValue: 'NOON',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Noon'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Noon'.toFhirStringBuilder,
   );
 
   /// AFT
-  static final EventTiming AFT = EventTiming._(
+  static EventTimingBuilder AFT = EventTimingBuilder._(
     validatedValue: 'AFT',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Afternoon'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Afternoon'.toFhirStringBuilder,
   );
 
   /// AFT_early
-  static final EventTiming AFT_early = EventTiming._(
+  static EventTimingBuilder AFT_early = EventTimingBuilder._(
     validatedValue: 'AFT.early',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Early Afternoon'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Early Afternoon'.toFhirStringBuilder,
   );
 
   /// AFT_late
-  static final EventTiming AFT_late = EventTiming._(
+  static EventTimingBuilder AFT_late = EventTimingBuilder._(
     validatedValue: 'AFT.late',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Late Afternoon'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Late Afternoon'.toFhirStringBuilder,
   );
 
   /// EVE
-  static final EventTiming EVE = EventTiming._(
+  static EventTimingBuilder EVE = EventTimingBuilder._(
     validatedValue: 'EVE',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Evening'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Evening'.toFhirStringBuilder,
   );
 
   /// EVE_early
-  static final EventTiming EVE_early = EventTiming._(
+  static EventTimingBuilder EVE_early = EventTimingBuilder._(
     validatedValue: 'EVE.early',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Early Evening'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Early Evening'.toFhirStringBuilder,
   );
 
   /// EVE_late
-  static final EventTiming EVE_late = EventTiming._(
+  static EventTimingBuilder EVE_late = EventTimingBuilder._(
     validatedValue: 'EVE.late',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Late Evening'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Late Evening'.toFhirStringBuilder,
   );
 
   /// NIGHT
-  static final EventTiming NIGHT = EventTiming._(
+  static EventTimingBuilder NIGHT = EventTimingBuilder._(
     validatedValue: 'NIGHT',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Night'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Night'.toFhirStringBuilder,
   );
 
   /// PHS
-  static final EventTiming PHS = EventTiming._(
+  static EventTimingBuilder PHS = EventTimingBuilder._(
     validatedValue: 'PHS',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'After Sleep'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'After Sleep'.toFhirStringBuilder,
   );
 
   /// HS
-  static final EventTiming HS = EventTiming._(
+  static EventTimingBuilder HS = EventTimingBuilder._(
     validatedValue: 'HS',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// WAKE
-  static final EventTiming WAKE = EventTiming._(
+  static EventTimingBuilder WAKE = EventTimingBuilder._(
     validatedValue: 'WAKE',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// C
-  static final EventTiming C = EventTiming._(
+  static EventTimingBuilder C = EventTimingBuilder._(
     validatedValue: 'C',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// CM
-  static final EventTiming CM = EventTiming._(
+  static EventTimingBuilder CM = EventTimingBuilder._(
     validatedValue: 'CM',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// CD
-  static final EventTiming CD = EventTiming._(
+  static EventTimingBuilder CD = EventTimingBuilder._(
     validatedValue: 'CD',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// CV
-  static final EventTiming CV = EventTiming._(
+  static EventTimingBuilder CV = EventTimingBuilder._(
     validatedValue: 'CV',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// AC
-  static final EventTiming AC = EventTiming._(
+  static EventTimingBuilder AC = EventTimingBuilder._(
     validatedValue: 'AC',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// ACM
-  static final EventTiming ACM = EventTiming._(
+  static EventTimingBuilder ACM = EventTimingBuilder._(
     validatedValue: 'ACM',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// ACD
-  static final EventTiming ACD = EventTiming._(
+  static EventTimingBuilder ACD = EventTimingBuilder._(
     validatedValue: 'ACD',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// ACV
-  static final EventTiming ACV = EventTiming._(
+  static EventTimingBuilder ACV = EventTimingBuilder._(
     validatedValue: 'ACV',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// PC
-  static final EventTiming PC = EventTiming._(
+  static EventTimingBuilder PC = EventTimingBuilder._(
     validatedValue: 'PC',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// PCM
-  static final EventTiming PCM = EventTiming._(
+  static EventTimingBuilder PCM = EventTimingBuilder._(
     validatedValue: 'PCM',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// PCD
-  static final EventTiming PCD = EventTiming._(
+  static EventTimingBuilder PCD = EventTimingBuilder._(
     validatedValue: 'PCD',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// PCV
-  static final EventTiming PCV = EventTiming._(
+  static EventTimingBuilder PCV = EventTimingBuilder._(
     validatedValue: 'PCV',
-    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: ''.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: ''.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final EventTiming elementOnly = EventTiming._(validatedValue: '');
+  static EventTimingBuilder elementOnly =
+      EventTimingBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<EventTiming> values = [
+  static List<EventTimingBuilder> values = [
     MORN,
     MORN_early,
     MORN_late,
@@ -307,14 +310,14 @@ class EventTiming extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  EventTiming clone() => EventTiming._(
+  EventTimingBuilder clone() => EventTimingBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  EventTiming withElement(Element? newElement) {
-    return EventTiming._(validatedValue: value, element: newElement);
+  EventTimingBuilder withElement(ElementBuilder? newElement) {
+    return EventTimingBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -330,11 +333,11 @@ class EventTiming extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  EventTiming copyWith({
+  EventTimingBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -345,7 +348,7 @@ class EventTiming extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return EventTiming._(
+    return EventTimingBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -355,7 +358,7 @@ class EventTiming extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

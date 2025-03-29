@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The kind of operation to perform as a part of a property based filter.
-class FilterOperator extends FhirCodeEnum {
+class FilterOperatorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  FilterOperator._({
+  FilterOperatorBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class FilterOperator extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory FilterOperator(
+  factory FilterOperatorBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return FilterOperator._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return FilterOperatorBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,105 +43,107 @@ class FilterOperator extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [FilterOperator] with element only
-  factory FilterOperator.empty() => FilterOperator._(validatedValue: '');
+  /// Create empty [FilterOperatorBuilder] with element only
+  factory FilterOperatorBuilder.empty() =>
+      FilterOperatorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FilterOperator] from JSON.
-  factory FilterOperator.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FilterOperatorBuilder] from JSON.
+  factory FilterOperatorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FilterOperator.elementOnly.withElement(element);
+      return FilterOperatorBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'FilterOperator cannot be constructed from JSON.',
+        'FilterOperatorBuilder cannot be constructed from JSON.',
       );
     }
-    return FilterOperator._(
+    return FilterOperatorBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// eq
-  static final FilterOperator eq = FilterOperator._(
+  static FilterOperatorBuilder eq = FilterOperatorBuilder._(
     validatedValue: '=',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Equals'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Equals'.toFhirStringBuilder,
   );
 
   /// is_a
-  static final FilterOperator is_a = FilterOperator._(
+  static FilterOperatorBuilder is_a = FilterOperatorBuilder._(
     validatedValue: 'is-a',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Is A (by subsumption)'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Is A (by subsumption)'.toFhirStringBuilder,
   );
 
   /// descendent_of
-  static final FilterOperator descendent_of = FilterOperator._(
+  static FilterOperatorBuilder descendent_of = FilterOperatorBuilder._(
     validatedValue: 'descendent-of',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Descendent Of (by subsumption)'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Descendent Of (by subsumption)'.toFhirStringBuilder,
   );
 
   /// is_not_a
-  static final FilterOperator is_not_a = FilterOperator._(
+  static FilterOperatorBuilder is_not_a = FilterOperatorBuilder._(
     validatedValue: 'is-not-a',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not (Is A) (by subsumption)'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not (Is A) (by subsumption)'.toFhirStringBuilder,
   );
 
   /// regex
-  static final FilterOperator regex = FilterOperator._(
+  static FilterOperatorBuilder regex = FilterOperatorBuilder._(
     validatedValue: 'regex',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Regular Expression'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Regular Expression'.toFhirStringBuilder,
   );
 
   /// in_
-  static final FilterOperator in_ = FilterOperator._(
+  static FilterOperatorBuilder in_ = FilterOperatorBuilder._(
     validatedValue: 'in',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Set'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'In Set'.toFhirStringBuilder,
   );
 
   /// not_in
-  static final FilterOperator not_in = FilterOperator._(
+  static FilterOperatorBuilder not_in = FilterOperatorBuilder._(
     validatedValue: 'not-in',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not in Set'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Not in Set'.toFhirStringBuilder,
   );
 
   /// generalizes
-  static final FilterOperator generalizes = FilterOperator._(
+  static FilterOperatorBuilder generalizes = FilterOperatorBuilder._(
     validatedValue: 'generalizes',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Generalizes (by Subsumption)'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Generalizes (by Subsumption)'.toFhirStringBuilder,
   );
 
   /// exists
-  static final FilterOperator exists = FilterOperator._(
+  static FilterOperatorBuilder exists = FilterOperatorBuilder._(
     validatedValue: 'exists',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Exists'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Exists'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final FilterOperator elementOnly =
-      FilterOperator._(validatedValue: '');
+  static FilterOperatorBuilder elementOnly =
+      FilterOperatorBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<FilterOperator> values = [
+  static List<FilterOperatorBuilder> values = [
     eq,
     is_a,
     descendent_of,
@@ -155,14 +157,14 @@ class FilterOperator extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  FilterOperator clone() => FilterOperator._(
+  FilterOperatorBuilder clone() => FilterOperatorBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  FilterOperator withElement(Element? newElement) {
-    return FilterOperator._(validatedValue: value, element: newElement);
+  FilterOperatorBuilder withElement(ElementBuilder? newElement) {
+    return FilterOperatorBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -178,11 +180,11 @@ class FilterOperator extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  FilterOperator copyWith({
+  FilterOperatorBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -193,7 +195,7 @@ class FilterOperator extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return FilterOperator._(
+    return FilterOperatorBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -203,7 +205,7 @@ class FilterOperator extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

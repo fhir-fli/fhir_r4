@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// Telecommunications form for contact point.
-class ContactPointSystem extends FhirCodeEnum {
+class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  ContactPointSystem._({
+  ContactPointSystemBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class ContactPointSystem extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory ContactPointSystem(
+  factory ContactPointSystemBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return ContactPointSystem._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return ContactPointSystemBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,90 +43,98 @@ class ContactPointSystem extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [ContactPointSystem] with element only
-  factory ContactPointSystem.empty() =>
-      ContactPointSystem._(validatedValue: '');
+  /// Create empty [ContactPointSystemBuilder] with element only
+  factory ContactPointSystemBuilder.empty() =>
+      ContactPointSystemBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ContactPointSystem] from JSON.
-  factory ContactPointSystem.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ContactPointSystemBuilder] from JSON.
+  factory ContactPointSystemBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContactPointSystem.elementOnly.withElement(element);
+      return ContactPointSystemBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ContactPointSystem cannot be constructed from JSON.',
+        'ContactPointSystemBuilder cannot be constructed from JSON.',
       );
     }
-    return ContactPointSystem._(
+    return ContactPointSystemBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// phone
-  static final ContactPointSystem phone = ContactPointSystem._(
+  static ContactPointSystemBuilder phone = ContactPointSystemBuilder._(
     validatedValue: 'phone',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Phone'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Phone'.toFhirStringBuilder,
   );
 
   /// fax
-  static final ContactPointSystem fax = ContactPointSystem._(
+  static ContactPointSystemBuilder fax = ContactPointSystemBuilder._(
     validatedValue: 'fax',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fax'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Fax'.toFhirStringBuilder,
   );
 
   /// email
-  static final ContactPointSystem email = ContactPointSystem._(
+  static ContactPointSystemBuilder email = ContactPointSystemBuilder._(
     validatedValue: 'email',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Email'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Email'.toFhirStringBuilder,
   );
 
   /// pager
-  static final ContactPointSystem pager = ContactPointSystem._(
+  static ContactPointSystemBuilder pager = ContactPointSystemBuilder._(
     validatedValue: 'pager',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Pager'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Pager'.toFhirStringBuilder,
   );
 
   /// url
-  static final ContactPointSystem url = ContactPointSystem._(
+  static ContactPointSystemBuilder url = ContactPointSystemBuilder._(
     validatedValue: 'url',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'URL'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'URL'.toFhirStringBuilder,
   );
 
   /// sms
-  static final ContactPointSystem sms = ContactPointSystem._(
+  static ContactPointSystemBuilder sms = ContactPointSystemBuilder._(
     validatedValue: 'sms',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SMS'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'SMS'.toFhirStringBuilder,
   );
 
   /// other
-  static final ContactPointSystem other = ContactPointSystem._(
+  static ContactPointSystemBuilder other = ContactPointSystemBuilder._(
     validatedValue: 'other',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Other'.toFhirString,
+    system:
+        'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Other'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final ContactPointSystem elementOnly =
-      ContactPointSystem._(validatedValue: '');
+  static ContactPointSystemBuilder elementOnly =
+      ContactPointSystemBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<ContactPointSystem> values = [
+  static List<ContactPointSystemBuilder> values = [
     phone,
     fax,
     email,
@@ -138,14 +146,15 @@ class ContactPointSystem extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  ContactPointSystem clone() => ContactPointSystem._(
+  ContactPointSystemBuilder clone() => ContactPointSystemBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  ContactPointSystem withElement(Element? newElement) {
-    return ContactPointSystem._(validatedValue: value, element: newElement);
+  ContactPointSystemBuilder withElement(ElementBuilder? newElement) {
+    return ContactPointSystemBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,11 +170,11 @@ class ContactPointSystem extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  ContactPointSystem copyWith({
+  ContactPointSystemBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -176,7 +185,7 @@ class ContactPointSystem extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return ContactPointSystem._(
+    return ContactPointSystemBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -186,7 +195,7 @@ class ContactPointSystem extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

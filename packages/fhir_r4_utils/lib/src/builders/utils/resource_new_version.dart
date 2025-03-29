@@ -1,23 +1,24 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
-/// Returns a [FhirMeta] object, creates a new one if none is passed, otherwise
+/// Returns a [FhirMetaBuilder] object, creates a new one if none is passed, otherwise
 /// updates the [lastUpdated] and increases the [version] by 1
-FhirMeta updateFhirMetaVersion(
-  FhirMeta? oldFhirMeta, [
+FhirMetaBuilder updateFhirMetaVersion(
+  FhirMetaBuilder? oldFhirMeta, [
   // ignore: avoid_positional_boolean_parameters
   bool versionIdAsTime = false,
 ]) {
   final now = DateTime.now().toUtc();
   if (versionIdAsTime) {
     if (oldFhirMeta == null) {
-      return FhirMeta(
-        lastUpdated: FhirInstant.fromDateTime(now),
-        versionId: FhirId(now.toIso8601String().replaceAll(':', '.')),
+      return FhirMetaBuilder(
+        lastUpdated: FhirInstantBuilder.fromDateTime(now),
+        versionId: FhirIdBuilder(now.toIso8601String().replaceAll(':', '.')),
       );
     } else {
       return oldFhirMeta.copyWith(
-        lastUpdated: FhirInstant.fromDateTime(now),
-        versionId: FhirId(now.toIso8601String().replaceAll(':', '.')),
+        lastUpdated: FhirInstantBuilder.fromDateTime(now),
+        versionId: FhirIdBuilder(now.toIso8601String().replaceAll(':', '.')),
       );
     }
   }
@@ -27,14 +28,14 @@ FhirMeta updateFhirMetaVersion(
           ? 1
           : int.parse(oldFhirMeta.versionId.toString()) + 1;
   if (oldFhirMeta == null) {
-    return FhirMeta(
-      lastUpdated: FhirInstant.fromDateTime(now),
-      versionId: FhirId(version.toString()),
+    return FhirMetaBuilder(
+      lastUpdated: FhirInstantBuilder.fromDateTime(now),
+      versionId: FhirIdBuilder(version.toString()),
     );
   } else {
     return oldFhirMeta.copyWith(
-      lastUpdated: FhirInstant.fromDateTime(now),
-      versionId: FhirId(version.toString()),
+      lastUpdated: FhirInstantBuilder.fromDateTime(now),
+      versionId: FhirIdBuilder(version.toString()),
     );
   }
 }
@@ -43,295 +44,308 @@ FhirMeta updateFhirMetaVersion(
 /// field, adds 1 to the version number and adds an [Id] if there is not already
 /// one, accepts [meta] as an argument and will update that field, otherwise
 /// will try and update the [meta] field already in the resource
-Resource updateMeta(
-  Resource resource, {
-  FhirMeta? meta,
+ResourceBuilder updateMeta(
+  ResourceBuilder resource, {
+  FhirMetaBuilder? meta,
   bool versionIdAsTime = false,
 }) {
   final newMeta = updateFhirMetaVersion(meta ?? resource.meta, versionIdAsTime);
   switch (resource.resourceType) {
     case R4ResourceType.Account:
-      return (resource as Account).copyWith(meta: newMeta);
+      return (resource as AccountBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ActivityDefinition:
-      return (resource as ActivityDefinition).copyWith(meta: newMeta);
+      return (resource as ActivityDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.AdministrableProductDefinition:
-      return (resource as AdministrableProductDefinition)
+      return (resource as AdministrableProductDefinitionBuilder)
           .copyWith(meta: newMeta);
     case R4ResourceType.AdverseEvent:
-      return (resource as AdverseEvent).copyWith(meta: newMeta);
+      return (resource as AdverseEventBuilder).copyWith(meta: newMeta);
     case R4ResourceType.AllergyIntolerance:
-      return (resource as AllergyIntolerance).copyWith(meta: newMeta);
+      return (resource as AllergyIntoleranceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Appointment:
-      return (resource as Appointment).copyWith(meta: newMeta);
+      return (resource as AppointmentBuilder).copyWith(meta: newMeta);
     case R4ResourceType.AppointmentResponse:
-      return (resource as AppointmentResponse).copyWith(meta: newMeta);
+      return (resource as AppointmentResponseBuilder).copyWith(meta: newMeta);
     case R4ResourceType.AuditEvent:
-      return (resource as AuditEvent).copyWith(meta: newMeta);
+      return (resource as AuditEventBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Basic:
-      return (resource as Basic).copyWith(meta: newMeta);
+      return (resource as BasicBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Binary:
-      return (resource as Binary).copyWith(meta: newMeta);
+      return (resource as BinaryBuilder).copyWith(meta: newMeta);
     case R4ResourceType.BiologicallyDerivedProduct:
-      return (resource as BiologicallyDerivedProduct).copyWith(meta: newMeta);
+      return (resource as BiologicallyDerivedProductBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.BodyStructure:
-      return (resource as BodyStructure).copyWith(meta: newMeta);
+      return (resource as BodyStructureBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Bundle:
-      return (resource as Bundle).copyWith(meta: newMeta);
+      return (resource as BundleBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CapabilityStatement:
-      return (resource as CapabilityStatement).copyWith(meta: newMeta);
+      return (resource as CapabilityStatementBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CarePlan:
-      return (resource as CarePlan).copyWith(meta: newMeta);
+      return (resource as CarePlanBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CareTeam:
-      return (resource as CareTeam).copyWith(meta: newMeta);
+      return (resource as CareTeamBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CatalogEntry:
-      return (resource as CatalogEntry).copyWith(meta: newMeta);
+      return (resource as CatalogEntryBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ChargeItem:
-      return (resource as ChargeItem).copyWith(meta: newMeta);
+      return (resource as ChargeItemBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ChargeItemDefinition:
-      return (resource as ChargeItemDefinition).copyWith(meta: newMeta);
+      return (resource as ChargeItemDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Citation:
-      return (resource as Citation).copyWith(meta: newMeta);
+      return (resource as CitationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Claim:
-      return (resource as Claim).copyWith(meta: newMeta);
+      return (resource as ClaimBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ClaimResponse:
-      return (resource as ClaimResponse).copyWith(meta: newMeta);
+      return (resource as ClaimResponseBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ClinicalImpression:
-      return (resource as ClinicalImpression).copyWith(meta: newMeta);
+      return (resource as ClinicalImpressionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ClinicalUseDefinition:
-      return (resource as ClinicalUseDefinition).copyWith(meta: newMeta);
+      return (resource as ClinicalUseDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CodeSystem:
-      return (resource as CodeSystem).copyWith(meta: newMeta);
+      return (resource as CodeSystemBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Communication:
-      return (resource as Communication).copyWith(meta: newMeta);
+      return (resource as CommunicationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CommunicationRequest:
-      return (resource as CommunicationRequest).copyWith(meta: newMeta);
+      return (resource as CommunicationRequestBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CompartmentDefinition:
-      return (resource as CompartmentDefinition).copyWith(meta: newMeta);
+      return (resource as CompartmentDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Composition:
-      return (resource as Composition).copyWith(meta: newMeta);
+      return (resource as CompositionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ConceptMap:
-      return (resource as ConceptMap).copyWith(meta: newMeta);
+      return (resource as ConceptMapBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Condition:
-      return (resource as Condition).copyWith(meta: newMeta);
+      return (resource as ConditionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Consent:
-      return (resource as Consent).copyWith(meta: newMeta);
+      return (resource as ConsentBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Contract:
-      return (resource as Contract).copyWith(meta: newMeta);
+      return (resource as ContractBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Coverage:
-      return (resource as Coverage).copyWith(meta: newMeta);
+      return (resource as CoverageBuilder).copyWith(meta: newMeta);
     case R4ResourceType.CoverageEligibilityRequest:
-      return (resource as CoverageEligibilityRequest).copyWith(meta: newMeta);
+      return (resource as CoverageEligibilityRequestBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.CoverageEligibilityResponse:
-      return (resource as CoverageEligibilityResponse).copyWith(meta: newMeta);
+      return (resource as CoverageEligibilityResponseBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.DetectedIssue:
-      return (resource as DetectedIssue).copyWith(meta: newMeta);
+      return (resource as DetectedIssueBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Device:
-      return (resource as Device).copyWith(meta: newMeta);
+      return (resource as DeviceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.DeviceDefinition:
-      return (resource as DeviceDefinition).copyWith(meta: newMeta);
+      return (resource as DeviceDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.DeviceMetric:
-      return (resource as DeviceMetric).copyWith(meta: newMeta);
+      return (resource as DeviceMetricBuilder).copyWith(meta: newMeta);
     case R4ResourceType.DeviceRequest:
-      return (resource as DeviceRequest).copyWith(meta: newMeta);
+      return (resource as DeviceRequestBuilder).copyWith(meta: newMeta);
     case R4ResourceType.DeviceUseStatement:
-      return (resource as DeviceUseStatement).copyWith(meta: newMeta);
+      return (resource as DeviceUseStatementBuilder).copyWith(meta: newMeta);
     case R4ResourceType.DiagnosticReport:
-      return (resource as DiagnosticReport).copyWith(meta: newMeta);
+      return (resource as DiagnosticReportBuilder).copyWith(meta: newMeta);
     case R4ResourceType.DocumentManifest:
-      return (resource as DocumentManifest).copyWith(meta: newMeta);
+      return (resource as DocumentManifestBuilder).copyWith(meta: newMeta);
     case R4ResourceType.DocumentReference:
-      return (resource as DocumentReference).copyWith(meta: newMeta);
+      return (resource as DocumentReferenceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Encounter:
-      return (resource as Encounter).copyWith(meta: newMeta);
+      return (resource as EncounterBuilder).copyWith(meta: newMeta);
     case R4ResourceType.EnrollmentRequest:
-      return (resource as EnrollmentRequest).copyWith(meta: newMeta);
+      return (resource as EnrollmentRequestBuilder).copyWith(meta: newMeta);
     case R4ResourceType.EnrollmentResponse:
-      return (resource as EnrollmentResponse).copyWith(meta: newMeta);
+      return (resource as EnrollmentResponseBuilder).copyWith(meta: newMeta);
     case R4ResourceType.EpisodeOfCare:
-      return (resource as EpisodeOfCare).copyWith(meta: newMeta);
+      return (resource as EpisodeOfCareBuilder).copyWith(meta: newMeta);
     case R4ResourceType.EventDefinition:
-      return (resource as EventDefinition).copyWith(meta: newMeta);
+      return (resource as EventDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Evidence:
-      return (resource as Evidence).copyWith(meta: newMeta);
+      return (resource as EvidenceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.EvidenceReport:
-      return (resource as EvidenceReport).copyWith(meta: newMeta);
+      return (resource as EvidenceReportBuilder).copyWith(meta: newMeta);
     case R4ResourceType.EvidenceVariable:
-      return (resource as EvidenceVariable).copyWith(meta: newMeta);
+      return (resource as EvidenceVariableBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ExampleScenario:
-      return (resource as ExampleScenario).copyWith(meta: newMeta);
+      return (resource as ExampleScenarioBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ExplanationOfBenefit:
-      return (resource as ExplanationOfBenefit).copyWith(meta: newMeta);
+      return (resource as ExplanationOfBenefitBuilder).copyWith(meta: newMeta);
     case R4ResourceType.FamilyMemberHistory:
-      return (resource as FamilyMemberHistory).copyWith(meta: newMeta);
+      return (resource as FamilyMemberHistoryBuilder).copyWith(meta: newMeta);
     case R4ResourceType.FhirEndpoint:
-      return (resource as FhirEndpoint).copyWith(meta: newMeta);
+      return (resource as FhirEndpointBuilder).copyWith(meta: newMeta);
     case R4ResourceType.FhirGroup:
-      return (resource as FhirGroup).copyWith(meta: newMeta);
+      return (resource as FhirGroupBuilder).copyWith(meta: newMeta);
     case R4ResourceType.FhirList:
-      return (resource as FhirList).copyWith(meta: newMeta);
+      return (resource as FhirListBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Flag:
-      return (resource as Flag).copyWith(meta: newMeta);
+      return (resource as FlagBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Goal:
-      return (resource as Goal).copyWith(meta: newMeta);
+      return (resource as GoalBuilder).copyWith(meta: newMeta);
     case R4ResourceType.GraphDefinition:
-      return (resource as GraphDefinition).copyWith(meta: newMeta);
+      return (resource as GraphDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.GuidanceResponse:
-      return (resource as GuidanceResponse).copyWith(meta: newMeta);
+      return (resource as GuidanceResponseBuilder).copyWith(meta: newMeta);
     case R4ResourceType.HealthcareService:
-      return (resource as HealthcareService).copyWith(meta: newMeta);
+      return (resource as HealthcareServiceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ImagingStudy:
-      return (resource as ImagingStudy).copyWith(meta: newMeta);
+      return (resource as ImagingStudyBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Immunization:
-      return (resource as Immunization).copyWith(meta: newMeta);
+      return (resource as ImmunizationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ImmunizationEvaluation:
-      return (resource as ImmunizationEvaluation).copyWith(meta: newMeta);
+      return (resource as ImmunizationEvaluationBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.ImmunizationRecommendation:
-      return (resource as ImmunizationRecommendation).copyWith(meta: newMeta);
+      return (resource as ImmunizationRecommendationBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.ImplementationGuide:
-      return (resource as ImplementationGuide).copyWith(meta: newMeta);
+      return (resource as ImplementationGuideBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Ingredient:
-      return (resource as Ingredient).copyWith(meta: newMeta);
+      return (resource as IngredientBuilder).copyWith(meta: newMeta);
     case R4ResourceType.InsurancePlan:
-      return (resource as InsurancePlan).copyWith(meta: newMeta);
+      return (resource as InsurancePlanBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Invoice:
-      return (resource as Invoice).copyWith(meta: newMeta);
+      return (resource as InvoiceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Library:
-      return (resource as Library).copyWith(meta: newMeta);
+      return (resource as LibraryBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Linkage:
-      return (resource as Linkage).copyWith(meta: newMeta);
+      return (resource as LinkageBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Location:
-      return (resource as Location).copyWith(meta: newMeta);
+      return (resource as LocationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ManufacturedItemDefinition:
-      return (resource as ManufacturedItemDefinition).copyWith(meta: newMeta);
+      return (resource as ManufacturedItemDefinitionBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.Measure:
-      return (resource as Measure).copyWith(meta: newMeta);
+      return (resource as MeasureBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MeasureReport:
-      return (resource as MeasureReport).copyWith(meta: newMeta);
+      return (resource as MeasureReportBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Media:
-      return (resource as Media).copyWith(meta: newMeta);
+      return (resource as MediaBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Medication:
-      return (resource as Medication).copyWith(meta: newMeta);
+      return (resource as MedicationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MedicationAdministration:
-      return (resource as MedicationAdministration).copyWith(meta: newMeta);
+      return (resource as MedicationAdministrationBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.MedicationDispense:
-      return (resource as MedicationDispense).copyWith(meta: newMeta);
+      return (resource as MedicationDispenseBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MedicationKnowledge:
-      return (resource as MedicationKnowledge).copyWith(meta: newMeta);
+      return (resource as MedicationKnowledgeBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MedicationRequest:
-      return (resource as MedicationRequest).copyWith(meta: newMeta);
+      return (resource as MedicationRequestBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MedicationStatement:
-      return (resource as MedicationStatement).copyWith(meta: newMeta);
+      return (resource as MedicationStatementBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MedicinalProductDefinition:
-      return (resource as MedicinalProductDefinition).copyWith(meta: newMeta);
+      return (resource as MedicinalProductDefinitionBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.MessageDefinition:
-      return (resource as MessageDefinition).copyWith(meta: newMeta);
+      return (resource as MessageDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MessageHeader:
-      return (resource as MessageHeader).copyWith(meta: newMeta);
+      return (resource as MessageHeaderBuilder).copyWith(meta: newMeta);
     case R4ResourceType.MolecularSequence:
-      return (resource as MolecularSequence).copyWith(meta: newMeta);
+      return (resource as MolecularSequenceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.NamingSystem:
-      return (resource as NamingSystem).copyWith(meta: newMeta);
+      return (resource as NamingSystemBuilder).copyWith(meta: newMeta);
     case R4ResourceType.NutritionOrder:
-      return (resource as NutritionOrder).copyWith(meta: newMeta);
+      return (resource as NutritionOrderBuilder).copyWith(meta: newMeta);
     case R4ResourceType.NutritionProduct:
-      return (resource as NutritionProduct).copyWith(meta: newMeta);
+      return (resource as NutritionProductBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Observation:
-      return (resource as Observation).copyWith(meta: newMeta);
+      return (resource as ObservationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ObservationDefinition:
-      return (resource as ObservationDefinition).copyWith(meta: newMeta);
+      return (resource as ObservationDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.OperationDefinition:
-      return (resource as OperationDefinition).copyWith(meta: newMeta);
+      return (resource as OperationDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.OperationOutcome:
-      return (resource as OperationOutcome).copyWith(meta: newMeta);
+      return (resource as OperationOutcomeBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Organization:
-      return (resource as Organization).copyWith(meta: newMeta);
+      return (resource as OrganizationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.OrganizationAffiliation:
-      return (resource as OrganizationAffiliation).copyWith(meta: newMeta);
+      return (resource as OrganizationAffiliationBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.PackagedProductDefinition:
-      return (resource as PackagedProductDefinition).copyWith(meta: newMeta);
+      return (resource as PackagedProductDefinitionBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.Parameters:
-      return (resource as Parameters).copyWith(meta: newMeta);
+      return (resource as ParametersBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Patient:
-      return (resource as Patient).copyWith(meta: newMeta);
+      return (resource as PatientBuilder).copyWith(meta: newMeta);
     case R4ResourceType.PaymentNotice:
-      return (resource as PaymentNotice).copyWith(meta: newMeta);
+      return (resource as PaymentNoticeBuilder).copyWith(meta: newMeta);
     case R4ResourceType.PaymentReconciliation:
-      return (resource as PaymentReconciliation).copyWith(meta: newMeta);
+      return (resource as PaymentReconciliationBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Person:
-      return (resource as Person).copyWith(meta: newMeta);
+      return (resource as PersonBuilder).copyWith(meta: newMeta);
     case R4ResourceType.PlanDefinition:
-      return (resource as PlanDefinition).copyWith(meta: newMeta);
+      return (resource as PlanDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Practitioner:
-      return (resource as Practitioner).copyWith(meta: newMeta);
+      return (resource as PractitionerBuilder).copyWith(meta: newMeta);
     case R4ResourceType.PractitionerRole:
-      return (resource as PractitionerRole).copyWith(meta: newMeta);
+      return (resource as PractitionerRoleBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Procedure:
-      return (resource as Procedure).copyWith(meta: newMeta);
+      return (resource as ProcedureBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Provenance:
-      return (resource as Provenance).copyWith(meta: newMeta);
+      return (resource as ProvenanceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Questionnaire:
-      return (resource as Questionnaire).copyWith(meta: newMeta);
+      return (resource as QuestionnaireBuilder).copyWith(meta: newMeta);
     case R4ResourceType.QuestionnaireResponse:
-      return (resource as QuestionnaireResponse).copyWith(meta: newMeta);
+      return (resource as QuestionnaireResponseBuilder).copyWith(meta: newMeta);
     case R4ResourceType.RegulatedAuthorization:
-      return (resource as RegulatedAuthorization).copyWith(meta: newMeta);
+      return (resource as RegulatedAuthorizationBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.RelatedPerson:
-      return (resource as RelatedPerson).copyWith(meta: newMeta);
+      return (resource as RelatedPersonBuilder).copyWith(meta: newMeta);
     case R4ResourceType.RequestGroup:
-      return (resource as RequestGroup).copyWith(meta: newMeta);
+      return (resource as RequestGroupBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ResearchDefinition:
-      return (resource as ResearchDefinition).copyWith(meta: newMeta);
+      return (resource as ResearchDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ResearchElementDefinition:
-      return (resource as ResearchElementDefinition).copyWith(meta: newMeta);
+      return (resource as ResearchElementDefinitionBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.ResearchStudy:
-      return (resource as ResearchStudy).copyWith(meta: newMeta);
+      return (resource as ResearchStudyBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ResearchSubject:
-      return (resource as ResearchSubject).copyWith(meta: newMeta);
+      return (resource as ResearchSubjectBuilder).copyWith(meta: newMeta);
     case R4ResourceType.RiskAssessment:
-      return (resource as RiskAssessment).copyWith(meta: newMeta);
+      return (resource as RiskAssessmentBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Schedule:
-      return (resource as Schedule).copyWith(meta: newMeta);
+      return (resource as ScheduleBuilder).copyWith(meta: newMeta);
     case R4ResourceType.SearchParameter:
-      return (resource as SearchParameter).copyWith(meta: newMeta);
+      return (resource as SearchParameterBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ServiceRequest:
-      return (resource as ServiceRequest).copyWith(meta: newMeta);
+      return (resource as ServiceRequestBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Slot:
-      return (resource as Slot).copyWith(meta: newMeta);
+      return (resource as SlotBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Specimen:
-      return (resource as Specimen).copyWith(meta: newMeta);
+      return (resource as SpecimenBuilder).copyWith(meta: newMeta);
     case R4ResourceType.SpecimenDefinition:
-      return (resource as SpecimenDefinition).copyWith(meta: newMeta);
+      return (resource as SpecimenDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.StructureDefinition:
-      return (resource as StructureDefinition).copyWith(meta: newMeta);
+      return (resource as StructureDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.StructureMap:
-      return (resource as StructureMap).copyWith(meta: newMeta);
+      return (resource as StructureMapBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Subscription:
-      return (resource as Subscription).copyWith(meta: newMeta);
+      return (resource as SubscriptionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.SubscriptionStatus:
-      return (resource as SubscriptionStatus).copyWith(meta: newMeta);
+      return (resource as SubscriptionStatusBuilder).copyWith(meta: newMeta);
     case R4ResourceType.SubscriptionTopic:
-      return (resource as SubscriptionTopic).copyWith(meta: newMeta);
+      return (resource as SubscriptionTopicBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Substance:
-      return (resource as Substance).copyWith(meta: newMeta);
+      return (resource as SubstanceBuilder).copyWith(meta: newMeta);
     case R4ResourceType.SubstanceDefinition:
-      return (resource as SubstanceDefinition).copyWith(meta: newMeta);
+      return (resource as SubstanceDefinitionBuilder).copyWith(meta: newMeta);
     case R4ResourceType.SupplyDelivery:
-      return (resource as SupplyDelivery).copyWith(meta: newMeta);
+      return (resource as SupplyDeliveryBuilder).copyWith(meta: newMeta);
     case R4ResourceType.SupplyRequest:
-      return (resource as SupplyRequest).copyWith(meta: newMeta);
+      return (resource as SupplyRequestBuilder).copyWith(meta: newMeta);
     case R4ResourceType.Task:
-      return (resource as Task).copyWith(meta: newMeta);
+      return (resource as TaskBuilder).copyWith(meta: newMeta);
     case R4ResourceType.TerminologyCapabilities:
-      return (resource as TerminologyCapabilities).copyWith(meta: newMeta);
+      return (resource as TerminologyCapabilitiesBuilder)
+          .copyWith(meta: newMeta);
     case R4ResourceType.TestReport:
-      return (resource as TestReport).copyWith(meta: newMeta);
+      return (resource as TestReportBuilder).copyWith(meta: newMeta);
     case R4ResourceType.TestScript:
-      return (resource as TestScript).copyWith(meta: newMeta);
+      return (resource as TestScriptBuilder).copyWith(meta: newMeta);
     case R4ResourceType.ValueSet:
-      return (resource as ValueSet).copyWith(meta: newMeta);
+      return (resource as ValueSetBuilder).copyWith(meta: newMeta);
     case R4ResourceType.VerificationResult:
-      return (resource as VerificationResult).copyWith(meta: newMeta);
+      return (resource as VerificationResultBuilder).copyWith(meta: newMeta);
     case R4ResourceType.VisionPrescription:
-      return (resource as VisionPrescription).copyWith(meta: newMeta);
+      return (resource as VisionPrescriptionBuilder).copyWith(meta: newMeta);
   }
 }

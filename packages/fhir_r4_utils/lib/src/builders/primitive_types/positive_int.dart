@@ -50,7 +50,7 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'PositiveInt',
+    String? objectPath = 'PositiveInt',
   }) {
     // 1) Validate
     int? finalInt;
@@ -148,7 +148,7 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
   bool? disallowExtensions;
 
   /// ObjectPath property
-  String objectPath;
+  String? objectPath;
 
   /// Returns the FHIR type as a string.
   @override

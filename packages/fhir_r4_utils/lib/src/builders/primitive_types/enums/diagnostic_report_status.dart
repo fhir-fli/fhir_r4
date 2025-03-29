@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// The status of the diagnostic report.
-class DiagnosticReportStatus extends FhirCodeEnum {
+class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  DiagnosticReportStatus._({
+  DiagnosticReportStatusBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class DiagnosticReportStatus extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory DiagnosticReportStatus(
+  factory DiagnosticReportStatusBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return DiagnosticReportStatus._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return DiagnosticReportStatusBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,115 +43,134 @@ class DiagnosticReportStatus extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [DiagnosticReportStatus] with element only
-  factory DiagnosticReportStatus.empty() =>
-      DiagnosticReportStatus._(validatedValue: '');
+  /// Create empty [DiagnosticReportStatusBuilder] with element only
+  factory DiagnosticReportStatusBuilder.empty() =>
+      DiagnosticReportStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DiagnosticReportStatus] from JSON.
-  factory DiagnosticReportStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DiagnosticReportStatusBuilder] from JSON.
+  factory DiagnosticReportStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DiagnosticReportStatus.elementOnly.withElement(element);
+      return DiagnosticReportStatusBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DiagnosticReportStatus cannot be constructed from JSON.',
+        'DiagnosticReportStatusBuilder cannot be constructed from JSON.',
       );
     }
-    return DiagnosticReportStatus._(
+    return DiagnosticReportStatusBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// registered
-  static final DiagnosticReportStatus registered = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder registered =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'registered',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Registered'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Registered'.toFhirStringBuilder,
   );
 
   /// partial
-  static final DiagnosticReportStatus partial = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder partial =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'partial',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Partial'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Partial'.toFhirStringBuilder,
   );
 
   /// preliminary
-  static final DiagnosticReportStatus preliminary = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder preliminary =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'preliminary',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preliminary'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Preliminary'.toFhirStringBuilder,
   );
 
   /// final_
-  static final DiagnosticReportStatus final_ = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder final_ = DiagnosticReportStatusBuilder._(
     validatedValue: 'final',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Final'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Final'.toFhirStringBuilder,
   );
 
   /// amended
-  static final DiagnosticReportStatus amended = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder amended =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'amended',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Amended'.toFhirStringBuilder,
   );
 
   /// corrected
-  static final DiagnosticReportStatus corrected = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder corrected =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'corrected',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Corrected'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Corrected'.toFhirStringBuilder,
   );
 
   /// appended
-  static final DiagnosticReportStatus appended = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder appended =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'appended',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appended'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Appended'.toFhirStringBuilder,
   );
 
   /// cancelled
-  static final DiagnosticReportStatus cancelled = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder cancelled =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Cancelled'.toFhirStringBuilder,
   );
 
   /// entered_in_error
-  static final DiagnosticReportStatus entered_in_error =
-      DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder entered_in_error =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// unknown
-  static final DiagnosticReportStatus unknown = DiagnosticReportStatus._(
+  static DiagnosticReportStatusBuilder unknown =
+      DiagnosticReportStatusBuilder._(
     validatedValue: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'
+        .toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Unknown'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final DiagnosticReportStatus elementOnly =
-      DiagnosticReportStatus._(validatedValue: '');
+  static DiagnosticReportStatusBuilder elementOnly =
+      DiagnosticReportStatusBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<DiagnosticReportStatus> values = [
+  static List<DiagnosticReportStatusBuilder> values = [
     registered,
     partial,
     preliminary,
@@ -166,14 +185,15 @@ class DiagnosticReportStatus extends FhirCodeEnum {
 
   /// Clones the current instance
   @override
-  DiagnosticReportStatus clone() => DiagnosticReportStatus._(
+  DiagnosticReportStatusBuilder clone() => DiagnosticReportStatusBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  DiagnosticReportStatus withElement(Element? newElement) {
-    return DiagnosticReportStatus._(validatedValue: value, element: newElement);
+  DiagnosticReportStatusBuilder withElement(ElementBuilder? newElement) {
+    return DiagnosticReportStatusBuilder._(
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -189,11 +209,11 @@ class DiagnosticReportStatus extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  DiagnosticReportStatus copyWith({
+  DiagnosticReportStatusBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -204,7 +224,7 @@ class DiagnosticReportStatus extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return DiagnosticReportStatus._(
+    return DiagnosticReportStatusBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -214,7 +234,7 @@ class DiagnosticReportStatus extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

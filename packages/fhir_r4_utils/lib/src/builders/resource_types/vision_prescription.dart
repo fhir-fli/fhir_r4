@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [VisionPrescription]
+/// [VisionPrescriptionBuilder]
 /// An authorization for the provision of glasses and/or contact lenses to
 /// a patient.
-class VisionPrescription extends DomainResource {
+class VisionPrescriptionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [VisionPrescription]
+  /// [VisionPrescriptionBuilder]
 
-  const VisionPrescription({
+  VisionPrescriptionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -19,69 +21,61 @@ class VisionPrescription extends DomainResource {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    required this.status,
-    required this.created,
-    required this.patient,
+    this.status,
+    this.created,
+    this.patient,
     this.encounter,
-    required this.dateWritten,
-    required this.prescriber,
-    required this.lensSpecification,
+    this.dateWritten,
+    this.prescriber,
+    this.lensSpecification,
   }) : super(
           objectPath: 'VisionPrescription',
           resourceType: R4ResourceType.VisionPrescription,
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory VisionPrescription.empty() => VisionPrescription(
-        status: FinancialResourceStatusCodes.values.first,
-        created: FhirDateTime.empty(),
-        patient: Reference.empty(),
-        dateWritten: FhirDateTime.empty(),
-        prescriber: Reference.empty(),
-        lensSpecification: <VisionPrescriptionLensSpecification>[],
-      );
+  /// For Builder classes, no fields are required
+  factory VisionPrescriptionBuilder.empty() => VisionPrescriptionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VisionPrescription.fromJson(
+  factory VisionPrescriptionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'VisionPrescription';
-    return VisionPrescription(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return VisionPrescriptionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -90,8 +84,8 @@ class VisionPrescription extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -100,8 +94,8 @@ class VisionPrescription extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -110,8 +104,8 @@ class VisionPrescription extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -119,45 +113,45 @@ class VisionPrescription extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parsePrimitive<FinancialResourceStatusCodes>(
+      status: JsonParser.parsePrimitive<FinancialResourceStatusCodesBuilder>(
         json,
         'status',
-        FinancialResourceStatusCodes.fromJson,
+        FinancialResourceStatusCodesBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      created: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      created: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'created',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.created',
-      )!,
-      patient: JsonParser.parseObject<Reference>(
+      ),
+      patient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'patient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.patient',
-      )!,
-      encounter: JsonParser.parseObject<Reference>(
+      ),
+      encounter: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'encounter',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.encounter',
       ),
-      dateWritten: JsonParser.parsePrimitive<FhirDateTime>(
+      dateWritten: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'dateWritten',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.dateWritten',
-      )!,
-      prescriber: JsonParser.parseObject<Reference>(
+      ),
+      prescriber: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'prescriber',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.prescriber',
-      )!,
-      lensSpecification: (json['lensSpecification'] as List<dynamic>)
-          .map<VisionPrescriptionLensSpecification>(
-            (v) => VisionPrescriptionLensSpecification.fromJson(
+      ),
+      lensSpecification: (json['lensSpecification'] as List<dynamic>?)
+          ?.map<VisionPrescriptionLensSpecificationBuilder>(
+            (v) => VisionPrescriptionLensSpecificationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.lensSpecification',
@@ -168,22 +162,22 @@ class VisionPrescription extends DomainResource {
     );
   }
 
-  /// Deserialize [VisionPrescription]
+  /// Deserialize [VisionPrescriptionBuilder]
   /// from a [String] or [YamlMap] object
-  factory VisionPrescription.fromYaml(
+  factory VisionPrescriptionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return VisionPrescription.fromJson(
+      return VisionPrescriptionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return VisionPrescription.fromJson(
+      return VisionPrescriptionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'VisionPrescription '
+        'VisionPrescriptionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -191,16 +185,16 @@ class VisionPrescription extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [VisionPrescription]
+  /// [VisionPrescriptionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VisionPrescription.fromJsonString(
+  factory VisionPrescriptionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return VisionPrescription.fromJson(json);
+      return VisionPrescriptionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -212,56 +206,56 @@ class VisionPrescription extends DomainResource {
 
   /// [identifier]
   /// A unique identifier assigned to this vision prescription.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final FinancialResourceStatusCodes status;
+  FinancialResourceStatusCodesBuilder? status;
 
   /// [created]
   /// The date this resource was created.
-  final FhirDateTime created;
+  FhirDateTimeBuilder? created;
 
   /// [patient]
   /// A resource reference to the person to whom the vision prescription
   /// applies.
-  final Reference patient;
+  ReferenceBuilder? patient;
 
   /// [encounter]
   /// A reference to a resource that identifies the particular occurrence of
   /// contact between patient and health care provider during which the
   /// prescription was issued.
-  final Reference? encounter;
+  ReferenceBuilder? encounter;
 
   /// [dateWritten]
   /// The date (and perhaps time) when the prescription was written.
-  final FhirDateTime dateWritten;
+  FhirDateTimeBuilder? dateWritten;
 
   /// [prescriber]
   /// The healthcare professional responsible for authorizing the
   /// prescription.
-  final Reference prescriber;
+  ReferenceBuilder? prescriber;
 
   /// [lensSpecification]
   /// Contain the details of the individual lens specifications and serves as
   /// the authorization for the fullfillment by certified professionals.
-  final List<VisionPrescriptionLensSpecification> lensSpecification;
+  List<VisionPrescriptionLensSpecificationBuilder>? lensSpecification;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -270,76 +264,28 @@ class VisionPrescription extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'created',
-      created,
-    );
-    addField(
-      'patient',
-      patient,
-    );
-    addField(
-      'encounter',
-      encounter,
-    );
-    addField(
-      'dateWritten',
-      dateWritten,
-    );
-    addField(
-      'prescriber',
-      prescriber,
-    );
-    addField(
-      'lensSpecification',
-      lensSpecification,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('status', status);
+    addField('created', created);
+    addField('patient', patient);
+    addField('encounter', encounter);
+    addField('dateWritten', dateWritten);
+    addField('prescriber', prescriber);
+    addField('lensSpecification', lensSpecification);
     return json;
   }
 
@@ -369,11 +315,11 @@ class VisionPrescription extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -412,21 +358,33 @@ class VisionPrescription extends DomainResource {
           fields.addAll(identifier!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'created':
-        fields.add(created);
+        if (created != null) {
+          fields.add(created!);
+        }
       case 'patient':
-        fields.add(patient);
+        if (patient != null) {
+          fields.add(patient!);
+        }
       case 'encounter':
         if (encounter != null) {
           fields.add(encounter!);
         }
       case 'dateWritten':
-        fields.add(dateWritten);
+        if (dateWritten != null) {
+          fields.add(dateWritten!);
+        }
       case 'prescriber':
-        fields.add(prescriber);
+        if (prescriber != null) {
+          fields.add(prescriber!);
+        }
       case 'lensSpecification':
-        fields.addAll(lensSpecification);
+        if (lensSpecification != null) {
+          fields.addAll(lensSpecification!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -437,7 +395,7 @@ class VisionPrescription extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -446,171 +404,181 @@ class VisionPrescription extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is FinancialResourceStatusCodes) {
-            return copyWith(status: child);
+          if (child is FinancialResourceStatusCodesBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'created':
         {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
+          if (child is FhirDateTimeBuilder) {
+            created = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
         {
-          if (child is Reference) {
-            return copyWith(patient: child);
+          if (child is ReferenceBuilder) {
+            patient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
         {
-          if (child is Reference) {
-            return copyWith(encounter: child);
+          if (child is ReferenceBuilder) {
+            encounter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateWritten':
         {
-          if (child is FhirDateTime) {
-            return copyWith(dateWritten: child);
+          if (child is FhirDateTimeBuilder) {
+            dateWritten = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'prescriber':
         {
-          if (child is Reference) {
-            return copyWith(prescriber: child);
+          if (child is ReferenceBuilder) {
+            prescriber = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lensSpecification':
         {
-          if (child is List<VisionPrescriptionLensSpecification>) {
-            // Add all elements from passed list
-            final newList = [...lensSpecification, ...child];
-            return copyWith(lensSpecification: newList);
-          } else if (child is VisionPrescriptionLensSpecification) {
+          if (child is List<VisionPrescriptionLensSpecificationBuilder>) {
+            // Replace or create new list
+            lensSpecification = child;
+            return;
+          } else if (child is VisionPrescriptionLensSpecificationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...lensSpecification, child];
-            return copyWith(lensSpecification: newList);
+            lensSpecification = [...(lensSpecification ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -626,146 +594,126 @@ class VisionPrescription extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'created':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'patient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'encounter':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'dateWritten':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'prescriber':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'lensSpecification':
-        return ['VisionPrescriptionLensSpecification'];
+        return ['VisionPrescriptionLensSpecificationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [VisionPrescription]
+  /// Creates a new [VisionPrescriptionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  VisionPrescription createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: FinancialResourceStatusCodes.empty(),
-          );
+          status = FinancialResourceStatusCodesBuilder.empty();
+          return;
         }
       case 'created':
         {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
+          created = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'patient':
         {
-          return copyWith(
-            patient: Reference.empty(),
-          );
+          patient = ReferenceBuilder.empty();
+          return;
         }
       case 'encounter':
         {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
+          encounter = ReferenceBuilder.empty();
+          return;
         }
       case 'dateWritten':
         {
-          return copyWith(
-            dateWritten: FhirDateTime.empty(),
-          );
+          dateWritten = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'prescriber':
         {
-          return copyWith(
-            prescriber: Reference.empty(),
-          );
+          prescriber = ReferenceBuilder.empty();
+          return;
         }
       case 'lensSpecification':
         {
-          return copyWith(
-            lensSpecification: <VisionPrescriptionLensSpecification>[],
-          );
+          lensSpecification = <VisionPrescriptionLensSpecificationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -774,7 +722,7 @@ class VisionPrescription extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  VisionPrescription clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -784,139 +732,99 @@ class VisionPrescription extends DomainResource {
     bool extension_ = false,
     bool modifierExtension = false,
     bool identifier = false,
+    bool status = false,
+    bool created = false,
+    bool patient = false,
     bool encounter = false,
+    bool dateWritten = false,
+    bool prescriber = false,
+    bool lensSpecification = false,
   }) {
-    return VisionPrescription(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      created: created,
-      patient: patient,
-      encounter: encounter ? null : this.encounter,
-      dateWritten: dateWritten,
-      prescriber: prescriber,
-      lensSpecification: lensSpecification,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (status) this.status = null;
+    if (created) this.created = null;
+    if (patient) this.patient = null;
+    if (encounter) this.encounter = null;
+    if (dateWritten) this.dateWritten = null;
+    if (prescriber) this.prescriber = null;
+    if (lensSpecification) this.lensSpecification = null;
   }
 
   @override
-  VisionPrescription clone() => throw UnimplementedError();
+  VisionPrescriptionBuilder clone() => throw UnimplementedError();
   @override
-  VisionPrescription copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FinancialResourceStatusCodes? status,
-    FhirDateTime? created,
-    Reference? patient,
-    Reference? encounter,
-    FhirDateTime? dateWritten,
-    Reference? prescriber,
-    List<VisionPrescriptionLensSpecification>? lensSpecification,
+  VisionPrescriptionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FinancialResourceStatusCodesBuilder? status,
+    FhirDateTimeBuilder? created,
+    ReferenceBuilder? patient,
+    ReferenceBuilder? encounter,
+    FhirDateTimeBuilder? dateWritten,
+    ReferenceBuilder? prescriber,
+    List<VisionPrescriptionLensSpecificationBuilder>? lensSpecification,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return VisionPrescription(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = VisionPrescriptionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      dateWritten: dateWritten?.copyWith(
-            objectPath: '$newObjectPath.dateWritten',
-          ) ??
-          this.dateWritten,
-      prescriber: prescriber?.copyWith(
-            objectPath: '$newObjectPath.prescriber',
-          ) ??
-          this.prescriber,
-      lensSpecification: lensSpecification
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.lensSpecification',
-                ),
-              )
-              .toList() ??
-          this.lensSpecification,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      status: status ?? this.status,
+      created: created ?? this.created,
+      patient: patient ?? this.patient,
+      encounter: encounter ?? this.encounter,
+      dateWritten: dateWritten ?? this.dateWritten,
+      prescriber: prescriber ?? this.prescriber,
+      lensSpecification: lensSpecification ?? this.lensSpecification,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! VisionPrescription) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! VisionPrescriptionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -951,25 +859,25 @@ class VisionPrescription extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1011,7 +919,7 @@ class VisionPrescription extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<VisionPrescriptionLensSpecification>(
+    if (!listEquals<VisionPrescriptionLensSpecificationBuilder>(
       lensSpecification,
       o.lensSpecification,
     )) {
@@ -1021,19 +929,20 @@ class VisionPrescription extends DomainResource {
   }
 }
 
-/// [VisionPrescriptionLensSpecification]
+/// [VisionPrescriptionLensSpecificationBuilder]
 /// Contain the details of the individual lens specifications and serves as
 /// the authorization for the fullfillment by certified professionals.
-class VisionPrescriptionLensSpecification extends BackboneElement {
+class VisionPrescriptionLensSpecificationBuilder
+    extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [VisionPrescriptionLensSpecification]
+  /// [VisionPrescriptionLensSpecificationBuilder]
 
-  const VisionPrescriptionLensSpecification({
+  VisionPrescriptionLensSpecificationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.product,
-    required this.eye,
+    this.product,
+    this.eye,
     this.sphere,
     this.cylinder,
     this.axis,
@@ -1052,29 +961,25 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory VisionPrescriptionLensSpecification.empty() =>
-      VisionPrescriptionLensSpecification(
-        product: CodeableConcept.empty(),
-        eye: VisionEyes.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory VisionPrescriptionLensSpecificationBuilder.empty() =>
+      VisionPrescriptionLensSpecificationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VisionPrescriptionLensSpecification.fromJson(
+  factory VisionPrescriptionLensSpecificationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'VisionPrescription.lensSpecification';
-    return VisionPrescriptionLensSpecification(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return VisionPrescriptionLensSpecificationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1083,8 +988,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1092,39 +997,39 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
             ),
           )
           .toList(),
-      product: JsonParser.parseObject<CodeableConcept>(
+      product: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'product',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.product',
-      )!,
-      eye: JsonParser.parsePrimitive<VisionEyes>(
+      ),
+      eye: JsonParser.parsePrimitive<VisionEyesBuilder>(
         json,
         'eye',
-        VisionEyes.fromJson,
+        VisionEyesBuilder.fromJson,
         '$objectPath.eye',
-      )!,
-      sphere: JsonParser.parsePrimitive<FhirDecimal>(
+      ),
+      sphere: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'sphere',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.sphere',
       ),
-      cylinder: JsonParser.parsePrimitive<FhirDecimal>(
+      cylinder: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'cylinder',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.cylinder',
       ),
-      axis: JsonParser.parsePrimitive<FhirInteger>(
+      axis: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'axis',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.axis',
       ),
       prism: (json['prism'] as List<dynamic>?)
-          ?.map<VisionPrescriptionPrism>(
-            (v) => VisionPrescriptionPrism.fromJson(
+          ?.map<VisionPrescriptionPrismBuilder>(
+            (v) => VisionPrescriptionPrismBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.prism',
@@ -1132,51 +1037,51 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
             ),
           )
           .toList(),
-      add: JsonParser.parsePrimitive<FhirDecimal>(
+      add: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'add',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.add',
       ),
-      power: JsonParser.parsePrimitive<FhirDecimal>(
+      power: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'power',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.power',
       ),
-      backCurve: JsonParser.parsePrimitive<FhirDecimal>(
+      backCurve: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'backCurve',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.backCurve',
       ),
-      diameter: JsonParser.parsePrimitive<FhirDecimal>(
+      diameter: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'diameter',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.diameter',
       ),
-      duration: JsonParser.parseObject<Quantity>(
+      duration: JsonParser.parseObject<QuantityBuilder>(
         json,
         'duration',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.duration',
       ),
-      color: JsonParser.parsePrimitive<FhirString>(
+      color: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'color',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.color',
       ),
-      brand: JsonParser.parsePrimitive<FhirString>(
+      brand: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'brand',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.brand',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -1187,22 +1092,22 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     );
   }
 
-  /// Deserialize [VisionPrescriptionLensSpecification]
+  /// Deserialize [VisionPrescriptionLensSpecificationBuilder]
   /// from a [String] or [YamlMap] object
-  factory VisionPrescriptionLensSpecification.fromYaml(
+  factory VisionPrescriptionLensSpecificationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return VisionPrescriptionLensSpecification.fromJson(
+      return VisionPrescriptionLensSpecificationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return VisionPrescriptionLensSpecification.fromJson(
+      return VisionPrescriptionLensSpecificationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'VisionPrescriptionLensSpecification '
+        'VisionPrescriptionLensSpecificationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1210,16 +1115,16 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [VisionPrescriptionLensSpecification]
+  /// [VisionPrescriptionLensSpecificationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VisionPrescriptionLensSpecification.fromJsonString(
+  factory VisionPrescriptionLensSpecificationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return VisionPrescriptionLensSpecification.fromJson(json);
+      return VisionPrescriptionLensSpecificationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1232,76 +1137,76 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// [product]
   /// Identifies the type of vision correction product which is required for
   /// the patient.
-  final CodeableConcept product;
+  CodeableConceptBuilder? product;
 
   /// [eye]
   /// The eye for which the lens specification applies.
-  final VisionEyes eye;
+  VisionEyesBuilder? eye;
 
   /// [sphere]
   /// Lens power measured in dioptres (0.25 units).
-  final FhirDecimal? sphere;
+  FhirDecimalBuilder? sphere;
 
   /// [cylinder]
   /// Power adjustment for astigmatism measured in dioptres (0.25 units).
-  final FhirDecimal? cylinder;
+  FhirDecimalBuilder? cylinder;
 
   /// [axis]
   /// Adjustment for astigmatism measured in integer degrees.
-  final FhirInteger? axis;
+  FhirIntegerBuilder? axis;
 
   /// [prism]
   /// Allows for adjustment on two axis.
-  final List<VisionPrescriptionPrism>? prism;
+  List<VisionPrescriptionPrismBuilder>? prism;
 
   /// [add]
   /// Power adjustment for multifocal lenses measured in dioptres (0.25
   /// units).
-  final FhirDecimal? add;
+  FhirDecimalBuilder? add;
 
   /// [power]
   /// Contact lens power measured in dioptres (0.25 units).
-  final FhirDecimal? power;
+  FhirDecimalBuilder? power;
 
   /// [backCurve]
   /// Back curvature measured in millimetres.
-  final FhirDecimal? backCurve;
+  FhirDecimalBuilder? backCurve;
 
   /// [diameter]
   /// Contact lens diameter measured in millimetres.
-  final FhirDecimal? diameter;
+  FhirDecimalBuilder? diameter;
 
   /// [duration]
   /// The recommended maximum wear period for the lens.
-  final Quantity? duration;
+  QuantityBuilder? duration;
 
   /// [color]
   /// Special color or pattern.
-  final FhirString? color;
+  FhirStringBuilder? color;
 
   /// [brand]
   /// Brand recommendations or restrictions.
-  final FhirString? brand;
+  FhirStringBuilder? brand;
 
   /// [note]
   /// Notes for special requirements such as coatings and lens materials.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1310,79 +1215,28 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'product',
-      product,
-    );
-    addField(
-      'eye',
-      eye,
-    );
-    addField(
-      'sphere',
-      sphere,
-    );
-    addField(
-      'cylinder',
-      cylinder,
-    );
-    addField(
-      'axis',
-      axis,
-    );
-    addField(
-      'prism',
-      prism,
-    );
-    addField(
-      'add',
-      add,
-    );
-    addField(
-      'power',
-      power,
-    );
-    addField(
-      'backCurve',
-      backCurve,
-    );
-    addField(
-      'diameter',
-      diameter,
-    );
-    addField(
-      'duration',
-      duration,
-    );
-    addField(
-      'color',
-      color,
-    );
-    addField(
-      'brand',
-      brand,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('product', product);
+    addField('eye', eye);
+    addField('sphere', sphere);
+    addField('cylinder', cylinder);
+    addField('axis', axis);
+    addField('prism', prism);
+    addField('add', add);
+    addField('power', power);
+    addField('backCurve', backCurve);
+    addField('diameter', diameter);
+    addField('duration', duration);
+    addField('color', color);
+    addField('brand', brand);
+    addField('note', note);
     return json;
   }
 
@@ -1413,11 +1267,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1432,9 +1286,13 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'product':
-        fields.add(product);
+        if (product != null) {
+          fields.add(product!);
+        }
       case 'eye':
-        fields.add(eye);
+        if (eye != null) {
+          fields.add(eye!);
+        }
       case 'sphere':
         if (sphere != null) {
           fields.add(sphere!);
@@ -1493,7 +1351,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1502,173 +1360,185 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'product':
         {
-          if (child is CodeableConcept) {
-            return copyWith(product: child);
+          if (child is CodeableConceptBuilder) {
+            product = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'eye':
         {
-          if (child is VisionEyes) {
-            return copyWith(eye: child);
+          if (child is VisionEyesBuilder) {
+            eye = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sphere':
         {
-          if (child is FhirDecimal) {
-            return copyWith(sphere: child);
+          if (child is FhirDecimalBuilder) {
+            sphere = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'cylinder':
         {
-          if (child is FhirDecimal) {
-            return copyWith(cylinder: child);
+          if (child is FhirDecimalBuilder) {
+            cylinder = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'axis':
         {
-          if (child is FhirInteger) {
-            return copyWith(axis: child);
+          if (child is FhirIntegerBuilder) {
+            axis = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'prism':
         {
-          if (child is List<VisionPrescriptionPrism>) {
-            // Add all elements from passed list
-            final newList = [...?prism, ...child];
-            return copyWith(prism: newList);
-          } else if (child is VisionPrescriptionPrism) {
+          if (child is List<VisionPrescriptionPrismBuilder>) {
+            // Replace or create new list
+            prism = child;
+            return;
+          } else if (child is VisionPrescriptionPrismBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?prism, child];
-            return copyWith(prism: newList);
+            prism = [...(prism ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'add':
         {
-          if (child is FhirDecimal) {
-            return copyWith(add: child);
+          if (child is FhirDecimalBuilder) {
+            add = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'power':
         {
-          if (child is FhirDecimal) {
-            return copyWith(power: child);
+          if (child is FhirDecimalBuilder) {
+            power = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'backCurve':
         {
-          if (child is FhirDecimal) {
-            return copyWith(backCurve: child);
+          if (child is FhirDecimalBuilder) {
+            backCurve = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'diameter':
         {
-          if (child is FhirDecimal) {
-            return copyWith(diameter: child);
+          if (child is FhirDecimalBuilder) {
+            diameter = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'duration':
         {
-          if (child is Quantity) {
-            return copyWith(duration: child);
+          if (child is QuantityBuilder) {
+            duration = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'color':
         {
-          if (child is FhirString) {
-            return copyWith(color: child);
+          if (child is FhirStringBuilder) {
+            color = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'brand':
         {
-          if (child is FhirString) {
-            return copyWith(brand: child);
+          if (child is FhirStringBuilder) {
+            brand = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1684,154 +1554,133 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'product':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'eye':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'sphere':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'cylinder':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'axis':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'prism':
-        return ['VisionPrescriptionPrism'];
+        return ['VisionPrescriptionPrismBuilder'];
       case 'add':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'power':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'backCurve':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'diameter':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'duration':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'color':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'brand':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [VisionPrescriptionLensSpecification]
+  /// Creates a new [VisionPrescriptionLensSpecificationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  VisionPrescriptionLensSpecification createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'product':
         {
-          return copyWith(
-            product: CodeableConcept.empty(),
-          );
+          product = CodeableConceptBuilder.empty();
+          return;
         }
       case 'eye':
         {
-          return copyWith(
-            eye: VisionEyes.empty(),
-          );
+          eye = VisionEyesBuilder.empty();
+          return;
         }
       case 'sphere':
         {
-          return copyWith(
-            sphere: FhirDecimal.empty(),
-          );
+          sphere = FhirDecimalBuilder.empty();
+          return;
         }
       case 'cylinder':
         {
-          return copyWith(
-            cylinder: FhirDecimal.empty(),
-          );
+          cylinder = FhirDecimalBuilder.empty();
+          return;
         }
       case 'axis':
         {
-          return copyWith(
-            axis: FhirInteger.empty(),
-          );
+          axis = FhirIntegerBuilder.empty();
+          return;
         }
       case 'prism':
         {
-          return copyWith(
-            prism: <VisionPrescriptionPrism>[],
-          );
+          prism = <VisionPrescriptionPrismBuilder>[];
+          return;
         }
       case 'add':
         {
-          return copyWith(
-            add: FhirDecimal.empty(),
-          );
+          add = FhirDecimalBuilder.empty();
+          return;
         }
       case 'power':
         {
-          return copyWith(
-            power: FhirDecimal.empty(),
-          );
+          power = FhirDecimalBuilder.empty();
+          return;
         }
       case 'backCurve':
         {
-          return copyWith(
-            backCurve: FhirDecimal.empty(),
-          );
+          backCurve = FhirDecimalBuilder.empty();
+          return;
         }
       case 'diameter':
         {
-          return copyWith(
-            diameter: FhirDecimal.empty(),
-          );
+          diameter = FhirDecimalBuilder.empty();
+          return;
         }
       case 'duration':
         {
-          return copyWith(
-            duration: Quantity.empty(),
-          );
+          duration = QuantityBuilder.empty();
+          return;
         }
       case 'color':
         {
-          return copyWith(
-            color: FhirString.empty(),
-          );
+          color = FhirStringBuilder.empty();
+          return;
         }
       case 'brand':
         {
-          return copyWith(
-            brand: FhirString.empty(),
-          );
+          brand = FhirStringBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1840,10 +1689,12 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  VisionPrescriptionLensSpecification clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool product = false,
+    bool eye = false,
     bool sphere = false,
     bool cylinder = false,
     bool axis = false,
@@ -1857,48 +1708,47 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     bool brand = false,
     bool note = false,
   }) {
-    return VisionPrescriptionLensSpecification(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      product: product,
-      eye: eye,
-      sphere: sphere ? null : this.sphere,
-      cylinder: cylinder ? null : this.cylinder,
-      axis: axis ? null : this.axis,
-      prism: prism ? null : this.prism,
-      add: add ? null : this.add,
-      power: power ? null : this.power,
-      backCurve: backCurve ? null : this.backCurve,
-      diameter: diameter ? null : this.diameter,
-      duration: duration ? null : this.duration,
-      color: color ? null : this.color,
-      brand: brand ? null : this.brand,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (product) this.product = null;
+    if (eye) this.eye = null;
+    if (sphere) this.sphere = null;
+    if (cylinder) this.cylinder = null;
+    if (axis) this.axis = null;
+    if (prism) this.prism = null;
+    if (add) this.add = null;
+    if (power) this.power = null;
+    if (backCurve) this.backCurve = null;
+    if (diameter) this.diameter = null;
+    if (duration) this.duration = null;
+    if (color) this.color = null;
+    if (brand) this.brand = null;
+    if (note) this.note = null;
   }
 
   @override
-  VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
+  VisionPrescriptionLensSpecificationBuilder clone() =>
+      throw UnimplementedError();
   @override
-  VisionPrescriptionLensSpecification copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? product,
-    VisionEyes? eye,
-    FhirDecimal? sphere,
-    FhirDecimal? cylinder,
-    FhirInteger? axis,
-    List<VisionPrescriptionPrism>? prism,
-    FhirDecimal? add,
-    FhirDecimal? power,
-    FhirDecimal? backCurve,
-    FhirDecimal? diameter,
-    Quantity? duration,
-    FhirString? color,
-    FhirString? brand,
-    List<Annotation>? note,
+  VisionPrescriptionLensSpecificationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? product,
+    VisionEyesBuilder? eye,
+    FhirDecimalBuilder? sphere,
+    FhirDecimalBuilder? cylinder,
+    FhirIntegerBuilder? axis,
+    List<VisionPrescriptionPrismBuilder>? prism,
+    FhirDecimalBuilder? add,
+    FhirDecimalBuilder? power,
+    FhirDecimalBuilder? backCurve,
+    FhirDecimalBuilder? diameter,
+    QuantityBuilder? duration,
+    FhirStringBuilder? color,
+    FhirStringBuilder? brand,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1906,98 +1756,48 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return VisionPrescriptionLensSpecification(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      product: product?.copyWith(
-            objectPath: '$newObjectPath.product',
-          ) ??
-          this.product,
-      eye: eye?.copyWith(
-            objectPath: '$newObjectPath.eye',
-          ) ??
-          this.eye,
-      sphere: sphere?.copyWith(
-            objectPath: '$newObjectPath.sphere',
-          ) ??
-          this.sphere,
-      cylinder: cylinder?.copyWith(
-            objectPath: '$newObjectPath.cylinder',
-          ) ??
-          this.cylinder,
-      axis: axis?.copyWith(
-            objectPath: '$newObjectPath.axis',
-          ) ??
-          this.axis,
-      prism: prism
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.prism',
-                ),
-              )
-              .toList() ??
-          this.prism,
-      add: add?.copyWith(
-            objectPath: '$newObjectPath.add',
-          ) ??
-          this.add,
-      power: power?.copyWith(
-            objectPath: '$newObjectPath.power',
-          ) ??
-          this.power,
-      backCurve: backCurve?.copyWith(
-            objectPath: '$newObjectPath.backCurve',
-          ) ??
-          this.backCurve,
-      diameter: diameter?.copyWith(
-            objectPath: '$newObjectPath.diameter',
-          ) ??
-          this.diameter,
-      duration: duration?.copyWith(
-            objectPath: '$newObjectPath.duration',
-          ) ??
-          this.duration,
-      color: color?.copyWith(
-            objectPath: '$newObjectPath.color',
-          ) ??
-          this.color,
-      brand: brand?.copyWith(
-            objectPath: '$newObjectPath.brand',
-          ) ??
-          this.brand,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+    final newResult = VisionPrescriptionLensSpecificationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      product: product ?? this.product,
+      eye: eye ?? this.eye,
+      sphere: sphere ?? this.sphere,
+      cylinder: cylinder ?? this.cylinder,
+      axis: axis ?? this.axis,
+      prism: prism ?? this.prism,
+      add: add ?? this.add,
+      power: power ?? this.power,
+      backCurve: backCurve ?? this.backCurve,
+      diameter: diameter ?? this.diameter,
+      duration: duration ?? this.duration,
+      color: color ?? this.color,
+      brand: brand ?? this.brand,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! VisionPrescriptionLensSpecification) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! VisionPrescriptionLensSpecificationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2008,13 +1808,13 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2050,7 +1850,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<VisionPrescriptionPrism>(
+    if (!listEquals<VisionPrescriptionPrismBuilder>(
       prism,
       o.prism,
     )) {
@@ -2098,7 +1898,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -2108,46 +1908,43 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   }
 }
 
-/// [VisionPrescriptionPrism]
+/// [VisionPrescriptionPrismBuilder]
 /// Allows for adjustment on two axis.
-class VisionPrescriptionPrism extends BackboneElement {
+class VisionPrescriptionPrismBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [VisionPrescriptionPrism]
+  /// [VisionPrescriptionPrismBuilder]
 
-  const VisionPrescriptionPrism({
+  VisionPrescriptionPrismBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.amount,
-    required this.base,
+    this.amount,
+    this.base,
     super.disallowExtensions,
   }) : super(
           objectPath: 'VisionPrescription.lensSpecification.prism',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory VisionPrescriptionPrism.empty() => VisionPrescriptionPrism(
-        amount: FhirDecimal.empty(),
-        base: VisionBase.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory VisionPrescriptionPrismBuilder.empty() =>
+      VisionPrescriptionPrismBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VisionPrescriptionPrism.fromJson(
+  factory VisionPrescriptionPrismBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'VisionPrescription.lensSpecification.prism';
-    return VisionPrescriptionPrism(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return VisionPrescriptionPrismBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2156,8 +1953,8 @@ class VisionPrescriptionPrism extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2165,37 +1962,37 @@ class VisionPrescriptionPrism extends BackboneElement {
             ),
           )
           .toList(),
-      amount: JsonParser.parsePrimitive<FhirDecimal>(
+      amount: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'amount',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.amount',
-      )!,
-      base: JsonParser.parsePrimitive<VisionBase>(
+      ),
+      base: JsonParser.parsePrimitive<VisionBaseBuilder>(
         json,
         'base',
-        VisionBase.fromJson,
+        VisionBaseBuilder.fromJson,
         '$objectPath.base',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [VisionPrescriptionPrism]
+  /// Deserialize [VisionPrescriptionPrismBuilder]
   /// from a [String] or [YamlMap] object
-  factory VisionPrescriptionPrism.fromYaml(
+  factory VisionPrescriptionPrismBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return VisionPrescriptionPrism.fromJson(
+      return VisionPrescriptionPrismBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return VisionPrescriptionPrism.fromJson(
+      return VisionPrescriptionPrismBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'VisionPrescriptionPrism '
+        'VisionPrescriptionPrismBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2203,16 +2000,16 @@ class VisionPrescriptionPrism extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [VisionPrescriptionPrism]
+  /// [VisionPrescriptionPrismBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VisionPrescriptionPrism.fromJsonString(
+  factory VisionPrescriptionPrismBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return VisionPrescriptionPrism.fromJson(json);
+      return VisionPrescriptionPrismBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2224,27 +2021,27 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   /// [amount]
   /// Amount of prism to compensate for eye alignment in fractional units.
-  final FhirDecimal amount;
+  FhirDecimalBuilder? amount;
 
   /// [base]
   /// The relative base, or reference lens edge, for the prism.
-  final VisionBase base;
+  VisionBaseBuilder? base;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2253,31 +2050,16 @@ class VisionPrescriptionPrism extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'amount',
-      amount,
-    );
-    addField(
-      'base',
-      base,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('amount', amount);
+    addField('base', base);
     return json;
   }
 
@@ -2296,11 +2078,11 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2315,9 +2097,13 @@ class VisionPrescriptionPrism extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'amount':
-        fields.add(amount);
+        if (amount != null) {
+          fields.add(amount!);
+        }
       case 'base':
-        fields.add(base);
+        if (base != null) {
+          fields.add(base!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2328,7 +2114,7 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2337,65 +2123,67 @@ class VisionPrescriptionPrism extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'amount':
         {
-          if (child is FhirDecimal) {
-            return copyWith(amount: child);
+          if (child is FhirDecimalBuilder) {
+            amount = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'base':
         {
-          if (child is VisionBase) {
-            return copyWith(base: child);
+          if (child is VisionBaseBuilder) {
+            base = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2411,58 +2199,49 @@ class VisionPrescriptionPrism extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'amount':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'base':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [VisionPrescriptionPrism]
+  /// Creates a new [VisionPrescriptionPrismBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  VisionPrescriptionPrism createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'amount':
         {
-          return copyWith(
-            amount: FhirDecimal.empty(),
-          );
+          amount = FhirDecimalBuilder.empty();
+          return;
         }
       case 'base':
         {
-          return copyWith(
-            base: VisionBase.empty(),
-          );
+          base = VisionBaseBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2471,29 +2250,29 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  VisionPrescriptionPrism clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool amount = false,
+    bool base = false,
   }) {
-    return VisionPrescriptionPrism(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      amount: amount,
-      base: base,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (amount) this.amount = null;
+    if (base) this.base = null;
   }
 
   @override
-  VisionPrescriptionPrism clone() => throw UnimplementedError();
+  VisionPrescriptionPrismBuilder clone() => throw UnimplementedError();
   @override
-  VisionPrescriptionPrism copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirDecimal? amount,
-    VisionBase? base,
+  VisionPrescriptionPrismBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirDecimalBuilder? amount,
+    VisionBaseBuilder? base,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2501,42 +2280,36 @@ class VisionPrescriptionPrism extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return VisionPrescriptionPrism(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-      base: base?.copyWith(
-            objectPath: '$newObjectPath.base',
-          ) ??
-          this.base,
+    final newResult = VisionPrescriptionPrismBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      amount: amount ?? this.amount,
+      base: base ?? this.base,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! VisionPrescriptionPrism) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! VisionPrescriptionPrismBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2547,13 +2320,13 @@ class VisionPrescriptionPrism extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

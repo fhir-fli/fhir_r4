@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [SubstanceDefinition]
+/// [SubstanceDefinitionBuilder]
 /// The detailed description of a substance, typically at a level beyond
 /// what is used for prescribing.
-class SubstanceDefinition extends DomainResource {
+class SubstanceDefinitionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinition]
+  /// [SubstanceDefinitionBuilder]
 
-  const SubstanceDefinition({
+  SubstanceDefinitionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -43,49 +45,48 @@ class SubstanceDefinition extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinition.empty() => const SubstanceDefinition();
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionBuilder.empty() => SubstanceDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinition.fromJson(
+  factory SubstanceDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition';
-    return SubstanceDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -94,8 +95,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -104,8 +105,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -114,8 +115,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -123,21 +124,21 @@ class SubstanceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
       ),
       classification: (json['classification'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.classification',
@@ -145,15 +146,15 @@ class SubstanceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      domain: JsonParser.parseObject<CodeableConcept>(
+      domain: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'domain',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.domain',
       ),
       grade: (json['grade'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.grade',
@@ -161,15 +162,15 @@ class SubstanceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       informationSource: (json['informationSource'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.informationSource',
@@ -178,8 +179,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -188,8 +189,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.manufacturer',
@@ -198,8 +199,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       supplier: (json['supplier'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.supplier',
@@ -208,8 +209,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       moiety: (json['moiety'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionMoiety>(
-            (v) => SubstanceDefinitionMoiety.fromJson(
+          ?.map<SubstanceDefinitionMoietyBuilder>(
+            (v) => SubstanceDefinitionMoietyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.moiety',
@@ -218,8 +219,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionProperty>(
-            (v) => SubstanceDefinitionProperty.fromJson(
+          ?.map<SubstanceDefinitionPropertyBuilder>(
+            (v) => SubstanceDefinitionPropertyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.property',
@@ -228,8 +229,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       molecularWeight: (json['molecularWeight'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionMolecularWeight>(
-            (v) => SubstanceDefinitionMolecularWeight.fromJson(
+          ?.map<SubstanceDefinitionMolecularWeightBuilder>(
+            (v) => SubstanceDefinitionMolecularWeightBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.molecularWeight',
@@ -237,15 +238,15 @@ class SubstanceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      structure: JsonParser.parseObject<SubstanceDefinitionStructure>(
+      structure: JsonParser.parseObject<SubstanceDefinitionStructureBuilder>(
         json,
         'structure',
-        SubstanceDefinitionStructure.fromJson,
+        SubstanceDefinitionStructureBuilder.fromJson,
         '$objectPath.structure',
       ),
       code: (json['code'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionCode>(
-            (v) => SubstanceDefinitionCode.fromJson(
+          ?.map<SubstanceDefinitionCodeBuilder>(
+            (v) => SubstanceDefinitionCodeBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -254,8 +255,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       name: (json['name'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionName>(
-            (v) => SubstanceDefinitionName.fromJson(
+          ?.map<SubstanceDefinitionNameBuilder>(
+            (v) => SubstanceDefinitionNameBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.name',
@@ -264,8 +265,8 @@ class SubstanceDefinition extends DomainResource {
           )
           .toList(),
       relationship: (json['relationship'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionRelationship>(
-            (v) => SubstanceDefinitionRelationship.fromJson(
+          ?.map<SubstanceDefinitionRelationshipBuilder>(
+            (v) => SubstanceDefinitionRelationshipBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relationship',
@@ -273,31 +274,32 @@ class SubstanceDefinition extends DomainResource {
             ),
           )
           .toList(),
-      sourceMaterial: JsonParser.parseObject<SubstanceDefinitionSourceMaterial>(
+      sourceMaterial:
+          JsonParser.parseObject<SubstanceDefinitionSourceMaterialBuilder>(
         json,
         'sourceMaterial',
-        SubstanceDefinitionSourceMaterial.fromJson,
+        SubstanceDefinitionSourceMaterialBuilder.fromJson,
         '$objectPath.sourceMaterial',
       ),
     );
   }
 
-  /// Deserialize [SubstanceDefinition]
+  /// Deserialize [SubstanceDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinition.fromYaml(
+  factory SubstanceDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinition.fromJson(
+      return SubstanceDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinition.fromJson(
+      return SubstanceDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinition '
+        'SubstanceDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -305,16 +307,16 @@ class SubstanceDefinition extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinition]
+  /// [SubstanceDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinition.fromJsonString(
+  factory SubstanceDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinition.fromJson(json);
+      return SubstanceDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -326,104 +328,104 @@ class SubstanceDefinition extends DomainResource {
 
   /// [identifier]
   /// Identifier by which this substance is known.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [version]
   /// A business level version identifier of the substance.
-  final FhirString? version;
+  FhirStringBuilder? version;
 
   /// [status]
   /// Status of substance within the catalogue e.g. active, retired.
-  final CodeableConcept? status;
+  CodeableConceptBuilder? status;
 
   /// [classification]
   /// A high level categorization, e.g. polymer or nucleic acid, or food,
   /// chemical, biological, or a lower level such as the general types of
   /// polymer (linear or branch chain) or type of impurity (process related
   /// or contaminant).
-  final List<CodeableConcept>? classification;
+  List<CodeableConceptBuilder>? classification;
 
   /// [domain]
   /// If the substance applies to human or veterinary use.
-  final CodeableConcept? domain;
+  CodeableConceptBuilder? domain;
 
   /// [grade]
   /// The quality standard, established benchmark, to which substance
   /// complies (e.g. USP/NF, Ph. Eur, JP, BP, Company Standard).
-  final List<CodeableConcept>? grade;
+  List<CodeableConceptBuilder>? grade;
 
   /// [description]
   /// Textual description of the substance.
-  final FhirMarkdown? description;
+  FhirMarkdownBuilder? description;
 
   /// [informationSource]
   /// Supporting literature.
-  final List<Reference>? informationSource;
+  List<ReferenceBuilder>? informationSource;
 
   /// [note]
   /// Textual comment about the substance's catalogue or registry record.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [manufacturer]
   /// The entity that creates, makes, produces or fabricates the substance.
   /// This is a set of potential manufacturers but is not necessarily
   /// comprehensive.
-  final List<Reference>? manufacturer;
+  List<ReferenceBuilder>? manufacturer;
 
   /// [supplier]
   /// An entity that is the source for the substance. It may be different
   /// from the manufacturer. Supplier is synonymous to a distributor.
-  final List<Reference>? supplier;
+  List<ReferenceBuilder>? supplier;
 
   /// [moiety]
   /// Moiety, for structural modifications.
-  final List<SubstanceDefinitionMoiety>? moiety;
+  List<SubstanceDefinitionMoietyBuilder>? moiety;
 
   /// [property]
   /// General specifications for this substance.
-  final List<SubstanceDefinitionProperty>? property;
+  List<SubstanceDefinitionPropertyBuilder>? property;
 
   /// [molecularWeight]
   /// The molecular weight or weight range (for proteins, polymers or nucleic
   /// acids).
-  final List<SubstanceDefinitionMolecularWeight>? molecularWeight;
+  List<SubstanceDefinitionMolecularWeightBuilder>? molecularWeight;
 
   /// [structure]
   /// Structural information.
-  final SubstanceDefinitionStructure? structure;
+  SubstanceDefinitionStructureBuilder? structure;
 
   /// [code]
   /// Codes associated with the substance.
-  final List<SubstanceDefinitionCode>? code;
+  List<SubstanceDefinitionCodeBuilder>? code;
 
   /// [name]
   /// Names applicable to this substance.
-  final List<SubstanceDefinitionName>? name;
+  List<SubstanceDefinitionNameBuilder>? name;
 
   /// [relationship]
   /// A link between this substance and another, with details of the
   /// relationship.
-  final List<SubstanceDefinitionRelationship>? relationship;
+  List<SubstanceDefinitionRelationshipBuilder>? relationship;
 
   /// [sourceMaterial]
   /// Material or taxonomic/anatomical source for the substance.
-  final SubstanceDefinitionSourceMaterial? sourceMaterial;
+  SubstanceDefinitionSourceMaterialBuilder? sourceMaterial;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -432,120 +434,39 @@ class SubstanceDefinition extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'classification',
-      classification,
-    );
-    addField(
-      'domain',
-      domain,
-    );
-    addField(
-      'grade',
-      grade,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'informationSource',
-      informationSource,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'manufacturer',
-      manufacturer,
-    );
-    addField(
-      'supplier',
-      supplier,
-    );
-    addField(
-      'moiety',
-      moiety,
-    );
-    addField(
-      'property',
-      property,
-    );
-    addField(
-      'molecularWeight',
-      molecularWeight,
-    );
-    addField(
-      'structure',
-      structure,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'relationship',
-      relationship,
-    );
-    addField(
-      'sourceMaterial',
-      sourceMaterial,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('version', version);
+    addField('status', status);
+    addField('classification', classification);
+    addField('domain', domain);
+    addField('grade', grade);
+    addField('description', description);
+    addField('informationSource', informationSource);
+    addField('note', note);
+    addField('manufacturer', manufacturer);
+    addField('supplier', supplier);
+    addField('moiety', moiety);
+    addField('property', property);
+    addField('molecularWeight', molecularWeight);
+    addField('structure', structure);
+    addField('code', code);
+    addField('name', name);
+    addField('relationship', relationship);
+    addField('sourceMaterial', sourceMaterial);
     return json;
   }
 
@@ -586,11 +507,11 @@ class SubstanceDefinition extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -710,7 +631,7 @@ class SubstanceDefinition extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -719,325 +640,335 @@ class SubstanceDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classification':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?classification, ...child];
-            return copyWith(classification: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            classification = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
-            return copyWith(classification: newList);
+            classification = [...(classification ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'domain':
         {
-          if (child is CodeableConcept) {
-            return copyWith(domain: child);
+          if (child is CodeableConceptBuilder) {
+            domain = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'grade':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?grade, ...child];
-            return copyWith(grade: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            grade = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?grade, child];
-            return copyWith(grade: newList);
+            grade = [...(grade ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'informationSource':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?informationSource, ...child];
-            return copyWith(informationSource: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            informationSource = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?informationSource, child];
-            return copyWith(informationSource: newList);
+            informationSource = [...(informationSource ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?manufacturer, ...child];
-            return copyWith(manufacturer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            manufacturer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
-            return copyWith(manufacturer: newList);
+            manufacturer = [...(manufacturer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'supplier':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?supplier, ...child];
-            return copyWith(supplier: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            supplier = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?supplier, child];
-            return copyWith(supplier: newList);
+            supplier = [...(supplier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'moiety':
         {
-          if (child is List<SubstanceDefinitionMoiety>) {
-            // Add all elements from passed list
-            final newList = [...?moiety, ...child];
-            return copyWith(moiety: newList);
-          } else if (child is SubstanceDefinitionMoiety) {
+          if (child is List<SubstanceDefinitionMoietyBuilder>) {
+            // Replace or create new list
+            moiety = child;
+            return;
+          } else if (child is SubstanceDefinitionMoietyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?moiety, child];
-            return copyWith(moiety: newList);
+            moiety = [...(moiety ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
         {
-          if (child is List<SubstanceDefinitionProperty>) {
-            // Add all elements from passed list
-            final newList = [...?property, ...child];
-            return copyWith(property: newList);
-          } else if (child is SubstanceDefinitionProperty) {
+          if (child is List<SubstanceDefinitionPropertyBuilder>) {
+            // Replace or create new list
+            property = child;
+            return;
+          } else if (child is SubstanceDefinitionPropertyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?property, child];
-            return copyWith(property: newList);
+            property = [...(property ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularWeight':
         {
-          if (child is List<SubstanceDefinitionMolecularWeight>) {
-            // Add all elements from passed list
-            final newList = [...?molecularWeight, ...child];
-            return copyWith(molecularWeight: newList);
-          } else if (child is SubstanceDefinitionMolecularWeight) {
+          if (child is List<SubstanceDefinitionMolecularWeightBuilder>) {
+            // Replace or create new list
+            molecularWeight = child;
+            return;
+          } else if (child is SubstanceDefinitionMolecularWeightBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?molecularWeight, child];
-            return copyWith(molecularWeight: newList);
+            molecularWeight = [...(molecularWeight ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'structure':
         {
-          if (child is SubstanceDefinitionStructure) {
-            return copyWith(structure: child);
+          if (child is SubstanceDefinitionStructureBuilder) {
+            structure = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<SubstanceDefinitionCode>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is SubstanceDefinitionCode) {
+          if (child is List<SubstanceDefinitionCodeBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is SubstanceDefinitionCodeBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is List<SubstanceDefinitionName>) {
-            // Add all elements from passed list
-            final newList = [...?name, ...child];
-            return copyWith(name: newList);
-          } else if (child is SubstanceDefinitionName) {
+          if (child is List<SubstanceDefinitionNameBuilder>) {
+            // Replace or create new list
+            name = child;
+            return;
+          } else if (child is SubstanceDefinitionNameBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?name, child];
-            return copyWith(name: newList);
+            name = [...(name ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationship':
         {
-          if (child is List<SubstanceDefinitionRelationship>) {
-            // Add all elements from passed list
-            final newList = [...?relationship, ...child];
-            return copyWith(relationship: newList);
-          } else if (child is SubstanceDefinitionRelationship) {
+          if (child is List<SubstanceDefinitionRelationshipBuilder>) {
+            // Replace or create new list
+            relationship = child;
+            return;
+          } else if (child is SubstanceDefinitionRelationshipBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relationship, child];
-            return copyWith(relationship: newList);
+            relationship = [...(relationship ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceMaterial':
         {
-          if (child is SubstanceDefinitionSourceMaterial) {
-            return copyWith(sourceMaterial: child);
+          if (child is SubstanceDefinitionSourceMaterialBuilder) {
+            sourceMaterial = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1053,234 +984,203 @@ class SubstanceDefinition extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'classification':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'domain':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'grade':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'informationSource':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'manufacturer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'supplier':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'moiety':
-        return ['SubstanceDefinitionMoiety'];
+        return ['SubstanceDefinitionMoietyBuilder'];
       case 'property':
-        return ['SubstanceDefinitionProperty'];
+        return ['SubstanceDefinitionPropertyBuilder'];
       case 'molecularWeight':
-        return ['SubstanceDefinitionMolecularWeight'];
+        return ['SubstanceDefinitionMolecularWeightBuilder'];
       case 'structure':
-        return ['SubstanceDefinitionStructure'];
+        return ['SubstanceDefinitionStructureBuilder'];
       case 'code':
-        return ['SubstanceDefinitionCode'];
+        return ['SubstanceDefinitionCodeBuilder'];
       case 'name':
-        return ['SubstanceDefinitionName'];
+        return ['SubstanceDefinitionNameBuilder'];
       case 'relationship':
-        return ['SubstanceDefinitionRelationship'];
+        return ['SubstanceDefinitionRelationshipBuilder'];
       case 'sourceMaterial':
-        return ['SubstanceDefinitionSourceMaterial'];
+        return ['SubstanceDefinitionSourceMaterialBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinition]
+  /// Creates a new [SubstanceDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'classification':
         {
-          return copyWith(
-            classification: <CodeableConcept>[],
-          );
+          classification = <CodeableConceptBuilder>[];
+          return;
         }
       case 'domain':
         {
-          return copyWith(
-            domain: CodeableConcept.empty(),
-          );
+          domain = CodeableConceptBuilder.empty();
+          return;
         }
       case 'grade':
         {
-          return copyWith(
-            grade: <CodeableConcept>[],
-          );
+          grade = <CodeableConceptBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'informationSource':
         {
-          return copyWith(
-            informationSource: <Reference>[],
-          );
+          informationSource = <ReferenceBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'manufacturer':
         {
-          return copyWith(
-            manufacturer: <Reference>[],
-          );
+          manufacturer = <ReferenceBuilder>[];
+          return;
         }
       case 'supplier':
         {
-          return copyWith(
-            supplier: <Reference>[],
-          );
+          supplier = <ReferenceBuilder>[];
+          return;
         }
       case 'moiety':
         {
-          return copyWith(
-            moiety: <SubstanceDefinitionMoiety>[],
-          );
+          moiety = <SubstanceDefinitionMoietyBuilder>[];
+          return;
         }
       case 'property':
         {
-          return copyWith(
-            property: <SubstanceDefinitionProperty>[],
-          );
+          property = <SubstanceDefinitionPropertyBuilder>[];
+          return;
         }
       case 'molecularWeight':
         {
-          return copyWith(
-            molecularWeight: <SubstanceDefinitionMolecularWeight>[],
-          );
+          molecularWeight = <SubstanceDefinitionMolecularWeightBuilder>[];
+          return;
         }
       case 'structure':
         {
-          return copyWith(
-            structure: SubstanceDefinitionStructure.empty(),
-          );
+          structure = SubstanceDefinitionStructureBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <SubstanceDefinitionCode>[],
-          );
+          code = <SubstanceDefinitionCodeBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: <SubstanceDefinitionName>[],
-          );
+          name = <SubstanceDefinitionNameBuilder>[];
+          return;
         }
       case 'relationship':
         {
-          return copyWith(
-            relationship: <SubstanceDefinitionRelationship>[],
-          );
+          relationship = <SubstanceDefinitionRelationshipBuilder>[];
+          return;
         }
       case 'sourceMaterial':
         {
-          return copyWith(
-            sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),
-          );
+          sourceMaterial = SubstanceDefinitionSourceMaterialBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1289,7 +1189,7 @@ class SubstanceDefinition extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1318,247 +1218,124 @@ class SubstanceDefinition extends DomainResource {
     bool relationship = false,
     bool sourceMaterial = false,
   }) {
-    return SubstanceDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      status: status ? null : this.status,
-      classification: classification ? null : this.classification,
-      domain: domain ? null : this.domain,
-      grade: grade ? null : this.grade,
-      description: description ? null : this.description,
-      informationSource: informationSource ? null : this.informationSource,
-      note: note ? null : this.note,
-      manufacturer: manufacturer ? null : this.manufacturer,
-      supplier: supplier ? null : this.supplier,
-      moiety: moiety ? null : this.moiety,
-      property: property ? null : this.property,
-      molecularWeight: molecularWeight ? null : this.molecularWeight,
-      structure: structure ? null : this.structure,
-      code: code ? null : this.code,
-      name: name ? null : this.name,
-      relationship: relationship ? null : this.relationship,
-      sourceMaterial: sourceMaterial ? null : this.sourceMaterial,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (version) this.version = null;
+    if (status) this.status = null;
+    if (classification) this.classification = null;
+    if (domain) this.domain = null;
+    if (grade) this.grade = null;
+    if (description) this.description = null;
+    if (informationSource) this.informationSource = null;
+    if (note) this.note = null;
+    if (manufacturer) this.manufacturer = null;
+    if (supplier) this.supplier = null;
+    if (moiety) this.moiety = null;
+    if (property) this.property = null;
+    if (molecularWeight) this.molecularWeight = null;
+    if (structure) this.structure = null;
+    if (code) this.code = null;
+    if (name) this.name = null;
+    if (relationship) this.relationship = null;
+    if (sourceMaterial) this.sourceMaterial = null;
   }
 
   @override
-  SubstanceDefinition clone() => throw UnimplementedError();
+  SubstanceDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirString? version,
-    CodeableConcept? status,
-    List<CodeableConcept>? classification,
-    CodeableConcept? domain,
-    List<CodeableConcept>? grade,
-    FhirMarkdown? description,
-    List<Reference>? informationSource,
-    List<Annotation>? note,
-    List<Reference>? manufacturer,
-    List<Reference>? supplier,
-    List<SubstanceDefinitionMoiety>? moiety,
-    List<SubstanceDefinitionProperty>? property,
-    List<SubstanceDefinitionMolecularWeight>? molecularWeight,
-    SubstanceDefinitionStructure? structure,
-    List<SubstanceDefinitionCode>? code,
-    List<SubstanceDefinitionName>? name,
-    List<SubstanceDefinitionRelationship>? relationship,
-    SubstanceDefinitionSourceMaterial? sourceMaterial,
+  SubstanceDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? version,
+    CodeableConceptBuilder? status,
+    List<CodeableConceptBuilder>? classification,
+    CodeableConceptBuilder? domain,
+    List<CodeableConceptBuilder>? grade,
+    FhirMarkdownBuilder? description,
+    List<ReferenceBuilder>? informationSource,
+    List<AnnotationBuilder>? note,
+    List<ReferenceBuilder>? manufacturer,
+    List<ReferenceBuilder>? supplier,
+    List<SubstanceDefinitionMoietyBuilder>? moiety,
+    List<SubstanceDefinitionPropertyBuilder>? property,
+    List<SubstanceDefinitionMolecularWeightBuilder>? molecularWeight,
+    SubstanceDefinitionStructureBuilder? structure,
+    List<SubstanceDefinitionCodeBuilder>? code,
+    List<SubstanceDefinitionNameBuilder>? name,
+    List<SubstanceDefinitionRelationshipBuilder>? relationship,
+    SubstanceDefinitionSourceMaterialBuilder? sourceMaterial,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return SubstanceDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = SubstanceDefinitionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      classification: classification
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.classification',
-                ),
-              )
-              .toList() ??
-          this.classification,
-      domain: domain?.copyWith(
-            objectPath: '$newObjectPath.domain',
-          ) ??
-          this.domain,
-      grade: grade
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.grade',
-                ),
-              )
-              .toList() ??
-          this.grade,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      informationSource: informationSource
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.informationSource',
-                ),
-              )
-              .toList() ??
-          this.informationSource,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      manufacturer: manufacturer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manufacturer',
-                ),
-              )
-              .toList() ??
-          this.manufacturer,
-      supplier: supplier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supplier',
-                ),
-              )
-              .toList() ??
-          this.supplier,
-      moiety: moiety
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.moiety',
-                ),
-              )
-              .toList() ??
-          this.moiety,
-      property: property
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.property',
-                ),
-              )
-              .toList() ??
-          this.property,
-      molecularWeight: molecularWeight
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.molecularWeight',
-                ),
-              )
-              .toList() ??
-          this.molecularWeight,
-      structure: structure?.copyWith(
-            objectPath: '$newObjectPath.structure',
-          ) ??
-          this.structure,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      name: name
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.name',
-                ),
-              )
-              .toList() ??
-          this.name,
-      relationship: relationship
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relationship',
-                ),
-              )
-              .toList() ??
-          this.relationship,
-      sourceMaterial: sourceMaterial?.copyWith(
-            objectPath: '$newObjectPath.sourceMaterial',
-          ) ??
-          this.sourceMaterial,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      version: version ?? this.version,
+      status: status ?? this.status,
+      classification: classification ?? this.classification,
+      domain: domain ?? this.domain,
+      grade: grade ?? this.grade,
+      description: description ?? this.description,
+      informationSource: informationSource ?? this.informationSource,
+      note: note ?? this.note,
+      manufacturer: manufacturer ?? this.manufacturer,
+      supplier: supplier ?? this.supplier,
+      moiety: moiety ?? this.moiety,
+      property: property ?? this.property,
+      molecularWeight: molecularWeight ?? this.molecularWeight,
+      structure: structure ?? this.structure,
+      code: code ?? this.code,
+      name: name ?? this.name,
+      relationship: relationship ?? this.relationship,
+      sourceMaterial: sourceMaterial ?? this.sourceMaterial,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1593,25 +1370,25 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1629,7 +1406,7 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       classification,
       o.classification,
     )) {
@@ -1641,7 +1418,7 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       grade,
       o.grade,
     )) {
@@ -1653,43 +1430,43 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       informationSource,
       o.informationSource,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       manufacturer,
       o.manufacturer,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       supplier,
       o.supplier,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionMoiety>(
+    if (!listEquals<SubstanceDefinitionMoietyBuilder>(
       moiety,
       o.moiety,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionProperty>(
+    if (!listEquals<SubstanceDefinitionPropertyBuilder>(
       property,
       o.property,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionMolecularWeight>(
+    if (!listEquals<SubstanceDefinitionMolecularWeightBuilder>(
       molecularWeight,
       o.molecularWeight,
     )) {
@@ -1701,19 +1478,19 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionCode>(
+    if (!listEquals<SubstanceDefinitionCodeBuilder>(
       code,
       o.code,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionName>(
+    if (!listEquals<SubstanceDefinitionNameBuilder>(
       name,
       o.name,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionRelationship>(
+    if (!listEquals<SubstanceDefinitionRelationshipBuilder>(
       relationship,
       o.relationship,
     )) {
@@ -1729,13 +1506,13 @@ class SubstanceDefinition extends DomainResource {
   }
 }
 
-/// [SubstanceDefinitionMoiety]
+/// [SubstanceDefinitionMoietyBuilder]
 /// Moiety, for structural modifications.
-class SubstanceDefinitionMoiety extends BackboneElement {
+class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionMoiety]
+  /// [SubstanceDefinitionMoietyBuilder]
 
-  const SubstanceDefinitionMoiety({
+  SubstanceDefinitionMoietyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1753,26 +1530,25 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMoiety.empty() =>
-      const SubstanceDefinitionMoiety();
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionMoietyBuilder.empty() =>
+      SubstanceDefinitionMoietyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionMoiety.fromJson(
+  factory SubstanceDefinitionMoietyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.moiety';
-    return SubstanceDefinitionMoiety(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionMoietyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1781,8 +1557,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1790,75 +1566,76 @@ class SubstanceDefinitionMoiety extends BackboneElement {
             ),
           )
           .toList(),
-      role: JsonParser.parseObject<CodeableConcept>(
+      role: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'role',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.role',
       ),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      stereochemistry: JsonParser.parseObject<CodeableConcept>(
+      stereochemistry: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'stereochemistry',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.stereochemistry',
       ),
-      opticalActivity: JsonParser.parseObject<CodeableConcept>(
+      opticalActivity: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'opticalActivity',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.opticalActivity',
       ),
-      molecularFormula: JsonParser.parsePrimitive<FhirString>(
+      molecularFormula: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'molecularFormula',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.molecularFormula',
       ),
-      amountX: JsonParser.parsePolymorphic<AmountXSubstanceDefinitionMoiety>(
+      amountX:
+          JsonParser.parsePolymorphic<AmountXSubstanceDefinitionMoietyBuilder>(
         json,
         {
-          'amountQuantity': Quantity.fromJson,
-          'amountString': FhirString.fromJson,
+          'amountQuantity': QuantityBuilder.fromJson,
+          'amountString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      measurementType: JsonParser.parseObject<CodeableConcept>(
+      measurementType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'measurementType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.measurementType',
       ),
     );
   }
 
-  /// Deserialize [SubstanceDefinitionMoiety]
+  /// Deserialize [SubstanceDefinitionMoietyBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionMoiety.fromYaml(
+  factory SubstanceDefinitionMoietyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionMoiety.fromJson(
+      return SubstanceDefinitionMoietyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionMoiety.fromJson(
+      return SubstanceDefinitionMoietyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionMoiety '
+        'SubstanceDefinitionMoietyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1866,16 +1643,16 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionMoiety]
+  /// [SubstanceDefinitionMoietyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionMoiety.fromJsonString(
+  factory SubstanceDefinitionMoietyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionMoiety.fromJson(json);
+      return SubstanceDefinitionMoietyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1887,61 +1664,61 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   /// [role]
   /// Role that the moiety is playing.
-  final CodeableConcept? role;
+  CodeableConceptBuilder? role;
 
   /// [identifier]
   /// Identifier by which this moiety substance is known.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [name]
   /// Textual name for this moiety substance.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [stereochemistry]
   /// Stereochemistry type.
-  final CodeableConcept? stereochemistry;
+  CodeableConceptBuilder? stereochemistry;
 
   /// [opticalActivity]
   /// Optical activity type.
-  final CodeableConcept? opticalActivity;
+  CodeableConceptBuilder? opticalActivity;
 
   /// [molecularFormula]
   /// Molecular formula for this moiety of this substance, typically using
   /// the Hill system.
-  final FhirString? molecularFormula;
+  FhirStringBuilder? molecularFormula;
 
   /// [amountX]
   /// Quantitative value for this moiety.
-  final AmountXSubstanceDefinitionMoiety? amountX;
+  AmountXSubstanceDefinitionMoietyBuilder? amountX;
 
-  /// Getter for [amountQuantity] as a Quantity
-  Quantity? get amountQuantity => amountX?.isAs<Quantity>();
+  /// Getter for [amountQuantity] as a QuantityBuilder
+  QuantityBuilder? get amountQuantity => amountX?.isAs<QuantityBuilder>();
 
-  /// Getter for [amountString] as a FhirString
-  FhirString? get amountString => amountX?.isAs<FhirString>();
+  /// Getter for [amountString] as a FhirStringBuilder
+  FhirStringBuilder? get amountString => amountX?.isAs<FhirStringBuilder>();
 
   /// [measurementType]
   /// The measurement type of the quantitative value. In capturing the actual
   /// relative amounts of substances or molecular fragments it may be
   /// necessary to indicate whether the amount refers to, for example, a mole
   /// ratio or weight ratio.
-  final CodeableConcept? measurementType;
+  CodeableConceptBuilder? measurementType;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1950,59 +1727,26 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'stereochemistry',
-      stereochemistry,
-    );
-    addField(
-      'opticalActivity',
-      opticalActivity,
-    );
-    addField(
-      'molecularFormula',
-      molecularFormula,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('role', role);
+    addField('identifier', identifier);
+    addField('name', name);
+    addField('stereochemistry', stereochemistry);
+    addField('opticalActivity', opticalActivity);
+    addField('molecularFormula', molecularFormula);
     if (amountX != null) {
       final fhirType = amountX!.fhirType;
-      addField(
-        'amount${fhirType.capitalize()}',
-        amountX,
-      );
+      addField('amount${fhirType.capitalize()}', amountX);
     }
 
-    addField(
-      'measurementType',
-      measurementType,
-    );
+    addField('measurementType', measurementType);
     return json;
   }
 
@@ -2027,11 +1771,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2070,15 +1814,19 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           fields.add(molecularFormula!);
         }
       case 'amount':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountX':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountQuantity':
-        if (amountX is Quantity) {
+        if (amountX is QuantityBuilder) {
           fields.add(amountX!);
         }
       case 'amountString':
-        if (amountX is FhirString) {
+        if (amountX is FhirStringBuilder) {
           fields.add(amountX!);
         }
       case 'measurementType':
@@ -2095,7 +1843,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2104,135 +1852,147 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
+          if (child is CodeableConceptBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'stereochemistry':
         {
-          if (child is CodeableConcept) {
-            return copyWith(stereochemistry: child);
+          if (child is CodeableConceptBuilder) {
+            stereochemistry = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'opticalActivity':
         {
-          if (child is CodeableConcept) {
-            return copyWith(opticalActivity: child);
+          if (child is CodeableConceptBuilder) {
+            opticalActivity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularFormula':
         {
-          if (child is FhirString) {
-            return copyWith(molecularFormula: child);
+          if (child is FhirStringBuilder) {
+            molecularFormula = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountX':
         {
-          if (child is AmountXSubstanceDefinitionMoiety) {
-            return copyWith(amountX: child);
+          if (child is AmountXSubstanceDefinitionMoietyBuilder) {
+            amountX = child;
+            return;
           } else {
-            if (child is Quantity) {
-              return copyWith(amountX: child);
+            if (child is QuantityBuilder) {
+              amountX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(amountX: child);
+            if (child is FhirStringBuilder) {
+              amountX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'amountQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(amountX: child);
+          if (child is QuantityBuilder) {
+            amountX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'amountFhirString':
+      case 'amountString':
         {
-          if (child is FhirString) {
-            return copyWith(amountX: child);
+          if (child is FhirStringBuilder) {
+            amountX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'measurementType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(measurementType: child);
+          if (child is CodeableConceptBuilder) {
+            measurementType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2248,119 +2008,103 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'stereochemistry':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'opticalActivity':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'molecularFormula':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'amount':
       case 'amountX':
-        return ['Quantity', 'FhirString'];
+        return ['QuantityBuilder', 'FhirStringBuilder'];
       case 'amountQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'amountString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'measurementType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionMoiety]
+  /// Creates a new [SubstanceDefinitionMoietyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionMoiety createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
+          role = CodeableConceptBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'stereochemistry':
         {
-          return copyWith(
-            stereochemistry: CodeableConcept.empty(),
-          );
+          stereochemistry = CodeableConceptBuilder.empty();
+          return;
         }
       case 'opticalActivity':
         {
-          return copyWith(
-            opticalActivity: CodeableConcept.empty(),
-          );
+          opticalActivity = CodeableConceptBuilder.empty();
+          return;
         }
       case 'molecularFormula':
         {
-          return copyWith(
-            molecularFormula: FhirString.empty(),
-          );
+          molecularFormula = FhirStringBuilder.empty();
+          return;
         }
       case 'amount':
       case 'amountX':
       case 'amountQuantity':
         {
-          return copyWith(
-            amountX: Quantity.empty(),
-          );
+          amountX = QuantityBuilder.empty();
+          return;
         }
       case 'amountString':
         {
-          return copyWith(
-            amountX: FhirString.empty(),
-          );
+          amountX = FhirStringBuilder.empty();
+          return;
         }
       case 'measurementType':
         {
-          return copyWith(
-            measurementType: CodeableConcept.empty(),
-          );
+          measurementType = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2369,7 +2113,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionMoiety clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2382,36 +2126,34 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     bool amount = false,
     bool measurementType = false,
   }) {
-    return SubstanceDefinitionMoiety(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      role: role ? null : this.role,
-      identifier: identifier ? null : this.identifier,
-      name: name ? null : this.name,
-      stereochemistry: stereochemistry ? null : this.stereochemistry,
-      opticalActivity: opticalActivity ? null : this.opticalActivity,
-      molecularFormula: molecularFormula ? null : this.molecularFormula,
-      amountX: amount ? null : amountX,
-      measurementType: measurementType ? null : this.measurementType,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (role) this.role = null;
+    if (identifier) this.identifier = null;
+    if (name) this.name = null;
+    if (stereochemistry) this.stereochemistry = null;
+    if (opticalActivity) this.opticalActivity = null;
+    if (molecularFormula) this.molecularFormula = null;
+    if (amount) this.amountX = null;
+    if (measurementType) this.measurementType = null;
   }
 
   @override
-  SubstanceDefinitionMoiety clone() => throw UnimplementedError();
+  SubstanceDefinitionMoietyBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinitionMoiety copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? role,
-    Identifier? identifier,
-    FhirString? name,
-    CodeableConcept? stereochemistry,
-    CodeableConcept? opticalActivity,
-    FhirString? molecularFormula,
-    AmountXSubstanceDefinitionMoiety? amountX,
-    CodeableConcept? measurementType,
+  SubstanceDefinitionMoietyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? role,
+    IdentifierBuilder? identifier,
+    FhirStringBuilder? name,
+    CodeableConceptBuilder? stereochemistry,
+    CodeableConceptBuilder? opticalActivity,
+    FhirStringBuilder? molecularFormula,
+    AmountXSubstanceDefinitionMoietyBuilder? amountX,
+    CodeableConceptBuilder? measurementType,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2419,66 +2161,42 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionMoiety(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      stereochemistry: stereochemistry?.copyWith(
-            objectPath: '$newObjectPath.stereochemistry',
-          ) ??
-          this.stereochemistry,
-      opticalActivity: opticalActivity?.copyWith(
-            objectPath: '$newObjectPath.opticalActivity',
-          ) ??
-          this.opticalActivity,
-      molecularFormula: molecularFormula?.copyWith(
-            objectPath: '$newObjectPath.molecularFormula',
-          ) ??
-          this.molecularFormula,
-      amountX: amountX?.copyWith(
-            objectPath: '$newObjectPath.amountX',
-          ) as AmountXSubstanceDefinitionMoiety? ??
-          this.amountX,
-      measurementType: measurementType?.copyWith(
-            objectPath: '$newObjectPath.measurementType',
-          ) ??
-          this.measurementType,
+    final newResult = SubstanceDefinitionMoietyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      role: role ?? this.role,
+      identifier: identifier ?? this.identifier,
+      name: name ?? this.name,
+      stereochemistry: stereochemistry ?? this.stereochemistry,
+      opticalActivity: opticalActivity ?? this.opticalActivity,
+      molecularFormula: molecularFormula ?? this.molecularFormula,
+      amountX: amountX ?? this.amountX,
+      measurementType: measurementType ?? this.measurementType,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionMoiety) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionMoietyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2489,13 +2207,13 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2553,17 +2271,17 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionProperty]
+/// [SubstanceDefinitionPropertyBuilder]
 /// General specifications for this substance.
-class SubstanceDefinitionProperty extends BackboneElement {
+class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionProperty]
+  /// [SubstanceDefinitionPropertyBuilder]
 
-  const SubstanceDefinitionProperty({
+  SubstanceDefinitionPropertyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.valueX,
     super.disallowExtensions,
   }) : super(
@@ -2571,27 +2289,25 @@ class SubstanceDefinitionProperty extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionProperty.empty() => SubstanceDefinitionProperty(
-        type: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionPropertyBuilder.empty() =>
+      SubstanceDefinitionPropertyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionProperty.fromJson(
+  factory SubstanceDefinitionPropertyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.property';
-    return SubstanceDefinitionProperty(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionPropertyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2600,8 +2316,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2609,42 +2325,43 @@ class SubstanceDefinitionProperty extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      valueX: JsonParser.parsePolymorphic<ValueXSubstanceDefinitionProperty>(
+      ),
+      valueX:
+          JsonParser.parsePolymorphic<ValueXSubstanceDefinitionPropertyBuilder>(
         json,
         {
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueQuantity': Quantity.fromJson,
-          'valueDate': FhirDate.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueAttachment': Attachment.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueDate': FhirDateBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueAttachment': AttachmentBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [SubstanceDefinitionProperty]
+  /// Deserialize [SubstanceDefinitionPropertyBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionProperty.fromYaml(
+  factory SubstanceDefinitionPropertyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionProperty.fromJson(
+      return SubstanceDefinitionPropertyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionProperty.fromJson(
+      return SubstanceDefinitionPropertyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionProperty '
+        'SubstanceDefinitionPropertyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2652,16 +2369,16 @@ class SubstanceDefinitionProperty extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionProperty]
+  /// [SubstanceDefinitionPropertyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionProperty.fromJsonString(
+  factory SubstanceDefinitionPropertyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionProperty.fromJson(json);
+      return SubstanceDefinitionPropertyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2673,42 +2390,43 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   /// [type]
   /// A code expressing the type of property.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [valueX]
   /// A value for the property.
-  final ValueXSubstanceDefinitionProperty? valueX;
+  ValueXSubstanceDefinitionPropertyBuilder? valueX;
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueDate] as a FhirDate
-  FhirDate? get valueDate => valueX?.isAs<FhirDate>();
+  /// Getter for [valueDate] as a FhirDateBuilder
+  FhirDateBuilder? get valueDate => valueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueAttachment] as a Attachment
-  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
+  /// Getter for [valueAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2717,33 +2435,18 @@ class SubstanceDefinitionProperty extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField(
-        'value${fhirType.capitalize()}',
-        valueX,
-      );
+      addField('value${fhirType.capitalize()}', valueX);
     }
 
     return json;
@@ -2764,11 +2467,11 @@ class SubstanceDefinitionProperty extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2783,29 +2486,35 @@ class SubstanceDefinitionProperty extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
+        if (valueX is CodeableConceptBuilder) {
           fields.add(valueX!);
         }
       case 'valueQuantity':
-        if (valueX is Quantity) {
+        if (valueX is QuantityBuilder) {
           fields.add(valueX!);
         }
       case 'valueDate':
-        if (valueX is FhirDate) {
+        if (valueX is FhirDateBuilder) {
           fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
+        if (valueX is FhirBooleanBuilder) {
           fields.add(valueX!);
         }
       case 'valueAttachment':
-        if (valueX is Attachment) {
+        if (valueX is AttachmentBuilder) {
           fields.add(valueX!);
         }
       default:
@@ -2818,7 +2527,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2827,120 +2536,132 @@ class SubstanceDefinitionProperty extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXSubstanceDefinitionProperty) {
-            return copyWith(valueX: child);
+          if (child is ValueXSubstanceDefinitionPropertyBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(valueX: child);
+            if (child is FhirDateBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
+            if (child is AttachmentBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDate':
+      case 'valueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(valueX: child);
+          if (child is FhirDateBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
+          if (child is AttachmentBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2956,101 +2677,88 @@ class SubstanceDefinitionProperty extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'CodeableConcept',
-          'Quantity',
-          'FhirDate',
-          'FhirBoolean',
-          'Attachment',
+          'CodeableConceptBuilder',
+          'QuantityBuilder',
+          'FhirDateBuilder',
+          'FhirBooleanBuilder',
+          'AttachmentBuilder'
         ];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionProperty]
+  /// Creates a new [SubstanceDefinitionPropertyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionProperty createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueDate':
         {
-          return copyWith(
-            valueX: FhirDate.empty(),
-          );
+          valueX = FhirDateBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueAttachment':
         {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
+          valueX = AttachmentBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3059,30 +2767,29 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionProperty clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool value = false,
   }) {
-    return SubstanceDefinitionProperty(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      valueX: value ? null : valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  SubstanceDefinitionProperty clone() => throw UnimplementedError();
+  SubstanceDefinitionPropertyBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinitionProperty copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    ValueXSubstanceDefinitionProperty? valueX,
+  SubstanceDefinitionPropertyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    ValueXSubstanceDefinitionPropertyBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3090,42 +2797,36 @@ class SubstanceDefinitionProperty extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionProperty(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXSubstanceDefinitionProperty? ??
-          this.valueX,
+    final newResult = SubstanceDefinitionPropertyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionProperty) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionPropertyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3136,13 +2837,13 @@ class SubstanceDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3164,48 +2865,45 @@ class SubstanceDefinitionProperty extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionMolecularWeight]
+/// [SubstanceDefinitionMolecularWeightBuilder]
 /// The molecular weight or weight range (for proteins, polymers or nucleic
 /// acids).
-class SubstanceDefinitionMolecularWeight extends BackboneElement {
+class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionMolecularWeight]
+  /// [SubstanceDefinitionMolecularWeightBuilder]
 
-  const SubstanceDefinitionMolecularWeight({
+  SubstanceDefinitionMolecularWeightBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.method,
     this.type,
-    required this.amount,
+    this.amount,
     super.disallowExtensions,
   }) : super(
           objectPath: 'SubstanceDefinition.molecularWeight',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMolecularWeight.empty() =>
-      SubstanceDefinitionMolecularWeight(
-        amount: Quantity.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionMolecularWeightBuilder.empty() =>
+      SubstanceDefinitionMolecularWeightBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionMolecularWeight.fromJson(
+  factory SubstanceDefinitionMolecularWeightBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.molecularWeight';
-    return SubstanceDefinitionMolecularWeight(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionMolecularWeightBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3214,8 +2912,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3223,43 +2921,43 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
             ),
           )
           .toList(),
-      method: JsonParser.parseObject<CodeableConcept>(
+      method: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'method',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.method',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      amount: JsonParser.parseObject<Quantity>(
+      amount: JsonParser.parseObject<QuantityBuilder>(
         json,
         'amount',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.amount',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [SubstanceDefinitionMolecularWeight]
+  /// Deserialize [SubstanceDefinitionMolecularWeightBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionMolecularWeight.fromYaml(
+  factory SubstanceDefinitionMolecularWeightBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionMolecularWeight.fromJson(
+      return SubstanceDefinitionMolecularWeightBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionMolecularWeight.fromJson(
+      return SubstanceDefinitionMolecularWeightBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionMolecularWeight '
+        'SubstanceDefinitionMolecularWeightBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3267,16 +2965,16 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionMolecularWeight]
+  /// [SubstanceDefinitionMolecularWeightBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionMolecularWeight.fromJsonString(
+  factory SubstanceDefinitionMolecularWeightBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionMolecularWeight.fromJson(json);
+      return SubstanceDefinitionMolecularWeightBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3288,35 +2986,35 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   /// [method]
   /// The method by which the molecular weight was determined.
-  final CodeableConcept? method;
+  CodeableConceptBuilder? method;
 
   /// [type]
   /// Type of molecular weight such as exact, average (also known as. number
   /// average), weight average.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [amount]
   /// Used to capture quantitative values for a variety of elements. If only
   /// limits are given, the arithmetic mean would be the average. If only a
   /// single definite value for a given element is given, it would be
   /// captured in this field.
-  final Quantity amount;
+  QuantityBuilder? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3325,35 +3023,17 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'method',
-      method,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'amount',
-      amount,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('method', method);
+    addField('type', type);
+    addField('amount', amount);
     return json;
   }
 
@@ -3373,11 +3053,11 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3400,7 +3080,9 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
           fields.add(type!);
         }
       case 'amount':
-        fields.add(amount);
+        if (amount != null) {
+          fields.add(amount!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -3411,7 +3093,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3420,73 +3102,76 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
         {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
+          if (child is CodeableConceptBuilder) {
+            method = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'amount':
         {
-          if (child is Quantity) {
-            return copyWith(amount: child);
+          if (child is QuantityBuilder) {
+            amount = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3502,66 +3187,56 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'method':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'amount':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionMolecularWeight]
+  /// Creates a new [SubstanceDefinitionMolecularWeightBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionMolecularWeight createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'method':
         {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
+          method = CodeableConceptBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'amount':
         {
-          return copyWith(
-            amount: Quantity.empty(),
-          );
+          amount = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3570,33 +3245,33 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionMolecularWeight clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool method = false,
     bool type = false,
+    bool amount = false,
   }) {
-    return SubstanceDefinitionMolecularWeight(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      method: method ? null : this.method,
-      type: type ? null : this.type,
-      amount: amount,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (method) this.method = null;
+    if (type) this.type = null;
+    if (amount) this.amount = null;
   }
 
   @override
-  SubstanceDefinitionMolecularWeight clone() => throw UnimplementedError();
+  SubstanceDefinitionMolecularWeightBuilder clone() =>
+      throw UnimplementedError();
   @override
-  SubstanceDefinitionMolecularWeight copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? method,
-    CodeableConcept? type,
-    Quantity? amount,
+  SubstanceDefinitionMolecularWeightBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? method,
+    CodeableConceptBuilder? type,
+    QuantityBuilder? amount,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3604,46 +3279,37 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionMolecularWeight(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
+    final newResult = SubstanceDefinitionMolecularWeightBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      method: method ?? this.method,
+      type: type ?? this.type,
+      amount: amount ?? this.amount,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionMolecularWeight) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionMolecularWeightBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3654,13 +3320,13 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3688,13 +3354,13 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionStructure]
+/// [SubstanceDefinitionStructureBuilder]
 /// Structural information.
-class SubstanceDefinitionStructure extends BackboneElement {
+class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionStructure]
+  /// [SubstanceDefinitionStructureBuilder]
 
-  const SubstanceDefinitionStructure({
+  SubstanceDefinitionStructureBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3712,26 +3378,25 @@ class SubstanceDefinitionStructure extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionStructure.empty() =>
-      const SubstanceDefinitionStructure();
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionStructureBuilder.empty() =>
+      SubstanceDefinitionStructureBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionStructure.fromJson(
+  factory SubstanceDefinitionStructureBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.structure';
-    return SubstanceDefinitionStructure(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionStructureBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3740,8 +3405,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3749,40 +3414,40 @@ class SubstanceDefinitionStructure extends BackboneElement {
             ),
           )
           .toList(),
-      stereochemistry: JsonParser.parseObject<CodeableConcept>(
+      stereochemistry: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'stereochemistry',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.stereochemistry',
       ),
-      opticalActivity: JsonParser.parseObject<CodeableConcept>(
+      opticalActivity: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'opticalActivity',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.opticalActivity',
       ),
-      molecularFormula: JsonParser.parsePrimitive<FhirString>(
+      molecularFormula: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'molecularFormula',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.molecularFormula',
       ),
-      molecularFormulaByMoiety: JsonParser.parsePrimitive<FhirString>(
+      molecularFormulaByMoiety: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'molecularFormulaByMoiety',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.molecularFormulaByMoiety',
       ),
       molecularWeight:
-          JsonParser.parseObject<SubstanceDefinitionMolecularWeight>(
+          JsonParser.parseObject<SubstanceDefinitionMolecularWeightBuilder>(
         json,
         'molecularWeight',
-        SubstanceDefinitionMolecularWeight.fromJson,
+        SubstanceDefinitionMolecularWeightBuilder.fromJson,
         '$objectPath.molecularWeight',
       ),
       technique: (json['technique'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.technique',
@@ -3791,8 +3456,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
           )
           .toList(),
       sourceDocument: (json['sourceDocument'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.sourceDocument',
@@ -3801,8 +3466,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
           )
           .toList(),
       representation: (json['representation'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionRepresentation>(
-            (v) => SubstanceDefinitionRepresentation.fromJson(
+          ?.map<SubstanceDefinitionRepresentationBuilder>(
+            (v) => SubstanceDefinitionRepresentationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.representation',
@@ -3813,22 +3478,22 @@ class SubstanceDefinitionStructure extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionStructure]
+  /// Deserialize [SubstanceDefinitionStructureBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionStructure.fromYaml(
+  factory SubstanceDefinitionStructureBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionStructure.fromJson(
+      return SubstanceDefinitionStructureBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionStructure.fromJson(
+      return SubstanceDefinitionStructureBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionStructure '
+        'SubstanceDefinitionStructureBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3836,16 +3501,16 @@ class SubstanceDefinitionStructure extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionStructure]
+  /// [SubstanceDefinitionStructureBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionStructure.fromJsonString(
+  factory SubstanceDefinitionStructureBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionStructure.fromJson(json);
+      return SubstanceDefinitionStructureBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3857,55 +3522,55 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   /// [stereochemistry]
   /// Stereochemistry type.
-  final CodeableConcept? stereochemistry;
+  CodeableConceptBuilder? stereochemistry;
 
   /// [opticalActivity]
   /// Optical activity type.
-  final CodeableConcept? opticalActivity;
+  CodeableConceptBuilder? opticalActivity;
 
   /// [molecularFormula]
   /// Molecular formula of this substance, typically using the Hill system.
-  final FhirString? molecularFormula;
+  FhirStringBuilder? molecularFormula;
 
   /// [molecularFormulaByMoiety]
   /// Specified per moiety according to the Hill system, i.e. first C, then
   /// H, then alphabetical, each moiety separated by a dot.
-  final FhirString? molecularFormulaByMoiety;
+  FhirStringBuilder? molecularFormulaByMoiety;
 
   /// [molecularWeight]
   /// The molecular weight or weight range (for proteins, polymers or nucleic
   /// acids).
-  final SubstanceDefinitionMolecularWeight? molecularWeight;
+  SubstanceDefinitionMolecularWeightBuilder? molecularWeight;
 
   /// [technique]
   /// The method used to elucidate the structure or characterization of the
   /// drug substance. Examples: X-ray, HPLC, NMR, Peptide mapping, Ligand
   /// binding assay.
-  final List<CodeableConcept>? technique;
+  List<CodeableConceptBuilder>? technique;
 
   /// [sourceDocument]
   /// The source of information about the structure.
-  final List<Reference>? sourceDocument;
+  List<ReferenceBuilder>? sourceDocument;
 
   /// [representation]
   /// A depiction of the structure or characterization of the substance.
-  final List<SubstanceDefinitionRepresentation>? representation;
+  List<SubstanceDefinitionRepresentationBuilder>? representation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3914,55 +3579,22 @@ class SubstanceDefinitionStructure extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'stereochemistry',
-      stereochemistry,
-    );
-    addField(
-      'opticalActivity',
-      opticalActivity,
-    );
-    addField(
-      'molecularFormula',
-      molecularFormula,
-    );
-    addField(
-      'molecularFormulaByMoiety',
-      molecularFormulaByMoiety,
-    );
-    addField(
-      'molecularWeight',
-      molecularWeight,
-    );
-    addField(
-      'technique',
-      technique,
-    );
-    addField(
-      'sourceDocument',
-      sourceDocument,
-    );
-    addField(
-      'representation',
-      representation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('stereochemistry', stereochemistry);
+    addField('opticalActivity', opticalActivity);
+    addField('molecularFormula', molecularFormula);
+    addField('molecularFormulaByMoiety', molecularFormulaByMoiety);
+    addField('molecularWeight', molecularWeight);
+    addField('technique', technique);
+    addField('sourceDocument', sourceDocument);
+    addField('representation', representation);
     return json;
   }
 
@@ -3987,11 +3619,11 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4047,7 +3679,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4056,131 +3688,136 @@ class SubstanceDefinitionStructure extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'stereochemistry':
         {
-          if (child is CodeableConcept) {
-            return copyWith(stereochemistry: child);
+          if (child is CodeableConceptBuilder) {
+            stereochemistry = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'opticalActivity':
         {
-          if (child is CodeableConcept) {
-            return copyWith(opticalActivity: child);
+          if (child is CodeableConceptBuilder) {
+            opticalActivity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularFormula':
         {
-          if (child is FhirString) {
-            return copyWith(molecularFormula: child);
+          if (child is FhirStringBuilder) {
+            molecularFormula = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularFormulaByMoiety':
         {
-          if (child is FhirString) {
-            return copyWith(molecularFormulaByMoiety: child);
+          if (child is FhirStringBuilder) {
+            molecularFormulaByMoiety = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularWeight':
         {
-          if (child is SubstanceDefinitionMolecularWeight) {
-            return copyWith(molecularWeight: child);
+          if (child is SubstanceDefinitionMolecularWeightBuilder) {
+            molecularWeight = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'technique':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?technique, ...child];
-            return copyWith(technique: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            technique = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?technique, child];
-            return copyWith(technique: newList);
+            technique = [...(technique ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceDocument':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?sourceDocument, ...child];
-            return copyWith(sourceDocument: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            sourceDocument = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?sourceDocument, child];
-            return copyWith(sourceDocument: newList);
+            sourceDocument = [...(sourceDocument ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'representation':
         {
-          if (child is List<SubstanceDefinitionRepresentation>) {
-            // Add all elements from passed list
-            final newList = [...?representation, ...child];
-            return copyWith(representation: newList);
-          } else if (child is SubstanceDefinitionRepresentation) {
+          if (child is List<SubstanceDefinitionRepresentationBuilder>) {
+            // Replace or create new list
+            representation = child;
+            return;
+          } else if (child is SubstanceDefinitionRepresentationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?representation, child];
-            return copyWith(representation: newList);
+            representation = [...(representation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4196,106 +3833,91 @@ class SubstanceDefinitionStructure extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'stereochemistry':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'opticalActivity':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'molecularFormula':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'molecularFormulaByMoiety':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'molecularWeight':
-        return ['SubstanceDefinitionMolecularWeight'];
+        return ['SubstanceDefinitionMolecularWeightBuilder'];
       case 'technique':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'sourceDocument':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'representation':
-        return ['SubstanceDefinitionRepresentation'];
+        return ['SubstanceDefinitionRepresentationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionStructure]
+  /// Creates a new [SubstanceDefinitionStructureBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionStructure createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'stereochemistry':
         {
-          return copyWith(
-            stereochemistry: CodeableConcept.empty(),
-          );
+          stereochemistry = CodeableConceptBuilder.empty();
+          return;
         }
       case 'opticalActivity':
         {
-          return copyWith(
-            opticalActivity: CodeableConcept.empty(),
-          );
+          opticalActivity = CodeableConceptBuilder.empty();
+          return;
         }
       case 'molecularFormula':
         {
-          return copyWith(
-            molecularFormula: FhirString.empty(),
-          );
+          molecularFormula = FhirStringBuilder.empty();
+          return;
         }
       case 'molecularFormulaByMoiety':
         {
-          return copyWith(
-            molecularFormulaByMoiety: FhirString.empty(),
-          );
+          molecularFormulaByMoiety = FhirStringBuilder.empty();
+          return;
         }
       case 'molecularWeight':
         {
-          return copyWith(
-            molecularWeight: SubstanceDefinitionMolecularWeight.empty(),
-          );
+          molecularWeight = SubstanceDefinitionMolecularWeightBuilder.empty();
+          return;
         }
       case 'technique':
         {
-          return copyWith(
-            technique: <CodeableConcept>[],
-          );
+          technique = <CodeableConceptBuilder>[];
+          return;
         }
       case 'sourceDocument':
         {
-          return copyWith(
-            sourceDocument: <Reference>[],
-          );
+          sourceDocument = <ReferenceBuilder>[];
+          return;
         }
       case 'representation':
         {
-          return copyWith(
-            representation: <SubstanceDefinitionRepresentation>[],
-          );
+          representation = <SubstanceDefinitionRepresentationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4304,7 +3926,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionStructure clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -4317,37 +3939,34 @@ class SubstanceDefinitionStructure extends BackboneElement {
     bool sourceDocument = false,
     bool representation = false,
   }) {
-    return SubstanceDefinitionStructure(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      stereochemistry: stereochemistry ? null : this.stereochemistry,
-      opticalActivity: opticalActivity ? null : this.opticalActivity,
-      molecularFormula: molecularFormula ? null : this.molecularFormula,
-      molecularFormulaByMoiety:
-          molecularFormulaByMoiety ? null : this.molecularFormulaByMoiety,
-      molecularWeight: molecularWeight ? null : this.molecularWeight,
-      technique: technique ? null : this.technique,
-      sourceDocument: sourceDocument ? null : this.sourceDocument,
-      representation: representation ? null : this.representation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (stereochemistry) this.stereochemistry = null;
+    if (opticalActivity) this.opticalActivity = null;
+    if (molecularFormula) this.molecularFormula = null;
+    if (molecularFormulaByMoiety) this.molecularFormulaByMoiety = null;
+    if (molecularWeight) this.molecularWeight = null;
+    if (technique) this.technique = null;
+    if (sourceDocument) this.sourceDocument = null;
+    if (representation) this.representation = null;
   }
 
   @override
-  SubstanceDefinitionStructure clone() => throw UnimplementedError();
+  SubstanceDefinitionStructureBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinitionStructure copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? stereochemistry,
-    CodeableConcept? opticalActivity,
-    FhirString? molecularFormula,
-    FhirString? molecularFormulaByMoiety,
-    SubstanceDefinitionMolecularWeight? molecularWeight,
-    List<CodeableConcept>? technique,
-    List<Reference>? sourceDocument,
-    List<SubstanceDefinitionRepresentation>? representation,
+  SubstanceDefinitionStructureBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? stereochemistry,
+    CodeableConceptBuilder? opticalActivity,
+    FhirStringBuilder? molecularFormula,
+    FhirStringBuilder? molecularFormulaByMoiety,
+    SubstanceDefinitionMolecularWeightBuilder? molecularWeight,
+    List<CodeableConceptBuilder>? technique,
+    List<ReferenceBuilder>? sourceDocument,
+    List<SubstanceDefinitionRepresentationBuilder>? representation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4355,78 +3974,43 @@ class SubstanceDefinitionStructure extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionStructure(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      stereochemistry: stereochemistry?.copyWith(
-            objectPath: '$newObjectPath.stereochemistry',
-          ) ??
-          this.stereochemistry,
-      opticalActivity: opticalActivity?.copyWith(
-            objectPath: '$newObjectPath.opticalActivity',
-          ) ??
-          this.opticalActivity,
-      molecularFormula: molecularFormula?.copyWith(
-            objectPath: '$newObjectPath.molecularFormula',
-          ) ??
-          this.molecularFormula,
-      molecularFormulaByMoiety: molecularFormulaByMoiety?.copyWith(
-            objectPath: '$newObjectPath.molecularFormulaByMoiety',
-          ) ??
-          this.molecularFormulaByMoiety,
-      molecularWeight: molecularWeight?.copyWith(
-            objectPath: '$newObjectPath.molecularWeight',
-          ) ??
-          this.molecularWeight,
-      technique: technique
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.technique',
-                ),
-              )
-              .toList() ??
-          this.technique,
-      sourceDocument: sourceDocument
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.sourceDocument',
-                ),
-              )
-              .toList() ??
-          this.sourceDocument,
-      representation: representation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.representation',
-                ),
-              )
-              .toList() ??
-          this.representation,
+    final newResult = SubstanceDefinitionStructureBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      stereochemistry: stereochemistry ?? this.stereochemistry,
+      opticalActivity: opticalActivity ?? this.opticalActivity,
+      molecularFormula: molecularFormula ?? this.molecularFormula,
+      molecularFormulaByMoiety:
+          molecularFormulaByMoiety ?? this.molecularFormulaByMoiety,
+      molecularWeight: molecularWeight ?? this.molecularWeight,
+      technique: technique ?? this.technique,
+      sourceDocument: sourceDocument ?? this.sourceDocument,
+      representation: representation ?? this.representation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionStructure) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionStructureBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4437,13 +4021,13 @@ class SubstanceDefinitionStructure extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4479,19 +4063,19 @@ class SubstanceDefinitionStructure extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       technique,
       o.technique,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       sourceDocument,
       o.sourceDocument,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionRepresentation>(
+    if (!listEquals<SubstanceDefinitionRepresentationBuilder>(
       representation,
       o.representation,
     )) {
@@ -4501,13 +4085,13 @@ class SubstanceDefinitionStructure extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionRepresentation]
+/// [SubstanceDefinitionRepresentationBuilder]
 /// A depiction of the structure or characterization of the substance.
-class SubstanceDefinitionRepresentation extends BackboneElement {
+class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionRepresentation]
+  /// [SubstanceDefinitionRepresentationBuilder]
 
-  const SubstanceDefinitionRepresentation({
+  SubstanceDefinitionRepresentationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4521,26 +4105,25 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionRepresentation.empty() =>
-      const SubstanceDefinitionRepresentation();
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionRepresentationBuilder.empty() =>
+      SubstanceDefinitionRepresentationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionRepresentation.fromJson(
+  factory SubstanceDefinitionRepresentationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.structure.representation';
-    return SubstanceDefinitionRepresentation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionRepresentationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4549,8 +4132,8 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4558,49 +4141,49 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      representation: JsonParser.parsePrimitive<FhirString>(
+      representation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'representation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.representation',
       ),
-      format: JsonParser.parseObject<CodeableConcept>(
+      format: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'format',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.format',
       ),
-      document: JsonParser.parseObject<Reference>(
+      document: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'document',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.document',
       ),
     );
   }
 
-  /// Deserialize [SubstanceDefinitionRepresentation]
+  /// Deserialize [SubstanceDefinitionRepresentationBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionRepresentation.fromYaml(
+  factory SubstanceDefinitionRepresentationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionRepresentation.fromJson(
+      return SubstanceDefinitionRepresentationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionRepresentation.fromJson(
+      return SubstanceDefinitionRepresentationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionRepresentation '
+        'SubstanceDefinitionRepresentationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4608,16 +4191,16 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionRepresentation]
+  /// [SubstanceDefinitionRepresentationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionRepresentation.fromJsonString(
+  factory SubstanceDefinitionRepresentationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionRepresentation.fromJson(json);
+      return SubstanceDefinitionRepresentationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4629,40 +4212,40 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   /// [type]
   /// The kind of structural representation (e.g. full, partial).
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [representation]
   /// The structural representation or characterization as a text string in a
   /// standard format.
-  final FhirString? representation;
+  FhirStringBuilder? representation;
 
   /// [format]
   /// The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF,
   /// PDB, mmCIF. The logical content type rather than the physical file
   /// format of a document.
-  final CodeableConcept? format;
+  CodeableConceptBuilder? format;
 
   /// [document]
   /// An attached file with the structural representation or characterization
   /// e.g. a molecular structure graphic of the substance, a JCAMP or AnIML
   /// file.
-  final Reference? document;
+  ReferenceBuilder? document;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4671,39 +4254,18 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'representation',
-      representation,
-    );
-    addField(
-      'format',
-      format,
-    );
-    addField(
-      'document',
-      document,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('representation', representation);
+    addField('format', format);
+    addField('document', document);
     return json;
   }
 
@@ -4724,11 +4286,11 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4768,7 +4330,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4777,81 +4339,85 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'representation':
         {
-          if (child is FhirString) {
-            return copyWith(representation: child);
+          if (child is FhirStringBuilder) {
+            representation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'format':
         {
-          if (child is CodeableConcept) {
-            return copyWith(format: child);
+          if (child is CodeableConceptBuilder) {
+            format = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'document':
         {
-          if (child is Reference) {
-            return copyWith(document: child);
+          if (child is ReferenceBuilder) {
+            document = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4867,74 +4433,63 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'representation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'format':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'document':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionRepresentation]
+  /// Creates a new [SubstanceDefinitionRepresentationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionRepresentation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'representation':
         {
-          return copyWith(
-            representation: FhirString.empty(),
-          );
+          representation = FhirStringBuilder.empty();
+          return;
         }
       case 'format':
         {
-          return copyWith(
-            format: CodeableConcept.empty(),
-          );
+          format = CodeableConceptBuilder.empty();
+          return;
         }
       case 'document':
         {
-          return copyWith(
-            document: Reference.empty(),
-          );
+          document = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4943,7 +4498,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionRepresentation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -4952,28 +4507,27 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     bool format = false,
     bool document = false,
   }) {
-    return SubstanceDefinitionRepresentation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      representation: representation ? null : this.representation,
-      format: format ? null : this.format,
-      document: document ? null : this.document,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (representation) this.representation = null;
+    if (format) this.format = null;
+    if (document) this.document = null;
   }
 
   @override
-  SubstanceDefinitionRepresentation clone() => throw UnimplementedError();
+  SubstanceDefinitionRepresentationBuilder clone() =>
+      throw UnimplementedError();
   @override
-  SubstanceDefinitionRepresentation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    FhirString? representation,
-    CodeableConcept? format,
-    Reference? document,
+  SubstanceDefinitionRepresentationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    FhirStringBuilder? representation,
+    CodeableConceptBuilder? format,
+    ReferenceBuilder? document,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4981,50 +4535,38 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionRepresentation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      representation: representation?.copyWith(
-            objectPath: '$newObjectPath.representation',
-          ) ??
-          this.representation,
-      format: format?.copyWith(
-            objectPath: '$newObjectPath.format',
-          ) ??
-          this.format,
-      document: document?.copyWith(
-            objectPath: '$newObjectPath.document',
-          ) ??
-          this.document,
+    final newResult = SubstanceDefinitionRepresentationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      representation: representation ?? this.representation,
+      format: format ?? this.format,
+      document: document ?? this.document,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionRepresentation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionRepresentationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5035,13 +4577,13 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -5075,13 +4617,13 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionCode]
+/// [SubstanceDefinitionCodeBuilder]
 /// Codes associated with the substance.
-class SubstanceDefinitionCode extends BackboneElement {
+class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionCode]
+  /// [SubstanceDefinitionCodeBuilder]
 
-  const SubstanceDefinitionCode({
+  SubstanceDefinitionCodeBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5096,25 +4638,25 @@ class SubstanceDefinitionCode extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionCode.empty() => const SubstanceDefinitionCode();
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionCodeBuilder.empty() =>
+      SubstanceDefinitionCodeBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionCode.fromJson(
+  factory SubstanceDefinitionCodeBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.code';
-    return SubstanceDefinitionCode(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionCodeBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5123,8 +4665,8 @@ class SubstanceDefinitionCode extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5132,27 +4674,27 @@ class SubstanceDefinitionCode extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
       ),
-      statusDate: JsonParser.parsePrimitive<FhirDateTime>(
+      statusDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'statusDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.statusDate',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -5161,8 +4703,8 @@ class SubstanceDefinitionCode extends BackboneElement {
           )
           .toList(),
       source: (json['source'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.source',
@@ -5173,22 +4715,22 @@ class SubstanceDefinitionCode extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionCode]
+  /// Deserialize [SubstanceDefinitionCodeBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionCode.fromYaml(
+  factory SubstanceDefinitionCodeBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionCode.fromJson(
+      return SubstanceDefinitionCodeBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionCode.fromJson(
+      return SubstanceDefinitionCodeBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionCode '
+        'SubstanceDefinitionCodeBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5196,16 +4738,16 @@ class SubstanceDefinitionCode extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionCode]
+  /// [SubstanceDefinitionCodeBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionCode.fromJsonString(
+  factory SubstanceDefinitionCodeBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionCode.fromJson(json);
+      return SubstanceDefinitionCodeBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5217,40 +4759,40 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   /// [code]
   /// The specific code.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [status]
   /// Status of the code assignment, for example 'provisional', 'approved'.
-  final CodeableConcept? status;
+  CodeableConceptBuilder? status;
 
   /// [statusDate]
   /// The date at which the code status was changed as part of the
   /// terminology maintenance.
-  final FhirDateTime? statusDate;
+  FhirDateTimeBuilder? statusDate;
 
   /// [note]
   /// Any comment can be provided in this field, if necessary.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [source]
   /// Supporting literature.
-  final List<Reference>? source;
+  List<ReferenceBuilder>? source;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -5259,43 +4801,19 @@ class SubstanceDefinitionCode extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusDate',
-      statusDate,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'source',
-      source,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('status', status);
+    addField('statusDate', statusDate);
+    addField('note', note);
+    addField('source', source);
     return json;
   }
 
@@ -5317,11 +4835,11 @@ class SubstanceDefinitionCode extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -5365,7 +4883,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -5374,101 +4892,104 @@ class SubstanceDefinitionCode extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(statusDate: child);
+          if (child is FhirDateTimeBuilder) {
+            statusDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?source, ...child];
-            return copyWith(source: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            source = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?source, child];
-            return copyWith(source: newList);
+            source = [...(source ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5484,82 +5005,70 @@ class SubstanceDefinitionCode extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'statusDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'source':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionCode]
+  /// Creates a new [SubstanceDefinitionCodeBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionCode createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'statusDate':
         {
-          return copyWith(
-            statusDate: FhirDateTime.empty(),
-          );
+          statusDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: <Reference>[],
-          );
+          source = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5568,7 +5077,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionCode clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -5578,30 +5087,28 @@ class SubstanceDefinitionCode extends BackboneElement {
     bool note = false,
     bool source = false,
   }) {
-    return SubstanceDefinitionCode(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      status: status ? null : this.status,
-      statusDate: statusDate ? null : this.statusDate,
-      note: note ? null : this.note,
-      source: source ? null : this.source,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (status) this.status = null;
+    if (statusDate) this.statusDate = null;
+    if (note) this.note = null;
+    if (source) this.source = null;
   }
 
   @override
-  SubstanceDefinitionCode clone() => throw UnimplementedError();
+  SubstanceDefinitionCodeBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinitionCode copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    CodeableConcept? status,
-    FhirDateTime? statusDate,
-    List<Annotation>? note,
-    List<Reference>? source,
+  SubstanceDefinitionCodeBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    CodeableConceptBuilder? status,
+    FhirDateTimeBuilder? statusDate,
+    List<AnnotationBuilder>? note,
+    List<ReferenceBuilder>? source,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5609,62 +5116,39 @@ class SubstanceDefinitionCode extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionCode(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusDate: statusDate?.copyWith(
-            objectPath: '$newObjectPath.statusDate',
-          ) ??
-          this.statusDate,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      source: source
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.source',
-                ),
-              )
-              .toList() ??
-          this.source,
+    final newResult = SubstanceDefinitionCodeBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      status: status ?? this.status,
+      statusDate: statusDate ?? this.statusDate,
+      note: note ?? this.note,
+      source: source ?? this.source,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionCode) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionCodeBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5675,13 +5159,13 @@ class SubstanceDefinitionCode extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -5705,13 +5189,13 @@ class SubstanceDefinitionCode extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       source,
       o.source,
     )) {
@@ -5721,17 +5205,17 @@ class SubstanceDefinitionCode extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionName]
+/// [SubstanceDefinitionNameBuilder]
 /// Names applicable to this substance.
-class SubstanceDefinitionName extends BackboneElement {
+class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionName]
+  /// [SubstanceDefinitionNameBuilder]
 
-  const SubstanceDefinitionName({
+  SubstanceDefinitionNameBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
+    this.name,
     this.type,
     this.status,
     this.preferred,
@@ -5748,27 +5232,25 @@ class SubstanceDefinitionName extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionName.empty() => SubstanceDefinitionName(
-        name: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionNameBuilder.empty() =>
+      SubstanceDefinitionNameBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionName.fromJson(
+  factory SubstanceDefinitionNameBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.name';
-    return SubstanceDefinitionName(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionNameBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5777,8 +5259,8 @@ class SubstanceDefinitionName extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5786,33 +5268,33 @@ class SubstanceDefinitionName extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
-      )!,
-      type: JsonParser.parseObject<CodeableConcept>(
+      ),
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
       ),
-      preferred: JsonParser.parsePrimitive<FhirBoolean>(
+      preferred: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'preferred',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.preferred',
       ),
       language: (json['language'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.language',
@@ -5821,8 +5303,8 @@ class SubstanceDefinitionName extends BackboneElement {
           )
           .toList(),
       domain: (json['domain'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.domain',
@@ -5831,8 +5313,8 @@ class SubstanceDefinitionName extends BackboneElement {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -5841,8 +5323,8 @@ class SubstanceDefinitionName extends BackboneElement {
           )
           .toList(),
       synonym: (json['synonym'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionName>(
-            (v) => SubstanceDefinitionName.fromJson(
+          ?.map<SubstanceDefinitionNameBuilder>(
+            (v) => SubstanceDefinitionNameBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.synonym',
@@ -5851,8 +5333,8 @@ class SubstanceDefinitionName extends BackboneElement {
           )
           .toList(),
       translation: (json['translation'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionName>(
-            (v) => SubstanceDefinitionName.fromJson(
+          ?.map<SubstanceDefinitionNameBuilder>(
+            (v) => SubstanceDefinitionNameBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.translation',
@@ -5861,8 +5343,8 @@ class SubstanceDefinitionName extends BackboneElement {
           )
           .toList(),
       official: (json['official'] as List<dynamic>?)
-          ?.map<SubstanceDefinitionOfficial>(
-            (v) => SubstanceDefinitionOfficial.fromJson(
+          ?.map<SubstanceDefinitionOfficialBuilder>(
+            (v) => SubstanceDefinitionOfficialBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.official',
@@ -5871,8 +5353,8 @@ class SubstanceDefinitionName extends BackboneElement {
           )
           .toList(),
       source: (json['source'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.source',
@@ -5883,22 +5365,22 @@ class SubstanceDefinitionName extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionName]
+  /// Deserialize [SubstanceDefinitionNameBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionName.fromYaml(
+  factory SubstanceDefinitionNameBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionName.fromJson(
+      return SubstanceDefinitionNameBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionName.fromJson(
+      return SubstanceDefinitionNameBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionName '
+        'SubstanceDefinitionNameBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5906,16 +5388,16 @@ class SubstanceDefinitionName extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionName]
+  /// [SubstanceDefinitionNameBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionName.fromJsonString(
+  factory SubstanceDefinitionNameBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionName.fromJson(json);
+      return SubstanceDefinitionNameBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5927,65 +5409,65 @@ class SubstanceDefinitionName extends BackboneElement {
 
   /// [name]
   /// The actual name.
-  final FhirString name;
+  FhirStringBuilder? name;
 
   /// [type]
   /// Name type, for example 'systematic', 'scientific, 'brand'.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [status]
   /// The status of the name, for example 'current', 'proposed'.
-  final CodeableConcept? status;
+  CodeableConceptBuilder? status;
 
   /// [preferred]
   /// If this is the preferred name for this substance.
-  final FhirBoolean? preferred;
+  FhirBooleanBuilder? preferred;
 
   /// [language]
   /// Human language that the name is written in.
-  final List<CodeableConcept>? language;
+  List<CodeableConceptBuilder>? language;
 
   /// [domain]
   /// The use context of this name for example if there is a different name a
   /// drug active ingredient as opposed to a food colour additive.
-  final List<CodeableConcept>? domain;
+  List<CodeableConceptBuilder>? domain;
 
   /// [jurisdiction]
   /// The jurisdiction where this name applies.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConceptBuilder>? jurisdiction;
 
   /// [synonym]
   /// A synonym of this particular name, by which the substance is also
   /// known.
-  final List<SubstanceDefinitionName>? synonym;
+  List<SubstanceDefinitionNameBuilder>? synonym;
 
   /// [translation]
   /// A translation for this name into another human language.
-  final List<SubstanceDefinitionName>? translation;
+  List<SubstanceDefinitionNameBuilder>? translation;
 
   /// [official]
   /// Details of the official nature of this name.
-  final List<SubstanceDefinitionOfficial>? official;
+  List<SubstanceDefinitionOfficialBuilder>? official;
 
   /// [source]
   /// Supporting literature.
-  final List<Reference>? source;
+  List<ReferenceBuilder>? source;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -5994,67 +5476,25 @@ class SubstanceDefinitionName extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'preferred',
-      preferred,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'domain',
-      domain,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'synonym',
-      synonym,
-    );
-    addField(
-      'translation',
-      translation,
-    );
-    addField(
-      'official',
-      official,
-    );
-    addField(
-      'source',
-      source,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('type', type);
+    addField('status', status);
+    addField('preferred', preferred);
+    addField('language', language);
+    addField('domain', domain);
+    addField('jurisdiction', jurisdiction);
+    addField('synonym', synonym);
+    addField('translation', translation);
+    addField('official', official);
+    addField('source', source);
     return json;
   }
 
@@ -6082,11 +5522,11 @@ class SubstanceDefinitionName extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6101,7 +5541,9 @@ class SubstanceDefinitionName extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'name':
-        fields.add(name);
+        if (name != null) {
+          fields.add(name!);
+        }
       case 'type':
         if (type != null) {
           fields.add(type!);
@@ -6152,7 +5594,7 @@ class SubstanceDefinitionName extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6161,179 +5603,183 @@ class SubstanceDefinitionName extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'preferred':
         {
-          if (child is FhirBoolean) {
-            return copyWith(preferred: child);
+          if (child is FhirBooleanBuilder) {
+            preferred = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?language, ...child];
-            return copyWith(language: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            language = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?language, child];
-            return copyWith(language: newList);
+            language = [...(language ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'domain':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?domain, ...child];
-            return copyWith(domain: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            domain = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?domain, child];
-            return copyWith(domain: newList);
+            domain = [...(domain ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'synonym':
         {
-          if (child is List<SubstanceDefinitionName>) {
-            // Add all elements from passed list
-            final newList = [...?synonym, ...child];
-            return copyWith(synonym: newList);
-          } else if (child is SubstanceDefinitionName) {
+          if (child is List<SubstanceDefinitionNameBuilder>) {
+            // Replace or create new list
+            synonym = child;
+            return;
+          } else if (child is SubstanceDefinitionNameBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?synonym, child];
-            return copyWith(synonym: newList);
+            synonym = [...(synonym ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'translation':
         {
-          if (child is List<SubstanceDefinitionName>) {
-            // Add all elements from passed list
-            final newList = [...?translation, ...child];
-            return copyWith(translation: newList);
-          } else if (child is SubstanceDefinitionName) {
+          if (child is List<SubstanceDefinitionNameBuilder>) {
+            // Replace or create new list
+            translation = child;
+            return;
+          } else if (child is SubstanceDefinitionNameBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?translation, child];
-            return copyWith(translation: newList);
+            translation = [...(translation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'official':
         {
-          if (child is List<SubstanceDefinitionOfficial>) {
-            // Add all elements from passed list
-            final newList = [...?official, ...child];
-            return copyWith(official: newList);
-          } else if (child is SubstanceDefinitionOfficial) {
+          if (child is List<SubstanceDefinitionOfficialBuilder>) {
+            // Replace or create new list
+            official = child;
+            return;
+          } else if (child is SubstanceDefinitionOfficialBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?official, child];
-            return copyWith(official: newList);
+            official = [...(official ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?source, ...child];
-            return copyWith(source: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            source = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?source, child];
-            return copyWith(source: newList);
+            source = [...(source ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -6349,130 +5795,112 @@ class SubstanceDefinitionName extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'preferred':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'language':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'domain':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'synonym':
-        return ['SubstanceDefinitionName'];
+        return ['SubstanceDefinitionNameBuilder'];
       case 'translation':
-        return ['SubstanceDefinitionName'];
+        return ['SubstanceDefinitionNameBuilder'];
       case 'official':
-        return ['SubstanceDefinitionOfficial'];
+        return ['SubstanceDefinitionOfficialBuilder'];
       case 'source':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionName]
+  /// Creates a new [SubstanceDefinitionNameBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionName createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'preferred':
         {
-          return copyWith(
-            preferred: FhirBoolean.empty(),
-          );
+          preferred = FhirBooleanBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: <CodeableConcept>[],
-          );
+          language = <CodeableConceptBuilder>[];
+          return;
         }
       case 'domain':
         {
-          return copyWith(
-            domain: <CodeableConcept>[],
-          );
+          domain = <CodeableConceptBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'synonym':
         {
-          return copyWith(
-            synonym: <SubstanceDefinitionName>[],
-          );
+          synonym = <SubstanceDefinitionNameBuilder>[];
+          return;
         }
       case 'translation':
         {
-          return copyWith(
-            translation: <SubstanceDefinitionName>[],
-          );
+          translation = <SubstanceDefinitionNameBuilder>[];
+          return;
         }
       case 'official':
         {
-          return copyWith(
-            official: <SubstanceDefinitionOfficial>[],
-          );
+          official = <SubstanceDefinitionOfficialBuilder>[];
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: <Reference>[],
-          );
+          source = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6481,10 +5909,11 @@ class SubstanceDefinitionName extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionName clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool name = false,
     bool type = false,
     bool status = false,
     bool preferred = false,
@@ -6496,42 +5925,40 @@ class SubstanceDefinitionName extends BackboneElement {
     bool official = false,
     bool source = false,
   }) {
-    return SubstanceDefinitionName(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name,
-      type: type ? null : this.type,
-      status: status ? null : this.status,
-      preferred: preferred ? null : this.preferred,
-      language: language ? null : this.language,
-      domain: domain ? null : this.domain,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      synonym: synonym ? null : this.synonym,
-      translation: translation ? null : this.translation,
-      official: official ? null : this.official,
-      source: source ? null : this.source,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (type) this.type = null;
+    if (status) this.status = null;
+    if (preferred) this.preferred = null;
+    if (language) this.language = null;
+    if (domain) this.domain = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (synonym) this.synonym = null;
+    if (translation) this.translation = null;
+    if (official) this.official = null;
+    if (source) this.source = null;
   }
 
   @override
-  SubstanceDefinitionName clone() => throw UnimplementedError();
+  SubstanceDefinitionNameBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinitionName copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? name,
-    CodeableConcept? type,
-    CodeableConcept? status,
-    FhirBoolean? preferred,
-    List<CodeableConcept>? language,
-    List<CodeableConcept>? domain,
-    List<CodeableConcept>? jurisdiction,
-    List<SubstanceDefinitionName>? synonym,
-    List<SubstanceDefinitionName>? translation,
-    List<SubstanceDefinitionOfficial>? official,
-    List<Reference>? source,
+  SubstanceDefinitionNameBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? name,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? status,
+    FhirBooleanBuilder? preferred,
+    List<CodeableConceptBuilder>? language,
+    List<CodeableConceptBuilder>? domain,
+    List<CodeableConceptBuilder>? jurisdiction,
+    List<SubstanceDefinitionNameBuilder>? synonym,
+    List<SubstanceDefinitionNameBuilder>? translation,
+    List<SubstanceDefinitionOfficialBuilder>? official,
+    List<ReferenceBuilder>? source,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6539,106 +5966,45 @@ class SubstanceDefinitionName extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionName(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      preferred: preferred?.copyWith(
-            objectPath: '$newObjectPath.preferred',
-          ) ??
-          this.preferred,
-      language: language
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.language',
-                ),
-              )
-              .toList() ??
-          this.language,
-      domain: domain
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.domain',
-                ),
-              )
-              .toList() ??
-          this.domain,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      synonym: synonym
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.synonym',
-                ),
-              )
-              .toList() ??
-          this.synonym,
-      translation: translation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.translation',
-                ),
-              )
-              .toList() ??
-          this.translation,
-      official: official
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.official',
-                ),
-              )
-              .toList() ??
-          this.official,
-      source: source
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.source',
-                ),
-              )
-              .toList() ??
-          this.source,
+    final newResult = SubstanceDefinitionNameBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      status: status ?? this.status,
+      preferred: preferred ?? this.preferred,
+      language: language ?? this.language,
+      domain: domain ?? this.domain,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      synonym: synonym ?? this.synonym,
+      translation: translation ?? this.translation,
+      official: official ?? this.official,
+      source: source ?? this.source,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionName) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionNameBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -6649,13 +6015,13 @@ class SubstanceDefinitionName extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -6685,43 +6051,43 @@ class SubstanceDefinitionName extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       language,
       o.language,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       domain,
       o.domain,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionName>(
+    if (!listEquals<SubstanceDefinitionNameBuilder>(
       synonym,
       o.synonym,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionName>(
+    if (!listEquals<SubstanceDefinitionNameBuilder>(
       translation,
       o.translation,
     )) {
       return false;
     }
-    if (!listEquals<SubstanceDefinitionOfficial>(
+    if (!listEquals<SubstanceDefinitionOfficialBuilder>(
       official,
       o.official,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       source,
       o.source,
     )) {
@@ -6731,13 +6097,13 @@ class SubstanceDefinitionName extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionOfficial]
+/// [SubstanceDefinitionOfficialBuilder]
 /// Details of the official nature of this name.
-class SubstanceDefinitionOfficial extends BackboneElement {
+class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionOfficial]
+  /// [SubstanceDefinitionOfficialBuilder]
 
-  const SubstanceDefinitionOfficial({
+  SubstanceDefinitionOfficialBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -6750,26 +6116,25 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionOfficial.empty() =>
-      const SubstanceDefinitionOfficial();
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionOfficialBuilder.empty() =>
+      SubstanceDefinitionOfficialBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionOfficial.fromJson(
+  factory SubstanceDefinitionOfficialBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.name.official';
-    return SubstanceDefinitionOfficial(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionOfficialBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -6778,8 +6143,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -6787,43 +6152,43 @@ class SubstanceDefinitionOfficial extends BackboneElement {
             ),
           )
           .toList(),
-      authority: JsonParser.parseObject<CodeableConcept>(
+      authority: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'authority',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.authority',
       ),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
     );
   }
 
-  /// Deserialize [SubstanceDefinitionOfficial]
+  /// Deserialize [SubstanceDefinitionOfficialBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionOfficial.fromYaml(
+  factory SubstanceDefinitionOfficialBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionOfficial.fromJson(
+      return SubstanceDefinitionOfficialBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionOfficial.fromJson(
+      return SubstanceDefinitionOfficialBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionOfficial '
+        'SubstanceDefinitionOfficialBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -6831,16 +6196,16 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionOfficial]
+  /// [SubstanceDefinitionOfficialBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionOfficial.fromJsonString(
+  factory SubstanceDefinitionOfficialBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionOfficial.fromJson(json);
+      return SubstanceDefinitionOfficialBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -6852,32 +6217,32 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   /// [authority]
   /// Which authority uses this official name.
-  final CodeableConcept? authority;
+  CodeableConceptBuilder? authority;
 
   /// [status]
   /// The status of the official name, for example 'draft', 'active',
   /// 'retired'.
-  final CodeableConcept? status;
+  CodeableConceptBuilder? status;
 
   /// [date]
   /// Date of the official name change.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -6886,35 +6251,17 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'authority',
-      authority,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'date',
-      date,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('authority', authority);
+    addField('status', status);
+    addField('date', date);
     return json;
   }
 
@@ -6934,11 +6281,11 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6974,7 +6321,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6983,73 +6330,76 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authority':
         {
-          if (child is CodeableConcept) {
-            return copyWith(authority: child);
+          if (child is CodeableConceptBuilder) {
+            authority = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -7065,66 +6415,56 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'authority':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionOfficial]
+  /// Creates a new [SubstanceDefinitionOfficialBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionOfficial createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'authority':
         {
-          return copyWith(
-            authority: CodeableConcept.empty(),
-          );
+          authority = CodeableConceptBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7133,7 +6473,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionOfficial clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -7141,26 +6481,24 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     bool status = false,
     bool date = false,
   }) {
-    return SubstanceDefinitionOfficial(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      authority: authority ? null : this.authority,
-      status: status ? null : this.status,
-      date: date ? null : this.date,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (authority) this.authority = null;
+    if (status) this.status = null;
+    if (date) this.date = null;
   }
 
   @override
-  SubstanceDefinitionOfficial clone() => throw UnimplementedError();
+  SubstanceDefinitionOfficialBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinitionOfficial copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? authority,
-    CodeableConcept? status,
-    FhirDateTime? date,
+  SubstanceDefinitionOfficialBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? authority,
+    CodeableConceptBuilder? status,
+    FhirDateTimeBuilder? date,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7168,46 +6506,37 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionOfficial(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      authority: authority?.copyWith(
-            objectPath: '$newObjectPath.authority',
-          ) ??
-          this.authority,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
+    final newResult = SubstanceDefinitionOfficialBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      authority: authority ?? this.authority,
+      status: status ?? this.status,
+      date: date ?? this.date,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionOfficial) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionOfficialBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7218,13 +6547,13 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -7252,19 +6581,19 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionRelationship]
+/// [SubstanceDefinitionRelationshipBuilder]
 /// A link between this substance and another, with details of the
 /// relationship.
-class SubstanceDefinitionRelationship extends BackboneElement {
+class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionRelationship]
+  /// [SubstanceDefinitionRelationshipBuilder]
 
-  const SubstanceDefinitionRelationship({
+  SubstanceDefinitionRelationshipBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.substanceDefinitionX,
-    required this.type,
+    this.type,
     this.isDefining,
     this.amountX,
     this.ratioHighLimitAmount,
@@ -7276,28 +6605,25 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionRelationship.empty() =>
-      SubstanceDefinitionRelationship(
-        type: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionRelationshipBuilder.empty() =>
+      SubstanceDefinitionRelationshipBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionRelationship.fromJson(
+  factory SubstanceDefinitionRelationshipBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.relationship';
-    return SubstanceDefinitionRelationship(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionRelationshipBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7306,8 +6632,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -7316,51 +6642,51 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           )
           .toList(),
       substanceDefinitionX: JsonParser.parsePolymorphic<
-          SubstanceDefinitionXSubstanceDefinitionRelationship>(
+          SubstanceDefinitionXSubstanceDefinitionRelationshipBuilder>(
         json,
         {
-          'substanceDefinitionReference': Reference.fromJson,
-          'substanceDefinitionCodeableConcept': CodeableConcept.fromJson,
+          'substanceDefinitionReference': ReferenceBuilder.fromJson,
+          'substanceDefinitionCodeableConcept': CodeableConceptBuilder.fromJson,
         },
         objectPath,
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      isDefining: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      isDefining: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'isDefining',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.isDefining',
       ),
-      amountX:
-          JsonParser.parsePolymorphic<AmountXSubstanceDefinitionRelationship>(
+      amountX: JsonParser.parsePolymorphic<
+          AmountXSubstanceDefinitionRelationshipBuilder>(
         json,
         {
-          'amountQuantity': Quantity.fromJson,
-          'amountRatio': Ratio.fromJson,
-          'amountString': FhirString.fromJson,
+          'amountQuantity': QuantityBuilder.fromJson,
+          'amountRatio': RatioBuilder.fromJson,
+          'amountString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
-      ratioHighLimitAmount: JsonParser.parseObject<Ratio>(
+      ratioHighLimitAmount: JsonParser.parseObject<RatioBuilder>(
         json,
         'ratioHighLimitAmount',
-        Ratio.fromJson,
+        RatioBuilder.fromJson,
         '$objectPath.ratioHighLimitAmount',
       ),
-      comparator: JsonParser.parseObject<CodeableConcept>(
+      comparator: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'comparator',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.comparator',
       ),
       source: (json['source'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.source',
@@ -7371,22 +6697,22 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionRelationship]
+  /// Deserialize [SubstanceDefinitionRelationshipBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionRelationship.fromYaml(
+  factory SubstanceDefinitionRelationshipBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionRelationship.fromJson(
+      return SubstanceDefinitionRelationshipBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionRelationship.fromJson(
+      return SubstanceDefinitionRelationshipBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionRelationship '
+        'SubstanceDefinitionRelationshipBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7394,16 +6720,16 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionRelationship]
+  /// [SubstanceDefinitionRelationshipBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionRelationship.fromJsonString(
+  factory SubstanceDefinitionRelationshipBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionRelationship.fromJson(json);
+      return SubstanceDefinitionRelationshipBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7416,71 +6742,71 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// [substanceDefinitionX]
   /// A pointer to another substance, as a resource or just a
   /// representational code.
-  final SubstanceDefinitionXSubstanceDefinitionRelationship?
+  SubstanceDefinitionXSubstanceDefinitionRelationshipBuilder?
       substanceDefinitionX;
 
-  /// Getter for [substanceDefinitionReference] as a Reference
-  Reference? get substanceDefinitionReference =>
-      substanceDefinitionX?.isAs<Reference>();
+  /// Getter for [substanceDefinitionReference] as a ReferenceBuilder
+  ReferenceBuilder? get substanceDefinitionReference =>
+      substanceDefinitionX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [substanceDefinitionCodeableConcept] as a CodeableConcept
-  CodeableConcept? get substanceDefinitionCodeableConcept =>
-      substanceDefinitionX?.isAs<CodeableConcept>();
+  /// Getter for [substanceDefinitionCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get substanceDefinitionCodeableConcept =>
+      substanceDefinitionX?.isAs<CodeableConceptBuilder>();
 
   /// [type]
   /// For example "salt to parent", "active moiety", "starting material",
   /// "polymorph", "impurity of".
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [isDefining]
   /// For example where an enzyme strongly bonds with a particular substance,
   /// this is a defining relationship for that enzyme, out of several
   /// possible substance relationships.
-  final FhirBoolean? isDefining;
+  FhirBooleanBuilder? isDefining;
 
   /// [amountX]
   /// A numeric factor for the relationship, for instance to express that the
   /// salt of a substance has some percentage of the active substance in
   /// relation to some other.
-  final AmountXSubstanceDefinitionRelationship? amountX;
+  AmountXSubstanceDefinitionRelationshipBuilder? amountX;
 
-  /// Getter for [amountQuantity] as a Quantity
-  Quantity? get amountQuantity => amountX?.isAs<Quantity>();
+  /// Getter for [amountQuantity] as a QuantityBuilder
+  QuantityBuilder? get amountQuantity => amountX?.isAs<QuantityBuilder>();
 
-  /// Getter for [amountRatio] as a Ratio
-  Ratio? get amountRatio => amountX?.isAs<Ratio>();
+  /// Getter for [amountRatio] as a RatioBuilder
+  RatioBuilder? get amountRatio => amountX?.isAs<RatioBuilder>();
 
-  /// Getter for [amountString] as a FhirString
-  FhirString? get amountString => amountX?.isAs<FhirString>();
+  /// Getter for [amountString] as a FhirStringBuilder
+  FhirStringBuilder? get amountString => amountX?.isAs<FhirStringBuilder>();
 
   /// [ratioHighLimitAmount]
   /// For use when the numeric has an uncertain range.
-  final Ratio? ratioHighLimitAmount;
+  RatioBuilder? ratioHighLimitAmount;
 
   /// [comparator]
   /// An operator for the amount, for example "average", "approximately",
   /// "less than".
-  final CodeableConcept? comparator;
+  CodeableConceptBuilder? comparator;
 
   /// [source]
   /// Supporting literature.
-  final List<Reference>? source;
+  List<ReferenceBuilder>? source;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7489,59 +6815,30 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-        'substanceDefinition${fhirType.capitalize()}',
-        substanceDefinitionX,
-      );
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
     }
 
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'isDefining',
-      isDefining,
-    );
+    addField('type', type);
+    addField('isDefining', isDefining);
     if (amountX != null) {
       final fhirType = amountX!.fhirType;
-      addField(
-        'amount${fhirType.capitalize()}',
-        amountX,
-      );
+      addField('amount${fhirType.capitalize()}', amountX);
     }
 
-    addField(
-      'ratioHighLimitAmount',
-      ratioHighLimitAmount,
-    );
-    addField(
-      'comparator',
-      comparator,
-    );
-    addField(
-      'source',
-      source,
-    );
+    addField('ratioHighLimitAmount', ratioHighLimitAmount);
+    addField('comparator', comparator);
+    addField('source', source);
     return json;
   }
 
@@ -7565,11 +6862,11 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7584,37 +6881,47 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'substanceDefinition':
-        fields.add(substanceDefinitionX!);
+        if (substanceDefinitionX != null) {
+          fields.add(substanceDefinitionX!);
+        }
       case 'substanceDefinitionX':
-        fields.add(substanceDefinitionX!);
+        if (substanceDefinitionX != null) {
+          fields.add(substanceDefinitionX!);
+        }
       case 'substanceDefinitionReference':
-        if (substanceDefinitionX is Reference) {
+        if (substanceDefinitionX is ReferenceBuilder) {
           fields.add(substanceDefinitionX!);
         }
       case 'substanceDefinitionCodeableConcept':
-        if (substanceDefinitionX is CodeableConcept) {
+        if (substanceDefinitionX is CodeableConceptBuilder) {
           fields.add(substanceDefinitionX!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'isDefining':
         if (isDefining != null) {
           fields.add(isDefining!);
         }
       case 'amount':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountX':
-        fields.add(amountX!);
+        if (amountX != null) {
+          fields.add(amountX!);
+        }
       case 'amountQuantity':
-        if (amountX is Quantity) {
+        if (amountX is QuantityBuilder) {
           fields.add(amountX!);
         }
       case 'amountRatio':
-        if (amountX is Ratio) {
+        if (amountX is RatioBuilder) {
           fields.add(amountX!);
         }
       case 'amountString':
-        if (amountX is FhirString) {
+        if (amountX is FhirStringBuilder) {
           fields.add(amountX!);
         }
       case 'ratioHighLimitAmount':
@@ -7639,7 +6946,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -7648,166 +6955,183 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'substanceDefinitionX':
         {
-          if (child is SubstanceDefinitionXSubstanceDefinitionRelationship) {
-            return copyWith(substanceDefinitionX: child);
+          if (child
+              is SubstanceDefinitionXSubstanceDefinitionRelationshipBuilder) {
+            substanceDefinitionX = child;
+            return;
           } else {
-            if (child is Reference) {
-              return copyWith(substanceDefinitionX: child);
+            if (child is ReferenceBuilder) {
+              substanceDefinitionX = child;
+              return;
             }
-            if (child is CodeableConcept) {
-              return copyWith(substanceDefinitionX: child);
+            if (child is CodeableConceptBuilder) {
+              substanceDefinitionX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'substanceDefinitionReference':
         {
-          if (child is Reference) {
-            return copyWith(substanceDefinitionX: child);
+          if (child is ReferenceBuilder) {
+            substanceDefinitionX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'substanceDefinitionCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(substanceDefinitionX: child);
+          if (child is CodeableConceptBuilder) {
+            substanceDefinitionX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'isDefining':
         {
-          if (child is FhirBoolean) {
-            return copyWith(isDefining: child);
+          if (child is FhirBooleanBuilder) {
+            isDefining = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountX':
         {
-          if (child is AmountXSubstanceDefinitionRelationship) {
-            return copyWith(amountX: child);
+          if (child is AmountXSubstanceDefinitionRelationshipBuilder) {
+            amountX = child;
+            return;
           } else {
-            if (child is Quantity) {
-              return copyWith(amountX: child);
+            if (child is QuantityBuilder) {
+              amountX = child;
+              return;
             }
-            if (child is Ratio) {
-              return copyWith(amountX: child);
+            if (child is RatioBuilder) {
+              amountX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(amountX: child);
+            if (child is FhirStringBuilder) {
+              amountX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'amountQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(amountX: child);
+          if (child is QuantityBuilder) {
+            amountX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountRatio':
         {
-          if (child is Ratio) {
-            return copyWith(amountX: child);
+          if (child is RatioBuilder) {
+            amountX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'amountFhirString':
+      case 'amountString':
         {
-          if (child is FhirString) {
-            return copyWith(amountX: child);
+          if (child is FhirStringBuilder) {
+            amountX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'ratioHighLimitAmount':
         {
-          if (child is Ratio) {
-            return copyWith(ratioHighLimitAmount: child);
+          if (child is RatioBuilder) {
+            ratioHighLimitAmount = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'comparator':
         {
-          if (child is CodeableConcept) {
-            return copyWith(comparator: child);
+          if (child is CodeableConceptBuilder) {
+            comparator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?source, ...child];
-            return copyWith(source: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            source = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?source, child];
-            return copyWith(source: newList);
+            source = [...(source ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -7823,132 +7147,115 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'substanceDefinition':
       case 'substanceDefinitionX':
-        return ['Reference', 'CodeableConcept'];
+        return ['ReferenceBuilder', 'CodeableConceptBuilder'];
       case 'substanceDefinitionReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'substanceDefinitionCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'isDefining':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'amount':
       case 'amountX':
-        return ['Quantity', 'Ratio', 'FhirString'];
+        return ['QuantityBuilder', 'RatioBuilder', 'FhirStringBuilder'];
       case 'amountQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'amountRatio':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'amountString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'ratioHighLimitAmount':
-        return ['Ratio'];
+        return ['RatioBuilder'];
       case 'comparator':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'source':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionRelationship]
+  /// Creates a new [SubstanceDefinitionRelationshipBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionRelationship createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'substanceDefinition':
       case 'substanceDefinitionX':
       case 'substanceDefinitionReference':
         {
-          return copyWith(
-            substanceDefinitionX: Reference.empty(),
-          );
+          substanceDefinitionX = ReferenceBuilder.empty();
+          return;
         }
       case 'substanceDefinitionCodeableConcept':
         {
-          return copyWith(
-            substanceDefinitionX: CodeableConcept.empty(),
-          );
+          substanceDefinitionX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'isDefining':
         {
-          return copyWith(
-            isDefining: FhirBoolean.empty(),
-          );
+          isDefining = FhirBooleanBuilder.empty();
+          return;
         }
       case 'amount':
       case 'amountX':
       case 'amountQuantity':
         {
-          return copyWith(
-            amountX: Quantity.empty(),
-          );
+          amountX = QuantityBuilder.empty();
+          return;
         }
       case 'amountRatio':
         {
-          return copyWith(
-            amountX: Ratio.empty(),
-          );
+          amountX = RatioBuilder.empty();
+          return;
         }
       case 'amountString':
         {
-          return copyWith(
-            amountX: FhirString.empty(),
-          );
+          amountX = FhirStringBuilder.empty();
+          return;
         }
       case 'ratioHighLimitAmount':
         {
-          return copyWith(
-            ratioHighLimitAmount: Ratio.empty(),
-          );
+          ratioHighLimitAmount = RatioBuilder.empty();
+          return;
         }
       case 'comparator':
         {
-          return copyWith(
-            comparator: CodeableConcept.empty(),
-          );
+          comparator = CodeableConceptBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: <Reference>[],
-          );
+          source = <ReferenceBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7957,46 +7264,45 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionRelationship clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool substanceDefinition = false,
+    bool type = false,
     bool isDefining = false,
     bool amount = false,
     bool ratioHighLimitAmount = false,
     bool comparator = false,
     bool source = false,
   }) {
-    return SubstanceDefinitionRelationship(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      substanceDefinitionX: substanceDefinition ? null : substanceDefinitionX,
-      type: type,
-      isDefining: isDefining ? null : this.isDefining,
-      amountX: amount ? null : amountX,
-      ratioHighLimitAmount:
-          ratioHighLimitAmount ? null : this.ratioHighLimitAmount,
-      comparator: comparator ? null : this.comparator,
-      source: source ? null : this.source,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (substanceDefinition) this.substanceDefinitionX = null;
+    if (type) this.type = null;
+    if (isDefining) this.isDefining = null;
+    if (amount) this.amountX = null;
+    if (ratioHighLimitAmount) this.ratioHighLimitAmount = null;
+    if (comparator) this.comparator = null;
+    if (source) this.source = null;
   }
 
   @override
-  SubstanceDefinitionRelationship clone() => throw UnimplementedError();
+  SubstanceDefinitionRelationshipBuilder clone() => throw UnimplementedError();
   @override
-  SubstanceDefinitionRelationship copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    SubstanceDefinitionXSubstanceDefinitionRelationship? substanceDefinitionX,
-    CodeableConcept? type,
-    FhirBoolean? isDefining,
-    AmountXSubstanceDefinitionRelationship? amountX,
-    Ratio? ratioHighLimitAmount,
-    CodeableConcept? comparator,
-    List<Reference>? source,
+  SubstanceDefinitionRelationshipBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    SubstanceDefinitionXSubstanceDefinitionRelationshipBuilder?
+        substanceDefinitionX,
+    CodeableConceptBuilder? type,
+    FhirBooleanBuilder? isDefining,
+    AmountXSubstanceDefinitionRelationshipBuilder? amountX,
+    RatioBuilder? ratioHighLimitAmount,
+    CodeableConceptBuilder? comparator,
+    List<ReferenceBuilder>? source,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8004,66 +7310,41 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionRelationship(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      substanceDefinitionX: substanceDefinitionX?.copyWith(
-            objectPath: '$newObjectPath.substanceDefinitionX',
-          ) as SubstanceDefinitionXSubstanceDefinitionRelationship? ??
-          this.substanceDefinitionX,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      isDefining: isDefining?.copyWith(
-            objectPath: '$newObjectPath.isDefining',
-          ) ??
-          this.isDefining,
-      amountX: amountX?.copyWith(
-            objectPath: '$newObjectPath.amountX',
-          ) as AmountXSubstanceDefinitionRelationship? ??
-          this.amountX,
-      ratioHighLimitAmount: ratioHighLimitAmount?.copyWith(
-            objectPath: '$newObjectPath.ratioHighLimitAmount',
-          ) ??
-          this.ratioHighLimitAmount,
-      comparator: comparator?.copyWith(
-            objectPath: '$newObjectPath.comparator',
-          ) ??
-          this.comparator,
-      source: source
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.source',
-                ),
-              )
-              .toList() ??
-          this.source,
+    final newResult = SubstanceDefinitionRelationshipBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      substanceDefinitionX: substanceDefinitionX ?? this.substanceDefinitionX,
+      type: type ?? this.type,
+      isDefining: isDefining ?? this.isDefining,
+      amountX: amountX ?? this.amountX,
+      ratioHighLimitAmount: ratioHighLimitAmount ?? this.ratioHighLimitAmount,
+      comparator: comparator ?? this.comparator,
+      source: source ?? this.source,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionRelationship) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionRelationshipBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8074,13 +7355,13 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -8122,7 +7403,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       source,
       o.source,
     )) {
@@ -8132,13 +7413,13 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   }
 }
 
-/// [SubstanceDefinitionSourceMaterial]
+/// [SubstanceDefinitionSourceMaterialBuilder]
 /// Material or taxonomic/anatomical source for the substance.
-class SubstanceDefinitionSourceMaterial extends BackboneElement {
+class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [SubstanceDefinitionSourceMaterial]
+  /// [SubstanceDefinitionSourceMaterialBuilder]
 
-  const SubstanceDefinitionSourceMaterial({
+  SubstanceDefinitionSourceMaterialBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -8153,26 +7434,25 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionSourceMaterial.empty() =>
-      const SubstanceDefinitionSourceMaterial();
+  /// For Builder classes, no fields are required
+  factory SubstanceDefinitionSourceMaterialBuilder.empty() =>
+      SubstanceDefinitionSourceMaterialBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionSourceMaterial.fromJson(
+  factory SubstanceDefinitionSourceMaterialBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'SubstanceDefinition.sourceMaterial';
-    return SubstanceDefinitionSourceMaterial(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return SubstanceDefinitionSourceMaterialBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -8181,8 +7461,8 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -8190,33 +7470,33 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      genus: JsonParser.parseObject<CodeableConcept>(
+      genus: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'genus',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.genus',
       ),
-      species: JsonParser.parseObject<CodeableConcept>(
+      species: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'species',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.species',
       ),
-      part_: JsonParser.parseObject<CodeableConcept>(
+      part_: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'part',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.part',
       ),
       countryOfOrigin: (json['countryOfOrigin'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.countryOfOrigin',
@@ -8227,22 +7507,22 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionSourceMaterial]
+  /// Deserialize [SubstanceDefinitionSourceMaterialBuilder]
   /// from a [String] or [YamlMap] object
-  factory SubstanceDefinitionSourceMaterial.fromYaml(
+  factory SubstanceDefinitionSourceMaterialBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return SubstanceDefinitionSourceMaterial.fromJson(
+      return SubstanceDefinitionSourceMaterialBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return SubstanceDefinitionSourceMaterial.fromJson(
+      return SubstanceDefinitionSourceMaterialBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SubstanceDefinitionSourceMaterial '
+        'SubstanceDefinitionSourceMaterialBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -8250,16 +7530,16 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [SubstanceDefinitionSourceMaterial]
+  /// [SubstanceDefinitionSourceMaterialBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionSourceMaterial.fromJsonString(
+  factory SubstanceDefinitionSourceMaterialBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return SubstanceDefinitionSourceMaterial.fromJson(json);
+      return SubstanceDefinitionSourceMaterialBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -8272,41 +7552,41 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// [type]
   /// A classification that provides the origin of the raw material. Example:
   /// cat hair would be an Animal source type.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [genus]
   /// The genus of an organism, typically referring to the Latin epithet of
   /// the genus element of the plant/animal scientific name.
-  final CodeableConcept? genus;
+  CodeableConceptBuilder? genus;
 
   /// [species]
   /// The species of an organism, typically referring to the Latin epithet of
   /// the species of the plant/animal.
-  final CodeableConcept? species;
+  CodeableConceptBuilder? species;
 
   /// [part_]
   /// An anatomical origin of the source material within an organism.
-  final CodeableConcept? part_;
+  CodeableConceptBuilder? part_;
 
   /// [countryOfOrigin]
   /// The country or countries where the material is harvested.
-  final List<CodeableConcept>? countryOfOrigin;
+  List<CodeableConceptBuilder>? countryOfOrigin;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -8315,43 +7595,19 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'genus',
-      genus,
-    );
-    addField(
-      'species',
-      species,
-    );
-    addField(
-      'part',
-      part_,
-    );
-    addField(
-      'countryOfOrigin',
-      countryOfOrigin,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('genus', genus);
+    addField('species', species);
+    addField('part', part_);
+    addField('countryOfOrigin', countryOfOrigin);
     return json;
   }
 
@@ -8373,11 +7629,11 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -8421,7 +7677,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -8430,95 +7686,99 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'genus':
         {
-          if (child is CodeableConcept) {
-            return copyWith(genus: child);
+          if (child is CodeableConceptBuilder) {
+            genus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'species':
         {
-          if (child is CodeableConcept) {
-            return copyWith(species: child);
+          if (child is CodeableConceptBuilder) {
+            species = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'part':
         {
-          if (child is CodeableConcept) {
-            return copyWith(part_: child);
+          if (child is CodeableConceptBuilder) {
+            part_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'countryOfOrigin':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?countryOfOrigin, ...child];
-            return copyWith(countryOfOrigin: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            countryOfOrigin = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?countryOfOrigin, child];
-            return copyWith(countryOfOrigin: newList);
+            countryOfOrigin = [...(countryOfOrigin ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -8534,82 +7794,70 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'genus':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'species':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'part':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'countryOfOrigin':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [SubstanceDefinitionSourceMaterial]
+  /// Creates a new [SubstanceDefinitionSourceMaterialBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionSourceMaterial createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'genus':
         {
-          return copyWith(
-            genus: CodeableConcept.empty(),
-          );
+          genus = CodeableConceptBuilder.empty();
+          return;
         }
       case 'species':
         {
-          return copyWith(
-            species: CodeableConcept.empty(),
-          );
+          species = CodeableConceptBuilder.empty();
+          return;
         }
       case 'part':
         {
-          return copyWith(
-            part_: CodeableConcept.empty(),
-          );
+          part_ = CodeableConceptBuilder.empty();
+          return;
         }
       case 'countryOfOrigin':
         {
-          return copyWith(
-            countryOfOrigin: <CodeableConcept>[],
-          );
+          countryOfOrigin = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8618,7 +7866,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  SubstanceDefinitionSourceMaterial clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -8628,30 +7876,29 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     bool part_ = false,
     bool countryOfOrigin = false,
   }) {
-    return SubstanceDefinitionSourceMaterial(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      genus: genus ? null : this.genus,
-      species: species ? null : this.species,
-      part_: part_ ? null : this.part_,
-      countryOfOrigin: countryOfOrigin ? null : this.countryOfOrigin,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (genus) this.genus = null;
+    if (species) this.species = null;
+    if (part_) this.part_ = null;
+    if (countryOfOrigin) this.countryOfOrigin = null;
   }
 
   @override
-  SubstanceDefinitionSourceMaterial clone() => throw UnimplementedError();
+  SubstanceDefinitionSourceMaterialBuilder clone() =>
+      throw UnimplementedError();
   @override
-  SubstanceDefinitionSourceMaterial copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    CodeableConcept? genus,
-    CodeableConcept? species,
-    CodeableConcept? part_,
-    List<CodeableConcept>? countryOfOrigin,
+  SubstanceDefinitionSourceMaterialBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? genus,
+    CodeableConceptBuilder? species,
+    CodeableConceptBuilder? part_,
+    List<CodeableConceptBuilder>? countryOfOrigin,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8659,58 +7906,39 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return SubstanceDefinitionSourceMaterial(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      genus: genus?.copyWith(
-            objectPath: '$newObjectPath.genus',
-          ) ??
-          this.genus,
-      species: species?.copyWith(
-            objectPath: '$newObjectPath.species',
-          ) ??
-          this.species,
-      part_: part_?.copyWith(
-            objectPath: '$newObjectPath.part',
-          ) ??
-          this.part_,
-      countryOfOrigin: countryOfOrigin
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.countryOfOrigin',
-                ),
-              )
-              .toList() ??
-          this.countryOfOrigin,
+    final newResult = SubstanceDefinitionSourceMaterialBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      genus: genus ?? this.genus,
+      species: species ?? this.species,
+      part_: part_ ?? this.part_,
+      countryOfOrigin: countryOfOrigin ?? this.countryOfOrigin,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! SubstanceDefinitionSourceMaterial) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! SubstanceDefinitionSourceMaterialBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8721,13 +7949,13 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -8757,7 +7985,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       countryOfOrigin,
       o.countryOfOrigin,
     )) {

@@ -1,29 +1,31 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Identifier]
+/// [IdentifierBuilder]
 /// An identifier - identifies some entity uniquely and unambiguously.
 /// Typically this is used for business identifiers.
-class Identifier extends DataType
+class IdentifierBuilder extends DataTypeBuilder
     implements
-        TargetXCitationRelatesTo,
-        TargetXCitationRelatesTo1,
-        TargetXCompositionRelatesTo,
-        TargetXEvidenceReportRelatesTo,
-        ValueXParametersParameter,
-        DefaultValueXStructureMapSource,
-        ValueXTaskInput,
-        ValueXTaskOutput,
-        DefaultValueXElementDefinition,
-        FixedXElementDefinition,
-        PatternXElementDefinition,
-        ValueXElementDefinitionExample,
-        ValueXExtension {
+        TargetXCitationRelatesToBuilder,
+        TargetXCitationRelatesTo1Builder,
+        TargetXCompositionRelatesToBuilder,
+        TargetXEvidenceReportRelatesToBuilder,
+        ValueXParametersParameterBuilder,
+        DefaultValueXStructureMapSourceBuilder,
+        ValueXTaskInputBuilder,
+        ValueXTaskOutputBuilder,
+        DefaultValueXElementDefinitionBuilder,
+        FixedXElementDefinitionBuilder,
+        PatternXElementDefinitionBuilder,
+        ValueXElementDefinitionExampleBuilder,
+        ValueXExtensionBuilder {
   /// Primary constructor for
-  /// [Identifier]
+  /// [IdentifierBuilder]
 
-  const Identifier({
+  IdentifierBuilder({
     super.id,
     super.extension_,
     this.use,
@@ -33,29 +35,28 @@ class Identifier extends DataType
     this.period,
     this.assigner,
     super.disallowExtensions,
-    super.objectPath = 'Identifier',
+    super.objectPath = 'IdentifierBuilder',
   });
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Identifier.empty() => const Identifier();
+  /// For Builder classes, no fields are required
+  factory IdentifierBuilder.empty() => IdentifierBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Identifier.fromJson(
+  factory IdentifierBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     final objectPath = json['resourceType'] as String? ?? 'Identifier';
-    return Identifier(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return IdentifierBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -63,61 +64,61 @@ class Identifier extends DataType
             ),
           )
           .toList(),
-      use: JsonParser.parsePrimitive<IdentifierUse>(
+      use: JsonParser.parsePrimitive<IdentifierUseBuilder>(
         json,
         'use',
-        IdentifierUse.fromJson,
+        IdentifierUseBuilder.fromJson,
         '$objectPath.use',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      system: JsonParser.parsePrimitive<FhirUri>(
+      system: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'system',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.system',
       ),
-      value: JsonParser.parsePrimitive<FhirString>(
+      value: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'value',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.value',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
       ),
-      assigner: JsonParser.parseObject<Reference>(
+      assigner: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'assigner',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.assigner',
       ),
     );
   }
 
-  /// Deserialize [Identifier]
+  /// Deserialize [IdentifierBuilder]
   /// from a [String] or [YamlMap] object
-  factory Identifier.fromYaml(
+  factory IdentifierBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Identifier.fromJson(
+      return IdentifierBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Identifier.fromJson(
+      return IdentifierBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Identifier '
+        'IdentifierBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -125,16 +126,16 @@ class Identifier extends DataType
   }
 
   /// Factory constructor for
-  /// [Identifier]
+  /// [IdentifierBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Identifier.fromJsonString(
+  factory IdentifierBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Identifier.fromJson(json);
+      return IdentifierBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -146,46 +147,46 @@ class Identifier extends DataType
 
   /// [use]
   /// The purpose of this identifier.
-  final IdentifierUse? use;
+  IdentifierUseBuilder? use;
 
   /// [type]
   /// A coded type for the identifier that can be used to determine which
   /// identifier to use for a specific purpose.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [system]
   /// Establishes the namespace for the value - that is, a URL that describes
   /// a set values that are unique.
-  final FhirUri? system;
+  FhirUriBuilder? system;
 
   /// [value]
   /// The portion of the identifier typically relevant to the user and which
   /// is unique within the context of the system.
-  final FhirString? value;
+  FhirStringBuilder? value;
 
   /// [period]
   /// Time period during which identifier is/was valid for use.
-  final Period? period;
+  PeriodBuilder? period;
 
   /// [assigner]
   /// Organization that issued/manages the identifier.
-  final Reference? assigner;
+  ReferenceBuilder? assigner;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -194,43 +195,19 @@ class Identifier extends DataType
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'system',
-      system,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'assigner',
-      assigner,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('use', use);
+    addField('type', type);
+    addField('system', system);
+    addField('value', value);
+    addField('period', period);
+    addField('assigner', assigner);
     return json;
   }
 
@@ -252,11 +229,11 @@ class Identifier extends DataType
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -300,7 +277,7 @@ class Identifier extends DataType
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -309,83 +286,89 @@ class Identifier extends DataType
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
         {
-          if (child is IdentifierUse) {
-            return copyWith(use: child);
+          if (child is IdentifierUseBuilder) {
+            use = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'system':
         {
-          if (child is FhirUri) {
-            return copyWith(system: child);
+          if (child is FhirUriBuilder) {
+            system = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirString) {
-            return copyWith(value: child);
+          if (child is FhirStringBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'assigner':
         {
-          if (child is Reference) {
-            return copyWith(assigner: child);
+          if (child is ReferenceBuilder) {
+            assigner = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -401,82 +384,70 @@ class Identifier extends DataType
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'use':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'system':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'value':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'assigner':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Identifier]
+  /// Creates a new [IdentifierBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Identifier createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'use':
         {
-          return copyWith(
-            use: IdentifierUse.empty(),
-          );
+          use = IdentifierUseBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'system':
         {
-          return copyWith(
-            system: FhirUri.empty(),
-          );
+          system = FhirUriBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirString.empty(),
-          );
+          value = FhirStringBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       case 'assigner':
         {
-          return copyWith(
-            assigner: Reference.empty(),
-          );
+          assigner = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -485,7 +456,7 @@ class Identifier extends DataType
 
   /// Clears specific fields in this object
   @override
-  Identifier clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool use = false,
@@ -495,30 +466,28 @@ class Identifier extends DataType
     bool period = false,
     bool assigner = false,
   }) {
-    return Identifier(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      use: use ? null : this.use,
-      type: type ? null : this.type,
-      system: system ? null : this.system,
-      value: value ? null : this.value,
-      period: period ? null : this.period,
-      assigner: assigner ? null : this.assigner,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (use) this.use = null;
+    if (type) this.type = null;
+    if (system) this.system = null;
+    if (value) this.value = null;
+    if (period) this.period = null;
+    if (assigner) this.assigner = null;
   }
 
   @override
-  Identifier clone() => throw UnimplementedError();
+  IdentifierBuilder clone() => throw UnimplementedError();
   @override
-  Identifier copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    IdentifierUse? use,
-    CodeableConcept? type,
-    FhirUri? system,
-    FhirString? value,
-    Period? period,
-    Reference? assigner,
+  IdentifierBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    IdentifierUseBuilder? use,
+    CodeableConceptBuilder? type,
+    FhirUriBuilder? system,
+    FhirStringBuilder? value,
+    PeriodBuilder? period,
+    ReferenceBuilder? assigner,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -526,50 +495,39 @@ class Identifier extends DataType
     String? objectPath,
   }) {
     final newObjectPath = objectPath ?? this.objectPath;
-    return Identifier(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
-      assigner: assigner?.copyWith(
-            objectPath: '$newObjectPath.assigner',
-          ) ??
-          this.assigner,
+    final newResult = IdentifierBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      use: use ?? this.use,
+      type: type ?? this.type,
+      system: system ?? this.system,
+      value: value ?? this.value,
+      period: period ?? this.period,
+      assigner: assigner ?? this.assigner,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Identifier) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! IdentifierBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -580,7 +538,7 @@ class Identifier extends DataType
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {

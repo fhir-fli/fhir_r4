@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Base class for all FHIR elements.
@@ -147,7 +148,7 @@ abstract class FhirBaseBuilder {
       [bool checkValid = false]);
 
   /// Sets a property by name.
-  FhirBaseBuilder setChildByName(String childName, FhirBaseBuilder? child) {
+  void setChildByName(String childName, FhirBaseBuilder? child) {
     throw Exception('Cannot set child value for $childName');
   }
 
@@ -157,19 +158,17 @@ abstract class FhirBaseBuilder {
   }
 
   /// Sets the properties of the object.
-  FhirBaseBuilder setChildrenByName(Map<String, FhirBaseBuilder> children) {
-    var updated = this;
+  void setChildrenByName(Map<String, FhirBaseBuilder> children) {
     for (final entry in children.entries) {
-      updated = updated.setChildByName(entry.key, entry.value);
+      setChildByName(entry.key, entry.value);
     }
-    return updated;
   }
 
   /// Creates an empty property in the object
-  FhirBaseBuilder createProperty(String propertyName);
+  void createProperty(String propertyName);
 
   /// Clears specific fields in this object
-  FhirBaseBuilder clear();
+  void clear();
 
   /// Deep equality check.
   bool equalsDeep(FhirBaseBuilder? o) {
@@ -283,13 +282,13 @@ abstract class FhirBaseBuilder {
   Map<String, dynamic> toJson();
 
   /// Converts the object to a YAML string.
-  String toYaml() => json2yaml(toJson());
+  String toYaml() => fhir.json2yaml(toJson());
 
   /// Converts the object to a JSON string.
   String toJsonString() => jsonEncode(toJson());
 
   /// Converts the object to a pretty JSON string.
-  String prettyPrint() => prettyPrintJson(toJson());
+  String prettyPrint() => fhir.prettyPrintJson(toJson());
 
   /// Copies the object with new values.
   FhirBaseBuilder copyWith({

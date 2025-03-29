@@ -2,9 +2,9 @@
 part of '../primitive_types.dart';
 
 /// A coded concept listing the eye codes.
-class VisionEyes extends FhirCodeEnum {
+class VisionEyesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
-  VisionEyes._({
+  VisionEyesBuilder._({
     required super.validatedValue,
     super.system,
     super.version,
@@ -18,19 +18,19 @@ class VisionEyes extends FhirCodeEnum {
 
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
-  factory VisionEyes(
+  factory VisionEyesBuilder(
     String? raw, {
-    FhirUri? system,
-    FhirString? version,
-    FhirString? display,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    FhirUriBuilder? system,
+    FhirStringBuilder? version,
+    FhirStringBuilder? display,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
-    return VisionEyes._(
+    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    return VisionEyesBuilder._(
       validatedValue: validated,
       system: system,
       version: version,
@@ -43,62 +43,64 @@ class VisionEyes extends FhirCodeEnum {
     );
   }
 
-  /// Create empty [VisionEyes] with element only
-  factory VisionEyes.empty() => VisionEyes._(validatedValue: '');
+  /// Create empty [VisionEyesBuilder] with element only
+  factory VisionEyesBuilder.empty() => VisionEyesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [VisionEyes] from JSON.
-  factory VisionEyes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [VisionEyesBuilder] from JSON.
+  factory VisionEyesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final element =
+        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return VisionEyes.elementOnly.withElement(element);
+      return VisionEyesBuilder.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'VisionEyes cannot be constructed from JSON.',
+        'VisionEyesBuilder cannot be constructed from JSON.',
       );
     }
-    return VisionEyes._(
+    return VisionEyesBuilder._(
       validatedValue: value,
       element: element,
     );
   }
 
   /// right
-  static final VisionEyes right = VisionEyes._(
+  static VisionEyesBuilder right = VisionEyesBuilder._(
     validatedValue: 'right',
-    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Right Eye'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Right Eye'.toFhirStringBuilder,
   );
 
   /// left
-  static final VisionEyes left = VisionEyes._(
+  static VisionEyesBuilder left = VisionEyesBuilder._(
     validatedValue: 'left',
-    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Left Eye'.toFhirString,
+    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUriBuilder,
+    version: '4.3.0'.toFhirStringBuilder,
+    display: 'Left Eye'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static final VisionEyes elementOnly = VisionEyes._(validatedValue: '');
+  static VisionEyesBuilder elementOnly =
+      VisionEyesBuilder._(validatedValue: '');
 
   /// List of all enum-like values
-  static final List<VisionEyes> values = [
+  static List<VisionEyesBuilder> values = [
     right,
     left,
   ];
 
   /// Clones the current instance
   @override
-  VisionEyes clone() => VisionEyes._(
+  VisionEyesBuilder clone() => VisionEyesBuilder._(
         validatedValue: value,
-        element: element?.clone() as Element?,
+        element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
-  VisionEyes withElement(Element? newElement) {
-    return VisionEyes._(validatedValue: value, element: newElement);
+  VisionEyesBuilder withElement(ElementBuilder? newElement) {
+    return VisionEyesBuilder._(validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,11 +116,11 @@ class VisionEyes extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  VisionEyes copyWith({
+  VisionEyesBuilder copyWith({
     String? newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
+    ElementBuilder? element,
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -129,7 +131,7 @@ class VisionEyes extends FhirCodeEnum {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
-    return VisionEyes._(
+    return VisionEyesBuilder._(
       validatedValue: newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
@@ -139,7 +141,7 @@ class VisionEyes extends FhirCodeEnum {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+      objectPath: objectPath ?? this.objectPath,
     );
   }
 }

@@ -1,15 +1,17 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Contract]
+/// [ContractBuilder]
 /// Legally enforceable, formally recorded unilateral or bilateral
 /// directive i.e., a policy or agreement.
-class Contract extends DomainResource {
+class ContractBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Contract]
+  /// [ContractBuilder]
 
-  const Contract({
+  ContractBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -57,49 +59,48 @@ class Contract extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Contract.empty() => const Contract();
+  /// For Builder classes, no fields are required
+  factory ContractBuilder.empty() => ContractBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Contract.fromJson(
+  factory ContractBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract';
-    return Contract(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -108,8 +109,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -118,8 +119,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -128,8 +129,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -137,69 +138,69 @@ class Contract extends DomainResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      status: JsonParser.parsePrimitive<ContractResourceStatusCodes>(
+      status: JsonParser.parsePrimitive<ContractResourceStatusCodesBuilder>(
         json,
         'status',
-        ContractResourceStatusCodes.fromJson,
+        ContractResourceStatusCodesBuilder.fromJson,
         '$objectPath.status',
       ),
-      legalState: JsonParser.parseObject<CodeableConcept>(
+      legalState: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'legalState',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.legalState',
       ),
-      instantiatesCanonical: JsonParser.parseObject<Reference>(
+      instantiatesCanonical: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'instantiatesCanonical',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.instantiatesCanonical',
       ),
-      instantiatesUri: JsonParser.parsePrimitive<FhirUri>(
+      instantiatesUri: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'instantiatesUri',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.instantiatesUri',
       ),
-      contentDerivative: JsonParser.parseObject<CodeableConcept>(
+      contentDerivative: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'contentDerivative',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.contentDerivative',
       ),
-      issued: JsonParser.parsePrimitive<FhirDateTime>(
+      issued: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'issued',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.issued',
       ),
-      applies: JsonParser.parseObject<Period>(
+      applies: JsonParser.parseObject<PeriodBuilder>(
         json,
         'applies',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.applies',
       ),
-      expirationType: JsonParser.parseObject<CodeableConcept>(
+      expirationType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'expirationType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.expirationType',
       ),
       subject: (json['subject'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.subject',
@@ -208,8 +209,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       authority: (json['authority'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.authority',
@@ -218,8 +219,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       domain: (json['domain'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.domain',
@@ -228,8 +229,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       site: (json['site'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.site',
@@ -237,59 +238,59 @@ class Contract extends DomainResource {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      subtitle: JsonParser.parsePrimitive<FhirString>(
+      subtitle: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'subtitle',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.subtitle',
       ),
-      alias: JsonParser.parsePrimitiveList<FhirString>(
+      alias: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'alias',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.alias',
       ),
-      author: JsonParser.parseObject<Reference>(
+      author: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'author',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.author',
       ),
-      scope: JsonParser.parseObject<CodeableConcept>(
+      scope: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'scope',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.scope',
       ),
-      topicX: JsonParser.parsePolymorphic<TopicXContract>(
+      topicX: JsonParser.parsePolymorphic<TopicXContractBuilder>(
         json,
         {
-          'topicCodeableConcept': CodeableConcept.fromJson,
-          'topicReference': Reference.fromJson,
+          'topicCodeableConcept': CodeableConceptBuilder.fromJson,
+          'topicReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       subType: (json['subType'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.subType',
@@ -297,15 +298,16 @@ class Contract extends DomainResource {
             ),
           )
           .toList(),
-      contentDefinition: JsonParser.parseObject<ContractContentDefinition>(
+      contentDefinition:
+          JsonParser.parseObject<ContractContentDefinitionBuilder>(
         json,
         'contentDefinition',
-        ContractContentDefinition.fromJson,
+        ContractContentDefinitionBuilder.fromJson,
         '$objectPath.contentDefinition',
       ),
       term: (json['term'] as List<dynamic>?)
-          ?.map<ContractTerm>(
-            (v) => ContractTerm.fromJson(
+          ?.map<ContractTermBuilder>(
+            (v) => ContractTermBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.term',
@@ -314,8 +316,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       supportingInfo: (json['supportingInfo'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.supportingInfo',
@@ -324,8 +326,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       relevantHistory: (json['relevantHistory'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relevantHistory',
@@ -334,8 +336,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       signer: (json['signer'] as List<dynamic>?)
-          ?.map<ContractSigner>(
-            (v) => ContractSigner.fromJson(
+          ?.map<ContractSignerBuilder>(
+            (v) => ContractSignerBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.signer',
@@ -344,8 +346,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       friendly: (json['friendly'] as List<dynamic>?)
-          ?.map<ContractFriendly>(
-            (v) => ContractFriendly.fromJson(
+          ?.map<ContractFriendlyBuilder>(
+            (v) => ContractFriendlyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.friendly',
@@ -354,8 +356,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       legal: (json['legal'] as List<dynamic>?)
-          ?.map<ContractLegal>(
-            (v) => ContractLegal.fromJson(
+          ?.map<ContractLegalBuilder>(
+            (v) => ContractLegalBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.legal',
@@ -364,8 +366,8 @@ class Contract extends DomainResource {
           )
           .toList(),
       rule: (json['rule'] as List<dynamic>?)
-          ?.map<ContractRule>(
-            (v) => ContractRule.fromJson(
+          ?.map<ContractRuleBuilder>(
+            (v) => ContractRuleBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.rule',
@@ -373,33 +375,34 @@ class Contract extends DomainResource {
             ),
           )
           .toList(),
-      legallyBindingX: JsonParser.parsePolymorphic<LegallyBindingXContract>(
+      legallyBindingX:
+          JsonParser.parsePolymorphic<LegallyBindingXContractBuilder>(
         json,
         {
-          'legallyBindingAttachment': Attachment.fromJson,
-          'legallyBindingReference': Reference.fromJson,
+          'legallyBindingAttachment': AttachmentBuilder.fromJson,
+          'legallyBindingReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [Contract]
+  /// Deserialize [ContractBuilder]
   /// from a [String] or [YamlMap] object
-  factory Contract.fromYaml(
+  factory ContractBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Contract.fromJson(
+      return ContractBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Contract.fromJson(
+      return ContractBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Contract '
+        'ContractBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -407,16 +410,16 @@ class Contract extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Contract]
+  /// [ContractBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Contract.fromJsonString(
+  factory ContractBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Contract.fromJson(json);
+      return ContractBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -429,21 +432,21 @@ class Contract extends DomainResource {
   /// [identifier]
   /// Unique identifier for this Contract or a derivative that references a
   /// Source Contract.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [url]
   /// Canonical identifier for this contract, represented as a URI (globally
   /// unique).
-  final FhirUri? url;
+  FhirUriBuilder? url;
 
   /// [version]
   /// An edition identifier used for business purposes to label business
   /// significant variants.
-  final FhirString? version;
+  FhirStringBuilder? version;
 
   /// [status]
   /// The status of the resource instance.
-  final ContractResourceStatusCodes? status;
+  ContractResourceStatusCodesBuilder? status;
 
   /// [legalState]
   /// Legal states of the formation of a legal instrument, which is a
@@ -451,58 +454,58 @@ class Contract extends DomainResource {
   /// its author, records and formally expresses a legally enforceable act,
   /// process, or contractual duty, obligation, or right, and therefore
   /// evidences that act, process, or agreement.
-  final CodeableConcept? legalState;
+  CodeableConceptBuilder? legalState;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined Contract Definition that is adhered
   /// to in whole or part by this Contract.
-  final Reference? instantiatesCanonical;
+  ReferenceBuilder? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained definition that is adhered
   /// to in whole or in part by this Contract.
-  final FhirUri? instantiatesUri;
+  FhirUriBuilder? instantiatesUri;
 
   /// [contentDerivative]
   /// The minimal content derived from the basal information source at a
   /// specific stage in its lifecycle.
-  final CodeableConcept? contentDerivative;
+  CodeableConceptBuilder? contentDerivative;
 
   /// [issued]
   /// When this Contract was issued.
-  final FhirDateTime? issued;
+  FhirDateTimeBuilder? issued;
 
   /// [applies]
   /// Relevant time or time-period when this Contract is applicable.
-  final Period? applies;
+  PeriodBuilder? applies;
 
   /// [expirationType]
   /// Event resulting in discontinuation or termination of this Contract
   /// instance by one or more parties to the contract.
-  final CodeableConcept? expirationType;
+  CodeableConceptBuilder? expirationType;
 
   /// [subject]
   /// The target entity impacted by or of interest to parties to the
   /// agreement.
-  final List<Reference>? subject;
+  List<ReferenceBuilder>? subject;
 
   /// [authority]
   /// A formally or informally recognized grouping of people, principals,
   /// organizations, or jurisdictions formed for the purpose of achieving
   /// some form of collective action such as the promulgation, administration
   /// and enforcement of contracts and policies.
-  final List<Reference>? authority;
+  List<ReferenceBuilder>? authority;
 
   /// [domain]
   /// Recognized governance framework or system operating with a
   /// circumscribed scope in accordance with specified principles, policies,
   /// processes or procedures for managing rights, actions, or behaviors of
   /// parties or principals relative to resources.
-  final List<Reference>? domain;
+  List<ReferenceBuilder>? domain;
 
   /// [site]
   /// Sites in which the contract is complied with, exercised, or in force.
-  final List<Reference>? site;
+  List<ReferenceBuilder>? site;
 
   /// [name]
   /// A natural language name identifying this Contract definition,
@@ -510,46 +513,47 @@ class Contract extends DomainResource {
   /// information about its content. This name should be usable as an
   /// identifier for the module by machine processing applications such as
   /// code generation.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for this Contract definition,
   /// derivative, or instance in any legal state.t giving additional
   /// information about its content.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [subtitle]
   /// An explanatory or alternate user-friendly title for this Contract
   /// definition, derivative, or instance in any legal state.t giving
   /// additional information about its content.
-  final FhirString? subtitle;
+  FhirStringBuilder? subtitle;
 
   /// [alias]
   /// Alternative representation of the title for this Contract definition,
   /// derivative, or instance in any legal state., e.g., a domain specific
   /// contract number related to legislation.
-  final List<FhirString>? alias;
+  List<FhirStringBuilder>? alias;
 
   /// [author]
   /// The individual or organization that authored the Contract definition,
   /// derivative, or instance in any legal state.
-  final Reference? author;
+  ReferenceBuilder? author;
 
   /// [scope]
   /// A selector of legal concerns for this Contract definition, derivative,
   /// or instance in any legal state.
-  final CodeableConcept? scope;
+  CodeableConceptBuilder? scope;
 
   /// [topicX]
   /// Narrows the range of legal concerns to focus on the achievement of
   /// specific contractual objectives.
-  final TopicXContract? topicX;
+  TopicXContractBuilder? topicX;
 
-  /// Getter for [topicCodeableConcept] as a CodeableConcept
-  CodeableConcept? get topicCodeableConcept => topicX?.isAs<CodeableConcept>();
+  /// Getter for [topicCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get topicCodeableConcept =>
+      topicX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [topicReference] as a Reference
-  Reference? get topicReference => topicX?.isAs<Reference>();
+  /// Getter for [topicReference] as a ReferenceBuilder
+  ReferenceBuilder? get topicReference => topicX?.isAs<ReferenceBuilder>();
 
   /// [type]
   /// A high-level category for the legal instrument, whether constructed as
@@ -557,29 +561,29 @@ class Contract extends DomainResource {
   /// Provides additional information about its content within the context of
   /// the Contract's scope to distinguish the kinds of systems that would be
   /// interested in the contract.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [subType]
   /// Sub-category for the Contract that distinguishes the kinds of systems
   /// that would be interested in the Contract within the context of the
   /// Contract's scope.
-  final List<CodeableConcept>? subType;
+  List<CodeableConceptBuilder>? subType;
 
   /// [contentDefinition]
   /// Precusory content developed with a focus and intent of supporting the
   /// formation a Contract instance, which may be associated with and
   /// transformable into a Contract.
-  final ContractContentDefinition? contentDefinition;
+  ContractContentDefinitionBuilder? contentDefinition;
 
   /// [term]
   /// One or more Contract Provisions, which may be related and conveyed as a
   /// group, and may contain nested groups.
-  final List<ContractTerm>? term;
+  List<ContractTermBuilder>? term;
 
   /// [supportingInfo]
   /// Information that may be needed by/relevant to the performer in their
   /// execution of this term action.
-  final List<Reference>? supportingInfo;
+  List<ReferenceBuilder>? supportingInfo;
 
   /// [relevantHistory]
   /// Links to Provenance records for past versions of this Contract
@@ -588,14 +592,14 @@ class Contract extends DomainResource {
   /// at the current version of the Contract. The Provence.entity indicates
   /// the target that was changed in the update.
   /// http://build.fhir.org/provenance-definitions.html#Provenance.entity.
-  final List<Reference>? relevantHistory;
+  List<ReferenceBuilder>? relevantHistory;
 
   /// [signer]
   /// Parties with legal standing in the Contract, including the principal
   /// parties, the grantor(s) and grantee(s), which are any person or
   /// organization bound by the contract, and any ancillary parties, which
   /// facilitate the execution of the contract such as a notary or witness.
-  final List<ContractSigner>? signer;
+  List<ContractSignerBuilder>? signer;
 
   /// [friendly]
   /// The "patient friendly language" versionof the Contract in whole or in
@@ -605,46 +609,47 @@ class Contract extends DomainResource {
   /// communication styles that ensure that those agreeing to or signing the
   /// Contract understand the roles, actions, obligations, responsibilities,
   /// and implication of the agreement.
-  final List<ContractFriendly>? friendly;
+  List<ContractFriendlyBuilder>? friendly;
 
   /// [legal]
   /// List of Legal expressions or representations of this Contract.
-  final List<ContractLegal>? legal;
+  List<ContractLegalBuilder>? legal;
 
   /// [rule]
   /// List of Computable Policy Rule Language Representations of this
   /// Contract.
-  final List<ContractRule>? rule;
+  List<ContractRuleBuilder>? rule;
 
   /// [legallyBindingX]
   /// Legally binding Contract: This is the signed and legally recognized
   /// representation of the Contract, which is considered the "source of
   /// truth" and which would be the basis for legal action related to
   /// enforcement of this Contract.
-  final LegallyBindingXContract? legallyBindingX;
+  LegallyBindingXContractBuilder? legallyBindingX;
 
-  /// Getter for [legallyBindingAttachment] as a Attachment
-  Attachment? get legallyBindingAttachment =>
-      legallyBindingX?.isAs<Attachment>();
+  /// Getter for [legallyBindingAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get legallyBindingAttachment =>
+      legallyBindingX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [legallyBindingReference] as a Reference
-  Reference? get legallyBindingReference => legallyBindingX?.isAs<Reference>();
+  /// Getter for [legallyBindingReference] as a ReferenceBuilder
+  ReferenceBuilder? get legallyBindingReference =>
+      legallyBindingX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -653,182 +658,59 @@ class Contract extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'legalState',
-      legalState,
-    );
-    addField(
-      'instantiatesCanonical',
-      instantiatesCanonical,
-    );
-    addField(
-      'instantiatesUri',
-      instantiatesUri,
-    );
-    addField(
-      'contentDerivative',
-      contentDerivative,
-    );
-    addField(
-      'issued',
-      issued,
-    );
-    addField(
-      'applies',
-      applies,
-    );
-    addField(
-      'expirationType',
-      expirationType,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'authority',
-      authority,
-    );
-    addField(
-      'domain',
-      domain,
-    );
-    addField(
-      'site',
-      site,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'subtitle',
-      subtitle,
-    );
-    addField(
-      'alias',
-      alias,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'scope',
-      scope,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('url', url);
+    addField('version', version);
+    addField('status', status);
+    addField('legalState', legalState);
+    addField('instantiatesCanonical', instantiatesCanonical);
+    addField('instantiatesUri', instantiatesUri);
+    addField('contentDerivative', contentDerivative);
+    addField('issued', issued);
+    addField('applies', applies);
+    addField('expirationType', expirationType);
+    addField('subject', subject);
+    addField('authority', authority);
+    addField('domain', domain);
+    addField('site', site);
+    addField('name', name);
+    addField('title', title);
+    addField('subtitle', subtitle);
+    addField('alias', alias);
+    addField('author', author);
+    addField('scope', scope);
     if (topicX != null) {
       final fhirType = topicX!.fhirType;
-      addField(
-        'topic${fhirType.capitalize()}',
-        topicX,
-      );
+      addField('topic${fhirType.capitalize()}', topicX);
     }
 
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'subType',
-      subType,
-    );
-    addField(
-      'contentDefinition',
-      contentDefinition,
-    );
-    addField(
-      'term',
-      term,
-    );
-    addField(
-      'supportingInfo',
-      supportingInfo,
-    );
-    addField(
-      'relevantHistory',
-      relevantHistory,
-    );
-    addField(
-      'signer',
-      signer,
-    );
-    addField(
-      'friendly',
-      friendly,
-    );
-    addField(
-      'legal',
-      legal,
-    );
-    addField(
-      'rule',
-      rule,
-    );
+    addField('type', type);
+    addField('subType', subType);
+    addField('contentDefinition', contentDefinition);
+    addField('term', term);
+    addField('supportingInfo', supportingInfo);
+    addField('relevantHistory', relevantHistory);
+    addField('signer', signer);
+    addField('friendly', friendly);
+    addField('legal', legal);
+    addField('rule', rule);
     if (legallyBindingX != null) {
       final fhirType = legallyBindingX!.fhirType;
-      addField(
-        'legallyBinding${fhirType.capitalize()}',
-        legallyBindingX,
-      );
+      addField('legallyBinding${fhirType.capitalize()}', legallyBindingX);
     }
 
     return json;
@@ -885,11 +767,11 @@ class Contract extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1008,15 +890,19 @@ class Contract extends DomainResource {
           fields.add(scope!);
         }
       case 'topic':
-        fields.add(topicX!);
+        if (topicX != null) {
+          fields.add(topicX!);
+        }
       case 'topicX':
-        fields.add(topicX!);
+        if (topicX != null) {
+          fields.add(topicX!);
+        }
       case 'topicCodeableConcept':
-        if (topicX is CodeableConcept) {
+        if (topicX is CodeableConceptBuilder) {
           fields.add(topicX!);
         }
       case 'topicReference':
-        if (topicX is Reference) {
+        if (topicX is ReferenceBuilder) {
           fields.add(topicX!);
         }
       case 'type':
@@ -1060,15 +946,19 @@ class Contract extends DomainResource {
           fields.addAll(rule!);
         }
       case 'legallyBinding':
-        fields.add(legallyBindingX!);
+        if (legallyBindingX != null) {
+          fields.add(legallyBindingX!);
+        }
       case 'legallyBindingX':
-        fields.add(legallyBindingX!);
+        if (legallyBindingX != null) {
+          fields.add(legallyBindingX!);
+        }
       case 'legallyBindingAttachment':
-        if (legallyBindingX is Attachment) {
+        if (legallyBindingX is AttachmentBuilder) {
           fields.add(legallyBindingX!);
         }
       case 'legallyBindingReference':
-        if (legallyBindingX is Reference) {
+        if (legallyBindingX is ReferenceBuilder) {
           fields.add(legallyBindingX!);
         }
       default:
@@ -1081,7 +971,7 @@ class Contract extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1090,487 +980,518 @@ class Contract extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is ContractResourceStatusCodes) {
-            return copyWith(status: child);
+          if (child is ContractResourceStatusCodesBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'legalState':
         {
-          if (child is CodeableConcept) {
-            return copyWith(legalState: child);
+          if (child is CodeableConceptBuilder) {
+            legalState = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
-          if (child is Reference) {
-            return copyWith(instantiatesCanonical: child);
+          if (child is ReferenceBuilder) {
+            instantiatesCanonical = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
-          if (child is FhirUri) {
-            return copyWith(instantiatesUri: child);
+          if (child is FhirUriBuilder) {
+            instantiatesUri = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentDerivative':
         {
-          if (child is CodeableConcept) {
-            return copyWith(contentDerivative: child);
+          if (child is CodeableConceptBuilder) {
+            contentDerivative = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issued':
         {
-          if (child is FhirDateTime) {
-            return copyWith(issued: child);
+          if (child is FhirDateTimeBuilder) {
+            issued = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'applies':
         {
-          if (child is Period) {
-            return copyWith(applies: child);
+          if (child is PeriodBuilder) {
+            applies = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'expirationType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(expirationType: child);
+          if (child is CodeableConceptBuilder) {
+            expirationType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?subject, ...child];
-            return copyWith(subject: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            subject = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?subject, child];
-            return copyWith(subject: newList);
+            subject = [...(subject ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'authority':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?authority, ...child];
-            return copyWith(authority: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            authority = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?authority, child];
-            return copyWith(authority: newList);
+            authority = [...(authority ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'domain':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?domain, ...child];
-            return copyWith(domain: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            domain = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?domain, child];
-            return copyWith(domain: newList);
+            domain = [...(domain ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'site':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?site, ...child];
-            return copyWith(site: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            site = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?site, child];
-            return copyWith(site: newList);
+            site = [...(site ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subtitle':
         {
-          if (child is FhirString) {
-            return copyWith(subtitle: child);
+          if (child is FhirStringBuilder) {
+            subtitle = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'alias':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?alias, ...child];
-            return copyWith(alias: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            alias = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?alias, child];
-            return copyWith(alias: newList);
+            alias = [...(alias ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is Reference) {
-            return copyWith(author: child);
+          if (child is ReferenceBuilder) {
+            author = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'scope':
         {
-          if (child is CodeableConcept) {
-            return copyWith(scope: child);
+          if (child is CodeableConceptBuilder) {
+            scope = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'topicX':
         {
-          if (child is TopicXContract) {
-            return copyWith(topicX: child);
+          if (child is TopicXContractBuilder) {
+            topicX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(topicX: child);
+            if (child is CodeableConceptBuilder) {
+              topicX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(topicX: child);
+            if (child is ReferenceBuilder) {
+              topicX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'topicCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(topicX: child);
+          if (child is CodeableConceptBuilder) {
+            topicX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'topicReference':
         {
-          if (child is Reference) {
-            return copyWith(topicX: child);
+          if (child is ReferenceBuilder) {
+            topicX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subType':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?subType, ...child];
-            return copyWith(subType: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            subType = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?subType, child];
-            return copyWith(subType: newList);
+            subType = [...(subType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentDefinition':
         {
-          if (child is ContractContentDefinition) {
-            return copyWith(contentDefinition: child);
+          if (child is ContractContentDefinitionBuilder) {
+            contentDefinition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'term':
         {
-          if (child is List<ContractTerm>) {
-            // Add all elements from passed list
-            final newList = [...?term, ...child];
-            return copyWith(term: newList);
-          } else if (child is ContractTerm) {
+          if (child is List<ContractTermBuilder>) {
+            // Replace or create new list
+            term = child;
+            return;
+          } else if (child is ContractTermBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?term, child];
-            return copyWith(term: newList);
+            term = [...(term ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportingInfo':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?supportingInfo, ...child];
-            return copyWith(supportingInfo: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            supportingInfo = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInfo, child];
-            return copyWith(supportingInfo: newList);
+            supportingInfo = [...(supportingInfo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relevantHistory':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?relevantHistory, ...child];
-            return copyWith(relevantHistory: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            relevantHistory = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relevantHistory, child];
-            return copyWith(relevantHistory: newList);
+            relevantHistory = [...(relevantHistory ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'signer':
         {
-          if (child is List<ContractSigner>) {
-            // Add all elements from passed list
-            final newList = [...?signer, ...child];
-            return copyWith(signer: newList);
-          } else if (child is ContractSigner) {
+          if (child is List<ContractSignerBuilder>) {
+            // Replace or create new list
+            signer = child;
+            return;
+          } else if (child is ContractSignerBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?signer, child];
-            return copyWith(signer: newList);
+            signer = [...(signer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'friendly':
         {
-          if (child is List<ContractFriendly>) {
-            // Add all elements from passed list
-            final newList = [...?friendly, ...child];
-            return copyWith(friendly: newList);
-          } else if (child is ContractFriendly) {
+          if (child is List<ContractFriendlyBuilder>) {
+            // Replace or create new list
+            friendly = child;
+            return;
+          } else if (child is ContractFriendlyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?friendly, child];
-            return copyWith(friendly: newList);
+            friendly = [...(friendly ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'legal':
         {
-          if (child is List<ContractLegal>) {
-            // Add all elements from passed list
-            final newList = [...?legal, ...child];
-            return copyWith(legal: newList);
-          } else if (child is ContractLegal) {
+          if (child is List<ContractLegalBuilder>) {
+            // Replace or create new list
+            legal = child;
+            return;
+          } else if (child is ContractLegalBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?legal, child];
-            return copyWith(legal: newList);
+            legal = [...(legal ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'rule':
         {
-          if (child is List<ContractRule>) {
-            // Add all elements from passed list
-            final newList = [...?rule, ...child];
-            return copyWith(rule: newList);
-          } else if (child is ContractRule) {
+          if (child is List<ContractRuleBuilder>) {
+            // Replace or create new list
+            rule = child;
+            return;
+          } else if (child is ContractRuleBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?rule, child];
-            return copyWith(rule: newList);
+            rule = [...(rule ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'legallyBindingX':
         {
-          if (child is LegallyBindingXContract) {
-            return copyWith(legallyBindingX: child);
+          if (child is LegallyBindingXContractBuilder) {
+            legallyBindingX = child;
+            return;
           } else {
-            if (child is Attachment) {
-              return copyWith(legallyBindingX: child);
+            if (child is AttachmentBuilder) {
+              legallyBindingX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(legallyBindingX: child);
+            if (child is ReferenceBuilder) {
+              legallyBindingX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'legallyBindingAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(legallyBindingX: child);
+          if (child is AttachmentBuilder) {
+            legallyBindingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'legallyBindingReference':
         {
-          if (child is Reference) {
-            return copyWith(legallyBindingX: child);
+          if (child is ReferenceBuilder) {
+            legallyBindingX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1586,372 +1507,325 @@ class Contract extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'legalState':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'instantiatesCanonical':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'instantiatesUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'contentDerivative':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'issued':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'applies':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'expirationType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'authority':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'domain':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'site':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'subtitle':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'alias':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'author':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'scope':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'topic':
       case 'topicX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'topicCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'topicReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'contentDefinition':
-        return ['ContractContentDefinition'];
+        return ['ContractContentDefinitionBuilder'];
       case 'term':
-        return ['ContractTerm'];
+        return ['ContractTermBuilder'];
       case 'supportingInfo':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'relevantHistory':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'signer':
-        return ['ContractSigner'];
+        return ['ContractSignerBuilder'];
       case 'friendly':
-        return ['ContractFriendly'];
+        return ['ContractFriendlyBuilder'];
       case 'legal':
-        return ['ContractLegal'];
+        return ['ContractLegalBuilder'];
       case 'rule':
-        return ['ContractRule'];
+        return ['ContractRuleBuilder'];
       case 'legallyBinding':
       case 'legallyBindingX':
-        return ['Attachment', 'Reference'];
+        return ['AttachmentBuilder', 'ReferenceBuilder'];
       case 'legallyBindingAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'legallyBindingReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Contract]
+  /// Creates a new [ContractBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Contract createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: ContractResourceStatusCodes.empty(),
-          );
+          status = ContractResourceStatusCodesBuilder.empty();
+          return;
         }
       case 'legalState':
         {
-          return copyWith(
-            legalState: CodeableConcept.empty(),
-          );
+          legalState = CodeableConceptBuilder.empty();
+          return;
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(
-            instantiatesCanonical: Reference.empty(),
-          );
+          instantiatesCanonical = ReferenceBuilder.empty();
+          return;
         }
       case 'instantiatesUri':
         {
-          return copyWith(
-            instantiatesUri: FhirUri.empty(),
-          );
+          instantiatesUri = FhirUriBuilder.empty();
+          return;
         }
       case 'contentDerivative':
         {
-          return copyWith(
-            contentDerivative: CodeableConcept.empty(),
-          );
+          contentDerivative = CodeableConceptBuilder.empty();
+          return;
         }
       case 'issued':
         {
-          return copyWith(
-            issued: FhirDateTime.empty(),
-          );
+          issued = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'applies':
         {
-          return copyWith(
-            applies: Period.empty(),
-          );
+          applies = PeriodBuilder.empty();
+          return;
         }
       case 'expirationType':
         {
-          return copyWith(
-            expirationType: CodeableConcept.empty(),
-          );
+          expirationType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: <Reference>[],
-          );
+          subject = <ReferenceBuilder>[];
+          return;
         }
       case 'authority':
         {
-          return copyWith(
-            authority: <Reference>[],
-          );
+          authority = <ReferenceBuilder>[];
+          return;
         }
       case 'domain':
         {
-          return copyWith(
-            domain: <Reference>[],
-          );
+          domain = <ReferenceBuilder>[];
+          return;
         }
       case 'site':
         {
-          return copyWith(
-            site: <Reference>[],
-          );
+          site = <ReferenceBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'subtitle':
         {
-          return copyWith(
-            subtitle: FhirString.empty(),
-          );
+          subtitle = FhirStringBuilder.empty();
+          return;
         }
       case 'alias':
         {
-          return copyWith(
-            alias: <FhirString>[],
-          );
+          alias = <FhirStringBuilder>[];
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: Reference.empty(),
-          );
+          author = ReferenceBuilder.empty();
+          return;
         }
       case 'scope':
         {
-          return copyWith(
-            scope: CodeableConcept.empty(),
-          );
+          scope = CodeableConceptBuilder.empty();
+          return;
         }
       case 'topic':
       case 'topicX':
       case 'topicCodeableConcept':
         {
-          return copyWith(
-            topicX: CodeableConcept.empty(),
-          );
+          topicX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'topicReference':
         {
-          return copyWith(
-            topicX: Reference.empty(),
-          );
+          topicX = ReferenceBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subType':
         {
-          return copyWith(
-            subType: <CodeableConcept>[],
-          );
+          subType = <CodeableConceptBuilder>[];
+          return;
         }
       case 'contentDefinition':
         {
-          return copyWith(
-            contentDefinition: ContractContentDefinition.empty(),
-          );
+          contentDefinition = ContractContentDefinitionBuilder.empty();
+          return;
         }
       case 'term':
         {
-          return copyWith(
-            term: <ContractTerm>[],
-          );
+          term = <ContractTermBuilder>[];
+          return;
         }
       case 'supportingInfo':
         {
-          return copyWith(
-            supportingInfo: <Reference>[],
-          );
+          supportingInfo = <ReferenceBuilder>[];
+          return;
         }
       case 'relevantHistory':
         {
-          return copyWith(
-            relevantHistory: <Reference>[],
-          );
+          relevantHistory = <ReferenceBuilder>[];
+          return;
         }
       case 'signer':
         {
-          return copyWith(
-            signer: <ContractSigner>[],
-          );
+          signer = <ContractSignerBuilder>[];
+          return;
         }
       case 'friendly':
         {
-          return copyWith(
-            friendly: <ContractFriendly>[],
-          );
+          friendly = <ContractFriendlyBuilder>[];
+          return;
         }
       case 'legal':
         {
-          return copyWith(
-            legal: <ContractLegal>[],
-          );
+          legal = <ContractLegalBuilder>[];
+          return;
         }
       case 'rule':
         {
-          return copyWith(
-            rule: <ContractRule>[],
-          );
+          rule = <ContractRuleBuilder>[];
+          return;
         }
       case 'legallyBinding':
       case 'legallyBindingX':
       case 'legallyBindingAttachment':
         {
-          return copyWith(
-            legallyBindingX: Attachment.empty(),
-          );
+          legallyBindingX = AttachmentBuilder.empty();
+          return;
         }
       case 'legallyBindingReference':
         {
-          return copyWith(
-            legallyBindingX: Reference.empty(),
-          );
+          legallyBindingX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1960,7 +1834,7 @@ class Contract extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Contract clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -2003,336 +1877,167 @@ class Contract extends DomainResource {
     bool rule = false,
     bool legallyBinding = false,
   }) {
-    return Contract(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      url: url ? null : this.url,
-      version: version ? null : this.version,
-      status: status ? null : this.status,
-      legalState: legalState ? null : this.legalState,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      contentDerivative: contentDerivative ? null : this.contentDerivative,
-      issued: issued ? null : this.issued,
-      applies: applies ? null : this.applies,
-      expirationType: expirationType ? null : this.expirationType,
-      subject: subject ? null : this.subject,
-      authority: authority ? null : this.authority,
-      domain: domain ? null : this.domain,
-      site: site ? null : this.site,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      subtitle: subtitle ? null : this.subtitle,
-      alias: alias ? null : this.alias,
-      author: author ? null : this.author,
-      scope: scope ? null : this.scope,
-      topicX: topic ? null : topicX,
-      type: type ? null : this.type,
-      subType: subType ? null : this.subType,
-      contentDefinition: contentDefinition ? null : this.contentDefinition,
-      term: term ? null : this.term,
-      supportingInfo: supportingInfo ? null : this.supportingInfo,
-      relevantHistory: relevantHistory ? null : this.relevantHistory,
-      signer: signer ? null : this.signer,
-      friendly: friendly ? null : this.friendly,
-      legal: legal ? null : this.legal,
-      rule: rule ? null : this.rule,
-      legallyBindingX: legallyBinding ? null : legallyBindingX,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (url) this.url = null;
+    if (version) this.version = null;
+    if (status) this.status = null;
+    if (legalState) this.legalState = null;
+    if (instantiatesCanonical) this.instantiatesCanonical = null;
+    if (instantiatesUri) this.instantiatesUri = null;
+    if (contentDerivative) this.contentDerivative = null;
+    if (issued) this.issued = null;
+    if (applies) this.applies = null;
+    if (expirationType) this.expirationType = null;
+    if (subject) this.subject = null;
+    if (authority) this.authority = null;
+    if (domain) this.domain = null;
+    if (site) this.site = null;
+    if (name) this.name = null;
+    if (title) this.title = null;
+    if (subtitle) this.subtitle = null;
+    if (alias) this.alias = null;
+    if (author) this.author = null;
+    if (scope) this.scope = null;
+    if (topic) this.topicX = null;
+    if (type) this.type = null;
+    if (subType) this.subType = null;
+    if (contentDefinition) this.contentDefinition = null;
+    if (term) this.term = null;
+    if (supportingInfo) this.supportingInfo = null;
+    if (relevantHistory) this.relevantHistory = null;
+    if (signer) this.signer = null;
+    if (friendly) this.friendly = null;
+    if (legal) this.legal = null;
+    if (rule) this.rule = null;
+    if (legallyBinding) this.legallyBindingX = null;
   }
 
   @override
-  Contract clone() => throw UnimplementedError();
+  ContractBuilder clone() => throw UnimplementedError();
   @override
-  Contract copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirUri? url,
-    FhirString? version,
-    ContractResourceStatusCodes? status,
-    CodeableConcept? legalState,
-    Reference? instantiatesCanonical,
-    FhirUri? instantiatesUri,
-    CodeableConcept? contentDerivative,
-    FhirDateTime? issued,
-    Period? applies,
-    CodeableConcept? expirationType,
-    List<Reference>? subject,
-    List<Reference>? authority,
-    List<Reference>? domain,
-    List<Reference>? site,
-    FhirString? name,
-    FhirString? title,
-    FhirString? subtitle,
-    List<FhirString>? alias,
-    Reference? author,
-    CodeableConcept? scope,
-    TopicXContract? topicX,
-    CodeableConcept? type,
-    List<CodeableConcept>? subType,
-    ContractContentDefinition? contentDefinition,
-    List<ContractTerm>? term,
-    List<Reference>? supportingInfo,
-    List<Reference>? relevantHistory,
-    List<ContractSigner>? signer,
-    List<ContractFriendly>? friendly,
-    List<ContractLegal>? legal,
-    List<ContractRule>? rule,
-    LegallyBindingXContract? legallyBindingX,
+  ContractBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirUriBuilder? url,
+    FhirStringBuilder? version,
+    ContractResourceStatusCodesBuilder? status,
+    CodeableConceptBuilder? legalState,
+    ReferenceBuilder? instantiatesCanonical,
+    FhirUriBuilder? instantiatesUri,
+    CodeableConceptBuilder? contentDerivative,
+    FhirDateTimeBuilder? issued,
+    PeriodBuilder? applies,
+    CodeableConceptBuilder? expirationType,
+    List<ReferenceBuilder>? subject,
+    List<ReferenceBuilder>? authority,
+    List<ReferenceBuilder>? domain,
+    List<ReferenceBuilder>? site,
+    FhirStringBuilder? name,
+    FhirStringBuilder? title,
+    FhirStringBuilder? subtitle,
+    List<FhirStringBuilder>? alias,
+    ReferenceBuilder? author,
+    CodeableConceptBuilder? scope,
+    TopicXContractBuilder? topicX,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? subType,
+    ContractContentDefinitionBuilder? contentDefinition,
+    List<ContractTermBuilder>? term,
+    List<ReferenceBuilder>? supportingInfo,
+    List<ReferenceBuilder>? relevantHistory,
+    List<ContractSignerBuilder>? signer,
+    List<ContractFriendlyBuilder>? friendly,
+    List<ContractLegalBuilder>? legal,
+    List<ContractRuleBuilder>? rule,
+    LegallyBindingXContractBuilder? legallyBindingX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Contract(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ContractBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      legalState: legalState?.copyWith(
-            objectPath: '$newObjectPath.legalState',
-          ) ??
-          this.legalState,
-      instantiatesCanonical: instantiatesCanonical?.copyWith(
-            objectPath: '$newObjectPath.instantiatesCanonical',
-          ) ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri?.copyWith(
-            objectPath: '$newObjectPath.instantiatesUri',
-          ) ??
-          this.instantiatesUri,
-      contentDerivative: contentDerivative?.copyWith(
-            objectPath: '$newObjectPath.contentDerivative',
-          ) ??
-          this.contentDerivative,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      applies: applies?.copyWith(
-            objectPath: '$newObjectPath.applies',
-          ) ??
-          this.applies,
-      expirationType: expirationType?.copyWith(
-            objectPath: '$newObjectPath.expirationType',
-          ) ??
-          this.expirationType,
-      subject: subject
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subject',
-                ),
-              )
-              .toList() ??
-          this.subject,
-      authority: authority
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.authority',
-                ),
-              )
-              .toList() ??
-          this.authority,
-      domain: domain
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.domain',
-                ),
-              )
-              .toList() ??
-          this.domain,
-      site: site
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.site',
-                ),
-              )
-              .toList() ??
-          this.site,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      subtitle: subtitle?.copyWith(
-            objectPath: '$newObjectPath.subtitle',
-          ) ??
-          this.subtitle,
-      alias: alias
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.alias',
-                ),
-              )
-              .toList() ??
-          this.alias,
-      author: author?.copyWith(
-            objectPath: '$newObjectPath.author',
-          ) ??
-          this.author,
-      scope: scope?.copyWith(
-            objectPath: '$newObjectPath.scope',
-          ) ??
-          this.scope,
-      topicX: topicX?.copyWith(
-            objectPath: '$newObjectPath.topicX',
-          ) as TopicXContract? ??
-          this.topicX,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subType: subType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subType',
-                ),
-              )
-              .toList() ??
-          this.subType,
-      contentDefinition: contentDefinition?.copyWith(
-            objectPath: '$newObjectPath.contentDefinition',
-          ) ??
-          this.contentDefinition,
-      term: term
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.term',
-                ),
-              )
-              .toList() ??
-          this.term,
-      supportingInfo: supportingInfo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.supportingInfo',
-                ),
-              )
-              .toList() ??
-          this.supportingInfo,
-      relevantHistory: relevantHistory
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relevantHistory',
-                ),
-              )
-              .toList() ??
-          this.relevantHistory,
-      signer: signer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.signer',
-                ),
-              )
-              .toList() ??
-          this.signer,
-      friendly: friendly
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.friendly',
-                ),
-              )
-              .toList() ??
-          this.friendly,
-      legal: legal
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.legal',
-                ),
-              )
-              .toList() ??
-          this.legal,
-      rule: rule
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.rule',
-                ),
-              )
-              .toList() ??
-          this.rule,
-      legallyBindingX: legallyBindingX?.copyWith(
-            objectPath: '$newObjectPath.legallyBindingX',
-          ) as LegallyBindingXContract? ??
-          this.legallyBindingX,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      url: url ?? this.url,
+      version: version ?? this.version,
+      status: status ?? this.status,
+      legalState: legalState ?? this.legalState,
+      instantiatesCanonical:
+          instantiatesCanonical ?? this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ?? this.instantiatesUri,
+      contentDerivative: contentDerivative ?? this.contentDerivative,
+      issued: issued ?? this.issued,
+      applies: applies ?? this.applies,
+      expirationType: expirationType ?? this.expirationType,
+      subject: subject ?? this.subject,
+      authority: authority ?? this.authority,
+      domain: domain ?? this.domain,
+      site: site ?? this.site,
+      name: name ?? this.name,
+      title: title ?? this.title,
+      subtitle: subtitle ?? this.subtitle,
+      alias: alias ?? this.alias,
+      author: author ?? this.author,
+      scope: scope ?? this.scope,
+      topicX: topicX ?? this.topicX,
+      type: type ?? this.type,
+      subType: subType ?? this.subType,
+      contentDefinition: contentDefinition ?? this.contentDefinition,
+      term: term ?? this.term,
+      supportingInfo: supportingInfo ?? this.supportingInfo,
+      relevantHistory: relevantHistory ?? this.relevantHistory,
+      signer: signer ?? this.signer,
+      friendly: friendly ?? this.friendly,
+      legal: legal ?? this.legal,
+      rule: rule ?? this.rule,
+      legallyBindingX: legallyBindingX ?? this.legallyBindingX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Contract) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2367,25 +2072,25 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -2451,25 +2156,25 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       subject,
       o.subject,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       authority,
       o.authority,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       domain,
       o.domain,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       site,
       o.site,
     )) {
@@ -2493,7 +2198,7 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       alias,
       o.alias,
     )) {
@@ -2523,7 +2228,7 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       subType,
       o.subType,
     )) {
@@ -2535,43 +2240,43 @@ class Contract extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContractTerm>(
+    if (!listEquals<ContractTermBuilder>(
       term,
       o.term,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       supportingInfo,
       o.supportingInfo,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       relevantHistory,
       o.relevantHistory,
     )) {
       return false;
     }
-    if (!listEquals<ContractSigner>(
+    if (!listEquals<ContractSignerBuilder>(
       signer,
       o.signer,
     )) {
       return false;
     }
-    if (!listEquals<ContractFriendly>(
+    if (!listEquals<ContractFriendlyBuilder>(
       friendly,
       o.friendly,
     )) {
       return false;
     }
-    if (!listEquals<ContractLegal>(
+    if (!listEquals<ContractLegalBuilder>(
       legal,
       o.legal,
     )) {
       return false;
     }
-    if (!listEquals<ContractRule>(
+    if (!listEquals<ContractRuleBuilder>(
       rule,
       o.rule,
     )) {
@@ -2587,23 +2292,23 @@ class Contract extends DomainResource {
   }
 }
 
-/// [ContractContentDefinition]
+/// [ContractContentDefinitionBuilder]
 /// Precusory content developed with a focus and intent of supporting the
 /// formation a Contract instance, which may be associated with and
 /// transformable into a Contract.
-class ContractContentDefinition extends BackboneElement {
+class ContractContentDefinitionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractContentDefinition]
+  /// [ContractContentDefinitionBuilder]
 
-  const ContractContentDefinition({
+  ContractContentDefinitionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.subType,
     this.publisher,
     this.publicationDate,
-    required this.publicationStatus,
+    this.publicationStatus,
     this.copyright,
     super.disallowExtensions,
   }) : super(
@@ -2611,28 +2316,25 @@ class ContractContentDefinition extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractContentDefinition.empty() => ContractContentDefinition(
-        type: CodeableConcept.empty(),
-        publicationStatus: ContractResourcePublicationStatusCodes.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory ContractContentDefinitionBuilder.empty() =>
+      ContractContentDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractContentDefinition.fromJson(
+  factory ContractContentDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.contentDefinition';
-    return ContractContentDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractContentDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2641,8 +2343,8 @@ class ContractContentDefinition extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2650,62 +2352,62 @@ class ContractContentDefinition extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      subType: JsonParser.parseObject<CodeableConcept>(
+      ),
+      subType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'subType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.subType',
       ),
-      publisher: JsonParser.parseObject<Reference>(
+      publisher: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'publisher',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.publisher',
       ),
-      publicationDate: JsonParser.parsePrimitive<FhirDateTime>(
+      publicationDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'publicationDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.publicationDate',
       ),
-      publicationStatus:
-          JsonParser.parsePrimitive<ContractResourcePublicationStatusCodes>(
+      publicationStatus: JsonParser.parsePrimitive<
+          ContractResourcePublicationStatusCodesBuilder>(
         json,
         'publicationStatus',
-        ContractResourcePublicationStatusCodes.fromJson,
+        ContractResourcePublicationStatusCodesBuilder.fromJson,
         '$objectPath.publicationStatus',
-      )!,
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      ),
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
     );
   }
 
-  /// Deserialize [ContractContentDefinition]
+  /// Deserialize [ContractContentDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractContentDefinition.fromYaml(
+  factory ContractContentDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractContentDefinition.fromJson(
+      return ContractContentDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractContentDefinition.fromJson(
+      return ContractContentDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractContentDefinition '
+        'ContractContentDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2713,16 +2415,16 @@ class ContractContentDefinition extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractContentDefinition]
+  /// [ContractContentDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractContentDefinition.fromJsonString(
+  factory ContractContentDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractContentDefinition.fromJson(json);
+      return ContractContentDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2736,51 +2438,51 @@ class ContractContentDefinition extends BackboneElement {
   /// Precusory content structure and use, i.e., a boilerplate, template,
   /// application for a contract such as an insurance policy or benefits
   /// under a program, e.g., workers compensation.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [subType]
   /// Detailed Precusory content type.
-  final CodeableConcept? subType;
+  CodeableConceptBuilder? subType;
 
   /// [publisher]
   /// The individual or organization that published the Contract precursor
   /// content.
-  final Reference? publisher;
+  ReferenceBuilder? publisher;
 
   /// [publicationDate]
   /// The date (and optionally time) when the contract was published. The
   /// date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the contract changes.
-  final FhirDateTime? publicationDate;
+  FhirDateTimeBuilder? publicationDate;
 
   /// [publicationStatus]
   /// amended | appended | cancelled | disputed | entered-in-error |
   /// executable | executed | negotiable | offered | policy | rejected |
   /// renewed | revoked | resolved | terminated.
-  final ContractResourcePublicationStatusCodes publicationStatus;
+  ContractResourcePublicationStatusCodesBuilder? publicationStatus;
 
   /// [copyright]
   /// A copyright statement relating to Contract precursor content. Copyright
   /// statements are generally legal restrictions on the use and publishing
   /// of the Contract precursor content.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2789,47 +2491,20 @@ class ContractContentDefinition extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'subType',
-      subType,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'publicationDate',
-      publicationDate,
-    );
-    addField(
-      'publicationStatus',
-      publicationStatus,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('subType', subType);
+    addField('publisher', publisher);
+    addField('publicationDate', publicationDate);
+    addField('publicationStatus', publicationStatus);
+    addField('copyright', copyright);
     return json;
   }
 
@@ -2852,11 +2527,11 @@ class ContractContentDefinition extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2871,7 +2546,9 @@ class ContractContentDefinition extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'subType':
         if (subType != null) {
           fields.add(subType!);
@@ -2885,7 +2562,9 @@ class ContractContentDefinition extends BackboneElement {
           fields.add(publicationDate!);
         }
       case 'publicationStatus':
-        fields.add(publicationStatus);
+        if (publicationStatus != null) {
+          fields.add(publicationStatus!);
+        }
       case 'copyright':
         if (copyright != null) {
           fields.add(copyright!);
@@ -2900,7 +2579,7 @@ class ContractContentDefinition extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2909,97 +2588,103 @@ class ContractContentDefinition extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(subType: child);
+          if (child is CodeableConceptBuilder) {
+            subType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is Reference) {
-            return copyWith(publisher: child);
+          if (child is ReferenceBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publicationDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(publicationDate: child);
+          if (child is FhirDateTimeBuilder) {
+            publicationDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publicationStatus':
         {
-          if (child is ContractResourcePublicationStatusCodes) {
-            return copyWith(publicationStatus: child);
+          if (child is ContractResourcePublicationStatusCodesBuilder) {
+            publicationStatus = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3015,90 +2700,78 @@ class ContractContentDefinition extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'publisher':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'publicationDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publicationStatus':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractContentDefinition]
+  /// Creates a new [ContractContentDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractContentDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subType':
         {
-          return copyWith(
-            subType: CodeableConcept.empty(),
-          );
+          subType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: Reference.empty(),
-          );
+          publisher = ReferenceBuilder.empty();
+          return;
         }
       case 'publicationDate':
         {
-          return copyWith(
-            publicationDate: FhirDateTime.empty(),
-          );
+          publicationDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publicationStatus':
         {
-          return copyWith(
-            publicationStatus: ContractResourcePublicationStatusCodes.empty(),
-          );
+          publicationStatus =
+              ContractResourcePublicationStatusCodesBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3107,41 +2780,41 @@ class ContractContentDefinition extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractContentDefinition clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool subType = false,
     bool publisher = false,
     bool publicationDate = false,
+    bool publicationStatus = false,
     bool copyright = false,
   }) {
-    return ContractContentDefinition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      subType: subType ? null : this.subType,
-      publisher: publisher ? null : this.publisher,
-      publicationDate: publicationDate ? null : this.publicationDate,
-      publicationStatus: publicationStatus,
-      copyright: copyright ? null : this.copyright,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (subType) this.subType = null;
+    if (publisher) this.publisher = null;
+    if (publicationDate) this.publicationDate = null;
+    if (publicationStatus) this.publicationStatus = null;
+    if (copyright) this.copyright = null;
   }
 
   @override
-  ContractContentDefinition clone() => throw UnimplementedError();
+  ContractContentDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  ContractContentDefinition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    CodeableConcept? subType,
-    Reference? publisher,
-    FhirDateTime? publicationDate,
-    ContractResourcePublicationStatusCodes? publicationStatus,
-    FhirMarkdown? copyright,
+  ContractContentDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? subType,
+    ReferenceBuilder? publisher,
+    FhirDateTimeBuilder? publicationDate,
+    ContractResourcePublicationStatusCodesBuilder? publicationStatus,
+    FhirMarkdownBuilder? copyright,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3149,58 +2822,40 @@ class ContractContentDefinition extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractContentDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subType: subType?.copyWith(
-            objectPath: '$newObjectPath.subType',
-          ) ??
-          this.subType,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      publicationDate: publicationDate?.copyWith(
-            objectPath: '$newObjectPath.publicationDate',
-          ) ??
-          this.publicationDate,
-      publicationStatus: publicationStatus?.copyWith(
-            objectPath: '$newObjectPath.publicationStatus',
-          ) ??
-          this.publicationStatus,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
+    final newResult = ContractContentDefinitionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      subType: subType ?? this.subType,
+      publisher: publisher ?? this.publisher,
+      publicationDate: publicationDate ?? this.publicationDate,
+      publicationStatus: publicationStatus ?? this.publicationStatus,
+      copyright: copyright ?? this.copyright,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractContentDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractContentDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3211,13 +2866,13 @@ class ContractContentDefinition extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3263,14 +2918,14 @@ class ContractContentDefinition extends BackboneElement {
   }
 }
 
-/// [ContractTerm]
+/// [ContractTermBuilder]
 /// One or more Contract Provisions, which may be related and conveyed as a
 /// group, and may contain nested groups.
-class ContractTerm extends BackboneElement {
+class ContractTermBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractTerm]
+  /// [ContractTermBuilder]
 
-  const ContractTerm({
+  ContractTermBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3282,7 +2937,7 @@ class ContractTerm extends BackboneElement {
     this.subType,
     this.text,
     this.securityLabel,
-    required this.offer,
+    this.offer,
     this.asset,
     this.action,
     this.group,
@@ -3292,27 +2947,24 @@ class ContractTerm extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractTerm.empty() => ContractTerm(
-        offer: ContractOffer.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractTermBuilder.empty() => ContractTermBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractTerm.fromJson(
+  factory ContractTermBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term';
-    return ContractTerm(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractTermBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3321,8 +2973,8 @@ class ContractTerm extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3330,53 +2982,53 @@ class ContractTerm extends BackboneElement {
             ),
           )
           .toList(),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      issued: JsonParser.parsePrimitive<FhirDateTime>(
+      issued: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'issued',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.issued',
       ),
-      applies: JsonParser.parseObject<Period>(
+      applies: JsonParser.parseObject<PeriodBuilder>(
         json,
         'applies',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.applies',
       ),
-      topicX: JsonParser.parsePolymorphic<TopicXContractTerm>(
+      topicX: JsonParser.parsePolymorphic<TopicXContractTermBuilder>(
         json,
         {
-          'topicCodeableConcept': CodeableConcept.fromJson,
-          'topicReference': Reference.fromJson,
+          'topicCodeableConcept': CodeableConceptBuilder.fromJson,
+          'topicReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      subType: JsonParser.parseObject<CodeableConcept>(
+      subType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'subType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.subType',
       ),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
       securityLabel: (json['securityLabel'] as List<dynamic>?)
-          ?.map<ContractSecurityLabel>(
-            (v) => ContractSecurityLabel.fromJson(
+          ?.map<ContractSecurityLabelBuilder>(
+            (v) => ContractSecurityLabelBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.securityLabel',
@@ -3384,15 +3036,15 @@ class ContractTerm extends BackboneElement {
             ),
           )
           .toList(),
-      offer: JsonParser.parseObject<ContractOffer>(
+      offer: JsonParser.parseObject<ContractOfferBuilder>(
         json,
         'offer',
-        ContractOffer.fromJson,
+        ContractOfferBuilder.fromJson,
         '$objectPath.offer',
-      )!,
+      ),
       asset: (json['asset'] as List<dynamic>?)
-          ?.map<ContractAsset>(
-            (v) => ContractAsset.fromJson(
+          ?.map<ContractAssetBuilder>(
+            (v) => ContractAssetBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.asset',
@@ -3401,8 +3053,8 @@ class ContractTerm extends BackboneElement {
           )
           .toList(),
       action: (json['action'] as List<dynamic>?)
-          ?.map<ContractAction>(
-            (v) => ContractAction.fromJson(
+          ?.map<ContractActionBuilder>(
+            (v) => ContractActionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.action',
@@ -3411,8 +3063,8 @@ class ContractTerm extends BackboneElement {
           )
           .toList(),
       group: (json['group'] as List<dynamic>?)
-          ?.map<ContractTerm>(
-            (v) => ContractTerm.fromJson(
+          ?.map<ContractTermBuilder>(
+            (v) => ContractTermBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.group',
@@ -3423,22 +3075,22 @@ class ContractTerm extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractTerm]
+  /// Deserialize [ContractTermBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractTerm.fromYaml(
+  factory ContractTermBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractTerm.fromJson(
+      return ContractTermBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractTerm.fromJson(
+      return ContractTermBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractTerm '
+        'ContractTermBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3446,16 +3098,16 @@ class ContractTerm extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractTerm]
+  /// [ContractTermBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractTerm.fromJsonString(
+  factory ContractTermBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractTerm.fromJson(json);
+      return ContractTermBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3467,80 +3119,81 @@ class ContractTerm extends BackboneElement {
 
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [issued]
   /// When this Contract Provision was issued.
-  final FhirDateTime? issued;
+  FhirDateTimeBuilder? issued;
 
   /// [applies]
   /// Relevant time or time-period when this Contract Provision is
   /// applicable.
-  final Period? applies;
+  PeriodBuilder? applies;
 
   /// [topicX]
   /// The entity that the term applies to.
-  final TopicXContractTerm? topicX;
+  TopicXContractTermBuilder? topicX;
 
-  /// Getter for [topicCodeableConcept] as a CodeableConcept
-  CodeableConcept? get topicCodeableConcept => topicX?.isAs<CodeableConcept>();
+  /// Getter for [topicCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get topicCodeableConcept =>
+      topicX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [topicReference] as a Reference
-  Reference? get topicReference => topicX?.isAs<Reference>();
+  /// Getter for [topicReference] as a ReferenceBuilder
+  ReferenceBuilder? get topicReference => topicX?.isAs<ReferenceBuilder>();
 
   /// [type]
   /// A legal clause or condition contained within a contract that requires
   /// one or both parties to perform a particular requirement by some
   /// specified time or prevents one or both parties from performing a
   /// particular requirement by some specified time.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [subType]
   /// A specialized legal clause or condition based on overarching contract
   /// type.
-  final CodeableConcept? subType;
+  CodeableConceptBuilder? subType;
 
   /// [text]
   /// Statement of a provision in a policy or a contract.
-  final FhirString? text;
+  FhirStringBuilder? text;
 
   /// [securityLabel]
   /// Security labels that protect the handling of information about the term
   /// and its elements, which may be specifically identified..
-  final List<ContractSecurityLabel>? securityLabel;
+  List<ContractSecurityLabelBuilder>? securityLabel;
 
   /// [offer]
   /// The matter of concern in the context of this provision of the agrement.
-  final ContractOffer offer;
+  ContractOfferBuilder? offer;
 
   /// [asset]
   /// Contract Term Asset List.
-  final List<ContractAsset>? asset;
+  List<ContractAssetBuilder>? asset;
 
   /// [action]
   /// An actor taking a role in an activity for which it can be assigned some
   /// degree of responsibility for the activity taking place.
-  final List<ContractAction>? action;
+  List<ContractActionBuilder>? action;
 
   /// [group]
   /// Nested group of Contract Provisions.
-  final List<ContractTerm>? group;
+  List<ContractTermBuilder>? group;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3549,75 +3202,30 @@ class ContractTerm extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'issued',
-      issued,
-    );
-    addField(
-      'applies',
-      applies,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('issued', issued);
+    addField('applies', applies);
     if (topicX != null) {
       final fhirType = topicX!.fhirType;
-      addField(
-        'topic${fhirType.capitalize()}',
-        topicX,
-      );
+      addField('topic${fhirType.capitalize()}', topicX);
     }
 
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'subType',
-      subType,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'securityLabel',
-      securityLabel,
-    );
-    addField(
-      'offer',
-      offer,
-    );
-    addField(
-      'asset',
-      asset,
-    );
-    addField(
-      'action',
-      action,
-    );
-    addField(
-      'group',
-      group,
-    );
+    addField('type', type);
+    addField('subType', subType);
+    addField('text', text);
+    addField('securityLabel', securityLabel);
+    addField('offer', offer);
+    addField('asset', asset);
+    addField('action', action);
+    addField('group', group);
     return json;
   }
 
@@ -3646,11 +3254,11 @@ class ContractTerm extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3677,15 +3285,19 @@ class ContractTerm extends BackboneElement {
           fields.add(applies!);
         }
       case 'topic':
-        fields.add(topicX!);
+        if (topicX != null) {
+          fields.add(topicX!);
+        }
       case 'topicX':
-        fields.add(topicX!);
+        if (topicX != null) {
+          fields.add(topicX!);
+        }
       case 'topicCodeableConcept':
-        if (topicX is CodeableConcept) {
+        if (topicX is CodeableConceptBuilder) {
           fields.add(topicX!);
         }
       case 'topicReference':
-        if (topicX is Reference) {
+        if (topicX is ReferenceBuilder) {
           fields.add(topicX!);
         }
       case 'type':
@@ -3705,7 +3317,9 @@ class ContractTerm extends BackboneElement {
           fields.addAll(securityLabel!);
         }
       case 'offer':
-        fields.add(offer);
+        if (offer != null) {
+          fields.add(offer!);
+        }
       case 'asset':
         if (asset != null) {
           fields.addAll(asset!);
@@ -3728,7 +3342,7 @@ class ContractTerm extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3737,191 +3351,203 @@ class ContractTerm extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issued':
         {
-          if (child is FhirDateTime) {
-            return copyWith(issued: child);
+          if (child is FhirDateTimeBuilder) {
+            issued = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'applies':
         {
-          if (child is Period) {
-            return copyWith(applies: child);
+          if (child is PeriodBuilder) {
+            applies = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'topicX':
         {
-          if (child is TopicXContractTerm) {
-            return copyWith(topicX: child);
+          if (child is TopicXContractTermBuilder) {
+            topicX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(topicX: child);
+            if (child is CodeableConceptBuilder) {
+              topicX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(topicX: child);
+            if (child is ReferenceBuilder) {
+              topicX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'topicCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(topicX: child);
+          if (child is CodeableConceptBuilder) {
+            topicX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'topicReference':
         {
-          if (child is Reference) {
-            return copyWith(topicX: child);
+          if (child is ReferenceBuilder) {
+            topicX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(subType: child);
+          if (child is CodeableConceptBuilder) {
+            subType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabel':
         {
-          if (child is List<ContractSecurityLabel>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabel, ...child];
-            return copyWith(securityLabel: newList);
-          } else if (child is ContractSecurityLabel) {
+          if (child is List<ContractSecurityLabelBuilder>) {
+            // Replace or create new list
+            securityLabel = child;
+            return;
+          } else if (child is ContractSecurityLabelBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabel, child];
-            return copyWith(securityLabel: newList);
+            securityLabel = [...(securityLabel ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'offer':
         {
-          if (child is ContractOffer) {
-            return copyWith(offer: child);
+          if (child is ContractOfferBuilder) {
+            offer = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'asset':
         {
-          if (child is List<ContractAsset>) {
-            // Add all elements from passed list
-            final newList = [...?asset, ...child];
-            return copyWith(asset: newList);
-          } else if (child is ContractAsset) {
+          if (child is List<ContractAssetBuilder>) {
+            // Replace or create new list
+            asset = child;
+            return;
+          } else if (child is ContractAssetBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?asset, child];
-            return copyWith(asset: newList);
+            asset = [...(asset ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
-          if (child is List<ContractAction>) {
-            // Add all elements from passed list
-            final newList = [...?action, ...child];
-            return copyWith(action: newList);
-          } else if (child is ContractAction) {
+          if (child is List<ContractActionBuilder>) {
+            // Replace or create new list
+            action = child;
+            return;
+          } else if (child is ContractActionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?action, child];
-            return copyWith(action: newList);
+            action = [...(action ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'group':
         {
-          if (child is List<ContractTerm>) {
-            // Add all elements from passed list
-            final newList = [...?group, ...child];
-            return copyWith(group: newList);
-          } else if (child is ContractTerm) {
+          if (child is List<ContractTermBuilder>) {
+            // Replace or create new list
+            group = child;
+            return;
+          } else if (child is ContractTermBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?group, child];
-            return copyWith(group: newList);
+            group = [...(group ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3937,151 +3563,131 @@ class ContractTerm extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'issued':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'applies':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'topic':
       case 'topicX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'topicCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'topicReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'securityLabel':
-        return ['ContractSecurityLabel'];
+        return ['ContractSecurityLabelBuilder'];
       case 'offer':
-        return ['ContractOffer'];
+        return ['ContractOfferBuilder'];
       case 'asset':
-        return ['ContractAsset'];
+        return ['ContractAssetBuilder'];
       case 'action':
-        return ['ContractAction'];
+        return ['ContractActionBuilder'];
       case 'group':
-        return ['ContractTerm'];
+        return ['ContractTermBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractTerm]
+  /// Creates a new [ContractTermBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractTerm createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'issued':
         {
-          return copyWith(
-            issued: FhirDateTime.empty(),
-          );
+          issued = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'applies':
         {
-          return copyWith(
-            applies: Period.empty(),
-          );
+          applies = PeriodBuilder.empty();
+          return;
         }
       case 'topic':
       case 'topicX':
       case 'topicCodeableConcept':
         {
-          return copyWith(
-            topicX: CodeableConcept.empty(),
-          );
+          topicX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'topicReference':
         {
-          return copyWith(
-            topicX: Reference.empty(),
-          );
+          topicX = ReferenceBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subType':
         {
-          return copyWith(
-            subType: CodeableConcept.empty(),
-          );
+          subType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       case 'securityLabel':
         {
-          return copyWith(
-            securityLabel: <ContractSecurityLabel>[],
-          );
+          securityLabel = <ContractSecurityLabelBuilder>[];
+          return;
         }
       case 'offer':
         {
-          return copyWith(
-            offer: ContractOffer.empty(),
-          );
+          offer = ContractOfferBuilder.empty();
+          return;
         }
       case 'asset':
         {
-          return copyWith(
-            asset: <ContractAsset>[],
-          );
+          asset = <ContractAssetBuilder>[];
+          return;
         }
       case 'action':
         {
-          return copyWith(
-            action: <ContractAction>[],
-          );
+          action = <ContractActionBuilder>[];
+          return;
         }
       case 'group':
         {
-          return copyWith(
-            group: <ContractTerm>[],
-          );
+          group = <ContractTermBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4090,7 +3696,7 @@ class ContractTerm extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractTerm clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -4102,48 +3708,47 @@ class ContractTerm extends BackboneElement {
     bool subType = false,
     bool text = false,
     bool securityLabel = false,
+    bool offer = false,
     bool asset = false,
     bool action = false,
     bool group = false,
   }) {
-    return ContractTerm(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      issued: issued ? null : this.issued,
-      applies: applies ? null : this.applies,
-      topicX: topic ? null : topicX,
-      type: type ? null : this.type,
-      subType: subType ? null : this.subType,
-      text: text ? null : this.text,
-      securityLabel: securityLabel ? null : this.securityLabel,
-      offer: offer,
-      asset: asset ? null : this.asset,
-      action: action ? null : this.action,
-      group: group ? null : this.group,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (issued) this.issued = null;
+    if (applies) this.applies = null;
+    if (topic) this.topicX = null;
+    if (type) this.type = null;
+    if (subType) this.subType = null;
+    if (text) this.text = null;
+    if (securityLabel) this.securityLabel = null;
+    if (offer) this.offer = null;
+    if (asset) this.asset = null;
+    if (action) this.action = null;
+    if (group) this.group = null;
   }
 
   @override
-  ContractTerm clone() => throw UnimplementedError();
+  ContractTermBuilder clone() => throw UnimplementedError();
   @override
-  ContractTerm copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    FhirDateTime? issued,
-    Period? applies,
-    TopicXContractTerm? topicX,
-    CodeableConcept? type,
-    CodeableConcept? subType,
-    FhirString? text,
-    List<ContractSecurityLabel>? securityLabel,
-    ContractOffer? offer,
-    List<ContractAsset>? asset,
-    List<ContractAction>? action,
-    List<ContractTerm>? group,
+  ContractTermBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    IdentifierBuilder? identifier,
+    FhirDateTimeBuilder? issued,
+    PeriodBuilder? applies,
+    TopicXContractTermBuilder? topicX,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? subType,
+    FhirStringBuilder? text,
+    List<ContractSecurityLabelBuilder>? securityLabel,
+    ContractOfferBuilder? offer,
+    List<ContractAssetBuilder>? asset,
+    List<ContractActionBuilder>? action,
+    List<ContractTermBuilder>? group,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4151,98 +3756,46 @@ class ContractTerm extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractTerm(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      issued: issued?.copyWith(
-            objectPath: '$newObjectPath.issued',
-          ) ??
-          this.issued,
-      applies: applies?.copyWith(
-            objectPath: '$newObjectPath.applies',
-          ) ??
-          this.applies,
-      topicX: topicX?.copyWith(
-            objectPath: '$newObjectPath.topicX',
-          ) as TopicXContractTerm? ??
-          this.topicX,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subType: subType?.copyWith(
-            objectPath: '$newObjectPath.subType',
-          ) ??
-          this.subType,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      securityLabel: securityLabel
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabel',
-                ),
-              )
-              .toList() ??
-          this.securityLabel,
-      offer: offer?.copyWith(
-            objectPath: '$newObjectPath.offer',
-          ) ??
-          this.offer,
-      asset: asset
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.asset',
-                ),
-              )
-              .toList() ??
-          this.asset,
-      action: action
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.action',
-                ),
-              )
-              .toList() ??
-          this.action,
-      group: group
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.group',
-                ),
-              )
-              .toList() ??
-          this.group,
+    final newResult = ContractTermBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      issued: issued ?? this.issued,
+      applies: applies ?? this.applies,
+      topicX: topicX ?? this.topicX,
+      type: type ?? this.type,
+      subType: subType ?? this.subType,
+      text: text ?? this.text,
+      securityLabel: securityLabel ?? this.securityLabel,
+      offer: offer ?? this.offer,
+      asset: asset ?? this.asset,
+      action: action ?? this.action,
+      group: group ?? this.group,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractTerm) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractTermBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4253,13 +3806,13 @@ class ContractTerm extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4307,7 +3860,7 @@ class ContractTerm extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ContractSecurityLabel>(
+    if (!listEquals<ContractSecurityLabelBuilder>(
       securityLabel,
       o.securityLabel,
     )) {
@@ -4319,19 +3872,19 @@ class ContractTerm extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ContractAsset>(
+    if (!listEquals<ContractAssetBuilder>(
       asset,
       o.asset,
     )) {
       return false;
     }
-    if (!listEquals<ContractAction>(
+    if (!listEquals<ContractActionBuilder>(
       action,
       o.action,
     )) {
       return false;
     }
-    if (!listEquals<ContractTerm>(
+    if (!listEquals<ContractTermBuilder>(
       group,
       o.group,
     )) {
@@ -4341,19 +3894,19 @@ class ContractTerm extends BackboneElement {
   }
 }
 
-/// [ContractSecurityLabel]
+/// [ContractSecurityLabelBuilder]
 /// Security labels that protect the handling of information about the term
 /// and its elements, which may be specifically identified..
-class ContractSecurityLabel extends BackboneElement {
+class ContractSecurityLabelBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractSecurityLabel]
+  /// [ContractSecurityLabelBuilder]
 
-  const ContractSecurityLabel({
+  ContractSecurityLabelBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.number,
-    required this.classification,
+    this.classification,
     this.category,
     this.control,
     super.disallowExtensions,
@@ -4362,27 +3915,25 @@ class ContractSecurityLabel extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractSecurityLabel.empty() => ContractSecurityLabel(
-        classification: Coding.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractSecurityLabelBuilder.empty() =>
+      ContractSecurityLabelBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractSecurityLabel.fromJson(
+  factory ContractSecurityLabelBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.securityLabel';
-    return ContractSecurityLabel(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractSecurityLabelBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4391,8 +3942,8 @@ class ContractSecurityLabel extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4400,21 +3951,21 @@ class ContractSecurityLabel extends BackboneElement {
             ),
           )
           .toList(),
-      number: JsonParser.parsePrimitiveList<FhirUnsignedInt>(
+      number: JsonParser.parsePrimitiveList<FhirUnsignedIntBuilder>(
         json,
         'number',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.number',
       ),
-      classification: JsonParser.parseObject<Coding>(
+      classification: JsonParser.parseObject<CodingBuilder>(
         json,
         'classification',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.classification',
-      )!,
+      ),
       category: (json['category'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.category',
@@ -4423,8 +3974,8 @@ class ContractSecurityLabel extends BackboneElement {
           )
           .toList(),
       control: (json['control'] as List<dynamic>?)
-          ?.map<Coding>(
-            (v) => Coding.fromJson(
+          ?.map<CodingBuilder>(
+            (v) => CodingBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.control',
@@ -4435,22 +3986,22 @@ class ContractSecurityLabel extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractSecurityLabel]
+  /// Deserialize [ContractSecurityLabelBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractSecurityLabel.fromYaml(
+  factory ContractSecurityLabelBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractSecurityLabel.fromJson(
+      return ContractSecurityLabelBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractSecurityLabel.fromJson(
+      return ContractSecurityLabelBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractSecurityLabel '
+        'ContractSecurityLabelBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4458,16 +4009,16 @@ class ContractSecurityLabel extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractSecurityLabel]
+  /// [ContractSecurityLabelBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractSecurityLabel.fromJsonString(
+  factory ContractSecurityLabelBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractSecurityLabel.fromJson(json);
+      return ContractSecurityLabelBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4480,38 +4031,38 @@ class ContractSecurityLabel extends BackboneElement {
   /// [number]
   /// Number used to link this term or term element to the applicable
   /// Security Label.
-  final List<FhirUnsignedInt>? number;
+  List<FhirUnsignedIntBuilder>? number;
 
   /// [classification]
   /// Security label privacy tag that species the level of confidentiality
   /// protection required for this term and/or term elements.
-  final Coding classification;
+  CodingBuilder? classification;
 
   /// [category]
   /// Security label privacy tag that species the applicable privacy and
   /// security policies governing this term and/or term elements.
-  final List<Coding>? category;
+  List<CodingBuilder>? category;
 
   /// [control]
   /// Security label privacy tag that species the manner in which term and/or
   /// term elements are to be protected.
-  final List<Coding>? control;
+  List<CodingBuilder>? control;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4520,39 +4071,18 @@ class ContractSecurityLabel extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'number',
-      number,
-    );
-    addField(
-      'classification',
-      classification,
-    );
-    addField(
-      'category',
-      category,
-    );
-    addField(
-      'control',
-      control,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('number', number);
+    addField('classification', classification);
+    addField('category', category);
+    addField('control', control);
     return json;
   }
 
@@ -4573,11 +4103,11 @@ class ContractSecurityLabel extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4596,7 +4126,9 @@ class ContractSecurityLabel extends BackboneElement {
           fields.addAll(number!);
         }
       case 'classification':
-        fields.add(classification);
+        if (classification != null) {
+          fields.add(classification!);
+        }
       case 'category':
         if (category != null) {
           fields.addAll(category!);
@@ -4615,7 +4147,7 @@ class ContractSecurityLabel extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4624,99 +4156,100 @@ class ContractSecurityLabel extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'number':
         {
-          if (child is List<FhirUnsignedInt>) {
-            // Add all elements from passed list
-            final newList = [...?number, ...child];
-            return copyWith(number: newList);
-          } else if (child is FhirUnsignedInt) {
+          if (child is List<FhirUnsignedIntBuilder>) {
+            // Replace or create new list
+            number = child;
+            return;
+          } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?number, child];
-            return copyWith(number: newList);
+            number = [...(number ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classification':
         {
-          if (child is Coding) {
-            return copyWith(classification: child);
+          if (child is CodingBuilder) {
+            classification = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?category, ...child];
-            return copyWith(category: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            category = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
-            return copyWith(category: newList);
+            category = [...(category ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'control':
         {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?control, ...child];
-            return copyWith(control: newList);
-          } else if (child is Coding) {
+          if (child is List<CodingBuilder>) {
+            // Replace or create new list
+            control = child;
+            return;
+          } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?control, child];
-            return copyWith(control: newList);
+            control = [...(control ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4732,74 +4265,63 @@ class ContractSecurityLabel extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'number':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'classification':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'category':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'control':
-        return ['Coding'];
+        return ['CodingBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractSecurityLabel]
+  /// Creates a new [ContractSecurityLabelBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractSecurityLabel createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'number':
         {
-          return copyWith(
-            number: <FhirUnsignedInt>[],
-          );
+          number = <FhirUnsignedIntBuilder>[];
+          return;
         }
       case 'classification':
         {
-          return copyWith(
-            classification: Coding.empty(),
-          );
+          classification = CodingBuilder.empty();
+          return;
         }
       case 'category':
         {
-          return copyWith(
-            category: <Coding>[],
-          );
+          category = <CodingBuilder>[];
+          return;
         }
       case 'control':
         {
-          return copyWith(
-            control: <Coding>[],
-          );
+          control = <CodingBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4808,36 +4330,35 @@ class ContractSecurityLabel extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractSecurityLabel clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool number = false,
+    bool classification = false,
     bool category = false,
     bool control = false,
   }) {
-    return ContractSecurityLabel(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      number: number ? null : this.number,
-      classification: classification,
-      category: category ? null : this.category,
-      control: control ? null : this.control,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (number) this.number = null;
+    if (classification) this.classification = null;
+    if (category) this.category = null;
+    if (control) this.control = null;
   }
 
   @override
-  ContractSecurityLabel clone() => throw UnimplementedError();
+  ContractSecurityLabelBuilder clone() => throw UnimplementedError();
   @override
-  ContractSecurityLabel copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<FhirUnsignedInt>? number,
-    Coding? classification,
-    List<Coding>? category,
-    List<Coding>? control,
+  ContractSecurityLabelBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<FhirUnsignedIntBuilder>? number,
+    CodingBuilder? classification,
+    List<CodingBuilder>? category,
+    List<CodingBuilder>? control,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4845,62 +4366,38 @@ class ContractSecurityLabel extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractSecurityLabel(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      number: number
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.number',
-                ),
-              )
-              .toList() ??
-          this.number,
-      classification: classification?.copyWith(
-            objectPath: '$newObjectPath.classification',
-          ) ??
-          this.classification,
-      category: category
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.category',
-                ),
-              )
-              .toList() ??
-          this.category,
-      control: control
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.control',
-                ),
-              )
-              .toList() ??
-          this.control,
+    final newResult = ContractSecurityLabelBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      number: number ?? this.number,
+      classification: classification ?? this.classification,
+      category: category ?? this.category,
+      control: control ?? this.control,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractSecurityLabel) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractSecurityLabelBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4911,19 +4408,19 @@ class ContractSecurityLabel extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<FhirUnsignedInt>(
+    if (!listEquals<FhirUnsignedIntBuilder>(
       number,
       o.number,
     )) {
@@ -4935,13 +4432,13 @@ class ContractSecurityLabel extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       category,
       o.category,
     )) {
       return false;
     }
-    if (!listEquals<Coding>(
+    if (!listEquals<CodingBuilder>(
       control,
       o.control,
     )) {
@@ -4951,13 +4448,13 @@ class ContractSecurityLabel extends BackboneElement {
   }
 }
 
-/// [ContractOffer]
+/// [ContractOfferBuilder]
 /// The matter of concern in the context of this provision of the agrement.
-class ContractOffer extends BackboneElement {
+class ContractOfferBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractOffer]
+  /// [ContractOfferBuilder]
 
-  const ContractOffer({
+  ContractOfferBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4977,25 +4474,24 @@ class ContractOffer extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractOffer.empty() => const ContractOffer();
+  /// For Builder classes, no fields are required
+  factory ContractOfferBuilder.empty() => ContractOfferBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractOffer.fromJson(
+  factory ContractOfferBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.offer';
-    return ContractOffer(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractOfferBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5004,8 +4500,8 @@ class ContractOffer extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5014,8 +4510,8 @@ class ContractOffer extends BackboneElement {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -5024,8 +4520,8 @@ class ContractOffer extends BackboneElement {
           )
           .toList(),
       party: (json['party'] as List<dynamic>?)
-          ?.map<ContractParty>(
-            (v) => ContractParty.fromJson(
+          ?.map<ContractPartyBuilder>(
+            (v) => ContractPartyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.party',
@@ -5033,27 +4529,27 @@ class ContractOffer extends BackboneElement {
             ),
           )
           .toList(),
-      topic: JsonParser.parseObject<Reference>(
+      topic: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'topic',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.topic',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      decision: JsonParser.parseObject<CodeableConcept>(
+      decision: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'decision',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.decision',
       ),
       decisionMode: (json['decisionMode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.decisionMode',
@@ -5062,8 +4558,8 @@ class ContractOffer extends BackboneElement {
           )
           .toList(),
       answer: (json['answer'] as List<dynamic>?)
-          ?.map<ContractAnswer>(
-            (v) => ContractAnswer.fromJson(
+          ?.map<ContractAnswerBuilder>(
+            (v) => ContractAnswerBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.answer',
@@ -5071,43 +4567,44 @@ class ContractOffer extends BackboneElement {
             ),
           )
           .toList(),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
-      linkId: JsonParser.parsePrimitiveList<FhirString>(
+      linkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'linkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.linkId',
       ),
-      securityLabelNumber: JsonParser.parsePrimitiveList<FhirUnsignedInt>(
+      securityLabelNumber:
+          JsonParser.parsePrimitiveList<FhirUnsignedIntBuilder>(
         json,
         'securityLabelNumber',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.securityLabelNumber',
       ),
     );
   }
 
-  /// Deserialize [ContractOffer]
+  /// Deserialize [ContractOfferBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractOffer.fromYaml(
+  factory ContractOfferBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractOffer.fromJson(
+      return ContractOfferBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractOffer.fromJson(
+      return ContractOfferBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractOffer '
+        'ContractOfferBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5115,16 +4612,16 @@ class ContractOffer extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractOffer]
+  /// [ContractOfferBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractOffer.fromJsonString(
+  factory ContractOfferBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractOffer.fromJson(json);
+      return ContractOfferBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5136,64 +4633,64 @@ class ContractOffer extends BackboneElement {
 
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [party]
   /// Offer Recipient.
-  final List<ContractParty>? party;
+  List<ContractPartyBuilder>? party;
 
   /// [topic]
   /// The owner of an asset has the residual control rights over the asset:
   /// the right to decide all usages of the asset in any way not inconsistent
   /// with a prior contract, custom, or law (Hart, 1995, p. 30).
-  final Reference? topic;
+  ReferenceBuilder? topic;
 
   /// [type]
   /// Type of Contract Provision such as specific requirements, purposes for
   /// actions, obligations, prohibitions, e.g. life time maximum benefit.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [decision]
   /// Type of choice made by accepting party with respect to an offer made by
   /// an offeror/ grantee.
-  final CodeableConcept? decision;
+  CodeableConceptBuilder? decision;
 
   /// [decisionMode]
   /// How the decision about a Contract was conveyed.
-  final List<CodeableConcept>? decisionMode;
+  List<CodeableConceptBuilder>? decisionMode;
 
   /// [answer]
   /// Response to offer text.
-  final List<ContractAnswer>? answer;
+  List<ContractAnswerBuilder>? answer;
 
   /// [text]
   /// Human readable form of this Contract Offer.
-  final FhirString? text;
+  FhirStringBuilder? text;
 
   /// [linkId]
   /// The id of the clause or question text of the offer in the referenced
   /// questionnaire/response.
-  final List<FhirString>? linkId;
+  List<FhirStringBuilder>? linkId;
 
   /// [securityLabelNumber]
   /// Security labels that protects the offer.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedIntBuilder>? securityLabelNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -5202,63 +4699,24 @@ class ContractOffer extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'party',
-      party,
-    );
-    addField(
-      'topic',
-      topic,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'decision',
-      decision,
-    );
-    addField(
-      'decisionMode',
-      decisionMode,
-    );
-    addField(
-      'answer',
-      answer,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'linkId',
-      linkId,
-    );
-    addField(
-      'securityLabelNumber',
-      securityLabelNumber,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('party', party);
+    addField('topic', topic);
+    addField('type', type);
+    addField('decision', decision);
+    addField('decisionMode', decisionMode);
+    addField('answer', answer);
+    addField('text', text);
+    addField('linkId', linkId);
+    addField('securityLabelNumber', securityLabelNumber);
     return json;
   }
 
@@ -5285,11 +4743,11 @@ class ContractOffer extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -5353,7 +4811,7 @@ class ContractOffer extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -5362,165 +4820,169 @@ class ContractOffer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'party':
         {
-          if (child is List<ContractParty>) {
-            // Add all elements from passed list
-            final newList = [...?party, ...child];
-            return copyWith(party: newList);
-          } else if (child is ContractParty) {
+          if (child is List<ContractPartyBuilder>) {
+            // Replace or create new list
+            party = child;
+            return;
+          } else if (child is ContractPartyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?party, child];
-            return copyWith(party: newList);
+            party = [...(party ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'topic':
         {
-          if (child is Reference) {
-            return copyWith(topic: child);
+          if (child is ReferenceBuilder) {
+            topic = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'decision':
         {
-          if (child is CodeableConcept) {
-            return copyWith(decision: child);
+          if (child is CodeableConceptBuilder) {
+            decision = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'decisionMode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?decisionMode, ...child];
-            return copyWith(decisionMode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            decisionMode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?decisionMode, child];
-            return copyWith(decisionMode: newList);
+            decisionMode = [...(decisionMode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'answer':
         {
-          if (child is List<ContractAnswer>) {
-            // Add all elements from passed list
-            final newList = [...?answer, ...child];
-            return copyWith(answer: newList);
-          } else if (child is ContractAnswer) {
+          if (child is List<ContractAnswerBuilder>) {
+            // Replace or create new list
+            answer = child;
+            return;
+          } else if (child is ContractAnswerBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?answer, child];
-            return copyWith(answer: newList);
+            answer = [...(answer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'linkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?linkId, ...child];
-            return copyWith(linkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            linkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?linkId, child];
-            return copyWith(linkId: newList);
+            linkId = [...(linkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabelNumber':
         {
-          if (child is List<FhirUnsignedInt>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabelNumber, ...child];
-            return copyWith(securityLabelNumber: newList);
-          } else if (child is FhirUnsignedInt) {
+          if (child is List<FhirUnsignedIntBuilder>) {
+            // Replace or create new list
+            securityLabelNumber = child;
+            return;
+          } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabelNumber, child];
-            return copyWith(securityLabelNumber: newList);
+            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5536,122 +4998,105 @@ class ContractOffer extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'party':
-        return ['ContractParty'];
+        return ['ContractPartyBuilder'];
       case 'topic':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'decision':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'decisionMode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'answer':
-        return ['ContractAnswer'];
+        return ['ContractAnswerBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'linkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'securityLabelNumber':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractOffer]
+  /// Creates a new [ContractOfferBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractOffer createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'party':
         {
-          return copyWith(
-            party: <ContractParty>[],
-          );
+          party = <ContractPartyBuilder>[];
+          return;
         }
       case 'topic':
         {
-          return copyWith(
-            topic: Reference.empty(),
-          );
+          topic = ReferenceBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'decision':
         {
-          return copyWith(
-            decision: CodeableConcept.empty(),
-          );
+          decision = CodeableConceptBuilder.empty();
+          return;
         }
       case 'decisionMode':
         {
-          return copyWith(
-            decisionMode: <CodeableConcept>[],
-          );
+          decisionMode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'answer':
         {
-          return copyWith(
-            answer: <ContractAnswer>[],
-          );
+          answer = <ContractAnswerBuilder>[];
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       case 'linkId':
         {
-          return copyWith(
-            linkId: <FhirString>[],
-          );
+          linkId = <FhirStringBuilder>[];
+          return;
         }
       case 'securityLabelNumber':
         {
-          return copyWith(
-            securityLabelNumber: <FhirUnsignedInt>[],
-          );
+          securityLabelNumber = <FhirUnsignedIntBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5660,7 +5105,7 @@ class ContractOffer extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractOffer clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -5675,41 +5120,38 @@ class ContractOffer extends BackboneElement {
     bool linkId = false,
     bool securityLabelNumber = false,
   }) {
-    return ContractOffer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      party: party ? null : this.party,
-      topic: topic ? null : this.topic,
-      type: type ? null : this.type,
-      decision: decision ? null : this.decision,
-      decisionMode: decisionMode ? null : this.decisionMode,
-      answer: answer ? null : this.answer,
-      text: text ? null : this.text,
-      linkId: linkId ? null : this.linkId,
-      securityLabelNumber:
-          securityLabelNumber ? null : this.securityLabelNumber,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (party) this.party = null;
+    if (topic) this.topic = null;
+    if (type) this.type = null;
+    if (decision) this.decision = null;
+    if (decisionMode) this.decisionMode = null;
+    if (answer) this.answer = null;
+    if (text) this.text = null;
+    if (linkId) this.linkId = null;
+    if (securityLabelNumber) this.securityLabelNumber = null;
   }
 
   @override
-  ContractOffer clone() => throw UnimplementedError();
+  ContractOfferBuilder clone() => throw UnimplementedError();
   @override
-  ContractOffer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<ContractParty>? party,
-    Reference? topic,
-    CodeableConcept? type,
-    CodeableConcept? decision,
-    List<CodeableConcept>? decisionMode,
-    List<ContractAnswer>? answer,
-    FhirString? text,
-    List<FhirString>? linkId,
-    List<FhirUnsignedInt>? securityLabelNumber,
+  ContractOfferBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<ContractPartyBuilder>? party,
+    ReferenceBuilder? topic,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? decision,
+    List<CodeableConceptBuilder>? decisionMode,
+    List<ContractAnswerBuilder>? answer,
+    FhirStringBuilder? text,
+    List<FhirStringBuilder>? linkId,
+    List<FhirUnsignedIntBuilder>? securityLabelNumber,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5717,98 +5159,44 @@ class ContractOffer extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractOffer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      party: party
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.party',
-                ),
-              )
-              .toList() ??
-          this.party,
-      topic: topic?.copyWith(
-            objectPath: '$newObjectPath.topic',
-          ) ??
-          this.topic,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      decision: decision?.copyWith(
-            objectPath: '$newObjectPath.decision',
-          ) ??
-          this.decision,
-      decisionMode: decisionMode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.decisionMode',
-                ),
-              )
-              .toList() ??
-          this.decisionMode,
-      answer: answer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.answer',
-                ),
-              )
-              .toList() ??
-          this.answer,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      linkId: linkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.linkId',
-                ),
-              )
-              .toList() ??
-          this.linkId,
-      securityLabelNumber: securityLabelNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabelNumber',
-                ),
-              )
-              .toList() ??
-          this.securityLabelNumber,
+    final newResult = ContractOfferBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      party: party ?? this.party,
+      topic: topic ?? this.topic,
+      type: type ?? this.type,
+      decision: decision ?? this.decision,
+      decisionMode: decisionMode ?? this.decisionMode,
+      answer: answer ?? this.answer,
+      text: text ?? this.text,
+      linkId: linkId ?? this.linkId,
+      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractOffer) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractOfferBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5819,25 +5207,25 @@ class ContractOffer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<ContractParty>(
+    if (!listEquals<ContractPartyBuilder>(
       party,
       o.party,
     )) {
@@ -5861,13 +5249,13 @@ class ContractOffer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       decisionMode,
       o.decisionMode,
     )) {
       return false;
     }
-    if (!listEquals<ContractAnswer>(
+    if (!listEquals<ContractAnswerBuilder>(
       answer,
       o.answer,
     )) {
@@ -5879,13 +5267,13 @@ class ContractOffer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       linkId,
       o.linkId,
     )) {
       return false;
     }
-    if (!listEquals<FhirUnsignedInt>(
+    if (!listEquals<FhirUnsignedIntBuilder>(
       securityLabelNumber,
       o.securityLabelNumber,
     )) {
@@ -5895,46 +5283,42 @@ class ContractOffer extends BackboneElement {
   }
 }
 
-/// [ContractParty]
+/// [ContractPartyBuilder]
 /// Offer Recipient.
-class ContractParty extends BackboneElement {
+class ContractPartyBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractParty]
+  /// [ContractPartyBuilder]
 
-  const ContractParty({
+  ContractPartyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.reference,
-    required this.role,
+    this.reference,
+    this.role,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Contract.term.offer.party',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractParty.empty() => ContractParty(
-        reference: <Reference>[],
-        role: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractPartyBuilder.empty() => ContractPartyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractParty.fromJson(
+  factory ContractPartyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.offer.party';
-    return ContractParty(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractPartyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5943,8 +5327,8 @@ class ContractParty extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5952,9 +5336,9 @@ class ContractParty extends BackboneElement {
             ),
           )
           .toList(),
-      reference: (json['reference'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
+      reference: (json['reference'] as List<dynamic>?)
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reference',
@@ -5962,31 +5346,31 @@ class ContractParty extends BackboneElement {
             ),
           )
           .toList(),
-      role: JsonParser.parseObject<CodeableConcept>(
+      role: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'role',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.role',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ContractParty]
+  /// Deserialize [ContractPartyBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractParty.fromYaml(
+  factory ContractPartyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractParty.fromJson(
+      return ContractPartyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractParty.fromJson(
+      return ContractPartyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractParty '
+        'ContractPartyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5994,16 +5378,16 @@ class ContractParty extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractParty]
+  /// [ContractPartyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractParty.fromJsonString(
+  factory ContractPartyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractParty.fromJson(json);
+      return ContractPartyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -6015,27 +5399,27 @@ class ContractParty extends BackboneElement {
 
   /// [reference]
   /// Participant in the offer.
-  final List<Reference> reference;
+  List<ReferenceBuilder>? reference;
 
   /// [role]
   /// How the party participates in the offer.
-  final CodeableConcept role;
+  CodeableConceptBuilder? role;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -6044,31 +5428,16 @@ class ContractParty extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'reference',
-      reference,
-    );
-    addField(
-      'role',
-      role,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('reference', reference);
+    addField('role', role);
     return json;
   }
 
@@ -6087,11 +5456,11 @@ class ContractParty extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6106,9 +5475,13 @@ class ContractParty extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'reference':
-        fields.addAll(reference);
+        if (reference != null) {
+          fields.addAll(reference!);
+        }
       case 'role':
-        fields.add(role);
+        if (role != null) {
+          fields.add(role!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -6119,7 +5492,7 @@ class ContractParty extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6128,71 +5501,72 @@ class ContractParty extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...reference, ...child];
-            return copyWith(reference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...reference, child];
-            return copyWith(reference: newList);
+            reference = [...(reference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
+          if (child is CodeableConceptBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -6208,58 +5582,49 @@ class ContractParty extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'reference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractParty]
+  /// Creates a new [ContractPartyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractParty createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: <Reference>[],
-          );
+          reference = <ReferenceBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
+          role = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6268,29 +5633,29 @@ class ContractParty extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractParty clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool reference = false,
+    bool role = false,
   }) {
-    return ContractParty(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      reference: reference,
-      role: role,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (reference) this.reference = null;
+    if (role) this.role = null;
   }
 
   @override
-  ContractParty clone() => throw UnimplementedError();
+  ContractPartyBuilder clone() => throw UnimplementedError();
   @override
-  ContractParty copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Reference>? reference,
-    CodeableConcept? role,
+  ContractPartyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<ReferenceBuilder>? reference,
+    CodeableConceptBuilder? role,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6298,46 +5663,36 @@ class ContractParty extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractParty(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      reference: reference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reference',
-                ),
-              )
-              .toList() ??
-          this.reference,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
+    final newResult = ContractPartyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      reference: reference ?? this.reference,
+      role: role ?? this.role,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractParty) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractPartyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -6348,19 +5703,19 @@ class ContractParty extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reference,
       o.reference,
     )) {
@@ -6376,44 +5731,41 @@ class ContractParty extends BackboneElement {
   }
 }
 
-/// [ContractAnswer]
+/// [ContractAnswerBuilder]
 /// Response to offer text.
-class ContractAnswer extends BackboneElement {
+class ContractAnswerBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractAnswer]
+  /// [ContractAnswerBuilder]
 
-  const ContractAnswer({
+  ContractAnswerBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueX,
+    this.valueX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Contract.term.offer.answer',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractAnswer.empty() => ContractAnswer(
-        valueX: FhirBoolean.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractAnswerBuilder.empty() => ContractAnswerBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractAnswer.fromJson(
+  factory ContractAnswerBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.offer.answer';
-    return ContractAnswer(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractAnswerBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -6422,8 +5774,8 @@ class ContractAnswer extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -6431,43 +5783,43 @@ class ContractAnswer extends BackboneElement {
             ),
           )
           .toList(),
-      valueX: JsonParser.parsePolymorphic<ValueXContractAnswer>(
+      valueX: JsonParser.parsePolymorphic<ValueXContractAnswerBuilder>(
         json,
         {
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueDecimal': FhirDecimal.fromJson,
-          'valueInteger': FhirInteger.fromJson,
-          'valueDate': FhirDate.fromJson,
-          'valueDateTime': FhirDateTime.fromJson,
-          'valueTime': FhirTime.fromJson,
-          'valueString': FhirString.fromJson,
-          'valueUri': FhirUri.fromJson,
-          'valueAttachment': Attachment.fromJson,
-          'valueCoding': Coding.fromJson,
-          'valueQuantity': Quantity.fromJson,
-          'valueReference': Reference.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueDecimal': FhirDecimalBuilder.fromJson,
+          'valueInteger': FhirIntegerBuilder.fromJson,
+          'valueDate': FhirDateBuilder.fromJson,
+          'valueDateTime': FhirDateTimeBuilder.fromJson,
+          'valueTime': FhirTimeBuilder.fromJson,
+          'valueString': FhirStringBuilder.fromJson,
+          'valueUri': FhirUriBuilder.fromJson,
+          'valueAttachment': AttachmentBuilder.fromJson,
+          'valueCoding': CodingBuilder.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ContractAnswer]
+  /// Deserialize [ContractAnswerBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractAnswer.fromYaml(
+  factory ContractAnswerBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractAnswer.fromJson(
+      return ContractAnswerBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractAnswer.fromJson(
+      return ContractAnswerBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractAnswer '
+        'ContractAnswerBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -6475,16 +5827,16 @@ class ContractAnswer extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractAnswer]
+  /// [ContractAnswerBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractAnswer.fromJsonString(
+  factory ContractAnswerBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractAnswer.fromJson(json);
+      return ContractAnswerBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -6499,59 +5851,59 @@ class ContractAnswer extends BackboneElement {
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final ValueXContractAnswer valueX;
+  ValueXContractAnswerBuilder? valueX;
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueDecimal] as a FhirDecimal
-  FhirDecimal? get valueDecimal => valueX.isAs<FhirDecimal>();
+  /// Getter for [valueDecimal] as a FhirDecimalBuilder
+  FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
 
-  /// Getter for [valueInteger] as a FhirInteger
-  FhirInteger? get valueInteger => valueX.isAs<FhirInteger>();
+  /// Getter for [valueInteger] as a FhirIntegerBuilder
+  FhirIntegerBuilder? get valueInteger => valueX?.isAs<FhirIntegerBuilder>();
 
-  /// Getter for [valueDate] as a FhirDate
-  FhirDate? get valueDate => valueX.isAs<FhirDate>();
+  /// Getter for [valueDate] as a FhirDateBuilder
+  FhirDateBuilder? get valueDate => valueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [valueDateTime] as a FhirDateTime
-  FhirDateTime? get valueDateTime => valueX.isAs<FhirDateTime>();
+  /// Getter for [valueDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get valueDateTime => valueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [valueTime] as a FhirTime
-  FhirTime? get valueTime => valueX.isAs<FhirTime>();
+  /// Getter for [valueTime] as a FhirTimeBuilder
+  FhirTimeBuilder? get valueTime => valueX?.isAs<FhirTimeBuilder>();
 
-  /// Getter for [valueString] as a FhirString
-  FhirString? get valueString => valueX.isAs<FhirString>();
+  /// Getter for [valueString] as a FhirStringBuilder
+  FhirStringBuilder? get valueString => valueX?.isAs<FhirStringBuilder>();
 
-  /// Getter for [valueUri] as a FhirUri
-  FhirUri? get valueUri => valueX.isAs<FhirUri>();
+  /// Getter for [valueUri] as a FhirUriBuilder
+  FhirUriBuilder? get valueUri => valueX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [valueAttachment] as a Attachment
-  Attachment? get valueAttachment => valueX.isAs<Attachment>();
+  /// Getter for [valueAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [valueCoding] as a Coding
-  Coding? get valueCoding => valueX.isAs<Coding>();
+  /// Getter for [valueCoding] as a CodingBuilder
+  CodingBuilder? get valueCoding => valueX?.isAs<CodingBuilder>();
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueReference] as a Reference
-  Reference? get valueReference => valueX.isAs<Reference>();
+  /// Getter for [valueReference] as a ReferenceBuilder
+  ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -6560,28 +5912,18 @@ class ContractAnswer extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    final valueXFhirType = valueX.fhirType;
-    addField(
-      'value${valueXFhirType.capitalize()}',
-      valueX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    if (valueX != null) {
+      final fhirType = valueX!.fhirType;
+      addField('value${fhirType.capitalize()}', valueX);
+    }
 
     return json;
   }
@@ -6600,11 +5942,11 @@ class ContractAnswer extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6619,56 +5961,60 @@ class ContractAnswer extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'value':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
-          fields.add(valueX);
+        if (valueX is FhirBooleanBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDecimal':
-        if (valueX is FhirDecimal) {
-          fields.add(valueX);
+        if (valueX is FhirDecimalBuilder) {
+          fields.add(valueX!);
         }
       case 'valueInteger':
-        if (valueX is FhirInteger) {
-          fields.add(valueX);
+        if (valueX is FhirIntegerBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDate':
-        if (valueX is FhirDate) {
-          fields.add(valueX);
+        if (valueX is FhirDateBuilder) {
+          fields.add(valueX!);
         }
       case 'valueDateTime':
-        if (valueX is FhirDateTime) {
-          fields.add(valueX);
+        if (valueX is FhirDateTimeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueTime':
-        if (valueX is FhirTime) {
-          fields.add(valueX);
+        if (valueX is FhirTimeBuilder) {
+          fields.add(valueX!);
         }
       case 'valueString':
-        if (valueX is FhirString) {
-          fields.add(valueX);
+        if (valueX is FhirStringBuilder) {
+          fields.add(valueX!);
         }
       case 'valueUri':
-        if (valueX is FhirUri) {
-          fields.add(valueX);
+        if (valueX is FhirUriBuilder) {
+          fields.add(valueX!);
         }
       case 'valueAttachment':
-        if (valueX is Attachment) {
-          fields.add(valueX);
+        if (valueX is AttachmentBuilder) {
+          fields.add(valueX!);
         }
       case 'valueCoding':
-        if (valueX is Coding) {
-          fields.add(valueX);
+        if (valueX is CodingBuilder) {
+          fields.add(valueX!);
         }
       case 'valueQuantity':
-        if (valueX is Quantity) {
-          fields.add(valueX);
+        if (valueX is QuantityBuilder) {
+          fields.add(valueX!);
         }
       case 'valueReference':
-        if (valueX is Reference) {
-          fields.add(valueX);
+        if (valueX is ReferenceBuilder) {
+          fields.add(valueX!);
         }
       default:
         if (checkValid) {
@@ -6680,7 +6026,7 @@ class ContractAnswer extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6689,189 +6035,214 @@ class ContractAnswer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXContractAnswer) {
-            return copyWith(valueX: child);
+          if (child is ValueXContractAnswerBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDecimal) {
-              return copyWith(valueX: child);
+            if (child is FhirDecimalBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirInteger) {
-              return copyWith(valueX: child);
+            if (child is FhirIntegerBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(valueX: child);
+            if (child is FhirDateBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDateTime) {
-              return copyWith(valueX: child);
+            if (child is FhirDateTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirTime) {
-              return copyWith(valueX: child);
+            if (child is FhirTimeBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(valueX: child);
+            if (child is FhirStringBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirUri) {
-              return copyWith(valueX: child);
+            if (child is FhirUriBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
+            if (child is AttachmentBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Coding) {
-              return copyWith(valueX: child);
+            if (child is CodingBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(valueX: child);
+            if (child is ReferenceBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDecimal':
+      case 'valueDecimal':
         {
-          if (child is FhirDecimal) {
-            return copyWith(valueX: child);
+          if (child is FhirDecimalBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirInteger':
+      case 'valueInteger':
         {
-          if (child is FhirInteger) {
-            return copyWith(valueX: child);
+          if (child is FhirIntegerBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDate':
+      case 'valueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(valueX: child);
+          if (child is FhirDateBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDateTime':
+      case 'valueDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(valueX: child);
+          if (child is FhirDateTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirTime':
+      case 'valueTime':
         {
-          if (child is FhirTime) {
-            return copyWith(valueX: child);
+          if (child is FhirTimeBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirString':
+      case 'valueString':
         {
-          if (child is FhirString) {
-            return copyWith(valueX: child);
+          if (child is FhirStringBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirUri':
+      case 'valueUri':
         {
-          if (child is FhirUri) {
-            return copyWith(valueX: child);
+          if (child is FhirUriBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
+          if (child is AttachmentBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCoding':
         {
-          if (child is Coding) {
-            return copyWith(valueX: child);
+          if (child is CodingBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueReference':
         {
-          if (child is Reference) {
-            return copyWith(valueX: child);
+          if (child is ReferenceBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -6887,156 +6258,137 @@ class ContractAnswer extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'FhirBoolean',
-          'FhirDecimal',
-          'FhirInteger',
-          'FhirDate',
-          'FhirDateTime',
-          'FhirTime',
-          'FhirString',
-          'FhirUri',
-          'Attachment',
-          'Coding',
-          'Quantity',
-          'Reference',
+          'FhirBooleanBuilder',
+          'FhirDecimalBuilder',
+          'FhirIntegerBuilder',
+          'FhirDateBuilder',
+          'FhirDateTimeBuilder',
+          'FhirTimeBuilder',
+          'FhirStringBuilder',
+          'FhirUriBuilder',
+          'AttachmentBuilder',
+          'CodingBuilder',
+          'QuantityBuilder',
+          'ReferenceBuilder'
         ];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueDecimal':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'valueInteger':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'valueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'valueDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'valueTime':
-        return ['FhirTime'];
+        return ['FhirTimeBuilder'];
       case 'valueString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'valueUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'valueAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'valueCoding':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractAnswer]
+  /// Creates a new [ContractAnswerBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractAnswer createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueDecimal':
         {
-          return copyWith(
-            valueX: FhirDecimal.empty(),
-          );
+          valueX = FhirDecimalBuilder.empty();
+          return;
         }
       case 'valueInteger':
         {
-          return copyWith(
-            valueX: FhirInteger.empty(),
-          );
+          valueX = FhirIntegerBuilder.empty();
+          return;
         }
       case 'valueDate':
         {
-          return copyWith(
-            valueX: FhirDate.empty(),
-          );
+          valueX = FhirDateBuilder.empty();
+          return;
         }
       case 'valueDateTime':
         {
-          return copyWith(
-            valueX: FhirDateTime.empty(),
-          );
+          valueX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'valueTime':
         {
-          return copyWith(
-            valueX: FhirTime.empty(),
-          );
+          valueX = FhirTimeBuilder.empty();
+          return;
         }
       case 'valueString':
         {
-          return copyWith(
-            valueX: FhirString.empty(),
-          );
+          valueX = FhirStringBuilder.empty();
+          return;
         }
       case 'valueUri':
         {
-          return copyWith(
-            valueX: FhirUri.empty(),
-          );
+          valueX = FhirUriBuilder.empty();
+          return;
         }
       case 'valueAttachment':
         {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
+          valueX = AttachmentBuilder.empty();
+          return;
         }
       case 'valueCoding':
         {
-          return copyWith(
-            valueX: Coding.empty(),
-          );
+          valueX = CodingBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueReference':
         {
-          return copyWith(
-            valueX: Reference.empty(),
-          );
+          valueX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7045,27 +6397,26 @@ class ContractAnswer extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractAnswer clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool value = false,
   }) {
-    return ContractAnswer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      valueX: valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  ContractAnswer clone() => throw UnimplementedError();
+  ContractAnswerBuilder clone() => throw UnimplementedError();
   @override
-  ContractAnswer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ValueXContractAnswer? valueX,
+  ContractAnswerBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ValueXContractAnswerBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7073,38 +6424,35 @@ class ContractAnswer extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractAnswer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXContractAnswer? ??
-          this.valueX,
+    final newResult = ContractAnswerBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractAnswer) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractAnswerBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7115,13 +6463,13 @@ class ContractAnswer extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -7137,13 +6485,13 @@ class ContractAnswer extends BackboneElement {
   }
 }
 
-/// [ContractAsset]
+/// [ContractAssetBuilder]
 /// Contract Term Asset List.
-class ContractAsset extends BackboneElement {
+class ContractAssetBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractAsset]
+  /// [ContractAssetBuilder]
 
-  const ContractAsset({
+  ContractAssetBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -7168,25 +6516,24 @@ class ContractAsset extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractAsset.empty() => const ContractAsset();
+  /// For Builder classes, no fields are required
+  factory ContractAssetBuilder.empty() => ContractAssetBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractAsset.fromJson(
+  factory ContractAssetBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.asset';
-    return ContractAsset(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractAssetBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7195,8 +6542,8 @@ class ContractAsset extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -7204,15 +6551,15 @@ class ContractAsset extends BackboneElement {
             ),
           )
           .toList(),
-      scope: JsonParser.parseObject<CodeableConcept>(
+      scope: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'scope',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.scope',
       ),
       type: (json['type'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -7221,8 +6568,8 @@ class ContractAsset extends BackboneElement {
           )
           .toList(),
       typeReference: (json['typeReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.typeReference',
@@ -7231,8 +6578,8 @@ class ContractAsset extends BackboneElement {
           )
           .toList(),
       subtype: (json['subtype'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.subtype',
@@ -7240,15 +6587,15 @@ class ContractAsset extends BackboneElement {
             ),
           )
           .toList(),
-      relationship: JsonParser.parseObject<Coding>(
+      relationship: JsonParser.parseObject<CodingBuilder>(
         json,
         'relationship',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.relationship',
       ),
       context: (json['context'] as List<dynamic>?)
-          ?.map<ContractContext>(
-            (v) => ContractContext.fromJson(
+          ?.map<ContractContextBuilder>(
+            (v) => ContractContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.context',
@@ -7256,15 +6603,15 @@ class ContractAsset extends BackboneElement {
             ),
           )
           .toList(),
-      condition: JsonParser.parsePrimitive<FhirString>(
+      condition: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'condition',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.condition',
       ),
       periodType: (json['periodType'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.periodType',
@@ -7273,8 +6620,8 @@ class ContractAsset extends BackboneElement {
           )
           .toList(),
       period: (json['period'] as List<dynamic>?)
-          ?.map<Period>(
-            (v) => Period.fromJson(
+          ?.map<PeriodBuilder>(
+            (v) => PeriodBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.period',
@@ -7283,8 +6630,8 @@ class ContractAsset extends BackboneElement {
           )
           .toList(),
       usePeriod: (json['usePeriod'] as List<dynamic>?)
-          ?.map<Period>(
-            (v) => Period.fromJson(
+          ?.map<PeriodBuilder>(
+            (v) => PeriodBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.usePeriod',
@@ -7292,21 +6639,21 @@ class ContractAsset extends BackboneElement {
             ),
           )
           .toList(),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
-      linkId: JsonParser.parsePrimitiveList<FhirString>(
+      linkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'linkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.linkId',
       ),
       answer: (json['answer'] as List<dynamic>?)
-          ?.map<ContractAnswer>(
-            (v) => ContractAnswer.fromJson(
+          ?.map<ContractAnswerBuilder>(
+            (v) => ContractAnswerBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.answer',
@@ -7314,15 +6661,16 @@ class ContractAsset extends BackboneElement {
             ),
           )
           .toList(),
-      securityLabelNumber: JsonParser.parsePrimitiveList<FhirUnsignedInt>(
+      securityLabelNumber:
+          JsonParser.parsePrimitiveList<FhirUnsignedIntBuilder>(
         json,
         'securityLabelNumber',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.securityLabelNumber',
       ),
       valuedItem: (json['valuedItem'] as List<dynamic>?)
-          ?.map<ContractValuedItem>(
-            (v) => ContractValuedItem.fromJson(
+          ?.map<ContractValuedItemBuilder>(
+            (v) => ContractValuedItemBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.valuedItem',
@@ -7333,22 +6681,22 @@ class ContractAsset extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractAsset]
+  /// Deserialize [ContractAssetBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractAsset.fromYaml(
+  factory ContractAssetBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractAsset.fromJson(
+      return ContractAssetBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractAsset.fromJson(
+      return ContractAssetBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractAsset '
+        'ContractAssetBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7356,16 +6704,16 @@ class ContractAsset extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractAsset]
+  /// [ContractAssetBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractAsset.fromJsonString(
+  factory ContractAssetBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractAsset.fromJson(json);
+      return ContractAssetBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7377,85 +6725,85 @@ class ContractAsset extends BackboneElement {
 
   /// [scope]
   /// Differentiates the kind of the asset .
-  final CodeableConcept? scope;
+  CodeableConceptBuilder? scope;
 
   /// [type]
   /// Target entity type about which the term may be concerned.
-  final List<CodeableConcept>? type;
+  List<CodeableConceptBuilder>? type;
 
   /// [typeReference]
   /// Associated entities.
-  final List<Reference>? typeReference;
+  List<ReferenceBuilder>? typeReference;
 
   /// [subtype]
   /// May be a subtype or part of an offered asset.
-  final List<CodeableConcept>? subtype;
+  List<CodeableConceptBuilder>? subtype;
 
   /// [relationship]
   /// Specifies the applicability of the term to an asset resource instance,
   /// and instances it refers to orinstances that refer to it, and/or are
   /// owned by the offeree.
-  final Coding? relationship;
+  CodingBuilder? relationship;
 
   /// [context]
   /// Circumstance of the asset.
-  final List<ContractContext>? context;
+  List<ContractContextBuilder>? context;
 
   /// [condition]
   /// Description of the quality and completeness of the asset that imay be a
   /// factor in its valuation.
-  final FhirString? condition;
+  FhirStringBuilder? condition;
 
   /// [periodType]
   /// Type of Asset availability for use or ownership.
-  final List<CodeableConcept>? periodType;
+  List<CodeableConceptBuilder>? periodType;
 
   /// [period]
   /// Asset relevant contractual time period.
-  final List<Period>? period;
+  List<PeriodBuilder>? period;
 
   /// [usePeriod]
   /// Time period of asset use.
-  final List<Period>? usePeriod;
+  List<PeriodBuilder>? usePeriod;
 
   /// [text]
   /// Clause or question text (Prose Object) concerning the asset in a linked
   /// form, such as a QuestionnaireResponse used in the formation of the
   /// contract.
-  final FhirString? text;
+  FhirStringBuilder? text;
 
   /// [linkId]
   /// Id [identifier??] of the clause or question text about the asset in the
   /// referenced form or QuestionnaireResponse.
-  final List<FhirString>? linkId;
+  List<FhirStringBuilder>? linkId;
 
   /// [answer]
   /// Response to assets.
-  final List<ContractAnswer>? answer;
+  List<ContractAnswerBuilder>? answer;
 
   /// [securityLabelNumber]
   /// Security labels that protects the asset.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedIntBuilder>? securityLabelNumber;
 
   /// [valuedItem]
   /// Contract Valued Item List.
-  final List<ContractValuedItem>? valuedItem;
+  List<ContractValuedItemBuilder>? valuedItem;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7464,83 +6812,29 @@ class ContractAsset extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'scope',
-      scope,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'typeReference',
-      typeReference,
-    );
-    addField(
-      'subtype',
-      subtype,
-    );
-    addField(
-      'relationship',
-      relationship,
-    );
-    addField(
-      'context',
-      context,
-    );
-    addField(
-      'condition',
-      condition,
-    );
-    addField(
-      'periodType',
-      periodType,
-    );
-    addField(
-      'period',
-      period,
-    );
-    addField(
-      'usePeriod',
-      usePeriod,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'linkId',
-      linkId,
-    );
-    addField(
-      'answer',
-      answer,
-    );
-    addField(
-      'securityLabelNumber',
-      securityLabelNumber,
-    );
-    addField(
-      'valuedItem',
-      valuedItem,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('scope', scope);
+    addField('type', type);
+    addField('typeReference', typeReference);
+    addField('subtype', subtype);
+    addField('relationship', relationship);
+    addField('context', context);
+    addField('condition', condition);
+    addField('periodType', periodType);
+    addField('period', period);
+    addField('usePeriod', usePeriod);
+    addField('text', text);
+    addField('linkId', linkId);
+    addField('answer', answer);
+    addField('securityLabelNumber', securityLabelNumber);
+    addField('valuedItem', valuedItem);
     return json;
   }
 
@@ -7572,11 +6866,11 @@ class ContractAsset extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7660,7 +6954,7 @@ class ContractAsset extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -7669,235 +6963,239 @@ class ContractAsset extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'scope':
         {
-          if (child is CodeableConcept) {
-            return copyWith(scope: child);
+          if (child is CodeableConceptBuilder) {
+            scope = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'typeReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?typeReference, ...child];
-            return copyWith(typeReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            typeReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?typeReference, child];
-            return copyWith(typeReference: newList);
+            typeReference = [...(typeReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subtype':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?subtype, ...child];
-            return copyWith(subtype: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            subtype = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?subtype, child];
-            return copyWith(subtype: newList);
+            subtype = [...(subtype ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationship':
         {
-          if (child is Coding) {
-            return copyWith(relationship: child);
+          if (child is CodingBuilder) {
+            relationship = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
         {
-          if (child is List<ContractContext>) {
-            // Add all elements from passed list
-            final newList = [...?context, ...child];
-            return copyWith(context: newList);
-          } else if (child is ContractContext) {
+          if (child is List<ContractContextBuilder>) {
+            // Replace or create new list
+            context = child;
+            return;
+          } else if (child is ContractContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?context, child];
-            return copyWith(context: newList);
+            context = [...(context ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
         {
-          if (child is FhirString) {
-            return copyWith(condition: child);
+          if (child is FhirStringBuilder) {
+            condition = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'periodType':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?periodType, ...child];
-            return copyWith(periodType: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            periodType = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?periodType, child];
-            return copyWith(periodType: newList);
+            periodType = [...(periodType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is List<Period>) {
-            // Add all elements from passed list
-            final newList = [...?period, ...child];
-            return copyWith(period: newList);
-          } else if (child is Period) {
+          if (child is List<PeriodBuilder>) {
+            // Replace or create new list
+            period = child;
+            return;
+          } else if (child is PeriodBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?period, child];
-            return copyWith(period: newList);
+            period = [...(period ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'usePeriod':
         {
-          if (child is List<Period>) {
-            // Add all elements from passed list
-            final newList = [...?usePeriod, ...child];
-            return copyWith(usePeriod: newList);
-          } else if (child is Period) {
+          if (child is List<PeriodBuilder>) {
+            // Replace or create new list
+            usePeriod = child;
+            return;
+          } else if (child is PeriodBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?usePeriod, child];
-            return copyWith(usePeriod: newList);
+            usePeriod = [...(usePeriod ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'linkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?linkId, ...child];
-            return copyWith(linkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            linkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?linkId, child];
-            return copyWith(linkId: newList);
+            linkId = [...(linkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'answer':
         {
-          if (child is List<ContractAnswer>) {
-            // Add all elements from passed list
-            final newList = [...?answer, ...child];
-            return copyWith(answer: newList);
-          } else if (child is ContractAnswer) {
+          if (child is List<ContractAnswerBuilder>) {
+            // Replace or create new list
+            answer = child;
+            return;
+          } else if (child is ContractAnswerBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?answer, child];
-            return copyWith(answer: newList);
+            answer = [...(answer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabelNumber':
         {
-          if (child is List<FhirUnsignedInt>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabelNumber, ...child];
-            return copyWith(securityLabelNumber: newList);
-          } else if (child is FhirUnsignedInt) {
+          if (child is List<FhirUnsignedIntBuilder>) {
+            // Replace or create new list
+            securityLabelNumber = child;
+            return;
+          } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabelNumber, child];
-            return copyWith(securityLabelNumber: newList);
+            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valuedItem':
         {
-          if (child is List<ContractValuedItem>) {
-            // Add all elements from passed list
-            final newList = [...?valuedItem, ...child];
-            return copyWith(valuedItem: newList);
-          } else if (child is ContractValuedItem) {
+          if (child is List<ContractValuedItemBuilder>) {
+            // Replace or create new list
+            valuedItem = child;
+            return;
+          } else if (child is ContractValuedItemBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?valuedItem, child];
-            return copyWith(valuedItem: newList);
+            valuedItem = [...(valuedItem ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -7913,162 +7211,140 @@ class ContractAsset extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'scope':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'typeReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'subtype':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'relationship':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'context':
-        return ['ContractContext'];
+        return ['ContractContextBuilder'];
       case 'condition':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'periodType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'usePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'linkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'answer':
-        return ['ContractAnswer'];
+        return ['ContractAnswerBuilder'];
       case 'securityLabelNumber':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       case 'valuedItem':
-        return ['ContractValuedItem'];
+        return ['ContractValuedItemBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractAsset]
+  /// Creates a new [ContractAssetBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractAsset createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'scope':
         {
-          return copyWith(
-            scope: CodeableConcept.empty(),
-          );
+          scope = CodeableConceptBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
+          type = <CodeableConceptBuilder>[];
+          return;
         }
       case 'typeReference':
         {
-          return copyWith(
-            typeReference: <Reference>[],
-          );
+          typeReference = <ReferenceBuilder>[];
+          return;
         }
       case 'subtype':
         {
-          return copyWith(
-            subtype: <CodeableConcept>[],
-          );
+          subtype = <CodeableConceptBuilder>[];
+          return;
         }
       case 'relationship':
         {
-          return copyWith(
-            relationship: Coding.empty(),
-          );
+          relationship = CodingBuilder.empty();
+          return;
         }
       case 'context':
         {
-          return copyWith(
-            context: <ContractContext>[],
-          );
+          context = <ContractContextBuilder>[];
+          return;
         }
       case 'condition':
         {
-          return copyWith(
-            condition: FhirString.empty(),
-          );
+          condition = FhirStringBuilder.empty();
+          return;
         }
       case 'periodType':
         {
-          return copyWith(
-            periodType: <CodeableConcept>[],
-          );
+          periodType = <CodeableConceptBuilder>[];
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: <Period>[],
-          );
+          period = <PeriodBuilder>[];
+          return;
         }
       case 'usePeriod':
         {
-          return copyWith(
-            usePeriod: <Period>[],
-          );
+          usePeriod = <PeriodBuilder>[];
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       case 'linkId':
         {
-          return copyWith(
-            linkId: <FhirString>[],
-          );
+          linkId = <FhirStringBuilder>[];
+          return;
         }
       case 'answer':
         {
-          return copyWith(
-            answer: <ContractAnswer>[],
-          );
+          answer = <ContractAnswerBuilder>[];
+          return;
         }
       case 'securityLabelNumber':
         {
-          return copyWith(
-            securityLabelNumber: <FhirUnsignedInt>[],
-          );
+          securityLabelNumber = <FhirUnsignedIntBuilder>[];
+          return;
         }
       case 'valuedItem':
         {
-          return copyWith(
-            valuedItem: <ContractValuedItem>[],
-          );
+          valuedItem = <ContractValuedItemBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8077,7 +7353,7 @@ class ContractAsset extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractAsset clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -8097,51 +7373,48 @@ class ContractAsset extends BackboneElement {
     bool securityLabelNumber = false,
     bool valuedItem = false,
   }) {
-    return ContractAsset(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      scope: scope ? null : this.scope,
-      type: type ? null : this.type,
-      typeReference: typeReference ? null : this.typeReference,
-      subtype: subtype ? null : this.subtype,
-      relationship: relationship ? null : this.relationship,
-      context: context ? null : this.context,
-      condition: condition ? null : this.condition,
-      periodType: periodType ? null : this.periodType,
-      period: period ? null : this.period,
-      usePeriod: usePeriod ? null : this.usePeriod,
-      text: text ? null : this.text,
-      linkId: linkId ? null : this.linkId,
-      answer: answer ? null : this.answer,
-      securityLabelNumber:
-          securityLabelNumber ? null : this.securityLabelNumber,
-      valuedItem: valuedItem ? null : this.valuedItem,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (scope) this.scope = null;
+    if (type) this.type = null;
+    if (typeReference) this.typeReference = null;
+    if (subtype) this.subtype = null;
+    if (relationship) this.relationship = null;
+    if (context) this.context = null;
+    if (condition) this.condition = null;
+    if (periodType) this.periodType = null;
+    if (period) this.period = null;
+    if (usePeriod) this.usePeriod = null;
+    if (text) this.text = null;
+    if (linkId) this.linkId = null;
+    if (answer) this.answer = null;
+    if (securityLabelNumber) this.securityLabelNumber = null;
+    if (valuedItem) this.valuedItem = null;
   }
 
   @override
-  ContractAsset clone() => throw UnimplementedError();
+  ContractAssetBuilder clone() => throw UnimplementedError();
   @override
-  ContractAsset copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? scope,
-    List<CodeableConcept>? type,
-    List<Reference>? typeReference,
-    List<CodeableConcept>? subtype,
-    Coding? relationship,
-    List<ContractContext>? context,
-    FhirString? condition,
-    List<CodeableConcept>? periodType,
-    List<Period>? period,
-    List<Period>? usePeriod,
-    FhirString? text,
-    List<FhirString>? linkId,
-    List<ContractAnswer>? answer,
-    List<FhirUnsignedInt>? securityLabelNumber,
-    List<ContractValuedItem>? valuedItem,
+  ContractAssetBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? scope,
+    List<CodeableConceptBuilder>? type,
+    List<ReferenceBuilder>? typeReference,
+    List<CodeableConceptBuilder>? subtype,
+    CodingBuilder? relationship,
+    List<ContractContextBuilder>? context,
+    FhirStringBuilder? condition,
+    List<CodeableConceptBuilder>? periodType,
+    List<PeriodBuilder>? period,
+    List<PeriodBuilder>? usePeriod,
+    FhirStringBuilder? text,
+    List<FhirStringBuilder>? linkId,
+    List<ContractAnswerBuilder>? answer,
+    List<FhirUnsignedIntBuilder>? securityLabelNumber,
+    List<ContractValuedItemBuilder>? valuedItem,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8149,138 +7422,49 @@ class ContractAsset extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractAsset(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      scope: scope?.copyWith(
-            objectPath: '$newObjectPath.scope',
-          ) ??
-          this.scope,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      typeReference: typeReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.typeReference',
-                ),
-              )
-              .toList() ??
-          this.typeReference,
-      subtype: subtype
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subtype',
-                ),
-              )
-              .toList() ??
-          this.subtype,
-      relationship: relationship?.copyWith(
-            objectPath: '$newObjectPath.relationship',
-          ) ??
-          this.relationship,
-      context: context
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.context',
-                ),
-              )
-              .toList() ??
-          this.context,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
-      periodType: periodType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.periodType',
-                ),
-              )
-              .toList() ??
-          this.periodType,
-      period: period
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.period',
-                ),
-              )
-              .toList() ??
-          this.period,
-      usePeriod: usePeriod
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.usePeriod',
-                ),
-              )
-              .toList() ??
-          this.usePeriod,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      linkId: linkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.linkId',
-                ),
-              )
-              .toList() ??
-          this.linkId,
-      answer: answer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.answer',
-                ),
-              )
-              .toList() ??
-          this.answer,
-      securityLabelNumber: securityLabelNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabelNumber',
-                ),
-              )
-              .toList() ??
-          this.securityLabelNumber,
-      valuedItem: valuedItem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.valuedItem',
-                ),
-              )
-              .toList() ??
-          this.valuedItem,
+    final newResult = ContractAssetBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      scope: scope ?? this.scope,
+      type: type ?? this.type,
+      typeReference: typeReference ?? this.typeReference,
+      subtype: subtype ?? this.subtype,
+      relationship: relationship ?? this.relationship,
+      context: context ?? this.context,
+      condition: condition ?? this.condition,
+      periodType: periodType ?? this.periodType,
+      period: period ?? this.period,
+      usePeriod: usePeriod ?? this.usePeriod,
+      text: text ?? this.text,
+      linkId: linkId ?? this.linkId,
+      answer: answer ?? this.answer,
+      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
+      valuedItem: valuedItem ?? this.valuedItem,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractAsset) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractAssetBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8291,13 +7475,13 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -8309,19 +7493,19 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       type,
       o.type,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       typeReference,
       o.typeReference,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       subtype,
       o.subtype,
     )) {
@@ -8333,7 +7517,7 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ContractContext>(
+    if (!listEquals<ContractContextBuilder>(
       context,
       o.context,
     )) {
@@ -8345,19 +7529,19 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       periodType,
       o.periodType,
     )) {
       return false;
     }
-    if (!listEquals<Period>(
+    if (!listEquals<PeriodBuilder>(
       period,
       o.period,
     )) {
       return false;
     }
-    if (!listEquals<Period>(
+    if (!listEquals<PeriodBuilder>(
       usePeriod,
       o.usePeriod,
     )) {
@@ -8369,25 +7553,25 @@ class ContractAsset extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       linkId,
       o.linkId,
     )) {
       return false;
     }
-    if (!listEquals<ContractAnswer>(
+    if (!listEquals<ContractAnswerBuilder>(
       answer,
       o.answer,
     )) {
       return false;
     }
-    if (!listEquals<FhirUnsignedInt>(
+    if (!listEquals<FhirUnsignedIntBuilder>(
       securityLabelNumber,
       o.securityLabelNumber,
     )) {
       return false;
     }
-    if (!listEquals<ContractValuedItem>(
+    if (!listEquals<ContractValuedItemBuilder>(
       valuedItem,
       o.valuedItem,
     )) {
@@ -8397,13 +7581,13 @@ class ContractAsset extends BackboneElement {
   }
 }
 
-/// [ContractContext]
+/// [ContractContextBuilder]
 /// Circumstance of the asset.
-class ContractContext extends BackboneElement {
+class ContractContextBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractContext]
+  /// [ContractContextBuilder]
 
-  const ContractContext({
+  ContractContextBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -8416,25 +7600,24 @@ class ContractContext extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractContext.empty() => const ContractContext();
+  /// For Builder classes, no fields are required
+  factory ContractContextBuilder.empty() => ContractContextBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractContext.fromJson(
+  factory ContractContextBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.asset.context';
-    return ContractContext(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractContextBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -8443,8 +7626,8 @@ class ContractContext extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -8452,15 +7635,15 @@ class ContractContext extends BackboneElement {
             ),
           )
           .toList(),
-      reference: JsonParser.parseObject<Reference>(
+      reference: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'reference',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.reference',
       ),
       code: (json['code'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.code',
@@ -8468,31 +7651,31 @@ class ContractContext extends BackboneElement {
             ),
           )
           .toList(),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
     );
   }
 
-  /// Deserialize [ContractContext]
+  /// Deserialize [ContractContextBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractContext.fromYaml(
+  factory ContractContextBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractContext.fromJson(
+      return ContractContextBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractContext.fromJson(
+      return ContractContextBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractContext '
+        'ContractContextBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -8500,16 +7683,16 @@ class ContractContext extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractContext]
+  /// [ContractContextBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractContext.fromJsonString(
+  factory ContractContextBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractContext.fromJson(json);
+      return ContractContextBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -8523,32 +7706,32 @@ class ContractContext extends BackboneElement {
   /// Asset context reference may include the creator, custodian, or owning
   /// Person or Organization (e.g., bank, repository), location held, e.g.,
   /// building, jurisdiction.
-  final Reference? reference;
+  ReferenceBuilder? reference;
 
   /// [code]
   /// Coded representation of the context generally or of the Referenced
   /// entity, such as the asset holder type or location.
-  final List<CodeableConcept>? code;
+  List<CodeableConceptBuilder>? code;
 
   /// [text]
   /// Context description.
-  final FhirString? text;
+  FhirStringBuilder? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -8557,35 +7740,17 @@ class ContractContext extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'reference',
-      reference,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'text',
-      text,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('reference', reference);
+    addField('code', code);
+    addField('text', text);
     return json;
   }
 
@@ -8605,11 +7770,11 @@ class ContractContext extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -8645,7 +7810,7 @@ class ContractContext extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -8654,79 +7819,81 @@ class ContractContext extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is Reference) {
-            return copyWith(reference: child);
+          if (child is ReferenceBuilder) {
+            reference = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?code, ...child];
-            return copyWith(code: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            code = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
-            return copyWith(code: newList);
+            code = [...(code ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -8742,66 +7909,56 @@ class ContractContext extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'reference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractContext]
+  /// Creates a new [ContractContextBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractContext createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: Reference.empty(),
-          );
+          reference = ReferenceBuilder.empty();
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: <CodeableConcept>[],
-          );
+          code = <CodeableConceptBuilder>[];
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8810,7 +7967,7 @@ class ContractContext extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractContext clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -8818,26 +7975,24 @@ class ContractContext extends BackboneElement {
     bool code = false,
     bool text = false,
   }) {
-    return ContractContext(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      reference: reference ? null : this.reference,
-      code: code ? null : this.code,
-      text: text ? null : this.text,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (reference) this.reference = null;
+    if (code) this.code = null;
+    if (text) this.text = null;
   }
 
   @override
-  ContractContext clone() => throw UnimplementedError();
+  ContractContextBuilder clone() => throw UnimplementedError();
   @override
-  ContractContext copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? reference,
-    List<CodeableConcept>? code,
-    FhirString? text,
+  ContractContextBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? reference,
+    List<CodeableConceptBuilder>? code,
+    FhirStringBuilder? text,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8845,50 +8000,37 @@ class ContractContext extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractContext(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      reference: reference?.copyWith(
-            objectPath: '$newObjectPath.reference',
-          ) ??
-          this.reference,
-      code: code
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.code',
-                ),
-              )
-              .toList() ??
-          this.code,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = ContractContextBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      reference: reference ?? this.reference,
+      code: code ?? this.code,
+      text: text ?? this.text,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractContext) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractContextBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8899,13 +8041,13 @@ class ContractContext extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -8917,7 +8059,7 @@ class ContractContext extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       code,
       o.code,
     )) {
@@ -8933,13 +8075,13 @@ class ContractContext extends BackboneElement {
   }
 }
 
-/// [ContractValuedItem]
+/// [ContractValuedItemBuilder]
 /// Contract Valued Item List.
-class ContractValuedItem extends BackboneElement {
+class ContractValuedItemBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractValuedItem]
+  /// [ContractValuedItemBuilder]
 
-  const ContractValuedItem({
+  ContractValuedItemBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -8963,25 +8105,24 @@ class ContractValuedItem extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractValuedItem.empty() => const ContractValuedItem();
+  /// For Builder classes, no fields are required
+  factory ContractValuedItemBuilder.empty() => ContractValuedItemBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractValuedItem.fromJson(
+  factory ContractValuedItemBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.asset.valuedItem';
-    return ContractValuedItem(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractValuedItemBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -8990,8 +8131,8 @@ class ContractValuedItem extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -8999,111 +8140,112 @@ class ContractValuedItem extends BackboneElement {
             ),
           )
           .toList(),
-      entityX: JsonParser.parsePolymorphic<EntityXContractValuedItem>(
+      entityX: JsonParser.parsePolymorphic<EntityXContractValuedItemBuilder>(
         json,
         {
-          'entityCodeableConcept': CodeableConcept.fromJson,
-          'entityReference': Reference.fromJson,
+          'entityCodeableConcept': CodeableConceptBuilder.fromJson,
+          'entityReference': ReferenceBuilder.fromJson,
         },
         objectPath,
       ),
-      identifier: JsonParser.parseObject<Identifier>(
+      identifier: JsonParser.parseObject<IdentifierBuilder>(
         json,
         'identifier',
-        Identifier.fromJson,
+        IdentifierBuilder.fromJson,
         '$objectPath.identifier',
       ),
-      effectiveTime: JsonParser.parsePrimitive<FhirDateTime>(
+      effectiveTime: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'effectiveTime',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.effectiveTime',
       ),
-      quantity: JsonParser.parseObject<Quantity>(
+      quantity: JsonParser.parseObject<QuantityBuilder>(
         json,
         'quantity',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.quantity',
       ),
-      unitPrice: JsonParser.parseObject<Money>(
+      unitPrice: JsonParser.parseObject<MoneyBuilder>(
         json,
         'unitPrice',
-        Money.fromJson,
+        MoneyBuilder.fromJson,
         '$objectPath.unitPrice',
       ),
-      factor: JsonParser.parsePrimitive<FhirDecimal>(
+      factor: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'factor',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.factor',
       ),
-      points: JsonParser.parsePrimitive<FhirDecimal>(
+      points: JsonParser.parsePrimitive<FhirDecimalBuilder>(
         json,
         'points',
-        FhirDecimal.fromJson,
+        FhirDecimalBuilder.fromJson,
         '$objectPath.points',
       ),
-      net: JsonParser.parseObject<Money>(
+      net: JsonParser.parseObject<MoneyBuilder>(
         json,
         'net',
-        Money.fromJson,
+        MoneyBuilder.fromJson,
         '$objectPath.net',
       ),
-      payment: JsonParser.parsePrimitive<FhirString>(
+      payment: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'payment',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.payment',
       ),
-      paymentDate: JsonParser.parsePrimitive<FhirDateTime>(
+      paymentDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'paymentDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.paymentDate',
       ),
-      responsible: JsonParser.parseObject<Reference>(
+      responsible: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'responsible',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.responsible',
       ),
-      recipient: JsonParser.parseObject<Reference>(
+      recipient: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'recipient',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.recipient',
       ),
-      linkId: JsonParser.parsePrimitiveList<FhirString>(
+      linkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'linkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.linkId',
       ),
-      securityLabelNumber: JsonParser.parsePrimitiveList<FhirUnsignedInt>(
+      securityLabelNumber:
+          JsonParser.parsePrimitiveList<FhirUnsignedIntBuilder>(
         json,
         'securityLabelNumber',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.securityLabelNumber',
       ),
     );
   }
 
-  /// Deserialize [ContractValuedItem]
+  /// Deserialize [ContractValuedItemBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractValuedItem.fromYaml(
+  factory ContractValuedItemBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractValuedItem.fromJson(
+      return ContractValuedItemBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractValuedItem.fromJson(
+      return ContractValuedItemBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractValuedItem '
+        'ContractValuedItemBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -9111,16 +8253,16 @@ class ContractValuedItem extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractValuedItem]
+  /// [ContractValuedItemBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractValuedItem.fromJsonString(
+  factory ContractValuedItemBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractValuedItem.fromJson(json);
+      return ContractValuedItemBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -9132,40 +8274,40 @@ class ContractValuedItem extends BackboneElement {
 
   /// [entityX]
   /// Specific type of Contract Valued Item that may be priced.
-  final EntityXContractValuedItem? entityX;
+  EntityXContractValuedItemBuilder? entityX;
 
-  /// Getter for [entityCodeableConcept] as a CodeableConcept
-  CodeableConcept? get entityCodeableConcept =>
-      entityX?.isAs<CodeableConcept>();
+  /// Getter for [entityCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get entityCodeableConcept =>
+      entityX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [entityReference] as a Reference
-  Reference? get entityReference => entityX?.isAs<Reference>();
+  /// Getter for [entityReference] as a ReferenceBuilder
+  ReferenceBuilder? get entityReference => entityX?.isAs<ReferenceBuilder>();
 
   /// [identifier]
   /// Identifies a Contract Valued Item instance.
-  final Identifier? identifier;
+  IdentifierBuilder? identifier;
 
   /// [effectiveTime]
   /// Indicates the time during which this Contract ValuedItem information is
   /// effective.
-  final FhirDateTime? effectiveTime;
+  FhirDateTimeBuilder? effectiveTime;
 
   /// [quantity]
   /// Specifies the units by which the Contract Valued Item is measured or
   /// counted, and quantifies the countable or measurable Contract Valued
   /// Item instances.
-  final Quantity? quantity;
+  QuantityBuilder? quantity;
 
   /// [unitPrice]
   /// A Contract Valued Item unit valuation measure.
-  final Money? unitPrice;
+  MoneyBuilder? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of the Contract Valued Item delivered. The concept of a
   /// Factor allows for a discount or surcharge multiplier to be applied to a
   /// monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimalBuilder? factor;
 
   /// [points]
   /// An amount that expresses the weighting (based on difficulty, cost
@@ -9173,56 +8315,56 @@ class ContractValuedItem extends BackboneElement {
   /// delivered. The concept of Points allows for assignment of point values
   /// for a Contract Valued Item, such that a monetary amount can be assigned
   /// to each point.
-  final FhirDecimal? points;
+  FhirDecimalBuilder? points;
 
   /// [net]
   /// Expresses the product of the Contract Valued Item unitQuantity and the
   /// unitPriceAmt. For example, the formula: unit Quantity * unit Price
   /// (Cost per Point) * factor Number * points = net Amount. Quantity,
   /// factor and points are assumed to be 1 if not supplied.
-  final Money? net;
+  MoneyBuilder? net;
 
   /// [payment]
   /// Terms of valuation.
-  final FhirString? payment;
+  FhirStringBuilder? payment;
 
   /// [paymentDate]
   /// When payment is due.
-  final FhirDateTime? paymentDate;
+  FhirDateTimeBuilder? paymentDate;
 
   /// [responsible]
   /// Who will make payment.
-  final Reference? responsible;
+  ReferenceBuilder? responsible;
 
   /// [recipient]
   /// Who will receive payment.
-  final Reference? recipient;
+  ReferenceBuilder? recipient;
 
   /// [linkId]
   /// Id of the clause or question text related to the context of this
   /// valuedItem in the referenced form or QuestionnaireResponse.
-  final List<FhirString>? linkId;
+  List<FhirStringBuilder>? linkId;
 
   /// [securityLabelNumber]
   /// A set of security labels that define which terms are controlled by this
   /// condition.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedIntBuilder>? securityLabelNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -9231,83 +8373,32 @@ class ContractValuedItem extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
     if (entityX != null) {
       final fhirType = entityX!.fhirType;
-      addField(
-        'entity${fhirType.capitalize()}',
-        entityX,
-      );
+      addField('entity${fhirType.capitalize()}', entityX);
     }
 
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'effectiveTime',
-      effectiveTime,
-    );
-    addField(
-      'quantity',
-      quantity,
-    );
-    addField(
-      'unitPrice',
-      unitPrice,
-    );
-    addField(
-      'factor',
-      factor,
-    );
-    addField(
-      'points',
-      points,
-    );
-    addField(
-      'net',
-      net,
-    );
-    addField(
-      'payment',
-      payment,
-    );
-    addField(
-      'paymentDate',
-      paymentDate,
-    );
-    addField(
-      'responsible',
-      responsible,
-    );
-    addField(
-      'recipient',
-      recipient,
-    );
-    addField(
-      'linkId',
-      linkId,
-    );
-    addField(
-      'securityLabelNumber',
-      securityLabelNumber,
-    );
+    addField('identifier', identifier);
+    addField('effectiveTime', effectiveTime);
+    addField('quantity', quantity);
+    addField('unitPrice', unitPrice);
+    addField('factor', factor);
+    addField('points', points);
+    addField('net', net);
+    addField('payment', payment);
+    addField('paymentDate', paymentDate);
+    addField('responsible', responsible);
+    addField('recipient', recipient);
+    addField('linkId', linkId);
+    addField('securityLabelNumber', securityLabelNumber);
     return json;
   }
 
@@ -9338,11 +8429,11 @@ class ContractValuedItem extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -9357,15 +8448,19 @@ class ContractValuedItem extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'entity':
-        fields.add(entityX!);
+        if (entityX != null) {
+          fields.add(entityX!);
+        }
       case 'entityX':
-        fields.add(entityX!);
+        if (entityX != null) {
+          fields.add(entityX!);
+        }
       case 'entityCodeableConcept':
-        if (entityX is CodeableConcept) {
+        if (entityX is CodeableConceptBuilder) {
           fields.add(entityX!);
         }
       case 'entityReference':
-        if (entityX is Reference) {
+        if (entityX is ReferenceBuilder) {
           fields.add(entityX!);
         }
       case 'identifier':
@@ -9430,7 +8525,7 @@ class ContractValuedItem extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -9439,195 +8534,211 @@ class ContractValuedItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'entityX':
         {
-          if (child is EntityXContractValuedItem) {
-            return copyWith(entityX: child);
+          if (child is EntityXContractValuedItemBuilder) {
+            entityX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(entityX: child);
+            if (child is CodeableConceptBuilder) {
+              entityX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(entityX: child);
+            if (child is ReferenceBuilder) {
+              entityX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'entityCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(entityX: child);
+          if (child is CodeableConceptBuilder) {
+            entityX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'entityReference':
         {
-          if (child is Reference) {
-            return copyWith(entityX: child);
+          if (child is ReferenceBuilder) {
+            entityX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
+          if (child is IdentifierBuilder) {
+            identifier = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectiveTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(effectiveTime: child);
+          if (child is FhirDateTimeBuilder) {
+            effectiveTime = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
         {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
+          if (child is QuantityBuilder) {
+            quantity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'unitPrice':
         {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
+          if (child is MoneyBuilder) {
+            unitPrice = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'factor':
         {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
+          if (child is FhirDecimalBuilder) {
+            factor = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'points':
         {
-          if (child is FhirDecimal) {
-            return copyWith(points: child);
+          if (child is FhirDecimalBuilder) {
+            points = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'net':
         {
-          if (child is Money) {
-            return copyWith(net: child);
+          if (child is MoneyBuilder) {
+            net = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'payment':
         {
-          if (child is FhirString) {
-            return copyWith(payment: child);
+          if (child is FhirStringBuilder) {
+            payment = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'paymentDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(paymentDate: child);
+          if (child is FhirDateTimeBuilder) {
+            paymentDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'responsible':
         {
-          if (child is Reference) {
-            return copyWith(responsible: child);
+          if (child is ReferenceBuilder) {
+            responsible = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'recipient':
         {
-          if (child is Reference) {
-            return copyWith(recipient: child);
+          if (child is ReferenceBuilder) {
+            recipient = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'linkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?linkId, ...child];
-            return copyWith(linkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            linkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?linkId, child];
-            return copyWith(linkId: newList);
+            linkId = [...(linkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabelNumber':
         {
-          if (child is List<FhirUnsignedInt>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabelNumber, ...child];
-            return copyWith(securityLabelNumber: newList);
-          } else if (child is FhirUnsignedInt) {
+          if (child is List<FhirUnsignedIntBuilder>) {
+            // Replace or create new list
+            securityLabelNumber = child;
+            return;
+          } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabelNumber, child];
-            return copyWith(securityLabelNumber: newList);
+            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -9643,167 +8754,145 @@ class ContractValuedItem extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'entity':
       case 'entityX':
-        return ['CodeableConcept', 'Reference'];
+        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
       case 'entityCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'entityReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'effectiveTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'quantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'unitPrice':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'factor':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'points':
-        return ['FhirDecimal'];
+        return ['FhirDecimalBuilder'];
       case 'net':
-        return ['Money'];
+        return ['MoneyBuilder'];
       case 'payment':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'paymentDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'responsible':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'recipient':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'linkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'securityLabelNumber':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractValuedItem]
+  /// Creates a new [ContractValuedItemBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractValuedItem createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'entity':
       case 'entityX':
       case 'entityCodeableConcept':
         {
-          return copyWith(
-            entityX: CodeableConcept.empty(),
-          );
+          entityX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'entityReference':
         {
-          return copyWith(
-            entityX: Reference.empty(),
-          );
+          entityX = ReferenceBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
+          identifier = IdentifierBuilder.empty();
+          return;
         }
       case 'effectiveTime':
         {
-          return copyWith(
-            effectiveTime: FhirDateTime.empty(),
-          );
+          effectiveTime = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'quantity':
         {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
+          quantity = QuantityBuilder.empty();
+          return;
         }
       case 'unitPrice':
         {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
+          unitPrice = MoneyBuilder.empty();
+          return;
         }
       case 'factor':
         {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
+          factor = FhirDecimalBuilder.empty();
+          return;
         }
       case 'points':
         {
-          return copyWith(
-            points: FhirDecimal.empty(),
-          );
+          points = FhirDecimalBuilder.empty();
+          return;
         }
       case 'net':
         {
-          return copyWith(
-            net: Money.empty(),
-          );
+          net = MoneyBuilder.empty();
+          return;
         }
       case 'payment':
         {
-          return copyWith(
-            payment: FhirString.empty(),
-          );
+          payment = FhirStringBuilder.empty();
+          return;
         }
       case 'paymentDate':
         {
-          return copyWith(
-            paymentDate: FhirDateTime.empty(),
-          );
+          paymentDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'responsible':
         {
-          return copyWith(
-            responsible: Reference.empty(),
-          );
+          responsible = ReferenceBuilder.empty();
+          return;
         }
       case 'recipient':
         {
-          return copyWith(
-            recipient: Reference.empty(),
-          );
+          recipient = ReferenceBuilder.empty();
+          return;
         }
       case 'linkId':
         {
-          return copyWith(
-            linkId: <FhirString>[],
-          );
+          linkId = <FhirStringBuilder>[];
+          return;
         }
       case 'securityLabelNumber':
         {
-          return copyWith(
-            securityLabelNumber: <FhirUnsignedInt>[],
-          );
+          securityLabelNumber = <FhirUnsignedIntBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -9812,7 +8901,7 @@ class ContractValuedItem extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractValuedItem clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -9831,49 +8920,46 @@ class ContractValuedItem extends BackboneElement {
     bool linkId = false,
     bool securityLabelNumber = false,
   }) {
-    return ContractValuedItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      entityX: entity ? null : entityX,
-      identifier: identifier ? null : this.identifier,
-      effectiveTime: effectiveTime ? null : this.effectiveTime,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      points: points ? null : this.points,
-      net: net ? null : this.net,
-      payment: payment ? null : this.payment,
-      paymentDate: paymentDate ? null : this.paymentDate,
-      responsible: responsible ? null : this.responsible,
-      recipient: recipient ? null : this.recipient,
-      linkId: linkId ? null : this.linkId,
-      securityLabelNumber:
-          securityLabelNumber ? null : this.securityLabelNumber,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (entity) this.entityX = null;
+    if (identifier) this.identifier = null;
+    if (effectiveTime) this.effectiveTime = null;
+    if (quantity) this.quantity = null;
+    if (unitPrice) this.unitPrice = null;
+    if (factor) this.factor = null;
+    if (points) this.points = null;
+    if (net) this.net = null;
+    if (payment) this.payment = null;
+    if (paymentDate) this.paymentDate = null;
+    if (responsible) this.responsible = null;
+    if (recipient) this.recipient = null;
+    if (linkId) this.linkId = null;
+    if (securityLabelNumber) this.securityLabelNumber = null;
   }
 
   @override
-  ContractValuedItem clone() => throw UnimplementedError();
+  ContractValuedItemBuilder clone() => throw UnimplementedError();
   @override
-  ContractValuedItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    EntityXContractValuedItem? entityX,
-    Identifier? identifier,
-    FhirDateTime? effectiveTime,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    FhirDecimal? points,
-    Money? net,
-    FhirString? payment,
-    FhirDateTime? paymentDate,
-    Reference? responsible,
-    Reference? recipient,
-    List<FhirString>? linkId,
-    List<FhirUnsignedInt>? securityLabelNumber,
+  ContractValuedItemBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    EntityXContractValuedItemBuilder? entityX,
+    IdentifierBuilder? identifier,
+    FhirDateTimeBuilder? effectiveTime,
+    QuantityBuilder? quantity,
+    MoneyBuilder? unitPrice,
+    FhirDecimalBuilder? factor,
+    FhirDecimalBuilder? points,
+    MoneyBuilder? net,
+    FhirStringBuilder? payment,
+    FhirDateTimeBuilder? paymentDate,
+    ReferenceBuilder? responsible,
+    ReferenceBuilder? recipient,
+    List<FhirStringBuilder>? linkId,
+    List<FhirUnsignedIntBuilder>? securityLabelNumber,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -9881,98 +8967,48 @@ class ContractValuedItem extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractValuedItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      entityX: entityX?.copyWith(
-            objectPath: '$newObjectPath.entityX',
-          ) as EntityXContractValuedItem? ??
-          this.entityX,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      effectiveTime: effectiveTime?.copyWith(
-            objectPath: '$newObjectPath.effectiveTime',
-          ) ??
-          this.effectiveTime,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      points: points?.copyWith(
-            objectPath: '$newObjectPath.points',
-          ) ??
-          this.points,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      payment: payment?.copyWith(
-            objectPath: '$newObjectPath.payment',
-          ) ??
-          this.payment,
-      paymentDate: paymentDate?.copyWith(
-            objectPath: '$newObjectPath.paymentDate',
-          ) ??
-          this.paymentDate,
-      responsible: responsible?.copyWith(
-            objectPath: '$newObjectPath.responsible',
-          ) ??
-          this.responsible,
-      recipient: recipient?.copyWith(
-            objectPath: '$newObjectPath.recipient',
-          ) ??
-          this.recipient,
-      linkId: linkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.linkId',
-                ),
-              )
-              .toList() ??
-          this.linkId,
-      securityLabelNumber: securityLabelNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabelNumber',
-                ),
-              )
-              .toList() ??
-          this.securityLabelNumber,
+    final newResult = ContractValuedItemBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      entityX: entityX ?? this.entityX,
+      identifier: identifier ?? this.identifier,
+      effectiveTime: effectiveTime ?? this.effectiveTime,
+      quantity: quantity ?? this.quantity,
+      unitPrice: unitPrice ?? this.unitPrice,
+      factor: factor ?? this.factor,
+      points: points ?? this.points,
+      net: net ?? this.net,
+      payment: payment ?? this.payment,
+      paymentDate: paymentDate ?? this.paymentDate,
+      responsible: responsible ?? this.responsible,
+      recipient: recipient ?? this.recipient,
+      linkId: linkId ?? this.linkId,
+      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractValuedItem) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractValuedItemBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -9983,13 +9019,13 @@ class ContractValuedItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -10067,13 +9103,13 @@ class ContractValuedItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       linkId,
       o.linkId,
     )) {
       return false;
     }
-    if (!listEquals<FhirUnsignedInt>(
+    if (!listEquals<FhirUnsignedIntBuilder>(
       securityLabelNumber,
       o.securityLabelNumber,
     )) {
@@ -10083,23 +9119,23 @@ class ContractValuedItem extends BackboneElement {
   }
 }
 
-/// [ContractAction]
+/// [ContractActionBuilder]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
-class ContractAction extends BackboneElement {
+class ContractActionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractAction]
+  /// [ContractActionBuilder]
 
-  const ContractAction({
+  ContractActionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.doNotPerform,
-    required this.type,
+    this.type,
     this.subject,
-    required this.intent,
+    this.intent,
     this.linkId,
-    required this.status,
+    this.status,
     this.context,
     this.contextLinkId,
     this.occurrenceX,
@@ -10121,29 +9157,24 @@ class ContractAction extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractAction.empty() => ContractAction(
-        type: CodeableConcept.empty(),
-        intent: CodeableConcept.empty(),
-        status: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractActionBuilder.empty() => ContractActionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractAction.fromJson(
+  factory ContractActionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.action';
-    return ContractAction(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractActionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -10152,8 +9183,8 @@ class ContractAction extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -10161,21 +9192,21 @@ class ContractAction extends BackboneElement {
             ),
           )
           .toList(),
-      doNotPerform: JsonParser.parsePrimitive<FhirBoolean>(
+      doNotPerform: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'doNotPerform',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.doNotPerform',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
+      ),
       subject: (json['subject'] as List<dynamic>?)
-          ?.map<ContractSubject>(
-            (v) => ContractSubject.fromJson(
+          ?.map<ContractSubjectBuilder>(
+            (v) => ContractSubjectBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.subject',
@@ -10183,48 +9214,49 @@ class ContractAction extends BackboneElement {
             ),
           )
           .toList(),
-      intent: JsonParser.parseObject<CodeableConcept>(
+      intent: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'intent',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.intent',
-      )!,
-      linkId: JsonParser.parsePrimitiveList<FhirString>(
+      ),
+      linkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'linkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.linkId',
       ),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      context: JsonParser.parseObject<Reference>(
+      ),
+      context: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'context',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.context',
       ),
-      contextLinkId: JsonParser.parsePrimitiveList<FhirString>(
+      contextLinkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'contextLinkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.contextLinkId',
       ),
-      occurrenceX: JsonParser.parsePolymorphic<OccurrenceXContractAction>(
+      occurrenceX:
+          JsonParser.parsePolymorphic<OccurrenceXContractActionBuilder>(
         json,
         {
-          'occurrenceDateTime': FhirDateTime.fromJson,
-          'occurrencePeriod': Period.fromJson,
-          'occurrenceTiming': Timing.fromJson,
+          'occurrenceDateTime': FhirDateTimeBuilder.fromJson,
+          'occurrencePeriod': PeriodBuilder.fromJson,
+          'occurrenceTiming': TimingBuilder.fromJson,
         },
         objectPath,
       ),
       requester: (json['requester'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.requester',
@@ -10232,15 +9264,15 @@ class ContractAction extends BackboneElement {
             ),
           )
           .toList(),
-      requesterLinkId: JsonParser.parsePrimitiveList<FhirString>(
+      requesterLinkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'requesterLinkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.requesterLinkId',
       ),
       performerType: (json['performerType'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.performerType',
@@ -10248,27 +9280,27 @@ class ContractAction extends BackboneElement {
             ),
           )
           .toList(),
-      performerRole: JsonParser.parseObject<CodeableConcept>(
+      performerRole: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'performerRole',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.performerRole',
       ),
-      performer: JsonParser.parseObject<Reference>(
+      performer: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'performer',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.performer',
       ),
-      performerLinkId: JsonParser.parsePrimitiveList<FhirString>(
+      performerLinkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'performerLinkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.performerLinkId',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonCode',
@@ -10277,8 +9309,8 @@ class ContractAction extends BackboneElement {
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reasonReference',
@@ -10286,21 +9318,21 @@ class ContractAction extends BackboneElement {
             ),
           )
           .toList(),
-      reason: JsonParser.parsePrimitiveList<FhirString>(
+      reason: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'reason',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.reason',
       ),
-      reasonLinkId: JsonParser.parsePrimitiveList<FhirString>(
+      reasonLinkId: JsonParser.parsePrimitiveList<FhirStringBuilder>(
         json,
         'reasonLinkId',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.reasonLinkId',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -10308,31 +9340,32 @@ class ContractAction extends BackboneElement {
             ),
           )
           .toList(),
-      securityLabelNumber: JsonParser.parsePrimitiveList<FhirUnsignedInt>(
+      securityLabelNumber:
+          JsonParser.parsePrimitiveList<FhirUnsignedIntBuilder>(
         json,
         'securityLabelNumber',
-        FhirUnsignedInt.fromJson,
+        FhirUnsignedIntBuilder.fromJson,
         '$objectPath.securityLabelNumber',
       ),
     );
   }
 
-  /// Deserialize [ContractAction]
+  /// Deserialize [ContractActionBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractAction.fromYaml(
+  factory ContractActionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractAction.fromJson(
+      return ContractActionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractAction.fromJson(
+      return ContractActionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractAction '
+        'ContractActionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -10340,16 +9373,16 @@ class ContractAction extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractAction]
+  /// [ContractActionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractAction.fromJsonString(
+  factory ContractActionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractAction.fromJson(json);
+      return ContractActionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -10361,131 +9394,132 @@ class ContractAction extends BackboneElement {
 
   /// [doNotPerform]
   /// True if the term prohibits the action.
-  final FhirBoolean? doNotPerform;
+  FhirBooleanBuilder? doNotPerform;
 
   /// [type]
   /// Activity or service obligation to be done or not done, performed or not
   /// performed, effectuated or not by this Contract term.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [subject]
   /// Entity of the action.
-  final List<ContractSubject>? subject;
+  List<ContractSubjectBuilder>? subject;
 
   /// [intent]
   /// Reason or purpose for the action stipulated by this Contract Provision.
-  final CodeableConcept intent;
+  CodeableConceptBuilder? intent;
 
   /// [linkId]
   /// Id [identifier??] of the clause or question text related to this action
   /// in the referenced form or QuestionnaireResponse.
-  final List<FhirString>? linkId;
+  List<FhirStringBuilder>? linkId;
 
   /// [status]
   /// Current state of the term action.
-  final CodeableConcept status;
+  CodeableConceptBuilder? status;
 
   /// [context]
   /// Encounter or Episode with primary association to specified term
   /// activity.
-  final Reference? context;
+  ReferenceBuilder? context;
 
   /// [contextLinkId]
   /// Id [identifier??] of the clause or question text related to the
   /// requester of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? contextLinkId;
+  List<FhirStringBuilder>? contextLinkId;
 
   /// [occurrenceX]
   /// When action happens.
-  final OccurrenceXContractAction? occurrenceX;
+  OccurrenceXContractActionBuilder? occurrenceX;
 
-  /// Getter for [occurrenceDateTime] as a FhirDateTime
-  FhirDateTime? get occurrenceDateTime => occurrenceX?.isAs<FhirDateTime>();
+  /// Getter for [occurrenceDateTime] as a FhirDateTimeBuilder
+  FhirDateTimeBuilder? get occurrenceDateTime =>
+      occurrenceX?.isAs<FhirDateTimeBuilder>();
 
-  /// Getter for [occurrencePeriod] as a Period
-  Period? get occurrencePeriod => occurrenceX?.isAs<Period>();
+  /// Getter for [occurrencePeriod] as a PeriodBuilder
+  PeriodBuilder? get occurrencePeriod => occurrenceX?.isAs<PeriodBuilder>();
 
-  /// Getter for [occurrenceTiming] as a Timing
-  Timing? get occurrenceTiming => occurrenceX?.isAs<Timing>();
+  /// Getter for [occurrenceTiming] as a TimingBuilder
+  TimingBuilder? get occurrenceTiming => occurrenceX?.isAs<TimingBuilder>();
 
   /// [requester]
   /// Who or what initiated the action and has responsibility for its
   /// activation.
-  final List<Reference>? requester;
+  List<ReferenceBuilder>? requester;
 
   /// [requesterLinkId]
   /// Id [identifier??] of the clause or question text related to the
   /// requester of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? requesterLinkId;
+  List<FhirStringBuilder>? requesterLinkId;
 
   /// [performerType]
   /// The type of individual that is desired or required to perform or not
   /// perform the action.
-  final List<CodeableConcept>? performerType;
+  List<CodeableConceptBuilder>? performerType;
 
   /// [performerRole]
   /// The type of role or competency of an individual desired or required to
   /// perform or not perform the action.
-  final CodeableConcept? performerRole;
+  CodeableConceptBuilder? performerRole;
 
   /// [performer]
   /// Indicates who or what is being asked to perform (or not perform) the
   /// ction.
-  final Reference? performer;
+  ReferenceBuilder? performer;
 
   /// [performerLinkId]
   /// Id [identifier??] of the clause or question text related to the reason
   /// type or reference of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? performerLinkId;
+  List<FhirStringBuilder>? performerLinkId;
 
   /// [reasonCode]
   /// Rationale for the action to be performed or not performed. Describes
   /// why the action is permitted or prohibited.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConceptBuilder>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource whose existence justifies permitting or not
   /// permitting this action.
-  final List<Reference>? reasonReference;
+  List<ReferenceBuilder>? reasonReference;
 
   /// [reason]
   /// Describes why the action is to be performed or not performed in textual
   /// form.
-  final List<FhirString>? reason;
+  List<FhirStringBuilder>? reason;
 
   /// [reasonLinkId]
   /// Id [identifier??] of the clause or question text related to the reason
   /// type or reference of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? reasonLinkId;
+  List<FhirStringBuilder>? reasonLinkId;
 
   /// [note]
   /// Comments made about the term action made by the requester, performer,
   /// subject or other participants.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [securityLabelNumber]
   /// Security labels that protects the action.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedIntBuilder>? securityLabelNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -10494,111 +9528,39 @@ class ContractAction extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'doNotPerform',
-      doNotPerform,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'subject',
-      subject,
-    );
-    addField(
-      'intent',
-      intent,
-    );
-    addField(
-      'linkId',
-      linkId,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'context',
-      context,
-    );
-    addField(
-      'contextLinkId',
-      contextLinkId,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('doNotPerform', doNotPerform);
+    addField('type', type);
+    addField('subject', subject);
+    addField('intent', intent);
+    addField('linkId', linkId);
+    addField('status', status);
+    addField('context', context);
+    addField('contextLinkId', contextLinkId);
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField(
-        'occurrence${fhirType.capitalize()}',
-        occurrenceX,
-      );
+      addField('occurrence${fhirType.capitalize()}', occurrenceX);
     }
 
-    addField(
-      'requester',
-      requester,
-    );
-    addField(
-      'requesterLinkId',
-      requesterLinkId,
-    );
-    addField(
-      'performerType',
-      performerType,
-    );
-    addField(
-      'performerRole',
-      performerRole,
-    );
-    addField(
-      'performer',
-      performer,
-    );
-    addField(
-      'performerLinkId',
-      performerLinkId,
-    );
-    addField(
-      'reasonCode',
-      reasonCode,
-    );
-    addField(
-      'reasonReference',
-      reasonReference,
-    );
-    addField(
-      'reason',
-      reason,
-    );
-    addField(
-      'reasonLinkId',
-      reasonLinkId,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'securityLabelNumber',
-      securityLabelNumber,
-    );
+    addField('requester', requester);
+    addField('requesterLinkId', requesterLinkId);
+    addField('performerType', performerType);
+    addField('performerRole', performerRole);
+    addField('performer', performer);
+    addField('performerLinkId', performerLinkId);
+    addField('reasonCode', reasonCode);
+    addField('reasonReference', reasonReference);
+    addField('reason', reason);
+    addField('reasonLinkId', reasonLinkId);
+    addField('note', note);
+    addField('securityLabelNumber', securityLabelNumber);
     return json;
   }
 
@@ -10636,11 +9598,11 @@ class ContractAction extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -10659,19 +9621,25 @@ class ContractAction extends BackboneElement {
           fields.add(doNotPerform!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'subject':
         if (subject != null) {
           fields.addAll(subject!);
         }
       case 'intent':
-        fields.add(intent);
+        if (intent != null) {
+          fields.add(intent!);
+        }
       case 'linkId':
         if (linkId != null) {
           fields.addAll(linkId!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'context':
         if (context != null) {
           fields.add(context!);
@@ -10681,19 +9649,23 @@ class ContractAction extends BackboneElement {
           fields.addAll(contextLinkId!);
         }
       case 'occurrence':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceX':
-        fields.add(occurrenceX!);
+        if (occurrenceX != null) {
+          fields.add(occurrenceX!);
+        }
       case 'occurrenceDateTime':
-        if (occurrenceX is FhirDateTime) {
+        if (occurrenceX is FhirDateTimeBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrencePeriod':
-        if (occurrenceX is Period) {
+        if (occurrenceX is PeriodBuilder) {
           fields.add(occurrenceX!);
         }
       case 'occurrenceTiming':
-        if (occurrenceX is Timing) {
+        if (occurrenceX is TimingBuilder) {
           fields.add(occurrenceX!);
         }
       case 'requester':
@@ -10754,7 +9726,7 @@ class ContractAction extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -10763,328 +9735,342 @@ class ContractAction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'doNotPerform':
         {
-          if (child is FhirBoolean) {
-            return copyWith(doNotPerform: child);
+          if (child is FhirBooleanBuilder) {
+            doNotPerform = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
-          if (child is List<ContractSubject>) {
-            // Add all elements from passed list
-            final newList = [...?subject, ...child];
-            return copyWith(subject: newList);
-          } else if (child is ContractSubject) {
+          if (child is List<ContractSubjectBuilder>) {
+            // Replace or create new list
+            subject = child;
+            return;
+          } else if (child is ContractSubjectBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?subject, child];
-            return copyWith(subject: newList);
+            subject = [...(subject ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'intent':
         {
-          if (child is CodeableConcept) {
-            return copyWith(intent: child);
+          if (child is CodeableConceptBuilder) {
+            intent = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'linkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?linkId, ...child];
-            return copyWith(linkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            linkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?linkId, child];
-            return copyWith(linkId: newList);
+            linkId = [...(linkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
         {
-          if (child is Reference) {
-            return copyWith(context: child);
+          if (child is ReferenceBuilder) {
+            context = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contextLinkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?contextLinkId, ...child];
-            return copyWith(contextLinkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            contextLinkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contextLinkId, child];
-            return copyWith(contextLinkId: newList);
+            contextLinkId = [...(contextLinkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceX':
         {
-          if (child is OccurrenceXContractAction) {
-            return copyWith(occurrenceX: child);
+          if (child is OccurrenceXContractActionBuilder) {
+            occurrenceX = child;
+            return;
           } else {
-            if (child is FhirDateTime) {
-              return copyWith(occurrenceX: child);
+            if (child is FhirDateTimeBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Period) {
-              return copyWith(occurrenceX: child);
+            if (child is PeriodBuilder) {
+              occurrenceX = child;
+              return;
             }
-            if (child is Timing) {
-              return copyWith(occurrenceX: child);
+            if (child is TimingBuilder) {
+              occurrenceX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'occurrenceFhirDateTime':
+      case 'occurrenceDateTime':
         {
-          if (child is FhirDateTime) {
-            return copyWith(occurrenceX: child);
+          if (child is FhirDateTimeBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrencePeriod':
         {
-          if (child is Period) {
-            return copyWith(occurrenceX: child);
+          if (child is PeriodBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceTiming':
         {
-          if (child is Timing) {
-            return copyWith(occurrenceX: child);
+          if (child is TimingBuilder) {
+            occurrenceX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requester':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?requester, ...child];
-            return copyWith(requester: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            requester = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?requester, child];
-            return copyWith(requester: newList);
+            requester = [...(requester ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'requesterLinkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?requesterLinkId, ...child];
-            return copyWith(requesterLinkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            requesterLinkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?requesterLinkId, child];
-            return copyWith(requesterLinkId: newList);
+            requesterLinkId = [...(requesterLinkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performerType':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?performerType, ...child];
-            return copyWith(performerType: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            performerType = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performerType, child];
-            return copyWith(performerType: newList);
+            performerType = [...(performerType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performerRole':
         {
-          if (child is CodeableConcept) {
-            return copyWith(performerRole: child);
+          if (child is CodeableConceptBuilder) {
+            performerRole = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
-          if (child is Reference) {
-            return copyWith(performer: child);
+          if (child is ReferenceBuilder) {
+            performer = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'performerLinkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?performerLinkId, ...child];
-            return copyWith(performerLinkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            performerLinkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?performerLinkId, child];
-            return copyWith(performerLinkId: newList);
+            performerLinkId = [...(performerLinkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            reasonCode = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
-            return copyWith(reasonCode: newList);
+            reasonCode = [...(reasonCode ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reasonReference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
-            return copyWith(reasonReference: newList);
+            reasonReference = [...(reasonReference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reason':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?reason, ...child];
-            return copyWith(reason: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            reason = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reason, child];
-            return copyWith(reason: newList);
+            reason = [...(reason ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonLinkId':
         {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?reasonLinkId, ...child];
-            return copyWith(reasonLinkId: newList);
-          } else if (child is FhirString) {
+          if (child is List<FhirStringBuilder>) {
+            // Replace or create new list
+            reasonLinkId = child;
+            return;
+          } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonLinkId, child];
-            return copyWith(reasonLinkId: newList);
+            reasonLinkId = [...(reasonLinkId ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabelNumber':
         {
-          if (child is List<FhirUnsignedInt>) {
-            // Add all elements from passed list
-            final newList = [...?securityLabelNumber, ...child];
-            return copyWith(securityLabelNumber: newList);
-          } else if (child is FhirUnsignedInt) {
+          if (child is List<FhirUnsignedIntBuilder>) {
+            // Replace or create new list
+            securityLabelNumber = child;
+            return;
+          } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabelNumber, child];
-            return copyWith(securityLabelNumber: newList);
+            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -11100,231 +10086,201 @@ class ContractAction extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'doNotPerform':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'subject':
-        return ['ContractSubject'];
+        return ['ContractSubjectBuilder'];
       case 'intent':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'linkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'context':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'contextLinkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTime', 'Period', 'Timing'];
+        return ['FhirDateTimeBuilder', 'PeriodBuilder', 'TimingBuilder'];
       case 'occurrenceDateTime':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'occurrencePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'occurrenceTiming':
-        return ['Timing'];
+        return ['TimingBuilder'];
       case 'requester':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'requesterLinkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'performerType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'performerRole':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'performer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'performerLinkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'reasonCode':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'reasonReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'reason':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'reasonLinkId':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'securityLabelNumber':
-        return ['FhirUnsignedInt'];
+        return ['FhirUnsignedIntBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractAction]
+  /// Creates a new [ContractActionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractAction createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'doNotPerform':
         {
-          return copyWith(
-            doNotPerform: FhirBoolean.empty(),
-          );
+          doNotPerform = FhirBooleanBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'subject':
         {
-          return copyWith(
-            subject: <ContractSubject>[],
-          );
+          subject = <ContractSubjectBuilder>[];
+          return;
         }
       case 'intent':
         {
-          return copyWith(
-            intent: CodeableConcept.empty(),
-          );
+          intent = CodeableConceptBuilder.empty();
+          return;
         }
       case 'linkId':
         {
-          return copyWith(
-            linkId: <FhirString>[],
-          );
+          linkId = <FhirStringBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'context':
         {
-          return copyWith(
-            context: Reference.empty(),
-          );
+          context = ReferenceBuilder.empty();
+          return;
         }
       case 'contextLinkId':
         {
-          return copyWith(
-            contextLinkId: <FhirString>[],
-          );
+          contextLinkId = <FhirStringBuilder>[];
+          return;
         }
       case 'occurrence':
       case 'occurrenceX':
       case 'occurrenceDateTime':
         {
-          return copyWith(
-            occurrenceX: FhirDateTime.empty(),
-          );
+          occurrenceX = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'occurrencePeriod':
         {
-          return copyWith(
-            occurrenceX: Period.empty(),
-          );
+          occurrenceX = PeriodBuilder.empty();
+          return;
         }
       case 'occurrenceTiming':
         {
-          return copyWith(
-            occurrenceX: Timing.empty(),
-          );
+          occurrenceX = TimingBuilder.empty();
+          return;
         }
       case 'requester':
         {
-          return copyWith(
-            requester: <Reference>[],
-          );
+          requester = <ReferenceBuilder>[];
+          return;
         }
       case 'requesterLinkId':
         {
-          return copyWith(
-            requesterLinkId: <FhirString>[],
-          );
+          requesterLinkId = <FhirStringBuilder>[];
+          return;
         }
       case 'performerType':
         {
-          return copyWith(
-            performerType: <CodeableConcept>[],
-          );
+          performerType = <CodeableConceptBuilder>[];
+          return;
         }
       case 'performerRole':
         {
-          return copyWith(
-            performerRole: CodeableConcept.empty(),
-          );
+          performerRole = CodeableConceptBuilder.empty();
+          return;
         }
       case 'performer':
         {
-          return copyWith(
-            performer: Reference.empty(),
-          );
+          performer = ReferenceBuilder.empty();
+          return;
         }
       case 'performerLinkId':
         {
-          return copyWith(
-            performerLinkId: <FhirString>[],
-          );
+          performerLinkId = <FhirStringBuilder>[];
+          return;
         }
       case 'reasonCode':
         {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
+          reasonCode = <CodeableConceptBuilder>[];
+          return;
         }
       case 'reasonReference':
         {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
+          reasonReference = <ReferenceBuilder>[];
+          return;
         }
       case 'reason':
         {
-          return copyWith(
-            reason: <FhirString>[],
-          );
+          reason = <FhirStringBuilder>[];
+          return;
         }
       case 'reasonLinkId':
         {
-          return copyWith(
-            reasonLinkId: <FhirString>[],
-          );
+          reasonLinkId = <FhirStringBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'securityLabelNumber':
         {
-          return copyWith(
-            securityLabelNumber: <FhirUnsignedInt>[],
-          );
+          securityLabelNumber = <FhirUnsignedIntBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -11333,13 +10289,16 @@ class ContractAction extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractAction clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool doNotPerform = false,
+    bool type = false,
     bool subject = false,
+    bool intent = false,
     bool linkId = false,
+    bool status = false,
     bool context = false,
     bool contextLinkId = false,
     bool occurrence = false,
@@ -11356,63 +10315,60 @@ class ContractAction extends BackboneElement {
     bool note = false,
     bool securityLabelNumber = false,
   }) {
-    return ContractAction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      doNotPerform: doNotPerform ? null : this.doNotPerform,
-      type: type,
-      subject: subject ? null : this.subject,
-      intent: intent,
-      linkId: linkId ? null : this.linkId,
-      status: status,
-      context: context ? null : this.context,
-      contextLinkId: contextLinkId ? null : this.contextLinkId,
-      occurrenceX: occurrence ? null : occurrenceX,
-      requester: requester ? null : this.requester,
-      requesterLinkId: requesterLinkId ? null : this.requesterLinkId,
-      performerType: performerType ? null : this.performerType,
-      performerRole: performerRole ? null : this.performerRole,
-      performer: performer ? null : this.performer,
-      performerLinkId: performerLinkId ? null : this.performerLinkId,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      reason: reason ? null : this.reason,
-      reasonLinkId: reasonLinkId ? null : this.reasonLinkId,
-      note: note ? null : this.note,
-      securityLabelNumber:
-          securityLabelNumber ? null : this.securityLabelNumber,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (doNotPerform) this.doNotPerform = null;
+    if (type) this.type = null;
+    if (subject) this.subject = null;
+    if (intent) this.intent = null;
+    if (linkId) this.linkId = null;
+    if (status) this.status = null;
+    if (context) this.context = null;
+    if (contextLinkId) this.contextLinkId = null;
+    if (occurrence) this.occurrenceX = null;
+    if (requester) this.requester = null;
+    if (requesterLinkId) this.requesterLinkId = null;
+    if (performerType) this.performerType = null;
+    if (performerRole) this.performerRole = null;
+    if (performer) this.performer = null;
+    if (performerLinkId) this.performerLinkId = null;
+    if (reasonCode) this.reasonCode = null;
+    if (reasonReference) this.reasonReference = null;
+    if (reason) this.reason = null;
+    if (reasonLinkId) this.reasonLinkId = null;
+    if (note) this.note = null;
+    if (securityLabelNumber) this.securityLabelNumber = null;
   }
 
   @override
-  ContractAction clone() => throw UnimplementedError();
+  ContractActionBuilder clone() => throw UnimplementedError();
   @override
-  ContractAction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? doNotPerform,
-    CodeableConcept? type,
-    List<ContractSubject>? subject,
-    CodeableConcept? intent,
-    List<FhirString>? linkId,
-    CodeableConcept? status,
-    Reference? context,
-    List<FhirString>? contextLinkId,
-    OccurrenceXContractAction? occurrenceX,
-    List<Reference>? requester,
-    List<FhirString>? requesterLinkId,
-    List<CodeableConcept>? performerType,
-    CodeableConcept? performerRole,
-    Reference? performer,
-    List<FhirString>? performerLinkId,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<FhirString>? reason,
-    List<FhirString>? reasonLinkId,
-    List<Annotation>? note,
-    List<FhirUnsignedInt>? securityLabelNumber,
+  ContractActionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirBooleanBuilder? doNotPerform,
+    CodeableConceptBuilder? type,
+    List<ContractSubjectBuilder>? subject,
+    CodeableConceptBuilder? intent,
+    List<FhirStringBuilder>? linkId,
+    CodeableConceptBuilder? status,
+    ReferenceBuilder? context,
+    List<FhirStringBuilder>? contextLinkId,
+    OccurrenceXContractActionBuilder? occurrenceX,
+    List<ReferenceBuilder>? requester,
+    List<FhirStringBuilder>? requesterLinkId,
+    List<CodeableConceptBuilder>? performerType,
+    CodeableConceptBuilder? performerRole,
+    ReferenceBuilder? performer,
+    List<FhirStringBuilder>? performerLinkId,
+    List<CodeableConceptBuilder>? reasonCode,
+    List<ReferenceBuilder>? reasonReference,
+    List<FhirStringBuilder>? reason,
+    List<FhirStringBuilder>? reasonLinkId,
+    List<AnnotationBuilder>? note,
+    List<FhirUnsignedIntBuilder>? securityLabelNumber,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -11420,170 +10376,55 @@ class ContractAction extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractAction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      doNotPerform: doNotPerform?.copyWith(
-            objectPath: '$newObjectPath.doNotPerform',
-          ) ??
-          this.doNotPerform,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subject: subject
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subject',
-                ),
-              )
-              .toList() ??
-          this.subject,
-      intent: intent?.copyWith(
-            objectPath: '$newObjectPath.intent',
-          ) ??
-          this.intent,
-      linkId: linkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.linkId',
-                ),
-              )
-              .toList() ??
-          this.linkId,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      context: context?.copyWith(
-            objectPath: '$newObjectPath.context',
-          ) ??
-          this.context,
-      contextLinkId: contextLinkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contextLinkId',
-                ),
-              )
-              .toList() ??
-          this.contextLinkId,
-      occurrenceX: occurrenceX?.copyWith(
-            objectPath: '$newObjectPath.occurrenceX',
-          ) as OccurrenceXContractAction? ??
-          this.occurrenceX,
-      requester: requester
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.requester',
-                ),
-              )
-              .toList() ??
-          this.requester,
-      requesterLinkId: requesterLinkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.requesterLinkId',
-                ),
-              )
-              .toList() ??
-          this.requesterLinkId,
-      performerType: performerType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performerType',
-                ),
-              )
-              .toList() ??
-          this.performerType,
-      performerRole: performerRole?.copyWith(
-            objectPath: '$newObjectPath.performerRole',
-          ) ??
-          this.performerRole,
-      performer: performer?.copyWith(
-            objectPath: '$newObjectPath.performer',
-          ) ??
-          this.performer,
-      performerLinkId: performerLinkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.performerLinkId',
-                ),
-              )
-              .toList() ??
-          this.performerLinkId,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      reason: reason
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reason',
-                ),
-              )
-              .toList() ??
-          this.reason,
-      reasonLinkId: reasonLinkId
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonLinkId',
-                ),
-              )
-              .toList() ??
-          this.reasonLinkId,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      securityLabelNumber: securityLabelNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.securityLabelNumber',
-                ),
-              )
-              .toList() ??
-          this.securityLabelNumber,
+    final newResult = ContractActionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      doNotPerform: doNotPerform ?? this.doNotPerform,
+      type: type ?? this.type,
+      subject: subject ?? this.subject,
+      intent: intent ?? this.intent,
+      linkId: linkId ?? this.linkId,
+      status: status ?? this.status,
+      context: context ?? this.context,
+      contextLinkId: contextLinkId ?? this.contextLinkId,
+      occurrenceX: occurrenceX ?? this.occurrenceX,
+      requester: requester ?? this.requester,
+      requesterLinkId: requesterLinkId ?? this.requesterLinkId,
+      performerType: performerType ?? this.performerType,
+      performerRole: performerRole ?? this.performerRole,
+      performer: performer ?? this.performer,
+      performerLinkId: performerLinkId ?? this.performerLinkId,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      reason: reason ?? this.reason,
+      reasonLinkId: reasonLinkId ?? this.reasonLinkId,
+      note: note ?? this.note,
+      securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractAction) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractActionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -11594,13 +10435,13 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -11618,7 +10459,7 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<ContractSubject>(
+    if (!listEquals<ContractSubjectBuilder>(
       subject,
       o.subject,
     )) {
@@ -11630,7 +10471,7 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       linkId,
       o.linkId,
     )) {
@@ -11648,7 +10489,7 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       contextLinkId,
       o.contextLinkId,
     )) {
@@ -11660,19 +10501,19 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       requester,
       o.requester,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       requesterLinkId,
       o.requesterLinkId,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       performerType,
       o.performerType,
     )) {
@@ -11690,43 +10531,43 @@ class ContractAction extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       performerLinkId,
       o.performerLinkId,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       reasonCode,
       o.reasonCode,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reasonReference,
       o.reasonReference,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       reason,
       o.reason,
     )) {
       return false;
     }
-    if (!listEquals<FhirString>(
+    if (!listEquals<FhirStringBuilder>(
       reasonLinkId,
       o.reasonLinkId,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<FhirUnsignedInt>(
+    if (!listEquals<FhirUnsignedIntBuilder>(
       securityLabelNumber,
       o.securityLabelNumber,
     )) {
@@ -11736,17 +10577,17 @@ class ContractAction extends BackboneElement {
   }
 }
 
-/// [ContractSubject]
+/// [ContractSubjectBuilder]
 /// Entity of the action.
-class ContractSubject extends BackboneElement {
+class ContractSubjectBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractSubject]
+  /// [ContractSubjectBuilder]
 
-  const ContractSubject({
+  ContractSubjectBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.reference,
+    this.reference,
     this.role,
     super.disallowExtensions,
   }) : super(
@@ -11754,27 +10595,24 @@ class ContractSubject extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractSubject.empty() => const ContractSubject(
-        reference: <Reference>[],
-      );
+  /// For Builder classes, no fields are required
+  factory ContractSubjectBuilder.empty() => ContractSubjectBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractSubject.fromJson(
+  factory ContractSubjectBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.term.action.subject';
-    return ContractSubject(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractSubjectBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -11783,8 +10621,8 @@ class ContractSubject extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -11792,9 +10630,9 @@ class ContractSubject extends BackboneElement {
             ),
           )
           .toList(),
-      reference: (json['reference'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
+      reference: (json['reference'] as List<dynamic>?)
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reference',
@@ -11802,31 +10640,31 @@ class ContractSubject extends BackboneElement {
             ),
           )
           .toList(),
-      role: JsonParser.parseObject<CodeableConcept>(
+      role: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'role',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.role',
       ),
     );
   }
 
-  /// Deserialize [ContractSubject]
+  /// Deserialize [ContractSubjectBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractSubject.fromYaml(
+  factory ContractSubjectBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractSubject.fromJson(
+      return ContractSubjectBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractSubject.fromJson(
+      return ContractSubjectBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractSubject '
+        'ContractSubjectBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -11834,16 +10672,16 @@ class ContractSubject extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractSubject]
+  /// [ContractSubjectBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractSubject.fromJsonString(
+  factory ContractSubjectBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractSubject.fromJson(json);
+      return ContractSubjectBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -11855,27 +10693,27 @@ class ContractSubject extends BackboneElement {
 
   /// [reference]
   /// The entity the action is performed or not performed on or for.
-  final List<Reference> reference;
+  List<ReferenceBuilder>? reference;
 
   /// [role]
   /// Role type of agent assigned roles in this Contract.
-  final CodeableConcept? role;
+  CodeableConceptBuilder? role;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -11884,31 +10722,16 @@ class ContractSubject extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'reference',
-      reference,
-    );
-    addField(
-      'role',
-      role,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('reference', reference);
+    addField('role', role);
     return json;
   }
 
@@ -11927,11 +10750,11 @@ class ContractSubject extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -11946,7 +10769,9 @@ class ContractSubject extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'reference':
-        fields.addAll(reference);
+        if (reference != null) {
+          fields.addAll(reference!);
+        }
       case 'role':
         if (role != null) {
           fields.add(role!);
@@ -11961,7 +10786,7 @@ class ContractSubject extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -11970,71 +10795,72 @@ class ContractSubject extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...reference, ...child];
-            return copyWith(reference: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            reference = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...reference, child];
-            return copyWith(reference: newList);
+            reference = [...(reference ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
+          if (child is CodeableConceptBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -12050,58 +10876,49 @@ class ContractSubject extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'reference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractSubject]
+  /// Creates a new [ContractSubjectBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractSubject createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'reference':
         {
-          return copyWith(
-            reference: <Reference>[],
-          );
+          reference = <ReferenceBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
+          role = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -12110,30 +10927,29 @@ class ContractSubject extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractSubject clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool reference = false,
     bool role = false,
   }) {
-    return ContractSubject(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      reference: reference,
-      role: role ? null : this.role,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (reference) this.reference = null;
+    if (role) this.role = null;
   }
 
   @override
-  ContractSubject clone() => throw UnimplementedError();
+  ContractSubjectBuilder clone() => throw UnimplementedError();
   @override
-  ContractSubject copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Reference>? reference,
-    CodeableConcept? role,
+  ContractSubjectBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<ReferenceBuilder>? reference,
+    CodeableConceptBuilder? role,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -12141,46 +10957,36 @@ class ContractSubject extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractSubject(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      reference: reference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reference',
-                ),
-              )
-              .toList() ??
-          this.reference,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
+    final newResult = ContractSubjectBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      reference: reference ?? this.reference,
+      role: role ?? this.role,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractSubject) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractSubjectBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -12191,19 +10997,19 @@ class ContractSubject extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       reference,
       o.reference,
     )) {
@@ -12219,51 +11025,46 @@ class ContractSubject extends BackboneElement {
   }
 }
 
-/// [ContractSigner]
+/// [ContractSignerBuilder]
 /// Parties with legal standing in the Contract, including the principal
 /// parties, the grantor(s) and grantee(s), which are any person or
 /// organization bound by the contract, and any ancillary parties, which
 /// facilitate the execution of the contract such as a notary or witness.
-class ContractSigner extends BackboneElement {
+class ContractSignerBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractSigner]
+  /// [ContractSignerBuilder]
 
-  const ContractSigner({
+  ContractSignerBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-    required this.party,
-    required this.signature,
+    this.type,
+    this.party,
+    this.signature,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Contract.signer',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractSigner.empty() => ContractSigner(
-        type: Coding.empty(),
-        party: Reference.empty(),
-        signature: <Signature>[],
-      );
+  /// For Builder classes, no fields are required
+  factory ContractSignerBuilder.empty() => ContractSignerBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractSigner.fromJson(
+  factory ContractSignerBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.signer';
-    return ContractSigner(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractSignerBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -12272,8 +11073,8 @@ class ContractSigner extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -12281,21 +11082,21 @@ class ContractSigner extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<Coding>(
+      type: JsonParser.parseObject<CodingBuilder>(
         json,
         'type',
-        Coding.fromJson,
+        CodingBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      party: JsonParser.parseObject<Reference>(
+      ),
+      party: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'party',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.party',
-      )!,
-      signature: (json['signature'] as List<dynamic>)
-          .map<Signature>(
-            (v) => Signature.fromJson(
+      ),
+      signature: (json['signature'] as List<dynamic>?)
+          ?.map<SignatureBuilder>(
+            (v) => SignatureBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.signature',
@@ -12306,22 +11107,22 @@ class ContractSigner extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractSigner]
+  /// Deserialize [ContractSignerBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractSigner.fromYaml(
+  factory ContractSignerBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractSigner.fromJson(
+      return ContractSignerBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractSigner.fromJson(
+      return ContractSignerBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractSigner '
+        'ContractSignerBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -12329,16 +11130,16 @@ class ContractSigner extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractSigner]
+  /// [ContractSignerBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractSigner.fromJsonString(
+  factory ContractSignerBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractSigner.fromJson(json);
+      return ContractSignerBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -12350,31 +11151,31 @@ class ContractSigner extends BackboneElement {
 
   /// [type]
   /// Role of this Contract signer, e.g. notary, grantee.
-  final Coding type;
+  CodingBuilder? type;
 
   /// [party]
   /// Party which is a signator to this Contract.
-  final Reference party;
+  ReferenceBuilder? party;
 
   /// [signature]
   /// Legally binding Contract DSIG signature contents in Base64.
-  final List<Signature> signature;
+  List<SignatureBuilder>? signature;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -12383,35 +11184,17 @@ class ContractSigner extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'party',
-      party,
-    );
-    addField(
-      'signature',
-      signature,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('party', party);
+    addField('signature', signature);
     return json;
   }
 
@@ -12431,11 +11214,11 @@ class ContractSigner extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -12450,11 +11233,17 @@ class ContractSigner extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'party':
-        fields.add(party);
+        if (party != null) {
+          fields.add(party!);
+        }
       case 'signature':
-        fields.addAll(signature);
+        if (signature != null) {
+          fields.addAll(signature!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -12465,7 +11254,7 @@ class ContractSigner extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -12474,79 +11263,81 @@ class ContractSigner extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is Coding) {
-            return copyWith(type: child);
+          if (child is CodingBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'party':
         {
-          if (child is Reference) {
-            return copyWith(party: child);
+          if (child is ReferenceBuilder) {
+            party = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'signature':
         {
-          if (child is List<Signature>) {
-            // Add all elements from passed list
-            final newList = [...signature, ...child];
-            return copyWith(signature: newList);
-          } else if (child is Signature) {
+          if (child is List<SignatureBuilder>) {
+            // Replace or create new list
+            signature = child;
+            return;
+          } else if (child is SignatureBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...signature, child];
-            return copyWith(signature: newList);
+            signature = [...(signature ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -12562,66 +11353,56 @@ class ContractSigner extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['Coding'];
+        return ['CodingBuilder'];
       case 'party':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'signature':
-        return ['Signature'];
+        return ['SignatureBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractSigner]
+  /// Creates a new [ContractSignerBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractSigner createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: Coding.empty(),
-          );
+          type = CodingBuilder.empty();
+          return;
         }
       case 'party':
         {
-          return copyWith(
-            party: Reference.empty(),
-          );
+          party = ReferenceBuilder.empty();
+          return;
         }
       case 'signature':
         {
-          return copyWith(
-            signature: <Signature>[],
-          );
+          signature = <SignatureBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -12630,31 +11411,32 @@ class ContractSigner extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractSigner clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
+    bool party = false,
+    bool signature = false,
   }) {
-    return ContractSigner(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      party: party,
-      signature: signature,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (party) this.party = null;
+    if (signature) this.signature = null;
   }
 
   @override
-  ContractSigner clone() => throw UnimplementedError();
+  ContractSignerBuilder clone() => throw UnimplementedError();
   @override
-  ContractSigner copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Coding? type,
-    Reference? party,
-    List<Signature>? signature,
+  ContractSignerBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodingBuilder? type,
+    ReferenceBuilder? party,
+    List<SignatureBuilder>? signature,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -12662,50 +11444,37 @@ class ContractSigner extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractSigner(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      party: party?.copyWith(
-            objectPath: '$newObjectPath.party',
-          ) ??
-          this.party,
-      signature: signature
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.signature',
-                ),
-              )
-              .toList() ??
-          this.signature,
+    final newResult = ContractSignerBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      party: party ?? this.party,
+      signature: signature ?? this.signature,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractSigner) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractSignerBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -12716,13 +11485,13 @@ class ContractSigner extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -12740,7 +11509,7 @@ class ContractSigner extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Signature>(
+    if (!listEquals<SignatureBuilder>(
       signature,
       o.signature,
     )) {
@@ -12750,7 +11519,7 @@ class ContractSigner extends BackboneElement {
   }
 }
 
-/// [ContractFriendly]
+/// [ContractFriendlyBuilder]
 /// The "patient friendly language" versionof the Contract in whole or in
 /// parts. "Patient friendly language" means the representation of the
 /// Contract and Contract Provisions in a manner that is readily accessible
@@ -12758,42 +11527,39 @@ class ContractSigner extends BackboneElement {
 /// communication styles that ensure that those agreeing to or signing the
 /// Contract understand the roles, actions, obligations, responsibilities,
 /// and implication of the agreement.
-class ContractFriendly extends BackboneElement {
+class ContractFriendlyBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractFriendly]
+  /// [ContractFriendlyBuilder]
 
-  const ContractFriendly({
+  ContractFriendlyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentX,
+    this.contentX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Contract.friendly',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractFriendly.empty() => ContractFriendly(
-        contentX: Attachment.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractFriendlyBuilder.empty() => ContractFriendlyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractFriendly.fromJson(
+  factory ContractFriendlyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.friendly';
-    return ContractFriendly(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractFriendlyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -12802,8 +11568,8 @@ class ContractFriendly extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -12811,33 +11577,33 @@ class ContractFriendly extends BackboneElement {
             ),
           )
           .toList(),
-      contentX: JsonParser.parsePolymorphic<ContentXContractFriendly>(
+      contentX: JsonParser.parsePolymorphic<ContentXContractFriendlyBuilder>(
         json,
         {
-          'contentAttachment': Attachment.fromJson,
-          'contentReference': Reference.fromJson,
+          'contentAttachment': AttachmentBuilder.fromJson,
+          'contentReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ContractFriendly]
+  /// Deserialize [ContractFriendlyBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractFriendly.fromYaml(
+  factory ContractFriendlyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractFriendly.fromJson(
+      return ContractFriendlyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractFriendly.fromJson(
+      return ContractFriendlyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractFriendly '
+        'ContractFriendlyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -12845,16 +11611,16 @@ class ContractFriendly extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractFriendly]
+  /// [ContractFriendlyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractFriendly.fromJsonString(
+  factory ContractFriendlyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractFriendly.fromJson(json);
+      return ContractFriendlyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -12868,29 +11634,30 @@ class ContractFriendly extends BackboneElement {
   /// Human readable rendering of this Contract in a format and
   /// representation intended to enhance comprehension and ensure
   /// understandability.
-  final ContentXContractFriendly contentX;
+  ContentXContractFriendlyBuilder? contentX;
 
-  /// Getter for [contentAttachment] as a Attachment
-  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+  /// Getter for [contentAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get contentAttachment =>
+      contentX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [contentReference] as a Reference
-  Reference? get contentReference => contentX.isAs<Reference>();
+  /// Getter for [contentReference] as a ReferenceBuilder
+  ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -12899,28 +11666,18 @@ class ContractFriendly extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    final contentXFhirType = contentX.fhirType;
-    addField(
-      'content${contentXFhirType.capitalize()}',
-      contentX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    if (contentX != null) {
+      final fhirType = contentX!.fhirType;
+      addField('content${fhirType.capitalize()}', contentX);
+    }
 
     return json;
   }
@@ -12939,11 +11696,11 @@ class ContractFriendly extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -12958,16 +11715,20 @@ class ContractFriendly extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'content':
-        fields.add(contentX);
+        if (contentX != null) {
+          fields.add(contentX!);
+        }
       case 'contentX':
-        fields.add(contentX);
+        if (contentX != null) {
+          fields.add(contentX!);
+        }
       case 'contentAttachment':
-        if (contentX is Attachment) {
-          fields.add(contentX);
+        if (contentX is AttachmentBuilder) {
+          fields.add(contentX!);
         }
       case 'contentReference':
-        if (contentX is Reference) {
-          fields.add(contentX);
+        if (contentX is ReferenceBuilder) {
+          fields.add(contentX!);
         }
       default:
         if (checkValid) {
@@ -12979,7 +11740,7 @@ class ContractFriendly extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -12988,79 +11749,84 @@ class ContractFriendly extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentX':
         {
-          if (child is ContentXContractFriendly) {
-            return copyWith(contentX: child);
+          if (child is ContentXContractFriendlyBuilder) {
+            contentX = child;
+            return;
           } else {
-            if (child is Attachment) {
-              return copyWith(contentX: child);
+            if (child is AttachmentBuilder) {
+              contentX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(contentX: child);
+            if (child is ReferenceBuilder) {
+              contentX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'contentAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(contentX: child);
+          if (child is AttachmentBuilder) {
+            contentX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentReference':
         {
-          if (child is Reference) {
-            return copyWith(contentX: child);
+          if (child is ReferenceBuilder) {
+            contentX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -13076,63 +11842,54 @@ class ContractFriendly extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'content':
       case 'contentX':
-        return ['Attachment', 'Reference'];
+        return ['AttachmentBuilder', 'ReferenceBuilder'];
       case 'contentAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'contentReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractFriendly]
+  /// Creates a new [ContractFriendlyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractFriendly createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'content':
       case 'contentX':
       case 'contentAttachment':
         {
-          return copyWith(
-            contentX: Attachment.empty(),
-          );
+          contentX = AttachmentBuilder.empty();
+          return;
         }
       case 'contentReference':
         {
-          return copyWith(
-            contentX: Reference.empty(),
-          );
+          contentX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -13141,27 +11898,26 @@ class ContractFriendly extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractFriendly clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool content = false,
   }) {
-    return ContractFriendly(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      contentX: contentX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (content) this.contentX = null;
   }
 
   @override
-  ContractFriendly clone() => throw UnimplementedError();
+  ContractFriendlyBuilder clone() => throw UnimplementedError();
   @override
-  ContractFriendly copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ContentXContractFriendly? contentX,
+  ContractFriendlyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ContentXContractFriendlyBuilder? contentX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -13169,38 +11925,35 @@ class ContractFriendly extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractFriendly(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      contentX: contentX?.copyWith(
-            objectPath: '$newObjectPath.contentX',
-          ) as ContentXContractFriendly? ??
-          this.contentX,
+    final newResult = ContractFriendlyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      contentX: contentX ?? this.contentX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractFriendly) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractFriendlyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -13211,13 +11964,13 @@ class ContractFriendly extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -13233,44 +11986,41 @@ class ContractFriendly extends BackboneElement {
   }
 }
 
-/// [ContractLegal]
+/// [ContractLegalBuilder]
 /// List of Legal expressions or representations of this Contract.
-class ContractLegal extends BackboneElement {
+class ContractLegalBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractLegal]
+  /// [ContractLegalBuilder]
 
-  const ContractLegal({
+  ContractLegalBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentX,
+    this.contentX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Contract.legal',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractLegal.empty() => ContractLegal(
-        contentX: Attachment.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractLegalBuilder.empty() => ContractLegalBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractLegal.fromJson(
+  factory ContractLegalBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.legal';
-    return ContractLegal(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractLegalBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -13279,8 +12029,8 @@ class ContractLegal extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -13288,33 +12038,33 @@ class ContractLegal extends BackboneElement {
             ),
           )
           .toList(),
-      contentX: JsonParser.parsePolymorphic<ContentXContractLegal>(
+      contentX: JsonParser.parsePolymorphic<ContentXContractLegalBuilder>(
         json,
         {
-          'contentAttachment': Attachment.fromJson,
-          'contentReference': Reference.fromJson,
+          'contentAttachment': AttachmentBuilder.fromJson,
+          'contentReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ContractLegal]
+  /// Deserialize [ContractLegalBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractLegal.fromYaml(
+  factory ContractLegalBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractLegal.fromJson(
+      return ContractLegalBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractLegal.fromJson(
+      return ContractLegalBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractLegal '
+        'ContractLegalBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -13322,16 +12072,16 @@ class ContractLegal extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractLegal]
+  /// [ContractLegalBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractLegal.fromJsonString(
+  factory ContractLegalBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractLegal.fromJson(json);
+      return ContractLegalBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -13343,29 +12093,30 @@ class ContractLegal extends BackboneElement {
 
   /// [contentX]
   /// Contract legal text in human renderable form.
-  final ContentXContractLegal contentX;
+  ContentXContractLegalBuilder? contentX;
 
-  /// Getter for [contentAttachment] as a Attachment
-  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+  /// Getter for [contentAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get contentAttachment =>
+      contentX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [contentReference] as a Reference
-  Reference? get contentReference => contentX.isAs<Reference>();
+  /// Getter for [contentReference] as a ReferenceBuilder
+  ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -13374,28 +12125,18 @@ class ContractLegal extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    final contentXFhirType = contentX.fhirType;
-    addField(
-      'content${contentXFhirType.capitalize()}',
-      contentX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    if (contentX != null) {
+      final fhirType = contentX!.fhirType;
+      addField('content${fhirType.capitalize()}', contentX);
+    }
 
     return json;
   }
@@ -13414,11 +12155,11 @@ class ContractLegal extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -13433,16 +12174,20 @@ class ContractLegal extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'content':
-        fields.add(contentX);
+        if (contentX != null) {
+          fields.add(contentX!);
+        }
       case 'contentX':
-        fields.add(contentX);
+        if (contentX != null) {
+          fields.add(contentX!);
+        }
       case 'contentAttachment':
-        if (contentX is Attachment) {
-          fields.add(contentX);
+        if (contentX is AttachmentBuilder) {
+          fields.add(contentX!);
         }
       case 'contentReference':
-        if (contentX is Reference) {
-          fields.add(contentX);
+        if (contentX is ReferenceBuilder) {
+          fields.add(contentX!);
         }
       default:
         if (checkValid) {
@@ -13454,7 +12199,7 @@ class ContractLegal extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -13463,79 +12208,84 @@ class ContractLegal extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentX':
         {
-          if (child is ContentXContractLegal) {
-            return copyWith(contentX: child);
+          if (child is ContentXContractLegalBuilder) {
+            contentX = child;
+            return;
           } else {
-            if (child is Attachment) {
-              return copyWith(contentX: child);
+            if (child is AttachmentBuilder) {
+              contentX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(contentX: child);
+            if (child is ReferenceBuilder) {
+              contentX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'contentAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(contentX: child);
+          if (child is AttachmentBuilder) {
+            contentX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentReference':
         {
-          if (child is Reference) {
-            return copyWith(contentX: child);
+          if (child is ReferenceBuilder) {
+            contentX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -13551,63 +12301,54 @@ class ContractLegal extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'content':
       case 'contentX':
-        return ['Attachment', 'Reference'];
+        return ['AttachmentBuilder', 'ReferenceBuilder'];
       case 'contentAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'contentReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractLegal]
+  /// Creates a new [ContractLegalBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractLegal createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'content':
       case 'contentX':
       case 'contentAttachment':
         {
-          return copyWith(
-            contentX: Attachment.empty(),
-          );
+          contentX = AttachmentBuilder.empty();
+          return;
         }
       case 'contentReference':
         {
-          return copyWith(
-            contentX: Reference.empty(),
-          );
+          contentX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -13616,27 +12357,26 @@ class ContractLegal extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractLegal clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool content = false,
   }) {
-    return ContractLegal(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      contentX: contentX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (content) this.contentX = null;
   }
 
   @override
-  ContractLegal clone() => throw UnimplementedError();
+  ContractLegalBuilder clone() => throw UnimplementedError();
   @override
-  ContractLegal copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ContentXContractLegal? contentX,
+  ContractLegalBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ContentXContractLegalBuilder? contentX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -13644,38 +12384,35 @@ class ContractLegal extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractLegal(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      contentX: contentX?.copyWith(
-            objectPath: '$newObjectPath.contentX',
-          ) as ContentXContractLegal? ??
-          this.contentX,
+    final newResult = ContractLegalBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      contentX: contentX ?? this.contentX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractLegal) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractLegalBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -13686,13 +12423,13 @@ class ContractLegal extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -13708,45 +12445,42 @@ class ContractLegal extends BackboneElement {
   }
 }
 
-/// [ContractRule]
+/// [ContractRuleBuilder]
 /// List of Computable Policy Rule Language Representations of this
 /// Contract.
-class ContractRule extends BackboneElement {
+class ContractRuleBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [ContractRule]
+  /// [ContractRuleBuilder]
 
-  const ContractRule({
+  ContractRuleBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentX,
+    this.contentX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Contract.rule',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ContractRule.empty() => ContractRule(
-        contentX: Attachment.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory ContractRuleBuilder.empty() => ContractRuleBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractRule.fromJson(
+  factory ContractRuleBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Contract.rule';
-    return ContractRule(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return ContractRuleBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -13755,8 +12489,8 @@ class ContractRule extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -13764,33 +12498,33 @@ class ContractRule extends BackboneElement {
             ),
           )
           .toList(),
-      contentX: JsonParser.parsePolymorphic<ContentXContractRule>(
+      contentX: JsonParser.parsePolymorphic<ContentXContractRuleBuilder>(
         json,
         {
-          'contentAttachment': Attachment.fromJson,
-          'contentReference': Reference.fromJson,
+          'contentAttachment': AttachmentBuilder.fromJson,
+          'contentReference': ReferenceBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [ContractRule]
+  /// Deserialize [ContractRuleBuilder]
   /// from a [String] or [YamlMap] object
-  factory ContractRule.fromYaml(
+  factory ContractRuleBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return ContractRule.fromJson(
+      return ContractRuleBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return ContractRule.fromJson(
+      return ContractRuleBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ContractRule '
+        'ContractRuleBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -13798,16 +12532,16 @@ class ContractRule extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [ContractRule]
+  /// [ContractRuleBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractRule.fromJsonString(
+  factory ContractRuleBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return ContractRule.fromJson(json);
+      return ContractRuleBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -13820,29 +12554,30 @@ class ContractRule extends BackboneElement {
   /// [contentX]
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
-  final ContentXContractRule contentX;
+  ContentXContractRuleBuilder? contentX;
 
-  /// Getter for [contentAttachment] as a Attachment
-  Attachment? get contentAttachment => contentX.isAs<Attachment>();
+  /// Getter for [contentAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get contentAttachment =>
+      contentX?.isAs<AttachmentBuilder>();
 
-  /// Getter for [contentReference] as a Reference
-  Reference? get contentReference => contentX.isAs<Reference>();
+  /// Getter for [contentReference] as a ReferenceBuilder
+  ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -13851,28 +12586,18 @@ class ContractRule extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    final contentXFhirType = contentX.fhirType;
-    addField(
-      'content${contentXFhirType.capitalize()}',
-      contentX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    if (contentX != null) {
+      final fhirType = contentX!.fhirType;
+      addField('content${fhirType.capitalize()}', contentX);
+    }
 
     return json;
   }
@@ -13891,11 +12616,11 @@ class ContractRule extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -13910,16 +12635,20 @@ class ContractRule extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'content':
-        fields.add(contentX);
+        if (contentX != null) {
+          fields.add(contentX!);
+        }
       case 'contentX':
-        fields.add(contentX);
+        if (contentX != null) {
+          fields.add(contentX!);
+        }
       case 'contentAttachment':
-        if (contentX is Attachment) {
-          fields.add(contentX);
+        if (contentX is AttachmentBuilder) {
+          fields.add(contentX!);
         }
       case 'contentReference':
-        if (contentX is Reference) {
-          fields.add(contentX);
+        if (contentX is ReferenceBuilder) {
+          fields.add(contentX!);
         }
       default:
         if (checkValid) {
@@ -13931,7 +12660,7 @@ class ContractRule extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -13940,79 +12669,84 @@ class ContractRule extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentX':
         {
-          if (child is ContentXContractRule) {
-            return copyWith(contentX: child);
+          if (child is ContentXContractRuleBuilder) {
+            contentX = child;
+            return;
           } else {
-            if (child is Attachment) {
-              return copyWith(contentX: child);
+            if (child is AttachmentBuilder) {
+              contentX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(contentX: child);
+            if (child is ReferenceBuilder) {
+              contentX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'contentAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(contentX: child);
+          if (child is AttachmentBuilder) {
+            contentX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentReference':
         {
-          if (child is Reference) {
-            return copyWith(contentX: child);
+          if (child is ReferenceBuilder) {
+            contentX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -14028,63 +12762,54 @@ class ContractRule extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'content':
       case 'contentX':
-        return ['Attachment', 'Reference'];
+        return ['AttachmentBuilder', 'ReferenceBuilder'];
       case 'contentAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       case 'contentReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [ContractRule]
+  /// Creates a new [ContractRuleBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  ContractRule createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'content':
       case 'contentX':
       case 'contentAttachment':
         {
-          return copyWith(
-            contentX: Attachment.empty(),
-          );
+          contentX = AttachmentBuilder.empty();
+          return;
         }
       case 'contentReference':
         {
-          return copyWith(
-            contentX: Reference.empty(),
-          );
+          contentX = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -14093,27 +12818,26 @@ class ContractRule extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  ContractRule clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool content = false,
   }) {
-    return ContractRule(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      contentX: contentX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (content) this.contentX = null;
   }
 
   @override
-  ContractRule clone() => throw UnimplementedError();
+  ContractRuleBuilder clone() => throw UnimplementedError();
   @override
-  ContractRule copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ContentXContractRule? contentX,
+  ContractRuleBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ContentXContractRuleBuilder? contentX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -14121,38 +12845,35 @@ class ContractRule extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return ContractRule(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      contentX: contentX?.copyWith(
-            objectPath: '$newObjectPath.contentX',
-          ) as ContentXContractRule? ??
-          this.contentX,
+    final newResult = ContractRuleBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      contentX: contentX ?? this.contentX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! ContractRule) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! ContractRuleBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -14163,13 +12884,13 @@ class ContractRule extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

@@ -1,14 +1,16 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [PackagedProductDefinition]
+/// [PackagedProductDefinitionBuilder]
 /// A medically related item or items, in a container or package.
-class PackagedProductDefinition extends DomainResource {
+class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [PackagedProductDefinition]
+  /// [PackagedProductDefinitionBuilder]
 
-  const PackagedProductDefinition({
+  PackagedProductDefinitionBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -37,50 +39,49 @@ class PackagedProductDefinition extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinition.empty() =>
-      const PackagedProductDefinition();
+  /// For Builder classes, no fields are required
+  factory PackagedProductDefinitionBuilder.empty() =>
+      PackagedProductDefinitionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinition.fromJson(
+  factory PackagedProductDefinitionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PackagedProductDefinition';
-    return PackagedProductDefinition(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PackagedProductDefinitionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -89,8 +90,8 @@ class PackagedProductDefinition extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -99,8 +100,8 @@ class PackagedProductDefinition extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -109,8 +110,8 @@ class PackagedProductDefinition extends DomainResource {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -118,21 +119,21 @@ class PackagedProductDefinition extends DomainResource {
             ),
           )
           .toList(),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       packageFor: (json['packageFor'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.packageFor',
@@ -140,21 +141,21 @@ class PackagedProductDefinition extends DomainResource {
             ),
           )
           .toList(),
-      status: JsonParser.parseObject<CodeableConcept>(
+      status: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'status',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.status',
       ),
-      statusDate: JsonParser.parsePrimitive<FhirDateTime>(
+      statusDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'statusDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.statusDate',
       ),
       containedItemQuantity: (json['containedItemQuantity'] as List<dynamic>?)
-          ?.map<Quantity>(
-            (v) => Quantity.fromJson(
+          ?.map<QuantityBuilder>(
+            (v) => QuantityBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.containedItemQuantity',
@@ -162,15 +163,15 @@ class PackagedProductDefinition extends DomainResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       legalStatusOfSupply: (json['legalStatusOfSupply'] as List<dynamic>?)
-          ?.map<PackagedProductDefinitionLegalStatusOfSupply>(
-            (v) => PackagedProductDefinitionLegalStatusOfSupply.fromJson(
+          ?.map<PackagedProductDefinitionLegalStatusOfSupplyBuilder>(
+            (v) => PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.legalStatusOfSupply',
@@ -179,8 +180,8 @@ class PackagedProductDefinition extends DomainResource {
           )
           .toList(),
       marketingStatus: (json['marketingStatus'] as List<dynamic>?)
-          ?.map<MarketingStatus>(
-            (v) => MarketingStatus.fromJson(
+          ?.map<MarketingStatusBuilder>(
+            (v) => MarketingStatusBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.marketingStatus',
@@ -189,8 +190,8 @@ class PackagedProductDefinition extends DomainResource {
           )
           .toList(),
       characteristic: (json['characteristic'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.characteristic',
@@ -198,15 +199,15 @@ class PackagedProductDefinition extends DomainResource {
             ),
           )
           .toList(),
-      copackagedIndicator: JsonParser.parsePrimitive<FhirBoolean>(
+      copackagedIndicator: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'copackagedIndicator',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.copackagedIndicator',
       ),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.manufacturer',
@@ -214,31 +215,31 @@ class PackagedProductDefinition extends DomainResource {
             ),
           )
           .toList(),
-      package: JsonParser.parseObject<PackagedProductDefinitionPackage>(
+      package: JsonParser.parseObject<PackagedProductDefinitionPackageBuilder>(
         json,
         'package',
-        PackagedProductDefinitionPackage.fromJson,
+        PackagedProductDefinitionPackageBuilder.fromJson,
         '$objectPath.package',
       ),
     );
   }
 
-  /// Deserialize [PackagedProductDefinition]
+  /// Deserialize [PackagedProductDefinitionBuilder]
   /// from a [String] or [YamlMap] object
-  factory PackagedProductDefinition.fromYaml(
+  factory PackagedProductDefinitionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PackagedProductDefinition.fromJson(
+      return PackagedProductDefinitionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PackagedProductDefinition.fromJson(
+      return PackagedProductDefinitionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PackagedProductDefinition '
+        'PackagedProductDefinitionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -246,16 +247,16 @@ class PackagedProductDefinition extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [PackagedProductDefinition]
+  /// [PackagedProductDefinitionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinition.fromJsonString(
+  factory PackagedProductDefinitionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PackagedProductDefinition.fromJson(json);
+      return PackagedProductDefinitionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -269,31 +270,31 @@ class PackagedProductDefinition extends DomainResource {
   /// A unique identifier for this package as whole. Unique instance
   /// identifiers assigned to a package by manufacturers, regulators, drug
   /// catalogue custodians or other organizations.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [name]
   /// A name for this package. Typically what it would be listed as in a drug
   /// formulary or catalogue, inventory etc.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [type]
   /// A high level category e.g. medicinal product, raw material,
   /// shipping/transport container, etc.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [packageFor]
   /// The product that this is a pack for.
-  final List<Reference>? packageFor;
+  List<ReferenceBuilder>? packageFor;
 
   /// [status]
   /// The status within the lifecycle of this item. A high level status, this
   /// is not intended to duplicate details carried elsewhere such as legal
   /// status, or authorization or marketing status.
-  final CodeableConcept? status;
+  CodeableConceptBuilder? status;
 
   /// [statusDate]
   /// The date at which the given status became applicable.
-  final FhirDateTime? statusDate;
+  FhirDateTimeBuilder? statusDate;
 
   /// [containedItemQuantity]
   /// A total of the complete count of contained items of a particular
@@ -310,59 +311,60 @@ class PackagedProductDefinition extends DomainResource {
   /// '2 tubes and 3 tubes'). Repeats are not to be used to represent
   /// different pack sizes (e.g. 20 pack vs. 50 pack) - which would be
   /// different instances of this resource.
-  final List<Quantity>? containedItemQuantity;
+  List<QuantityBuilder>? containedItemQuantity;
 
   /// [description]
   /// Textual description. Note that this is not the name of the package or
   /// product.
-  final FhirMarkdown? description;
+  FhirMarkdownBuilder? description;
 
   /// [legalStatusOfSupply]
   /// The legal status of supply of the packaged item as classified by the
   /// regulator.
-  final List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply;
+  List<PackagedProductDefinitionLegalStatusOfSupplyBuilder>?
+      legalStatusOfSupply;
 
   /// [marketingStatus]
   /// Allows specifying that an item is on the market for sale, or that it is
   /// not available, and the dates and locations associated.
-  final List<MarketingStatus>? marketingStatus;
+  List<MarketingStatusBuilder>? marketingStatus;
 
   /// [characteristic]
   /// Allows the key features to be recorded, such as "hospital pack", "nurse
   /// prescribable", "calendar pack".
-  final List<CodeableConcept>? characteristic;
+  List<CodeableConceptBuilder>? characteristic;
 
   /// [copackagedIndicator]
   /// States whether a drug product is supplied with another item such as a
   /// diluent or adjuvant.
-  final FhirBoolean? copackagedIndicator;
+  FhirBooleanBuilder? copackagedIndicator;
 
   /// [manufacturer]
   /// Manufacturer of this package type. When there are multiple it means
   /// these are all possible manufacturers.
-  final List<Reference>? manufacturer;
+  List<ReferenceBuilder>? manufacturer;
 
   /// [package]
   /// A packaging item, as a container for medically related items, possibly
   /// with other packaging items within, or a packaging component, such as
   /// bottle cap (which is not a device or a medication manufactured item).
-  final PackagedProductDefinitionPackage? package;
+  PackagedProductDefinitionPackageBuilder? package;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -371,100 +373,34 @@ class PackagedProductDefinition extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'packageFor',
-      packageFor,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'statusDate',
-      statusDate,
-    );
-    addField(
-      'containedItemQuantity',
-      containedItemQuantity,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'legalStatusOfSupply',
-      legalStatusOfSupply,
-    );
-    addField(
-      'marketingStatus',
-      marketingStatus,
-    );
-    addField(
-      'characteristic',
-      characteristic,
-    );
-    addField(
-      'copackagedIndicator',
-      copackagedIndicator,
-    );
-    addField(
-      'manufacturer',
-      manufacturer,
-    );
-    addField(
-      'package',
-      package,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('name', name);
+    addField('type', type);
+    addField('packageFor', packageFor);
+    addField('status', status);
+    addField('statusDate', statusDate);
+    addField('containedItemQuantity', containedItemQuantity);
+    addField('description', description);
+    addField('legalStatusOfSupply', legalStatusOfSupply);
+    addField('marketingStatus', marketingStatus);
+    addField('characteristic', characteristic);
+    addField('copackagedIndicator', copackagedIndicator);
+    addField('manufacturer', manufacturer);
+    addField('package', package);
     return json;
   }
 
@@ -500,11 +436,11 @@ class PackagedProductDefinition extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -604,7 +540,7 @@ class PackagedProductDefinition extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -613,249 +549,262 @@ class PackagedProductDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'packageFor':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?packageFor, ...child];
-            return copyWith(packageFor: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            packageFor = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?packageFor, child];
-            return copyWith(packageFor: newList);
+            packageFor = [...(packageFor ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
+          if (child is CodeableConceptBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(statusDate: child);
+          if (child is FhirDateTimeBuilder) {
+            statusDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'containedItemQuantity':
         {
-          if (child is List<Quantity>) {
-            // Add all elements from passed list
-            final newList = [...?containedItemQuantity, ...child];
-            return copyWith(containedItemQuantity: newList);
-          } else if (child is Quantity) {
+          if (child is List<QuantityBuilder>) {
+            // Replace or create new list
+            containedItemQuantity = child;
+            return;
+          } else if (child is QuantityBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?containedItemQuantity, child];
-            return copyWith(containedItemQuantity: newList);
+            containedItemQuantity = [...(containedItemQuantity ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'legalStatusOfSupply':
         {
-          if (child is List<PackagedProductDefinitionLegalStatusOfSupply>) {
-            // Add all elements from passed list
-            final newList = [...?legalStatusOfSupply, ...child];
-            return copyWith(legalStatusOfSupply: newList);
-          } else if (child is PackagedProductDefinitionLegalStatusOfSupply) {
+          if (child
+              is List<PackagedProductDefinitionLegalStatusOfSupplyBuilder>) {
+            // Replace or create new list
+            legalStatusOfSupply = child;
+            return;
+          } else if (child
+              is PackagedProductDefinitionLegalStatusOfSupplyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?legalStatusOfSupply, child];
-            return copyWith(legalStatusOfSupply: newList);
+            legalStatusOfSupply = [...(legalStatusOfSupply ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'marketingStatus':
         {
-          if (child is List<MarketingStatus>) {
-            // Add all elements from passed list
-            final newList = [...?marketingStatus, ...child];
-            return copyWith(marketingStatus: newList);
-          } else if (child is MarketingStatus) {
+          if (child is List<MarketingStatusBuilder>) {
+            // Replace or create new list
+            marketingStatus = child;
+            return;
+          } else if (child is MarketingStatusBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?marketingStatus, child];
-            return copyWith(marketingStatus: newList);
+            marketingStatus = [...(marketingStatus ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'characteristic':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?characteristic, ...child];
-            return copyWith(characteristic: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            characteristic = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?characteristic, child];
-            return copyWith(characteristic: newList);
+            characteristic = [...(characteristic ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copackagedIndicator':
         {
-          if (child is FhirBoolean) {
-            return copyWith(copackagedIndicator: child);
+          if (child is FhirBooleanBuilder) {
+            copackagedIndicator = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?manufacturer, ...child];
-            return copyWith(manufacturer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            manufacturer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
-            return copyWith(manufacturer: newList);
+            manufacturer = [...(manufacturer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'package':
         {
-          if (child is PackagedProductDefinitionPackage) {
-            return copyWith(package: child);
+          if (child is PackagedProductDefinitionPackageBuilder) {
+            package = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -871,194 +820,169 @@ class PackagedProductDefinition extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'packageFor':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'status':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'statusDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'containedItemQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'legalStatusOfSupply':
-        return ['PackagedProductDefinitionLegalStatusOfSupply'];
+        return ['PackagedProductDefinitionLegalStatusOfSupplyBuilder'];
       case 'marketingStatus':
-        return ['MarketingStatus'];
+        return ['MarketingStatusBuilder'];
       case 'characteristic':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'copackagedIndicator':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'manufacturer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'package':
-        return ['PackagedProductDefinitionPackage'];
+        return ['PackagedProductDefinitionPackageBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PackagedProductDefinition]
+  /// Creates a new [PackagedProductDefinitionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PackagedProductDefinition createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'packageFor':
         {
-          return copyWith(
-            packageFor: <Reference>[],
-          );
+          packageFor = <ReferenceBuilder>[];
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
+          status = CodeableConceptBuilder.empty();
+          return;
         }
       case 'statusDate':
         {
-          return copyWith(
-            statusDate: FhirDateTime.empty(),
-          );
+          statusDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'containedItemQuantity':
         {
-          return copyWith(
-            containedItemQuantity: <Quantity>[],
-          );
+          containedItemQuantity = <QuantityBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'legalStatusOfSupply':
         {
-          return copyWith(
-            legalStatusOfSupply: <PackagedProductDefinitionLegalStatusOfSupply>[],
-          );
+          legalStatusOfSupply =
+              <PackagedProductDefinitionLegalStatusOfSupplyBuilder>[];
+          return;
         }
       case 'marketingStatus':
         {
-          return copyWith(
-            marketingStatus: <MarketingStatus>[],
-          );
+          marketingStatus = <MarketingStatusBuilder>[];
+          return;
         }
       case 'characteristic':
         {
-          return copyWith(
-            characteristic: <CodeableConcept>[],
-          );
+          characteristic = <CodeableConceptBuilder>[];
+          return;
         }
       case 'copackagedIndicator':
         {
-          return copyWith(
-            copackagedIndicator: FhirBoolean.empty(),
-          );
+          copackagedIndicator = FhirBooleanBuilder.empty();
+          return;
         }
       case 'manufacturer':
         {
-          return copyWith(
-            manufacturer: <Reference>[],
-          );
+          manufacturer = <ReferenceBuilder>[];
+          return;
         }
       case 'package':
         {
-          return copyWith(
-            package: PackagedProductDefinitionPackage.empty(),
-          );
+          package = PackagedProductDefinitionPackageBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1067,7 +991,7 @@ class PackagedProductDefinition extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  PackagedProductDefinition clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1091,196 +1015,111 @@ class PackagedProductDefinition extends DomainResource {
     bool manufacturer = false,
     bool package = false,
   }) {
-    return PackagedProductDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      name: name ? null : this.name,
-      type: type ? null : this.type,
-      packageFor: packageFor ? null : this.packageFor,
-      status: status ? null : this.status,
-      statusDate: statusDate ? null : this.statusDate,
-      containedItemQuantity:
-          containedItemQuantity ? null : this.containedItemQuantity,
-      description: description ? null : this.description,
-      legalStatusOfSupply:
-          legalStatusOfSupply ? null : this.legalStatusOfSupply,
-      marketingStatus: marketingStatus ? null : this.marketingStatus,
-      characteristic: characteristic ? null : this.characteristic,
-      copackagedIndicator:
-          copackagedIndicator ? null : this.copackagedIndicator,
-      manufacturer: manufacturer ? null : this.manufacturer,
-      package: package ? null : this.package,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (name) this.name = null;
+    if (type) this.type = null;
+    if (packageFor) this.packageFor = null;
+    if (status) this.status = null;
+    if (statusDate) this.statusDate = null;
+    if (containedItemQuantity) this.containedItemQuantity = null;
+    if (description) this.description = null;
+    if (legalStatusOfSupply) this.legalStatusOfSupply = null;
+    if (marketingStatus) this.marketingStatus = null;
+    if (characteristic) this.characteristic = null;
+    if (copackagedIndicator) this.copackagedIndicator = null;
+    if (manufacturer) this.manufacturer = null;
+    if (package) this.package = null;
   }
 
   @override
-  PackagedProductDefinition clone() => throw UnimplementedError();
+  PackagedProductDefinitionBuilder clone() => throw UnimplementedError();
   @override
-  PackagedProductDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirString? name,
-    CodeableConcept? type,
-    List<Reference>? packageFor,
-    CodeableConcept? status,
-    FhirDateTime? statusDate,
-    List<Quantity>? containedItemQuantity,
-    FhirMarkdown? description,
-    List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply,
-    List<MarketingStatus>? marketingStatus,
-    List<CodeableConcept>? characteristic,
-    FhirBoolean? copackagedIndicator,
-    List<Reference>? manufacturer,
-    PackagedProductDefinitionPackage? package,
+  PackagedProductDefinitionBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? name,
+    CodeableConceptBuilder? type,
+    List<ReferenceBuilder>? packageFor,
+    CodeableConceptBuilder? status,
+    FhirDateTimeBuilder? statusDate,
+    List<QuantityBuilder>? containedItemQuantity,
+    FhirMarkdownBuilder? description,
+    List<PackagedProductDefinitionLegalStatusOfSupplyBuilder>?
+        legalStatusOfSupply,
+    List<MarketingStatusBuilder>? marketingStatus,
+    List<CodeableConceptBuilder>? characteristic,
+    FhirBooleanBuilder? copackagedIndicator,
+    List<ReferenceBuilder>? manufacturer,
+    PackagedProductDefinitionPackageBuilder? package,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return PackagedProductDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = PackagedProductDefinitionBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      packageFor: packageFor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.packageFor',
-                ),
-              )
-              .toList() ??
-          this.packageFor,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusDate: statusDate?.copyWith(
-            objectPath: '$newObjectPath.statusDate',
-          ) ??
-          this.statusDate,
-      containedItemQuantity: containedItemQuantity
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.containedItemQuantity',
-                ),
-              )
-              .toList() ??
-          this.containedItemQuantity,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      legalStatusOfSupply: legalStatusOfSupply
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.legalStatusOfSupply',
-                ),
-              )
-              .toList() ??
-          this.legalStatusOfSupply,
-      marketingStatus: marketingStatus
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.marketingStatus',
-                ),
-              )
-              .toList() ??
-          this.marketingStatus,
-      characteristic: characteristic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.characteristic',
-                ),
-              )
-              .toList() ??
-          this.characteristic,
-      copackagedIndicator: copackagedIndicator?.copyWith(
-            objectPath: '$newObjectPath.copackagedIndicator',
-          ) ??
-          this.copackagedIndicator,
-      manufacturer: manufacturer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manufacturer',
-                ),
-              )
-              .toList() ??
-          this.manufacturer,
-      package: package?.copyWith(
-            objectPath: '$newObjectPath.package',
-          ) ??
-          this.package,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      packageFor: packageFor ?? this.packageFor,
+      status: status ?? this.status,
+      statusDate: statusDate ?? this.statusDate,
+      containedItemQuantity:
+          containedItemQuantity ?? this.containedItemQuantity,
+      description: description ?? this.description,
+      legalStatusOfSupply: legalStatusOfSupply ?? this.legalStatusOfSupply,
+      marketingStatus: marketingStatus ?? this.marketingStatus,
+      characteristic: characteristic ?? this.characteristic,
+      copackagedIndicator: copackagedIndicator ?? this.copackagedIndicator,
+      manufacturer: manufacturer ?? this.manufacturer,
+      package: package ?? this.package,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PackagedProductDefinition) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PackagedProductDefinitionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1315,25 +1154,25 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -1351,7 +1190,7 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       packageFor,
       o.packageFor,
     )) {
@@ -1369,7 +1208,7 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Quantity>(
+    if (!listEquals<QuantityBuilder>(
       containedItemQuantity,
       o.containedItemQuantity,
     )) {
@@ -1381,19 +1220,19 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<PackagedProductDefinitionLegalStatusOfSupply>(
+    if (!listEquals<PackagedProductDefinitionLegalStatusOfSupplyBuilder>(
       legalStatusOfSupply,
       o.legalStatusOfSupply,
     )) {
       return false;
     }
-    if (!listEquals<MarketingStatus>(
+    if (!listEquals<MarketingStatusBuilder>(
       marketingStatus,
       o.marketingStatus,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       characteristic,
       o.characteristic,
     )) {
@@ -1405,7 +1244,7 @@ class PackagedProductDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       manufacturer,
       o.manufacturer,
     )) {
@@ -1421,14 +1260,15 @@ class PackagedProductDefinition extends DomainResource {
   }
 }
 
-/// [PackagedProductDefinitionLegalStatusOfSupply]
+/// [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
 /// The legal status of supply of the packaged item as classified by the
 /// regulator.
-class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
+class PackagedProductDefinitionLegalStatusOfSupplyBuilder
+    extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PackagedProductDefinitionLegalStatusOfSupply]
+  /// [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
 
-  const PackagedProductDefinitionLegalStatusOfSupply({
+  PackagedProductDefinitionLegalStatusOfSupplyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1440,26 +1280,25 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionLegalStatusOfSupply.empty() =>
-      const PackagedProductDefinitionLegalStatusOfSupply();
+  /// For Builder classes, no fields are required
+  factory PackagedProductDefinitionLegalStatusOfSupplyBuilder.empty() =>
+      PackagedProductDefinitionLegalStatusOfSupplyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinitionLegalStatusOfSupply.fromJson(
+  factory PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PackagedProductDefinition.legalStatusOfSupply';
-    return PackagedProductDefinitionLegalStatusOfSupply(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PackagedProductDefinitionLegalStatusOfSupplyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1468,8 +1307,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1477,37 +1316,37 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
             ),
           )
           .toList(),
-      code: JsonParser.parseObject<CodeableConcept>(
+      code: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'code',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.code',
       ),
-      jurisdiction: JsonParser.parseObject<CodeableConcept>(
+      jurisdiction: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'jurisdiction',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.jurisdiction',
       ),
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionLegalStatusOfSupply]
+  /// Deserialize [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
   /// from a [String] or [YamlMap] object
-  factory PackagedProductDefinitionLegalStatusOfSupply.fromYaml(
+  factory PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PackagedProductDefinitionLegalStatusOfSupply.fromJson(
+      return PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PackagedProductDefinitionLegalStatusOfSupply.fromJson(
+      return PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PackagedProductDefinitionLegalStatusOfSupply '
+        'PackagedProductDefinitionLegalStatusOfSupplyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -1515,16 +1354,16 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PackagedProductDefinitionLegalStatusOfSupply]
+  /// [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionLegalStatusOfSupply.fromJsonString(
+  factory PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PackagedProductDefinitionLegalStatusOfSupply.fromJson(json);
+      return PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1537,28 +1376,28 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// [code]
   /// The actual status of supply. Conveys in what situation this package
   /// type may be supplied for use.
-  final CodeableConcept? code;
+  CodeableConceptBuilder? code;
 
   /// [jurisdiction]
   /// The place where the legal status of supply applies. When not specified,
   /// this indicates it is unknown in this context.
-  final CodeableConcept? jurisdiction;
+  CodeableConceptBuilder? jurisdiction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -1567,31 +1406,16 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('code', code);
+    addField('jurisdiction', jurisdiction);
     return json;
   }
 
@@ -1610,11 +1434,11 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -1646,7 +1470,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -1655,65 +1479,67 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
+          if (child is CodeableConceptBuilder) {
+            code = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is CodeableConcept) {
-            return copyWith(jurisdiction: child);
+          if (child is CodeableConceptBuilder) {
+            jurisdiction = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1729,58 +1555,49 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'code':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PackagedProductDefinitionLegalStatusOfSupply]
+  /// Creates a new [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PackagedProductDefinitionLegalStatusOfSupply createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'code':
         {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
+          code = CodeableConceptBuilder.empty();
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: CodeableConcept.empty(),
-          );
+          jurisdiction = CodeableConceptBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1789,32 +1606,30 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PackagedProductDefinitionLegalStatusOfSupply clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool code = false,
     bool jurisdiction = false,
   }) {
-    return PackagedProductDefinitionLegalStatusOfSupply(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (code) this.code = null;
+    if (jurisdiction) this.jurisdiction = null;
   }
 
   @override
-  PackagedProductDefinitionLegalStatusOfSupply clone() =>
+  PackagedProductDefinitionLegalStatusOfSupplyBuilder clone() =>
       throw UnimplementedError();
   @override
-  PackagedProductDefinitionLegalStatusOfSupply copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    CodeableConcept? jurisdiction,
+  PackagedProductDefinitionLegalStatusOfSupplyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? code,
+    CodeableConceptBuilder? jurisdiction,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1822,42 +1637,36 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionLegalStatusOfSupply(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      jurisdiction: jurisdiction?.copyWith(
-            objectPath: '$newObjectPath.jurisdiction',
-          ) ??
-          this.jurisdiction,
+    final newResult = PackagedProductDefinitionLegalStatusOfSupplyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PackagedProductDefinitionLegalStatusOfSupply) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PackagedProductDefinitionLegalStatusOfSupplyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -1868,13 +1677,13 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -1896,15 +1705,15 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   }
 }
 
-/// [PackagedProductDefinitionPackage]
+/// [PackagedProductDefinitionPackageBuilder]
 /// A packaging item, as a container for medically related items, possibly
 /// with other packaging items within, or a packaging component, such as
 /// bottle cap (which is not a device or a medication manufactured item).
-class PackagedProductDefinitionPackage extends BackboneElement {
+class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PackagedProductDefinitionPackage]
+  /// [PackagedProductDefinitionPackageBuilder]
 
-  const PackagedProductDefinitionPackage({
+  PackagedProductDefinitionPackageBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1924,26 +1733,25 @@ class PackagedProductDefinitionPackage extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionPackage.empty() =>
-      const PackagedProductDefinitionPackage();
+  /// For Builder classes, no fields are required
+  factory PackagedProductDefinitionPackageBuilder.empty() =>
+      PackagedProductDefinitionPackageBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinitionPackage.fromJson(
+  factory PackagedProductDefinitionPackageBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PackagedProductDefinition.package';
-    return PackagedProductDefinitionPackage(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PackagedProductDefinitionPackageBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -1952,8 +1760,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -1962,8 +1770,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -1971,21 +1779,21 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      quantity: JsonParser.parsePrimitive<FhirInteger>(
+      quantity: JsonParser.parsePrimitive<FhirIntegerBuilder>(
         json,
         'quantity',
-        FhirInteger.fromJson,
+        FhirIntegerBuilder.fromJson,
         '$objectPath.quantity',
       ),
       material: (json['material'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.material',
@@ -1994,8 +1802,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       alternateMaterial: (json['alternateMaterial'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.alternateMaterial',
@@ -2004,8 +1812,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       shelfLifeStorage: (json['shelfLifeStorage'] as List<dynamic>?)
-          ?.map<PackagedProductDefinitionShelfLifeStorage>(
-            (v) => PackagedProductDefinitionShelfLifeStorage.fromJson(
+          ?.map<PackagedProductDefinitionShelfLifeStorageBuilder>(
+            (v) => PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.shelfLifeStorage',
@@ -2014,8 +1822,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
-          ?.map<Reference>(
-            (v) => Reference.fromJson(
+          ?.map<ReferenceBuilder>(
+            (v) => ReferenceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.manufacturer',
@@ -2024,8 +1832,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
-          ?.map<PackagedProductDefinitionProperty>(
-            (v) => PackagedProductDefinitionProperty.fromJson(
+          ?.map<PackagedProductDefinitionPropertyBuilder>(
+            (v) => PackagedProductDefinitionPropertyBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.property',
@@ -2034,8 +1842,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       containedItem: (json['containedItem'] as List<dynamic>?)
-          ?.map<PackagedProductDefinitionContainedItem>(
-            (v) => PackagedProductDefinitionContainedItem.fromJson(
+          ?.map<PackagedProductDefinitionContainedItemBuilder>(
+            (v) => PackagedProductDefinitionContainedItemBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.containedItem',
@@ -2044,8 +1852,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
           )
           .toList(),
       package: (json['package'] as List<dynamic>?)
-          ?.map<PackagedProductDefinitionPackage>(
-            (v) => PackagedProductDefinitionPackage.fromJson(
+          ?.map<PackagedProductDefinitionPackageBuilder>(
+            (v) => PackagedProductDefinitionPackageBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.package',
@@ -2056,22 +1864,22 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionPackage]
+  /// Deserialize [PackagedProductDefinitionPackageBuilder]
   /// from a [String] or [YamlMap] object
-  factory PackagedProductDefinitionPackage.fromYaml(
+  factory PackagedProductDefinitionPackageBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PackagedProductDefinitionPackage.fromJson(
+      return PackagedProductDefinitionPackageBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PackagedProductDefinitionPackage.fromJson(
+      return PackagedProductDefinitionPackageBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PackagedProductDefinitionPackage '
+        'PackagedProductDefinitionPackageBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2079,16 +1887,16 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PackagedProductDefinitionPackage]
+  /// [PackagedProductDefinitionPackageBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionPackage.fromJsonString(
+  factory PackagedProductDefinitionPackageBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PackagedProductDefinitionPackage.fromJson(json);
+      return PackagedProductDefinitionPackageBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2101,65 +1909,65 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// [identifier]
   /// An identifier that is specific to this particular part of the
   /// packaging. Including possibly Data Carrier Identifier (a GS1 barcode).
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [type]
   /// The physical type of the container of the items.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [quantity]
   /// The quantity of this level of packaging in the package that contains
   /// it. If specified, the outermost level is always 1.
-  final FhirInteger? quantity;
+  FhirIntegerBuilder? quantity;
 
   /// [material]
   /// Material type of the package item.
-  final List<CodeableConcept>? material;
+  List<CodeableConceptBuilder>? material;
 
   /// [alternateMaterial]
   /// A possible alternate material for this part of the packaging, that is
   /// allowed to be used instead of the usual material (e.g. different types
   /// of plastic for a blister sleeve).
-  final List<CodeableConcept>? alternateMaterial;
+  List<CodeableConceptBuilder>? alternateMaterial;
 
   /// [shelfLifeStorage]
   /// Shelf Life and storage information.
-  final List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage;
+  List<PackagedProductDefinitionShelfLifeStorageBuilder>? shelfLifeStorage;
 
   /// [manufacturer]
   /// Manufacturer of this package Item. When there are multiple it means
   /// these are all possible manufacturers.
-  final List<Reference>? manufacturer;
+  List<ReferenceBuilder>? manufacturer;
 
   /// [property]
   /// General characteristics of this item.
-  final List<PackagedProductDefinitionProperty>? property;
+  List<PackagedProductDefinitionPropertyBuilder>? property;
 
   /// [containedItem]
   /// The item(s) within the packaging.
-  final List<PackagedProductDefinitionContainedItem>? containedItem;
+  List<PackagedProductDefinitionContainedItemBuilder>? containedItem;
 
   /// [package]
   /// Allows containers (and parts of containers) parwithin containers, still
   /// a single packaged product. See also
   /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
-  final List<PackagedProductDefinitionPackage>? package;
+  List<PackagedProductDefinitionPackageBuilder>? package;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2168,63 +1976,24 @@ class PackagedProductDefinitionPackage extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'quantity',
-      quantity,
-    );
-    addField(
-      'material',
-      material,
-    );
-    addField(
-      'alternateMaterial',
-      alternateMaterial,
-    );
-    addField(
-      'shelfLifeStorage',
-      shelfLifeStorage,
-    );
-    addField(
-      'manufacturer',
-      manufacturer,
-    );
-    addField(
-      'property',
-      property,
-    );
-    addField(
-      'containedItem',
-      containedItem,
-    );
-    addField(
-      'package',
-      package,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('type', type);
+    addField('quantity', quantity);
+    addField('material', material);
+    addField('alternateMaterial', alternateMaterial);
+    addField('shelfLifeStorage', shelfLifeStorage);
+    addField('manufacturer', manufacturer);
+    addField('property', property);
+    addField('containedItem', containedItem);
+    addField('package', package);
     return json;
   }
 
@@ -2251,11 +2020,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2319,7 +2088,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2328,177 +2097,180 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
         {
-          if (child is FhirInteger) {
-            return copyWith(quantity: child);
+          if (child is FhirIntegerBuilder) {
+            quantity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'material':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?material, ...child];
-            return copyWith(material: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            material = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?material, child];
-            return copyWith(material: newList);
+            material = [...(material ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'alternateMaterial':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?alternateMaterial, ...child];
-            return copyWith(alternateMaterial: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            alternateMaterial = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?alternateMaterial, child];
-            return copyWith(alternateMaterial: newList);
+            alternateMaterial = [...(alternateMaterial ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'shelfLifeStorage':
         {
-          if (child is List<PackagedProductDefinitionShelfLifeStorage>) {
-            // Add all elements from passed list
-            final newList = [...?shelfLifeStorage, ...child];
-            return copyWith(shelfLifeStorage: newList);
-          } else if (child is PackagedProductDefinitionShelfLifeStorage) {
+          if (child is List<PackagedProductDefinitionShelfLifeStorageBuilder>) {
+            // Replace or create new list
+            shelfLifeStorage = child;
+            return;
+          } else if (child
+              is PackagedProductDefinitionShelfLifeStorageBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?shelfLifeStorage, child];
-            return copyWith(shelfLifeStorage: newList);
+            shelfLifeStorage = [...(shelfLifeStorage ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
         {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?manufacturer, ...child];
-            return copyWith(manufacturer: newList);
-          } else if (child is Reference) {
+          if (child is List<ReferenceBuilder>) {
+            // Replace or create new list
+            manufacturer = child;
+            return;
+          } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
-            return copyWith(manufacturer: newList);
+            manufacturer = [...(manufacturer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
         {
-          if (child is List<PackagedProductDefinitionProperty>) {
-            // Add all elements from passed list
-            final newList = [...?property, ...child];
-            return copyWith(property: newList);
-          } else if (child is PackagedProductDefinitionProperty) {
+          if (child is List<PackagedProductDefinitionPropertyBuilder>) {
+            // Replace or create new list
+            property = child;
+            return;
+          } else if (child is PackagedProductDefinitionPropertyBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?property, child];
-            return copyWith(property: newList);
+            property = [...(property ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'containedItem':
         {
-          if (child is List<PackagedProductDefinitionContainedItem>) {
-            // Add all elements from passed list
-            final newList = [...?containedItem, ...child];
-            return copyWith(containedItem: newList);
-          } else if (child is PackagedProductDefinitionContainedItem) {
+          if (child is List<PackagedProductDefinitionContainedItemBuilder>) {
+            // Replace or create new list
+            containedItem = child;
+            return;
+          } else if (child is PackagedProductDefinitionContainedItemBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?containedItem, child];
-            return copyWith(containedItem: newList);
+            containedItem = [...(containedItem ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'package':
         {
-          if (child is List<PackagedProductDefinitionPackage>) {
-            // Add all elements from passed list
-            final newList = [...?package, ...child];
-            return copyWith(package: newList);
-          } else if (child is PackagedProductDefinitionPackage) {
+          if (child is List<PackagedProductDefinitionPackageBuilder>) {
+            // Replace or create new list
+            package = child;
+            return;
+          } else if (child is PackagedProductDefinitionPackageBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?package, child];
-            return copyWith(package: newList);
+            package = [...(package ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2514,122 +2286,106 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'quantity':
-        return ['FhirInteger'];
+        return ['FhirIntegerBuilder'];
       case 'material':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'alternateMaterial':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'shelfLifeStorage':
-        return ['PackagedProductDefinitionShelfLifeStorage'];
+        return ['PackagedProductDefinitionShelfLifeStorageBuilder'];
       case 'manufacturer':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'property':
-        return ['PackagedProductDefinitionProperty'];
+        return ['PackagedProductDefinitionPropertyBuilder'];
       case 'containedItem':
-        return ['PackagedProductDefinitionContainedItem'];
+        return ['PackagedProductDefinitionContainedItemBuilder'];
       case 'package':
-        return ['PackagedProductDefinitionPackage'];
+        return ['PackagedProductDefinitionPackageBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PackagedProductDefinitionPackage]
+  /// Creates a new [PackagedProductDefinitionPackageBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PackagedProductDefinitionPackage createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'quantity':
         {
-          return copyWith(
-            quantity: FhirInteger.empty(),
-          );
+          quantity = FhirIntegerBuilder.empty();
+          return;
         }
       case 'material':
         {
-          return copyWith(
-            material: <CodeableConcept>[],
-          );
+          material = <CodeableConceptBuilder>[];
+          return;
         }
       case 'alternateMaterial':
         {
-          return copyWith(
-            alternateMaterial: <CodeableConcept>[],
-          );
+          alternateMaterial = <CodeableConceptBuilder>[];
+          return;
         }
       case 'shelfLifeStorage':
         {
-          return copyWith(
-            shelfLifeStorage: <PackagedProductDefinitionShelfLifeStorage>[],
-          );
+          shelfLifeStorage =
+              <PackagedProductDefinitionShelfLifeStorageBuilder>[];
+          return;
         }
       case 'manufacturer':
         {
-          return copyWith(
-            manufacturer: <Reference>[],
-          );
+          manufacturer = <ReferenceBuilder>[];
+          return;
         }
       case 'property':
         {
-          return copyWith(
-            property: <PackagedProductDefinitionProperty>[],
-          );
+          property = <PackagedProductDefinitionPropertyBuilder>[];
+          return;
         }
       case 'containedItem':
         {
-          return copyWith(
-            containedItem: <PackagedProductDefinitionContainedItem>[],
-          );
+          containedItem = <PackagedProductDefinitionContainedItemBuilder>[];
+          return;
         }
       case 'package':
         {
-          return copyWith(
-            package: <PackagedProductDefinitionPackage>[],
-          );
+          package = <PackagedProductDefinitionPackageBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2638,7 +2394,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PackagedProductDefinitionPackage clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -2653,40 +2409,38 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     bool containedItem = false,
     bool package = false,
   }) {
-    return PackagedProductDefinitionPackage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      type: type ? null : this.type,
-      quantity: quantity ? null : this.quantity,
-      material: material ? null : this.material,
-      alternateMaterial: alternateMaterial ? null : this.alternateMaterial,
-      shelfLifeStorage: shelfLifeStorage ? null : this.shelfLifeStorage,
-      manufacturer: manufacturer ? null : this.manufacturer,
-      property: property ? null : this.property,
-      containedItem: containedItem ? null : this.containedItem,
-      package: package ? null : this.package,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (type) this.type = null;
+    if (quantity) this.quantity = null;
+    if (material) this.material = null;
+    if (alternateMaterial) this.alternateMaterial = null;
+    if (shelfLifeStorage) this.shelfLifeStorage = null;
+    if (manufacturer) this.manufacturer = null;
+    if (property) this.property = null;
+    if (containedItem) this.containedItem = null;
+    if (package) this.package = null;
   }
 
   @override
-  PackagedProductDefinitionPackage clone() => throw UnimplementedError();
+  PackagedProductDefinitionPackageBuilder clone() => throw UnimplementedError();
   @override
-  PackagedProductDefinitionPackage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    CodeableConcept? type,
-    FhirInteger? quantity,
-    List<CodeableConcept>? material,
-    List<CodeableConcept>? alternateMaterial,
-    List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage,
-    List<Reference>? manufacturer,
-    List<PackagedProductDefinitionProperty>? property,
-    List<PackagedProductDefinitionContainedItem>? containedItem,
-    List<PackagedProductDefinitionPackage>? package,
+  PackagedProductDefinitionPackageBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    CodeableConceptBuilder? type,
+    FhirIntegerBuilder? quantity,
+    List<CodeableConceptBuilder>? material,
+    List<CodeableConceptBuilder>? alternateMaterial,
+    List<PackagedProductDefinitionShelfLifeStorageBuilder>? shelfLifeStorage,
+    List<ReferenceBuilder>? manufacturer,
+    List<PackagedProductDefinitionPropertyBuilder>? property,
+    List<PackagedProductDefinitionContainedItemBuilder>? containedItem,
+    List<PackagedProductDefinitionPackageBuilder>? package,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2694,106 +2448,44 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionPackage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      material: material
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.material',
-                ),
-              )
-              .toList() ??
-          this.material,
-      alternateMaterial: alternateMaterial
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.alternateMaterial',
-                ),
-              )
-              .toList() ??
-          this.alternateMaterial,
-      shelfLifeStorage: shelfLifeStorage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.shelfLifeStorage',
-                ),
-              )
-              .toList() ??
-          this.shelfLifeStorage,
-      manufacturer: manufacturer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manufacturer',
-                ),
-              )
-              .toList() ??
-          this.manufacturer,
-      property: property
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.property',
-                ),
-              )
-              .toList() ??
-          this.property,
-      containedItem: containedItem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.containedItem',
-                ),
-              )
-              .toList() ??
-          this.containedItem,
-      package: package
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.package',
-                ),
-              )
-              .toList() ??
-          this.package,
+    final newResult = PackagedProductDefinitionPackageBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      type: type ?? this.type,
+      quantity: quantity ?? this.quantity,
+      material: material ?? this.material,
+      alternateMaterial: alternateMaterial ?? this.alternateMaterial,
+      shelfLifeStorage: shelfLifeStorage ?? this.shelfLifeStorage,
+      manufacturer: manufacturer ?? this.manufacturer,
+      property: property ?? this.property,
+      containedItem: containedItem ?? this.containedItem,
+      package: package ?? this.package,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PackagedProductDefinitionPackage) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PackagedProductDefinitionPackageBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2804,19 +2496,19 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -2834,43 +2526,43 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       material,
       o.material,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       alternateMaterial,
       o.alternateMaterial,
     )) {
       return false;
     }
-    if (!listEquals<PackagedProductDefinitionShelfLifeStorage>(
+    if (!listEquals<PackagedProductDefinitionShelfLifeStorageBuilder>(
       shelfLifeStorage,
       o.shelfLifeStorage,
     )) {
       return false;
     }
-    if (!listEquals<Reference>(
+    if (!listEquals<ReferenceBuilder>(
       manufacturer,
       o.manufacturer,
     )) {
       return false;
     }
-    if (!listEquals<PackagedProductDefinitionProperty>(
+    if (!listEquals<PackagedProductDefinitionPropertyBuilder>(
       property,
       o.property,
     )) {
       return false;
     }
-    if (!listEquals<PackagedProductDefinitionContainedItem>(
+    if (!listEquals<PackagedProductDefinitionContainedItemBuilder>(
       containedItem,
       o.containedItem,
     )) {
       return false;
     }
-    if (!listEquals<PackagedProductDefinitionPackage>(
+    if (!listEquals<PackagedProductDefinitionPackageBuilder>(
       package,
       o.package,
     )) {
@@ -2880,13 +2572,14 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   }
 }
 
-/// [PackagedProductDefinitionShelfLifeStorage]
+/// [PackagedProductDefinitionShelfLifeStorageBuilder]
 /// Shelf Life and storage information.
-class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
+class PackagedProductDefinitionShelfLifeStorageBuilder
+    extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PackagedProductDefinitionShelfLifeStorage]
+  /// [PackagedProductDefinitionShelfLifeStorageBuilder]
 
-  const PackagedProductDefinitionShelfLifeStorage({
+  PackagedProductDefinitionShelfLifeStorageBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2899,26 +2592,25 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionShelfLifeStorage.empty() =>
-      const PackagedProductDefinitionShelfLifeStorage();
+  /// For Builder classes, no fields are required
+  factory PackagedProductDefinitionShelfLifeStorageBuilder.empty() =>
+      PackagedProductDefinitionShelfLifeStorageBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinitionShelfLifeStorage.fromJson(
+  factory PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PackagedProductDefinition.package.shelfLifeStorage';
-    return PackagedProductDefinitionShelfLifeStorage(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PackagedProductDefinitionShelfLifeStorageBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2927,8 +2619,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2936,25 +2628,25 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       periodX: JsonParser.parsePolymorphic<
-          PeriodXPackagedProductDefinitionShelfLifeStorage>(
+          PeriodXPackagedProductDefinitionShelfLifeStorageBuilder>(
         json,
         {
-          'periodDuration': FhirDuration.fromJson,
-          'periodString': FhirString.fromJson,
+          'periodDuration': FhirDurationBuilder.fromJson,
+          'periodString': FhirStringBuilder.fromJson,
         },
         objectPath,
       ),
       specialPrecautionsForStorage:
           (json['specialPrecautionsForStorage'] as List<dynamic>?)
-              ?.map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
+              ?.map<CodeableConceptBuilder>(
+                (v) => CodeableConceptBuilder.fromJson(
                   {
                     ...v as Map<String, dynamic>,
                     'objectPath': '$objectPath.specialPrecautionsForStorage',
@@ -2965,22 +2657,22 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionShelfLifeStorage]
+  /// Deserialize [PackagedProductDefinitionShelfLifeStorageBuilder]
   /// from a [String] or [YamlMap] object
-  factory PackagedProductDefinitionShelfLifeStorage.fromYaml(
+  factory PackagedProductDefinitionShelfLifeStorageBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PackagedProductDefinitionShelfLifeStorage.fromJson(
+      return PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PackagedProductDefinitionShelfLifeStorage.fromJson(
+      return PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PackagedProductDefinitionShelfLifeStorage '
+        'PackagedProductDefinitionShelfLifeStorageBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2988,16 +2680,16 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PackagedProductDefinitionShelfLifeStorage]
+  /// [PackagedProductDefinitionShelfLifeStorageBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionShelfLifeStorage.fromJsonString(
+  factory PackagedProductDefinitionShelfLifeStorageBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PackagedProductDefinitionShelfLifeStorage.fromJson(json);
+      return PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3014,7 +2706,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// opening of a bottle, etc. The shelf life type shall be specified using
   /// an appropriate controlled vocabulary The controlled term and the
   /// controlled term identifier shall be specified.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [periodX]
   /// The shelf life time period can be specified using a numerical value for
@@ -3022,35 +2714,36 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// measurement shall be specified in accordance with ISO 11240 and the
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
-  final PeriodXPackagedProductDefinitionShelfLifeStorage? periodX;
+  PeriodXPackagedProductDefinitionShelfLifeStorageBuilder? periodX;
 
-  /// Getter for [periodDuration] as a FhirDuration
-  FhirDuration? get periodDuration => periodX?.isAs<FhirDuration>();
+  /// Getter for [periodDuration] as a FhirDurationBuilder
+  FhirDurationBuilder? get periodDuration =>
+      periodX?.isAs<FhirDurationBuilder>();
 
-  /// Getter for [periodString] as a FhirString
-  FhirString? get periodString => periodX?.isAs<FhirString>();
+  /// Getter for [periodString] as a FhirStringBuilder
+  FhirStringBuilder? get periodString => periodX?.isAs<FhirStringBuilder>();
 
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary. The controlled term and the
   /// controlled term identifier shall be specified.
-  final List<CodeableConcept>? specialPrecautionsForStorage;
+  List<CodeableConceptBuilder>? specialPrecautionsForStorage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3059,39 +2752,21 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
     if (periodX != null) {
       final fhirType = periodX!.fhirType;
-      addField(
-        'period${fhirType.capitalize()}',
-        periodX,
-      );
+      addField('period${fhirType.capitalize()}', periodX);
     }
 
-    addField(
-      'specialPrecautionsForStorage',
-      specialPrecautionsForStorage,
-    );
+    addField('specialPrecautionsForStorage', specialPrecautionsForStorage);
     return json;
   }
 
@@ -3111,11 +2786,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3134,15 +2809,19 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           fields.add(type!);
         }
       case 'period':
-        fields.add(periodX!);
+        if (periodX != null) {
+          fields.add(periodX!);
+        }
       case 'periodX':
-        fields.add(periodX!);
+        if (periodX != null) {
+          fields.add(periodX!);
+        }
       case 'periodDuration':
-        if (periodX is FhirDuration) {
+        if (periodX is FhirDurationBuilder) {
           fields.add(periodX!);
         }
       case 'periodString':
-        if (periodX is FhirString) {
+        if (periodX is FhirStringBuilder) {
           fields.add(periodX!);
         }
       case 'specialPrecautionsForStorage':
@@ -3159,7 +2838,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3168,101 +2847,111 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'periodX':
         {
-          if (child is PeriodXPackagedProductDefinitionShelfLifeStorage) {
-            return copyWith(periodX: child);
+          if (child
+              is PeriodXPackagedProductDefinitionShelfLifeStorageBuilder) {
+            periodX = child;
+            return;
           } else {
-            if (child is FhirDuration) {
-              return copyWith(periodX: child);
+            if (child is FhirDurationBuilder) {
+              periodX = child;
+              return;
             }
-            if (child is FhirString) {
-              return copyWith(periodX: child);
+            if (child is FhirStringBuilder) {
+              periodX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'periodFhirDuration':
+      case 'periodDuration':
         {
-          if (child is FhirDuration) {
-            return copyWith(periodX: child);
+          if (child is FhirDurationBuilder) {
+            periodX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'periodFhirString':
+      case 'periodString':
         {
-          if (child is FhirString) {
-            return copyWith(periodX: child);
+          if (child is FhirStringBuilder) {
+            periodX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialPrecautionsForStorage':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialPrecautionsForStorage, ...child];
-            return copyWith(specialPrecautionsForStorage: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            specialPrecautionsForStorage = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?specialPrecautionsForStorage, child];
-            return copyWith(specialPrecautionsForStorage: newList);
+            specialPrecautionsForStorage = [
+              ...(specialPrecautionsForStorage ?? []),
+              child
+            ];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3278,79 +2967,68 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'period':
       case 'periodX':
-        return ['FhirDuration', 'FhirString'];
+        return ['FhirDurationBuilder', 'FhirStringBuilder'];
       case 'periodDuration':
-        return ['FhirDuration'];
+        return ['FhirDurationBuilder'];
       case 'periodString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'specialPrecautionsForStorage':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PackagedProductDefinitionShelfLifeStorage]
+  /// Creates a new [PackagedProductDefinitionShelfLifeStorageBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PackagedProductDefinitionShelfLifeStorage createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'period':
       case 'periodX':
       case 'periodDuration':
         {
-          return copyWith(
-            periodX: FhirDuration.empty(),
-          );
+          periodX = FhirDurationBuilder.empty();
+          return;
         }
       case 'periodString':
         {
-          return copyWith(
-            periodX: FhirString.empty(),
-          );
+          periodX = FhirStringBuilder.empty();
+          return;
         }
       case 'specialPrecautionsForStorage':
         {
-          return copyWith(
-            specialPrecautionsForStorage: <CodeableConcept>[],
-          );
+          specialPrecautionsForStorage = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3359,7 +3037,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PackagedProductDefinitionShelfLifeStorage clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -3367,29 +3045,25 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     bool period = false,
     bool specialPrecautionsForStorage = false,
   }) {
-    return PackagedProductDefinitionShelfLifeStorage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      periodX: period ? null : periodX,
-      specialPrecautionsForStorage: specialPrecautionsForStorage
-          ? null
-          : this.specialPrecautionsForStorage,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (period) this.periodX = null;
+    if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
   }
 
   @override
-  PackagedProductDefinitionShelfLifeStorage clone() =>
+  PackagedProductDefinitionShelfLifeStorageBuilder clone() =>
       throw UnimplementedError();
   @override
-  PackagedProductDefinitionShelfLifeStorage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    PeriodXPackagedProductDefinitionShelfLifeStorage? periodX,
-    List<CodeableConcept>? specialPrecautionsForStorage,
+  PackagedProductDefinitionShelfLifeStorageBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    PeriodXPackagedProductDefinitionShelfLifeStorageBuilder? periodX,
+    List<CodeableConceptBuilder>? specialPrecautionsForStorage,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3397,50 +3071,38 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionShelfLifeStorage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      periodX: periodX?.copyWith(
-            objectPath: '$newObjectPath.periodX',
-          ) as PeriodXPackagedProductDefinitionShelfLifeStorage? ??
-          this.periodX,
-      specialPrecautionsForStorage: specialPrecautionsForStorage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialPrecautionsForStorage',
-                ),
-              )
-              .toList() ??
-          this.specialPrecautionsForStorage,
+    final newResult = PackagedProductDefinitionShelfLifeStorageBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      periodX: periodX ?? this.periodX,
+      specialPrecautionsForStorage:
+          specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PackagedProductDefinitionShelfLifeStorage) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PackagedProductDefinitionShelfLifeStorageBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3451,13 +3113,13 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3475,7 +3137,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       specialPrecautionsForStorage,
       o.specialPrecautionsForStorage,
     )) {
@@ -3485,17 +3147,17 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   }
 }
 
-/// [PackagedProductDefinitionProperty]
+/// [PackagedProductDefinitionPropertyBuilder]
 /// General characteristics of this item.
-class PackagedProductDefinitionProperty extends BackboneElement {
+class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PackagedProductDefinitionProperty]
+  /// [PackagedProductDefinitionPropertyBuilder]
 
-  const PackagedProductDefinitionProperty({
+  PackagedProductDefinitionPropertyBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.valueX,
     super.disallowExtensions,
   }) : super(
@@ -3503,28 +3165,25 @@ class PackagedProductDefinitionProperty extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionProperty.empty() =>
-      PackagedProductDefinitionProperty(
-        type: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory PackagedProductDefinitionPropertyBuilder.empty() =>
+      PackagedProductDefinitionPropertyBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinitionProperty.fromJson(
+  factory PackagedProductDefinitionPropertyBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PackagedProductDefinition.package.property';
-    return PackagedProductDefinitionProperty(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PackagedProductDefinitionPropertyBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3533,8 +3192,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3542,43 +3201,43 @@ class PackagedProductDefinitionProperty extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      valueX:
-          JsonParser.parsePolymorphic<ValueXPackagedProductDefinitionProperty>(
+      ),
+      valueX: JsonParser.parsePolymorphic<
+          ValueXPackagedProductDefinitionPropertyBuilder>(
         json,
         {
-          'valueCodeableConcept': CodeableConcept.fromJson,
-          'valueQuantity': Quantity.fromJson,
-          'valueDate': FhirDate.fromJson,
-          'valueBoolean': FhirBoolean.fromJson,
-          'valueAttachment': Attachment.fromJson,
+          'valueCodeableConcept': CodeableConceptBuilder.fromJson,
+          'valueQuantity': QuantityBuilder.fromJson,
+          'valueDate': FhirDateBuilder.fromJson,
+          'valueBoolean': FhirBooleanBuilder.fromJson,
+          'valueAttachment': AttachmentBuilder.fromJson,
         },
         objectPath,
       ),
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionProperty]
+  /// Deserialize [PackagedProductDefinitionPropertyBuilder]
   /// from a [String] or [YamlMap] object
-  factory PackagedProductDefinitionProperty.fromYaml(
+  factory PackagedProductDefinitionPropertyBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PackagedProductDefinitionProperty.fromJson(
+      return PackagedProductDefinitionPropertyBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PackagedProductDefinitionProperty.fromJson(
+      return PackagedProductDefinitionPropertyBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PackagedProductDefinitionProperty '
+        'PackagedProductDefinitionPropertyBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3586,16 +3245,16 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PackagedProductDefinitionProperty]
+  /// [PackagedProductDefinitionPropertyBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionProperty.fromJsonString(
+  factory PackagedProductDefinitionPropertyBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PackagedProductDefinitionProperty.fromJson(json);
+      return PackagedProductDefinitionPropertyBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3607,42 +3266,43 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   /// [type]
   /// A code expressing the type of characteristic.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [valueX]
   /// A value for the characteristic.
-  final ValueXPackagedProductDefinitionProperty? valueX;
+  ValueXPackagedProductDefinitionPropertyBuilder? valueX;
 
-  /// Getter for [valueCodeableConcept] as a CodeableConcept
-  CodeableConcept? get valueCodeableConcept => valueX?.isAs<CodeableConcept>();
+  /// Getter for [valueCodeableConcept] as a CodeableConceptBuilder
+  CodeableConceptBuilder? get valueCodeableConcept =>
+      valueX?.isAs<CodeableConceptBuilder>();
 
-  /// Getter for [valueQuantity] as a Quantity
-  Quantity? get valueQuantity => valueX?.isAs<Quantity>();
+  /// Getter for [valueQuantity] as a QuantityBuilder
+  QuantityBuilder? get valueQuantity => valueX?.isAs<QuantityBuilder>();
 
-  /// Getter for [valueDate] as a FhirDate
-  FhirDate? get valueDate => valueX?.isAs<FhirDate>();
+  /// Getter for [valueDate] as a FhirDateBuilder
+  FhirDateBuilder? get valueDate => valueX?.isAs<FhirDateBuilder>();
 
-  /// Getter for [valueBoolean] as a FhirBoolean
-  FhirBoolean? get valueBoolean => valueX?.isAs<FhirBoolean>();
+  /// Getter for [valueBoolean] as a FhirBooleanBuilder
+  FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Getter for [valueAttachment] as a Attachment
-  Attachment? get valueAttachment => valueX?.isAs<Attachment>();
+  /// Getter for [valueAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3651,33 +3311,18 @@ class PackagedProductDefinitionProperty extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField(
-        'value${fhirType.capitalize()}',
-        valueX,
-      );
+      addField('value${fhirType.capitalize()}', valueX);
     }
 
     return json;
@@ -3698,11 +3343,11 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3717,29 +3362,35 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'value':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueX':
-        fields.add(valueX!);
+        if (valueX != null) {
+          fields.add(valueX!);
+        }
       case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
+        if (valueX is CodeableConceptBuilder) {
           fields.add(valueX!);
         }
       case 'valueQuantity':
-        if (valueX is Quantity) {
+        if (valueX is QuantityBuilder) {
           fields.add(valueX!);
         }
       case 'valueDate':
-        if (valueX is FhirDate) {
+        if (valueX is FhirDateBuilder) {
           fields.add(valueX!);
         }
       case 'valueBoolean':
-        if (valueX is FhirBoolean) {
+        if (valueX is FhirBooleanBuilder) {
           fields.add(valueX!);
         }
       case 'valueAttachment':
-        if (valueX is Attachment) {
+        if (valueX is AttachmentBuilder) {
           fields.add(valueX!);
         }
       default:
@@ -3752,7 +3403,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3761,120 +3412,132 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
-          if (child is ValueXPackagedProductDefinitionProperty) {
-            return copyWith(valueX: child);
+          if (child is ValueXPackagedProductDefinitionPropertyBuilder) {
+            valueX = child;
+            return;
           } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
+            if (child is CodeableConceptBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
+            if (child is QuantityBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirDate) {
-              return copyWith(valueX: child);
+            if (child is FhirDateBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
+            if (child is FhirBooleanBuilder) {
+              valueX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
+            if (child is AttachmentBuilder) {
+              valueX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
       case 'valueCodeableConcept':
         {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
+          if (child is CodeableConceptBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
+          if (child is QuantityBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirDate':
+      case 'valueDate':
         {
-          if (child is FhirDate) {
-            return copyWith(valueX: child);
+          if (child is FhirDateBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
-      case 'valueFhirBoolean':
+      case 'valueBoolean':
         {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
+          if (child is FhirBooleanBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
+          if (child is AttachmentBuilder) {
+            valueX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3890,101 +3553,88 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
       case 'valueX':
         return [
-          'CodeableConcept',
-          'Quantity',
-          'FhirDate',
-          'FhirBoolean',
-          'Attachment',
+          'CodeableConceptBuilder',
+          'QuantityBuilder',
+          'FhirDateBuilder',
+          'FhirBooleanBuilder',
+          'AttachmentBuilder'
         ];
       case 'valueCodeableConcept':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'valueQuantity':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       case 'valueDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'valueBoolean':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'valueAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PackagedProductDefinitionProperty]
+  /// Creates a new [PackagedProductDefinitionPropertyBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PackagedProductDefinitionProperty createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
       case 'valueX':
       case 'valueCodeableConcept':
         {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
+          valueX = CodeableConceptBuilder.empty();
+          return;
         }
       case 'valueQuantity':
         {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
+          valueX = QuantityBuilder.empty();
+          return;
         }
       case 'valueDate':
         {
-          return copyWith(
-            valueX: FhirDate.empty(),
-          );
+          valueX = FhirDateBuilder.empty();
+          return;
         }
       case 'valueBoolean':
         {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
+          valueX = FhirBooleanBuilder.empty();
+          return;
         }
       case 'valueAttachment':
         {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
+          valueX = AttachmentBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3993,30 +3643,30 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PackagedProductDefinitionProperty clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool value = false,
   }) {
-    return PackagedProductDefinitionProperty(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      valueX: value ? null : valueX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (value) this.valueX = null;
   }
 
   @override
-  PackagedProductDefinitionProperty clone() => throw UnimplementedError();
+  PackagedProductDefinitionPropertyBuilder clone() =>
+      throw UnimplementedError();
   @override
-  PackagedProductDefinitionProperty copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    ValueXPackagedProductDefinitionProperty? valueX,
+  PackagedProductDefinitionPropertyBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    ValueXPackagedProductDefinitionPropertyBuilder? valueX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4024,42 +3674,36 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionProperty(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXPackagedProductDefinitionProperty? ??
-          this.valueX,
+    final newResult = PackagedProductDefinitionPropertyBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      valueX: valueX ?? this.valueX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PackagedProductDefinitionProperty) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PackagedProductDefinitionPropertyBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4070,13 +3714,13 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4098,17 +3742,18 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   }
 }
 
-/// [PackagedProductDefinitionContainedItem]
+/// [PackagedProductDefinitionContainedItemBuilder]
 /// The item(s) within the packaging.
-class PackagedProductDefinitionContainedItem extends BackboneElement {
+class PackagedProductDefinitionContainedItemBuilder
+    extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [PackagedProductDefinitionContainedItem]
+  /// [PackagedProductDefinitionContainedItemBuilder]
 
-  const PackagedProductDefinitionContainedItem({
+  PackagedProductDefinitionContainedItemBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.item,
+    this.item,
     this.amount,
     super.disallowExtensions,
   }) : super(
@@ -4116,28 +3761,25 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionContainedItem.empty() =>
-      PackagedProductDefinitionContainedItem(
-        item: CodeableReference.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory PackagedProductDefinitionContainedItemBuilder.empty() =>
+      PackagedProductDefinitionContainedItemBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinitionContainedItem.fromJson(
+  factory PackagedProductDefinitionContainedItemBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'PackagedProductDefinition.package.containedItem';
-    return PackagedProductDefinitionContainedItem(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return PackagedProductDefinitionContainedItemBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4146,8 +3788,8 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4155,37 +3797,37 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
             ),
           )
           .toList(),
-      item: JsonParser.parseObject<CodeableReference>(
+      item: JsonParser.parseObject<CodeableReferenceBuilder>(
         json,
         'item',
-        CodeableReference.fromJson,
+        CodeableReferenceBuilder.fromJson,
         '$objectPath.item',
-      )!,
-      amount: JsonParser.parseObject<Quantity>(
+      ),
+      amount: JsonParser.parseObject<QuantityBuilder>(
         json,
         'amount',
-        Quantity.fromJson,
+        QuantityBuilder.fromJson,
         '$objectPath.amount',
       ),
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionContainedItem]
+  /// Deserialize [PackagedProductDefinitionContainedItemBuilder]
   /// from a [String] or [YamlMap] object
-  factory PackagedProductDefinitionContainedItem.fromYaml(
+  factory PackagedProductDefinitionContainedItemBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return PackagedProductDefinitionContainedItem.fromJson(
+      return PackagedProductDefinitionContainedItemBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return PackagedProductDefinitionContainedItem.fromJson(
+      return PackagedProductDefinitionContainedItemBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'PackagedProductDefinitionContainedItem '
+        'PackagedProductDefinitionContainedItemBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4193,16 +3835,16 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [PackagedProductDefinitionContainedItem]
+  /// [PackagedProductDefinitionContainedItemBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionContainedItem.fromJsonString(
+  factory PackagedProductDefinitionContainedItemBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return PackagedProductDefinitionContainedItem.fromJson(json);
+      return PackagedProductDefinitionContainedItemBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4221,27 +3863,27 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// where a package of other entire packages is wanted - such as a
   /// wholesale or distribution pack (for layers within one package, use
   /// PackagedProductDefinition.package.package).
-  final CodeableReference item;
+  CodeableReferenceBuilder? item;
 
   /// [amount]
   /// The number of this type of item within this packaging.
-  final Quantity? amount;
+  QuantityBuilder? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4250,31 +3892,16 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'item',
-      item,
-    );
-    addField(
-      'amount',
-      amount,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('item', item);
+    addField('amount', amount);
     return json;
   }
 
@@ -4293,11 +3920,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4312,7 +3939,9 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'item':
-        fields.add(item);
+        if (item != null) {
+          fields.add(item!);
+        }
       case 'amount':
         if (amount != null) {
           fields.add(amount!);
@@ -4327,7 +3956,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4336,65 +3965,67 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'item':
         {
-          if (child is CodeableReference) {
-            return copyWith(item: child);
+          if (child is CodeableReferenceBuilder) {
+            item = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'amount':
         {
-          if (child is Quantity) {
-            return copyWith(amount: child);
+          if (child is QuantityBuilder) {
+            amount = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4410,58 +4041,49 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'item':
-        return ['CodeableReference'];
+        return ['CodeableReferenceBuilder'];
       case 'amount':
-        return ['Quantity'];
+        return ['QuantityBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [PackagedProductDefinitionContainedItem]
+  /// Creates a new [PackagedProductDefinitionContainedItemBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  PackagedProductDefinitionContainedItem createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'item':
         {
-          return copyWith(
-            item: CodeableReference.empty(),
-          );
+          item = CodeableReferenceBuilder.empty();
+          return;
         }
       case 'amount':
         {
-          return copyWith(
-            amount: Quantity.empty(),
-          );
+          amount = QuantityBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4470,30 +4092,30 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  PackagedProductDefinitionContainedItem clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool item = false,
     bool amount = false,
   }) {
-    return PackagedProductDefinitionContainedItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      item: item,
-      amount: amount ? null : this.amount,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (item) this.item = null;
+    if (amount) this.amount = null;
   }
 
   @override
-  PackagedProductDefinitionContainedItem clone() => throw UnimplementedError();
+  PackagedProductDefinitionContainedItemBuilder clone() =>
+      throw UnimplementedError();
   @override
-  PackagedProductDefinitionContainedItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableReference? item,
-    Quantity? amount,
+  PackagedProductDefinitionContainedItemBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableReferenceBuilder? item,
+    QuantityBuilder? amount,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4501,42 +4123,36 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionContainedItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      item: item?.copyWith(
-            objectPath: '$newObjectPath.item',
-          ) ??
-          this.item,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
+    final newResult = PackagedProductDefinitionContainedItemBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      item: item ?? this.item,
+      amount: amount ?? this.amount,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! PackagedProductDefinitionContainedItem) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! PackagedProductDefinitionContainedItemBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4547,13 +4163,13 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {

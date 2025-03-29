@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:uuid/uuid.dart';
 
 /// Change a DateTime into a versionId
@@ -13,7 +13,8 @@ extension DateTimeToVersionId on DateTime {
 String generateNewUuidString() => const Uuid().v4();
 
 /// Generates a new [FhirId] from a new UUID string
-FhirString generateNewUuidFhirString() => generateNewUuidString().toFhirString;
+FhirStringBuilder generateNewUuidFhirString() =>
+    generateNewUuidString().toFhirStringBuilder;
 
 /// Generates a random ID string
 String generateRandomId({

@@ -1,18 +1,20 @@
 import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Citation]
+/// [CitationBuilder]
 /// The Citation Resource enables reference to any knowledge artifact for
 /// purposes of identification and attribution. The Citation Resource
 /// supports existing reference structures and developing publication
 /// practices such as versioning, expressing complex contributorship roles,
 /// and referencing computable resources.
-class Citation extends DomainResource {
+class CitationBuilder extends DomainResourceBuilder {
   /// Primary constructor for
-  /// [Citation]
+  /// [CitationBuilder]
 
-  const Citation({
+  CitationBuilder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -26,7 +28,7 @@ class Citation extends DomainResource {
     this.version,
     this.name,
     this.title,
-    required this.status,
+    this.status,
     this.experimental,
     this.date,
     this.publisher,
@@ -56,51 +58,48 @@ class Citation extends DomainResource {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Citation.empty() => Citation(
-        status: PublicationStatus.values.first,
-      );
+  /// For Builder classes, no fields are required
+  factory CitationBuilder.empty() => CitationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Citation.fromJson(
+  factory CitationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation';
-    return Citation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
-      meta: JsonParser.parseObject<FhirMeta>(
+      meta: JsonParser.parseObject<FhirMetaBuilder>(
         json,
         'meta',
-        FhirMeta.fromJson,
+        FhirMetaBuilder.fromJson,
         '$objectPath.meta',
       ),
-      implicitRules: JsonParser.parsePrimitive<FhirUri>(
+      implicitRules: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'implicitRules',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.implicitRules',
       ),
-      language: JsonParser.parsePrimitive<CommonLanguages>(
+      language: JsonParser.parsePrimitive<CommonLanguagesBuilder>(
         json,
         'language',
-        CommonLanguages.fromJson,
+        CommonLanguagesBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parseObject<Narrative>(
+      text: JsonParser.parseObject<NarrativeBuilder>(
         json,
         'text',
-        Narrative.fromJson,
+        NarrativeBuilder.fromJson,
         '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
-          ?.map<Resource>(
-            (v) => Resource.fromJson(
+          ?.map<ResourceBuilder>(
+            (v) => ResourceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contained',
@@ -109,8 +108,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -119,8 +118,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -128,15 +127,15 @@ class Citation extends DomainResource {
             ),
           )
           .toList(),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -144,51 +143,51 @@ class Citation extends DomainResource {
             ),
           )
           .toList(),
-      version: JsonParser.parsePrimitive<FhirString>(
+      version: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'version',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.version',
       ),
-      name: JsonParser.parsePrimitive<FhirString>(
+      name: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'name',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.name',
       ),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      status: JsonParser.parsePrimitive<PublicationStatus>(
+      status: JsonParser.parsePrimitive<PublicationStatusBuilder>(
         json,
         'status',
-        PublicationStatus.fromJson,
+        PublicationStatusBuilder.fromJson,
         '$objectPath.status',
-      )!,
-      experimental: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      experimental: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'experimental',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.experimental',
       ),
-      date: JsonParser.parsePrimitive<FhirDateTime>(
+      date: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'date',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.date',
       ),
-      publisher: JsonParser.parsePrimitive<FhirString>(
+      publisher: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisher',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisher',
       ),
       contact: (json['contact'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contact',
@@ -196,15 +195,15 @@ class Citation extends DomainResource {
             ),
           )
           .toList(),
-      description: JsonParser.parsePrimitive<FhirMarkdown>(
+      description: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'description',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.description',
       ),
       useContext: (json['useContext'] as List<dynamic>?)
-          ?.map<UsageContext>(
-            (v) => UsageContext.fromJson(
+          ?.map<UsageContextBuilder>(
+            (v) => UsageContextBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.useContext',
@@ -213,8 +212,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.jurisdiction',
@@ -222,39 +221,39 @@ class Citation extends DomainResource {
             ),
           )
           .toList(),
-      purpose: JsonParser.parsePrimitive<FhirMarkdown>(
+      purpose: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'purpose',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.purpose',
       ),
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
-      approvalDate: JsonParser.parsePrimitive<FhirDate>(
+      approvalDate: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'approvalDate',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.approvalDate',
       ),
-      lastReviewDate: JsonParser.parsePrimitive<FhirDate>(
+      lastReviewDate: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'lastReviewDate',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.lastReviewDate',
       ),
-      effectivePeriod: JsonParser.parseObject<Period>(
+      effectivePeriod: JsonParser.parseObject<PeriodBuilder>(
         json,
         'effectivePeriod',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.effectivePeriod',
       ),
       author: (json['author'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.author',
@@ -263,8 +262,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       editor: (json['editor'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.editor',
@@ -273,8 +272,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       reviewer: (json['reviewer'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.reviewer',
@@ -283,8 +282,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       endorser: (json['endorser'] as List<dynamic>?)
-          ?.map<ContactDetail>(
-            (v) => ContactDetail.fromJson(
+          ?.map<ContactDetailBuilder>(
+            (v) => ContactDetailBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.endorser',
@@ -293,8 +292,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       summary: (json['summary'] as List<dynamic>?)
-          ?.map<CitationSummary>(
-            (v) => CitationSummary.fromJson(
+          ?.map<CitationSummaryBuilder>(
+            (v) => CitationSummaryBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.summary',
@@ -303,8 +302,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       classification: (json['classification'] as List<dynamic>?)
-          ?.map<CitationClassification>(
-            (v) => CitationClassification.fromJson(
+          ?.map<CitationClassificationBuilder>(
+            (v) => CitationClassificationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.classification',
@@ -313,8 +312,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -323,8 +322,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       currentState: (json['currentState'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.currentState',
@@ -333,8 +332,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       statusDate: (json['statusDate'] as List<dynamic>?)
-          ?.map<CitationStatusDate>(
-            (v) => CitationStatusDate.fromJson(
+          ?.map<CitationStatusDateBuilder>(
+            (v) => CitationStatusDateBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.statusDate',
@@ -343,8 +342,8 @@ class Citation extends DomainResource {
           )
           .toList(),
       relatesTo: (json['relatesTo'] as List<dynamic>?)
-          ?.map<CitationRelatesTo>(
-            (v) => CitationRelatesTo.fromJson(
+          ?.map<CitationRelatesToBuilder>(
+            (v) => CitationRelatesToBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatesTo',
@@ -352,31 +351,31 @@ class Citation extends DomainResource {
             ),
           )
           .toList(),
-      citedArtifact: JsonParser.parseObject<CitationCitedArtifact>(
+      citedArtifact: JsonParser.parseObject<CitationCitedArtifactBuilder>(
         json,
         'citedArtifact',
-        CitationCitedArtifact.fromJson,
+        CitationCitedArtifactBuilder.fromJson,
         '$objectPath.citedArtifact',
       ),
     );
   }
 
-  /// Deserialize [Citation]
+  /// Deserialize [CitationBuilder]
   /// from a [String] or [YamlMap] object
-  factory Citation.fromYaml(
+  factory CitationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return Citation.fromJson(
+      return CitationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return Citation.fromJson(
+      return CitationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Citation '
+        'CitationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -384,16 +383,16 @@ class Citation extends DomainResource {
   }
 
   /// Factory constructor for
-  /// [Citation]
+  /// [CitationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Citation.fromJsonString(
+  factory CitationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return Citation.fromJson(json);
+      return CitationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -411,13 +410,13 @@ class Citation extends DomainResource {
   /// of this summary is (or will be) published. This URL can be the target
   /// of a canonical reference. It SHALL remain the same when the summary is
   /// stored on different servers.
-  final FhirUri? url;
+  FhirUriBuilder? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the citation
@@ -426,49 +425,49 @@ class Citation extends DomainResource {
   /// expected to be globally unique. For example, it might be a timestamp
   /// (e.g. yyyymmdd) if a managed version is not available. There is also no
   /// expectation that versions can be placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirStringBuilder? version;
 
   /// [name]
   /// A natural language name identifying the citation. This name should be
   /// usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirStringBuilder? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the citation.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
   /// content.
-  final PublicationStatus status;
+  PublicationStatusBuilder? status;
 
   /// [experimental]
   /// A Boolean value to indicate that this citation is authored for testing
   /// purposes (or education/evaluation/marketing) and is not intended to be
   /// used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBooleanBuilder? experimental;
 
   /// [date]
   /// The date (and optionally time) when the citation was published. The
   /// date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the citation changes.
-  final FhirDateTime? date;
+  FhirDateTimeBuilder? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the citation.
-  final FhirString? publisher;
+  FhirStringBuilder? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetailBuilder>? contact;
 
   /// [description]
   /// A free text natural language description of the citation from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdownBuilder? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -476,99 +475,99 @@ class Citation extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate citation instances.
-  final List<UsageContext>? useContext;
+  List<UsageContextBuilder>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the citation is intended to be
   /// used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConceptBuilder>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this citation is needed and why it has been designed
   /// as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdownBuilder? purpose;
 
   /// [copyright]
   /// Use and/or publishing restrictions for the Citation, not for the cited
   /// artifact.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDateBuilder? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDateBuilder? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the citation content was or is planned to be in
   /// active use.
-  final Period? effectivePeriod;
+  PeriodBuilder? effectivePeriod;
 
   /// [author]
   /// Who authored the Citation.
-  final List<ContactDetail>? author;
+  List<ContactDetailBuilder>? author;
 
   /// [editor]
   /// Who edited the Citation.
-  final List<ContactDetail>? editor;
+  List<ContactDetailBuilder>? editor;
 
   /// [reviewer]
   /// Who reviewed the Citation.
-  final List<ContactDetail>? reviewer;
+  List<ContactDetailBuilder>? reviewer;
 
   /// [endorser]
   /// Who endorsed the Citation.
-  final List<ContactDetail>? endorser;
+  List<ContactDetailBuilder>? endorser;
 
   /// [summary]
   /// A human-readable display of the citation.
-  final List<CitationSummary>? summary;
+  List<CitationSummaryBuilder>? summary;
 
   /// [classification]
   /// The assignment to an organizing scheme.
-  final List<CitationClassification>? classification;
+  List<CitationClassificationBuilder>? classification;
 
   /// [note]
   /// Used for general notes and annotations not coded elsewhere.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
 
   /// [currentState]
   /// The status of the citation.
-  final List<CodeableConcept>? currentState;
+  List<CodeableConceptBuilder>? currentState;
 
   /// [statusDate]
   /// An effective date or period for a status of the citation.
-  final List<CitationStatusDate>? statusDate;
+  List<CitationStatusDateBuilder>? statusDate;
 
   /// [relatesTo]
   /// Artifact related to the Citation Resource.
-  final List<CitationRelatesTo>? relatesTo;
+  List<CitationRelatesToBuilder>? relatesTo;
 
   /// [citedArtifact]
   /// The article or artifact being described.
-  final CitationCitedArtifact? citedArtifact;
+  CitationCitedArtifactBuilder? citedArtifact;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -577,160 +576,49 @@ class Citation extends DomainResource {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
-    addField(
-      'approvalDate',
-      approvalDate,
-    );
-    addField(
-      'lastReviewDate',
-      lastReviewDate,
-    );
-    addField(
-      'effectivePeriod',
-      effectivePeriod,
-    );
-    addField(
-      'author',
-      author,
-    );
-    addField(
-      'editor',
-      editor,
-    );
-    addField(
-      'reviewer',
-      reviewer,
-    );
-    addField(
-      'endorser',
-      endorser,
-    );
-    addField(
-      'summary',
-      summary,
-    );
-    addField(
-      'classification',
-      classification,
-    );
-    addField(
-      'note',
-      note,
-    );
-    addField(
-      'currentState',
-      currentState,
-    );
-    addField(
-      'statusDate',
-      statusDate,
-    );
-    addField(
-      'relatesTo',
-      relatesTo,
-    );
-    addField(
-      'citedArtifact',
-      citedArtifact,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('identifier', identifier);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('copyright', copyright);
+    addField('approvalDate', approvalDate);
+    addField('lastReviewDate', lastReviewDate);
+    addField('effectivePeriod', effectivePeriod);
+    addField('author', author);
+    addField('editor', editor);
+    addField('reviewer', reviewer);
+    addField('endorser', endorser);
+    addField('summary', summary);
+    addField('classification', classification);
+    addField('note', note);
+    addField('currentState', currentState);
+    addField('statusDate', statusDate);
+    addField('relatesTo', relatesTo);
+    addField('citedArtifact', citedArtifact);
     return json;
   }
 
@@ -781,11 +669,11 @@ class Citation extends DomainResource {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -840,7 +728,9 @@ class Citation extends DomainResource {
           fields.add(title!);
         }
       case 'status':
-        fields.add(status);
+        if (status != null) {
+          fields.add(status!);
+        }
       case 'experimental':
         if (experimental != null) {
           fields.add(experimental!);
@@ -943,7 +833,7 @@ class Citation extends DomainResource {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -952,411 +842,430 @@ class Citation extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
         {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
+          if (child is FhirMetaBuilder) {
+            meta = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
         {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
+          if (child is FhirUriBuilder) {
+            implicitRules = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
+          if (child is CommonLanguagesBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is Narrative) {
-            return copyWith(text: child);
+          if (child is NarrativeBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
+          if (child is List<ResourceBuilder>) {
+            // Replace or create new list
+            contained = child;
+            return;
+          } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
-            return copyWith(contained: newList);
+            contained = [...(contained ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is FhirString) {
-            return copyWith(version: child);
+          if (child is FhirStringBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is FhirString) {
-            return copyWith(name: child);
+          if (child is FhirStringBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
         {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
+          if (child is PublicationStatusBuilder) {
+            status = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
         {
-          if (child is FhirBoolean) {
-            return copyWith(experimental: child);
+          if (child is FhirBooleanBuilder) {
+            experimental = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
+          if (child is FhirDateTimeBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is FhirString) {
-            return copyWith(publisher: child);
+          if (child is FhirStringBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?contact, ...child];
-            return copyWith(contact: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            contact = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
-            return copyWith(contact: newList);
+            contact = [...(contact ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
+          if (child is FhirMarkdownBuilder) {
+            description = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
-          if (child is List<UsageContext>) {
-            // Add all elements from passed list
-            final newList = [...?useContext, ...child];
-            return copyWith(useContext: newList);
-          } else if (child is UsageContext) {
+          if (child is List<UsageContextBuilder>) {
+            // Replace or create new list
+            useContext = child;
+            return;
+          } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
-            return copyWith(useContext: newList);
+            useContext = [...(useContext ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?jurisdiction, ...child];
-            return copyWith(jurisdiction: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            jurisdiction = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
-            return copyWith(jurisdiction: newList);
+            jurisdiction = [...(jurisdiction ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(purpose: child);
+          if (child is FhirMarkdownBuilder) {
+            purpose = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'approvalDate':
         {
-          if (child is FhirDate) {
-            return copyWith(approvalDate: child);
+          if (child is FhirDateBuilder) {
+            approvalDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastReviewDate':
         {
-          if (child is FhirDate) {
-            return copyWith(lastReviewDate: child);
+          if (child is FhirDateBuilder) {
+            lastReviewDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectivePeriod':
         {
-          if (child is Period) {
-            return copyWith(effectivePeriod: child);
+          if (child is PeriodBuilder) {
+            effectivePeriod = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?author, ...child];
-            return copyWith(author: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            author = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?author, child];
-            return copyWith(author: newList);
+            author = [...(author ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'editor':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?editor, ...child];
-            return copyWith(editor: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            editor = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?editor, child];
-            return copyWith(editor: newList);
+            editor = [...(editor ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'reviewer':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?reviewer, ...child];
-            return copyWith(reviewer: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            reviewer = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?reviewer, child];
-            return copyWith(reviewer: newList);
+            reviewer = [...(reviewer ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'endorser':
         {
-          if (child is List<ContactDetail>) {
-            // Add all elements from passed list
-            final newList = [...?endorser, ...child];
-            return copyWith(endorser: newList);
-          } else if (child is ContactDetail) {
+          if (child is List<ContactDetailBuilder>) {
+            // Replace or create new list
+            endorser = child;
+            return;
+          } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?endorser, child];
-            return copyWith(endorser: newList);
+            endorser = [...(endorser ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'summary':
         {
-          if (child is List<CitationSummary>) {
-            // Add all elements from passed list
-            final newList = [...?summary, ...child];
-            return copyWith(summary: newList);
-          } else if (child is CitationSummary) {
+          if (child is List<CitationSummaryBuilder>) {
+            // Replace or create new list
+            summary = child;
+            return;
+          } else if (child is CitationSummaryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?summary, child];
-            return copyWith(summary: newList);
+            summary = [...(summary ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classification':
         {
-          if (child is List<CitationClassification>) {
-            // Add all elements from passed list
-            final newList = [...?classification, ...child];
-            return copyWith(classification: newList);
-          } else if (child is CitationClassification) {
+          if (child is List<CitationClassificationBuilder>) {
+            // Replace or create new list
+            classification = child;
+            return;
+          } else if (child is CitationClassificationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
-            return copyWith(classification: newList);
+            classification = [...(classification ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'currentState':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?currentState, ...child];
-            return copyWith(currentState: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            currentState = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?currentState, child];
-            return copyWith(currentState: newList);
+            currentState = [...(currentState ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
         {
-          if (child is List<CitationStatusDate>) {
-            // Add all elements from passed list
-            final newList = [...?statusDate, ...child];
-            return copyWith(statusDate: newList);
-          } else if (child is CitationStatusDate) {
+          if (child is List<CitationStatusDateBuilder>) {
+            // Replace or create new list
+            statusDate = child;
+            return;
+          } else if (child is CitationStatusDateBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?statusDate, child];
-            return copyWith(statusDate: newList);
+            statusDate = [...(statusDate ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatesTo':
         {
-          if (child is List<CitationRelatesTo>) {
-            // Add all elements from passed list
-            final newList = [...?relatesTo, ...child];
-            return copyWith(relatesTo: newList);
-          } else if (child is CitationRelatesTo) {
+          if (child is List<CitationRelatesToBuilder>) {
+            // Replace or create new list
+            relatesTo = child;
+            return;
+          } else if (child is CitationRelatesToBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatesTo, child];
-            return copyWith(relatesTo: newList);
+            relatesTo = [...(relatesTo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'citedArtifact':
         {
-          if (child is CitationCitedArtifact) {
-            return copyWith(citedArtifact: child);
+          if (child is CitationCitedArtifactBuilder) {
+            citedArtifact = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -1372,314 +1281,273 @@ class Citation extends DomainResource {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'meta':
-        return ['FhirMeta'];
+        return ['FhirMetaBuilder'];
       case 'implicitRules':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'language':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'text':
-        return ['Narrative'];
+        return ['NarrativeBuilder'];
       case 'contained':
-        return ['Resource'];
+        return ['ResourceBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'version':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'name':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'status':
-        return ['FhirCode'];
+        return ['FhirCodeEnumBuilder'];
       case 'experimental':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'date':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'publisher':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'contact':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'description':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'useContext':
-        return ['UsageContext'];
+        return ['UsageContextBuilder'];
       case 'jurisdiction':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'purpose':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'approvalDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'lastReviewDate':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'effectivePeriod':
-        return ['Period'];
+        return ['PeriodBuilder'];
       case 'author':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'editor':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'reviewer':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'endorser':
-        return ['ContactDetail'];
+        return ['ContactDetailBuilder'];
       case 'summary':
-        return ['CitationSummary'];
+        return ['CitationSummaryBuilder'];
       case 'classification':
-        return ['CitationClassification'];
+        return ['CitationClassificationBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       case 'currentState':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'statusDate':
-        return ['CitationStatusDate'];
+        return ['CitationStatusDateBuilder'];
       case 'relatesTo':
-        return ['CitationRelatesTo'];
+        return ['CitationRelatesToBuilder'];
       case 'citedArtifact':
-        return ['CitationCitedArtifact'];
+        return ['CitationCitedArtifactBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [Citation]
+  /// Creates a new [CitationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  Citation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'meta':
         {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
+          meta = FhirMetaBuilder.empty();
+          return;
         }
       case 'implicitRules':
         {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
+          implicitRules = FhirUriBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
+          language = CommonLanguagesBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: Narrative.empty(),
-          );
+          text = NarrativeBuilder.empty();
+          return;
         }
       case 'contained':
         {
-          return copyWith(
-            contained: <Resource>[],
-          );
+          contained = <ResourceBuilder>[];
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: FhirString.empty(),
-          );
+          version = FhirStringBuilder.empty();
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: FhirString.empty(),
-          );
+          name = FhirStringBuilder.empty();
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'status':
         {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
+          status = PublicationStatusBuilder.empty();
+          return;
         }
       case 'experimental':
         {
-          return copyWith(
-            experimental: FhirBoolean.empty(),
-          );
+          experimental = FhirBooleanBuilder.empty();
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
+          date = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: FhirString.empty(),
-          );
+          publisher = FhirStringBuilder.empty();
+          return;
         }
       case 'contact':
         {
-          return copyWith(
-            contact: <ContactDetail>[],
-          );
+          contact = <ContactDetailBuilder>[];
+          return;
         }
       case 'description':
         {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
+          description = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'useContext':
         {
-          return copyWith(
-            useContext: <UsageContext>[],
-          );
+          useContext = <UsageContextBuilder>[];
+          return;
         }
       case 'jurisdiction':
         {
-          return copyWith(
-            jurisdiction: <CodeableConcept>[],
-          );
+          jurisdiction = <CodeableConceptBuilder>[];
+          return;
         }
       case 'purpose':
         {
-          return copyWith(
-            purpose: FhirMarkdown.empty(),
-          );
+          purpose = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'approvalDate':
         {
-          return copyWith(
-            approvalDate: FhirDate.empty(),
-          );
+          approvalDate = FhirDateBuilder.empty();
+          return;
         }
       case 'lastReviewDate':
         {
-          return copyWith(
-            lastReviewDate: FhirDate.empty(),
-          );
+          lastReviewDate = FhirDateBuilder.empty();
+          return;
         }
       case 'effectivePeriod':
         {
-          return copyWith(
-            effectivePeriod: Period.empty(),
-          );
+          effectivePeriod = PeriodBuilder.empty();
+          return;
         }
       case 'author':
         {
-          return copyWith(
-            author: <ContactDetail>[],
-          );
+          author = <ContactDetailBuilder>[];
+          return;
         }
       case 'editor':
         {
-          return copyWith(
-            editor: <ContactDetail>[],
-          );
+          editor = <ContactDetailBuilder>[];
+          return;
         }
       case 'reviewer':
         {
-          return copyWith(
-            reviewer: <ContactDetail>[],
-          );
+          reviewer = <ContactDetailBuilder>[];
+          return;
         }
       case 'endorser':
         {
-          return copyWith(
-            endorser: <ContactDetail>[],
-          );
+          endorser = <ContactDetailBuilder>[];
+          return;
         }
       case 'summary':
         {
-          return copyWith(
-            summary: <CitationSummary>[],
-          );
+          summary = <CitationSummaryBuilder>[];
+          return;
         }
       case 'classification':
         {
-          return copyWith(
-            classification: <CitationClassification>[],
-          );
+          classification = <CitationClassificationBuilder>[];
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       case 'currentState':
         {
-          return copyWith(
-            currentState: <CodeableConcept>[],
-          );
+          currentState = <CodeableConceptBuilder>[];
+          return;
         }
       case 'statusDate':
         {
-          return copyWith(
-            statusDate: <CitationStatusDate>[],
-          );
+          statusDate = <CitationStatusDateBuilder>[];
+          return;
         }
       case 'relatesTo':
         {
-          return copyWith(
-            relatesTo: <CitationRelatesTo>[],
-          );
+          relatesTo = <CitationRelatesToBuilder>[];
+          return;
         }
       case 'citedArtifact':
         {
-          return copyWith(
-            citedArtifact: CitationCitedArtifact.empty(),
-          );
+          citedArtifact = CitationCitedArtifactBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1688,7 +1556,7 @@ class Citation extends DomainResource {
 
   /// Clears specific fields in this object
   @override
-  Citation clear({
+  void clear({
     bool id = false,
     bool meta = false,
     bool implicitRules = false,
@@ -1702,6 +1570,7 @@ class Citation extends DomainResource {
     bool version = false,
     bool name = false,
     bool title = false,
+    bool status = false,
     bool experimental = false,
     bool date = false,
     bool publisher = false,
@@ -1726,311 +1595,154 @@ class Citation extends DomainResource {
     bool relatesTo = false,
     bool citedArtifact = false,
   }) {
-    return Citation(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      url: url ? null : this.url,
-      identifier: identifier ? null : this.identifier,
-      version: version ? null : this.version,
-      name: name ? null : this.name,
-      title: title ? null : this.title,
-      status: status,
-      experimental: experimental ? null : this.experimental,
-      date: date ? null : this.date,
-      publisher: publisher ? null : this.publisher,
-      contact: contact ? null : this.contact,
-      description: description ? null : this.description,
-      useContext: useContext ? null : this.useContext,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      purpose: purpose ? null : this.purpose,
-      copyright: copyright ? null : this.copyright,
-      approvalDate: approvalDate ? null : this.approvalDate,
-      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
-      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
-      author: author ? null : this.author,
-      editor: editor ? null : this.editor,
-      reviewer: reviewer ? null : this.reviewer,
-      endorser: endorser ? null : this.endorser,
-      summary: summary ? null : this.summary,
-      classification: classification ? null : this.classification,
-      note: note ? null : this.note,
-      currentState: currentState ? null : this.currentState,
-      statusDate: statusDate ? null : this.statusDate,
-      relatesTo: relatesTo ? null : this.relatesTo,
-      citedArtifact: citedArtifact ? null : this.citedArtifact,
-    );
+    if (id) this.id = null;
+    if (meta) this.meta = null;
+    if (implicitRules) this.implicitRules = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (contained) this.contained = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (url) this.url = null;
+    if (identifier) this.identifier = null;
+    if (version) this.version = null;
+    if (name) this.name = null;
+    if (title) this.title = null;
+    if (status) this.status = null;
+    if (experimental) this.experimental = null;
+    if (date) this.date = null;
+    if (publisher) this.publisher = null;
+    if (contact) this.contact = null;
+    if (description) this.description = null;
+    if (useContext) this.useContext = null;
+    if (jurisdiction) this.jurisdiction = null;
+    if (purpose) this.purpose = null;
+    if (copyright) this.copyright = null;
+    if (approvalDate) this.approvalDate = null;
+    if (lastReviewDate) this.lastReviewDate = null;
+    if (effectivePeriod) this.effectivePeriod = null;
+    if (author) this.author = null;
+    if (editor) this.editor = null;
+    if (reviewer) this.reviewer = null;
+    if (endorser) this.endorser = null;
+    if (summary) this.summary = null;
+    if (classification) this.classification = null;
+    if (note) this.note = null;
+    if (currentState) this.currentState = null;
+    if (statusDate) this.statusDate = null;
+    if (relatesTo) this.relatesTo = null;
+    if (citedArtifact) this.citedArtifact = null;
   }
 
   @override
-  Citation clone() => throw UnimplementedError();
+  CitationBuilder clone() => throw UnimplementedError();
   @override
-  Citation copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirUri? url,
-    List<Identifier>? identifier,
-    FhirString? version,
-    FhirString? name,
-    FhirString? title,
-    PublicationStatus? status,
-    FhirBoolean? experimental,
-    FhirDateTime? date,
-    FhirString? publisher,
-    List<ContactDetail>? contact,
-    FhirMarkdown? description,
-    List<UsageContext>? useContext,
-    List<CodeableConcept>? jurisdiction,
-    FhirMarkdown? purpose,
-    FhirMarkdown? copyright,
-    FhirDate? approvalDate,
-    FhirDate? lastReviewDate,
-    Period? effectivePeriod,
-    List<ContactDetail>? author,
-    List<ContactDetail>? editor,
-    List<ContactDetail>? reviewer,
-    List<ContactDetail>? endorser,
-    List<CitationSummary>? summary,
-    List<CitationClassification>? classification,
-    List<Annotation>? note,
-    List<CodeableConcept>? currentState,
-    List<CitationStatusDate>? statusDate,
-    List<CitationRelatesTo>? relatesTo,
-    CitationCitedArtifact? citedArtifact,
+  CitationBuilder copyWith({
+    FhirStringBuilder? id,
+    FhirMetaBuilder? meta,
+    FhirUriBuilder? implicitRules,
+    CommonLanguagesBuilder? language,
+    NarrativeBuilder? text,
+    List<ResourceBuilder>? contained,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirUriBuilder? url,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? version,
+    FhirStringBuilder? name,
+    FhirStringBuilder? title,
+    PublicationStatusBuilder? status,
+    FhirBooleanBuilder? experimental,
+    FhirDateTimeBuilder? date,
+    FhirStringBuilder? publisher,
+    List<ContactDetailBuilder>? contact,
+    FhirMarkdownBuilder? description,
+    List<UsageContextBuilder>? useContext,
+    List<CodeableConceptBuilder>? jurisdiction,
+    FhirMarkdownBuilder? purpose,
+    FhirMarkdownBuilder? copyright,
+    FhirDateBuilder? approvalDate,
+    FhirDateBuilder? lastReviewDate,
+    PeriodBuilder? effectivePeriod,
+    List<ContactDetailBuilder>? author,
+    List<ContactDetailBuilder>? editor,
+    List<ContactDetailBuilder>? reviewer,
+    List<ContactDetailBuilder>? endorser,
+    List<CitationSummaryBuilder>? summary,
+    List<CitationClassificationBuilder>? classification,
+    List<AnnotationBuilder>? note,
+    List<CodeableConceptBuilder>? currentState,
+    List<CitationStatusDateBuilder>? statusDate,
+    List<CitationRelatesToBuilder>? relatesTo,
+    CitationCitedArtifactBuilder? citedArtifact,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
     final newObjectPath = objectPath;
-    return Citation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CitationBuilder(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
       contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      experimental: experimental?.copyWith(
-            objectPath: '$newObjectPath.experimental',
-          ) ??
-          this.experimental,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      contact: contact
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contact',
-                ),
-              )
-              .toList() ??
-          this.contact,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      useContext: useContext
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.useContext',
-                ),
-              )
-              .toList() ??
-          this.useContext,
-      jurisdiction: jurisdiction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.jurisdiction',
-                ),
-              )
-              .toList() ??
-          this.jurisdiction,
-      purpose: purpose?.copyWith(
-            objectPath: '$newObjectPath.purpose',
-          ) ??
-          this.purpose,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
-      approvalDate: approvalDate?.copyWith(
-            objectPath: '$newObjectPath.approvalDate',
-          ) ??
-          this.approvalDate,
-      lastReviewDate: lastReviewDate?.copyWith(
-            objectPath: '$newObjectPath.lastReviewDate',
-          ) ??
-          this.lastReviewDate,
-      effectivePeriod: effectivePeriod?.copyWith(
-            objectPath: '$newObjectPath.effectivePeriod',
-          ) ??
-          this.effectivePeriod,
-      author: author
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.author',
-                ),
-              )
-              .toList() ??
-          this.author,
-      editor: editor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.editor',
-                ),
-              )
-              .toList() ??
-          this.editor,
-      reviewer: reviewer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reviewer',
-                ),
-              )
-              .toList() ??
-          this.reviewer,
-      endorser: endorser
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.endorser',
-                ),
-              )
-              .toList() ??
-          this.endorser,
-      summary: summary
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.summary',
-                ),
-              )
-              .toList() ??
-          this.summary,
-      classification: classification
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.classification',
-                ),
-              )
-              .toList() ??
-          this.classification,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      currentState: currentState
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.currentState',
-                ),
-              )
-              .toList() ??
-          this.currentState,
-      statusDate: statusDate
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.statusDate',
-                ),
-              )
-              .toList() ??
-          this.statusDate,
-      relatesTo: relatesTo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatesTo',
-                ),
-              )
-              .toList() ??
-          this.relatesTo,
-      citedArtifact: citedArtifact?.copyWith(
-            objectPath: '$newObjectPath.citedArtifact',
-          ) ??
-          this.citedArtifact,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      url: url ?? this.url,
+      identifier: identifier ?? this.identifier,
+      version: version ?? this.version,
+      name: name ?? this.name,
+      title: title ?? this.title,
+      status: status ?? this.status,
+      experimental: experimental ?? this.experimental,
+      date: date ?? this.date,
+      publisher: publisher ?? this.publisher,
+      contact: contact ?? this.contact,
+      description: description ?? this.description,
+      useContext: useContext ?? this.useContext,
+      jurisdiction: jurisdiction ?? this.jurisdiction,
+      purpose: purpose ?? this.purpose,
+      copyright: copyright ?? this.copyright,
+      approvalDate: approvalDate ?? this.approvalDate,
+      lastReviewDate: lastReviewDate ?? this.lastReviewDate,
+      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
+      author: author ?? this.author,
+      editor: editor ?? this.editor,
+      reviewer: reviewer ?? this.reviewer,
+      endorser: endorser ?? this.endorser,
+      summary: summary ?? this.summary,
+      classification: classification ?? this.classification,
+      note: note ?? this.note,
+      currentState: currentState ?? this.currentState,
+      statusDate: statusDate ?? this.statusDate,
+      relatesTo: relatesTo ?? this.relatesTo,
+      citedArtifact: citedArtifact ?? this.citedArtifact,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! Citation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2065,19 +1777,19 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Resource>(
+    if (!listEquals<ResourceBuilder>(
       contained,
       o.contained,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2089,7 +1801,7 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -2137,7 +1849,7 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       contact,
       o.contact,
     )) {
@@ -2149,13 +1861,13 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<UsageContext>(
+    if (!listEquals<UsageContextBuilder>(
       useContext,
       o.useContext,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       jurisdiction,
       o.jurisdiction,
     )) {
@@ -2191,61 +1903,61 @@ class Citation extends DomainResource {
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       author,
       o.author,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       editor,
       o.editor,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       reviewer,
       o.reviewer,
     )) {
       return false;
     }
-    if (!listEquals<ContactDetail>(
+    if (!listEquals<ContactDetailBuilder>(
       endorser,
       o.endorser,
     )) {
       return false;
     }
-    if (!listEquals<CitationSummary>(
+    if (!listEquals<CitationSummaryBuilder>(
       summary,
       o.summary,
     )) {
       return false;
     }
-    if (!listEquals<CitationClassification>(
+    if (!listEquals<CitationClassificationBuilder>(
       classification,
       o.classification,
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       currentState,
       o.currentState,
     )) {
       return false;
     }
-    if (!listEquals<CitationStatusDate>(
+    if (!listEquals<CitationStatusDateBuilder>(
       statusDate,
       o.statusDate,
     )) {
       return false;
     }
-    if (!listEquals<CitationRelatesTo>(
+    if (!listEquals<CitationRelatesToBuilder>(
       relatesTo,
       o.relatesTo,
     )) {
@@ -2261,45 +1973,42 @@ class Citation extends DomainResource {
   }
 }
 
-/// [CitationSummary]
+/// [CitationSummaryBuilder]
 /// A human-readable display of the citation.
-class CitationSummary extends BackboneElement {
+class CitationSummaryBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationSummary]
+  /// [CitationSummaryBuilder]
 
-  const CitationSummary({
+  CitationSummaryBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.style,
-    required this.text,
+    this.text,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Citation.summary',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationSummary.empty() => CitationSummary(
-        text: FhirMarkdown.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationSummaryBuilder.empty() => CitationSummaryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationSummary.fromJson(
+  factory CitationSummaryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.summary';
-    return CitationSummary(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationSummaryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2308,8 +2017,8 @@ class CitationSummary extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2317,37 +2026,37 @@ class CitationSummary extends BackboneElement {
             ),
           )
           .toList(),
-      style: JsonParser.parseObject<CodeableConcept>(
+      style: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'style',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.style',
       ),
-      text: JsonParser.parsePrimitive<FhirMarkdown>(
+      text: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'text',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.text',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CitationSummary]
+  /// Deserialize [CitationSummaryBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationSummary.fromYaml(
+  factory CitationSummaryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationSummary.fromJson(
+      return CitationSummaryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationSummary.fromJson(
+      return CitationSummaryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationSummary '
+        'CitationSummaryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2355,16 +2064,16 @@ class CitationSummary extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationSummary]
+  /// [CitationSummaryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationSummary.fromJsonString(
+  factory CitationSummaryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationSummary.fromJson(json);
+      return CitationSummaryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2376,27 +2085,27 @@ class CitationSummary extends BackboneElement {
 
   /// [style]
   /// Format for display of the citation.
-  final CodeableConcept? style;
+  CodeableConceptBuilder? style;
 
   /// [text]
   /// The human-readable display of the citation.
-  final FhirMarkdown text;
+  FhirMarkdownBuilder? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2405,31 +2114,16 @@ class CitationSummary extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'style',
-      style,
-    );
-    addField(
-      'text',
-      text,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('style', style);
+    addField('text', text);
     return json;
   }
 
@@ -2448,11 +2142,11 @@ class CitationSummary extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2471,7 +2165,9 @@ class CitationSummary extends BackboneElement {
           fields.add(style!);
         }
       case 'text':
-        fields.add(text);
+        if (text != null) {
+          fields.add(text!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -2482,7 +2178,7 @@ class CitationSummary extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2491,65 +2187,67 @@ class CitationSummary extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'style':
         {
-          if (child is CodeableConcept) {
-            return copyWith(style: child);
+          if (child is CodeableConceptBuilder) {
+            style = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(text: child);
+          if (child is FhirMarkdownBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -2565,58 +2263,49 @@ class CitationSummary extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'style':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'text':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationSummary]
+  /// Creates a new [CitationSummaryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationSummary createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'style':
         {
-          return copyWith(
-            style: CodeableConcept.empty(),
-          );
+          style = CodeableConceptBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirMarkdown.empty(),
-          );
+          text = FhirMarkdownBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2625,30 +2314,29 @@ class CitationSummary extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationSummary clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool style = false,
+    bool text = false,
   }) {
-    return CitationSummary(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      style: style ? null : this.style,
-      text: text,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (style) this.style = null;
+    if (text) this.text = null;
   }
 
   @override
-  CitationSummary clone() => throw UnimplementedError();
+  CitationSummaryBuilder clone() => throw UnimplementedError();
   @override
-  CitationSummary copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? style,
-    FhirMarkdown? text,
+  CitationSummaryBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? style,
+    FhirMarkdownBuilder? text,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2656,42 +2344,36 @@ class CitationSummary extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationSummary(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      style: style?.copyWith(
-            objectPath: '$newObjectPath.style',
-          ) ??
-          this.style,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CitationSummaryBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      style: style ?? this.style,
+      text: text ?? this.text,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationSummary) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationSummaryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -2702,13 +2384,13 @@ class CitationSummary extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -2730,13 +2412,13 @@ class CitationSummary extends BackboneElement {
   }
 }
 
-/// [CitationClassification]
+/// [CitationClassificationBuilder]
 /// The assignment to an organizing scheme.
-class CitationClassification extends BackboneElement {
+class CitationClassificationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationClassification]
+  /// [CitationClassificationBuilder]
 
-  const CitationClassification({
+  CitationClassificationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2748,25 +2430,25 @@ class CitationClassification extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationClassification.empty() => const CitationClassification();
+  /// For Builder classes, no fields are required
+  factory CitationClassificationBuilder.empty() =>
+      CitationClassificationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationClassification.fromJson(
+  factory CitationClassificationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.classification';
-    return CitationClassification(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationClassificationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -2775,8 +2457,8 @@ class CitationClassification extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -2784,15 +2466,15 @@ class CitationClassification extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       classifier: (json['classifier'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.classifier',
@@ -2803,22 +2485,22 @@ class CitationClassification extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationClassification]
+  /// Deserialize [CitationClassificationBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationClassification.fromYaml(
+  factory CitationClassificationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationClassification.fromJson(
+      return CitationClassificationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationClassification.fromJson(
+      return CitationClassificationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationClassification '
+        'CitationClassificationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -2826,16 +2508,16 @@ class CitationClassification extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationClassification]
+  /// [CitationClassificationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationClassification.fromJsonString(
+  factory CitationClassificationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationClassification.fromJson(json);
+      return CitationClassificationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -2847,27 +2529,27 @@ class CitationClassification extends BackboneElement {
 
   /// [type]
   /// The kind of classifier (e.g. publication type, keyword).
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [classifier]
   /// The specific classification value.
-  final List<CodeableConcept>? classifier;
+  List<CodeableConceptBuilder>? classifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -2876,31 +2558,16 @@ class CitationClassification extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'classifier',
-      classifier,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('classifier', classifier);
     return json;
   }
 
@@ -2919,11 +2586,11 @@ class CitationClassification extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -2955,7 +2622,7 @@ class CitationClassification extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -2964,71 +2631,72 @@ class CitationClassification extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classifier':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?classifier, ...child];
-            return copyWith(classifier: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            classifier = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?classifier, child];
-            return copyWith(classifier: newList);
+            classifier = [...(classifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3044,58 +2712,49 @@ class CitationClassification extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'classifier':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationClassification]
+  /// Creates a new [CitationClassificationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationClassification createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'classifier':
         {
-          return copyWith(
-            classifier: <CodeableConcept>[],
-          );
+          classifier = <CodeableConceptBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3104,31 +2763,29 @@ class CitationClassification extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationClassification clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool type = false,
     bool classifier = false,
   }) {
-    return CitationClassification(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      classifier: classifier ? null : this.classifier,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (classifier) this.classifier = null;
   }
 
   @override
-  CitationClassification clone() => throw UnimplementedError();
+  CitationClassificationBuilder clone() => throw UnimplementedError();
   @override
-  CitationClassification copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? classifier,
+  CitationClassificationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? classifier,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3136,46 +2793,36 @@ class CitationClassification extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationClassification(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      classifier: classifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.classifier',
-                ),
-              )
-              .toList() ??
-          this.classifier,
+    final newResult = CitationClassificationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      classifier: classifier ?? this.classifier,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationClassification) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationClassificationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3186,13 +2833,13 @@ class CitationClassification extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3204,7 +2851,7 @@ class CitationClassification extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       classifier,
       o.classifier,
     )) {
@@ -3214,47 +2861,43 @@ class CitationClassification extends BackboneElement {
   }
 }
 
-/// [CitationStatusDate]
+/// [CitationStatusDateBuilder]
 /// An effective date or period for a status of the citation.
-class CitationStatusDate extends BackboneElement {
+class CitationStatusDateBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationStatusDate]
+  /// [CitationStatusDateBuilder]
 
-  const CitationStatusDate({
+  CitationStatusDateBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.activity,
+    this.activity,
     this.actual,
-    required this.period,
+    this.period,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Citation.statusDate',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationStatusDate.empty() => CitationStatusDate(
-        activity: CodeableConcept.empty(),
-        period: Period.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationStatusDateBuilder.empty() => CitationStatusDateBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationStatusDate.fromJson(
+  factory CitationStatusDateBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.statusDate';
-    return CitationStatusDate(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationStatusDateBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3263,8 +2906,8 @@ class CitationStatusDate extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3272,43 +2915,43 @@ class CitationStatusDate extends BackboneElement {
             ),
           )
           .toList(),
-      activity: JsonParser.parseObject<CodeableConcept>(
+      activity: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'activity',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.activity',
-      )!,
-      actual: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      actual: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'actual',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.actual',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CitationStatusDate]
+  /// Deserialize [CitationStatusDateBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationStatusDate.fromYaml(
+  factory CitationStatusDateBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationStatusDate.fromJson(
+      return CitationStatusDateBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationStatusDate.fromJson(
+      return CitationStatusDateBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationStatusDate '
+        'CitationStatusDateBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3316,16 +2959,16 @@ class CitationStatusDate extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationStatusDate]
+  /// [CitationStatusDateBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationStatusDate.fromJsonString(
+  factory CitationStatusDateBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationStatusDate.fromJson(json);
+      return CitationStatusDateBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3337,31 +2980,31 @@ class CitationStatusDate extends BackboneElement {
 
   /// [activity]
   /// Classification of the status.
-  final CodeableConcept activity;
+  CodeableConceptBuilder? activity;
 
   /// [actual]
   /// Either occurred or expected.
-  final FhirBoolean? actual;
+  FhirBooleanBuilder? actual;
 
   /// [period]
   /// When the status started and/or ended.
-  final Period period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3370,35 +3013,17 @@ class CitationStatusDate extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'activity',
-      activity,
-    );
-    addField(
-      'actual',
-      actual,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('activity', activity);
+    addField('actual', actual);
+    addField('period', period);
     return json;
   }
 
@@ -3418,11 +3043,11 @@ class CitationStatusDate extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3437,13 +3062,17 @@ class CitationStatusDate extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'activity':
-        fields.add(activity);
+        if (activity != null) {
+          fields.add(activity!);
+        }
       case 'actual':
         if (actual != null) {
           fields.add(actual!);
         }
       case 'period':
-        fields.add(period);
+        if (period != null) {
+          fields.add(period!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -3454,7 +3083,7 @@ class CitationStatusDate extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -3463,73 +3092,76 @@ class CitationStatusDate extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'activity':
         {
-          if (child is CodeableConcept) {
-            return copyWith(activity: child);
+          if (child is CodeableConceptBuilder) {
+            activity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actual':
         {
-          if (child is FhirBoolean) {
-            return copyWith(actual: child);
+          if (child is FhirBooleanBuilder) {
+            actual = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -3545,66 +3177,56 @@ class CitationStatusDate extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'activity':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'actual':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationStatusDate]
+  /// Creates a new [CitationStatusDateBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationStatusDate createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'activity':
         {
-          return copyWith(
-            activity: CodeableConcept.empty(),
-          );
+          activity = CodeableConceptBuilder.empty();
+          return;
         }
       case 'actual':
         {
-          return copyWith(
-            actual: FhirBoolean.empty(),
-          );
+          actual = FhirBooleanBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3613,32 +3235,32 @@ class CitationStatusDate extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationStatusDate clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool activity = false,
     bool actual = false,
+    bool period = false,
   }) {
-    return CitationStatusDate(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      activity: activity,
-      actual: actual ? null : this.actual,
-      period: period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (activity) this.activity = null;
+    if (actual) this.actual = null;
+    if (period) this.period = null;
   }
 
   @override
-  CitationStatusDate clone() => throw UnimplementedError();
+  CitationStatusDateBuilder clone() => throw UnimplementedError();
   @override
-  CitationStatusDate copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? activity,
-    FhirBoolean? actual,
-    Period? period,
+  CitationStatusDateBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? activity,
+    FhirBooleanBuilder? actual,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3646,46 +3268,37 @@ class CitationStatusDate extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationStatusDate(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      activity: activity?.copyWith(
-            objectPath: '$newObjectPath.activity',
-          ) ??
-          this.activity,
-      actual: actual?.copyWith(
-            objectPath: '$newObjectPath.actual',
-          ) ??
-          this.actual,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = CitationStatusDateBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      activity: activity ?? this.activity,
+      actual: actual ?? this.actual,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationStatusDate) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationStatusDateBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -3696,13 +3309,13 @@ class CitationStatusDate extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -3730,47 +3343,43 @@ class CitationStatusDate extends BackboneElement {
   }
 }
 
-/// [CitationRelatesTo]
+/// [CitationRelatesToBuilder]
 /// Artifact related to the Citation Resource.
-class CitationRelatesTo extends BackboneElement {
+class CitationRelatesToBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationRelatesTo]
+  /// [CitationRelatesToBuilder]
 
-  const CitationRelatesTo({
+  CitationRelatesToBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.relationshipType,
+    this.relationshipType,
     this.targetClassifier,
-    required this.targetX,
+    this.targetX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Citation.relatesTo',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationRelatesTo.empty() => CitationRelatesTo(
-        relationshipType: CodeableConcept.empty(),
-        targetX: FhirUri.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationRelatesToBuilder.empty() => CitationRelatesToBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationRelatesTo.fromJson(
+  factory CitationRelatesToBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.relatesTo';
-    return CitationRelatesTo(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationRelatesToBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -3779,8 +3388,8 @@ class CitationRelatesTo extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -3788,15 +3397,15 @@ class CitationRelatesTo extends BackboneElement {
             ),
           )
           .toList(),
-      relationshipType: JsonParser.parseObject<CodeableConcept>(
+      relationshipType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'relationshipType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.relationshipType',
-      )!,
+      ),
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.targetClassifier',
@@ -3804,35 +3413,35 @@ class CitationRelatesTo extends BackboneElement {
             ),
           )
           .toList(),
-      targetX: JsonParser.parsePolymorphic<TargetXCitationRelatesTo>(
+      targetX: JsonParser.parsePolymorphic<TargetXCitationRelatesToBuilder>(
         json,
         {
-          'targetUri': FhirUri.fromJson,
-          'targetIdentifier': Identifier.fromJson,
-          'targetReference': Reference.fromJson,
-          'targetAttachment': Attachment.fromJson,
+          'targetUri': FhirUriBuilder.fromJson,
+          'targetIdentifier': IdentifierBuilder.fromJson,
+          'targetReference': ReferenceBuilder.fromJson,
+          'targetAttachment': AttachmentBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CitationRelatesTo]
+  /// Deserialize [CitationRelatesToBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationRelatesTo.fromYaml(
+  factory CitationRelatesToBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationRelatesTo.fromJson(
+      return CitationRelatesToBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationRelatesTo.fromJson(
+      return CitationRelatesToBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationRelatesTo '
+        'CitationRelatesToBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -3840,16 +3449,16 @@ class CitationRelatesTo extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationRelatesTo]
+  /// [CitationRelatesToBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationRelatesTo.fromJsonString(
+  factory CitationRelatesToBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationRelatesTo.fromJson(json);
+      return CitationRelatesToBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3861,43 +3470,43 @@ class CitationRelatesTo extends BackboneElement {
 
   /// [relationshipType]
   /// How the Citation resource relates to the target artifact.
-  final CodeableConcept relationshipType;
+  CodeableConceptBuilder? relationshipType;
 
   /// [targetClassifier]
   /// The clasification of the related artifact.
-  final List<CodeableConcept>? targetClassifier;
+  List<CodeableConceptBuilder>? targetClassifier;
 
   /// [targetX]
   /// The article or artifact that the Citation Resource is related to.
-  final TargetXCitationRelatesTo targetX;
+  TargetXCitationRelatesToBuilder? targetX;
 
-  /// Getter for [targetUri] as a FhirUri
-  FhirUri? get targetUri => targetX.isAs<FhirUri>();
+  /// Getter for [targetUri] as a FhirUriBuilder
+  FhirUriBuilder? get targetUri => targetX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [targetIdentifier] as a Identifier
-  Identifier? get targetIdentifier => targetX.isAs<Identifier>();
+  /// Getter for [targetIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get targetIdentifier => targetX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [targetReference] as a Reference
-  Reference? get targetReference => targetX.isAs<Reference>();
+  /// Getter for [targetReference] as a ReferenceBuilder
+  ReferenceBuilder? get targetReference => targetX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [targetAttachment] as a Attachment
-  Attachment? get targetAttachment => targetX.isAs<Attachment>();
+  /// Getter for [targetAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get targetAttachment => targetX?.isAs<AttachmentBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -3906,36 +3515,20 @@ class CitationRelatesTo extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'relationshipType',
-      relationshipType,
-    );
-    addField(
-      'targetClassifier',
-      targetClassifier,
-    );
-    final targetXFhirType = targetX.fhirType;
-    addField(
-      'target${targetXFhirType.capitalize()}',
-      targetX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('relationshipType', relationshipType);
+    addField('targetClassifier', targetClassifier);
+    if (targetX != null) {
+      final fhirType = targetX!.fhirType;
+      addField('target${fhirType.capitalize()}', targetX);
+    }
 
     return json;
   }
@@ -3956,11 +3549,11 @@ class CitationRelatesTo extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -3975,30 +3568,36 @@ class CitationRelatesTo extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'relationshipType':
-        fields.add(relationshipType);
+        if (relationshipType != null) {
+          fields.add(relationshipType!);
+        }
       case 'targetClassifier':
         if (targetClassifier != null) {
           fields.addAll(targetClassifier!);
         }
       case 'target':
-        fields.add(targetX);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetX':
-        fields.add(targetX);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetUri':
-        if (targetX is FhirUri) {
-          fields.add(targetX);
+        if (targetX is FhirUriBuilder) {
+          fields.add(targetX!);
         }
       case 'targetIdentifier':
-        if (targetX is Identifier) {
-          fields.add(targetX);
+        if (targetX is IdentifierBuilder) {
+          fields.add(targetX!);
         }
       case 'targetReference':
-        if (targetX is Reference) {
-          fields.add(targetX);
+        if (targetX is ReferenceBuilder) {
+          fields.add(targetX!);
         }
       case 'targetAttachment':
-        if (targetX is Attachment) {
-          fields.add(targetX);
+        if (targetX is AttachmentBuilder) {
+          fields.add(targetX!);
         }
       default:
         if (checkValid) {
@@ -4010,7 +3609,7 @@ class CitationRelatesTo extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4019,123 +3618,133 @@ class CitationRelatesTo extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationshipType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(relationshipType: child);
+          if (child is CodeableConceptBuilder) {
+            relationshipType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetClassifier':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?targetClassifier, ...child];
-            return copyWith(targetClassifier: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            targetClassifier = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?targetClassifier, child];
-            return copyWith(targetClassifier: newList);
+            targetClassifier = [...(targetClassifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetX':
         {
-          if (child is TargetXCitationRelatesTo) {
-            return copyWith(targetX: child);
+          if (child is TargetXCitationRelatesToBuilder) {
+            targetX = child;
+            return;
           } else {
-            if (child is FhirUri) {
-              return copyWith(targetX: child);
+            if (child is FhirUriBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is Identifier) {
-              return copyWith(targetX: child);
+            if (child is IdentifierBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(targetX: child);
+            if (child is ReferenceBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(targetX: child);
+            if (child is AttachmentBuilder) {
+              targetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'targetFhirUri':
+      case 'targetUri':
         {
-          if (child is FhirUri) {
-            return copyWith(targetX: child);
+          if (child is FhirUriBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(targetX: child);
+          if (child is IdentifierBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetReference':
         {
-          if (child is Reference) {
-            return copyWith(targetX: child);
+          if (child is ReferenceBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(targetX: child);
+          if (child is AttachmentBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -4151,95 +3760,87 @@ class CitationRelatesTo extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'relationshipType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'targetClassifier':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'target':
       case 'targetX':
-        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+        return [
+          'FhirUriBuilder',
+          'IdentifierBuilder',
+          'ReferenceBuilder',
+          'AttachmentBuilder'
+        ];
       case 'targetUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'targetIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'targetReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'targetAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationRelatesTo]
+  /// Creates a new [CitationRelatesToBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationRelatesTo createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'relationshipType':
         {
-          return copyWith(
-            relationshipType: CodeableConcept.empty(),
-          );
+          relationshipType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'targetClassifier':
         {
-          return copyWith(
-            targetClassifier: <CodeableConcept>[],
-          );
+          targetClassifier = <CodeableConceptBuilder>[];
+          return;
         }
       case 'target':
       case 'targetX':
       case 'targetUri':
         {
-          return copyWith(
-            targetX: FhirUri.empty(),
-          );
+          targetX = FhirUriBuilder.empty();
+          return;
         }
       case 'targetIdentifier':
         {
-          return copyWith(
-            targetX: Identifier.empty(),
-          );
+          targetX = IdentifierBuilder.empty();
+          return;
         }
       case 'targetReference':
         {
-          return copyWith(
-            targetX: Reference.empty(),
-          );
+          targetX = ReferenceBuilder.empty();
+          return;
         }
       case 'targetAttachment':
         {
-          return copyWith(
-            targetX: Attachment.empty(),
-          );
+          targetX = AttachmentBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4248,32 +3849,32 @@ class CitationRelatesTo extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationRelatesTo clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool relationshipType = false,
     bool targetClassifier = false,
+    bool target = false,
   }) {
-    return CitationRelatesTo(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      relationshipType: relationshipType,
-      targetClassifier: targetClassifier ? null : this.targetClassifier,
-      targetX: targetX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (relationshipType) this.relationshipType = null;
+    if (targetClassifier) this.targetClassifier = null;
+    if (target) this.targetX = null;
   }
 
   @override
-  CitationRelatesTo clone() => throw UnimplementedError();
+  CitationRelatesToBuilder clone() => throw UnimplementedError();
   @override
-  CitationRelatesTo copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? relationshipType,
-    List<CodeableConcept>? targetClassifier,
-    TargetXCitationRelatesTo? targetX,
+  CitationRelatesToBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? relationshipType,
+    List<CodeableConceptBuilder>? targetClassifier,
+    TargetXCitationRelatesToBuilder? targetX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4281,50 +3882,37 @@ class CitationRelatesTo extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationRelatesTo(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      relationshipType: relationshipType?.copyWith(
-            objectPath: '$newObjectPath.relationshipType',
-          ) ??
-          this.relationshipType,
-      targetClassifier: targetClassifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.targetClassifier',
-                ),
-              )
-              .toList() ??
-          this.targetClassifier,
-      targetX: targetX?.copyWith(
-            objectPath: '$newObjectPath.targetX',
-          ) as TargetXCitationRelatesTo? ??
-          this.targetX,
+    final newResult = CitationRelatesToBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      relationshipType: relationshipType ?? this.relationshipType,
+      targetClassifier: targetClassifier ?? this.targetClassifier,
+      targetX: targetX ?? this.targetX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationRelatesTo) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationRelatesToBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -4335,13 +3923,13 @@ class CitationRelatesTo extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -4353,7 +3941,7 @@ class CitationRelatesTo extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       targetClassifier,
       o.targetClassifier,
     )) {
@@ -4369,13 +3957,13 @@ class CitationRelatesTo extends BackboneElement {
   }
 }
 
-/// [CitationCitedArtifact]
+/// [CitationCitedArtifactBuilder]
 /// The article or artifact being described.
-class CitationCitedArtifact extends BackboneElement {
+class CitationCitedArtifactBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationCitedArtifact]
+  /// [CitationCitedArtifactBuilder]
 
-  const CitationCitedArtifact({
+  CitationCitedArtifactBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4400,25 +3988,25 @@ class CitationCitedArtifact extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationCitedArtifact.empty() => const CitationCitedArtifact();
+  /// For Builder classes, no fields are required
+  factory CitationCitedArtifactBuilder.empty() =>
+      CitationCitedArtifactBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationCitedArtifact.fromJson(
+  factory CitationCitedArtifactBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact';
-    return CitationCitedArtifact(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationCitedArtifactBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -4427,8 +4015,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -4437,8 +4025,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -4447,8 +4035,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       relatedIdentifier: (json['relatedIdentifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatedIdentifier',
@@ -4456,21 +4044,21 @@ class CitationCitedArtifact extends BackboneElement {
             ),
           )
           .toList(),
-      dateAccessed: JsonParser.parsePrimitive<FhirDateTime>(
+      dateAccessed: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'dateAccessed',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.dateAccessed',
       ),
-      version: JsonParser.parseObject<CitationVersion>(
+      version: JsonParser.parseObject<CitationVersionBuilder>(
         json,
         'version',
-        CitationVersion.fromJson,
+        CitationVersionBuilder.fromJson,
         '$objectPath.version',
       ),
       currentState: (json['currentState'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.currentState',
@@ -4479,8 +4067,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       statusDate: (json['statusDate'] as List<dynamic>?)
-          ?.map<CitationStatusDate>(
-            (v) => CitationStatusDate.fromJson(
+          ?.map<CitationStatusDateBuilder>(
+            (v) => CitationStatusDateBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.statusDate',
@@ -4489,8 +4077,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       title: (json['title'] as List<dynamic>?)
-          ?.map<CitationTitle>(
-            (v) => CitationTitle.fromJson(
+          ?.map<CitationTitleBuilder>(
+            (v) => CitationTitleBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.title',
@@ -4499,8 +4087,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       abstract_: (json['abstract'] as List<dynamic>?)
-          ?.map<CitationAbstract>(
-            (v) => CitationAbstract.fromJson(
+          ?.map<CitationAbstractBuilder>(
+            (v) => CitationAbstractBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.abstract',
@@ -4508,15 +4096,15 @@ class CitationCitedArtifact extends BackboneElement {
             ),
           )
           .toList(),
-      part_: JsonParser.parseObject<CitationPart>(
+      part_: JsonParser.parseObject<CitationPartBuilder>(
         json,
         'part',
-        CitationPart.fromJson,
+        CitationPartBuilder.fromJson,
         '$objectPath.part',
       ),
       relatesTo: (json['relatesTo'] as List<dynamic>?)
-          ?.map<CitationRelatesTo>(
-            (v) => CitationRelatesTo.fromJson(
+          ?.map<CitationRelatesToBuilder>(
+            (v) => CitationRelatesToBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.relatesTo',
@@ -4525,8 +4113,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       publicationForm: (json['publicationForm'] as List<dynamic>?)
-          ?.map<CitationPublicationForm>(
-            (v) => CitationPublicationForm.fromJson(
+          ?.map<CitationPublicationFormBuilder>(
+            (v) => CitationPublicationFormBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.publicationForm',
@@ -4535,8 +4123,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       webLocation: (json['webLocation'] as List<dynamic>?)
-          ?.map<CitationWebLocation>(
-            (v) => CitationWebLocation.fromJson(
+          ?.map<CitationWebLocationBuilder>(
+            (v) => CitationWebLocationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.webLocation',
@@ -4545,8 +4133,8 @@ class CitationCitedArtifact extends BackboneElement {
           )
           .toList(),
       classification: (json['classification'] as List<dynamic>?)
-          ?.map<CitationClassification>(
-            (v) => CitationClassification.fromJson(
+          ?.map<CitationClassificationBuilder>(
+            (v) => CitationClassificationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.classification',
@@ -4554,15 +4142,15 @@ class CitationCitedArtifact extends BackboneElement {
             ),
           )
           .toList(),
-      contributorship: JsonParser.parseObject<CitationContributorship>(
+      contributorship: JsonParser.parseObject<CitationContributorshipBuilder>(
         json,
         'contributorship',
-        CitationContributorship.fromJson,
+        CitationContributorshipBuilder.fromJson,
         '$objectPath.contributorship',
       ),
       note: (json['note'] as List<dynamic>?)
-          ?.map<Annotation>(
-            (v) => Annotation.fromJson(
+          ?.map<AnnotationBuilder>(
+            (v) => AnnotationBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.note',
@@ -4573,22 +4161,22 @@ class CitationCitedArtifact extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationCitedArtifact]
+  /// Deserialize [CitationCitedArtifactBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationCitedArtifact.fromYaml(
+  factory CitationCitedArtifactBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationCitedArtifact.fromJson(
+      return CitationCitedArtifactBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationCitedArtifact.fromJson(
+      return CitationCitedArtifactBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationCitedArtifact '
+        'CitationCitedArtifactBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -4596,16 +4184,16 @@ class CitationCitedArtifact extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationCitedArtifact]
+  /// [CitationCitedArtifactBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationCitedArtifact.fromJsonString(
+  factory CitationCitedArtifactBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationCitedArtifact.fromJson(json);
+      return CitationCitedArtifactBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -4619,82 +4207,82 @@ class CitationCitedArtifact extends BackboneElement {
   /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [relatedIdentifier]
   /// A formal identifier that is used to identify things closely related to
   /// this citation.
-  final List<Identifier>? relatedIdentifier;
+  List<IdentifierBuilder>? relatedIdentifier;
 
   /// [dateAccessed]
   /// When the cited artifact was accessed.
-  final FhirDateTime? dateAccessed;
+  FhirDateTimeBuilder? dateAccessed;
 
   /// [version]
   /// The defined version of the cited artifact.
-  final CitationVersion? version;
+  CitationVersionBuilder? version;
 
   /// [currentState]
   /// The status of the cited artifact.
-  final List<CodeableConcept>? currentState;
+  List<CodeableConceptBuilder>? currentState;
 
   /// [statusDate]
   /// An effective date or period for a status of the cited artifact.
-  final List<CitationStatusDate>? statusDate;
+  List<CitationStatusDateBuilder>? statusDate;
 
   /// [title]
   /// The title details of the article or artifact.
-  final List<CitationTitle>? title;
+  List<CitationTitleBuilder>? title;
 
   /// [abstract_]
   /// Summary of the article or artifact.
-  final List<CitationAbstract>? abstract_;
+  List<CitationAbstractBuilder>? abstract_;
 
   /// [part_]
   /// The component of the article or artifact.
-  final CitationPart? part_;
+  CitationPartBuilder? part_;
 
   /// [relatesTo]
   /// The artifact related to the cited artifact.
-  final List<CitationRelatesTo>? relatesTo;
+  List<CitationRelatesToBuilder>? relatesTo;
 
   /// [publicationForm]
   /// If multiple, used to represent alternative forms of the article that
   /// are not separate citations.
-  final List<CitationPublicationForm>? publicationForm;
+  List<CitationPublicationFormBuilder>? publicationForm;
 
   /// [webLocation]
   /// Used for any URL for the article or artifact cited.
-  final List<CitationWebLocation>? webLocation;
+  List<CitationWebLocationBuilder>? webLocation;
 
   /// [classification]
   /// The assignment to an organizing scheme.
-  final List<CitationClassification>? classification;
+  List<CitationClassificationBuilder>? classification;
 
   /// [contributorship]
   /// This element is used to list authors and other contributors, their
   /// contact information, specific contributions, and summary statements.
-  final CitationContributorship? contributorship;
+  CitationContributorshipBuilder? contributorship;
 
   /// [note]
   /// Any additional information or content for the article or artifact.
-  final List<Annotation>? note;
+  List<AnnotationBuilder>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -4703,83 +4291,29 @@ class CitationCitedArtifact extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'relatedIdentifier',
-      relatedIdentifier,
-    );
-    addField(
-      'dateAccessed',
-      dateAccessed,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'currentState',
-      currentState,
-    );
-    addField(
-      'statusDate',
-      statusDate,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'abstract',
-      abstract_,
-    );
-    addField(
-      'part',
-      part_,
-    );
-    addField(
-      'relatesTo',
-      relatesTo,
-    );
-    addField(
-      'publicationForm',
-      publicationForm,
-    );
-    addField(
-      'webLocation',
-      webLocation,
-    );
-    addField(
-      'classification',
-      classification,
-    );
-    addField(
-      'contributorship',
-      contributorship,
-    );
-    addField(
-      'note',
-      note,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('identifier', identifier);
+    addField('relatedIdentifier', relatedIdentifier);
+    addField('dateAccessed', dateAccessed);
+    addField('version', version);
+    addField('currentState', currentState);
+    addField('statusDate', statusDate);
+    addField('title', title);
+    addField('abstract', abstract_);
+    addField('part', part_);
+    addField('relatesTo', relatesTo);
+    addField('publicationForm', publicationForm);
+    addField('webLocation', webLocation);
+    addField('classification', classification);
+    addField('contributorship', contributorship);
+    addField('note', note);
     return json;
   }
 
@@ -4811,11 +4345,11 @@ class CitationCitedArtifact extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -4899,7 +4433,7 @@ class CitationCitedArtifact extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -4908,235 +4442,239 @@ class CitationCitedArtifact extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatedIdentifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?relatedIdentifier, ...child];
-            return copyWith(relatedIdentifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            relatedIdentifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedIdentifier, child];
-            return copyWith(relatedIdentifier: newList);
+            relatedIdentifier = [...(relatedIdentifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateAccessed':
         {
-          if (child is FhirDateTime) {
-            return copyWith(dateAccessed: child);
+          if (child is FhirDateTimeBuilder) {
+            dateAccessed = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
-          if (child is CitationVersion) {
-            return copyWith(version: child);
+          if (child is CitationVersionBuilder) {
+            version = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'currentState':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?currentState, ...child];
-            return copyWith(currentState: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            currentState = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?currentState, child];
-            return copyWith(currentState: newList);
+            currentState = [...(currentState ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
         {
-          if (child is List<CitationStatusDate>) {
-            // Add all elements from passed list
-            final newList = [...?statusDate, ...child];
-            return copyWith(statusDate: newList);
-          } else if (child is CitationStatusDate) {
+          if (child is List<CitationStatusDateBuilder>) {
+            // Replace or create new list
+            statusDate = child;
+            return;
+          } else if (child is CitationStatusDateBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?statusDate, child];
-            return copyWith(statusDate: newList);
+            statusDate = [...(statusDate ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is List<CitationTitle>) {
-            // Add all elements from passed list
-            final newList = [...?title, ...child];
-            return copyWith(title: newList);
-          } else if (child is CitationTitle) {
+          if (child is List<CitationTitleBuilder>) {
+            // Replace or create new list
+            title = child;
+            return;
+          } else if (child is CitationTitleBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?title, child];
-            return copyWith(title: newList);
+            title = [...(title ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'abstract':
         {
-          if (child is List<CitationAbstract>) {
-            // Add all elements from passed list
-            final newList = [...?abstract_, ...child];
-            return copyWith(abstract_: newList);
-          } else if (child is CitationAbstract) {
+          if (child is List<CitationAbstractBuilder>) {
+            // Replace or create new list
+            abstract_ = child;
+            return;
+          } else if (child is CitationAbstractBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?abstract_, child];
-            return copyWith(abstract_: newList);
+            abstract_ = [...(abstract_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'part':
         {
-          if (child is CitationPart) {
-            return copyWith(part_: child);
+          if (child is CitationPartBuilder) {
+            part_ = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatesTo':
         {
-          if (child is List<CitationRelatesTo>) {
-            // Add all elements from passed list
-            final newList = [...?relatesTo, ...child];
-            return copyWith(relatesTo: newList);
-          } else if (child is CitationRelatesTo) {
+          if (child is List<CitationRelatesToBuilder>) {
+            // Replace or create new list
+            relatesTo = child;
+            return;
+          } else if (child is CitationRelatesToBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?relatesTo, child];
-            return copyWith(relatesTo: newList);
+            relatesTo = [...(relatesTo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publicationForm':
         {
-          if (child is List<CitationPublicationForm>) {
-            // Add all elements from passed list
-            final newList = [...?publicationForm, ...child];
-            return copyWith(publicationForm: newList);
-          } else if (child is CitationPublicationForm) {
+          if (child is List<CitationPublicationFormBuilder>) {
+            // Replace or create new list
+            publicationForm = child;
+            return;
+          } else if (child is CitationPublicationFormBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?publicationForm, child];
-            return copyWith(publicationForm: newList);
+            publicationForm = [...(publicationForm ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'webLocation':
         {
-          if (child is List<CitationWebLocation>) {
-            // Add all elements from passed list
-            final newList = [...?webLocation, ...child];
-            return copyWith(webLocation: newList);
-          } else if (child is CitationWebLocation) {
+          if (child is List<CitationWebLocationBuilder>) {
+            // Replace or create new list
+            webLocation = child;
+            return;
+          } else if (child is CitationWebLocationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?webLocation, child];
-            return copyWith(webLocation: newList);
+            webLocation = [...(webLocation ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classification':
         {
-          if (child is List<CitationClassification>) {
-            // Add all elements from passed list
-            final newList = [...?classification, ...child];
-            return copyWith(classification: newList);
-          } else if (child is CitationClassification) {
+          if (child is List<CitationClassificationBuilder>) {
+            // Replace or create new list
+            classification = child;
+            return;
+          } else if (child is CitationClassificationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
-            return copyWith(classification: newList);
+            classification = [...(classification ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contributorship':
         {
-          if (child is CitationContributorship) {
-            return copyWith(contributorship: child);
+          if (child is CitationContributorshipBuilder) {
+            contributorship = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
+          if (child is List<AnnotationBuilder>) {
+            // Replace or create new list
+            note = child;
+            return;
+          } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
-            return copyWith(note: newList);
+            note = [...(note ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5152,162 +4690,140 @@ class CitationCitedArtifact extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'relatedIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'dateAccessed':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'version':
-        return ['CitationVersion'];
+        return ['CitationVersionBuilder'];
       case 'currentState':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'statusDate':
-        return ['CitationStatusDate'];
+        return ['CitationStatusDateBuilder'];
       case 'title':
-        return ['CitationTitle'];
+        return ['CitationTitleBuilder'];
       case 'abstract':
-        return ['CitationAbstract'];
+        return ['CitationAbstractBuilder'];
       case 'part':
-        return ['CitationPart'];
+        return ['CitationPartBuilder'];
       case 'relatesTo':
-        return ['CitationRelatesTo'];
+        return ['CitationRelatesToBuilder'];
       case 'publicationForm':
-        return ['CitationPublicationForm'];
+        return ['CitationPublicationFormBuilder'];
       case 'webLocation':
-        return ['CitationWebLocation'];
+        return ['CitationWebLocationBuilder'];
       case 'classification':
-        return ['CitationClassification'];
+        return ['CitationClassificationBuilder'];
       case 'contributorship':
-        return ['CitationContributorship'];
+        return ['CitationContributorshipBuilder'];
       case 'note':
-        return ['Annotation'];
+        return ['AnnotationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationCitedArtifact]
+  /// Creates a new [CitationCitedArtifactBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationCitedArtifact createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'relatedIdentifier':
         {
-          return copyWith(
-            relatedIdentifier: <Identifier>[],
-          );
+          relatedIdentifier = <IdentifierBuilder>[];
+          return;
         }
       case 'dateAccessed':
         {
-          return copyWith(
-            dateAccessed: FhirDateTime.empty(),
-          );
+          dateAccessed = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'version':
         {
-          return copyWith(
-            version: CitationVersion.empty(),
-          );
+          version = CitationVersionBuilder.empty();
+          return;
         }
       case 'currentState':
         {
-          return copyWith(
-            currentState: <CodeableConcept>[],
-          );
+          currentState = <CodeableConceptBuilder>[];
+          return;
         }
       case 'statusDate':
         {
-          return copyWith(
-            statusDate: <CitationStatusDate>[],
-          );
+          statusDate = <CitationStatusDateBuilder>[];
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: <CitationTitle>[],
-          );
+          title = <CitationTitleBuilder>[];
+          return;
         }
       case 'abstract':
         {
-          return copyWith(
-            abstract_: <CitationAbstract>[],
-          );
+          abstract_ = <CitationAbstractBuilder>[];
+          return;
         }
       case 'part':
         {
-          return copyWith(
-            part_: CitationPart.empty(),
-          );
+          part_ = CitationPartBuilder.empty();
+          return;
         }
       case 'relatesTo':
         {
-          return copyWith(
-            relatesTo: <CitationRelatesTo>[],
-          );
+          relatesTo = <CitationRelatesToBuilder>[];
+          return;
         }
       case 'publicationForm':
         {
-          return copyWith(
-            publicationForm: <CitationPublicationForm>[],
-          );
+          publicationForm = <CitationPublicationFormBuilder>[];
+          return;
         }
       case 'webLocation':
         {
-          return copyWith(
-            webLocation: <CitationWebLocation>[],
-          );
+          webLocation = <CitationWebLocationBuilder>[];
+          return;
         }
       case 'classification':
         {
-          return copyWith(
-            classification: <CitationClassification>[],
-          );
+          classification = <CitationClassificationBuilder>[];
+          return;
         }
       case 'contributorship':
         {
-          return copyWith(
-            contributorship: CitationContributorship.empty(),
-          );
+          contributorship = CitationContributorshipBuilder.empty();
+          return;
         }
       case 'note':
         {
-          return copyWith(
-            note: <Annotation>[],
-          );
+          note = <AnnotationBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5316,7 +4832,7 @@ class CitationCitedArtifact extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationCitedArtifact clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -5336,50 +4852,48 @@ class CitationCitedArtifact extends BackboneElement {
     bool contributorship = false,
     bool note = false,
   }) {
-    return CitationCitedArtifact(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      relatedIdentifier: relatedIdentifier ? null : this.relatedIdentifier,
-      dateAccessed: dateAccessed ? null : this.dateAccessed,
-      version: version ? null : this.version,
-      currentState: currentState ? null : this.currentState,
-      statusDate: statusDate ? null : this.statusDate,
-      title: title ? null : this.title,
-      abstract_: abstract_ ? null : this.abstract_,
-      part_: part_ ? null : this.part_,
-      relatesTo: relatesTo ? null : this.relatesTo,
-      publicationForm: publicationForm ? null : this.publicationForm,
-      webLocation: webLocation ? null : this.webLocation,
-      classification: classification ? null : this.classification,
-      contributorship: contributorship ? null : this.contributorship,
-      note: note ? null : this.note,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (identifier) this.identifier = null;
+    if (relatedIdentifier) this.relatedIdentifier = null;
+    if (dateAccessed) this.dateAccessed = null;
+    if (version) this.version = null;
+    if (currentState) this.currentState = null;
+    if (statusDate) this.statusDate = null;
+    if (title) this.title = null;
+    if (abstract_) this.abstract_ = null;
+    if (part_) this.part_ = null;
+    if (relatesTo) this.relatesTo = null;
+    if (publicationForm) this.publicationForm = null;
+    if (webLocation) this.webLocation = null;
+    if (classification) this.classification = null;
+    if (contributorship) this.contributorship = null;
+    if (note) this.note = null;
   }
 
   @override
-  CitationCitedArtifact clone() => throw UnimplementedError();
+  CitationCitedArtifactBuilder clone() => throw UnimplementedError();
   @override
-  CitationCitedArtifact copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<Identifier>? relatedIdentifier,
-    FhirDateTime? dateAccessed,
-    CitationVersion? version,
-    List<CodeableConcept>? currentState,
-    List<CitationStatusDate>? statusDate,
-    List<CitationTitle>? title,
-    List<CitationAbstract>? abstract_,
-    CitationPart? part_,
-    List<CitationRelatesTo>? relatesTo,
-    List<CitationPublicationForm>? publicationForm,
-    List<CitationWebLocation>? webLocation,
-    List<CitationClassification>? classification,
-    CitationContributorship? contributorship,
-    List<Annotation>? note,
+  CitationCitedArtifactBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<IdentifierBuilder>? identifier,
+    List<IdentifierBuilder>? relatedIdentifier,
+    FhirDateTimeBuilder? dateAccessed,
+    CitationVersionBuilder? version,
+    List<CodeableConceptBuilder>? currentState,
+    List<CitationStatusDateBuilder>? statusDate,
+    List<CitationTitleBuilder>? title,
+    List<CitationAbstractBuilder>? abstract_,
+    CitationPartBuilder? part_,
+    List<CitationRelatesToBuilder>? relatesTo,
+    List<CitationPublicationFormBuilder>? publicationForm,
+    List<CitationWebLocationBuilder>? webLocation,
+    List<CitationClassificationBuilder>? classification,
+    CitationContributorshipBuilder? contributorship,
+    List<AnnotationBuilder>? note,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5387,138 +4901,49 @@ class CitationCitedArtifact extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationCitedArtifact(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      relatedIdentifier: relatedIdentifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatedIdentifier',
-                ),
-              )
-              .toList() ??
-          this.relatedIdentifier,
-      dateAccessed: dateAccessed?.copyWith(
-            objectPath: '$newObjectPath.dateAccessed',
-          ) ??
-          this.dateAccessed,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      currentState: currentState
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.currentState',
-                ),
-              )
-              .toList() ??
-          this.currentState,
-      statusDate: statusDate
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.statusDate',
-                ),
-              )
-              .toList() ??
-          this.statusDate,
-      title: title
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.title',
-                ),
-              )
-              .toList() ??
-          this.title,
-      abstract_: abstract_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.abstract',
-                ),
-              )
-              .toList() ??
-          this.abstract_,
-      part_: part_?.copyWith(
-            objectPath: '$newObjectPath.part',
-          ) ??
-          this.part_,
-      relatesTo: relatesTo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.relatesTo',
-                ),
-              )
-              .toList() ??
-          this.relatesTo,
-      publicationForm: publicationForm
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.publicationForm',
-                ),
-              )
-              .toList() ??
-          this.publicationForm,
-      webLocation: webLocation
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.webLocation',
-                ),
-              )
-              .toList() ??
-          this.webLocation,
-      classification: classification
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.classification',
-                ),
-              )
-              .toList() ??
-          this.classification,
-      contributorship: contributorship?.copyWith(
-            objectPath: '$newObjectPath.contributorship',
-          ) ??
-          this.contributorship,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
+    final newResult = CitationCitedArtifactBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      relatedIdentifier: relatedIdentifier ?? this.relatedIdentifier,
+      dateAccessed: dateAccessed ?? this.dateAccessed,
+      version: version ?? this.version,
+      currentState: currentState ?? this.currentState,
+      statusDate: statusDate ?? this.statusDate,
+      title: title ?? this.title,
+      abstract_: abstract_ ?? this.abstract_,
+      part_: part_ ?? this.part_,
+      relatesTo: relatesTo ?? this.relatesTo,
+      publicationForm: publicationForm ?? this.publicationForm,
+      webLocation: webLocation ?? this.webLocation,
+      classification: classification ?? this.classification,
+      contributorship: contributorship ?? this.contributorship,
+      note: note ?? this.note,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationCitedArtifact) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationCitedArtifactBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -5529,25 +4954,25 @@ class CitationCitedArtifact extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       relatedIdentifier,
       o.relatedIdentifier,
     )) {
@@ -5565,25 +4990,25 @@ class CitationCitedArtifact extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       currentState,
       o.currentState,
     )) {
       return false;
     }
-    if (!listEquals<CitationStatusDate>(
+    if (!listEquals<CitationStatusDateBuilder>(
       statusDate,
       o.statusDate,
     )) {
       return false;
     }
-    if (!listEquals<CitationTitle>(
+    if (!listEquals<CitationTitleBuilder>(
       title,
       o.title,
     )) {
       return false;
     }
-    if (!listEquals<CitationAbstract>(
+    if (!listEquals<CitationAbstractBuilder>(
       abstract_,
       o.abstract_,
     )) {
@@ -5595,25 +5020,25 @@ class CitationCitedArtifact extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CitationRelatesTo>(
+    if (!listEquals<CitationRelatesToBuilder>(
       relatesTo,
       o.relatesTo,
     )) {
       return false;
     }
-    if (!listEquals<CitationPublicationForm>(
+    if (!listEquals<CitationPublicationFormBuilder>(
       publicationForm,
       o.publicationForm,
     )) {
       return false;
     }
-    if (!listEquals<CitationWebLocation>(
+    if (!listEquals<CitationWebLocationBuilder>(
       webLocation,
       o.webLocation,
     )) {
       return false;
     }
-    if (!listEquals<CitationClassification>(
+    if (!listEquals<CitationClassificationBuilder>(
       classification,
       o.classification,
     )) {
@@ -5625,7 +5050,7 @@ class CitationCitedArtifact extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Annotation>(
+    if (!listEquals<AnnotationBuilder>(
       note,
       o.note,
     )) {
@@ -5635,17 +5060,17 @@ class CitationCitedArtifact extends BackboneElement {
   }
 }
 
-/// [CitationVersion]
+/// [CitationVersionBuilder]
 /// The defined version of the cited artifact.
-class CitationVersion extends BackboneElement {
+class CitationVersionBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationVersion]
+  /// [CitationVersionBuilder]
 
-  const CitationVersion({
+  CitationVersionBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.value,
+    this.value,
     this.baseCitation,
     super.disallowExtensions,
   }) : super(
@@ -5653,27 +5078,24 @@ class CitationVersion extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationVersion.empty() => CitationVersion(
-        value: FhirString.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationVersionBuilder.empty() => CitationVersionBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationVersion.fromJson(
+  factory CitationVersionBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.version';
-    return CitationVersion(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationVersionBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -5682,8 +5104,8 @@ class CitationVersion extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -5691,37 +5113,37 @@ class CitationVersion extends BackboneElement {
             ),
           )
           .toList(),
-      value: JsonParser.parsePrimitive<FhirString>(
+      value: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'value',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.value',
-      )!,
-      baseCitation: JsonParser.parseObject<Reference>(
+      ),
+      baseCitation: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'baseCitation',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.baseCitation',
       ),
     );
   }
 
-  /// Deserialize [CitationVersion]
+  /// Deserialize [CitationVersionBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationVersion.fromYaml(
+  factory CitationVersionBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationVersion.fromJson(
+      return CitationVersionBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationVersion.fromJson(
+      return CitationVersionBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationVersion '
+        'CitationVersionBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -5729,16 +5151,16 @@ class CitationVersion extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationVersion]
+  /// [CitationVersionBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationVersion.fromJsonString(
+  factory CitationVersionBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationVersion.fromJson(json);
+      return CitationVersionBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -5750,27 +5172,27 @@ class CitationVersion extends BackboneElement {
 
   /// [value]
   /// The version number or other version identifier.
-  final FhirString value;
+  FhirStringBuilder? value;
 
   /// [baseCitation]
   /// Citation for the main version of the cited artifact.
-  final Reference? baseCitation;
+  ReferenceBuilder? baseCitation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -5779,31 +5201,16 @@ class CitationVersion extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'baseCitation',
-      baseCitation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('value', value);
+    addField('baseCitation', baseCitation);
     return json;
   }
 
@@ -5822,11 +5229,11 @@ class CitationVersion extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -5841,7 +5248,9 @@ class CitationVersion extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'value':
-        fields.add(value);
+        if (value != null) {
+          fields.add(value!);
+        }
       case 'baseCitation':
         if (baseCitation != null) {
           fields.add(baseCitation!);
@@ -5856,7 +5265,7 @@ class CitationVersion extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -5865,65 +5274,67 @@ class CitationVersion extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirString) {
-            return copyWith(value: child);
+          if (child is FhirStringBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'baseCitation':
         {
-          if (child is Reference) {
-            return copyWith(baseCitation: child);
+          if (child is ReferenceBuilder) {
+            baseCitation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -5939,58 +5350,49 @@ class CitationVersion extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'value':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'baseCitation':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationVersion]
+  /// Creates a new [CitationVersionBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationVersion createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirString.empty(),
-          );
+          value = FhirStringBuilder.empty();
+          return;
         }
       case 'baseCitation':
         {
-          return copyWith(
-            baseCitation: Reference.empty(),
-          );
+          baseCitation = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5999,30 +5401,29 @@ class CitationVersion extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationVersion clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool value = false,
     bool baseCitation = false,
   }) {
-    return CitationVersion(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      value: value,
-      baseCitation: baseCitation ? null : this.baseCitation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (value) this.value = null;
+    if (baseCitation) this.baseCitation = null;
   }
 
   @override
-  CitationVersion clone() => throw UnimplementedError();
+  CitationVersionBuilder clone() => throw UnimplementedError();
   @override
-  CitationVersion copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? value,
-    Reference? baseCitation,
+  CitationVersionBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? value,
+    ReferenceBuilder? baseCitation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6030,42 +5431,36 @@ class CitationVersion extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationVersion(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      baseCitation: baseCitation?.copyWith(
-            objectPath: '$newObjectPath.baseCitation',
-          ) ??
-          this.baseCitation,
+    final newResult = CitationVersionBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      value: value ?? this.value,
+      baseCitation: baseCitation ?? this.baseCitation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationVersion) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationVersionBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -6076,13 +5471,13 @@ class CitationVersion extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -6104,47 +5499,43 @@ class CitationVersion extends BackboneElement {
   }
 }
 
-/// [CitationStatusDate1]
+/// [CitationStatusDate1Builder]
 /// An effective date or period for a status of the cited artifact.
-class CitationStatusDate1 extends BackboneElement {
+class CitationStatusDate1Builder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationStatusDate1]
+  /// [CitationStatusDate1Builder]
 
-  const CitationStatusDate1({
+  CitationStatusDate1Builder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.activity,
+    this.activity,
     this.actual,
-    required this.period,
+    this.period,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Citation.citedArtifact.statusDate',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationStatusDate1.empty() => CitationStatusDate1(
-        activity: CodeableConcept.empty(),
-        period: Period.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationStatusDate1Builder.empty() => CitationStatusDate1Builder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationStatusDate1.fromJson(
+  factory CitationStatusDate1Builder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.statusDate';
-    return CitationStatusDate1(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationStatusDate1Builder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -6153,8 +5544,8 @@ class CitationStatusDate1 extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -6162,43 +5553,43 @@ class CitationStatusDate1 extends BackboneElement {
             ),
           )
           .toList(),
-      activity: JsonParser.parseObject<CodeableConcept>(
+      activity: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'activity',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.activity',
-      )!,
-      actual: JsonParser.parsePrimitive<FhirBoolean>(
+      ),
+      actual: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'actual',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.actual',
       ),
-      period: JsonParser.parseObject<Period>(
+      period: JsonParser.parseObject<PeriodBuilder>(
         json,
         'period',
-        Period.fromJson,
+        PeriodBuilder.fromJson,
         '$objectPath.period',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CitationStatusDate1]
+  /// Deserialize [CitationStatusDate1Builder]
   /// from a [String] or [YamlMap] object
-  factory CitationStatusDate1.fromYaml(
+  factory CitationStatusDate1Builder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationStatusDate1.fromJson(
+      return CitationStatusDate1Builder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationStatusDate1.fromJson(
+      return CitationStatusDate1Builder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationStatusDate1 '
+        'CitationStatusDate1Builder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -6206,16 +5597,16 @@ class CitationStatusDate1 extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationStatusDate1]
+  /// [CitationStatusDate1Builder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationStatusDate1.fromJsonString(
+  factory CitationStatusDate1Builder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationStatusDate1.fromJson(json);
+      return CitationStatusDate1Builder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -6227,31 +5618,31 @@ class CitationStatusDate1 extends BackboneElement {
 
   /// [activity]
   /// Classification of the status.
-  final CodeableConcept activity;
+  CodeableConceptBuilder? activity;
 
   /// [actual]
   /// Either occurred or expected.
-  final FhirBoolean? actual;
+  FhirBooleanBuilder? actual;
 
   /// [period]
   /// When the status started and/or ended.
-  final Period period;
+  PeriodBuilder? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -6260,35 +5651,17 @@ class CitationStatusDate1 extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'activity',
-      activity,
-    );
-    addField(
-      'actual',
-      actual,
-    );
-    addField(
-      'period',
-      period,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('activity', activity);
+    addField('actual', actual);
+    addField('period', period);
     return json;
   }
 
@@ -6308,11 +5681,11 @@ class CitationStatusDate1 extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6327,13 +5700,17 @@ class CitationStatusDate1 extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'activity':
-        fields.add(activity);
+        if (activity != null) {
+          fields.add(activity!);
+        }
       case 'actual':
         if (actual != null) {
           fields.add(actual!);
         }
       case 'period':
-        fields.add(period);
+        if (period != null) {
+          fields.add(period!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -6344,7 +5721,7 @@ class CitationStatusDate1 extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6353,73 +5730,76 @@ class CitationStatusDate1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'activity':
         {
-          if (child is CodeableConcept) {
-            return copyWith(activity: child);
+          if (child is CodeableConceptBuilder) {
+            activity = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'actual':
         {
-          if (child is FhirBoolean) {
-            return copyWith(actual: child);
+          if (child is FhirBooleanBuilder) {
+            actual = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
         {
-          if (child is Period) {
-            return copyWith(period: child);
+          if (child is PeriodBuilder) {
+            period = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -6435,66 +5815,56 @@ class CitationStatusDate1 extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'activity':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'actual':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'period':
-        return ['Period'];
+        return ['PeriodBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationStatusDate1]
+  /// Creates a new [CitationStatusDate1Builder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationStatusDate1 createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'activity':
         {
-          return copyWith(
-            activity: CodeableConcept.empty(),
-          );
+          activity = CodeableConceptBuilder.empty();
+          return;
         }
       case 'actual':
         {
-          return copyWith(
-            actual: FhirBoolean.empty(),
-          );
+          actual = FhirBooleanBuilder.empty();
+          return;
         }
       case 'period':
         {
-          return copyWith(
-            period: Period.empty(),
-          );
+          period = PeriodBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6503,32 +5873,32 @@ class CitationStatusDate1 extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationStatusDate1 clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool activity = false,
     bool actual = false,
+    bool period = false,
   }) {
-    return CitationStatusDate1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      activity: activity,
-      actual: actual ? null : this.actual,
-      period: period,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (activity) this.activity = null;
+    if (actual) this.actual = null;
+    if (period) this.period = null;
   }
 
   @override
-  CitationStatusDate1 clone() => throw UnimplementedError();
+  CitationStatusDate1Builder clone() => throw UnimplementedError();
   @override
-  CitationStatusDate1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? activity,
-    FhirBoolean? actual,
-    Period? period,
+  CitationStatusDate1Builder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? activity,
+    FhirBooleanBuilder? actual,
+    PeriodBuilder? period,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6536,46 +5906,37 @@ class CitationStatusDate1 extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationStatusDate1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      activity: activity?.copyWith(
-            objectPath: '$newObjectPath.activity',
-          ) ??
-          this.activity,
-      actual: actual?.copyWith(
-            objectPath: '$newObjectPath.actual',
-          ) ??
-          this.actual,
-      period: period?.copyWith(
-            objectPath: '$newObjectPath.period',
-          ) ??
-          this.period,
+    final newResult = CitationStatusDate1Builder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      activity: activity ?? this.activity,
+      actual: actual ?? this.actual,
+      period: period ?? this.period,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationStatusDate1) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationStatusDate1Builder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -6586,13 +5947,13 @@ class CitationStatusDate1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -6620,46 +5981,43 @@ class CitationStatusDate1 extends BackboneElement {
   }
 }
 
-/// [CitationTitle]
+/// [CitationTitleBuilder]
 /// The title details of the article or artifact.
-class CitationTitle extends BackboneElement {
+class CitationTitleBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationTitle]
+  /// [CitationTitleBuilder]
 
-  const CitationTitle({
+  CitationTitleBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
     this.language,
-    required this.text,
+    this.text,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Citation.citedArtifact.title',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationTitle.empty() => CitationTitle(
-        text: FhirMarkdown.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationTitleBuilder.empty() => CitationTitleBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationTitle.fromJson(
+  factory CitationTitleBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.title';
-    return CitationTitle(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationTitleBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -6668,8 +6026,8 @@ class CitationTitle extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -6678,8 +6036,8 @@ class CitationTitle extends BackboneElement {
           )
           .toList(),
       type: (json['type'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.type',
@@ -6687,37 +6045,37 @@ class CitationTitle extends BackboneElement {
             ),
           )
           .toList(),
-      language: JsonParser.parseObject<CodeableConcept>(
+      language: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'language',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parsePrimitive<FhirMarkdown>(
+      text: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'text',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.text',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CitationTitle]
+  /// Deserialize [CitationTitleBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationTitle.fromYaml(
+  factory CitationTitleBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationTitle.fromJson(
+      return CitationTitleBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationTitle.fromJson(
+      return CitationTitleBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationTitle '
+        'CitationTitleBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -6725,16 +6083,16 @@ class CitationTitle extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationTitle]
+  /// [CitationTitleBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationTitle.fromJsonString(
+  factory CitationTitleBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationTitle.fromJson(json);
+      return CitationTitleBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -6746,31 +6104,31 @@ class CitationTitle extends BackboneElement {
 
   /// [type]
   /// Used to express the reason or specific aspect for the title.
-  final List<CodeableConcept>? type;
+  List<CodeableConceptBuilder>? type;
 
   /// [language]
   /// Used to express the specific language.
-  final CodeableConcept? language;
+  CodeableConceptBuilder? language;
 
   /// [text]
   /// The title of the article or artifact.
-  final FhirMarkdown text;
+  FhirMarkdownBuilder? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -6779,35 +6137,17 @@ class CitationTitle extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('language', language);
+    addField('text', text);
     return json;
   }
 
@@ -6827,11 +6167,11 @@ class CitationTitle extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -6854,7 +6194,9 @@ class CitationTitle extends BackboneElement {
           fields.add(language!);
         }
       case 'text':
-        fields.add(text);
+        if (text != null) {
+          fields.add(text!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -6865,7 +6207,7 @@ class CitationTitle extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -6874,79 +6216,81 @@ class CitationTitle extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?type, ...child];
-            return copyWith(type: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            type = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
-            return copyWith(type: newList);
+            type = [...(type ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CodeableConcept) {
-            return copyWith(language: child);
+          if (child is CodeableConceptBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(text: child);
+          if (child is FhirMarkdownBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -6962,66 +6306,56 @@ class CitationTitle extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'language':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'text':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationTitle]
+  /// Creates a new [CitationTitleBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationTitle createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: <CodeableConcept>[],
-          );
+          type = <CodeableConceptBuilder>[];
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CodeableConcept.empty(),
-          );
+          language = CodeableConceptBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirMarkdown.empty(),
-          );
+          text = FhirMarkdownBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7030,33 +6364,32 @@ class CitationTitle extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationTitle clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool type = false,
     bool language = false,
+    bool text = false,
   }) {
-    return CitationTitle(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      language: language ? null : this.language,
-      text: text,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
   }
 
   @override
-  CitationTitle clone() => throw UnimplementedError();
+  CitationTitleBuilder clone() => throw UnimplementedError();
   @override
-  CitationTitle copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? type,
-    CodeableConcept? language,
-    FhirMarkdown? text,
+  CitationTitleBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    List<CodeableConceptBuilder>? type,
+    CodeableConceptBuilder? language,
+    FhirMarkdownBuilder? text,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7064,50 +6397,37 @@ class CitationTitle extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationTitle(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.type',
-                ),
-              )
-              .toList() ??
-          this.type,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CitationTitleBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      language: language ?? this.language,
+      text: text ?? this.text,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationTitle) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationTitleBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7118,19 +6438,19 @@ class CitationTitle extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       type,
       o.type,
     )) {
@@ -7152,19 +6472,19 @@ class CitationTitle extends BackboneElement {
   }
 }
 
-/// [CitationAbstract]
+/// [CitationAbstractBuilder]
 /// Summary of the article or artifact.
-class CitationAbstract extends BackboneElement {
+class CitationAbstractBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationAbstract]
+  /// [CitationAbstractBuilder]
 
-  const CitationAbstract({
+  CitationAbstractBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
     this.language,
-    required this.text,
+    this.text,
     this.copyright,
     super.disallowExtensions,
   }) : super(
@@ -7172,27 +6492,24 @@ class CitationAbstract extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationAbstract.empty() => CitationAbstract(
-        text: FhirMarkdown.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationAbstractBuilder.empty() => CitationAbstractBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationAbstract.fromJson(
+  factory CitationAbstractBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.abstract';
-    return CitationAbstract(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationAbstractBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7201,8 +6518,8 @@ class CitationAbstract extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -7210,49 +6527,49 @@ class CitationAbstract extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      language: JsonParser.parseObject<CodeableConcept>(
+      language: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'language',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.language',
       ),
-      text: JsonParser.parsePrimitive<FhirMarkdown>(
+      text: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'text',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.text',
-      )!,
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      ),
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
     );
   }
 
-  /// Deserialize [CitationAbstract]
+  /// Deserialize [CitationAbstractBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationAbstract.fromYaml(
+  factory CitationAbstractBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationAbstract.fromJson(
+      return CitationAbstractBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationAbstract.fromJson(
+      return CitationAbstractBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationAbstract '
+        'CitationAbstractBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7260,16 +6577,16 @@ class CitationAbstract extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationAbstract]
+  /// [CitationAbstractBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationAbstract.fromJsonString(
+  factory CitationAbstractBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationAbstract.fromJson(json);
+      return CitationAbstractBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7281,35 +6598,35 @@ class CitationAbstract extends BackboneElement {
 
   /// [type]
   /// Used to express the reason or specific aspect for the abstract.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [language]
   /// Used to express the specific language.
-  final CodeableConcept? language;
+  CodeableConceptBuilder? language;
 
   /// [text]
   /// Abstract content.
-  final FhirMarkdown text;
+  FhirMarkdownBuilder? text;
 
   /// [copyright]
   /// Copyright notice for the abstract.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7318,39 +6635,18 @@ class CitationAbstract extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('language', language);
+    addField('text', text);
+    addField('copyright', copyright);
     return json;
   }
 
@@ -7371,11 +6667,11 @@ class CitationAbstract extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7398,7 +6694,9 @@ class CitationAbstract extends BackboneElement {
           fields.add(language!);
         }
       case 'text':
-        fields.add(text);
+        if (text != null) {
+          fields.add(text!);
+        }
       case 'copyright':
         if (copyright != null) {
           fields.add(copyright!);
@@ -7413,7 +6711,7 @@ class CitationAbstract extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -7422,81 +6720,85 @@ class CitationAbstract extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is CodeableConcept) {
-            return copyWith(language: child);
+          if (child is CodeableConceptBuilder) {
+            language = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(text: child);
+          if (child is FhirMarkdownBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -7512,74 +6814,63 @@ class CitationAbstract extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'language':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'text':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationAbstract]
+  /// Creates a new [CitationAbstractBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationAbstract createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: CodeableConcept.empty(),
-          );
+          language = CodeableConceptBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirMarkdown.empty(),
-          );
+          text = FhirMarkdownBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7588,36 +6879,35 @@ class CitationAbstract extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationAbstract clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool type = false,
     bool language = false,
+    bool text = false,
     bool copyright = false,
   }) {
-    return CitationAbstract(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      language: language ? null : this.language,
-      text: text,
-      copyright: copyright ? null : this.copyright,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (language) this.language = null;
+    if (text) this.text = null;
+    if (copyright) this.copyright = null;
   }
 
   @override
-  CitationAbstract clone() => throw UnimplementedError();
+  CitationAbstractBuilder clone() => throw UnimplementedError();
   @override
-  CitationAbstract copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    CodeableConcept? language,
-    FhirMarkdown? text,
-    FhirMarkdown? copyright,
+  CitationAbstractBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? language,
+    FhirMarkdownBuilder? text,
+    FhirMarkdownBuilder? copyright,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -7625,50 +6915,38 @@ class CitationAbstract extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationAbstract(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
+    final newResult = CitationAbstractBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      language: language ?? this.language,
+      text: text ?? this.text,
+      copyright: copyright ?? this.copyright,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationAbstract) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationAbstractBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -7679,13 +6957,13 @@ class CitationAbstract extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -7719,13 +6997,13 @@ class CitationAbstract extends BackboneElement {
   }
 }
 
-/// [CitationPart]
+/// [CitationPartBuilder]
 /// The component of the article or artifact.
-class CitationPart extends BackboneElement {
+class CitationPartBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationPart]
+  /// [CitationPartBuilder]
 
-  const CitationPart({
+  CitationPartBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -7738,25 +7016,24 @@ class CitationPart extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationPart.empty() => const CitationPart();
+  /// For Builder classes, no fields are required
+  factory CitationPartBuilder.empty() => CitationPartBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPart.fromJson(
+  factory CitationPartBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.part';
-    return CitationPart(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationPartBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -7765,8 +7042,8 @@ class CitationPart extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -7774,43 +7051,43 @@ class CitationPart extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      value: JsonParser.parsePrimitive<FhirString>(
+      value: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'value',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.value',
       ),
-      baseCitation: JsonParser.parseObject<Reference>(
+      baseCitation: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'baseCitation',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.baseCitation',
       ),
     );
   }
 
-  /// Deserialize [CitationPart]
+  /// Deserialize [CitationPartBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationPart.fromYaml(
+  factory CitationPartBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationPart.fromJson(
+      return CitationPartBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationPart.fromJson(
+      return CitationPartBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationPart '
+        'CitationPartBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -7818,16 +7095,16 @@ class CitationPart extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationPart]
+  /// [CitationPartBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPart.fromJsonString(
+  factory CitationPartBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationPart.fromJson(json);
+      return CitationPartBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -7839,31 +7116,31 @@ class CitationPart extends BackboneElement {
 
   /// [type]
   /// The kind of component.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [value]
   /// The specification of the component.
-  final FhirString? value;
+  FhirStringBuilder? value;
 
   /// [baseCitation]
   /// The citation for the full article or artifact.
-  final Reference? baseCitation;
+  ReferenceBuilder? baseCitation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -7872,35 +7149,17 @@ class CitationPart extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'value',
-      value,
-    );
-    addField(
-      'baseCitation',
-      baseCitation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('value', value);
+    addField('baseCitation', baseCitation);
     return json;
   }
 
@@ -7920,11 +7179,11 @@ class CitationPart extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -7960,7 +7219,7 @@ class CitationPart extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -7969,73 +7228,76 @@ class CitationPart extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirString) {
-            return copyWith(value: child);
+          if (child is FhirStringBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'baseCitation':
         {
-          if (child is Reference) {
-            return copyWith(baseCitation: child);
+          if (child is ReferenceBuilder) {
+            baseCitation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -8051,66 +7313,56 @@ class CitationPart extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'baseCitation':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationPart]
+  /// Creates a new [CitationPartBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationPart createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirString.empty(),
-          );
+          value = FhirStringBuilder.empty();
+          return;
         }
       case 'baseCitation':
         {
-          return copyWith(
-            baseCitation: Reference.empty(),
-          );
+          baseCitation = ReferenceBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8119,7 +7371,7 @@ class CitationPart extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationPart clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -8127,26 +7379,24 @@ class CitationPart extends BackboneElement {
     bool value = false,
     bool baseCitation = false,
   }) {
-    return CitationPart(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      value: value ? null : this.value,
-      baseCitation: baseCitation ? null : this.baseCitation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (value) this.value = null;
+    if (baseCitation) this.baseCitation = null;
   }
 
   @override
-  CitationPart clone() => throw UnimplementedError();
+  CitationPartBuilder clone() => throw UnimplementedError();
   @override
-  CitationPart copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    FhirString? value,
-    Reference? baseCitation,
+  CitationPartBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    FhirStringBuilder? value,
+    ReferenceBuilder? baseCitation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8154,46 +7404,37 @@ class CitationPart extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationPart(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      baseCitation: baseCitation?.copyWith(
-            objectPath: '$newObjectPath.baseCitation',
-          ) ??
-          this.baseCitation,
+    final newResult = CitationPartBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      value: value ?? this.value,
+      baseCitation: baseCitation ?? this.baseCitation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationPart) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationPartBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8204,13 +7445,13 @@ class CitationPart extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -8238,47 +7479,43 @@ class CitationPart extends BackboneElement {
   }
 }
 
-/// [CitationRelatesTo1]
+/// [CitationRelatesTo1Builder]
 /// The artifact related to the cited artifact.
-class CitationRelatesTo1 extends BackboneElement {
+class CitationRelatesTo1Builder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationRelatesTo1]
+  /// [CitationRelatesTo1Builder]
 
-  const CitationRelatesTo1({
+  CitationRelatesTo1Builder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.relationshipType,
+    this.relationshipType,
     this.targetClassifier,
-    required this.targetX,
+    this.targetX,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Citation.citedArtifact.relatesTo',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationRelatesTo1.empty() => CitationRelatesTo1(
-        relationshipType: CodeableConcept.empty(),
-        targetX: FhirUri.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationRelatesTo1Builder.empty() => CitationRelatesTo1Builder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationRelatesTo1.fromJson(
+  factory CitationRelatesTo1Builder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.relatesTo';
-    return CitationRelatesTo1(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationRelatesTo1Builder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -8287,8 +7524,8 @@ class CitationRelatesTo1 extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -8296,15 +7533,15 @@ class CitationRelatesTo1 extends BackboneElement {
             ),
           )
           .toList(),
-      relationshipType: JsonParser.parseObject<CodeableConcept>(
+      relationshipType: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'relationshipType',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.relationshipType',
-      )!,
+      ),
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.targetClassifier',
@@ -8312,35 +7549,35 @@ class CitationRelatesTo1 extends BackboneElement {
             ),
           )
           .toList(),
-      targetX: JsonParser.parsePolymorphic<TargetXCitationRelatesTo1>(
+      targetX: JsonParser.parsePolymorphic<TargetXCitationRelatesTo1Builder>(
         json,
         {
-          'targetUri': FhirUri.fromJson,
-          'targetIdentifier': Identifier.fromJson,
-          'targetReference': Reference.fromJson,
-          'targetAttachment': Attachment.fromJson,
+          'targetUri': FhirUriBuilder.fromJson,
+          'targetIdentifier': IdentifierBuilder.fromJson,
+          'targetReference': ReferenceBuilder.fromJson,
+          'targetAttachment': AttachmentBuilder.fromJson,
         },
         objectPath,
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CitationRelatesTo1]
+  /// Deserialize [CitationRelatesTo1Builder]
   /// from a [String] or [YamlMap] object
-  factory CitationRelatesTo1.fromYaml(
+  factory CitationRelatesTo1Builder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationRelatesTo1.fromJson(
+      return CitationRelatesTo1Builder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationRelatesTo1.fromJson(
+      return CitationRelatesTo1Builder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationRelatesTo1 '
+        'CitationRelatesTo1Builder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -8348,16 +7585,16 @@ class CitationRelatesTo1 extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationRelatesTo1]
+  /// [CitationRelatesTo1Builder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationRelatesTo1.fromJsonString(
+  factory CitationRelatesTo1Builder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationRelatesTo1.fromJson(json);
+      return CitationRelatesTo1Builder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -8369,43 +7606,43 @@ class CitationRelatesTo1 extends BackboneElement {
 
   /// [relationshipType]
   /// How the cited artifact relates to the target artifact.
-  final CodeableConcept relationshipType;
+  CodeableConceptBuilder? relationshipType;
 
   /// [targetClassifier]
   /// The clasification of the related artifact.
-  final List<CodeableConcept>? targetClassifier;
+  List<CodeableConceptBuilder>? targetClassifier;
 
   /// [targetX]
   /// The article or artifact that the cited artifact is related to.
-  final TargetXCitationRelatesTo1 targetX;
+  TargetXCitationRelatesTo1Builder? targetX;
 
-  /// Getter for [targetUri] as a FhirUri
-  FhirUri? get targetUri => targetX.isAs<FhirUri>();
+  /// Getter for [targetUri] as a FhirUriBuilder
+  FhirUriBuilder? get targetUri => targetX?.isAs<FhirUriBuilder>();
 
-  /// Getter for [targetIdentifier] as a Identifier
-  Identifier? get targetIdentifier => targetX.isAs<Identifier>();
+  /// Getter for [targetIdentifier] as a IdentifierBuilder
+  IdentifierBuilder? get targetIdentifier => targetX?.isAs<IdentifierBuilder>();
 
-  /// Getter for [targetReference] as a Reference
-  Reference? get targetReference => targetX.isAs<Reference>();
+  /// Getter for [targetReference] as a ReferenceBuilder
+  ReferenceBuilder? get targetReference => targetX?.isAs<ReferenceBuilder>();
 
-  /// Getter for [targetAttachment] as a Attachment
-  Attachment? get targetAttachment => targetX.isAs<Attachment>();
+  /// Getter for [targetAttachment] as a AttachmentBuilder
+  AttachmentBuilder? get targetAttachment => targetX?.isAs<AttachmentBuilder>();
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -8414,36 +7651,20 @@ class CitationRelatesTo1 extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'relationshipType',
-      relationshipType,
-    );
-    addField(
-      'targetClassifier',
-      targetClassifier,
-    );
-    final targetXFhirType = targetX.fhirType;
-    addField(
-      'target${targetXFhirType.capitalize()}',
-      targetX,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('relationshipType', relationshipType);
+    addField('targetClassifier', targetClassifier);
+    if (targetX != null) {
+      final fhirType = targetX!.fhirType;
+      addField('target${fhirType.capitalize()}', targetX);
+    }
 
     return json;
   }
@@ -8464,11 +7685,11 @@ class CitationRelatesTo1 extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -8483,30 +7704,36 @@ class CitationRelatesTo1 extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'relationshipType':
-        fields.add(relationshipType);
+        if (relationshipType != null) {
+          fields.add(relationshipType!);
+        }
       case 'targetClassifier':
         if (targetClassifier != null) {
           fields.addAll(targetClassifier!);
         }
       case 'target':
-        fields.add(targetX);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetX':
-        fields.add(targetX);
+        if (targetX != null) {
+          fields.add(targetX!);
+        }
       case 'targetUri':
-        if (targetX is FhirUri) {
-          fields.add(targetX);
+        if (targetX is FhirUriBuilder) {
+          fields.add(targetX!);
         }
       case 'targetIdentifier':
-        if (targetX is Identifier) {
-          fields.add(targetX);
+        if (targetX is IdentifierBuilder) {
+          fields.add(targetX!);
         }
       case 'targetReference':
-        if (targetX is Reference) {
-          fields.add(targetX);
+        if (targetX is ReferenceBuilder) {
+          fields.add(targetX!);
         }
       case 'targetAttachment':
-        if (targetX is Attachment) {
-          fields.add(targetX);
+        if (targetX is AttachmentBuilder) {
+          fields.add(targetX!);
         }
       default:
         if (checkValid) {
@@ -8518,7 +7745,7 @@ class CitationRelatesTo1 extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -8527,123 +7754,133 @@ class CitationRelatesTo1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationshipType':
         {
-          if (child is CodeableConcept) {
-            return copyWith(relationshipType: child);
+          if (child is CodeableConceptBuilder) {
+            relationshipType = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetClassifier':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?targetClassifier, ...child];
-            return copyWith(targetClassifier: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            targetClassifier = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?targetClassifier, child];
-            return copyWith(targetClassifier: newList);
+            targetClassifier = [...(targetClassifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetX':
         {
-          if (child is TargetXCitationRelatesTo1) {
-            return copyWith(targetX: child);
+          if (child is TargetXCitationRelatesTo1Builder) {
+            targetX = child;
+            return;
           } else {
-            if (child is FhirUri) {
-              return copyWith(targetX: child);
+            if (child is FhirUriBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is Identifier) {
-              return copyWith(targetX: child);
+            if (child is IdentifierBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is Reference) {
-              return copyWith(targetX: child);
+            if (child is ReferenceBuilder) {
+              targetX = child;
+              return;
             }
-            if (child is Attachment) {
-              return copyWith(targetX: child);
+            if (child is AttachmentBuilder) {
+              targetX = child;
+              return;
             }
           }
           throw Exception('Invalid child type for $childName');
         }
-      case 'targetFhirUri':
+      case 'targetUri':
         {
-          if (child is FhirUri) {
-            return copyWith(targetX: child);
+          if (child is FhirUriBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetIdentifier':
         {
-          if (child is Identifier) {
-            return copyWith(targetX: child);
+          if (child is IdentifierBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetReference':
         {
-          if (child is Reference) {
-            return copyWith(targetX: child);
+          if (child is ReferenceBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetAttachment':
         {
-          if (child is Attachment) {
-            return copyWith(targetX: child);
+          if (child is AttachmentBuilder) {
+            targetX = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -8659,95 +7896,87 @@ class CitationRelatesTo1 extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'relationshipType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'targetClassifier':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'target':
       case 'targetX':
-        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+        return [
+          'FhirUriBuilder',
+          'IdentifierBuilder',
+          'ReferenceBuilder',
+          'AttachmentBuilder'
+        ];
       case 'targetUri':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       case 'targetIdentifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'targetReference':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'targetAttachment':
-        return ['Attachment'];
+        return ['AttachmentBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationRelatesTo1]
+  /// Creates a new [CitationRelatesTo1Builder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationRelatesTo1 createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'relationshipType':
         {
-          return copyWith(
-            relationshipType: CodeableConcept.empty(),
-          );
+          relationshipType = CodeableConceptBuilder.empty();
+          return;
         }
       case 'targetClassifier':
         {
-          return copyWith(
-            targetClassifier: <CodeableConcept>[],
-          );
+          targetClassifier = <CodeableConceptBuilder>[];
+          return;
         }
       case 'target':
       case 'targetX':
       case 'targetUri':
         {
-          return copyWith(
-            targetX: FhirUri.empty(),
-          );
+          targetX = FhirUriBuilder.empty();
+          return;
         }
       case 'targetIdentifier':
         {
-          return copyWith(
-            targetX: Identifier.empty(),
-          );
+          targetX = IdentifierBuilder.empty();
+          return;
         }
       case 'targetReference':
         {
-          return copyWith(
-            targetX: Reference.empty(),
-          );
+          targetX = ReferenceBuilder.empty();
+          return;
         }
       case 'targetAttachment':
         {
-          return copyWith(
-            targetX: Attachment.empty(),
-          );
+          targetX = AttachmentBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8756,32 +7985,32 @@ class CitationRelatesTo1 extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationRelatesTo1 clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool relationshipType = false,
     bool targetClassifier = false,
+    bool target = false,
   }) {
-    return CitationRelatesTo1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      relationshipType: relationshipType,
-      targetClassifier: targetClassifier ? null : this.targetClassifier,
-      targetX: targetX,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (relationshipType) this.relationshipType = null;
+    if (targetClassifier) this.targetClassifier = null;
+    if (target) this.targetX = null;
   }
 
   @override
-  CitationRelatesTo1 clone() => throw UnimplementedError();
+  CitationRelatesTo1Builder clone() => throw UnimplementedError();
   @override
-  CitationRelatesTo1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? relationshipType,
-    List<CodeableConcept>? targetClassifier,
-    TargetXCitationRelatesTo1? targetX,
+  CitationRelatesTo1Builder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? relationshipType,
+    List<CodeableConceptBuilder>? targetClassifier,
+    TargetXCitationRelatesTo1Builder? targetX,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -8789,50 +8018,37 @@ class CitationRelatesTo1 extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationRelatesTo1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      relationshipType: relationshipType?.copyWith(
-            objectPath: '$newObjectPath.relationshipType',
-          ) ??
-          this.relationshipType,
-      targetClassifier: targetClassifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.targetClassifier',
-                ),
-              )
-              .toList() ??
-          this.targetClassifier,
-      targetX: targetX?.copyWith(
-            objectPath: '$newObjectPath.targetX',
-          ) as TargetXCitationRelatesTo1? ??
-          this.targetX,
+    final newResult = CitationRelatesTo1Builder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      relationshipType: relationshipType ?? this.relationshipType,
+      targetClassifier: targetClassifier ?? this.targetClassifier,
+      targetX: targetX ?? this.targetX,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationRelatesTo1) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationRelatesTo1Builder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -8843,13 +8059,13 @@ class CitationRelatesTo1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -8861,7 +8077,7 @@ class CitationRelatesTo1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       targetClassifier,
       o.targetClassifier,
     )) {
@@ -8877,14 +8093,14 @@ class CitationRelatesTo1 extends BackboneElement {
   }
 }
 
-/// [CitationPublicationForm]
+/// [CitationPublicationFormBuilder]
 /// If multiple, used to represent alternative forms of the article that
 /// are not separate citations.
-class CitationPublicationForm extends BackboneElement {
+class CitationPublicationFormBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationPublicationForm]
+  /// [CitationPublicationFormBuilder]
 
-  const CitationPublicationForm({
+  CitationPublicationFormBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -8905,25 +8121,25 @@ class CitationPublicationForm extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationPublicationForm.empty() => const CitationPublicationForm();
+  /// For Builder classes, no fields are required
+  factory CitationPublicationFormBuilder.empty() =>
+      CitationPublicationFormBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPublicationForm.fromJson(
+  factory CitationPublicationFormBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.publicationForm';
-    return CitationPublicationForm(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationPublicationFormBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -8932,8 +8148,8 @@ class CitationPublicationForm extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -8941,33 +8157,33 @@ class CitationPublicationForm extends BackboneElement {
             ),
           )
           .toList(),
-      publishedIn: JsonParser.parseObject<CitationPublishedIn>(
+      publishedIn: JsonParser.parseObject<CitationPublishedInBuilder>(
         json,
         'publishedIn',
-        CitationPublishedIn.fromJson,
+        CitationPublishedInBuilder.fromJson,
         '$objectPath.publishedIn',
       ),
-      periodicRelease: JsonParser.parseObject<CitationPeriodicRelease>(
+      periodicRelease: JsonParser.parseObject<CitationPeriodicReleaseBuilder>(
         json,
         'periodicRelease',
-        CitationPeriodicRelease.fromJson,
+        CitationPeriodicReleaseBuilder.fromJson,
         '$objectPath.periodicRelease',
       ),
-      articleDate: JsonParser.parsePrimitive<FhirDateTime>(
+      articleDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'articleDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.articleDate',
       ),
-      lastRevisionDate: JsonParser.parsePrimitive<FhirDateTime>(
+      lastRevisionDate: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'lastRevisionDate',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.lastRevisionDate',
       ),
       language: (json['language'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.language',
@@ -8975,61 +8191,61 @@ class CitationPublicationForm extends BackboneElement {
             ),
           )
           .toList(),
-      accessionNumber: JsonParser.parsePrimitive<FhirString>(
+      accessionNumber: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'accessionNumber',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.accessionNumber',
       ),
-      pageString: JsonParser.parsePrimitive<FhirString>(
+      pageString: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'pageString',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.pageString',
       ),
-      firstPage: JsonParser.parsePrimitive<FhirString>(
+      firstPage: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'firstPage',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.firstPage',
       ),
-      lastPage: JsonParser.parsePrimitive<FhirString>(
+      lastPage: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'lastPage',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.lastPage',
       ),
-      pageCount: JsonParser.parsePrimitive<FhirString>(
+      pageCount: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'pageCount',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.pageCount',
       ),
-      copyright: JsonParser.parsePrimitive<FhirMarkdown>(
+      copyright: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'copyright',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.copyright',
       ),
     );
   }
 
-  /// Deserialize [CitationPublicationForm]
+  /// Deserialize [CitationPublicationFormBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationPublicationForm.fromYaml(
+  factory CitationPublicationFormBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationPublicationForm.fromJson(
+      return CitationPublicationFormBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationPublicationForm.fromJson(
+      return CitationPublicationFormBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationPublicationForm '
+        'CitationPublicationFormBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -9037,16 +8253,16 @@ class CitationPublicationForm extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationPublicationForm]
+  /// [CitationPublicationFormBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPublicationForm.fromJsonString(
+  factory CitationPublicationFormBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationPublicationForm.fromJson(json);
+      return CitationPublicationFormBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -9058,65 +8274,65 @@ class CitationPublicationForm extends BackboneElement {
 
   /// [publishedIn]
   /// The collection the cited article or artifact is published in.
-  final CitationPublishedIn? publishedIn;
+  CitationPublishedInBuilder? publishedIn;
 
   /// [periodicRelease]
   /// The specific issue in which the cited article resides.
-  final CitationPeriodicRelease? periodicRelease;
+  CitationPeriodicReleaseBuilder? periodicRelease;
 
   /// [articleDate]
   /// The date the article was added to the database, or the date the article
   /// was released (which may differ from the journal issue publication
   /// date).
-  final FhirDateTime? articleDate;
+  FhirDateTimeBuilder? articleDate;
 
   /// [lastRevisionDate]
   /// The date the article was last revised or updated in the database.
-  final FhirDateTime? lastRevisionDate;
+  FhirDateTimeBuilder? lastRevisionDate;
 
   /// [language]
   /// Language in which this form of the article is published.
-  final List<CodeableConcept>? language;
+  List<CodeableConceptBuilder>? language;
 
   /// [accessionNumber]
   /// Entry number or identifier for inclusion in a database.
-  final FhirString? accessionNumber;
+  FhirStringBuilder? accessionNumber;
 
   /// [pageString]
   /// Used for full display of pagination.
-  final FhirString? pageString;
+  FhirStringBuilder? pageString;
 
   /// [firstPage]
   /// Used for isolated representation of first page.
-  final FhirString? firstPage;
+  FhirStringBuilder? firstPage;
 
   /// [lastPage]
   /// Used for isolated representation of last page.
-  final FhirString? lastPage;
+  FhirStringBuilder? lastPage;
 
   /// [pageCount]
   /// Actual or approximate number of pages or screens.
-  final FhirString? pageCount;
+  FhirStringBuilder? pageCount;
 
   /// [copyright]
   /// Copyright notice for the full article or artifact.
-  final FhirMarkdown? copyright;
+  FhirMarkdownBuilder? copyright;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -9125,67 +8341,25 @@ class CitationPublicationForm extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'publishedIn',
-      publishedIn,
-    );
-    addField(
-      'periodicRelease',
-      periodicRelease,
-    );
-    addField(
-      'articleDate',
-      articleDate,
-    );
-    addField(
-      'lastRevisionDate',
-      lastRevisionDate,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'accessionNumber',
-      accessionNumber,
-    );
-    addField(
-      'pageString',
-      pageString,
-    );
-    addField(
-      'firstPage',
-      firstPage,
-    );
-    addField(
-      'lastPage',
-      lastPage,
-    );
-    addField(
-      'pageCount',
-      pageCount,
-    );
-    addField(
-      'copyright',
-      copyright,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('publishedIn', publishedIn);
+    addField('periodicRelease', periodicRelease);
+    addField('articleDate', articleDate);
+    addField('lastRevisionDate', lastRevisionDate);
+    addField('language', language);
+    addField('accessionNumber', accessionNumber);
+    addField('pageString', pageString);
+    addField('firstPage', firstPage);
+    addField('lastPage', lastPage);
+    addField('pageCount', pageCount);
+    addField('copyright', copyright);
     return json;
   }
 
@@ -9213,11 +8387,11 @@ class CitationPublicationForm extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -9285,7 +8459,7 @@ class CitationPublicationForm extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -9294,143 +8468,153 @@ class CitationPublicationForm extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publishedIn':
         {
-          if (child is CitationPublishedIn) {
-            return copyWith(publishedIn: child);
+          if (child is CitationPublishedInBuilder) {
+            publishedIn = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'periodicRelease':
         {
-          if (child is CitationPeriodicRelease) {
-            return copyWith(periodicRelease: child);
+          if (child is CitationPeriodicReleaseBuilder) {
+            periodicRelease = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'articleDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(articleDate: child);
+          if (child is FhirDateTimeBuilder) {
+            articleDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastRevisionDate':
         {
-          if (child is FhirDateTime) {
-            return copyWith(lastRevisionDate: child);
+          if (child is FhirDateTimeBuilder) {
+            lastRevisionDate = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?language, ...child];
-            return copyWith(language: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            language = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?language, child];
-            return copyWith(language: newList);
+            language = [...(language ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'accessionNumber':
         {
-          if (child is FhirString) {
-            return copyWith(accessionNumber: child);
+          if (child is FhirStringBuilder) {
+            accessionNumber = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'pageString':
         {
-          if (child is FhirString) {
-            return copyWith(pageString: child);
+          if (child is FhirStringBuilder) {
+            pageString = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'firstPage':
         {
-          if (child is FhirString) {
-            return copyWith(firstPage: child);
+          if (child is FhirStringBuilder) {
+            firstPage = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastPage':
         {
-          if (child is FhirString) {
-            return copyWith(lastPage: child);
+          if (child is FhirStringBuilder) {
+            lastPage = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'pageCount':
         {
-          if (child is FhirString) {
-            return copyWith(pageCount: child);
+          if (child is FhirStringBuilder) {
+            pageCount = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(copyright: child);
+          if (child is FhirMarkdownBuilder) {
+            copyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -9446,130 +8630,112 @@ class CitationPublicationForm extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'publishedIn':
-        return ['CitationPublishedIn'];
+        return ['CitationPublishedInBuilder'];
       case 'periodicRelease':
-        return ['CitationPeriodicRelease'];
+        return ['CitationPeriodicReleaseBuilder'];
       case 'articleDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'lastRevisionDate':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       case 'language':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'accessionNumber':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'pageString':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'firstPage':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'lastPage':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'pageCount':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'copyright':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationPublicationForm]
+  /// Creates a new [CitationPublicationFormBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationPublicationForm createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'publishedIn':
         {
-          return copyWith(
-            publishedIn: CitationPublishedIn.empty(),
-          );
+          publishedIn = CitationPublishedInBuilder.empty();
+          return;
         }
       case 'periodicRelease':
         {
-          return copyWith(
-            periodicRelease: CitationPeriodicRelease.empty(),
-          );
+          periodicRelease = CitationPeriodicReleaseBuilder.empty();
+          return;
         }
       case 'articleDate':
         {
-          return copyWith(
-            articleDate: FhirDateTime.empty(),
-          );
+          articleDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'lastRevisionDate':
         {
-          return copyWith(
-            lastRevisionDate: FhirDateTime.empty(),
-          );
+          lastRevisionDate = FhirDateTimeBuilder.empty();
+          return;
         }
       case 'language':
         {
-          return copyWith(
-            language: <CodeableConcept>[],
-          );
+          language = <CodeableConceptBuilder>[];
+          return;
         }
       case 'accessionNumber':
         {
-          return copyWith(
-            accessionNumber: FhirString.empty(),
-          );
+          accessionNumber = FhirStringBuilder.empty();
+          return;
         }
       case 'pageString':
         {
-          return copyWith(
-            pageString: FhirString.empty(),
-          );
+          pageString = FhirStringBuilder.empty();
+          return;
         }
       case 'firstPage':
         {
-          return copyWith(
-            firstPage: FhirString.empty(),
-          );
+          firstPage = FhirStringBuilder.empty();
+          return;
         }
       case 'lastPage':
         {
-          return copyWith(
-            lastPage: FhirString.empty(),
-          );
+          lastPage = FhirStringBuilder.empty();
+          return;
         }
       case 'pageCount':
         {
-          return copyWith(
-            pageCount: FhirString.empty(),
-          );
+          pageCount = FhirStringBuilder.empty();
+          return;
         }
       case 'copyright':
         {
-          return copyWith(
-            copyright: FhirMarkdown.empty(),
-          );
+          copyright = FhirMarkdownBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -9578,7 +8744,7 @@ class CitationPublicationForm extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationPublicationForm clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -9594,42 +8760,40 @@ class CitationPublicationForm extends BackboneElement {
     bool pageCount = false,
     bool copyright = false,
   }) {
-    return CitationPublicationForm(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      publishedIn: publishedIn ? null : this.publishedIn,
-      periodicRelease: periodicRelease ? null : this.periodicRelease,
-      articleDate: articleDate ? null : this.articleDate,
-      lastRevisionDate: lastRevisionDate ? null : this.lastRevisionDate,
-      language: language ? null : this.language,
-      accessionNumber: accessionNumber ? null : this.accessionNumber,
-      pageString: pageString ? null : this.pageString,
-      firstPage: firstPage ? null : this.firstPage,
-      lastPage: lastPage ? null : this.lastPage,
-      pageCount: pageCount ? null : this.pageCount,
-      copyright: copyright ? null : this.copyright,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (publishedIn) this.publishedIn = null;
+    if (periodicRelease) this.periodicRelease = null;
+    if (articleDate) this.articleDate = null;
+    if (lastRevisionDate) this.lastRevisionDate = null;
+    if (language) this.language = null;
+    if (accessionNumber) this.accessionNumber = null;
+    if (pageString) this.pageString = null;
+    if (firstPage) this.firstPage = null;
+    if (lastPage) this.lastPage = null;
+    if (pageCount) this.pageCount = null;
+    if (copyright) this.copyright = null;
   }
 
   @override
-  CitationPublicationForm clone() => throw UnimplementedError();
+  CitationPublicationFormBuilder clone() => throw UnimplementedError();
   @override
-  CitationPublicationForm copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CitationPublishedIn? publishedIn,
-    CitationPeriodicRelease? periodicRelease,
-    FhirDateTime? articleDate,
-    FhirDateTime? lastRevisionDate,
-    List<CodeableConcept>? language,
-    FhirString? accessionNumber,
-    FhirString? pageString,
-    FhirString? firstPage,
-    FhirString? lastPage,
-    FhirString? pageCount,
-    FhirMarkdown? copyright,
+  CitationPublicationFormBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CitationPublishedInBuilder? publishedIn,
+    CitationPeriodicReleaseBuilder? periodicRelease,
+    FhirDateTimeBuilder? articleDate,
+    FhirDateTimeBuilder? lastRevisionDate,
+    List<CodeableConceptBuilder>? language,
+    FhirStringBuilder? accessionNumber,
+    FhirStringBuilder? pageString,
+    FhirStringBuilder? firstPage,
+    FhirStringBuilder? lastPage,
+    FhirStringBuilder? pageCount,
+    FhirMarkdownBuilder? copyright,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -9637,82 +8801,45 @@ class CitationPublicationForm extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationPublicationForm(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      publishedIn: publishedIn?.copyWith(
-            objectPath: '$newObjectPath.publishedIn',
-          ) ??
-          this.publishedIn,
-      periodicRelease: periodicRelease?.copyWith(
-            objectPath: '$newObjectPath.periodicRelease',
-          ) ??
-          this.periodicRelease,
-      articleDate: articleDate?.copyWith(
-            objectPath: '$newObjectPath.articleDate',
-          ) ??
-          this.articleDate,
-      lastRevisionDate: lastRevisionDate?.copyWith(
-            objectPath: '$newObjectPath.lastRevisionDate',
-          ) ??
-          this.lastRevisionDate,
-      language: language
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.language',
-                ),
-              )
-              .toList() ??
-          this.language,
-      accessionNumber: accessionNumber?.copyWith(
-            objectPath: '$newObjectPath.accessionNumber',
-          ) ??
-          this.accessionNumber,
-      pageString: pageString?.copyWith(
-            objectPath: '$newObjectPath.pageString',
-          ) ??
-          this.pageString,
-      firstPage: firstPage?.copyWith(
-            objectPath: '$newObjectPath.firstPage',
-          ) ??
-          this.firstPage,
-      lastPage: lastPage?.copyWith(
-            objectPath: '$newObjectPath.lastPage',
-          ) ??
-          this.lastPage,
-      pageCount: pageCount?.copyWith(
-            objectPath: '$newObjectPath.pageCount',
-          ) ??
-          this.pageCount,
-      copyright: copyright?.copyWith(
-            objectPath: '$newObjectPath.copyright',
-          ) ??
-          this.copyright,
+    final newResult = CitationPublicationFormBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      publishedIn: publishedIn ?? this.publishedIn,
+      periodicRelease: periodicRelease ?? this.periodicRelease,
+      articleDate: articleDate ?? this.articleDate,
+      lastRevisionDate: lastRevisionDate ?? this.lastRevisionDate,
+      language: language ?? this.language,
+      accessionNumber: accessionNumber ?? this.accessionNumber,
+      pageString: pageString ?? this.pageString,
+      firstPage: firstPage ?? this.firstPage,
+      lastPage: lastPage ?? this.lastPage,
+      pageCount: pageCount ?? this.pageCount,
+      copyright: copyright ?? this.copyright,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationPublicationForm) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationPublicationFormBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -9723,13 +8850,13 @@ class CitationPublicationForm extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -9759,7 +8886,7 @@ class CitationPublicationForm extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       language,
       o.language,
     )) {
@@ -9805,13 +8932,13 @@ class CitationPublicationForm extends BackboneElement {
   }
 }
 
-/// [CitationPublishedIn]
+/// [CitationPublishedInBuilder]
 /// The collection the cited article or artifact is published in.
-class CitationPublishedIn extends BackboneElement {
+class CitationPublishedInBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationPublishedIn]
+  /// [CitationPublishedInBuilder]
 
-  const CitationPublishedIn({
+  CitationPublishedInBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -9826,25 +8953,24 @@ class CitationPublishedIn extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationPublishedIn.empty() => const CitationPublishedIn();
+  /// For Builder classes, no fields are required
+  factory CitationPublishedInBuilder.empty() => CitationPublishedInBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPublishedIn.fromJson(
+  factory CitationPublishedInBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.publicationForm.publishedIn';
-    return CitationPublishedIn(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationPublishedInBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -9853,8 +8979,8 @@ class CitationPublishedIn extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -9862,15 +8988,15 @@ class CitationPublishedIn extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -9878,43 +9004,43 @@ class CitationPublishedIn extends BackboneElement {
             ),
           )
           .toList(),
-      title: JsonParser.parsePrimitive<FhirString>(
+      title: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'title',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.title',
       ),
-      publisher: JsonParser.parseObject<Reference>(
+      publisher: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'publisher',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.publisher',
       ),
-      publisherLocation: JsonParser.parsePrimitive<FhirString>(
+      publisherLocation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'publisherLocation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.publisherLocation',
       ),
     );
   }
 
-  /// Deserialize [CitationPublishedIn]
+  /// Deserialize [CitationPublishedInBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationPublishedIn.fromYaml(
+  factory CitationPublishedInBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationPublishedIn.fromJson(
+      return CitationPublishedInBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationPublishedIn.fromJson(
+      return CitationPublishedInBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationPublishedIn '
+        'CitationPublishedInBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -9922,16 +9048,16 @@ class CitationPublishedIn extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationPublishedIn]
+  /// [CitationPublishedInBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPublishedIn.fromJsonString(
+  factory CitationPublishedInBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationPublishedIn.fromJson(json);
+      return CitationPublishedInBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -9943,40 +9069,40 @@ class CitationPublishedIn extends BackboneElement {
 
   /// [type]
   /// Kind of container (e.g. Periodical, database, or book).
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [identifier]
   /// Journal identifiers include ISSN, ISO Abbreviation and NLMuniqueID;
   /// Book identifiers include ISBN.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [title]
   /// Name of the database or title of the book or journal.
-  final FhirString? title;
+  FhirStringBuilder? title;
 
   /// [publisher]
   /// Name of the publisher.
-  final Reference? publisher;
+  ReferenceBuilder? publisher;
 
   /// [publisherLocation]
   /// Geographic location of the publisher.
-  final FhirString? publisherLocation;
+  FhirStringBuilder? publisherLocation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -9985,43 +9111,19 @@ class CitationPublishedIn extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'publisherLocation',
-      publisherLocation,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('identifier', identifier);
+    addField('title', title);
+    addField('publisher', publisher);
+    addField('publisherLocation', publisherLocation);
     return json;
   }
 
@@ -10043,11 +9145,11 @@ class CitationPublishedIn extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -10091,7 +9193,7 @@ class CitationPublishedIn extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -10100,95 +9202,99 @@ class CitationPublishedIn extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
         {
-          if (child is FhirString) {
-            return copyWith(title: child);
+          if (child is FhirStringBuilder) {
+            title = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is Reference) {
-            return copyWith(publisher: child);
+          if (child is ReferenceBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisherLocation':
         {
-          if (child is FhirString) {
-            return copyWith(publisherLocation: child);
+          if (child is FhirStringBuilder) {
+            publisherLocation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -10204,82 +9310,70 @@ class CitationPublishedIn extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'title':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'publisher':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'publisherLocation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationPublishedIn]
+  /// Creates a new [CitationPublishedInBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationPublishedIn createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'title':
         {
-          return copyWith(
-            title: FhirString.empty(),
-          );
+          title = FhirStringBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: Reference.empty(),
-          );
+          publisher = ReferenceBuilder.empty();
+          return;
         }
       case 'publisherLocation':
         {
-          return copyWith(
-            publisherLocation: FhirString.empty(),
-          );
+          publisherLocation = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -10288,7 +9382,7 @@ class CitationPublishedIn extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationPublishedIn clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -10298,30 +9392,28 @@ class CitationPublishedIn extends BackboneElement {
     bool publisher = false,
     bool publisherLocation = false,
   }) {
-    return CitationPublishedIn(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      identifier: identifier ? null : this.identifier,
-      title: title ? null : this.title,
-      publisher: publisher ? null : this.publisher,
-      publisherLocation: publisherLocation ? null : this.publisherLocation,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (identifier) this.identifier = null;
+    if (title) this.title = null;
+    if (publisher) this.publisher = null;
+    if (publisherLocation) this.publisherLocation = null;
   }
 
   @override
-  CitationPublishedIn clone() => throw UnimplementedError();
+  CitationPublishedInBuilder clone() => throw UnimplementedError();
   @override
-  CitationPublishedIn copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<Identifier>? identifier,
-    FhirString? title,
-    Reference? publisher,
-    FhirString? publisherLocation,
+  CitationPublishedInBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    List<IdentifierBuilder>? identifier,
+    FhirStringBuilder? title,
+    ReferenceBuilder? publisher,
+    FhirStringBuilder? publisherLocation,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -10329,58 +9421,39 @@ class CitationPublishedIn extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationPublishedIn(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      title: title?.copyWith(
-            objectPath: '$newObjectPath.title',
-          ) ??
-          this.title,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      publisherLocation: publisherLocation?.copyWith(
-            objectPath: '$newObjectPath.publisherLocation',
-          ) ??
-          this.publisherLocation,
+    final newResult = CitationPublishedInBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      identifier: identifier ?? this.identifier,
+      title: title ?? this.title,
+      publisher: publisher ?? this.publisher,
+      publisherLocation: publisherLocation ?? this.publisherLocation,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationPublishedIn) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationPublishedInBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -10391,13 +9464,13 @@ class CitationPublishedIn extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -10409,7 +9482,7 @@ class CitationPublishedIn extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -10437,13 +9510,13 @@ class CitationPublishedIn extends BackboneElement {
   }
 }
 
-/// [CitationPeriodicRelease]
+/// [CitationPeriodicReleaseBuilder]
 /// The specific issue in which the cited article resides.
-class CitationPeriodicRelease extends BackboneElement {
+class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationPeriodicRelease]
+  /// [CitationPeriodicReleaseBuilder]
 
-  const CitationPeriodicRelease({
+  CitationPeriodicReleaseBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -10457,25 +9530,25 @@ class CitationPeriodicRelease extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationPeriodicRelease.empty() => const CitationPeriodicRelease();
+  /// For Builder classes, no fields are required
+  factory CitationPeriodicReleaseBuilder.empty() =>
+      CitationPeriodicReleaseBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPeriodicRelease.fromJson(
+  factory CitationPeriodicReleaseBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.publicationForm.periodicRelease';
-    return CitationPeriodicRelease(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationPeriodicReleaseBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -10484,8 +9557,8 @@ class CitationPeriodicRelease extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -10493,49 +9566,50 @@ class CitationPeriodicRelease extends BackboneElement {
             ),
           )
           .toList(),
-      citedMedium: JsonParser.parseObject<CodeableConcept>(
+      citedMedium: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'citedMedium',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.citedMedium',
       ),
-      volume: JsonParser.parsePrimitive<FhirString>(
+      volume: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'volume',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.volume',
       ),
-      issue: JsonParser.parsePrimitive<FhirString>(
+      issue: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'issue',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.issue',
       ),
-      dateOfPublication: JsonParser.parseObject<CitationDateOfPublication>(
+      dateOfPublication:
+          JsonParser.parseObject<CitationDateOfPublicationBuilder>(
         json,
         'dateOfPublication',
-        CitationDateOfPublication.fromJson,
+        CitationDateOfPublicationBuilder.fromJson,
         '$objectPath.dateOfPublication',
       ),
     );
   }
 
-  /// Deserialize [CitationPeriodicRelease]
+  /// Deserialize [CitationPeriodicReleaseBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationPeriodicRelease.fromYaml(
+  factory CitationPeriodicReleaseBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationPeriodicRelease.fromJson(
+      return CitationPeriodicReleaseBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationPeriodicRelease.fromJson(
+      return CitationPeriodicReleaseBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationPeriodicRelease '
+        'CitationPeriodicReleaseBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -10543,16 +9617,16 @@ class CitationPeriodicRelease extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationPeriodicRelease]
+  /// [CitationPeriodicReleaseBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPeriodicRelease.fromJsonString(
+  factory CitationPeriodicReleaseBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationPeriodicRelease.fromJson(json);
+      return CitationPeriodicReleaseBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -10565,35 +9639,35 @@ class CitationPeriodicRelease extends BackboneElement {
   /// [citedMedium]
   /// Describes the form of the medium cited. Common codes are "Internet" or
   /// "Print".
-  final CodeableConcept? citedMedium;
+  CodeableConceptBuilder? citedMedium;
 
   /// [volume]
   /// Volume number of journal in which the article is published.
-  final FhirString? volume;
+  FhirStringBuilder? volume;
 
   /// [issue]
   /// Issue, part or supplement of journal in which the article is published.
-  final FhirString? issue;
+  FhirStringBuilder? issue;
 
   /// [dateOfPublication]
   /// Defining the date on which the issue of the journal was published.
-  final CitationDateOfPublication? dateOfPublication;
+  CitationDateOfPublicationBuilder? dateOfPublication;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -10602,39 +9676,18 @@ class CitationPeriodicRelease extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'citedMedium',
-      citedMedium,
-    );
-    addField(
-      'volume',
-      volume,
-    );
-    addField(
-      'issue',
-      issue,
-    );
-    addField(
-      'dateOfPublication',
-      dateOfPublication,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('citedMedium', citedMedium);
+    addField('volume', volume);
+    addField('issue', issue);
+    addField('dateOfPublication', dateOfPublication);
     return json;
   }
 
@@ -10655,11 +9708,11 @@ class CitationPeriodicRelease extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -10699,7 +9752,7 @@ class CitationPeriodicRelease extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -10708,81 +9761,85 @@ class CitationPeriodicRelease extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'citedMedium':
         {
-          if (child is CodeableConcept) {
-            return copyWith(citedMedium: child);
+          if (child is CodeableConceptBuilder) {
+            citedMedium = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'volume':
         {
-          if (child is FhirString) {
-            return copyWith(volume: child);
+          if (child is FhirStringBuilder) {
+            volume = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'issue':
         {
-          if (child is FhirString) {
-            return copyWith(issue: child);
+          if (child is FhirStringBuilder) {
+            issue = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateOfPublication':
         {
-          if (child is CitationDateOfPublication) {
-            return copyWith(dateOfPublication: child);
+          if (child is CitationDateOfPublicationBuilder) {
+            dateOfPublication = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -10798,74 +9855,63 @@ class CitationPeriodicRelease extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'citedMedium':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'volume':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'issue':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'dateOfPublication':
-        return ['CitationDateOfPublication'];
+        return ['CitationDateOfPublicationBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationPeriodicRelease]
+  /// Creates a new [CitationPeriodicReleaseBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationPeriodicRelease createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'citedMedium':
         {
-          return copyWith(
-            citedMedium: CodeableConcept.empty(),
-          );
+          citedMedium = CodeableConceptBuilder.empty();
+          return;
         }
       case 'volume':
         {
-          return copyWith(
-            volume: FhirString.empty(),
-          );
+          volume = FhirStringBuilder.empty();
+          return;
         }
       case 'issue':
         {
-          return copyWith(
-            issue: FhirString.empty(),
-          );
+          issue = FhirStringBuilder.empty();
+          return;
         }
       case 'dateOfPublication':
         {
-          return copyWith(
-            dateOfPublication: CitationDateOfPublication.empty(),
-          );
+          dateOfPublication = CitationDateOfPublicationBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -10874,7 +9920,7 @@ class CitationPeriodicRelease extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationPeriodicRelease clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -10883,28 +9929,26 @@ class CitationPeriodicRelease extends BackboneElement {
     bool issue = false,
     bool dateOfPublication = false,
   }) {
-    return CitationPeriodicRelease(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      citedMedium: citedMedium ? null : this.citedMedium,
-      volume: volume ? null : this.volume,
-      issue: issue ? null : this.issue,
-      dateOfPublication: dateOfPublication ? null : this.dateOfPublication,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (citedMedium) this.citedMedium = null;
+    if (volume) this.volume = null;
+    if (issue) this.issue = null;
+    if (dateOfPublication) this.dateOfPublication = null;
   }
 
   @override
-  CitationPeriodicRelease clone() => throw UnimplementedError();
+  CitationPeriodicReleaseBuilder clone() => throw UnimplementedError();
   @override
-  CitationPeriodicRelease copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? citedMedium,
-    FhirString? volume,
-    FhirString? issue,
-    CitationDateOfPublication? dateOfPublication,
+  CitationPeriodicReleaseBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? citedMedium,
+    FhirStringBuilder? volume,
+    FhirStringBuilder? issue,
+    CitationDateOfPublicationBuilder? dateOfPublication,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -10912,50 +9956,38 @@ class CitationPeriodicRelease extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationPeriodicRelease(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      citedMedium: citedMedium?.copyWith(
-            objectPath: '$newObjectPath.citedMedium',
-          ) ??
-          this.citedMedium,
-      volume: volume?.copyWith(
-            objectPath: '$newObjectPath.volume',
-          ) ??
-          this.volume,
-      issue: issue?.copyWith(
-            objectPath: '$newObjectPath.issue',
-          ) ??
-          this.issue,
-      dateOfPublication: dateOfPublication?.copyWith(
-            objectPath: '$newObjectPath.dateOfPublication',
-          ) ??
-          this.dateOfPublication,
+    final newResult = CitationPeriodicReleaseBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      citedMedium: citedMedium ?? this.citedMedium,
+      volume: volume ?? this.volume,
+      issue: issue ?? this.issue,
+      dateOfPublication: dateOfPublication ?? this.dateOfPublication,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationPeriodicRelease) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationPeriodicReleaseBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -10966,13 +9998,13 @@ class CitationPeriodicRelease extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -11006,13 +10038,13 @@ class CitationPeriodicRelease extends BackboneElement {
   }
 }
 
-/// [CitationDateOfPublication]
+/// [CitationDateOfPublicationBuilder]
 /// Defining the date on which the issue of the journal was published.
-class CitationDateOfPublication extends BackboneElement {
+class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationDateOfPublication]
+  /// [CitationDateOfPublicationBuilder]
 
-  const CitationDateOfPublication({
+  CitationDateOfPublicationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -11029,27 +10061,26 @@ class CitationDateOfPublication extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationDateOfPublication.empty() =>
-      const CitationDateOfPublication();
+  /// For Builder classes, no fields are required
+  factory CitationDateOfPublicationBuilder.empty() =>
+      CitationDateOfPublicationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationDateOfPublication.fromJson(
+  factory CitationDateOfPublicationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath =
         'Citation.citedArtifact.publicationForm.periodicRelease.dateOfPublication';
-    return CitationDateOfPublication(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationDateOfPublicationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -11058,8 +10089,8 @@ class CitationDateOfPublication extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -11067,61 +10098,61 @@ class CitationDateOfPublication extends BackboneElement {
             ),
           )
           .toList(),
-      date: JsonParser.parsePrimitive<FhirDate>(
+      date: JsonParser.parsePrimitive<FhirDateBuilder>(
         json,
         'date',
-        FhirDate.fromJson,
+        FhirDateBuilder.fromJson,
         '$objectPath.date',
       ),
-      year: JsonParser.parsePrimitive<FhirString>(
+      year: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'year',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.year',
       ),
-      month: JsonParser.parsePrimitive<FhirString>(
+      month: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'month',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.month',
       ),
-      day: JsonParser.parsePrimitive<FhirString>(
+      day: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'day',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.day',
       ),
-      season: JsonParser.parsePrimitive<FhirString>(
+      season: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'season',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.season',
       ),
-      text: JsonParser.parsePrimitive<FhirString>(
+      text: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'text',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.text',
       ),
     );
   }
 
-  /// Deserialize [CitationDateOfPublication]
+  /// Deserialize [CitationDateOfPublicationBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationDateOfPublication.fromYaml(
+  factory CitationDateOfPublicationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationDateOfPublication.fromJson(
+      return CitationDateOfPublicationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationDateOfPublication.fromJson(
+      return CitationDateOfPublicationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationDateOfPublication '
+        'CitationDateOfPublicationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -11129,16 +10160,16 @@ class CitationDateOfPublication extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationDateOfPublication]
+  /// [CitationDateOfPublicationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationDateOfPublication.fromJsonString(
+  factory CitationDateOfPublicationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationDateOfPublication.fromJson(json);
+      return CitationDateOfPublicationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -11150,44 +10181,44 @@ class CitationDateOfPublication extends BackboneElement {
 
   /// [date]
   /// Date on which the issue of the journal was published.
-  final FhirDate? date;
+  FhirDateBuilder? date;
 
   /// [year]
   /// Year on which the issue of the journal was published.
-  final FhirString? year;
+  FhirStringBuilder? year;
 
   /// [month]
   /// Month on which the issue of the journal was published.
-  final FhirString? month;
+  FhirStringBuilder? month;
 
   /// [day]
   /// Day on which the issue of the journal was published.
-  final FhirString? day;
+  FhirStringBuilder? day;
 
   /// [season]
   /// Spring, Summer, Fall/Autumn, Winter.
-  final FhirString? season;
+  FhirStringBuilder? season;
 
   /// [text]
   /// Text representation of the date of which the issue of the journal was
   /// published.
-  final FhirString? text;
+  FhirStringBuilder? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -11196,47 +10227,20 @@ class CitationDateOfPublication extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'year',
-      year,
-    );
-    addField(
-      'month',
-      month,
-    );
-    addField(
-      'day',
-      day,
-    );
-    addField(
-      'season',
-      season,
-    );
-    addField(
-      'text',
-      text,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('date', date);
+    addField('year', year);
+    addField('month', month);
+    addField('day', day);
+    addField('season', season);
+    addField('text', text);
     return json;
   }
 
@@ -11259,11 +10263,11 @@ class CitationDateOfPublication extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -11311,7 +10315,7 @@ class CitationDateOfPublication extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -11320,97 +10324,103 @@ class CitationDateOfPublication extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
         {
-          if (child is FhirDate) {
-            return copyWith(date: child);
+          if (child is FhirDateBuilder) {
+            date = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'year':
         {
-          if (child is FhirString) {
-            return copyWith(year: child);
+          if (child is FhirStringBuilder) {
+            year = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'month':
         {
-          if (child is FhirString) {
-            return copyWith(month: child);
+          if (child is FhirStringBuilder) {
+            month = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'day':
         {
-          if (child is FhirString) {
-            return copyWith(day: child);
+          if (child is FhirStringBuilder) {
+            day = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'season':
         {
-          if (child is FhirString) {
-            return copyWith(season: child);
+          if (child is FhirStringBuilder) {
+            season = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
         {
-          if (child is FhirString) {
-            return copyWith(text: child);
+          if (child is FhirStringBuilder) {
+            text = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -11426,90 +10436,77 @@ class CitationDateOfPublication extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'date':
-        return ['FhirDate'];
+        return ['FhirDateBuilder'];
       case 'year':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'month':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'day':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'season':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'text':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationDateOfPublication]
+  /// Creates a new [CitationDateOfPublicationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationDateOfPublication createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'date':
         {
-          return copyWith(
-            date: FhirDate.empty(),
-          );
+          date = FhirDateBuilder.empty();
+          return;
         }
       case 'year':
         {
-          return copyWith(
-            year: FhirString.empty(),
-          );
+          year = FhirStringBuilder.empty();
+          return;
         }
       case 'month':
         {
-          return copyWith(
-            month: FhirString.empty(),
-          );
+          month = FhirStringBuilder.empty();
+          return;
         }
       case 'day':
         {
-          return copyWith(
-            day: FhirString.empty(),
-          );
+          day = FhirStringBuilder.empty();
+          return;
         }
       case 'season':
         {
-          return copyWith(
-            season: FhirString.empty(),
-          );
+          season = FhirStringBuilder.empty();
+          return;
         }
       case 'text':
         {
-          return copyWith(
-            text: FhirString.empty(),
-          );
+          text = FhirStringBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -11518,7 +10515,7 @@ class CitationDateOfPublication extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationDateOfPublication clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -11529,32 +10526,30 @@ class CitationDateOfPublication extends BackboneElement {
     bool season = false,
     bool text = false,
   }) {
-    return CitationDateOfPublication(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      date: date ? null : this.date,
-      year: year ? null : this.year,
-      month: month ? null : this.month,
-      day: day ? null : this.day,
-      season: season ? null : this.season,
-      text: text ? null : this.text,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (date) this.date = null;
+    if (year) this.year = null;
+    if (month) this.month = null;
+    if (day) this.day = null;
+    if (season) this.season = null;
+    if (text) this.text = null;
   }
 
   @override
-  CitationDateOfPublication clone() => throw UnimplementedError();
+  CitationDateOfPublicationBuilder clone() => throw UnimplementedError();
   @override
-  CitationDateOfPublication copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirDate? date,
-    FhirString? year,
-    FhirString? month,
-    FhirString? day,
-    FhirString? season,
-    FhirString? text,
+  CitationDateOfPublicationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirDateBuilder? date,
+    FhirStringBuilder? year,
+    FhirStringBuilder? month,
+    FhirStringBuilder? day,
+    FhirStringBuilder? season,
+    FhirStringBuilder? text,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -11562,58 +10557,40 @@ class CitationDateOfPublication extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationDateOfPublication(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      year: year?.copyWith(
-            objectPath: '$newObjectPath.year',
-          ) ??
-          this.year,
-      month: month?.copyWith(
-            objectPath: '$newObjectPath.month',
-          ) ??
-          this.month,
-      day: day?.copyWith(
-            objectPath: '$newObjectPath.day',
-          ) ??
-          this.day,
-      season: season?.copyWith(
-            objectPath: '$newObjectPath.season',
-          ) ??
-          this.season,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
+    final newResult = CitationDateOfPublicationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      date: date ?? this.date,
+      year: year ?? this.year,
+      month: month ?? this.month,
+      day: day ?? this.day,
+      season: season ?? this.season,
+      text: text ?? this.text,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationDateOfPublication) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationDateOfPublicationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -11624,13 +10601,13 @@ class CitationDateOfPublication extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -11676,13 +10653,13 @@ class CitationDateOfPublication extends BackboneElement {
   }
 }
 
-/// [CitationWebLocation]
+/// [CitationWebLocationBuilder]
 /// Used for any URL for the article or artifact cited.
-class CitationWebLocation extends BackboneElement {
+class CitationWebLocationBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationWebLocation]
+  /// [CitationWebLocationBuilder]
 
-  const CitationWebLocation({
+  CitationWebLocationBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -11694,25 +10671,24 @@ class CitationWebLocation extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationWebLocation.empty() => const CitationWebLocation();
+  /// For Builder classes, no fields are required
+  factory CitationWebLocationBuilder.empty() => CitationWebLocationBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationWebLocation.fromJson(
+  factory CitationWebLocationBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.webLocation';
-    return CitationWebLocation(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationWebLocationBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -11721,8 +10697,8 @@ class CitationWebLocation extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -11730,37 +10706,37 @@ class CitationWebLocation extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      url: JsonParser.parsePrimitive<FhirUri>(
+      url: JsonParser.parsePrimitive<FhirUriBuilder>(
         json,
         'url',
-        FhirUri.fromJson,
+        FhirUriBuilder.fromJson,
         '$objectPath.url',
       ),
     );
   }
 
-  /// Deserialize [CitationWebLocation]
+  /// Deserialize [CitationWebLocationBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationWebLocation.fromYaml(
+  factory CitationWebLocationBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationWebLocation.fromJson(
+      return CitationWebLocationBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationWebLocation.fromJson(
+      return CitationWebLocationBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationWebLocation '
+        'CitationWebLocationBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -11768,16 +10744,16 @@ class CitationWebLocation extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationWebLocation]
+  /// [CitationWebLocationBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationWebLocation.fromJsonString(
+  factory CitationWebLocationBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationWebLocation.fromJson(json);
+      return CitationWebLocationBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -11789,27 +10765,27 @@ class CitationWebLocation extends BackboneElement {
 
   /// [type]
   /// Code the reason for different URLs, e.g. abstract and full-text.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [url]
   /// The specific URL.
-  final FhirUri? url;
+  FhirUriBuilder? url;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -11818,31 +10794,16 @@ class CitationWebLocation extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'url',
-      url,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('url', url);
     return json;
   }
 
@@ -11861,11 +10822,11 @@ class CitationWebLocation extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -11897,7 +10858,7 @@ class CitationWebLocation extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -11906,65 +10867,67 @@ class CitationWebLocation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
         {
-          if (child is FhirUri) {
-            return copyWith(url: child);
+          if (child is FhirUriBuilder) {
+            url = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -11980,58 +10943,49 @@ class CitationWebLocation extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'url':
-        return ['FhirUri'];
+        return ['FhirUriBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationWebLocation]
+  /// Creates a new [CitationWebLocationBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationWebLocation createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'url':
         {
-          return copyWith(
-            url: FhirUri.empty(),
-          );
+          url = FhirUriBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -12040,31 +10994,29 @@ class CitationWebLocation extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationWebLocation clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool type = false,
     bool url = false,
   }) {
-    return CitationWebLocation(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      url: url ? null : this.url,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (url) this.url = null;
   }
 
   @override
-  CitationWebLocation clone() => throw UnimplementedError();
+  CitationWebLocationBuilder clone() => throw UnimplementedError();
   @override
-  CitationWebLocation copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    FhirUri? url,
+  CitationWebLocationBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    FhirUriBuilder? url,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -12072,42 +11024,36 @@ class CitationWebLocation extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationWebLocation(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      url: url?.copyWith(
-            objectPath: '$newObjectPath.url',
-          ) ??
-          this.url,
+    final newResult = CitationWebLocationBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      url: url ?? this.url,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationWebLocation) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationWebLocationBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -12118,13 +11064,13 @@ class CitationWebLocation extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -12146,13 +11092,13 @@ class CitationWebLocation extends BackboneElement {
   }
 }
 
-/// [CitationClassification1]
+/// [CitationClassification1Builder]
 /// The assignment to an organizing scheme.
-class CitationClassification1 extends BackboneElement {
+class CitationClassification1Builder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationClassification1]
+  /// [CitationClassification1Builder]
 
-  const CitationClassification1({
+  CitationClassification1Builder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -12165,25 +11111,25 @@ class CitationClassification1 extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationClassification1.empty() => const CitationClassification1();
+  /// For Builder classes, no fields are required
+  factory CitationClassification1Builder.empty() =>
+      CitationClassification1Builder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationClassification1.fromJson(
+  factory CitationClassification1Builder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.classification';
-    return CitationClassification1(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationClassification1Builder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -12192,8 +11138,8 @@ class CitationClassification1 extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -12201,15 +11147,15 @@ class CitationClassification1 extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
       classifier: (json['classifier'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.classifier',
@@ -12217,31 +11163,31 @@ class CitationClassification1 extends BackboneElement {
             ),
           )
           .toList(),
-      whoClassified: JsonParser.parseObject<CitationWhoClassified>(
+      whoClassified: JsonParser.parseObject<CitationWhoClassifiedBuilder>(
         json,
         'whoClassified',
-        CitationWhoClassified.fromJson,
+        CitationWhoClassifiedBuilder.fromJson,
         '$objectPath.whoClassified',
       ),
     );
   }
 
-  /// Deserialize [CitationClassification1]
+  /// Deserialize [CitationClassification1Builder]
   /// from a [String] or [YamlMap] object
-  factory CitationClassification1.fromYaml(
+  factory CitationClassification1Builder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationClassification1.fromJson(
+      return CitationClassification1Builder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationClassification1.fromJson(
+      return CitationClassification1Builder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationClassification1 '
+        'CitationClassification1Builder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -12249,16 +11195,16 @@ class CitationClassification1 extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationClassification1]
+  /// [CitationClassification1Builder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationClassification1.fromJsonString(
+  factory CitationClassification1Builder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationClassification1.fromJson(json);
+      return CitationClassification1Builder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -12270,31 +11216,31 @@ class CitationClassification1 extends BackboneElement {
 
   /// [type]
   /// The kind of classifier (e.g. publication type, keyword).
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [classifier]
   /// The specific classification value.
-  final List<CodeableConcept>? classifier;
+  List<CodeableConceptBuilder>? classifier;
 
   /// [whoClassified]
   /// Provenance and copyright of classification.
-  final CitationWhoClassified? whoClassified;
+  CitationWhoClassifiedBuilder? whoClassified;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -12303,35 +11249,17 @@ class CitationClassification1 extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'classifier',
-      classifier,
-    );
-    addField(
-      'whoClassified',
-      whoClassified,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('classifier', classifier);
+    addField('whoClassified', whoClassified);
     return json;
   }
 
@@ -12351,11 +11279,11 @@ class CitationClassification1 extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -12391,7 +11319,7 @@ class CitationClassification1 extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -12400,79 +11328,81 @@ class CitationClassification1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classifier':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?classifier, ...child];
-            return copyWith(classifier: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            classifier = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?classifier, child];
-            return copyWith(classifier: newList);
+            classifier = [...(classifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'whoClassified':
         {
-          if (child is CitationWhoClassified) {
-            return copyWith(whoClassified: child);
+          if (child is CitationWhoClassifiedBuilder) {
+            whoClassified = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -12488,66 +11418,56 @@ class CitationClassification1 extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'classifier':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'whoClassified':
-        return ['CitationWhoClassified'];
+        return ['CitationWhoClassifiedBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationClassification1]
+  /// Creates a new [CitationClassification1Builder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationClassification1 createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'classifier':
         {
-          return copyWith(
-            classifier: <CodeableConcept>[],
-          );
+          classifier = <CodeableConceptBuilder>[];
+          return;
         }
       case 'whoClassified':
         {
-          return copyWith(
-            whoClassified: CitationWhoClassified.empty(),
-          );
+          whoClassified = CitationWhoClassifiedBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -12556,7 +11476,7 @@ class CitationClassification1 extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationClassification1 clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -12564,26 +11484,24 @@ class CitationClassification1 extends BackboneElement {
     bool classifier = false,
     bool whoClassified = false,
   }) {
-    return CitationClassification1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      classifier: classifier ? null : this.classifier,
-      whoClassified: whoClassified ? null : this.whoClassified,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (classifier) this.classifier = null;
+    if (whoClassified) this.whoClassified = null;
   }
 
   @override
-  CitationClassification1 clone() => throw UnimplementedError();
+  CitationClassification1Builder clone() => throw UnimplementedError();
   @override
-  CitationClassification1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? classifier,
-    CitationWhoClassified? whoClassified,
+  CitationClassification1Builder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    List<CodeableConceptBuilder>? classifier,
+    CitationWhoClassifiedBuilder? whoClassified,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -12591,50 +11509,37 @@ class CitationClassification1 extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationClassification1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      classifier: classifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.classifier',
-                ),
-              )
-              .toList() ??
-          this.classifier,
-      whoClassified: whoClassified?.copyWith(
-            objectPath: '$newObjectPath.whoClassified',
-          ) ??
-          this.whoClassified,
+    final newResult = CitationClassification1Builder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      classifier: classifier ?? this.classifier,
+      whoClassified: whoClassified ?? this.whoClassified,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationClassification1) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationClassification1Builder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -12645,13 +11550,13 @@ class CitationClassification1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -12663,7 +11568,7 @@ class CitationClassification1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       classifier,
       o.classifier,
     )) {
@@ -12679,13 +11584,13 @@ class CitationClassification1 extends BackboneElement {
   }
 }
 
-/// [CitationWhoClassified]
+/// [CitationWhoClassifiedBuilder]
 /// Provenance and copyright of classification.
-class CitationWhoClassified extends BackboneElement {
+class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationWhoClassified]
+  /// [CitationWhoClassifiedBuilder]
 
-  const CitationWhoClassified({
+  CitationWhoClassifiedBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -12700,25 +11605,25 @@ class CitationWhoClassified extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationWhoClassified.empty() => const CitationWhoClassified();
+  /// For Builder classes, no fields are required
+  factory CitationWhoClassifiedBuilder.empty() =>
+      CitationWhoClassifiedBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationWhoClassified.fromJson(
+  factory CitationWhoClassifiedBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.classification.whoClassified';
-    return CitationWhoClassified(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationWhoClassifiedBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -12727,8 +11632,8 @@ class CitationWhoClassified extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -12736,55 +11641,55 @@ class CitationWhoClassified extends BackboneElement {
             ),
           )
           .toList(),
-      person: JsonParser.parseObject<Reference>(
+      person: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'person',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.person',
       ),
-      organization: JsonParser.parseObject<Reference>(
+      organization: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'organization',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.organization',
       ),
-      publisher: JsonParser.parseObject<Reference>(
+      publisher: JsonParser.parseObject<ReferenceBuilder>(
         json,
         'publisher',
-        Reference.fromJson,
+        ReferenceBuilder.fromJson,
         '$objectPath.publisher',
       ),
-      classifierCopyright: JsonParser.parsePrimitive<FhirString>(
+      classifierCopyright: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'classifierCopyright',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.classifierCopyright',
       ),
-      freeToShare: JsonParser.parsePrimitive<FhirBoolean>(
+      freeToShare: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'freeToShare',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.freeToShare',
       ),
     );
   }
 
-  /// Deserialize [CitationWhoClassified]
+  /// Deserialize [CitationWhoClassifiedBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationWhoClassified.fromYaml(
+  factory CitationWhoClassifiedBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationWhoClassified.fromJson(
+      return CitationWhoClassifiedBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationWhoClassified.fromJson(
+      return CitationWhoClassifiedBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationWhoClassified '
+        'CitationWhoClassifiedBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -12792,16 +11697,16 @@ class CitationWhoClassified extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationWhoClassified]
+  /// [CitationWhoClassifiedBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationWhoClassified.fromJsonString(
+  factory CitationWhoClassifiedBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationWhoClassified.fromJson(json);
+      return CitationWhoClassifiedBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -12813,40 +11718,40 @@ class CitationWhoClassified extends BackboneElement {
 
   /// [person]
   /// Person who created the classification.
-  final Reference? person;
+  ReferenceBuilder? person;
 
   /// [organization]
   /// Organization who created the classification.
-  final Reference? organization;
+  ReferenceBuilder? organization;
 
   /// [publisher]
   /// The publisher of the classification, not the publisher of the article
   /// or artifact being cited.
-  final Reference? publisher;
+  ReferenceBuilder? publisher;
 
   /// [classifierCopyright]
   /// Rights management statement for the classification.
-  final FhirString? classifierCopyright;
+  FhirStringBuilder? classifierCopyright;
 
   /// [freeToShare]
   /// Acceptable to re-use the classification.
-  final FhirBoolean? freeToShare;
+  FhirBooleanBuilder? freeToShare;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -12855,43 +11760,19 @@ class CitationWhoClassified extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'person',
-      person,
-    );
-    addField(
-      'organization',
-      organization,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'classifierCopyright',
-      classifierCopyright,
-    );
-    addField(
-      'freeToShare',
-      freeToShare,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('person', person);
+    addField('organization', organization);
+    addField('publisher', publisher);
+    addField('classifierCopyright', classifierCopyright);
+    addField('freeToShare', freeToShare);
     return json;
   }
 
@@ -12913,11 +11794,11 @@ class CitationWhoClassified extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -12961,7 +11842,7 @@ class CitationWhoClassified extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -12970,89 +11851,94 @@ class CitationWhoClassified extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'person':
         {
-          if (child is Reference) {
-            return copyWith(person: child);
+          if (child is ReferenceBuilder) {
+            person = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
         {
-          if (child is Reference) {
-            return copyWith(organization: child);
+          if (child is ReferenceBuilder) {
+            organization = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
         {
-          if (child is Reference) {
-            return copyWith(publisher: child);
+          if (child is ReferenceBuilder) {
+            publisher = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'classifierCopyright':
         {
-          if (child is FhirString) {
-            return copyWith(classifierCopyright: child);
+          if (child is FhirStringBuilder) {
+            classifierCopyright = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'freeToShare':
         {
-          if (child is FhirBoolean) {
-            return copyWith(freeToShare: child);
+          if (child is FhirBooleanBuilder) {
+            freeToShare = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -13068,82 +11954,70 @@ class CitationWhoClassified extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'person':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'organization':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'publisher':
-        return ['Reference'];
+        return ['ReferenceBuilder'];
       case 'classifierCopyright':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'freeToShare':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationWhoClassified]
+  /// Creates a new [CitationWhoClassifiedBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationWhoClassified createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'person':
         {
-          return copyWith(
-            person: Reference.empty(),
-          );
+          person = ReferenceBuilder.empty();
+          return;
         }
       case 'organization':
         {
-          return copyWith(
-            organization: Reference.empty(),
-          );
+          organization = ReferenceBuilder.empty();
+          return;
         }
       case 'publisher':
         {
-          return copyWith(
-            publisher: Reference.empty(),
-          );
+          publisher = ReferenceBuilder.empty();
+          return;
         }
       case 'classifierCopyright':
         {
-          return copyWith(
-            classifierCopyright: FhirString.empty(),
-          );
+          classifierCopyright = FhirStringBuilder.empty();
+          return;
         }
       case 'freeToShare':
         {
-          return copyWith(
-            freeToShare: FhirBoolean.empty(),
-          );
+          freeToShare = FhirBooleanBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -13152,7 +12026,7 @@ class CitationWhoClassified extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationWhoClassified clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -13162,31 +12036,28 @@ class CitationWhoClassified extends BackboneElement {
     bool classifierCopyright = false,
     bool freeToShare = false,
   }) {
-    return CitationWhoClassified(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      person: person ? null : this.person,
-      organization: organization ? null : this.organization,
-      publisher: publisher ? null : this.publisher,
-      classifierCopyright:
-          classifierCopyright ? null : this.classifierCopyright,
-      freeToShare: freeToShare ? null : this.freeToShare,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (person) this.person = null;
+    if (organization) this.organization = null;
+    if (publisher) this.publisher = null;
+    if (classifierCopyright) this.classifierCopyright = null;
+    if (freeToShare) this.freeToShare = null;
   }
 
   @override
-  CitationWhoClassified clone() => throw UnimplementedError();
+  CitationWhoClassifiedBuilder clone() => throw UnimplementedError();
   @override
-  CitationWhoClassified copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? person,
-    Reference? organization,
-    Reference? publisher,
-    FhirString? classifierCopyright,
-    FhirBoolean? freeToShare,
+  CitationWhoClassifiedBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    ReferenceBuilder? person,
+    ReferenceBuilder? organization,
+    ReferenceBuilder? publisher,
+    FhirStringBuilder? classifierCopyright,
+    FhirBooleanBuilder? freeToShare,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -13194,54 +12065,39 @@ class CitationWhoClassified extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationWhoClassified(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      person: person?.copyWith(
-            objectPath: '$newObjectPath.person',
-          ) ??
-          this.person,
-      organization: organization?.copyWith(
-            objectPath: '$newObjectPath.organization',
-          ) ??
-          this.organization,
-      publisher: publisher?.copyWith(
-            objectPath: '$newObjectPath.publisher',
-          ) ??
-          this.publisher,
-      classifierCopyright: classifierCopyright?.copyWith(
-            objectPath: '$newObjectPath.classifierCopyright',
-          ) ??
-          this.classifierCopyright,
-      freeToShare: freeToShare?.copyWith(
-            objectPath: '$newObjectPath.freeToShare',
-          ) ??
-          this.freeToShare,
+    final newResult = CitationWhoClassifiedBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      person: person ?? this.person,
+      organization: organization ?? this.organization,
+      publisher: publisher ?? this.publisher,
+      classifierCopyright: classifierCopyright ?? this.classifierCopyright,
+      freeToShare: freeToShare ?? this.freeToShare,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationWhoClassified) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationWhoClassifiedBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -13252,13 +12108,13 @@ class CitationWhoClassified extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -13298,14 +12154,14 @@ class CitationWhoClassified extends BackboneElement {
   }
 }
 
-/// [CitationContributorship]
+/// [CitationContributorshipBuilder]
 /// This element is used to list authors and other contributors, their
 /// contact information, specific contributions, and summary statements.
-class CitationContributorship extends BackboneElement {
+class CitationContributorshipBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationContributorship]
+  /// [CitationContributorshipBuilder]
 
-  const CitationContributorship({
+  CitationContributorshipBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -13318,25 +12174,25 @@ class CitationContributorship extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationContributorship.empty() => const CitationContributorship();
+  /// For Builder classes, no fields are required
+  factory CitationContributorshipBuilder.empty() =>
+      CitationContributorshipBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationContributorship.fromJson(
+  factory CitationContributorshipBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.contributorship';
-    return CitationContributorship(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationContributorshipBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -13345,8 +12201,8 @@ class CitationContributorship extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -13354,15 +12210,15 @@ class CitationContributorship extends BackboneElement {
             ),
           )
           .toList(),
-      complete: JsonParser.parsePrimitive<FhirBoolean>(
+      complete: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'complete',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.complete',
       ),
       entry: (json['entry'] as List<dynamic>?)
-          ?.map<CitationEntry>(
-            (v) => CitationEntry.fromJson(
+          ?.map<CitationEntryBuilder>(
+            (v) => CitationEntryBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.entry',
@@ -13371,8 +12227,8 @@ class CitationContributorship extends BackboneElement {
           )
           .toList(),
       summary: (json['summary'] as List<dynamic>?)
-          ?.map<CitationSummary>(
-            (v) => CitationSummary.fromJson(
+          ?.map<CitationSummaryBuilder>(
+            (v) => CitationSummaryBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.summary',
@@ -13383,22 +12239,22 @@ class CitationContributorship extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationContributorship]
+  /// Deserialize [CitationContributorshipBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationContributorship.fromYaml(
+  factory CitationContributorshipBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationContributorship.fromJson(
+      return CitationContributorshipBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationContributorship.fromJson(
+      return CitationContributorshipBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationContributorship '
+        'CitationContributorshipBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -13406,16 +12262,16 @@ class CitationContributorship extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationContributorship]
+  /// [CitationContributorshipBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationContributorship.fromJsonString(
+  factory CitationContributorshipBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationContributorship.fromJson(json);
+      return CitationContributorshipBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -13427,32 +12283,32 @@ class CitationContributorship extends BackboneElement {
 
   /// [complete]
   /// Indicates if the list includes all authors and/or contributors.
-  final FhirBoolean? complete;
+  FhirBooleanBuilder? complete;
 
   /// [entry]
   /// An individual entity named in the author list or contributor list.
-  final List<CitationEntry>? entry;
+  List<CitationEntryBuilder>? entry;
 
   /// [summary]
   /// Used to record a display of the author/contributor list without
   /// separate coding for each list member.
-  final List<CitationSummary>? summary;
+  List<CitationSummaryBuilder>? summary;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -13461,35 +12317,17 @@ class CitationContributorship extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'complete',
-      complete,
-    );
-    addField(
-      'entry',
-      entry,
-    );
-    addField(
-      'summary',
-      summary,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('complete', complete);
+    addField('entry', entry);
+    addField('summary', summary);
     return json;
   }
 
@@ -13509,11 +12347,11 @@ class CitationContributorship extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -13549,7 +12387,7 @@ class CitationContributorship extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -13558,85 +12396,86 @@ class CitationContributorship extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'complete':
         {
-          if (child is FhirBoolean) {
-            return copyWith(complete: child);
+          if (child is FhirBooleanBuilder) {
+            complete = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'entry':
         {
-          if (child is List<CitationEntry>) {
-            // Add all elements from passed list
-            final newList = [...?entry, ...child];
-            return copyWith(entry: newList);
-          } else if (child is CitationEntry) {
+          if (child is List<CitationEntryBuilder>) {
+            // Replace or create new list
+            entry = child;
+            return;
+          } else if (child is CitationEntryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?entry, child];
-            return copyWith(entry: newList);
+            entry = [...(entry ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'summary':
         {
-          if (child is List<CitationSummary>) {
-            // Add all elements from passed list
-            final newList = [...?summary, ...child];
-            return copyWith(summary: newList);
-          } else if (child is CitationSummary) {
+          if (child is List<CitationSummaryBuilder>) {
+            // Replace or create new list
+            summary = child;
+            return;
+          } else if (child is CitationSummaryBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?summary, child];
-            return copyWith(summary: newList);
+            summary = [...(summary ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -13652,66 +12491,56 @@ class CitationContributorship extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'complete':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'entry':
-        return ['CitationEntry'];
+        return ['CitationEntryBuilder'];
       case 'summary':
-        return ['CitationSummary'];
+        return ['CitationSummaryBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationContributorship]
+  /// Creates a new [CitationContributorshipBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationContributorship createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'complete':
         {
-          return copyWith(
-            complete: FhirBoolean.empty(),
-          );
+          complete = FhirBooleanBuilder.empty();
+          return;
         }
       case 'entry':
         {
-          return copyWith(
-            entry: <CitationEntry>[],
-          );
+          entry = <CitationEntryBuilder>[];
+          return;
         }
       case 'summary':
         {
-          return copyWith(
-            summary: <CitationSummary>[],
-          );
+          summary = <CitationSummaryBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -13720,7 +12549,7 @@ class CitationContributorship extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationContributorship clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -13728,26 +12557,24 @@ class CitationContributorship extends BackboneElement {
     bool entry = false,
     bool summary = false,
   }) {
-    return CitationContributorship(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      complete: complete ? null : this.complete,
-      entry: entry ? null : this.entry,
-      summary: summary ? null : this.summary,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (complete) this.complete = null;
+    if (entry) this.entry = null;
+    if (summary) this.summary = null;
   }
 
   @override
-  CitationContributorship clone() => throw UnimplementedError();
+  CitationContributorshipBuilder clone() => throw UnimplementedError();
   @override
-  CitationContributorship copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirBoolean? complete,
-    List<CitationEntry>? entry,
-    List<CitationSummary>? summary,
+  CitationContributorshipBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirBooleanBuilder? complete,
+    List<CitationEntryBuilder>? entry,
+    List<CitationSummaryBuilder>? summary,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -13755,54 +12582,37 @@ class CitationContributorship extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationContributorship(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      complete: complete?.copyWith(
-            objectPath: '$newObjectPath.complete',
-          ) ??
-          this.complete,
-      entry: entry
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.entry',
-                ),
-              )
-              .toList() ??
-          this.entry,
-      summary: summary
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.summary',
-                ),
-              )
-              .toList() ??
-          this.summary,
+    final newResult = CitationContributorshipBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      complete: complete ?? this.complete,
+      entry: entry ?? this.entry,
+      summary: summary ?? this.summary,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationContributorship) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationContributorshipBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -13813,13 +12623,13 @@ class CitationContributorship extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -13831,13 +12641,13 @@ class CitationContributorship extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CitationEntry>(
+    if (!listEquals<CitationEntryBuilder>(
       entry,
       o.entry,
     )) {
       return false;
     }
-    if (!listEquals<CitationSummary>(
+    if (!listEquals<CitationSummaryBuilder>(
       summary,
       o.summary,
     )) {
@@ -13847,13 +12657,13 @@ class CitationContributorship extends BackboneElement {
   }
 }
 
-/// [CitationEntry]
+/// [CitationEntryBuilder]
 /// An individual entity named in the author list or contributor list.
-class CitationEntry extends BackboneElement {
+class CitationEntryBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationEntry]
+  /// [CitationEntryBuilder]
 
-  const CitationEntry({
+  CitationEntryBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -13875,25 +12685,24 @@ class CitationEntry extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationEntry.empty() => const CitationEntry();
+  /// For Builder classes, no fields are required
+  factory CitationEntryBuilder.empty() => CitationEntryBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationEntry.fromJson(
+  factory CitationEntryBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.contributorship.entry';
-    return CitationEntry(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationEntryBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -13902,8 +12711,8 @@ class CitationEntry extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -13911,27 +12720,27 @@ class CitationEntry extends BackboneElement {
             ),
           )
           .toList(),
-      name: JsonParser.parseObject<HumanName>(
+      name: JsonParser.parseObject<HumanNameBuilder>(
         json,
         'name',
-        HumanName.fromJson,
+        HumanNameBuilder.fromJson,
         '$objectPath.name',
       ),
-      initials: JsonParser.parsePrimitive<FhirString>(
+      initials: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'initials',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.initials',
       ),
-      collectiveName: JsonParser.parsePrimitive<FhirString>(
+      collectiveName: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'collectiveName',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.collectiveName',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -13940,8 +12749,8 @@ class CitationEntry extends BackboneElement {
           )
           .toList(),
       affiliationInfo: (json['affiliationInfo'] as List<dynamic>?)
-          ?.map<CitationAffiliationInfo>(
-            (v) => CitationAffiliationInfo.fromJson(
+          ?.map<CitationAffiliationInfoBuilder>(
+            (v) => CitationAffiliationInfoBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.affiliationInfo',
@@ -13950,8 +12759,8 @@ class CitationEntry extends BackboneElement {
           )
           .toList(),
       address: (json['address'] as List<dynamic>?)
-          ?.map<Address>(
-            (v) => Address.fromJson(
+          ?.map<AddressBuilder>(
+            (v) => AddressBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.address',
@@ -13960,8 +12769,8 @@ class CitationEntry extends BackboneElement {
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
-          ?.map<ContactPoint>(
-            (v) => ContactPoint.fromJson(
+          ?.map<ContactPointBuilder>(
+            (v) => ContactPointBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.telecom',
@@ -13970,8 +12779,8 @@ class CitationEntry extends BackboneElement {
           )
           .toList(),
       contributionType: (json['contributionType'] as List<dynamic>?)
-          ?.map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
+          ?.map<CodeableConceptBuilder>(
+            (v) => CodeableConceptBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contributionType',
@@ -13979,15 +12788,15 @@ class CitationEntry extends BackboneElement {
             ),
           )
           .toList(),
-      role: JsonParser.parseObject<CodeableConcept>(
+      role: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'role',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.role',
       ),
       contributionInstance: (json['contributionInstance'] as List<dynamic>?)
-          ?.map<CitationContributionInstance>(
-            (v) => CitationContributionInstance.fromJson(
+          ?.map<CitationContributionInstanceBuilder>(
+            (v) => CitationContributionInstanceBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.contributionInstance',
@@ -13995,37 +12804,37 @@ class CitationEntry extends BackboneElement {
             ),
           )
           .toList(),
-      correspondingContact: JsonParser.parsePrimitive<FhirBoolean>(
+      correspondingContact: JsonParser.parsePrimitive<FhirBooleanBuilder>(
         json,
         'correspondingContact',
-        FhirBoolean.fromJson,
+        FhirBooleanBuilder.fromJson,
         '$objectPath.correspondingContact',
       ),
-      listOrder: JsonParser.parsePrimitive<FhirPositiveInt>(
+      listOrder: JsonParser.parsePrimitive<FhirPositiveIntBuilder>(
         json,
         'listOrder',
-        FhirPositiveInt.fromJson,
+        FhirPositiveIntBuilder.fromJson,
         '$objectPath.listOrder',
       ),
     );
   }
 
-  /// Deserialize [CitationEntry]
+  /// Deserialize [CitationEntryBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationEntry.fromYaml(
+  factory CitationEntryBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationEntry.fromJson(
+      return CitationEntryBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationEntry.fromJson(
+      return CitationEntryBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationEntry '
+        'CitationEntryBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -14033,16 +12842,16 @@ class CitationEntry extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationEntry]
+  /// [CitationEntryBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationEntry.fromJsonString(
+  factory CitationEntryBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationEntry.fromJson(json);
+      return CitationEntryBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -14054,69 +12863,69 @@ class CitationEntry extends BackboneElement {
 
   /// [name]
   /// A name associated with the individual.
-  final HumanName? name;
+  HumanNameBuilder? name;
 
   /// [initials]
   /// Initials for forename.
-  final FhirString? initials;
+  FhirStringBuilder? initials;
 
   /// [collectiveName]
   /// Used for collective or corporate name as an author.
-  final FhirString? collectiveName;
+  FhirStringBuilder? collectiveName;
 
   /// [identifier]
   /// Unique person identifier.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
 
   /// [affiliationInfo]
   /// Organization affiliated with the entity.
-  final List<CitationAffiliationInfo>? affiliationInfo;
+  List<CitationAffiliationInfoBuilder>? affiliationInfo;
 
   /// [address]
   /// Physical mailing address for the author or contributor.
-  final List<Address>? address;
+  List<AddressBuilder>? address;
 
   /// [telecom]
   /// Email or telephone contact methods for the author or contributor.
-  final List<ContactPoint>? telecom;
+  List<ContactPointBuilder>? telecom;
 
   /// [contributionType]
   /// This element identifies the specific nature of an individual’s
   /// contribution with respect to the cited work.
-  final List<CodeableConcept>? contributionType;
+  List<CodeableConceptBuilder>? contributionType;
 
   /// [role]
   /// The role of the contributor (e.g. author, editor, reviewer).
-  final CodeableConcept? role;
+  CodeableConceptBuilder? role;
 
   /// [contributionInstance]
   /// Contributions with accounting for time or number.
-  final List<CitationContributionInstance>? contributionInstance;
+  List<CitationContributionInstanceBuilder>? contributionInstance;
 
   /// [correspondingContact]
   /// Indication of which contributor is the corresponding contributor for
   /// the role.
-  final FhirBoolean? correspondingContact;
+  FhirBooleanBuilder? correspondingContact;
 
   /// [listOrder]
   /// Used to code order of authors.
-  final FhirPositiveInt? listOrder;
+  FhirPositiveIntBuilder? listOrder;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -14125,71 +12934,26 @@ class CitationEntry extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'initials',
-      initials,
-    );
-    addField(
-      'collectiveName',
-      collectiveName,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
-    addField(
-      'affiliationInfo',
-      affiliationInfo,
-    );
-    addField(
-      'address',
-      address,
-    );
-    addField(
-      'telecom',
-      telecom,
-    );
-    addField(
-      'contributionType',
-      contributionType,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'contributionInstance',
-      contributionInstance,
-    );
-    addField(
-      'correspondingContact',
-      correspondingContact,
-    );
-    addField(
-      'listOrder',
-      listOrder,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('initials', initials);
+    addField('collectiveName', collectiveName);
+    addField('identifier', identifier);
+    addField('affiliationInfo', affiliationInfo);
+    addField('address', address);
+    addField('telecom', telecom);
+    addField('contributionType', contributionType);
+    addField('role', role);
+    addField('contributionInstance', contributionInstance);
+    addField('correspondingContact', correspondingContact);
+    addField('listOrder', listOrder);
     return json;
   }
 
@@ -14218,11 +12982,11 @@ class CitationEntry extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -14294,7 +13058,7 @@ class CitationEntry extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -14303,181 +13067,187 @@ class CitationEntry extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
-          if (child is HumanName) {
-            return copyWith(name: child);
+          if (child is HumanNameBuilder) {
+            name = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'initials':
         {
-          if (child is FhirString) {
-            return copyWith(initials: child);
+          if (child is FhirStringBuilder) {
+            initials = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'collectiveName':
         {
-          if (child is FhirString) {
-            return copyWith(collectiveName: child);
+          if (child is FhirStringBuilder) {
+            collectiveName = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'affiliationInfo':
         {
-          if (child is List<CitationAffiliationInfo>) {
-            // Add all elements from passed list
-            final newList = [...?affiliationInfo, ...child];
-            return copyWith(affiliationInfo: newList);
-          } else if (child is CitationAffiliationInfo) {
+          if (child is List<CitationAffiliationInfoBuilder>) {
+            // Replace or create new list
+            affiliationInfo = child;
+            return;
+          } else if (child is CitationAffiliationInfoBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?affiliationInfo, child];
-            return copyWith(affiliationInfo: newList);
+            affiliationInfo = [...(affiliationInfo ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
         {
-          if (child is List<Address>) {
-            // Add all elements from passed list
-            final newList = [...?address, ...child];
-            return copyWith(address: newList);
-          } else if (child is Address) {
+          if (child is List<AddressBuilder>) {
+            // Replace or create new list
+            address = child;
+            return;
+          } else if (child is AddressBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?address, child];
-            return copyWith(address: newList);
+            address = [...(address ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
+          if (child is List<ContactPointBuilder>) {
+            // Replace or create new list
+            telecom = child;
+            return;
+          } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
-            return copyWith(telecom: newList);
+            telecom = [...(telecom ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contributionType':
         {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?contributionType, ...child];
-            return copyWith(contributionType: newList);
-          } else if (child is CodeableConcept) {
+          if (child is List<CodeableConceptBuilder>) {
+            // Replace or create new list
+            contributionType = child;
+            return;
+          } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contributionType, child];
-            return copyWith(contributionType: newList);
+            contributionType = [...(contributionType ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
+          if (child is CodeableConceptBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'contributionInstance':
         {
-          if (child is List<CitationContributionInstance>) {
-            // Add all elements from passed list
-            final newList = [...?contributionInstance, ...child];
-            return copyWith(contributionInstance: newList);
-          } else if (child is CitationContributionInstance) {
+          if (child is List<CitationContributionInstanceBuilder>) {
+            // Replace or create new list
+            contributionInstance = child;
+            return;
+          } else if (child is CitationContributionInstanceBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?contributionInstance, child];
-            return copyWith(contributionInstance: newList);
+            contributionInstance = [...(contributionInstance ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'correspondingContact':
         {
-          if (child is FhirBoolean) {
-            return copyWith(correspondingContact: child);
+          if (child is FhirBooleanBuilder) {
+            correspondingContact = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'listOrder':
         {
-          if (child is FhirPositiveInt) {
-            return copyWith(listOrder: child);
+          if (child is FhirPositiveIntBuilder) {
+            listOrder = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -14493,138 +13263,119 @@ class CitationEntry extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'name':
-        return ['HumanName'];
+        return ['HumanNameBuilder'];
       case 'initials':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'collectiveName':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       case 'affiliationInfo':
-        return ['CitationAffiliationInfo'];
+        return ['CitationAffiliationInfoBuilder'];
       case 'address':
-        return ['Address'];
+        return ['AddressBuilder'];
       case 'telecom':
-        return ['ContactPoint'];
+        return ['ContactPointBuilder'];
       case 'contributionType':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'role':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'contributionInstance':
-        return ['CitationContributionInstance'];
+        return ['CitationContributionInstanceBuilder'];
       case 'correspondingContact':
-        return ['FhirBoolean'];
+        return ['FhirBooleanBuilder'];
       case 'listOrder':
-        return ['FhirPositiveInt'];
+        return ['FhirPositiveIntBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationEntry]
+  /// Creates a new [CitationEntryBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationEntry createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'name':
         {
-          return copyWith(
-            name: HumanName.empty(),
-          );
+          name = HumanNameBuilder.empty();
+          return;
         }
       case 'initials':
         {
-          return copyWith(
-            initials: FhirString.empty(),
-          );
+          initials = FhirStringBuilder.empty();
+          return;
         }
       case 'collectiveName':
         {
-          return copyWith(
-            collectiveName: FhirString.empty(),
-          );
+          collectiveName = FhirStringBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       case 'affiliationInfo':
         {
-          return copyWith(
-            affiliationInfo: <CitationAffiliationInfo>[],
-          );
+          affiliationInfo = <CitationAffiliationInfoBuilder>[];
+          return;
         }
       case 'address':
         {
-          return copyWith(
-            address: <Address>[],
-          );
+          address = <AddressBuilder>[];
+          return;
         }
       case 'telecom':
         {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
+          telecom = <ContactPointBuilder>[];
+          return;
         }
       case 'contributionType':
         {
-          return copyWith(
-            contributionType: <CodeableConcept>[],
-          );
+          contributionType = <CodeableConceptBuilder>[];
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
+          role = CodeableConceptBuilder.empty();
+          return;
         }
       case 'contributionInstance':
         {
-          return copyWith(
-            contributionInstance: <CitationContributionInstance>[],
-          );
+          contributionInstance = <CitationContributionInstanceBuilder>[];
+          return;
         }
       case 'correspondingContact':
         {
-          return copyWith(
-            correspondingContact: FhirBoolean.empty(),
-          );
+          correspondingContact = FhirBooleanBuilder.empty();
+          return;
         }
       case 'listOrder':
         {
-          return copyWith(
-            listOrder: FhirPositiveInt.empty(),
-          );
+          listOrder = FhirPositiveIntBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -14633,7 +13384,7 @@ class CitationEntry extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationEntry clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -14650,46 +13401,42 @@ class CitationEntry extends BackboneElement {
     bool correspondingContact = false,
     bool listOrder = false,
   }) {
-    return CitationEntry(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      name: name ? null : this.name,
-      initials: initials ? null : this.initials,
-      collectiveName: collectiveName ? null : this.collectiveName,
-      identifier: identifier ? null : this.identifier,
-      affiliationInfo: affiliationInfo ? null : this.affiliationInfo,
-      address: address ? null : this.address,
-      telecom: telecom ? null : this.telecom,
-      contributionType: contributionType ? null : this.contributionType,
-      role: role ? null : this.role,
-      contributionInstance:
-          contributionInstance ? null : this.contributionInstance,
-      correspondingContact:
-          correspondingContact ? null : this.correspondingContact,
-      listOrder: listOrder ? null : this.listOrder,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (name) this.name = null;
+    if (initials) this.initials = null;
+    if (collectiveName) this.collectiveName = null;
+    if (identifier) this.identifier = null;
+    if (affiliationInfo) this.affiliationInfo = null;
+    if (address) this.address = null;
+    if (telecom) this.telecom = null;
+    if (contributionType) this.contributionType = null;
+    if (role) this.role = null;
+    if (contributionInstance) this.contributionInstance = null;
+    if (correspondingContact) this.correspondingContact = null;
+    if (listOrder) this.listOrder = null;
   }
 
   @override
-  CitationEntry clone() => throw UnimplementedError();
+  CitationEntryBuilder clone() => throw UnimplementedError();
   @override
-  CitationEntry copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    HumanName? name,
-    FhirString? initials,
-    FhirString? collectiveName,
-    List<Identifier>? identifier,
-    List<CitationAffiliationInfo>? affiliationInfo,
-    List<Address>? address,
-    List<ContactPoint>? telecom,
-    List<CodeableConcept>? contributionType,
-    CodeableConcept? role,
-    List<CitationContributionInstance>? contributionInstance,
-    FhirBoolean? correspondingContact,
-    FhirPositiveInt? listOrder,
+  CitationEntryBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    HumanNameBuilder? name,
+    FhirStringBuilder? initials,
+    FhirStringBuilder? collectiveName,
+    List<IdentifierBuilder>? identifier,
+    List<CitationAffiliationInfoBuilder>? affiliationInfo,
+    List<AddressBuilder>? address,
+    List<ContactPointBuilder>? telecom,
+    List<CodeableConceptBuilder>? contributionType,
+    CodeableConceptBuilder? role,
+    List<CitationContributionInstanceBuilder>? contributionInstance,
+    FhirBooleanBuilder? correspondingContact,
+    FhirPositiveIntBuilder? listOrder,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -14697,106 +13444,46 @@ class CitationEntry extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationEntry(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      initials: initials?.copyWith(
-            objectPath: '$newObjectPath.initials',
-          ) ??
-          this.initials,
-      collectiveName: collectiveName?.copyWith(
-            objectPath: '$newObjectPath.collectiveName',
-          ) ??
-          this.collectiveName,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      affiliationInfo: affiliationInfo
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.affiliationInfo',
-                ),
-              )
-              .toList() ??
-          this.affiliationInfo,
-      address: address
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.address',
-                ),
-              )
-              .toList() ??
-          this.address,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      contributionType: contributionType
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contributionType',
-                ),
-              )
-              .toList() ??
-          this.contributionType,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      contributionInstance: contributionInstance
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.contributionInstance',
-                ),
-              )
-              .toList() ??
-          this.contributionInstance,
-      correspondingContact: correspondingContact?.copyWith(
-            objectPath: '$newObjectPath.correspondingContact',
-          ) ??
-          this.correspondingContact,
-      listOrder: listOrder?.copyWith(
-            objectPath: '$newObjectPath.listOrder',
-          ) ??
-          this.listOrder,
+    final newResult = CitationEntryBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      name: name ?? this.name,
+      initials: initials ?? this.initials,
+      collectiveName: collectiveName ?? this.collectiveName,
+      identifier: identifier ?? this.identifier,
+      affiliationInfo: affiliationInfo ?? this.affiliationInfo,
+      address: address ?? this.address,
+      telecom: telecom ?? this.telecom,
+      contributionType: contributionType ?? this.contributionType,
+      role: role ?? this.role,
+      contributionInstance: contributionInstance ?? this.contributionInstance,
+      correspondingContact: correspondingContact ?? this.correspondingContact,
+      listOrder: listOrder ?? this.listOrder,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationEntry) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationEntryBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -14807,13 +13494,13 @@ class CitationEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -14837,31 +13524,31 @@ class CitationEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
       return false;
     }
-    if (!listEquals<CitationAffiliationInfo>(
+    if (!listEquals<CitationAffiliationInfoBuilder>(
       affiliationInfo,
       o.affiliationInfo,
     )) {
       return false;
     }
-    if (!listEquals<Address>(
+    if (!listEquals<AddressBuilder>(
       address,
       o.address,
     )) {
       return false;
     }
-    if (!listEquals<ContactPoint>(
+    if (!listEquals<ContactPointBuilder>(
       telecom,
       o.telecom,
     )) {
       return false;
     }
-    if (!listEquals<CodeableConcept>(
+    if (!listEquals<CodeableConceptBuilder>(
       contributionType,
       o.contributionType,
     )) {
@@ -14873,7 +13560,7 @@ class CitationEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<CitationContributionInstance>(
+    if (!listEquals<CitationContributionInstanceBuilder>(
       contributionInstance,
       o.contributionInstance,
     )) {
@@ -14895,13 +13582,13 @@ class CitationEntry extends BackboneElement {
   }
 }
 
-/// [CitationAffiliationInfo]
+/// [CitationAffiliationInfoBuilder]
 /// Organization affiliated with the entity.
-class CitationAffiliationInfo extends BackboneElement {
+class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationAffiliationInfo]
+  /// [CitationAffiliationInfoBuilder]
 
-  const CitationAffiliationInfo({
+  CitationAffiliationInfoBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -14915,26 +13602,26 @@ class CitationAffiliationInfo extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationAffiliationInfo.empty() => const CitationAffiliationInfo();
+  /// For Builder classes, no fields are required
+  factory CitationAffiliationInfoBuilder.empty() =>
+      CitationAffiliationInfoBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationAffiliationInfo.fromJson(
+  factory CitationAffiliationInfoBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath =
         'Citation.citedArtifact.contributorship.entry.affiliationInfo';
-    return CitationAffiliationInfo(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationAffiliationInfoBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -14943,8 +13630,8 @@ class CitationAffiliationInfo extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -14952,21 +13639,21 @@ class CitationAffiliationInfo extends BackboneElement {
             ),
           )
           .toList(),
-      affiliation: JsonParser.parsePrimitive<FhirString>(
+      affiliation: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'affiliation',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.affiliation',
       ),
-      role: JsonParser.parsePrimitive<FhirString>(
+      role: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'role',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.role',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
-          ?.map<Identifier>(
-            (v) => Identifier.fromJson(
+          ?.map<IdentifierBuilder>(
+            (v) => IdentifierBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.identifier',
@@ -14977,22 +13664,22 @@ class CitationAffiliationInfo extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationAffiliationInfo]
+  /// Deserialize [CitationAffiliationInfoBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationAffiliationInfo.fromYaml(
+  factory CitationAffiliationInfoBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationAffiliationInfo.fromJson(
+      return CitationAffiliationInfoBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationAffiliationInfo.fromJson(
+      return CitationAffiliationInfoBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationAffiliationInfo '
+        'CitationAffiliationInfoBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -15000,16 +13687,16 @@ class CitationAffiliationInfo extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationAffiliationInfo]
+  /// [CitationAffiliationInfoBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationAffiliationInfo.fromJsonString(
+  factory CitationAffiliationInfoBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationAffiliationInfo.fromJson(json);
+      return CitationAffiliationInfoBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -15021,31 +13708,31 @@ class CitationAffiliationInfo extends BackboneElement {
 
   /// [affiliation]
   /// Display for the organization.
-  final FhirString? affiliation;
+  FhirStringBuilder? affiliation;
 
   /// [role]
   /// Role within the organization, such as professional title.
-  final FhirString? role;
+  FhirStringBuilder? role;
 
   /// [identifier]
   /// Identifier for the organization.
-  final List<Identifier>? identifier;
+  List<IdentifierBuilder>? identifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -15054,35 +13741,17 @@ class CitationAffiliationInfo extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'affiliation',
-      affiliation,
-    );
-    addField(
-      'role',
-      role,
-    );
-    addField(
-      'identifier',
-      identifier,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('affiliation', affiliation);
+    addField('role', role);
+    addField('identifier', identifier);
     return json;
   }
 
@@ -15102,11 +13771,11 @@ class CitationAffiliationInfo extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -15142,7 +13811,7 @@ class CitationAffiliationInfo extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -15151,79 +13820,81 @@ class CitationAffiliationInfo extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'affiliation':
         {
-          if (child is FhirString) {
-            return copyWith(affiliation: child);
+          if (child is FhirStringBuilder) {
+            affiliation = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
-          if (child is FhirString) {
-            return copyWith(role: child);
+          if (child is FhirStringBuilder) {
+            role = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
+          if (child is List<IdentifierBuilder>) {
+            // Replace or create new list
+            identifier = child;
+            return;
+          } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
-            return copyWith(identifier: newList);
+            identifier = [...(identifier ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -15239,66 +13910,56 @@ class CitationAffiliationInfo extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'affiliation':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'role':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'identifier':
-        return ['Identifier'];
+        return ['IdentifierBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationAffiliationInfo]
+  /// Creates a new [CitationAffiliationInfoBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationAffiliationInfo createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'affiliation':
         {
-          return copyWith(
-            affiliation: FhirString.empty(),
-          );
+          affiliation = FhirStringBuilder.empty();
+          return;
         }
       case 'role':
         {
-          return copyWith(
-            role: FhirString.empty(),
-          );
+          role = FhirStringBuilder.empty();
+          return;
         }
       case 'identifier':
         {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
+          identifier = <IdentifierBuilder>[];
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -15307,7 +13968,7 @@ class CitationAffiliationInfo extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationAffiliationInfo clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
@@ -15315,26 +13976,24 @@ class CitationAffiliationInfo extends BackboneElement {
     bool role = false,
     bool identifier = false,
   }) {
-    return CitationAffiliationInfo(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      affiliation: affiliation ? null : this.affiliation,
-      role: role ? null : this.role,
-      identifier: identifier ? null : this.identifier,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (affiliation) this.affiliation = null;
+    if (role) this.role = null;
+    if (identifier) this.identifier = null;
   }
 
   @override
-  CitationAffiliationInfo clone() => throw UnimplementedError();
+  CitationAffiliationInfoBuilder clone() => throw UnimplementedError();
   @override
-  CitationAffiliationInfo copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirString? affiliation,
-    FhirString? role,
-    List<Identifier>? identifier,
+  CitationAffiliationInfoBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    FhirStringBuilder? affiliation,
+    FhirStringBuilder? role,
+    List<IdentifierBuilder>? identifier,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -15342,50 +14001,37 @@ class CitationAffiliationInfo extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationAffiliationInfo(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      affiliation: affiliation?.copyWith(
-            objectPath: '$newObjectPath.affiliation',
-          ) ??
-          this.affiliation,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
+    final newResult = CitationAffiliationInfoBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      affiliation: affiliation ?? this.affiliation,
+      role: role ?? this.role,
+      identifier: identifier ?? this.identifier,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationAffiliationInfo) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationAffiliationInfoBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -15396,13 +14042,13 @@ class CitationAffiliationInfo extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -15420,7 +14066,7 @@ class CitationAffiliationInfo extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<Identifier>(
+    if (!listEquals<IdentifierBuilder>(
       identifier,
       o.identifier,
     )) {
@@ -15430,17 +14076,17 @@ class CitationAffiliationInfo extends BackboneElement {
   }
 }
 
-/// [CitationContributionInstance]
+/// [CitationContributionInstanceBuilder]
 /// Contributions with accounting for time or number.
-class CitationContributionInstance extends BackboneElement {
+class CitationContributionInstanceBuilder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationContributionInstance]
+  /// [CitationContributionInstanceBuilder]
 
-  const CitationContributionInstance({
+  CitationContributionInstanceBuilder({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
+    this.type,
     this.time,
     super.disallowExtensions,
   }) : super(
@@ -15449,28 +14095,26 @@ class CitationContributionInstance extends BackboneElement {
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationContributionInstance.empty() => CitationContributionInstance(
-        type: CodeableConcept.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationContributionInstanceBuilder.empty() =>
+      CitationContributionInstanceBuilder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationContributionInstance.fromJson(
+  factory CitationContributionInstanceBuilder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath =
         'Citation.citedArtifact.contributorship.entry.contributionInstance';
-    return CitationContributionInstance(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationContributionInstanceBuilder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -15479,8 +14123,8 @@ class CitationContributionInstance extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -15488,37 +14132,37 @@ class CitationContributionInstance extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
-      )!,
-      time: JsonParser.parsePrimitive<FhirDateTime>(
+      ),
+      time: JsonParser.parsePrimitive<FhirDateTimeBuilder>(
         json,
         'time',
-        FhirDateTime.fromJson,
+        FhirDateTimeBuilder.fromJson,
         '$objectPath.time',
       ),
     );
   }
 
-  /// Deserialize [CitationContributionInstance]
+  /// Deserialize [CitationContributionInstanceBuilder]
   /// from a [String] or [YamlMap] object
-  factory CitationContributionInstance.fromYaml(
+  factory CitationContributionInstanceBuilder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationContributionInstance.fromJson(
+      return CitationContributionInstanceBuilder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationContributionInstance.fromJson(
+      return CitationContributionInstanceBuilder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationContributionInstance '
+        'CitationContributionInstanceBuilder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -15526,16 +14170,16 @@ class CitationContributionInstance extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationContributionInstance]
+  /// [CitationContributionInstanceBuilder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationContributionInstance.fromJsonString(
+  factory CitationContributionInstanceBuilder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationContributionInstance.fromJson(json);
+      return CitationContributionInstanceBuilder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -15547,27 +14191,27 @@ class CitationContributionInstance extends BackboneElement {
 
   /// [type]
   /// The specific contribution.
-  final CodeableConcept type;
+  CodeableConceptBuilder? type;
 
   /// [time]
   /// The time that the contribution was made.
-  final FhirDateTime? time;
+  FhirDateTimeBuilder? time;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -15576,31 +14220,16 @@ class CitationContributionInstance extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'time',
-      time,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('time', time);
     return json;
   }
 
@@ -15619,11 +14248,11 @@ class CitationContributionInstance extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -15638,7 +14267,9 @@ class CitationContributionInstance extends BackboneElement {
           fields.addAll(modifierExtension!);
         }
       case 'type':
-        fields.add(type);
+        if (type != null) {
+          fields.add(type!);
+        }
       case 'time':
         if (time != null) {
           fields.add(time!);
@@ -15653,7 +14284,7 @@ class CitationContributionInstance extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -15662,65 +14293,67 @@ class CitationContributionInstance extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'time':
         {
-          if (child is FhirDateTime) {
-            return copyWith(time: child);
+          if (child is FhirDateTimeBuilder) {
+            time = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -15736,58 +14369,49 @@ class CitationContributionInstance extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'time':
-        return ['FhirDateTime'];
+        return ['FhirDateTimeBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationContributionInstance]
+  /// Creates a new [CitationContributionInstanceBuilder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationContributionInstance createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'time':
         {
-          return copyWith(
-            time: FhirDateTime.empty(),
-          );
+          time = FhirDateTimeBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -15796,30 +14420,29 @@ class CitationContributionInstance extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationContributionInstance clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
+    bool type = false,
     bool time = false,
   }) {
-    return CitationContributionInstance(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      time: time ? null : this.time,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (time) this.time = null;
   }
 
   @override
-  CitationContributionInstance clone() => throw UnimplementedError();
+  CitationContributionInstanceBuilder clone() => throw UnimplementedError();
   @override
-  CitationContributionInstance copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    FhirDateTime? time,
+  CitationContributionInstanceBuilder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    FhirDateTimeBuilder? time,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -15827,42 +14450,36 @@ class CitationContributionInstance extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationContributionInstance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      time: time?.copyWith(
-            objectPath: '$newObjectPath.time',
-          ) ??
-          this.time,
+    final newResult = CitationContributionInstanceBuilder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      time: time ?? this.time,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationContributionInstance) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationContributionInstanceBuilder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -15873,13 +14490,13 @@ class CitationContributionInstance extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
@@ -15901,48 +14518,45 @@ class CitationContributionInstance extends BackboneElement {
   }
 }
 
-/// [CitationSummary1]
+/// [CitationSummary1Builder]
 /// Used to record a display of the author/contributor list without
 /// separate coding for each list member.
-class CitationSummary1 extends BackboneElement {
+class CitationSummary1Builder extends BackboneElementBuilder {
   /// Primary constructor for
-  /// [CitationSummary1]
+  /// [CitationSummary1Builder]
 
-  const CitationSummary1({
+  CitationSummary1Builder({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
     this.style,
     this.source,
-    required this.value,
+    this.value,
     super.disallowExtensions,
   }) : super(
           objectPath: 'Citation.citedArtifact.contributorship.summary',
         );
 
   /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CitationSummary1.empty() => CitationSummary1(
-        value: FhirMarkdown.empty(),
-      );
+  /// For Builder classes, no fields are required
+  factory CitationSummary1Builder.empty() => CitationSummary1Builder();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationSummary1.fromJson(
+  factory CitationSummary1Builder.fromJson(
     Map<String, dynamic> json,
   ) {
     const objectPath = 'Citation.citedArtifact.contributorship.summary';
-    return CitationSummary1(
-      id: JsonParser.parsePrimitive<FhirString>(
+    return CitationSummary1Builder(
+      id: JsonParser.parsePrimitive<FhirStringBuilder>(
         json,
         'id',
-        FhirString.fromJson,
+        FhirStringBuilder.fromJson,
         '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.extension',
@@ -15951,8 +14565,8 @@ class CitationSummary1 extends BackboneElement {
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
-          ?.map<FhirExtension>(
-            (v) => FhirExtension.fromJson(
+          ?.map<FhirExtensionBuilder>(
+            (v) => FhirExtensionBuilder.fromJson(
               {
                 ...v as Map<String, dynamic>,
                 'objectPath': '$objectPath.modifierExtension',
@@ -15960,49 +14574,49 @@ class CitationSummary1 extends BackboneElement {
             ),
           )
           .toList(),
-      type: JsonParser.parseObject<CodeableConcept>(
+      type: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'type',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.type',
       ),
-      style: JsonParser.parseObject<CodeableConcept>(
+      style: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'style',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.style',
       ),
-      source: JsonParser.parseObject<CodeableConcept>(
+      source: JsonParser.parseObject<CodeableConceptBuilder>(
         json,
         'source',
-        CodeableConcept.fromJson,
+        CodeableConceptBuilder.fromJson,
         '$objectPath.source',
       ),
-      value: JsonParser.parsePrimitive<FhirMarkdown>(
+      value: JsonParser.parsePrimitive<FhirMarkdownBuilder>(
         json,
         'value',
-        FhirMarkdown.fromJson,
+        FhirMarkdownBuilder.fromJson,
         '$objectPath.value',
-      )!,
+      ),
     );
   }
 
-  /// Deserialize [CitationSummary1]
+  /// Deserialize [CitationSummary1Builder]
   /// from a [String] or [YamlMap] object
-  factory CitationSummary1.fromYaml(
+  factory CitationSummary1Builder.fromYaml(
     dynamic yaml,
   ) {
     if (yaml is String) {
-      return CitationSummary1.fromJson(
+      return CitationSummary1Builder.fromJson(
         yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
-      return CitationSummary1.fromJson(
+      return CitationSummary1Builder.fromJson(
         yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CitationSummary1 '
+        'CitationSummary1Builder '
         'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
@@ -16010,16 +14624,16 @@ class CitationSummary1 extends BackboneElement {
   }
 
   /// Factory constructor for
-  /// [CitationSummary1]
+  /// [CitationSummary1Builder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationSummary1.fromJsonString(
+  factory CitationSummary1Builder.fromJsonString(
     String source,
   ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return CitationSummary1.fromJson(json);
+      return CitationSummary1Builder.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -16032,36 +14646,36 @@ class CitationSummary1 extends BackboneElement {
   /// [type]
   /// Used most commonly to express an author list or a contributorship
   /// statement.
-  final CodeableConcept? type;
+  CodeableConceptBuilder? type;
 
   /// [style]
   /// The format for the display string.
-  final CodeableConcept? style;
+  CodeableConceptBuilder? style;
 
   /// [source]
   /// Used to code the producer or rule for creating the display string.
-  final CodeableConcept? source;
+  CodeableConceptBuilder? source;
 
   /// [value]
   /// The display string for the author list, contributor list, or
   /// contributorship statement.
-  final FhirMarkdown value;
+  FhirMarkdownBuilder? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
-      if (!(field is FhirBase? || field is List<FhirBase>?)) {
-        throw ArgumentError('"field" must be a FhirBase type');
+      if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
+        throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
       if (field == null) return;
-      if (field is PrimitiveType) {
+      if (field is PrimitiveTypeBuilder) {
         json[key] = field.toJson()['value'];
         if (field.toJson()['_value'] != null) {
           json['_$key'] = field.toJson()['_value'];
         }
-      } else if (field is List<FhirBase>) {
+      } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
+        if (field.first is PrimitiveTypeBuilder) {
           final fieldJson = field.map((e) => e.toJson()).toList();
           json[key] = fieldJson.map((e) => e['value']).toList();
           if (fieldJson.any((e) => e['_value'] != null)) {
@@ -16070,39 +14684,18 @@ class CitationSummary1 extends BackboneElement {
         } else {
           json[key] = field.map((e) => e.toJson()).toList();
         }
-      } else if (field is FhirBase) {
+      } else if (field is FhirBaseBuilder) {
         json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'style',
-      style,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'value',
-      value,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('type', type);
+    addField('style', style);
+    addField('source', source);
+    addField('value', value);
     return json;
   }
 
@@ -16123,11 +14716,11 @@ class CitationSummary1 extends BackboneElement {
   /// Retrieves all matching child fields by name.
   ///Optionally validates the name.
   @override
-  List<FhirBase> getChildrenByName(
+  List<FhirBaseBuilder> getChildrenByName(
     String fieldName, [
     bool checkValid = false,
   ]) {
-    final fields = <FhirBase>[];
+    final fields = <FhirBaseBuilder>[];
     switch (fieldName) {
       case 'id':
         if (id != null) {
@@ -16154,7 +14747,9 @@ class CitationSummary1 extends BackboneElement {
           fields.add(source!);
         }
       case 'value':
-        fields.add(value);
+        if (value != null) {
+          fields.add(value!);
+        }
       default:
         if (checkValid) {
           throw ArgumentError('Invalid name: $fieldName');
@@ -16165,7 +14760,7 @@ class CitationSummary1 extends BackboneElement {
 
   /// Retrieves a single field value by its name.
   @override
-  FhirBase? getChildByName(String name) {
+  FhirBaseBuilder? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) {
       throw StateError('Too many values for $name found');
@@ -16174,81 +14769,85 @@ class CitationSummary1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
+  void setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBaseBuilder(s).
     if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
+      return; // In builders, setting to null is allowed
     }
-    if (child is! FhirBase && child is! List<FhirBase>) {
+    if (child is! FhirBaseBuilder && child is! List<FhirBaseBuilder>) {
       throw Exception('Cannot set child value for $childName');
     }
 
     switch (childName) {
       case 'id':
         {
-          if (child is FhirString) {
-            return copyWith(id: child);
+          if (child is FhirStringBuilder) {
+            id = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            extension_ = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
+            extension_ = [...(extension_ ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
+          if (child is List<FhirExtensionBuilder>) {
+            // Replace or create new list
+            modifierExtension = child;
+            return;
+          } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
-            return copyWith(modifierExtension: newList);
+            modifierExtension = [...(modifierExtension ?? []), child];
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
+          if (child is CodeableConceptBuilder) {
+            type = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'style':
         {
-          if (child is CodeableConcept) {
-            return copyWith(style: child);
+          if (child is CodeableConceptBuilder) {
+            style = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
-          if (child is CodeableConcept) {
-            return copyWith(source: child);
+          if (child is CodeableConceptBuilder) {
+            source = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
         {
-          if (child is FhirMarkdown) {
-            return copyWith(value: child);
+          if (child is FhirMarkdownBuilder) {
+            value = child;
+            return;
           } else {
             throw Exception('Invalid child type for $childName');
           }
@@ -16264,74 +14863,63 @@ class CitationSummary1 extends BackboneElement {
   List<String> typeByElementName(String fieldName) {
     switch (fieldName) {
       case 'id':
-        return ['FhirString'];
+        return ['FhirStringBuilder'];
       case 'extension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'modifierExtension':
-        return ['FhirExtension'];
+        return ['FhirExtensionBuilder'];
       case 'type':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'style':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'source':
-        return ['CodeableConcept'];
+        return ['CodeableConceptBuilder'];
       case 'value':
-        return ['FhirMarkdown'];
+        return ['FhirMarkdownBuilder'];
       default:
         return <String>[];
     }
   }
 
-  /// Creates a new [CitationSummary1]
+  /// Creates a new [CitationSummary1Builder]
   ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
   @override
-  CitationSummary1 createProperty(
-    String propertyName,
-  ) {
+  void createProperty(String propertyName) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(
-            id: FhirString.empty(),
-          );
+          id = FhirStringBuilder.empty();
+          return;
         }
       case 'extension':
         {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
+          extension_ = <FhirExtensionBuilder>[];
+          return;
         }
       case 'modifierExtension':
         {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
+          modifierExtension = <FhirExtensionBuilder>[];
+          return;
         }
       case 'type':
         {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
+          type = CodeableConceptBuilder.empty();
+          return;
         }
       case 'style':
         {
-          return copyWith(
-            style: CodeableConcept.empty(),
-          );
+          style = CodeableConceptBuilder.empty();
+          return;
         }
       case 'source':
         {
-          return copyWith(
-            source: CodeableConcept.empty(),
-          );
+          source = CodeableConceptBuilder.empty();
+          return;
         }
       case 'value':
         {
-          return copyWith(
-            value: FhirMarkdown.empty(),
-          );
+          value = FhirMarkdownBuilder.empty();
+          return;
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -16340,36 +14928,35 @@ class CitationSummary1 extends BackboneElement {
 
   /// Clears specific fields in this object
   @override
-  CitationSummary1 clear({
+  void clear({
     bool id = false,
     bool extension_ = false,
     bool modifierExtension = false,
     bool type = false,
     bool style = false,
     bool source = false,
+    bool value = false,
   }) {
-    return CitationSummary1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      style: style ? null : this.style,
-      source: source ? null : this.source,
-      value: value,
-    );
+    if (id) this.id = null;
+    if (extension_) this.extension_ = null;
+    if (modifierExtension) this.modifierExtension = null;
+    if (type) this.type = null;
+    if (style) this.style = null;
+    if (source) this.source = null;
+    if (value) this.value = null;
   }
 
   @override
-  CitationSummary1 clone() => throw UnimplementedError();
+  CitationSummary1Builder clone() => throw UnimplementedError();
   @override
-  CitationSummary1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    CodeableConcept? style,
-    CodeableConcept? source,
-    FhirMarkdown? value,
+  CitationSummary1Builder copyWith({
+    FhirStringBuilder? id,
+    List<FhirExtensionBuilder>? extension_,
+    List<FhirExtensionBuilder>? modifierExtension,
+    CodeableConceptBuilder? type,
+    CodeableConceptBuilder? style,
+    CodeableConceptBuilder? source,
+    FhirMarkdownBuilder? value,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -16377,50 +14964,38 @@ class CitationSummary1 extends BackboneElement {
     String? objectPath,
   }) {
     final newObjectPath = this.objectPath;
-    return CitationSummary1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      style: style?.copyWith(
-            objectPath: '$newObjectPath.style',
-          ) ??
-          this.style,
-      source: source?.copyWith(
-            objectPath: '$newObjectPath.source',
-          ) ??
-          this.source,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
+    final newResult = CitationSummary1Builder(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      type: type ?? this.type,
+      style: style ?? this.style,
+      source: source ?? this.source,
+      value: value ?? this.value,
     );
+
+    newResult.objectPath = newObjectPath;
+    // Copy user data and annotations
+    if (userData != null) {
+      newResult.userData = userData;
+    }
+    if (formatCommentsPre != null) {
+      newResult.formatCommentsPre = formatCommentsPre;
+    }
+    if (formatCommentsPost != null) {
+      newResult.formatCommentsPost = formatCommentsPost;
+    }
+    if (annotations != null) {
+      newResult.annotations = annotations;
+    }
+
+    return newResult;
   }
 
   /// Performs a deep comparison between two instances.
   @override
-  bool equalsDeep(FhirBase? o) {
-    if (o is! CitationSummary1) {
+  bool equalsDeep(FhirBaseBuilder? o) {
+    if (o is! CitationSummary1Builder) {
       return false;
     }
     if (identical(this, o)) return true;
@@ -16431,13 +15006,13 @@ class CitationSummary1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       extension_,
       o.extension_,
     )) {
       return false;
     }
-    if (!listEquals<FhirExtension>(
+    if (!listEquals<FhirExtensionBuilder>(
       modifierExtension,
       o.modifierExtension,
     )) {
